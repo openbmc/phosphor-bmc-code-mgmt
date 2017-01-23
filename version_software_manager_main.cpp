@@ -26,8 +26,16 @@ int main(int argc, char* argv[])
     sdbusplus::server::manager::manager objManager(bus,
             objPathInst.c_str());
 
+    phosphor::software::manager::Version::Properties properties;
+    properties.version = version;
+
+    // For now, we only support the BMC code version
+    properties.purpose = phosphor::software::manager::
+                         Version::VersionPurpose::BMC;
+
     phosphor::software::manager::Version manager(bus,
-            objPathInst.c_str());
+            objPathInst.c_str(),
+            properties);
 
     bus.request_name(VERSION_BUSNAME);
 

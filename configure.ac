@@ -28,6 +28,7 @@ AC_DEFINE_UNQUOTED([LEVEL_OBJPATH], ["$LEVEL_OBJPATH"], [The level software mana
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd developement package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])
+AC_CHECK_HEADER(log.hpp, ,[AC_MSG_ERROR([Could not find log.hpp...openbmc/phosphor-logging package required])])
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

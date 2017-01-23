@@ -11,6 +11,9 @@ namespace software
 namespace manager
 {
 
+// When you see server:: you know we're referencing our base class
+namespace server = sdbusplus::xyz::openbmc_project::Software::server;
+
 const std::string Version::getVersion()
 {
     // Get version from /etc/os-release.
@@ -31,6 +34,7 @@ const std::string Version::getVersion()
         }
     }
     efile.close();
+
     return version;
 }
 

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "version_software_manager.hpp"
+#include <log.hpp>
 
 namespace phosphor
 {
@@ -9,6 +10,30 @@ namespace software
 {
 namespace manager
 {
+
+using namespace phosphor::logging;
+
+// When you see server:: you know we're referencing our base class
+namespace server = sdbusplus::xyz::openbmc_project::Software::server;
+
+std::string Version::version(const std::string value)
+{
+    log<level::INFO>("Change to Software Version",
+                     entry("VERSION=%s",
+                           value));
+
+    return server::Version::version(value);
+}
+
+
+Version::VersionPurpose Version::purpose(VersionPurpose value)
+{
+    log<level::INFO>("Change to Software Purpose",
+                     entry("PURPOSE=%s",
+                           convertForMessage(value).c_str()));
+
+    return server::Version::purpose(value);
+}
 
 const std::string Version::getVersion()
 {

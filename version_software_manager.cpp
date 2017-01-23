@@ -5,6 +5,7 @@
 #include "version_software_manager.hpp"
 // 16^8
 #define ID_DIVISOR 4294967296
+std::string phosphor::software::manager::Version::versionIdentifier;
 
 namespace phosphor
 {
@@ -35,6 +36,8 @@ const std::string Version::getVersion()
         }
     }
     efile.close();
+    Version::versionIdentifier = version;
+
     return version;
 }
 

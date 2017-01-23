@@ -20,17 +20,31 @@ class Version : public sdbusplus::server::object::object<
                 sdbusplus::xyz::openbmc_project::Software::server::Version>
 {
     public:
+        static std::string versionIdentifier;
+
         /** @brief Constructs Version Software Manager
          *
-         * @param[in] bus       - The Dbus bus object
-         * @param[in] objPath   - The Dbus object path
+         * @note This constructor passes 'true' to the base class in order to
+         *       defer dbus object registration until we can
+         *       set our properties
+         *
+         * @param[in] bus        - The Dbus bus object
+         * @param[in] objPath    - The Dbus object path
          */
         Version(sdbusplus::bus::bus& bus,
                 const char* objPath) :
                 sdbusplus::server::object::object<
                     sdbusplus::xyz::openbmc_project::Software::server::Version>
                         (bus, (std::string{objPath} + '/' +
-                            getId()).c_str()) {};
+                            getId()).c_str(), true)
+        {
+            // Set properties.
+            purpose(phosphor::software::manager::Version::VersionPurpose::BMC);
+            version(Version::versionIdentifier);
+
+            // Emit deferred signal.
+            emit_object_added();
+        }
 
     private:
         /**

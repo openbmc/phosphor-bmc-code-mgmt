@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <sstream>
 #include <fstream>
 #include "version_software_manager.hpp"
@@ -35,6 +34,7 @@ const std::string Version::getVersion()
         }
     }
     efile.close();
+
     return version;
 }
 

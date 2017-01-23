@@ -3,6 +3,7 @@
 #include <fstream>
 #include "version_software_manager.hpp"
 #define ID_DIVISOR 100000000
+std::string phosphor::software::manager::Version::versionIdentifier;
 
 namespace phosphor
 {
@@ -31,6 +32,8 @@ const std::string Version::getVersion()
         }
     }
     efile.close();
+    Version::versionIdentifier = version;
+
     return version;
 }
 

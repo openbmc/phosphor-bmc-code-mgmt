@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Software/Version/server.hpp"
@@ -20,17 +19,31 @@ class Version : public sdbusplus::server::object::object<
                 sdbusplus::xyz::openbmc_project::Software::server::Version>
 {
     public:
+        static std::string id;
+
         /** @brief Constructs Version Software Manager
          *
-         * @param[in] bus       - The Dbus bus object
-         * @param[in] objPath   - The Dbus object path
+         * @note This constructor passes 'true' to the base class in order to
+         *       defer dbus object registration until we can
+         *       set our properties
+         *
+         * @param[in] bus        - The Dbus bus object
+         * @param[in] objPath    - The Dbus object path
          */
         Version(sdbusplus::bus::bus& bus,
                 const char* objPath) :
                 sdbusplus::server::object::object<
                     sdbusplus::xyz::openbmc_project::Software::server::Version>
                         (bus, (std::string{objPath} + '/' +
-                            getId()).c_str()) {};
+                            getId()).c_str(), true)
+        {
+            // Set properties.
+            purpose(VersionPurpose::BMC);
+            version(getVersion());
+
+            // Emit deferred signal.
+            emit_object_added();
+        }
 
     private:
         /**

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <sstream>
 #include <fstream>
 #include "version_software_manager.hpp"
@@ -35,12 +34,12 @@ const std::string Version::getVersion()
         }
     }
     efile.close();
+
     return version;
 }
 
-const std::string Version::getId()
+const std::string Version::getId(const std::string version)
 {
-    auto version = getVersion();
     std::stringstream hexId;
 
     if (version.empty())
@@ -50,6 +49,7 @@ const std::string Version::getId()
 
     // Only want 8 hex digits.
     hexId << std::hex << (std::hash<std::string> {}(version)) % ID_DIVISOR;
+
     return hexId.str();
 }
 

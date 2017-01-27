@@ -21,6 +21,7 @@ class Version : public sdbusplus::server::object::object<
 {
     public:
         static std::string versionIdentifier;
+        static std::string id;
 
         /** @brief Constructs Version Software Manager
          *

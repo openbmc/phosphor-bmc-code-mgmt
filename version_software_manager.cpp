@@ -3,7 +3,9 @@
 #include <fstream>
 #include "version_software_manager.hpp"
 #define ID_DIVISOR 100000000
+
 std::string phosphor::software::manager::Version::versionIdentifier;
+size_t phosphor::software::manager::Version::id;
 
 namespace phosphor
 {
@@ -47,7 +49,10 @@ const size_t Version::getId()
     }
 
     // Only want 8 digits.
-    return std::hash<std::string> {}(version) % ID_DIVISOR;
+    auto id = std::hash<std::string> {}(version) % ID_DIVISOR;
+    Version::id = id;
+
+    return id;
 }
 
 } // namespace manager

@@ -29,7 +29,15 @@ class Activation : public sdbusplus::server::object::object<
                 const char* objPath) :
                 sdbusplus::server::object::object<
                     sdbusplus::xyz::openbmc_project::Software::server::
-                        Activation>(bus, objPath) {};
+                        Activation>(bus, objPath, true)
+        {
+            activation(phosphor::software::manager::Activation::
+                    Activations::Active);
+            // requestedActivation default is "None", so no need to set.
+
+            // Emit deferred signal.
+            emit_object_added();
+        }
 };
 
 } // namespace manager

@@ -2,7 +2,7 @@
 #include <sstream>
 #include <fstream>
 #include "version_software_manager.hpp"
-// 16^8
+// 16^8. Used for getting 8 hex digits.
 #define ID_DIVISOR 4294967296
 
 namespace phosphor
@@ -38,18 +38,16 @@ const std::string Version::getVersion()
     return version;
 }
 
-const std::string Version::getId()
+const std::string Version::getId(const std::string& version)
 {
-    auto version = getVersion();
     std::stringstream hexId;
 
-    if (version.empty())
+    if (!version.empty())
     {
-        return "";
+        // Use the hash of version to determine the id. Only want 8 hex digits.
+        hexId << std::hex << (std::hash<std::string> {}(version)) % ID_DIVISOR;
     }
 
-    // Only want 8 hex digits.
-    hexId << std::hex << (std::hash<std::string> {}(version)) % ID_DIVISOR;
     return hexId.str();
 }
 

@@ -28,6 +28,10 @@ AC_ARG_VAR(SOFTWARE_OBJPATH, [The version software manager Dbus root])
 AS_IF([test "x$SOFTWARE_OBJPATH" == "x"], [SOFTWARE_OBJPATH="/xyz/openbmc_project/software"])
 AC_DEFINE_UNQUOTED([SOFTWARE_OBJPATH], ["$SOFTWARE_OBJPATH"], [The version software manager Dbus root])
 
+AC_ARG_VAR(ACTIVATION_BUSNAME, [The Dbus busname to own])
+AS_IF([test "x$ACTIVATION_BUSNAME" == "x"], [ACTIVATION_BUSNAME="xyz.openbmc_project.Software.Activation"])
+AC_DEFINE_UNQUOTED([ACTIVATION_BUSNAME], ["$ACTIVATION_BUSNAME"], [The DBus busname to own])
+
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd developement package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])

@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
             SOFTWARE_OBJPATH);
 
     auto objPathInst = std::string{SOFTWARE_OBJPATH} + '/' +
-                       phosphor::software::manager::Version::id;
+                       versionManager.id;
 
     phosphor::software::manager::Activation activationManager(bus,
             objPathInst.c_str());

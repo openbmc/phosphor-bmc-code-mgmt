@@ -7,6 +7,6 @@ namespace manager
 {
 
 } // namespace manager
-} // namespace state
+} // namespace software
 } // namepsace phosphor
 

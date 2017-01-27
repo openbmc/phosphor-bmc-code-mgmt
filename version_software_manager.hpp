@@ -19,6 +19,9 @@ class Version : public sdbusplus::server::object::object<
                 sdbusplus::xyz::openbmc_project::Software::server::Version>
 {
     public:
+        std::string id;
+
+
         /** @brief Constructs Version Software Manager
          *
          * @note This constructor passes 'true' to the base class in order to
@@ -33,11 +36,11 @@ class Version : public sdbusplus::server::object::object<
                 sdbusplus::server::object::object<
                     sdbusplus::xyz::openbmc_project::Software::server::Version>
                         (bus, (std::string{objPath} + '/' +
-                            getId()).c_str(), true)
+                            getId(getVersion())).c_str(), true)
         {
             // Set properties.
             purpose(VersionPurpose::BMC);
-            version(getVersion());
+            id = getId(version(getVersion()));
 
             // Emit deferred signal.
             emit_object_added();
@@ -56,7 +59,7 @@ class Version : public sdbusplus::server::object::object<
          *
          * @return The id.
          **/
-        const std::string getId();
+        const std::string getId(const std::string version);
 };
 
 } // namespace manager

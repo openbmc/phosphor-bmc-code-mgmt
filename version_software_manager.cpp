@@ -5,7 +5,9 @@
 #include "version_software_manager.hpp"
 // 16^8
 #define ID_DIVISOR 4294967296
+
 std::string phosphor::software::manager::Version::versionIdentifier;
+std::string phosphor::software::manager::Version::id;
 
 namespace phosphor
 {
@@ -53,7 +55,10 @@ const std::string Version::getId()
 
     // Only want 8 hex digits.
     hexId << std::hex << (std::hash<std::string> {}(version)) % ID_DIVISOR;
-    return hexId.str();
+    auto id = hexId.str();
+
+    Version::id = id;
+    return id;
 }
 
 } // namespace manager

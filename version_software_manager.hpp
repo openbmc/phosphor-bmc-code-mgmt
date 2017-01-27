@@ -42,6 +42,8 @@ class Version : public sdbusplus::server::object::object<
             // Set properties.
             purpose(VersionPurpose::BMC);
             version(getVersion());
+            activation(Activations::Active);
+            // requestedActivation default is "None", so no need to set.
 
             // Emit deferred signal.
             emit_object_added();

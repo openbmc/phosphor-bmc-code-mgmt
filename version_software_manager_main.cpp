@@ -4,6 +4,7 @@
 #include <sdbusplus/bus.hpp>
 #include "config.h"
 #include "version_software_manager.hpp"
+#include "activation_software_manager.hpp"
 #define ID_DIVISOR 100000000
 
 int main(int argc, char* argv[])
@@ -33,11 +34,15 @@ int main(int argc, char* argv[])
     properties.purpose = phosphor::software::manager::
                          Version::VersionPurpose::BMC;
 
-    phosphor::software::manager::Version manager(bus,
+    phosphor::software::manager::Version versionManager(bus,
             objPathInst.c_str(),
             properties);
 
+    phosphor::software::manager::Activation activationManager(bus,
+            objPathInst.c_str());
+
     bus.request_name(VERSION_BUSNAME);
+    bus.request_name(ACTIVATION_BUSNAME);
 
     while (true)
     {

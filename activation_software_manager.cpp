@@ -1,5 +1,4 @@
-#include "activation_software_manager.hpp"
-#include <log.hpp>
+
 
 namespace phosphor
 {

@@ -36,7 +36,7 @@ class Activation : public sdbusplus::server::object::object<
                         Activation>(bus, objPath, true)
         {
             activation(phosphor::software::manager::Activation::
-                Activations::Active);
+                    Activations::Active);
             // requestedActivation default is "None", so no need to set.
 
             // Emit deferred signal.

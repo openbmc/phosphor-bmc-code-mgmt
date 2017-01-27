@@ -27,19 +27,23 @@ int main(int argc, char* argv[])
     sdbusplus::server::manager::manager objManager(bus,
             objPathInst.c_str());
 
-    phosphor::software::manager::Version::Properties properties;
-    properties.version = version;
+    phosphor::software::manager::Version::Properties versionProperties;
+    versionProperties.version = version;
+
+    phosphor::software::manager::Activation::Properties activationProperties;
+    activationProperties.activation = phosphor::software::manager::
+                                      Activation::Activations::Active;
 
     // For now, we only support the BMC code version
-    properties.purpose = phosphor::software::manager::
-                         Version::VersionPurpose::BMC;
+    versionProperties.purpose = phosphor::software::manager::
+                                Version::VersionPurpose::BMC;
 
     phosphor::software::manager::Version versionManager(bus,
             objPathInst.c_str(),
-            properties);
+            versionProperties);
 
     phosphor::software::manager::Activation activationManager(bus,
-            objPathInst.c_str());
+            objPathInst.c_str(), activationProperties);
 
     bus.request_name(VERSION_BUSNAME);
     bus.request_name(ACTIVATION_BUSNAME);

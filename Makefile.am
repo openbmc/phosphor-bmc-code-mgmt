@@ -5,9 +5,11 @@ sbin_PROGRAMS = \
 
 phosphor_version_software_manager_SOURCES = \
 	version_software_manager.cpp \
-	xyz.openbmc_project.Software.Version.cpp \
 	version_software_manager_main.cpp \
-	activation_software_manager.cpp \
-	xyz.openbmc_project.Software.Activation.cpp
+	activation_software_manager.cpp
 
-phosphor_version_software_manager_LDFLAGS = $(SYSTEMD_LIBS)
+generic_cxxflags = $(SYSTEMD_CFLAGS) $(PHOSPHOR_DBUS_INTERFACES_CFLAGS)
+generic_ldflags = $(SYSTEMD_LIBS) $(PHOSPHOR_DBUS_INTERFACES_LIBS)
+
+phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
+phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)

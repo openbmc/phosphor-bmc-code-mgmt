@@ -14,6 +14,8 @@ AC_PROG_MAKE_SET
 PKG_CHECK_MODULES([SYSTEMD], [libsystemd >= 221])
 PKG_CHECK_MODULES([PHOSPHOR_DBUS_INTERFACES], [phosphor-dbus-interfaces],,\
     AC_MSG_ERROR(["Requires phosphor-dbus-interfaces package."]))
+PKG_CHECK_MODULES([SDBUSPLUS], [sdbusplus],,
+    AC_MSG_ERROR(["Requires sdbusplus package."]))
 
 # Checks for library functions
 LT_INIT # Required for systemd linking

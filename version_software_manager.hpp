@@ -2,6 +2,7 @@
 
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Software/Version/server.hpp"
+#include "xyz/openbmc_project/Software/Activation/server.hpp"
 
 namespace phosphor
 {
@@ -16,7 +17,8 @@ namespace manager
  *  DBus API.
  */
 class Version : public sdbusplus::server::object::object<
-                sdbusplus::xyz::openbmc_project::Software::server::Version>
+                sdbusplus::xyz::openbmc_project::Software::server::Version,
+                sdbusplus::xyz::openbmc_project::Software::server::Activation>
 {
     public:
         /** @brief Constructs Version Software Manager
@@ -31,13 +33,17 @@ class Version : public sdbusplus::server::object::object<
         Version(sdbusplus::bus::bus& bus,
                 const char* objPath) :
                 sdbusplus::server::object::object<
-                    sdbusplus::xyz::openbmc_project::Software::server::Version>
-                        (bus, (std::string{objPath} + '/' +
-                            getId()).c_str(), true)
+                    sdbusplus::xyz::openbmc_project::Software::server::Version,
+                    sdbusplus::xyz::openbmc_project::Software::
+                        server::Activation>
+                            (bus, (std::string{objPath} + '/' +
+                                getId()).c_str(), true)
         {
             // Set properties.
             purpose(VersionPurpose::BMC);
             version(getVersion());
+            activation(Activations::Active);
+            // requestedActivation default is "None", so no need to set.
 
             // Emit deferred signal.
             emit_object_added();

@@ -11,14 +11,16 @@ namespace software
 namespace manager
 {
 
+using VersionInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Software::server::Version,
+    sdbusplus::xyz::openbmc_project::Software::server::Activation>;
+
 /** @class Version
  *  @brief OpenBMC version software management implementation.
  *  @details A concrete implementation for xyz.openbmc_project.Software.Version
  *  DBus API.
  */
-class Version : public sdbusplus::server::object::object<
-                sdbusplus::xyz::openbmc_project::Software::server::Version,
-                sdbusplus::xyz::openbmc_project::Software::server::Activation>
+class Version : public VersionInherit
 {
     public:
         /** @brief Constructs Version Software Manager
@@ -31,13 +33,8 @@ class Version : public sdbusplus::server::object::object<
          * @param[in] objPath    - The Dbus object path
          */
         Version(sdbusplus::bus::bus& bus,
-                const char* objPath) :
-                sdbusplus::server::object::object<
-                    sdbusplus::xyz::openbmc_project::Software::server::Version,
-                    sdbusplus::xyz::openbmc_project::Software::
-                        server::Activation>
-                            (bus, (std::string{objPath} + '/' +
-                                getId()).c_str(), true)
+                const char* objPath) : VersionInherit(
+                    bus, (std::string{objPath} + '/' + getId()).c_str(), true)
         {
             // Set properties.
             purpose(VersionPurpose::BMC);

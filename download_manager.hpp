@@ -30,7 +30,27 @@ class Download : public DownloadInherit
                 const std::string& objPath) : DownloadInherit(
                     bus, (objPath).c_str()) {};
 
+        /** @brief Set value of FileName*/
+        std::string fileName(const std::string value) override;
 
+        /** @brief Set value of ServerAddress */
+        std::string serverAddress(const std::string value) override;
+
+    private:
+        /**
+         * @brief Download the specified image via TFTP
+         *
+         * @param[in] file   - The name of the file to transfer.
+         * @param[in] server - The TFTP Server IP Address.
+         **/
+        void downloadViaTFTP(const std::string& file,
+                             const std::string& server);
+
+        /** @brief The name of the file to transfer. */
+        std::string file;
+
+        /** @brief The TFTP Server IP Address. */
+        std::string server;
 };
 
 } // namespace manager

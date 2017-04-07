@@ -1,6 +1,10 @@
-#include "download_manager.hpp"
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <vector>
+#include <phosphor-logging/log.hpp>
+#include "download_manager.hpp"
 
 namespace phosphor
 {
@@ -11,6 +15,7 @@ namespace manager
 
 // When you see server:: you know we're referencing our base class
 namespace server = sdbusplus::xyz::openbmc_project::Common::server;
+using namespace phosphor::logging;
 
 std::string Download::fileName(const std::string value)
 {
@@ -44,9 +49,38 @@ std::string Download::serverAddress(const std::string value)
 void Download::downloadViaTFTP(const std::string& fileName,
                                const std::string& serverAddress)
 {
+    log<level::INFO>("Downloading via TFTP",
+                     entry("FILENAME=%s", fileName),
+                     entry("SERVERADDRESS=%s", serverAddress));
+
+    pid_t pid = fork();
+    if (pid == -1)
+    {
+        log<level::ERR>("Error in fork");
+        return;
+    }
+
+    if (pid > 0)
+    {
+        // parent process
+        int status;
+        waitpid(pid, &status, 0);
+    }
+    else
+    {
+        // child process
+        execl("/usr/bin/tftp", "tftp", "-g", "-r",  fileName.c_str(),
+              serverAddress.c_str(), "-l", ("/tmp/" + fileName).c_str(),
+              (char*)0);
+
+        // execl only returns on fail
+        log<level::ERR>("Error in downloading via TFTP",
+                        entry("FILENAME=%s", fileName),
+                        entry("SERVERADDRESS=%s", serverAddress));
+    }
+
     return;
 }
-
 
 } // namespace manager
 } // namespace software

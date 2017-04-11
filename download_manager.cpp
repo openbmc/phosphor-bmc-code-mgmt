@@ -21,12 +21,14 @@ void Download::downloadViaTFTP(const  std::string fileName,
     if (fileName.empty())
     {
         log<level::ERR>("Error FileName is empty");
+        sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument();
         return;
     }
 
     if (serverAddress.empty())
     {
         log<level::ERR>("Error ServerAddress is empty");
+        sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument();
         return;
     }
 
@@ -44,10 +46,12 @@ void Download::downloadViaTFTP(const  std::string fileName,
               (char*)0);
         // execl only returns on fail
         log<level::ERR>("Error occurred during the TFTP call");
+        sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure();
     }
     else if (pid < 0)
     {
         log<level::ERR>("Error occurred during fork");
+        sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure();
     }
 
     return;

@@ -13,8 +13,6 @@ namespace software
 namespace manager
 {
 
-// When you see server:: you know we're referencing our base class
-namespace server = sdbusplus::xyz::openbmc_project::Common::server;
 using namespace phosphor::logging;
 
 void Download::downloadViaTFTP(const  std::string fileName,
@@ -22,13 +20,14 @@ void Download::downloadViaTFTP(const  std::string fileName,
 {
     if (fileName.empty())
     {
-        log<level::ERR>("Error FileName is empty");
+        sdbusplus::xyz::openbmc_project::Common::TFTP::Error::FileNameEmpty();
         return;
     }
 
     if (serverAddress.empty())
     {
-        log<level::ERR>("Error ServerAddress is empty");
+        sdbusplus::xyz::openbmc_project::Common::TFTP::
+        Error::ServerAddressEmpty();
         return;
     }
 
@@ -38,27 +37,18 @@ void Download::downloadViaTFTP(const  std::string fileName,
 
     pid_t pid = fork();
 
-    if (pid > 0)
-    {
-        // parent process
-        int status;
-        waitpid(pid, &status, 0);
-    }
-    else if (pid == 0)
+    if (pid == 0)
     {
         // child process
         execl("/usr/bin/tftp", "tftp", "-g", "-r",  fileName.c_str(),
-              serverAddress.c_str(), "-l", (std::string{IMAGE_DIR} + fileName).c_str(),
+              serverAddress.c_str(), "-l", (IMAGE_DIR + fileName).c_str(),
               (char*)0);
-
         // execl only returns on fail
-        log<level::ERR>("Error in downloading via TFTP",
-                        entry("FILENAME=%s", fileName),
-                        entry("SERVERADDRESS=%s", serverAddress));
+        sdbusplus::xyz::openbmc_project::Common::TFTP::Error::TFTP();
     }
-    else
+    else if (pid < 0)
     {
-        log<level::ERR>("Error in fork");
+        sdbusplus::xyz::openbmc_project::Common::TFTP::Error::Fork();
     }
 
     return;

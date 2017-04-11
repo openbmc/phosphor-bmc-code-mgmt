@@ -20,11 +20,13 @@ void Download::downloadViaTFTP(const  std::string fileName,
 {
     if (fileName.empty())
     {
+        sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument();
         return;
     }
 
     if (serverAddress.empty())
     {
+        sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument();
         return;
     }
 
@@ -40,6 +42,12 @@ void Download::downloadViaTFTP(const  std::string fileName,
         execl("/usr/bin/tftp", "tftp", "-g", "-r",  fileName.c_str(),
               serverAddress.c_str(), "-l", (IMAGE_DIR + fileName).c_str(),
               (char*)0);
+        // execl only returns on fail
+        sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure();
+    }
+    else if (pid < 0)
+    {
+        sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure();
     }
 
     return;

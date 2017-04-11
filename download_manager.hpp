@@ -2,6 +2,7 @@
 
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Common/TFTP/server.hpp"
+#include "xyz/openbmc_project/Common/error.hpp"
 
 namespace phosphor
 {

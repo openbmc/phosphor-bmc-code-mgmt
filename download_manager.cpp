@@ -2,7 +2,10 @@
 #include <string>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sdbusplus/exception.hpp>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
 #include "download_manager.hpp"
 
 namespace phosphor
@@ -15,12 +18,19 @@ namespace manager
 // When you see server:: you know we're referencing our base class
 namespace server = sdbusplus::xyz::openbmc_project::Common::server;
 using namespace phosphor::logging;
+using namespace sdbusplus::xyz::openbmc_project::Common::TFTP::Error;
 
 void Download::downloadViaTFTP(const  std::string fileName,
                                const  std::string serverAddress)
 {
     if (fileName.empty())
     {
+
+        elog<DownloadViaTFTP>(
+            xyz::openbmc_project::Common::TFTP::DownloadViaTFTP::
+            FILENAME(fileName),
+            xyz::openbmc_project::Common::TFTP::DownloadViaTFTP::
+            SERVERADDRESS(serverAddress));
         log<level::ERR>("Error FileName is empty");
         return;
     }

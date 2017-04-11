@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
 #include "download_manager.hpp"
 
 namespace phosphor
@@ -14,6 +16,7 @@ namespace manager
 
 // When you see server:: you know we're referencing our base class
 namespace server = sdbusplus::xyz::openbmc_project::Common::server;
+using namespace sdbusplus::xyz::openbmc_project::Common::TFTP::Error;
 using namespace phosphor::logging;
 
 void Download::downloadViaTFTP(const  std::string fileName,
@@ -21,13 +24,13 @@ void Download::downloadViaTFTP(const  std::string fileName,
 {
     if (fileName.empty())
     {
-        log<level::ERR>("Error FileName is empty");
+        createErrorLog(fileName, serverAddress);
         return;
     }
 
     if (serverAddress.empty())
     {
-        log<level::ERR>("Error ServerAddress is empty");
+        createErrorLog(fileName, serverAddress);
         return;
     }
 
@@ -51,13 +54,31 @@ void Download::downloadViaTFTP(const  std::string fileName,
               (char*)0);
 
         // execl only returns on fail
-        log<level::ERR>("Error in downloading via TFTP",
-                        entry("FILENAME=%s", fileName),
-                        entry("SERVERADDRESS=%s", serverAddress));
+        createErrorLog(fileName, serverAddress);
     }
     else
     {
+        createErrorLog(fileName, serverAddress);
         log<level::ERR>("Error in fork");
+    }
+
+    return;
+}
+
+void Download::createErrorLog(const std::string& fileName,
+                              const std::string& serverAddress)
+{
+    try
+    {
+        elog<DownloadViaTFTP>(
+            xyz::openbmc_project::Common::TFTP::DownloadViaTFTP::
+            FILENAME(fileName),
+            xyz::openbmc_project::Common::TFTP::DownloadViaTFTP::
+            SERVERADDRESS(serverAddress));
+    }
+    catch (DownloadViaTFTP& e)
+    {
+        commit(e.name());
     }
 
     return;

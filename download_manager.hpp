@@ -2,6 +2,7 @@
 
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Common/TFTP/server.hpp"
+#include "xyz/openbmc_project/Common/TFTP/error.hpp"
 
 namespace phosphor
 {
@@ -38,6 +39,16 @@ class Download : public DownloadInherit
          **/
         void downloadViaTFTP(const std::string fileName,
                              const std::string serverAddress) override;
+
+    private:
+        /**
+         * @brief Create TFTP Error Log
+         *
+         * @param[in] fileName      - The name of the file to transfer.
+         * @param[in] serverAddress - The TFTP Server IP Address.
+         **/
+        void createErrorLog(const std::string& fileName,
+                             const std::string& serverAddress);
 };
 
 } // namespace manager

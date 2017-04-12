@@ -6,7 +6,7 @@ sbin_PROGRAMS = \
 
 phosphor_version_software_manager_SOURCES = \
 	version_software_manager.cpp \
-	version_software_manager_main.cpp
+	image_manager_main.cpp
 
 phosphor_download_manager_SOURCES = \
 	download_manager.cpp \

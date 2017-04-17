@@ -15,10 +15,11 @@ namespace manager
 
 using namespace phosphor::logging;
 
-std::string Version::getVersion(const std::string& manifestFilePath)
+std::string Version::getValue(const std::string& manifestFilePath,
+                              std::string& key)
 {
-    constexpr auto versionKey = "version=";
-    constexpr auto versionKeySize = strlen(versionKey);
+    key = key + "=";
+    auto keySize = key.length();
 
     if (manifestFilePath.empty())
     {
@@ -39,9 +40,9 @@ std::string Version::getVersion(const std::string& manifestFilePath)
         efile.open(manifestFilePath);
         while (getline(efile, line))
         {
-            if (line.compare(0, versionKeySize, versionKey) == 0)
+            if (line.compare(0, keySize, key) == 0)
             {
-                version = line.substr(versionKeySize);
+                version = line.substr(keySize);
                 break;
             }
         }
@@ -49,7 +50,7 @@ std::string Version::getVersion(const std::string& manifestFilePath)
     }
     catch (const std::exception& e)
     {
-        log<level::ERR>("Error in reading Host MANIFEST file");
+        log<level::ERR>("Error in reading MANIFEST file");
     }
 
     return version;
@@ -61,8 +62,8 @@ std::string Version::getId(const std::string& version)
 
     if (version.empty())
     {
-        log<level::ERR>("Error Host version is empty");
-        throw std::runtime_error("Host version is empty");
+        log<level::ERR>("Error version is empty");
+        throw std::runtime_error("Version is empty");
     }
 
     // Only want 8 hex digits.

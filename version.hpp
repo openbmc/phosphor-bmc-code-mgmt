@@ -23,16 +23,19 @@ class Version : public VersionInherit
     public:
         /** @brief Constructs Version Software Manager
          *
-         * @param[in] bus       - The Dbus bus object
-         * @param[in] objPath   - The Dbus object path
-         * @param[in] versionId - The Host version identifier
+         * @param[in] bus            - The Dbus bus object
+         * @param[in] objPath        - The Dbus object path
+         * @param[in] versionId      - The version identifier
+         * @param[in] versionPurpose - The version purpose
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
-                const std::string& versionId) : VersionInherit(
+                const std::string& versionId,
+                VersionPurpose versionPurpose) : VersionInherit(
                     bus, (objPath).c_str(), true)
         {
             // Set properties.
+            purpose(versionPurpose);
             version(versionId);
 
             // Emit deferred signal.
@@ -40,18 +43,20 @@ class Version : public VersionInherit
         }
 
         /**
-         * @brief Get the code version identifier.
+         * @brief Read the manifest file to get the value of the key.
          *
-         * @return The version identifier.
+         * @return The value of the key.
          **/
-        static std::string getVersion(const std::string& manifestFilePath);
+        static std::string getValue(const std::string& manifestFilePath,
+                                    std::string key);
 
         /**
-         * @brief Get the Host Version id.
+         * @brief Get the Version id.
          *
          * @return The id.
          **/
         static std::string getId(const std::string& version);
+
 };
 
 } // namespace manager

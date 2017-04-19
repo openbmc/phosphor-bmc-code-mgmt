@@ -7,6 +7,7 @@
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "watch.hpp"
+#include "image_manager.hpp"
 
 namespace phosphor
 {
@@ -15,6 +16,7 @@ namespace software
 namespace manager
 {
 
+using namespace phosphor::logging;
 using namespace std::string_literals;
 
 Watch::Watch(sd_event* loop)
@@ -86,11 +88,14 @@ int Watch::callback(sd_event_source* s,
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
         if ((event->mask & IN_CLOSE_WRITE) && !(event->mask & IN_ISDIR))
         {
-            // TODO: openbmc/openbmc#1352 - invoke method (which takes uploaded
-            // filepath) to construct software version d-bus objects.
-            // For now, log the image filename.
-            using namespace phosphor::logging;
-            log<level::INFO>(event->name);
+            auto rc = processImage(std::string{IMG_UPLOAD_DIR} +
+                                   '/' + event->name);
+            if (rc < 0)
+            {
+                log<level::ERR>("Error processing image",
+                                entry("IMAGE=%s", std::string{event->name}));
+            }
+
         }
 
         offset += offsetof(inotify_event, name) + event->len;

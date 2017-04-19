@@ -48,6 +48,15 @@ class Version : public VersionInherit
         }
 
         /**
+         * @brief Create and populate the version and filepath
+         *        interfaces from the given tarball.
+         *
+         * @param[in]  tarballFilePath - Tarball path.
+         * @param[out] result          - 0 if successful.
+         */
+        static int createVersion(const std::string& tarballFilePath);
+
+        /**
          * @brief Get the code version identifier.
          *
          * @return The version identifier.

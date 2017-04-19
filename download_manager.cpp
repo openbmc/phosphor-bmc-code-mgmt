@@ -1,4 +1,5 @@
 #include "download_manager.hpp"
+#include <phosphor-logging/elog.hpp>
 
 namespace phosphor
 {

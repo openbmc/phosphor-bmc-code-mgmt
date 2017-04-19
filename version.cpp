@@ -15,6 +15,11 @@ namespace manager
 
 using namespace phosphor::logging;
 
+int Version::processImage(const std::string& tarFilePath)
+{
+    return 0;
+}
+
 std::string Version::getPurpose(const std::string& manifestFilePath)
 {
     constexpr auto purposeKey = "purpose=";

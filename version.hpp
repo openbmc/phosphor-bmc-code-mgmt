@@ -48,6 +48,15 @@ class Version : public VersionInherit
         }
 
         /**
+         * @brief Verify and untar the tarball. Verify the manifest file.
+         *        Create and populate the version and filepath interfaces.
+         *
+         * @param[in]  tarballFilePath - Tarball path.
+         * @param[out] result          - 0 if successful.
+         */
+        static int processImage(const std::string& tarballFilePath);
+
+        /**
          * @brief Get the code version identifier.
          *
          * @return The version identifier.

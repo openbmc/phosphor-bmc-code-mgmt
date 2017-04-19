@@ -7,6 +7,7 @@
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "watch.hpp"
+#include "image_manager.hpp"
 
 namespace phosphor
 {
@@ -86,11 +87,7 @@ int Watch::callback(sd_event_source* s,
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
         if ((event->mask & IN_CREATE) && !(event->mask & IN_ISDIR))
         {
-            // TODO: openbmc/openbmc#1352 - invoke method (which takes uploaded
-            // filepath) to construct software version d-bus objects.
-            // For now, log the image filename.
-            using namespace phosphor::logging;
-            log<level::INFO>(event->name);
+            Image::processImage(event->name);
         }
 
         offset += offsetof(inotify_event, name) + event->len;

@@ -4,7 +4,9 @@ AM_DEFAULT_SOURCE_EXT = .cpp
 noinst_HEADERS = \
 	version_software_manager.hpp \
 	download_manager.hpp \
-	watch.hpp
+	watch.hpp \
+	version.hpp \
+	image_manager.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -13,7 +15,9 @@ sbin_PROGRAMS = \
 phosphor_version_software_manager_SOURCES = \
 	version_software_manager.cpp \
 	image_manager_main.cpp \
-	watch.cpp
+	watch.cpp \
+	version.cpp \
+	image_manager.cpp
 
 phosphor_download_manager_SOURCES = \
 	download_manager.cpp \

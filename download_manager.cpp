@@ -1,4 +1,7 @@
 #include "download_manager.hpp"
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include "xyz/openbmc_project/Common/error.hpp"
 
 namespace phosphor
 {

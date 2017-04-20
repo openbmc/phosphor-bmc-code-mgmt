@@ -13,8 +13,6 @@ Makefile.in
 # http://www.gnu.org/software/autoconf
 
 /autom4te.cache
-/autoscan.log
-/autoscan-*.log
 /aclocal.m4
 /compile
 /config.guess
@@ -36,13 +34,15 @@ Makefile.in
 /texinfo.tex
 
 # Repo Specific Items
-/*.o
+*.o
+*.trs
 /config.h
 /config.h.in~
-/config.log
+*.log
 /config.status
 /phosphor-version-software-manager
 /phosphor-download-manager
 Makefile
 .deps
+/test/utest
 *-libtool

@@ -36,3 +36,5 @@ phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)
 phosphor_download_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_download_manager_LDFLAGS = $(generic_ldflags)
+
+SUBDIRS = test

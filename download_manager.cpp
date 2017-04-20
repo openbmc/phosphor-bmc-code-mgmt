@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <phosphor-logging/log.hpp>
+#include <experimental/filesystem>
 #include "config.h"
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/elog-errors.hpp>
@@ -18,6 +19,7 @@ namespace manager
 
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
 
 void Download::downloadViaTFTP(const  std::string fileName,
                                const  std::string serverAddress)
@@ -45,6 +47,13 @@ void Download::downloadViaTFTP(const  std::string fileName,
     log<level::INFO>("Downloading via TFTP",
                      entry("FILENAME=%s", fileName),
                      entry("SERVERADDRESS=%s", serverAddress));
+
+    // Check if IMAGE DIR exists and create if necessary.
+    fs::path imgDirPath(IMG_UPLOAD_DIR);
+    if (!fs::is_directory(imgDirPath))
+    {
+        fs::create_directory(imgDirPath);
+    }
 
     pid_t pid = fork();
 

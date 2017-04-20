@@ -28,7 +28,8 @@ generic_ldflags = \
 	$(SYSTEMD_LIBS) \
 	$(PHOSPHOR_DBUS_INTERFACES_LIBS) \
 	$(SDBUSPLUS_LIBS) \
-	$(PHOSPHOR_LOGGING_LIBS)
+	$(PHOSPHOR_LOGGING_LIBS) \
+	-lstdc++fs
 
 phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)

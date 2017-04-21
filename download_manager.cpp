@@ -21,9 +21,14 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-void Download::downloadViaTFTP(const  std::string fileName,
+void Download::downloadViaTFTP(std::string fileName,
                                const  std::string serverAddress)
 {
+
+    // Sanitize the fileName string by removing any path before the name.
+    fs::path filePath(fileName);
+    fileName = filePath.filename();
+
     if (fileName.empty())
     {
         log<level::ERR>("Error FileName is empty");

@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include <phosphor-logging/log.hpp>
 #include <experimental/filesystem>
+#include <algorithm>
 #include "config.h"
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/elog-errors.hpp>
@@ -21,9 +22,16 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-void Download::downloadViaTFTP(const  std::string fileName,
-                               const  std::string serverAddress)
+void Download::downloadViaTFTP(std::string fileName,
+                               std::string serverAddress)
 {
+
+    // Sanitize the fileName string by removing any "/" or "." characters.
+    fileName.erase(std::remove(fileName.begin(), fileName.end(), '/'),
+                   fileName.end());
+    fileName.erase(std::remove(fileName.begin(), fileName.end(), '.'),
+                   fileName.end());
+
     if (fileName.empty())
     {
         log<level::ERR>("Error FileName is empty");

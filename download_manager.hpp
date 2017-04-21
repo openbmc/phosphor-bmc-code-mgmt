@@ -36,7 +36,7 @@ class Download : public DownloadInherit
          * @param[in] fileName      - The name of the file to transfer.
          * @param[in] serverAddress - The TFTP Server IP Address.
          **/
-        void downloadViaTFTP(const std::string fileName,
+        void downloadViaTFTP(std::string fileName,
                              const std::string serverAddress) override;
 };
 

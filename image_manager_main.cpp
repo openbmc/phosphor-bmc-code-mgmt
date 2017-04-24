@@ -3,7 +3,7 @@
 #include <sdbusplus/bus.hpp>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
-#include "version_software_manager.hpp"
+#include "bmc_version.hpp"
 #include "watch.hpp"
 
 int main(int argc, char* argv[])
@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
 
     sdbusplus::server::manager::manager objManager(bus,
             SOFTWARE_OBJPATH);
-    phosphor::software::manager::Version manager(bus,
+    phosphor::software::manager::BMCVersion manager(bus,
             SOFTWARE_OBJPATH);
-    bus.request_name(VERSION_BUSNAME);
+    bus.request_name(BMC_VERSION_BUSNAME);
 
     try
     {

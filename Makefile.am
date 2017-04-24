@@ -2,7 +2,7 @@ AM_DEFAULT_SOURCE_EXT = .cpp
 
 # Build these headers, don't install them
 noinst_HEADERS = \
-	version_software_manager.hpp \
+	bmc_version.hpp \
 	download_manager.hpp \
 	watch.hpp \
 	version.hpp \
@@ -13,7 +13,7 @@ sbin_PROGRAMS = \
 	phosphor-download-manager
 
 phosphor_version_software_manager_SOURCES = \
-	version_software_manager.cpp \
+	bmc_version.cpp \
 	image_manager_main.cpp \
 	watch.cpp \
 	version.cpp \

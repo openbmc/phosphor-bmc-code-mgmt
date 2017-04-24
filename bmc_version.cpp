@@ -3,7 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <stdexcept>
-#include "version_software_manager.hpp"
+#include "bmc_version.hpp"
 
 namespace phosphor
 {
@@ -12,7 +12,7 @@ namespace software
 namespace manager
 {
 
-const std::string Version::getVersion() const
+const std::string BMCVersion::getVersion() const
 {
     // Get version from /etc/os-release.
     std::string versionKey = "VERSION_ID=";
@@ -37,7 +37,7 @@ const std::string Version::getVersion() const
     return version;
 }
 
-const std::string Version::getId() const
+const std::string BMCVersion::getId() const
 {
     auto version = getVersion();
     std::stringstream hexId;

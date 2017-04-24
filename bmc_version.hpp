@@ -11,19 +11,22 @@ namespace software
 namespace manager
 {
 
-using VersionInherit = sdbusplus::server::object::object<
+using BMCVersionInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::Version,
     sdbusplus::xyz::openbmc_project::Software::server::Activation>;
-
-/** @class Version
- *  @brief OpenBMC version software management implementation.
+    // TODO: Move activation interface to Item Updater.
+ 
+/** @class BMCVersion
+ *  @brief OpenBMC version and activation software management implementation
+ *         for the active BMC software image.
  *  @details A concrete implementation for xyz.openbmc_project.Software.Version
- *  DBus API.
+ *           and xyz.openbmc_project.Software.Activation DBus APIs.
  */
-class Version : public VersionInherit
+class BMCVersion : public BMCVersionInherit
 {
     public:
-        /** @brief Constructs Version Software Manager
+        /** @brief Constructs BMC Version and Activation Software Manager for
+         *         the active BMC software image.
          *
          * @note This constructor passes 'true' to the base class in order to
          *       defer dbus object registration until we can
@@ -32,9 +35,10 @@ class Version : public VersionInherit
          * @param[in] bus        - The Dbus bus object
          * @param[in] objPath    - The Dbus object path
          */
-        Version(sdbusplus::bus::bus& bus,
-                const char* objPath) : VersionInherit(
-                    bus, (std::string{objPath} + '/' + getId()).c_str(), true)
+        BMCVersion(sdbusplus::bus::bus& bus,
+                   const char* objPath) : BMCVersionInherit(
+                       bus, (std::string{objPath} + '/' + getId()).c_str(),
+                       true)
         {
             // Set properties.
             purpose(VersionPurpose::BMC);

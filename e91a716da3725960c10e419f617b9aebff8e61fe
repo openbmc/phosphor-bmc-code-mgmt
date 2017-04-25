@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_61e7c041",
+        "filename": "download_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2017-04-25T19:31:26Z",
+      "side": 1,
+      "message": "This is still insufficient...\n\nhttp://en.cppreference.com/w/cpp/experimental/fs/path/filename\n\nNotice what happens with \"/\" and \"..\" and etc.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "e91a716da3725960c10e419f617b9aebff8e61fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba3e81b7_a1dda872",
+        "filename": "download_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2017-04-25T19:31:26Z",
+      "side": 1,
+      "message": "I should have caught this earlier but none of these should be \u0027const\u0027.  You should not put const on a pass-by-value parameter to any function.",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 34
+      },
+      "revId": "e91a716da3725960c10e419f617b9aebff8e61fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba3e81b7_e144d075",
+        "filename": "download_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2017-04-25T21:49:01Z",
+      "side": 1,
+      "message": "and any \"/\" characters.",
+      "parentUuid": "ba3e81b7_a177e8d3",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "e91a716da3725960c10e419f617b9aebff8e61fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba3e81b7_a1dda872",
         "filename": "download_manager.hpp",
         "patchSetId": 2

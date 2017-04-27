@@ -19,7 +19,7 @@ namespace manager
 using namespace phosphor::logging;
 using namespace std::string_literals;
 
-Watch::Watch(sd_event* loop)
+Watch::Watch(sd_event* loop, Manager& manager) : manager(manager)
 {
     fd = inotify_init1(IN_NONBLOCK);
     if (-1 == fd)
@@ -31,7 +31,7 @@ Watch::Watch(sd_event* loop)
             "inotify_init1 failed, errno="s + std::strerror(error));
     }
 
-    wd = inotify_add_watch(fd, IMG_UPLOAD_DIR, IN_CREATE);
+    wd = inotify_add_watch(fd, IMG_UPLOAD_DIR, IN_CLOSE_WRITE);
     if (-1 == wd)
     {
         auto error = errno;
@@ -86,10 +86,10 @@ int Watch::callback(sd_event_source* s,
     while (offset < bytes)
     {
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
-        if ((event->mask & IN_CREATE) && !(event->mask & IN_ISDIR))
+        if ((event->mask & IN_CLOSE_WRITE) && !(event->mask & IN_ISDIR))
         {
-            auto rc = processImage(std::string{IMG_UPLOAD_DIR} +
-                                   '/' + event->name);
+            auto rc = Manager::processImage(std::string{IMG_UPLOAD_DIR} +
+                                            '/' + event->name, userdata);
             if (rc < 0)
             {
                 log<level::ERR>("Error processing image",

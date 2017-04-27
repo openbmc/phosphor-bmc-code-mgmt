@@ -1,6 +1,8 @@
 #pragma once
 
 #include <systemd/sd-event.h>
+#include "version.hpp"
+#include "image_manager.hpp"
 
 namespace phosphor
 {
@@ -22,8 +24,9 @@ class Watch
         /** @brief ctor - hook inotify watch with sd-event
          *
          *  @param[in] loop - sd-event object
+         *  @param[in] bus - The Dbus bus object
          */
-        Watch(sd_event* loop);
+        Watch(sd_event* loop, Manager& manager);
 
         Watch(const Watch&) = delete;
         Watch& operator=(const Watch&) = delete;
@@ -33,6 +36,9 @@ class Watch
         /** @brief dtor - remove inotify watch and close fd's
          */
         ~Watch();
+
+        /** @brief The software image manager class. */
+        Manager& manager;
 
     private:
         /** @brief sd-event callback

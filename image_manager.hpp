@@ -16,6 +16,16 @@ namespace manager
  */
 int processImage(const std::string& tarballFilePath);
 
+/**
+ * @brief Untar the tarball.
+ *
+ * @param[in]  tarballFilePath - Tarball path.
+ * @param[in]  extractDirPath  - Dir path to extract tarball ball to.
+ * @param[out] result          - 0 if successful.
+ */
+int unTar(const std::string& tarballFilePath,
+          const std::string& extractDirPath);
+
 } // namespace manager
 } // namespace software
 } // namespace phosphor

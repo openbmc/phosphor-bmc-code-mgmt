@@ -48,6 +48,68 @@ int processImage(const std::string& tarFilePath)
         fs::remove_all(tmpDir);
         return -1;
     }
+
+    // Get version
+    auto version = Version::getValue(manifestFile, "version");
+    if (version.empty())
+    {
+        log<level::ERR>("Error unable to read version from manifest file");
+        fs::remove_all(tmpDir);
+        return -1;
+    }
+
+    // Get purpose
+    auto purposeString = Version::getValue(manifestFile, "purpose");
+    if (purposeString.empty())
+    {
+        log<level::ERR>("Error unable to read purpose from manifest file");
+        fs::remove_all(tmpDir);
+        return -1;
+    }
+
+    std::transform(purposeString.begin(), purposeString.end(),
+                   purposeString.begin(), ::tolower);
+
+    auto purpose = Version::VersionPurpose::Unknown;
+    if (purposeString.compare("bmc") == 0)
+    {
+        purpose = Version::VersionPurpose::BMC;
+    }
+    else if (purposeString.compare("host") == 0)
+    {
+        purpose = Version::VersionPurpose::Host;
+    }
+    else if (purposeString.compare("system") == 0)
+    {
+        purpose = Version::VersionPurpose::System;
+    }
+    else if (purposeString.compare("other") == 0)
+    {
+        purpose = Version::VersionPurpose::Other;
+    }
+
+    // Compute id
+    auto id = Version::getId(version);
+
+    // Copy tmp dir to image dir
+    auto imageDir = std::string{IMG_UPLOAD_DIR} + '/' + id;
+    fs::copy(tmpDir, imageDir);
+    fs::remove_all(tmpDir);
+
+    // Create Version object
+    auto bus = sdbusplus::bus::new_default();
+    phosphor::software::manager::Version manager(bus,
+            std::string{SOFTWARE_OBJPATH} + '/' + id, version,
+            purpose, imageDir);
+
+    bus.request_name(VERSION_BUSNAME);
+
+    while (true)
+    {
+        bus.process_discard();
+        bus.wait();
+    }
+
     return 0;
 }
 

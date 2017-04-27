@@ -29,7 +29,7 @@ Watch::Watch(sd_event* loop)
             "inotify_init1 failed, errno="s + std::strerror(error));
     }
 
-    wd = inotify_add_watch(fd, IMG_UPLOAD_DIR, IN_CREATE);
+    wd = inotify_add_watch(fd, IMG_UPLOAD_DIR, IN_CLOSE_WRITE);
     if (-1 == wd)
     {
         auto error = errno;
@@ -84,7 +84,7 @@ int Watch::callback(sd_event_source* s,
     while (offset < bytes)
     {
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
-        if ((event->mask & IN_CREATE) && !(event->mask & IN_ISDIR))
+        if ((event->mask & IN_CLOSE_WRITE) && !(event->mask & IN_ISDIR))
         {
             // TODO: openbmc/openbmc#1352 - invoke method (which takes uploaded
             // filepath) to construct software version d-bus objects.

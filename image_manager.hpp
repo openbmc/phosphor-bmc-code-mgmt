@@ -12,9 +12,10 @@ namespace manager
  *        Create and populate the version and filepath interfaces.
  *
  * @param[in]  tarballFilePath - Tarball path.
+ * @param[in]  userdata        - Pointer to Watch object
  * @param[out] result          - 0 if successful.
  */
-int processImage(const std::string& tarballFilePath);
+int processImage(const std::string& tarballFilePath, void* userdata);
 
 /**
  * @brief Untar the tarball.

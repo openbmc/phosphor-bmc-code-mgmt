@@ -1,6 +1,7 @@
 #pragma once
 
 #include <systemd/sd-event.h>
+#include "version.hpp"
 
 namespace phosphor
 {
@@ -23,7 +24,7 @@ class Watch
          *
          *  @param[in] loop - sd-event object
          */
-        Watch(sd_event* loop);
+        Watch(sd_event* loop, sdbusplus::bus::bus& bus);
 
         Watch(const Watch&) = delete;
         Watch& operator=(const Watch&) = delete;
@@ -33,6 +34,13 @@ class Watch
         /** @brief dtor - remove inotify watch and close fd's
          */
         ~Watch();
+
+        /** @brief Persistent map of Version dbus objects and their
+          * version id */
+        std::map<std::string, std::unique_ptr<Version>> versions;
+
+        /** @brief Persistent sdbusplus DBus bus connection. */
+        sdbusplus::bus::bus& busVersion;
 
     private:
         /** @brief sd-event callback

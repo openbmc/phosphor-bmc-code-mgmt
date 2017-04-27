@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_5d513861",
+        "filename": "download_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2017-04-27T02:18:00Z",
+      "side": 1,
+      "message": "But now I can\u0027t download foo.tar. :(\n\nFiles are hard.  Dealing with users is hard.",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "7a0244871f36137c73b49a194f55e4a99cbd86d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}

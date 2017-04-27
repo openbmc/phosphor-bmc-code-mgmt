@@ -21,7 +21,9 @@ using namespace phosphor::logging;
 using namespace std::string_literals;
 namespace fs = std::experimental::filesystem;
 
-Watch::Watch(sd_event* loop)
+Watch::Watch(sd_event* loop,
+             std::function<int(std::string&)> imageCallback) : imageCallback(
+                     imageCallback)
 {
     // Check if IMAGE DIR exists.
     fs::path imgDirPath(IMG_UPLOAD_DIR);
@@ -100,12 +102,12 @@ int Watch::callback(sd_event_source* s,
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
         if ((event->mask & IN_CLOSE_WRITE) && !(event->mask & IN_ISDIR))
         {
-            auto rc = processImage(std::string{IMG_UPLOAD_DIR} +
-                                   '/' + event->name);
+            auto tarballPath = std::string{IMG_UPLOAD_DIR} + '/' + event->name;
+            auto rc = static_cast<Watch*>(userdata)->imageCallback(tarballPath);
             if (rc < 0)
             {
                 log<level::ERR>("Error processing image",
-                                entry("IMAGE=%s", std::string{event->name}));
+                                entry("IMAGE=%s", tarballPath));
             }
 
         }

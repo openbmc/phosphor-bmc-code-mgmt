@@ -5,6 +5,7 @@
 #include "config.h"
 #include "bmc_version.hpp"
 #include "watch.hpp"
+#include "image_manager.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -21,7 +22,12 @@ int main(int argc, char* argv[])
 
     try
     {
-        phosphor::software::manager::Watch watch(loop);
+        phosphor::software::manager::Manager imageManager(bus);
+        phosphor::software::manager::Watch watch(loop,
+                std::bind(
+                    std::mem_fn(
+                        &phosphor::software::manager::Manager::processImage),
+                    &imageManager, std::placeholders::_1));
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }

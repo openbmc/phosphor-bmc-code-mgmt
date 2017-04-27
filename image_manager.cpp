@@ -4,11 +4,13 @@
 #include <cstring>
 #include <stdio.h>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "version.hpp"
+#include "watch.hpp"
 #include "image_manager.hpp"
 
 namespace phosphor
@@ -32,7 +34,7 @@ struct RemovablePath
     }
 };
 
-int processImage(const std::string& tarFilePath)
+int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))
     {
@@ -95,6 +97,35 @@ int processImage(const std::string& tarFilePath)
         return -1;
     }
 
+    // Get purpose
+    auto purposeString = Version::getValue(manifestPath.string(), "purpose");
+    if (purposeString.empty())
+    {
+        log<level::ERR>("Error unable to read purpose from manifest file");
+        return -1;
+    }
+
+    std::transform(purposeString.begin(), purposeString.end(),
+                   purposeString.begin(), ::tolower);
+
+    auto purpose = Version::VersionPurpose::Unknown;
+    if (purposeString.compare("bmc") == 0)
+    {
+        purpose = Version::VersionPurpose::BMC;
+    }
+    else if (purposeString.compare("host") == 0)
+    {
+        purpose = Version::VersionPurpose::Host;
+    }
+    else if (purposeString.compare("system") == 0)
+    {
+        purpose = Version::VersionPurpose::System;
+    }
+    else if (purposeString.compare("other") == 0)
+    {
+        purpose = Version::VersionPurpose::Other;
+    }
+
     // Compute id
     auto id = Version::getId(version);
 
@@ -109,17 +140,30 @@ int processImage(const std::string& tarFilePath)
     }
 
     // Untar tarball
-    auto rc = unTar(tarFilePath, imageDirPath.string());
+    auto rc = Manager::unTar(tarFilePath, imageDirPath.string());
     if (rc < 0)
     {
         log<level::ERR>("Error occured during untar");
         return -1;
     }
 
+    // Create Version object
+    auto objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+
+    this->versions.insert(std::make_pair(
+                              id,
+                              std::make_unique<Version>(
+                                  this->bus,
+                                  objPath,
+                                  version,
+                                  purpose,
+                                  imageDirPath.string())));
+
     return 0;
 }
 
-int unTar(const std::string& tarFilePath, const std::string& extractDirPath)
+int Manager::unTar(const std::string& tarFilePath,
+                   const std::string& extractDirPath)
 {
     if (tarFilePath.empty())
     {
@@ -160,6 +204,7 @@ int unTar(const std::string& tarFilePath, const std::string& extractDirPath)
 
     return 0;
 }
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

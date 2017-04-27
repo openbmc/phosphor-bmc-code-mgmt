@@ -4,11 +4,13 @@
 #include <cstring>
 #include <stdio.h>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "version.hpp"
+#include "watch.hpp"
 #include "image_manager.hpp"
 
 namespace phosphor
@@ -21,18 +23,22 @@ namespace manager
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-int processImage(const std::string& tarFilePath)
+int Manager::processImage(const std::string& tarFilePath, void* userdata)
 {
     // Need tmp dir to write MANIFEST file to.
     fs::path tmpDirPath(std::string{IMG_UPLOAD_DIR} + "/imageXXXXXX");
     fs::path manifestPath;
     fs::path imageDirPath;
+    auto* watch = static_cast<Watch*>(userdata);
 
     int status;
     int rc;
     pid_t pid;
     std::string version;
     std::string id;
+    std::string objPath;
+    std::string purposeString;
+    auto purpose = Version::VersionPurpose::Unknown;
 
     auto tmpDir = mkdtemp(const_cast<char*>(tmpDirPath.c_str()));
     if (tmpDir == NULL)
@@ -78,6 +84,34 @@ int processImage(const std::string& tarFilePath)
         goto removeDir;
     }
 
+    // Get purpose
+    purposeString = Version::getValue(manifestPath.string(), "purpose");
+    if (purposeString.empty())
+    {
+        log<level::ERR>("Error unable to read purpose from manifest file");
+        goto removeDir;
+    }
+
+    std::transform(purposeString.begin(), purposeString.end(),
+                   purposeString.begin(), ::tolower);
+
+    if (purposeString.compare("bmc") == 0)
+    {
+        purpose = Version::VersionPurpose::BMC;
+    }
+    else if (purposeString.compare("host") == 0)
+    {
+        purpose = Version::VersionPurpose::Host;
+    }
+    else if (purposeString.compare("system") == 0)
+    {
+        purpose = Version::VersionPurpose::System;
+    }
+    else if (purposeString.compare("other") == 0)
+    {
+        purpose = Version::VersionPurpose::Other;
+    }
+
     // Compute id
     id = Version::getId(version);
 
@@ -91,14 +125,27 @@ int processImage(const std::string& tarFilePath)
     }
 
     // Untar tarball
-    rc = unTar(tarFilePath, imageDirPath.string());
+    rc = Manager::unTar(tarFilePath, imageDirPath.string());
     if (rc < 0)
     {
         log<level::ERR>("Error occured during untar");
         goto removeTar;
     }
+
     // Remove tarball
     fs::remove_all(tarFilePath);
+
+    // Create Version object
+    objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+
+    watch->manager.versions.insert(std::make_pair(
+                                       id,
+                                       std::make_unique<Version>(
+                                           watch->manager.bus,
+                                           objPath,
+                                           version,
+                                           purpose,
+                                           imageDirPath.string())));
 
     return 0;
 
@@ -112,7 +159,8 @@ removeTar:
     return -1;
 }
 
-int unTar(const std::string& tarFilePath, const std::string& extractDirPath)
+int Manager::unTar(const std::string& tarFilePath,
+                   const std::string& extractDirPath)
 {
     if (tarFilePath.empty())
     {
@@ -153,6 +201,7 @@ int unTar(const std::string& tarFilePath, const std::string& extractDirPath)
 
     return 0;
 }
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

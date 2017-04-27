@@ -22,6 +22,30 @@
       "revId": "7a0244871f36137c73b49a194f55e4a99cbd86d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba3e81b7_1d7e10af",
+        "filename": "download_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2017-04-27T02:50:06Z",
+      "side": 1,
+      "message": "You can download foo.tar You just can\u0027t download ../../foo.tar or .foo.tar\n\nThis is me downloading pnor.squashfs.tar\nroot@w33:/tmp# ls -l images\nls: images: No such file or directory\n\nroot@w33:/tmp# \n\nroot@w33:/tmp# busctl call  xyz.openbmc_project.Software.Download  /xyz/openbmc_project/software  xyz.openbmc_project.Common.TFTP DownloadViaTFTP ss pnor.squashfs.tar  9.3.164.219\n\nroot@w33:/tmp# ls -l images\ntotal 5008\n-rw-r--r--    1 root     root       5125632 Mar 31 09:44 pnor.squashfs.tar",
+      "parentUuid": "ba3e81b7_5d513861",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "7a0244871f36137c73b49a194f55e4a99cbd86d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

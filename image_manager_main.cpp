@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
     try
     {
-        phosphor::software::manager::Watch watch(loop);
+        phosphor::software::manager::Watch watch(loop, bus);
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }

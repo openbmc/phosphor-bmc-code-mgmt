@@ -4,11 +4,13 @@
 #include <cstring>
 #include <stdio.h>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "version.hpp"
+#include "watch.hpp"
 #include "image_manager.hpp"
 
 namespace phosphor
@@ -21,7 +23,7 @@ namespace manager
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-int processImage(const std::string& tarFilePath)
+int processImage(const std::string& tarFilePath, void* userdata)
 {
     // Need tmp dir to write MANIFEST file to.
     char dir[50] = IMG_UPLOAD_DIR;
@@ -29,12 +31,16 @@ int processImage(const std::string& tarFilePath)
     auto tmpDir = mkdtemp(dir);
     auto manifestFile = std::string{tmpDir} + "/MANIFEST";
     fs::path manifestPath(manifestFile);
+    auto* watch = static_cast<Watch*>(userdata);
 
     int status;
     int rc;
     std::string imageDir;
     std::string version;
     std::string id;
+    std::string objPath;
+    std::string purposeString;
+    auto purpose = Version::VersionPurpose::Unknown;
 
     pid_t pid = fork();
 
@@ -74,6 +80,34 @@ int processImage(const std::string& tarFilePath)
         goto removeDir;
     }
 
+    // Get purpose
+    purposeString = Version::getValue(manifestFile, "purpose");
+    if (purposeString.empty())
+    {
+        log<level::ERR>("Error unable to read purpose from manifest file");
+        goto removeDir;
+    }
+
+    std::transform(purposeString.begin(), purposeString.end(),
+                   purposeString.begin(), ::tolower);
+
+    if (purposeString.compare("bmc") == 0)
+    {
+        purpose = Version::VersionPurpose::BMC;
+    }
+    else if (purposeString.compare("host") == 0)
+    {
+        purpose = Version::VersionPurpose::Host;
+    }
+    else if (purposeString.compare("system") == 0)
+    {
+        purpose = Version::VersionPurpose::System;
+    }
+    else if (purposeString.compare("other") == 0)
+    {
+        purpose = Version::VersionPurpose::Other;
+    }
+
     // Compute id
     id = Version::getId(version);
 
@@ -89,8 +123,20 @@ int processImage(const std::string& tarFilePath)
         log<level::ERR>("Error occured during untar");
         goto removeTar;
     }
+
     // Remove tarball
     fs::remove_all(tarFilePath);
+
+    // Create Version object
+    objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+    watch->versions.insert(std::make_pair(
+                               id,
+                               std::make_unique<Version>(
+                                   watch->bus,
+                                   objPath,
+                                   version,
+                                   purpose,
+                                   imageDir)));
 
     return 0;
 

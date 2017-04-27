@@ -4,6 +4,7 @@
 #include <cstring>
 #include <stdio.h>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/wait.h>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
@@ -29,9 +30,21 @@ int processImage(const std::string& tarFilePath)
 
     // Untar tarball
     auto rc = unTar(tarFilePath, tmpDir);
+    // Remove tarball
+    fs::remove_all(tarFilePath);
     if (rc < 0)
     {
         log<level::ERR>("Error occured during untar");
+        fs::remove_all(tmpDir);
+        return -1;
+    }
+
+    // Verify the manifest file
+    auto manifestFile = std::string{tmpDir} + "/MANIFEST";
+    fs::path manifestPath(manifestFile);
+    if (!fs::is_regular_file(manifestPath))
+    {
+        log<level::ERR>("Error No manifest file");
         fs::remove_all(tmpDir);
         return -1;
     }

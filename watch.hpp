@@ -22,8 +22,11 @@ class Watch
         /** @brief ctor - hook inotify watch with sd-event
          *
          *  @param[in] loop - sd-event object
+         *  @param[in] imageCallback - The callback function for processing
+         *                             the image
          */
-        Watch(sd_event* loop);
+        Watch(sd_event* loop,
+              std::function<int(std::string&)> imageCallback);
 
         Watch(const Watch&) = delete;
         Watch& operator=(const Watch&) = delete;
@@ -53,6 +56,9 @@ class Watch
 
         /** @brief inotify file descriptor */
         int fd = -1;
+
+        /** @brief The callback function for processing the image. */
+        std::function<int(std::string&)> imageCallback;
 };
 
 } // namespace manager

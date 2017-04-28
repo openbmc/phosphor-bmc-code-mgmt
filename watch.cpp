@@ -4,6 +4,7 @@
 #include <string>
 #include <sys/inotify.h>
 #include <unistd.h>
+#include <experimental/filesystem>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "watch.hpp"
@@ -16,9 +17,17 @@ namespace manager
 {
 
 using namespace std::string_literals;
+namespace fs = std::experimental::filesystem;
 
 Watch::Watch(sd_event* loop)
 {
+    // Check if IMAGE DIR exists and create if necessary.
+    fs::path imgDirPath(IMG_UPLOAD_DIR);
+    if (!fs::is_directory(imgDirPath))
+    {
+        fs::create_directory(imgDirPath);
+    }
+
     fd = inotify_init1(IN_NONBLOCK);
     if (-1 == fd)
     {

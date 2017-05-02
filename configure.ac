@@ -72,6 +72,9 @@ AC_ARG_VAR(MANIFEST_FILE_NAME, [The name of the MANIFEST file])
 AS_IF([test "x$MANIFEST_FILE_NAME" == "x"], [MANIFEST_FILE_NAME="MANIFEST"])
 AC_DEFINE_UNQUOTED([MANIFEST_FILE_NAME], ["$MANIFEST_FILE_NAME"], [The name of the MANIFEST file])
 
+AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
+    [The item updater DBus busname to own.])
+
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd developement package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])

@@ -6,11 +6,13 @@ noinst_HEADERS = \
 	download_manager.hpp \
 	watch.hpp \
 	version.hpp \
-	image_manager.hpp
+	image_manager.hpp \
+	item_updater.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
-	phosphor-download-manager
+	phosphor-download-manager \
+	phosphor-image-updater
 
 phosphor_version_software_manager_SOURCES = \
 	bmc_version.cpp \
@@ -22,6 +24,10 @@ phosphor_version_software_manager_SOURCES = \
 phosphor_download_manager_SOURCES = \
 	download_manager.cpp \
 	download_manager_main.cpp
+
+phosphor_image_updater_SOURCES = \
+	item_updater.cpp \
+	item_updater_main.cpp
 
 generic_cxxflags = \
 	$(SYSTEMD_CFLAGS) \
@@ -39,5 +45,7 @@ phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)
 phosphor_download_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_download_manager_LDFLAGS = $(generic_ldflags)
+phosphor_image_updater_CXXFLAGS = $(generic_cxxflags)
+phosphor_image_updater_LDFLAGS = $(generic_ldflags)
 
 SUBDIRS = test

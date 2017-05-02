@@ -42,6 +42,7 @@ Makefile.in
 /config.status
 /phosphor-version-software-manager
 /phosphor-download-manager
+/phosphor-image-updater
 Makefile
 .deps
 /test/utest

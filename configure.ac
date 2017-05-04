@@ -64,6 +64,9 @@ AS_IF([test "x$DOWNLOAD_BUSNAME" == "x"],
     [DOWNLOAD_BUSNAME="xyz.openbmc_project.Software.Download"])
 AC_DEFINE_UNQUOTED([DOWNLOAD_BUSNAME], ["$DOWNLOAD_BUSNAME"], [The DBus busname to own])
 
+AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
+    [The software version manager interface])
+
 AC_ARG_VAR(IMG_UPLOAD_DIR, [Directory where downloaded software images are placed])
 AS_IF([test "x$IMG_UPLOAD_DIR" == "x"], [IMG_UPLOAD_DIR="/tmp/images"])
 AC_DEFINE_UNQUOTED([IMG_UPLOAD_DIR], ["$IMG_UPLOAD_DIR"], [Directory where downloaded software images are placed])

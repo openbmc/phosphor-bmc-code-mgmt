@@ -12,20 +12,18 @@ namespace manager
 {
 
 using BMCVersionInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Software::server::Version,
-    sdbusplus::xyz::openbmc_project::Software::server::Activation>;
-    // TODO: Move activation interface to Item Updater.
+    sdbusplus::xyz::openbmc_project::Software::server::Version>;
 
 /** @class BMCVersion
- *  @brief OpenBMC version and activation software management implementation
+ *  @brief OpenBMC version software management implementation
  *         for the active BMC software image.
  *  @details A concrete implementation for xyz.openbmc_project.Software.Version
- *           and xyz.openbmc_project.Software.Activation DBus APIs.
+ *           DBus API.
  */
 class BMCVersion : public BMCVersionInherit
 {
     public:
-        /** @brief Constructs BMC Version and Activation Software Manager for
+        /** @brief Constructs BMC Version Software Manager for
          *         the active BMC software image.
          *
          * @note This constructor passes 'true' to the base class in order to
@@ -43,8 +41,6 @@ class BMCVersion : public BMCVersionInherit
             // Set properties.
             purpose(VersionPurpose::BMC);
             version(getVersion());
-            activation(Activations::Active);
-            // requestedActivation default is "None", so no need to set.
 
             // Emit deferred signal.
             emit_object_added();

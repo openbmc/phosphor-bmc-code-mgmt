@@ -19,6 +19,15 @@ phosphor_version_software_manager_SOURCES = \
 	version.cpp \
 	image_manager.cpp
 
+nobase_nodist_include_HEADERS = \
+	xyz/openbmc_project/Software/Version/error.hpp
+
+BUILT_SOURCES = \
+	xyz/openbmc_project/Software/Version/error.cpp \
+	xyz/openbmc_project/Software/Version/error.hpp
+
+CLEANFILES = ${BUILT_SOURCES}
+
 phosphor_download_manager_SOURCES = \
 	download_manager.cpp \
 	download_manager_main.cpp
@@ -34,6 +43,14 @@ generic_ldflags = \
 	$(SDBUSPLUS_LIBS) \
 	$(PHOSPHOR_LOGGING_LIBS) \
 	-lstdc++fs
+
+xyz/openbmc_project/Software/Version/error.hpp: ${top_srcdir}/xyz/openbmc_project/Software/Version.errors.yaml
+	@mkdir -p `dirname $@`
+	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-header xyz.openbmc_project.Software.Version > $@
+
+xyz/openbmc_project/Software/Version/error.cpp: ${top_srcdir}/xyz/openbmc_project/Software/Version.errors.yaml
+	@mkdir -p `dirname $@`
+	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-cpp xyz.openbmc_project.Software.Version > $@
 
 phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)

@@ -8,6 +8,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <xyz/openbmc_project/Software/Version/error.hpp>
 #include "config.h"
 #include "version.hpp"
 #include "watch.hpp"
@@ -21,6 +23,7 @@ namespace manager
 {
 
 using namespace phosphor::logging;
+using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
 namespace fs = std::experimental::filesystem;
 
 int Manager::processImage(const std::string& tarFilePath, void* userdata)
@@ -46,6 +49,8 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     {
         log<level::ERR>("Error occured during mkdtemp",
                         entry("ERRNO=%d", errno));
+        report<InternalFailure>(xyz::openbmc_project::Software::Version::
+                                InternalFailure::FAIL("mkdtemp"));
         goto removeDir;
     }
     manifestPath = std::string{tmpDir};
@@ -61,6 +66,9 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
         // execl only returns on fail
         log<level::ERR>("Failed to untar file",
                         entry("FILENAME=%s", tarFilePath));
+        report<ManifestFileFailure>(xyz::openbmc_project::Software::Version::
+                                    ManifestFileFailure::PATH(
+                                        manifestPath.c_str()));
         goto removeDir;
     }
     else if (pid > 0)
@@ -70,6 +78,8 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     else
     {
         log<level::ERR>("fork() failed.");
+        report<InternalFailure>(xyz::openbmc_project::Software::Version::
+                                InternalFailure::FAIL("fork"));
         goto removeDir;
     }
 
@@ -77,6 +87,9 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     if (!fs::is_regular_file(manifestPath))
     {
         log<level::ERR>("Error No manifest file");
+        report<ManifestFileFailure>(xyz::openbmc_project::Software::Version::
+                                    ManifestFileFailure::PATH(
+                                        manifestPath.c_str()));
         goto removeDir;
     }
 
@@ -85,6 +98,9 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     if (version.empty())
     {
         log<level::ERR>("Error unable to read version from manifest file");
+        report<ManifestFileFailure>(xyz::openbmc_project::Software::Version::
+                                    ManifestFileFailure::PATH(
+                                        manifestPath.c_str()));
         goto removeDir;
     }
 
@@ -93,6 +109,9 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     if (purposeString.empty())
     {
         log<level::ERR>("Error unable to read purpose from manifest file");
+        report<ManifestFileFailure>(xyz::openbmc_project::Software::Version::
+                                    ManifestFileFailure::PATH(
+                                        manifestPath.c_str()));
         goto removeDir;
     }
 
@@ -127,6 +146,8 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     {
         log<level::ERR>("Error occured during mkdir",
                         entry("ERRNO=%d", errno));
+        report<InternalFailure>(xyz::openbmc_project::Software::Version::
+                                InternalFailure::FAIL("mkdir"));
         goto removeTar;
     }
 
@@ -171,11 +192,15 @@ int Manager::unTar(const std::string& tarFilePath,
     if (tarFilePath.empty())
     {
         log<level::ERR>("Error TarFilePath is empty");
+        report<UnTarFailure>(xyz::openbmc_project::Software::Version::
+                             UnTarFailure::PATH(tarFilePath.c_str()));
         return -1;
     }
     if (extractDirPath.empty())
     {
         log<level::ERR>("Error ExtractDirPath is empty");
+        report<UnTarFailure>(xyz::openbmc_project::Software::Version::
+                             UnTarFailure::PATH(tarFilePath.c_str()));
         return -1;
     }
 
@@ -193,6 +218,8 @@ int Manager::unTar(const std::string& tarFilePath,
         // execl only returns on fail
         log<level::ERR>("Failed to untar file",
                         entry("FILENAME=%s", tarFilePath));
+        report<UnTarFailure>(xyz::openbmc_project::Software::Version::
+                             UnTarFailure::PATH(tarFilePath.c_str()));
         return -1;
     }
     else if (pid > 0)
@@ -202,6 +229,8 @@ int Manager::unTar(const std::string& tarFilePath,
     else
     {
         log<level::ERR>("fork() failed.");
+        report<UnTarFailure>(xyz::openbmc_project::Software::Version::
+                             UnTarFailure::PATH(tarFilePath.c_str()));
         return -1;
     }
 

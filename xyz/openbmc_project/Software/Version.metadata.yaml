@@ -1,0 +1,6 @@
+- name: UnTarFailure
+  level: ERR
+- name: ManifestFileFailure
+  level: ERR
+- name: InternalFailure
+  level: ERR

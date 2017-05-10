@@ -8,6 +8,9 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include "xyz/openbmc_project/Common/error.hpp"
 #include "config.h"
 #include "version.hpp"
 #include "watch.hpp"
@@ -20,6 +23,7 @@ namespace software
 namespace manager
 {
 
+using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
@@ -162,6 +166,7 @@ removeDir:
 removeTar:
 
     fs::remove_all(tarFilePath);
+    elog<InternalFailure>();
     return -1;
 }
 

@@ -18,6 +18,10 @@ PKG_CHECK_MODULES([SDBUSPLUS], [sdbusplus],,
     AC_MSG_ERROR(["Requires sdbusplus package."]))
 PKG_CHECK_MODULES([PHOSPHOR_LOGGING], [phosphor-logging],,\
     AC_MSG_ERROR(["Requires phosphor-logging package."]))
+# Check for sdbus++
+AC_PATH_PROG([SDBUSPLUSPLUS], [sdbus++])
+AS_IF([test "x$SDBUSPLUSPLUS" == "x"],
+    AC_MSG_ERROR(["Requires sdbus++"]))
 
 # Checks for library functions
 LT_INIT # Required for systemd linking

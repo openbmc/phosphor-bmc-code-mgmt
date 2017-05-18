@@ -155,6 +155,10 @@ int Manager::processImage(const std::string& tarFilePath)
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
 
+    if (fs::exists(imageDirPath))
+    {
+        fs::remove_all(imageDirPath);
+    }
     if (mkdir(imageDirPath.c_str(), S_IRWXU) != 0)
     {
         log<level::ERR>("Error occured during mkdir",

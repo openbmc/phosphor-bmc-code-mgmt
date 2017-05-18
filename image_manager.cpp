@@ -155,15 +155,17 @@ int Manager::processImage(const std::string& tarFilePath, void* userdata)
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
 
-    if (mkdir(imageDirPath.c_str(), S_IRWXU) != 0)
+    if (!fs::is_directory(imageDirPath))
     {
-        log<level::ERR>("Error occured during mkdir",
-                        entry("ERRNO=%d", errno));
-        report<InternalFailure>(xyz::openbmc_project::Software::Version::
-                                InternalFailure::FAIL("mkdir"));
-        return -1;
+        if (mkdir(imageDirPath.c_str(), S_IRWXU) != 0)
+        {
+            log<level::ERR>("Error occured during mkdir",
+                            entry("ERRNO=%d", errno));
+            report<InternalFailure>(xyz::openbmc_project::Software::Version::
+                                    InternalFailure::FAIL("mkdir"));
+            return -1;
+        }
     }
-
     // Untar tarball
     auto rc = Manager::unTar(tarFilePath, imageDirPath.string());
     if (rc < 0)

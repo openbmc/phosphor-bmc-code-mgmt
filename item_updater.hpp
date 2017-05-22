@@ -50,6 +50,16 @@ class ItemUpdater
                                     void* userData,
                                     sd_bus_error* retError);
 
+        /**
+         * @brief Validates the presence of SquashFS iamge in the image dir.
+         *
+         * @param[in]  versionId - The software version ID.
+         * @param[out] result    - 0 --> if validation was successful
+         *                       - -1--> Otherwise
+         *
+         */
+        static int validateSquashFSImage(const std::string& versionId);
+
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;
 

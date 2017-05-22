@@ -25,6 +25,16 @@ class ItemUpdater
         ItemUpdater(ItemUpdater&&) = delete;
         ItemUpdater& operator=(ItemUpdater&&) = delete;
 
+        /*
+         * @brief Types of Activation status for image validation.
+         */
+        enum class ActivationStatus
+        {
+            ready,
+            invalid,
+            active
+        };
+
         /** @brief Constructs ItemUpdater
          *
          * @param[in] bus    - The Dbus bus object
@@ -49,6 +59,18 @@ class ItemUpdater
          * @param[in]  msg       - Data associated with subscribed signal
          */
         void createActivation(sdbusplus::message::message& msg);
+
+        /**
+         * @brief Validates the presence of SquashFS iamge in the image dir.
+         *
+         * @param[in]  versionId - The software version ID.
+         * @param[out] result    - ActivationStatus Enum.
+         *                         ready if validation was successful.
+         *                         invalid if validation fail.
+         *                         active if image is the current version.
+         *
+         */
+        ActivationStatus validateSquashFSImage(const std::string& versionId);
 
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;

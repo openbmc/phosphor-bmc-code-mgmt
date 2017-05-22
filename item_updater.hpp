@@ -50,6 +50,17 @@ class ItemUpdater
          */
         void createActivation(sdbusplus::message::message& msg);
 
+        /**
+         * @brief Validates the presence of SquashFS iamge in the image dir.
+         *
+         * @param[in]  filePath - The path to the SquashfFS image.
+         * @param[out] result    - 0 --> Image is READY for activation
+         *                       - 1 --> image is already Active
+         *                       - -1--> Image is Invalid
+         *
+         */
+        static int validateSquashFSImage(const std::string& filePath);
+
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;
 

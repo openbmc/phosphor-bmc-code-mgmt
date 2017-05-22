@@ -66,7 +66,7 @@ int Manager::processImage(const std::string& tarFilePath)
 
     RemovablePath tmpDirRemove(tmpDirPath);
     fs::path manifestPath = tmpDirPath;
-    manifestPath /= MANIFEST_FILE_NAME;
+    manifestPath /= MANIFEST_FILE;
     int status = 0;
     pid_t pid = fork();
 
@@ -74,7 +74,7 @@ int Manager::processImage(const std::string& tarFilePath)
     if (pid == 0)
     {
         // child process
-        execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), MANIFEST_FILE_NAME,
+        execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), MANIFEST_FILE,
               "-C", tmpDirPath.c_str(), (char*)0);
         // execl only returns on fail
         log<level::ERR>("Failed to untar file",

@@ -1,8 +1,10 @@
+#include <fstream>
 #include <string>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "item_updater.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
+#include <experimental/filesystem>
 
 namespace phosphor
 {
@@ -15,6 +17,9 @@ namespace updater
 namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
+
+constexpr auto bmcImage = "image-rofs";
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
@@ -24,32 +29,42 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                       sdbusplus::message::variant<std::string>>> interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
+    std::string filePath;
 
     for (const auto& intf : interfaces)
     {
         if (intf.first.compare(VERSION_IFACE))
         {
-            continue;
-        }
-
-        for (const auto& property : intf.second)
-        {
-            if (!property.first.compare("Purpose"))
+            for (const auto& property : intf.second)
             {
-                // Only process the BMC images
-                auto value = sdbusplus::message::variant_ns::get<std::string>(
-                        property.second);
-                if (value !=
-                    convertForMessage(server::Version::VersionPurpose::BMC) &&
-                    value !=
-                    convertForMessage(server::Version::VersionPurpose::System))
+                if (!property.first.compare("Purpose"))
                 {
-                    return;
+                    // Only process the BMC images
+                    auto value = sdbusplus::message::variant_ns::get<std::string>(
+                            property.second);
+                    if (value !=
+                        convertForMessage(server::Version::VersionPurpose::BMC) &&
+                        value !=
+                        convertForMessage(server::Version::VersionPurpose::System))
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        else if (intf.first == FILEPATH_IFACE)
+        {
+            for (const auto& property : intf.second)
+            {
+                if (property.first == "Path")
+                {
+                    filePath = sdbusplus::message::variant_ns::get<
+                            std::string>(property.second);
                 }
             }
         }
     }
-
+   
     // Version id is the last item in the path
     auto pos = path.rfind("/");
     if (pos == std::string::npos)
@@ -63,17 +78,42 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     if (activations.find(versionId) == activations.end())
     {
-        // For now set all BMC code versions to active
-        constexpr auto activationState =
-                server::Activation::Activations::Active;
-
-        activations.insert(
-                std::make_pair(
-                        versionId,
-                        std::make_unique<Activation>(
-                                bus, path, versionId, activationState)));
+        // Determine the Activation state by processing the given image dir.
+        auto activationState = server::Activation::Activations::Invalid;
+        if (filePath.empty())
+        {
+            activationState = server::Activation::Activations::Active;
+        }
+        else if (ItemUpdater::validateSquashFSImage(filePath) == 0)
+        {
+            activationState = server::Activation::Activations::Ready;
+        }
+        activations.insert(std::make_pair(
+                               versionId,
+                               std::make_unique<Activation>(
+                                   bus,
+                                   path,
+                                   versionId,
+                                   activationState)));
     }
     return;
+}
+
+int ItemUpdater::validateSquashFSImage(const std::string& filePath)
+{
+    fs::path file(filePath);
+    file /= bmcImage;
+    std::ifstream efile(file.c_str());
+
+    if (efile.good() == 1)
+    {
+        return 0;
+    }
+    else
+    {
+        log<level::ERR>("Failed to find the SquashFS image.");
+        return -1;
+    }
 }
 
 } // namespace updater

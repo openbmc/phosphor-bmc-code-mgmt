@@ -1,8 +1,10 @@
+#include <fstream>
 #include <string>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "item_updater.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
+#include <experimental/filesystem>
 
 namespace phosphor
 {
@@ -15,6 +17,9 @@ namespace updater
 namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
+
+constexpr auto bmcImage = "image-rofs";
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
@@ -63,17 +68,55 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     if (activations.find(versionId) == activations.end())
     {
-        // For now set all BMC code versions to active
-        constexpr auto activationState =
-                server::Activation::Activations::Active;
-
-        activations.insert(
-                std::make_pair(
-                        versionId,
-                        std::make_unique<Activation>(
-                                bus, path, versionId, activationState)));
+        // Determine the Activation state by processing the given image dir.
+        auto activationState = server::Activation::Activations::Invalid;
+        ItemUpdater::ActivationStatus result = ItemUpdater::
+                     validateSquashFSImage(versionId);
+        if (result == ItemUpdater::ActivationStatus::ready)
+        {
+            activationState = server::Activation::Activations::Ready;
+        }
+        else if (result == ItemUpdater::ActivationStatus::active)
+        {
+            activationState = server::Activation::Activations::Active;
+        }
+        activations.insert(std::make_pair(
+                                        versionId,
+                                        std::make_unique<Activation>(
+                                            bus,
+                                            path,
+                                            versionId,
+                                            activationState)));
     }
     return;
+}
+
+ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
+             const std::string& versionId)
+{
+
+    // TODO openbmc/openbmc#1715 Check the Common.FilePath to
+    //      determine the active image.
+    fs::path imageDirPath(IMG_UPLOAD_DIR);
+    imageDirPath /= versionId;
+    if (!fs::is_directory(imageDirPath))
+    {
+        return ItemUpdater::ActivationStatus::active;
+    }
+
+    fs::path file(imageDirPath);
+    file /= bmcImage;
+    std::ifstream efile(file.c_str());
+
+    if (efile.good() == 1)
+    {
+        return ItemUpdater::ActivationStatus::ready;
+    }
+    else
+    {
+        log<level::ERR>("Failed to find the SquashFS image.");
+        return ItemUpdater::ActivationStatus::invalid;
+    }
 }
 
 } // namespace updater

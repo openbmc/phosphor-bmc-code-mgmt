@@ -1,8 +1,10 @@
+#include <fstream>
 #include <string>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
 #include "item_updater.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
+#include <experimental/filesystem>
 
 namespace phosphor
 {
@@ -15,6 +17,9 @@ namespace updater
 namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
+
+constexpr auto squashFSImage = "bmc.xz.squashfs";
 
 int ItemUpdater::createActivation(sd_bus_message* msg,
                                   void* userData,
@@ -67,9 +72,17 @@ int ItemUpdater::createActivation(sd_bus_message* msg,
 
     if (updater->activations.find(versionId) == updater->activations.end())
     {
-        // For now set all BMC code versions to active
-        auto activationState = server::Activation::Activations::Active;
-
+        // Determine the Activation state by processing the given image dir.
+        auto activationState = server::Activation::Activations::Invalid;
+        auto result = ItemUpdater::validateSquashFSImage(versionId);
+        if (result == 0)
+        {
+            activationState = server::Activation::Activations::Ready;
+        }
+        else if (result == 1)
+        {
+            activationState = server::Activation::Activations::Active;
+        }
         updater->activations.insert(std::make_pair(
                                         versionId,
                                         std::make_unique<Activation>(
@@ -79,6 +92,33 @@ int ItemUpdater::createActivation(sd_bus_message* msg,
                                             activationState)));
     }
     return 0;
+}
+
+int ItemUpdater::validateSquashFSImage(const std::string& versionId)
+{
+
+    // TODO: Remove the validation for active image when
+    //       active image is implemented in the MANAGER class
+    fs::path imageDirPath = std::string{IMG_UPLOAD_DIR +
+                            "/" + versionId};
+    if (!fs::is_directory(imageDirPath))
+    {
+        return 1;
+    }
+
+    auto file = IMG_UPLOAD_DIR + "/" + versionId + "/" +
+                std::string(squashFSImage);
+    std::ifstream efile(file.c_str());
+
+    if (efile.good() == 1)
+    {
+        return 0;
+    }
+    else
+    {
+        log<level::ERR>("Failed to find the SquashFS image.");
+        return -1;
+    }
 }
 
 } // namespace updater

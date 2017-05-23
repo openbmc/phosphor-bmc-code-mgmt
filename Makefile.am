@@ -7,7 +7,8 @@ noinst_HEADERS = \
 	watch.hpp \
 	version.hpp \
 	image_manager.hpp \
-	item_updater.hpp
+	item_updater.hpp \
+	activation.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -35,6 +36,7 @@ phosphor_download_manager_SOURCES = \
 	download_manager_main.cpp
 
 phosphor_image_updater_SOURCES = \
+	activation.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp
 

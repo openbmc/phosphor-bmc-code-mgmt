@@ -169,7 +169,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Untar tarball
-    auto rc = Manager::unTar(tarFilePath, imageDirPath.string());
+    auto rc = unTar(tarFilePath, imageDirPath.string());
     if (rc < 0)
     {
         log<level::ERR>("Error occured during untar");

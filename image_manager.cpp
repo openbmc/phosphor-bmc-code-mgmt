@@ -15,6 +15,11 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <stdexcept>
+
 
 namespace phosphor
 {
@@ -237,6 +242,42 @@ int Manager::unTar(const std::string& tarFilePath,
 
     return 0;
 }
+
+const std::string Manager::getBMCVersion() const
+{
+    std::string versionKey = "VERSION_ID=";
+    std::string version{};
+    std::ifstream efile;
+    std::string line;
+    efile.open("/etc/os-release");
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, versionKey.size()).find(versionKey)
+            != std::string::npos)
+        {
+            std::size_t pos = line.find_first_of('"') + 1;
+            version = line.substr(pos, line.find_last_of('"') - pos);
+            break;
+        }
+    }
+    efile.close();
+    return version;
+}
+
+const std::string Manager::getBMCId() const
+{
+    auto version = getBMCVersion();
+    std::stringstream hexId;
+
+    if (version.empty())
+    {
+        throw std::runtime_error("Software version is empty");
+    }
+    hexId << std::hex << ((std::hash<std::string> {}(version)) & 0xFFFFFFFF);
+    return hexId.str();
+}
+
 
 } // namespace manager
 } // namespace software

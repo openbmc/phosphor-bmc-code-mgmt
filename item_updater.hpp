@@ -51,7 +51,13 @@ class ItemUpdater
                                     this,
                                     std::placeholders::_1))
         {
+            processBMCImage();
         };
+
+    /**
+     * @brief Create and populate the active BMC Version.
+     */
+    void processBMCImage();
 
     private:
         /** @brief Callback function for Software.Version match.

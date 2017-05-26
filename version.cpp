@@ -72,6 +72,35 @@ std::string Version::getId(const std::string& version)
     return hexId.str();
 }
 
+std::string Version::getBMCVersion()
+{
+    std::string versionKey = "VERSION_ID=";
+    std::string version{};
+    std::ifstream efile;
+    std::string line;
+    efile.open("/etc/os-release");
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, versionKey.size()).find(versionKey) !=
+            std::string::npos)
+        {
+            std::size_t pos = line.find_first_of('"') + 1;
+            version = line.substr(pos, line.find_last_of('"') - pos);
+            break;
+        }
+    }
+    efile.close();
+
+    if (version.empty())
+    {
+        log<level::ERR>("Error BMC current version is empty");
+        throw std::runtime_error("BMC current version is empty");
+    }
+
+    return version;
+}
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

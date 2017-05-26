@@ -38,6 +38,23 @@ struct RemovablePath
     }
 };
 
+int Manager::processBMCImage()
+{
+    auto id = phosphor::software::manager::Version::getBMCId();
+    auto purpose = Version::VersionPurpose::BMC;
+    auto version = phosphor::software::manager::Version::getBMCVersion();
+    auto objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+    this->versions.insert(std::make_pair(
+                              id,
+                              std::make_unique<Version>(
+                                  this->bus,
+                                  objPath,
+                                  version,
+                                  purpose,
+                                  "")));
+    return 0;
+}
+
 int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))
@@ -130,7 +147,6 @@ int Manager::processImage(const std::string& tarFilePath)
 
     std::transform(purposeString.begin(), purposeString.end(),
                    purposeString.begin(), ::tolower);
-
     auto purpose = Version::VersionPurpose::Unknown;
     if (purposeString.compare("bmc") == 0)
     {

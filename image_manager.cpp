@@ -15,6 +15,11 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <stdexcept>
+
 
 namespace phosphor
 {
@@ -107,7 +112,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get version
-    auto version = Version::getValue(manifestPath.string(), "version");
+    auto version = phosphor::software::manager::Version::getValue(
+                           manifestPath.string(), "version");
     if (version.empty())
     {
         log<level::ERR>("Error unable to read version from manifest file");
@@ -118,7 +124,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get purpose
-    auto purposeString = Version::getValue(manifestPath.string(), "purpose");
+    auto purposeString = phosphor::software::manager::Version::getValue(
+                                 manifestPath.string(), "purpose");
     if (purposeString.empty())
     {
         log<level::ERR>("Error unable to read purpose from manifest file");
@@ -130,7 +137,6 @@ int Manager::processImage(const std::string& tarFilePath)
 
     std::transform(purposeString.begin(), purposeString.end(),
                    purposeString.begin(), ::tolower);
-
     auto purpose = Version::VersionPurpose::Unknown;
     if (purposeString.compare("bmc") == 0)
     {
@@ -150,8 +156,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Compute id
-    auto id = Version::getId(version);
-
+    auto id = phosphor::software::manager::Version::getId(version);
+    
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
 
@@ -177,7 +183,8 @@ int Manager::processImage(const std::string& tarFilePath)
 
     this->versions.insert(std::make_pair(
                               id,
-                              std::make_unique<Version>(
+                              std::make_unique<phosphor::software::
+                                  manager::Version>(
                                   this->bus,
                                   objPath,
                                   version,
@@ -237,6 +244,42 @@ int Manager::unTar(const std::string& tarFilePath,
 
     return 0;
 }
+
+const std::string Manager::getBMCVersion() const
+{
+    std::string versionKey = "VERSION_ID=";
+    std::string version{};
+    std::ifstream efile;
+    std::string line;
+    efile.open("/etc/os-release");
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, versionKey.size()).find(versionKey)
+            != std::string::npos)
+        {
+            std::size_t pos = line.find_first_of('"') + 1;
+            version = line.substr(pos, line.find_last_of('"') - pos);
+            break;
+        }
+    }
+    efile.close();
+    return version;
+}
+
+const std::string Manager::getBMCId() const
+{
+    auto version = getBMCVersion();
+    std::stringstream hexId;
+
+    if (version.empty())
+    {
+        throw std::runtime_error("Software version is empty");
+    }
+    hexId << std::hex << ((std::hash<std::string> {}(version)) & 0xFFFFFFFF);
+    return hexId.str();
+}
+
 
 } // namespace manager
 } // namespace software

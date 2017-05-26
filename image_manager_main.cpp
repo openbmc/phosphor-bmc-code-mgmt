@@ -3,7 +3,6 @@
 #include <sdbusplus/bus.hpp>
 #include <phosphor-logging/log.hpp>
 #include "config.h"
-#include "bmc_version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
 
@@ -16,13 +15,12 @@ int main(int argc, char* argv[])
 
     sdbusplus::server::manager::manager objManager(bus,
             SOFTWARE_OBJPATH);
-    phosphor::software::manager::BMCVersion manager(bus,
-            SOFTWARE_OBJPATH);
     bus.request_name(VERSION_BUSNAME);
 
     try
     {
-        phosphor::software::manager::Manager imageManager(bus);
+        phosphor::software::manager::Manager imageManager(bus,
+                SOFTWARE_OBJPATH);
         phosphor::software::manager::Watch watch(loop,
                 std::bind(
                     std::mem_fn(

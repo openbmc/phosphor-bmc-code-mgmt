@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <phosphor-logging/log.hpp>
 #include "version.hpp"
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include "xyz/openbmc_project/Common/error.hpp"
 
 namespace phosphor
 {
@@ -13,6 +16,7 @@ namespace software
 namespace manager
 {
 
+using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
 
 std::string Version::getValue(const std::string& manifestFilePath,
@@ -69,6 +73,47 @@ std::string Version::getId(const std::string& version)
     // Only want 8 hex digits.
     hexId << std::hex << ((std::hash<std::string> {}(
                                version)) & 0xFFFFFFFF);
+    return hexId.str();
+}
+
+std::string Version::getBMCVersion()
+{
+    std::string versionKey = "VERSION_ID=";
+    std::string version{};
+    std::ifstream efile;
+    std::string line;
+    efile.open("/etc/os-release");
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, versionKey.size()).find(versionKey)
+            != std::string::npos)
+        {
+            std::size_t pos = line.find_first_of('"') + 1;
+            version = line.substr(pos, line.find_last_of('"') - pos);
+            break;
+        }
+    }
+    efile.close();
+    return version;
+}
+
+std::string Version::getBMCId()
+{
+    auto bmcVersion = getBMCVersion();
+    std::stringstream hexId;
+
+    if (bmcVersion.empty())
+    {
+        log<level::ERR>("Error bmcversion is empty");
+        elog<InvalidArgument>(xyz::openbmc_project::Common::InvalidArgument::
+                              ARGUMENT_NAME("BMCVersion"),
+                              xyz::openbmc_project::Common::InvalidArgument::
+                              ARGUMENT_VALUE(bmcVersion.c_str()));
+        return NULL;
+        
+    }
+    hexId << std::hex << ((std::hash<std::string> {}(bmcVersion)) & 0xFFFFFFFF);
     return hexId.str();
 }
 

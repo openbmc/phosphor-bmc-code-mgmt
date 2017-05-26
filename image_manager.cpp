@@ -38,6 +38,23 @@ struct RemovablePath
     }
 };
 
+int Manager::processBMCImage()
+{
+    auto id = phosphor::software::manager::Version::getBMCId();
+    auto purpose = Version::VersionPurpose::BMC; 
+    auto version = phosphor::software::manager::Version::getBMCVersion();
+    auto objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+    this->versions.insert(std::make_pair(
+                              id,
+                              std::make_unique<Version>(
+                                  this->bus,
+                                  objPath,
+                                  version,
+                                  purpose,
+                                  "")));
+    return 0;
+}
+
 int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))
@@ -107,7 +124,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get version
-    auto version = Version::getValue(manifestPath.string(), "version");
+    auto version = phosphor::software::manager::Version::getValue(
+                           manifestPath.string(), "version");
     if (version.empty())
     {
         log<level::ERR>("Error unable to read version from manifest file");
@@ -118,7 +136,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get purpose
-    auto purposeString = Version::getValue(manifestPath.string(), "purpose");
+    auto purposeString = phosphor::software::manager::Version::getValue(
+                                 manifestPath.string(), "purpose");
     if (purposeString.empty())
     {
         log<level::ERR>("Error unable to read purpose from manifest file");
@@ -130,7 +149,6 @@ int Manager::processImage(const std::string& tarFilePath)
 
     std::transform(purposeString.begin(), purposeString.end(),
                    purposeString.begin(), ::tolower);
-
     auto purpose = Version::VersionPurpose::Unknown;
     if (purposeString.compare("bmc") == 0)
     {
@@ -150,7 +168,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Compute id
-    auto id = Version::getId(version);
+    auto id = phosphor::software::manager::Version::getId(version);
 
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
@@ -177,7 +195,8 @@ int Manager::processImage(const std::string& tarFilePath)
 
     this->versions.insert(std::make_pair(
                               id,
-                              std::make_unique<Version>(
+                              std::make_unique<phosphor::software::
+                                  manager::Version>(
                                   this->bus,
                                   objPath,
                                   version,

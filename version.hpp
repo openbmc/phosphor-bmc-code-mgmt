@@ -62,6 +62,12 @@ class Version : public VersionInherit
          **/
         static std::string getId(const std::string& version);
 
+        /**
+         * @brief Get the active bmc version identifier.
+         *
+         * @return The version identifier.
+         */
+        static std::string getBMCVersion();
 };
 
 } // namespace manager

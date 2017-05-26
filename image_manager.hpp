@@ -20,7 +20,7 @@ class Manager
          *
          * @param[in] bus - The Dbus bus object
          */
-        Manager(sdbusplus::bus::bus& bus) : bus(bus) {};
+        Manager(sdbusplus::bus::bus& bus) : bus(bus){};
 
         /**
          * @brief Verify and untar the tarball. Verify the manifest file.
@@ -48,7 +48,6 @@ class Manager
          */
         static int unTar(const std::string& tarballFilePath,
                          const std::string& extractDirPath);
-
 };
 
 } // namespace manager

@@ -110,6 +110,36 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     return;
 }
 
+int ItemUpdater::processBMCImage()
+{
+    auto purpose = server::Version::VersionPurpose::BMC;
+    auto version = phosphor::software::manager::Version::getBMCVersion();
+    if (version.empty())
+    {
+        log<level::ERR>("Error reading current bmc version");
+        return -1;
+    }
+    auto id = phosphor::software::manager::Version::getId(version);
+    auto path =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+    activations.insert(std::make_pair(
+                           id,
+                           std::make_unique<Activation>(
+                               bus,
+                               path,
+                               id,
+                               server::Activation::Activations::Active)));
+    versions.insert(std::make_pair(
+                        id,
+                        std::make_unique<phosphor::software::
+                             manager::Version>(
+                             bus,
+                             path,
+                             version,
+                             purpose,
+                             "")));
+    return 0;
+}
+
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
              const std::string& versionId)
 {

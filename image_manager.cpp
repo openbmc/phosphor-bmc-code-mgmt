@@ -130,7 +130,6 @@ int Manager::processImage(const std::string& tarFilePath)
 
     std::transform(purposeString.begin(), purposeString.end(),
                    purposeString.begin(), ::tolower);
-
     auto purpose = Version::VersionPurpose::Unknown;
     if (purposeString.compare("bmc") == 0)
     {

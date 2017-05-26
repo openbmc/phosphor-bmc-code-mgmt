@@ -1,5 +1,7 @@
 #pragma once
 #include "version.hpp"
+#include <sdbusplus/bus.hpp>
+#include "xyz/openbmc_project/Software/Version/server.hpp"
 
 namespace phosphor
 {
@@ -8,19 +10,32 @@ namespace software
 namespace manager
 {
 
+using ManagerInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Software::server::Version>;
+
 /** @class Manager
  *  @brief Contains a map of Version dbus objects.
  *  @details The software image manager class that contains the Version dbus
  *           objects and their version ids.
  */
-class Manager
+class Manager : public ManagerInherit
 {
     public:
         /** @brief Constructs Manager Class
          *
          * @param[in] bus - The Dbus bus object
          */
-        Manager(sdbusplus::bus::bus& bus) : bus(bus) {};
+        Manager(sdbusplus::bus::bus& bus, const std::string& path) : 
+                ManagerInherit(bus, (std::string{path} + '/' + 
+                getBMCId()).c_str(), true), bus(bus)
+        {
+        // Set properties.
+        purpose(VersionPurpose::BMC);
+        version(getBMCVersion());
+
+        // Emit deferred signal.
+        emit_object_added();
+        }
 
         /**
          * @brief Verify and untar the tarball. Verify the manifest file.
@@ -31,7 +46,7 @@ class Manager
          */
          int processImage(const std::string& tarballFilePath);
 
-    private:
+    //private:
         /** @brief Persistent map of Version dbus objects and their
           * version id */
         std::map<std::string, std::unique_ptr<Version>> versions;
@@ -48,6 +63,20 @@ class Manager
          */
         static int unTar(const std::string& tarballFilePath,
                          const std::string& extractDirPath);
+
+        /**
+         * @brief Get the active bmc version identifier.
+         *
+         * @return The version identifier.
+         */
+        const std::string getBMCVersion() const;
+        
+        /**
+         * @brief Get the Active BMC Version id.
+         *
+         * @return The id.
+         **/
+        const std::string getBMCId() const;
 
 };
 

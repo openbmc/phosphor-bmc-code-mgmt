@@ -40,7 +40,9 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 auto value = sdbusplus::message::variant_ns::get<std::string>(
                         property.second);
                 if (value !=
-                    convertForMessage(server::Version::VersionPurpose::BMC))
+                    convertForMessage(server::Version::VersionPurpose::BMC) &&
+                    value !=
+                    convertForMessage(server::Version::VersionPurpose::System))
                 {
                     return;
                 }

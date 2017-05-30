@@ -16,18 +16,13 @@ namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
 
-int ItemUpdater::createActivation(sd_bus_message* msg,
-                                  void* userData,
-                                  sd_bus_error* retErr)
+void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
-    auto* updater = static_cast<ItemUpdater*>(userData);
-    auto m = sdbusplus::message::message(msg);
-
     sdbusplus::message::object_path objPath;
     std::map<std::string,
-        std::map<std::string,
-        sdbusplus::message::variant<std::string>>> interfaces;
-    m.read(objPath, interfaces);
+             std::map<std::string,
+                      sdbusplus::message::variant<std::string>>> interfaces;
+    msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
 
     for (const auto& intf : interfaces)
@@ -42,13 +37,12 @@ int ItemUpdater::createActivation(sd_bus_message* msg,
             if (!property.first.compare("Purpose"))
             {
                 // Only process the BMC images
-                std::string value = sdbusplus::message::variant_ns::get <
-                                    std::string > (property.second);
-                if (value.compare(convertForMessage(server::Version::
-                                                    VersionPurpose::
-                                                    BMC).c_str()))
+                auto value = sdbusplus::message::variant_ns::get<std::string>(
+                        property.second);
+                if (value !=
+                    convertForMessage(server::Version::VersionPurpose::BMC))
                 {
-                    return 0;
+                    return;
                 }
             }
         }
@@ -60,25 +54,24 @@ int ItemUpdater::createActivation(sd_bus_message* msg,
     {
         log<level::ERR>("No version id found in object path",
                         entry("OBJPATH=%s", path));
-        return -1;
+        return;
     }
 
     auto versionId = path.substr(pos + 1);
 
-    if (updater->activations.find(versionId) == updater->activations.end())
+    if (activations.find(versionId) == activations.end())
     {
         // For now set all BMC code versions to active
-        auto activationState = server::Activation::Activations::Active;
+        constexpr auto activationState =
+                server::Activation::Activations::Active;
 
-        updater->activations.insert(std::make_pair(
-                                        versionId,
-                                        std::make_unique<Activation>(
-                                            updater->bus,
-                                            path,
-                                            versionId,
-                                            activationState)));
+        activations.insert(
+                std::make_pair(
+                        versionId,
+                        std::make_unique<Activation>(
+                                bus, path, versionId, activationState)));
     }
-    return 0;
+    return;
 }
 
 } // namespace updater

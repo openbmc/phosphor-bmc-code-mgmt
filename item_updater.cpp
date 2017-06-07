@@ -29,30 +29,44 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                       sdbusplus::message::variant<std::string>>> interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
+    std::string filePath;
 
     for (const auto& intf : interfaces)
     {
-        if (intf.first.compare(VERSION_IFACE))
+        if (intf.first == VERSION_IFACE)
         {
-            continue;
-        }
-
-        for (const auto& property : intf.second)
-        {
-            if (!property.first.compare("Purpose"))
+            for (const auto& property : intf.second)
             {
-                // Only process the BMC images
-                auto value = sdbusplus::message::variant_ns::get<std::string>(
-                        property.second);
-                if (value !=
-                    convertForMessage(server::Version::VersionPurpose::BMC) &&
-                    value !=
-                    convertForMessage(server::Version::VersionPurpose::System))
+                if (property.first == "Purpose")
                 {
-                    return;
+                    // Only process the BMC and System images
+                    std::string value = sdbusplus::message::variant_ns::get<
+                            std::string>(property.second);
+                    if ((value != convertForMessage(
+                            server::Version::VersionPurpose::BMC)) &&
+                        (value != convertForMessage(
+                            server::Version::VersionPurpose::System)))
+                    {
+                        return;
+                    }
                 }
             }
         }
+        else if (intf.first == FILEPATH_IFACE)
+        {
+            for (const auto& property : intf.second)
+            {
+                if (property.first == "Path")
+                {
+                    filePath = sdbusplus::message::variant_ns::get<
+                            std::string>(property.second);
+                }
+            }
+        }
+    }
+    if (filePath.empty())
+    {
+        return;
     }
 
     // Version id is the last item in the path
@@ -71,7 +85,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
         ItemUpdater::ActivationStatus result = ItemUpdater::
-                     validateSquashFSImage(versionId);
+                     validateSquashFSImage(filePath);
         if (result == ItemUpdater::ActivationStatus::ready)
         {
             activationState = server::Activation::Activations::Ready;
@@ -92,19 +106,14 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
-             const std::string& versionId)
+             const std::string& filePath)
 {
-
-    // TODO openbmc/openbmc#1715 Check the Common.FilePath to
-    //      determine the active image.
-    fs::path imageDirPath(IMG_UPLOAD_DIR);
-    imageDirPath /= versionId;
-    if (!fs::is_directory(imageDirPath))
+    if (filePath == "Active")
     {
         return ItemUpdater::ActivationStatus::active;
     }
 
-    fs::path file(imageDirPath);
+    fs::path file(filePath);
     file /= bmcImage;
     std::ifstream efile(file.c_str());
 
@@ -114,7 +123,7 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
     }
     else
     {
-        log<level::ERR>("Failed to find the SquashFS image.");
+        log<level::ERR>("Failed to find bmc image.");
         return ItemUpdater::ActivationStatus::invalid;
     }
 }

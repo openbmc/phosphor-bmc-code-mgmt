@@ -58,7 +58,7 @@ int Manager::processBMCImage()
                                   objPath,
                                   version,
                                   purpose,
-                                  "")));
+                                  "Active")));
     return 0;
 }
 

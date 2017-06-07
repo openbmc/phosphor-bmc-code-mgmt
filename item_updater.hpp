@@ -63,14 +63,14 @@ class ItemUpdater
         /**
          * @brief Validates the presence of SquashFS iamge in the image dir.
          *
-         * @param[in]  versionId - The software version ID.
+         * @param[in]  filePath  - The path to the SquashfFS image.
          * @param[out] result    - ActivationStatus Enum.
          *                         ready if validation was successful.
          *                         invalid if validation fail.
          *                         active if image is the current version.
          *
          */
-        ActivationStatus validateSquashFSImage(const std::string& versionId);
+        ActivationStatus validateSquashFSImage(const std::string& filePath);
 
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;

@@ -11,6 +11,7 @@
 #include <phosphor-logging/elog.hpp>
 #include <elog-errors.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
+#include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include "config.h"
 #include "version.hpp"
 #include "watch.hpp"
@@ -26,6 +27,7 @@ namespace manager
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
 namespace fs = std::experimental::filesystem;
+namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 struct RemovablePath
 {
@@ -58,7 +60,7 @@ int Manager::processBMCImage()
                                   objPath,
                                   version,
                                   purpose,
-                                  "")));
+                                  "Active")));
     return 0;
 }
 

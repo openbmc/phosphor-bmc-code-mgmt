@@ -37,6 +37,7 @@ phosphor_download_manager_SOURCES = \
 
 phosphor_image_updater_SOURCES = \
 	activation.cpp \
+        version.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp
 

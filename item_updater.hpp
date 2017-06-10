@@ -2,6 +2,7 @@
 
 #include <sdbusplus/server.hpp>
 #include "activation.hpp"
+#include "version.hpp"
 
 namespace phosphor
 {
@@ -78,6 +79,8 @@ class ItemUpdater
         /** @brief Persistent map of Activation dbus objects and their
           * version id */
         std::map<std::string, std::unique_ptr<Activation>> activations;
+
+        std::map<std::string, std::unique_ptr<phosphor::software::manager::Version>> versions;
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;

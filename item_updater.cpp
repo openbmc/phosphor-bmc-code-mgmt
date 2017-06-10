@@ -5,6 +5,7 @@
 #include "item_updater.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 #include <experimental/filesystem>
+#include "version.hpp"
 
 namespace phosphor
 {
@@ -24,6 +25,8 @@ constexpr auto bmcImage = "image-rofs";
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
     sdbusplus::message::object_path objPath;
+    auto purpose = server::Version::VersionPurpose::Unknown;
+    std::string version;
     std::map<std::string,
              std::map<std::string,
                       sdbusplus::message::variant<std::string>>> interfaces;
@@ -32,27 +35,30 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     for (const auto& intf : interfaces)
     {
-        if (intf.first.compare(VERSION_IFACE))
+        if (intf.first == VERSION_IFACE)
         {
-            continue;
-        }
-
-        for (const auto& property : intf.second)
-        {
-            if (!property.first.compare("Purpose"))
+            for (const auto& property : intf.second)
             {
-                // Only process the BMC images
-                auto value = sdbusplus::message::variant_ns::get<std::string>(
-                        property.second);
-                if (value !=
-                    convertForMessage(server::Version::VersionPurpose::BMC) &&
-                    value !=
-                    convertForMessage(server::Version::VersionPurpose::System))
+                if (property.first == "Purpose")
                 {
-                    return;
+                    std::string str = sdbusplus::message::variant_ns::
+                        get<std::string>(property.second);
+                    purpose = server::Version::
+                        convertVersionPurposeFromString(str);
+                }
+                else if (property.first == "Version")
+                {
+                    version = sdbusplus::message::variant_ns::
+                        get<std::string>(property.second);
                 }
             }
         }
+    }
+    if (version.empty() ||
+        purpose != server::Version::VersionPurpose::BMC ||
+        purpose != server::Version::VersionPurpose::System)
+    {
+        return;
     }
 
     // Version id is the last item in the path
@@ -81,12 +87,21 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             activationState = server::Activation::Activations::Active;
         }
         activations.insert(std::make_pair(
+                               versionId,
+                               std::make_unique<Activation>(
+                                        bus,
+                                        path,
                                         versionId,
-                                        std::make_unique<Activation>(
-                                            bus,
-                                            path,
-                                            versionId,
-                                            activationState)));
+                                        activationState)));
+        versions.insert(std::make_pair(
+                            versionId,
+                            std::make_unique<phosphor::software::
+                                manager::Version>(
+                                bus,
+                                path,
+                                version,
+                                purpose,
+                                "")));
     }
     return;
 }

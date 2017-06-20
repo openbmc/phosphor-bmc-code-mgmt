@@ -32,6 +32,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                       sdbusplus::message::variant<std::string>>> interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
+    std::string filePath;
 
     for (const auto& intf : interfaces)
     {
@@ -53,8 +54,20 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 }
             }
         }
+        else if (intf.first == FILEPATH_IFACE)
+        {
+            for (const auto& property : intf.second)
+            {
+                if (property.first == "Path")
+                {
+                    filePath = sdbusplus::message::variant_ns::get<
+                            std::string>(property.second);
+                }
+            }
+        }
     }
     if (version.empty() ||
+        filePath.empty() ||
         (purpose != server::Version::VersionPurpose::BMC &&
         purpose != server::Version::VersionPurpose::System))
     {
@@ -77,14 +90,10 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
         ItemUpdater::ActivationStatus result = ItemUpdater::
-                     validateSquashFSImage(versionId);
+                     validateSquashFSImage(filePath);
         if (result == ItemUpdater::ActivationStatus::ready)
         {
             activationState = server::Activation::Activations::Ready;
-        }
-        else if (result == ItemUpdater::ActivationStatus::active)
-        {
-            activationState = server::Activation::Activations::Active;
         }
         activations.insert(std::make_pair(
                                versionId,
@@ -101,7 +110,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                 path,
                                 version,
                                 purpose,
-                                "")));
+                                filePath)));
     }
     return;
 }
@@ -132,19 +141,10 @@ void ItemUpdater::processBMCImage()
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
-             const std::string& versionId)
+             const std::string& filePath)
 {
 
-    // TODO openbmc/openbmc#1715 Check the Common.FilePath to
-    //      determine the active image.
-    fs::path imageDirPath(IMG_UPLOAD_DIR);
-    imageDirPath /= versionId;
-    if (!fs::is_directory(imageDirPath))
-    {
-        return ItemUpdater::ActivationStatus::active;
-    }
-
-    fs::path file(imageDirPath);
+    fs::path file(filePath);
     file /= bmcImage;
     std::ifstream efile(file.c_str());
 
@@ -154,7 +154,7 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
     }
     else
     {
-        log<level::ERR>("Failed to find the SquashFS image.");
+        log<level::ERR>("Failed to find the BMC image.");
         return ItemUpdater::ActivationStatus::invalid;
     }
 }

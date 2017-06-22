@@ -128,25 +128,12 @@ int Manager::processImage(const std::string& tarFilePath)
         return -1;
     }
 
-    std::transform(purposeString.begin(), purposeString.end(),
-                   purposeString.begin(), ::tolower);
-
     auto purpose = Version::VersionPurpose::Unknown;
-    if (purposeString.compare("bmc") == 0)
-    {
-        purpose = Version::VersionPurpose::BMC;
-    }
-    else if (purposeString.compare("host") == 0)
-    {
-        purpose = Version::VersionPurpose::Host;
-    }
-    else if (purposeString.compare("system") == 0)
-    {
-        purpose = Version::VersionPurpose::System;
-    }
-    else if (purposeString.compare("other") == 0)
-    {
-        purpose = Version::VersionPurpose::Other;
+    try {
+        auto convertedPurpose = Version::convertVersionPurposeFromString(purposeString);
+        purpose = convertedPurpose;
+    } catch (const sdbusplus::exception::InvalidEnumString& e) {
+        log<level::ERR>("Error: Failed to convert manifest purpose to enum. Setting to Unknown.");
     }
 
     // Compute id

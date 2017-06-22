@@ -140,6 +140,10 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         purpose = Version::VersionPurpose::Host;
     }
+    else if (purposeString.compare("xyz.openbmc_project.software.version.versionpurpose.host") == 0)
+    {
+        purpose = Version::VersionPurpose::Host;
+    }
     else if (purposeString.compare("system") == 0)
     {
         purpose = Version::VersionPurpose::System;

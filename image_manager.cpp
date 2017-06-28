@@ -38,6 +38,36 @@ struct RemovablePath
     }
 };
 
+void Manager::deleteImage(sdbusplus::message::message& msg)
+{
+    sdbusplus::message::object_path objPath;
+    std::map<std::string,
+             std::map<std::string,
+                      sdbusplus::message::variant<std::string>>> interfaces;
+    msg.read(objPath, interfaces);
+    std::string path(std::move(objPath));
+
+    for (const auto& intf : interfaces)
+    {
+        if (intf.first.compare(VERSION_IFACE))
+        {
+            continue;
+        }
+
+        for (const auto& property : intf.second)
+        {
+            if (!property.first.compare("Delete"))
+            {
+                // Get image directory
+                auto image_path = sdbusplus::message::variant_ns::get<std::string>(
+                        property.second);
+                fs::remove(image_path);
+
+            }
+        }
+    }
+}
+
 int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))

@@ -64,6 +64,11 @@ AS_IF([test "x$DOWNLOAD_BUSNAME" == "x"],
     [DOWNLOAD_BUSNAME="xyz.openbmc_project.Software.Download"])
 AC_DEFINE_UNQUOTED([DOWNLOAD_BUSNAME], ["$DOWNLOAD_BUSNAME"], [The DBus busname to own])
 
+AC_ARG_VAR(DELETE_BUSNAME, [The Dbus busname to own])
+AS_IF([test "x$DELETE_BUSNAME" == "x"],
+    [DELETE_BUSNAME="xyz.openbmc_project.Software.Delete"])
+AC_DEFINE_UNQUOTED([DELETE_BUSNAME], ["$DELETE_BUSNAME"], [The DBus busname to own])
+
 AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
     [The software version manager interface])
 

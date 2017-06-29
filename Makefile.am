@@ -2,7 +2,9 @@ AM_DEFAULT_SOURCE_EXT = .cpp
 
 # Build these headers, don't install them
 noinst_HEADERS = \
+	bmc_version.hpp \
 	download_manager.hpp \
+	delete_manager.hpp \
 	watch.hpp \
 	version.hpp \
 	image_manager.hpp \
@@ -12,9 +14,11 @@ noinst_HEADERS = \
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
 	phosphor-download-manager \
+	phosphor-delete-manager \
 	phosphor-image-updater
 
 phosphor_version_software_manager_SOURCES = \
+	bmc_version.cpp \
 	image_manager_main.cpp \
 	watch.cpp \
 	version.cpp \
@@ -33,9 +37,12 @@ phosphor_download_manager_SOURCES = \
 	download_manager.cpp \
 	download_manager_main.cpp
 
+phosphor_delete_manager_SOURCES = \
+	delete_manager.cpp \
+	delete_manager_main.cpp
+
 phosphor_image_updater_SOURCES = \
 	activation.cpp \
-	version.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp
 
@@ -63,6 +70,8 @@ phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)
 phosphor_download_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_download_manager_LDFLAGS = $(generic_ldflags)
+phosphor_delete_manager_CXXFLAGS = $(generic_cxxflags)
+phosphor_delete_manager_LDFLAGS = $(generic_ldflags)
 phosphor_image_updater_CXXFLAGS = $(generic_cxxflags)
 phosphor_image_updater_LDFLAGS = $(generic_ldflags)
 

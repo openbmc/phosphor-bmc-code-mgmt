@@ -54,6 +54,15 @@ class ItemUpdater
             processBMCImage();
         };
 
+    /** @brief Sets the given priority free by incrementing
+     *  any existing priority with the same value by 1
+     *
+     *  @param[in] value - The priority that needs to be set free.
+     *
+     *  @return None
+     */
+    void freePriority(uint8_t value);
+
     /**
      * @brief Create and populate the active BMC Version.
      */

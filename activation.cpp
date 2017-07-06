@@ -1,4 +1,5 @@
 #include "activation.hpp"
+#include "item_updater.hpp"
 
 namespace phosphor
 {
@@ -12,6 +13,12 @@ namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 auto Activation::activation(Activations value) ->
         Activations
 {
+
+    if (value != softwareServer::Activation::Activations::Active)
+    {
+        redundancyPriority.reset(nullptr);
+    }
+
     if (value == softwareServer::Activation::Activations::Activating)
     {
         if (!activationBlocksTransition)
@@ -21,6 +28,21 @@ auto Activation::activation(Activations value) ->
                                 bus,
                                 path);
         }
+
+        //TODO openbmc/openbmc#1756 - Add Logic for Code Update
+        if (!redundancyPriority)
+        {
+            redundancyPriority =
+                      std::make_unique<RedundancyPriority>(
+                                bus,
+                                path,
+                                *this,
+                                0);
+        }
+
+        activationBlocksTransition.reset(nullptr);
+        return softwareServer::Activation::activation(
+                softwareServer::Activation::Activations::Active);
     }
     else
     {
@@ -47,6 +69,12 @@ auto Activation::requestedActivation(RequestedActivations value) ->
         }
     }
     return softwareServer::Activation::requestedActivation(value);
+}
+
+uint8_t RedundancyPriority::priority(uint8_t value)
+{
+    parent.parent.freePriority(value);
+    return softwareServer::RedundancyPriority::priority(value);
 }
 
 } // namespace updater

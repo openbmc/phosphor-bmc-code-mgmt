@@ -100,6 +100,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                std::make_unique<Activation>(
                                         bus,
                                         path,
+                                        *this,
                                         versionId,
                                         activationState)));
         versions.insert(std::make_pair(
@@ -126,6 +127,7 @@ void ItemUpdater::processBMCImage()
                            std::make_unique<Activation>(
                                bus,
                                path,
+                               *this,
                                id,
                                server::Activation::Activations::Active)));
     versions.insert(std::make_pair(
@@ -156,6 +158,21 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
     {
         log<level::ERR>("Failed to find the BMC image.");
         return ItemUpdater::ActivationStatus::invalid;
+    }
+}
+
+void ItemUpdater::freePriority(uint8_t value)
+{
+    //TODO openbmc/openbmc#1896 Improve the performance of this function
+    for (const auto& intf : activations)
+    {
+        if(intf.second->redundancyPriority)
+        {
+            if (intf.second->redundancyPriority.get()->priority() == value)
+            {
+                intf.second->redundancyPriority.get()->priority(value+1);
+            }
+        }
     }
 }
 

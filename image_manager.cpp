@@ -107,7 +107,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get version
-    auto version = Version::getValue(manifestPath.string(), "version");
+    auto version = Version<Manager>::getValue(manifestPath.string(), "version");
     if (version.empty())
     {
         log<level::ERR>("Error unable to read version from manifest file");
@@ -118,7 +118,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Get purpose
-    auto purposeString = Version::getValue(manifestPath.string(), "purpose");
+    auto purposeString = Version<Manager>::getValue(manifestPath.string(),
+                                               "purpose");
     if (purposeString.empty())
     {
         log<level::ERR>("Error unable to read purpose from manifest file");
@@ -128,15 +129,18 @@ int Manager::processImage(const std::string& tarFilePath)
         return -1;
     }
 
-    auto purpose = Version::VersionPurpose::Unknown;
+    auto purpose = Version<Manager>::VersionPurpose::Unknown;
     try {
-        purpose = Version::convertVersionPurposeFromString(purposeString);
+        purpose = Version<Manager>::convertVersionPurposeFromString(
+                                        purposeString);
     } catch (const sdbusplus::exception::InvalidEnumString& e) {
-        log<level::ERR>("Error: Failed to convert manifest purpose to enum. Setting to Unknown.");
+        std::string err_msg = "Error: Failed to convert manifest purpose";
+        err_msg += " to enum. Setting to Unknown.";
+        log<level::ERR>(err_msg.c_str());
     }
 
     // Compute id
-    auto id = Version::getId(version);
+    auto id = Version<Manager>::getId(version);
 
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
@@ -167,12 +171,13 @@ int Manager::processImage(const std::string& tarFilePath)
 
     this->versions.insert(std::make_pair(
                               id,
-                              std::make_unique<Version>(
+                              std::make_unique<Version<Manager>>(
                                   this->bus,
                                   objPath,
                                   version,
                                   purpose,
-                                  imageDirPath.string())));
+                                  imageDirPath.string(),
+                                  this)));
 
     return 0;
 }

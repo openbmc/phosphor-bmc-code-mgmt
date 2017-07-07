@@ -89,7 +89,7 @@ class ItemUpdater
         /** @brief Persistent map of Version dbus objects and their
           * version id */
         std::map<std::string, std::unique_ptr<phosphor::software::
-            manager::Version>> versions;
+            manager::Version<ItemUpdater>>> versions;
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;

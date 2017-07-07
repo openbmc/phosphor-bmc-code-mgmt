@@ -59,6 +59,14 @@ class ItemUpdater
      */
     void processBMCImage();
 
+    /**
+     * @brief Erase specified entry d-bus object
+     *        if Action property is not set to Active
+     *
+     * @param[in] entryId - unique identifier of the entry
+     */
+    void erase(std::string entryId);
+
     private:
         /** @brief Callback function for Software.Version match.
          *  @details Creates an Activation dbus object.
@@ -89,7 +97,7 @@ class ItemUpdater
         /** @brief Persistent map of Version dbus objects and their
           * version id */
         std::map<std::string, std::unique_ptr<phosphor::software::
-            manager::Version>> versions;
+            manager::Version<ItemUpdater>>> versions;
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;

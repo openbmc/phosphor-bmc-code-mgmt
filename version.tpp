@@ -15,7 +15,8 @@ namespace manager
 
 using namespace phosphor::logging;
 
-std::string Version::getValue(const std::string& manifestFilePath,
+template <class T>
+std::string Version<T>::getValue(const std::string& manifestFilePath,
                               std::string key)
 {
     key = key + "=";
@@ -56,7 +57,8 @@ std::string Version::getValue(const std::string& manifestFilePath,
     return value;
 }
 
-std::string Version::getId(const std::string& version)
+template <class T>
+std::string Version<T>::getId(const std::string& version)
 {
     std::stringstream hexId;
 
@@ -72,7 +74,8 @@ std::string Version::getId(const std::string& version)
     return hexId.str();
 }
 
-std::string Version::getBMCVersion()
+template <class T>
+std::string Version<T>::getBMCVersion()
 {
     std::string versionKey = "VERSION_ID=";
     std::string version{};
@@ -99,6 +102,15 @@ std::string Version::getBMCVersion()
     }
 
     return version;
+}
+
+template <class T>
+void Version<T>::delete_()
+{
+    if (parent != nullptr)
+    {
+        parent->erase(version());
+    }
 }
 
 } // namespace manager

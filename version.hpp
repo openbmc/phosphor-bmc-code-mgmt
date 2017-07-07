@@ -35,14 +35,18 @@ class Version : public VersionInherit
          * @param[in] versionId      - The version identifier
          * @param[in] versionPurpose - The version purpose
          * @param[in] filePath       - The image filesystem path
+         * @param[in] callback       - The parent's erase callback
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
                 const std::string& versionId,
                 VersionPurpose versionPurpose,
-                const std::string& filePath) : VersionInherit(
+                const std::string& filePath,
+                eraseFunc callback) : VersionInherit(
                     bus, (objPath).c_str(), true)
         {
+            // Bind erase method
+            eraseCallback = callback;
             // Set properties.
             purpose(versionPurpose);
             version(versionId);

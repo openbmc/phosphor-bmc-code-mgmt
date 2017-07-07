@@ -105,12 +105,13 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         versions.insert(std::make_pair(
                             versionId,
                             std::make_unique<phosphor::software::
-                                manager::Version>(
+                                manager::Version<ItemUpdater>>(
                                 bus,
                                 path,
                                 version,
                                 purpose,
-                                filePath)));
+                                filePath,
+                                this)));
     }
     return;
 }
@@ -118,8 +119,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 void ItemUpdater::processBMCImage()
 {
     auto purpose = server::Version::VersionPurpose::BMC;
-    auto version = phosphor::software::manager::Version::getBMCVersion();
-    auto id = phosphor::software::manager::Version::getId(version);
+    auto version = phosphor::software::manager::Version<ItemUpdater>::getBMCVersion();
+    auto id = phosphor::software::manager::Version<ItemUpdater>::getId(version);
     auto path =  std::string{SOFTWARE_OBJPATH} + '/' + id;
     activations.insert(std::make_pair(
                            id,
@@ -131,13 +132,62 @@ void ItemUpdater::processBMCImage()
     versions.insert(std::make_pair(
                         id,
                         std::make_unique<phosphor::software::
-                             manager::Version>(
+                             manager::Version<ItemUpdater>>(
                              bus,
                              path,
                              version,
                              purpose,
-                             "")));
+                             "",
+                             this)));
     return;
+}
+
+void ItemUpdater::erase(std::string entryId)
+{
+    log<level::ERR>(entryId.c_str());
+    std::string found_key = "";
+
+    for (const auto& itv : versions)
+    {
+        std::string current_key = itv.first;
+        log<level::ERR>(current_key.c_str());
+        std::string current_version = (*(itv.second)).version();
+        log<level::ERR>(current_version.c_str());
+
+        if (entryId.compare(current_version) == 0)
+        {
+            found_key = current_key;
+            break;
+        }
+    }
+    if (!found_key.empty())
+    {
+        std::string error_msg = "Error Failed to find version " + \
+            found_key + " in image manager. Unable to delete.";
+        log<level::ERR>(error_msg.c_str());
+        return;
+    }
+    auto ita = activations.find(found_key);
+    if (ita == activations.end())
+    {
+        std::string error_msg = "Error Failed to find activation " + \
+            found_key + " in image manager. Unable to delete.";
+        log<level::ERR>(error_msg.c_str());
+        return;
+    }
+    server::Activation& current_activation = *(ita->second);
+    server::Activation::Activations activationStatus = current_activation.activation();
+    // Delete if not Active
+    if (activationStatus == server::Activation::Activations::Active)
+    {
+        std::string error_msg = "Error  Status for " + \
+            found_key + " is Active. Unable to delete.";
+        log<level::ERR>(error_msg.c_str());
+        return;
+    }
+    this->activations.erase(found_key);
+    this->versions.erase(found_key);
+
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(

@@ -2,7 +2,9 @@
 
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Software/Version/server.hpp"
+#include "xyz/openbmc_project/Object/Delete/server.hpp"
 #include "xyz/openbmc_project/Common/FilePath/server.hpp"
+#include <functional>
 
 namespace phosphor
 {
@@ -13,6 +15,7 @@ namespace manager
 
 using VersionInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::Version,
+    sdbusplus::xyz::openbmc_project::Object::server::Delete,
     sdbusplus::xyz::openbmc_project::Common::server::FilePath>;
 
 /** @class Version
@@ -47,6 +50,13 @@ class Version : public VersionInherit
         }
 
         /**
+         * @brief Binds parent's erase callback.
+         *
+         * @param[in] callback - The parent's erase callback.
+         **/
+        void addHandler(std::function<void(std::string)> callback);
+
+        /**
          * @brief Read the manifest file to get the value of the key.
          *
          * @return The value of the key.
@@ -67,6 +77,18 @@ class Version : public VersionInherit
          * @return The version identifier.
          */
         static std::string getBMCVersion();
+
+        /**
+         * @brief Delete the d-bus object and image.
+         */
+        void delete_() override;
+
+
+    private:
+        /**
+         * @brief The parent's erase callback.
+         */
+        std::unique_ptr<std::function<void(std::string)>> eraseCallback;
 };
 
 } // namespace manager

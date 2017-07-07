@@ -101,6 +101,19 @@ std::string Version::getBMCVersion()
     return version;
 }
 
+void Version::delete_()
+{
+    if (eraseCallback)
+    {
+        (*eraseCallback)(version());
+    }
+}
+
+void Version::addHandler(std::function<void(std::string)> callback)
+{
+    eraseCallback = std::make_unique<std::function<void(std::string)>>(callback);
+}
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

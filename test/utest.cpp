@@ -1,4 +1,5 @@
 #include "version.hpp"
+#include "image_manager.hpp"
 #include <gtest/gtest.h>
 #include <experimental/filesystem>
 #include <stdlib.h>

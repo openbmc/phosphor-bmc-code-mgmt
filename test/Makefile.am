@@ -14,5 +14,8 @@ utest_LDFLAGS = -lgtest_main -lgtest $(PTHREAD_LIBS) \
 	$(PHOSPHOR_DBUS_INTERFACES_LIBS) $(OESDK_TESTCASE_FLAGS) \
 	$(PHOSPHOR_LOGGING_LIBS) -lstdc++fs
 
-utest_SOURCES = utest.cpp
-utest_LDADD = $(top_builddir)/phosphor_version_software_manager-version.o
+utest_SOURCES = \
+	utest.cpp \
+	../image_manager.cpp
+
+utest_LDADD = $(top_builddir)/phosphor_version_software_manager_version-version.o

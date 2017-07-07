@@ -110,7 +110,9 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                 path,
                                 version,
                                 purpose,
-                                filePath)));
+                                filePath,
+                                nullptr,
+                                this)));
     }
     return;
 }
@@ -136,7 +138,9 @@ void ItemUpdater::processBMCImage()
                              path,
                              version,
                              purpose,
-                             "")));
+                             "",
+                             nullptr,
+                             this)));
     return;
 }
 

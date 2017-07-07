@@ -15,6 +15,7 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include <iterator>
 
 namespace phosphor
 {
@@ -172,9 +173,29 @@ int Manager::processImage(const std::string& tarFilePath)
                                   objPath,
                                   version,
                                   purpose,
-                                  imageDirPath.string())));
+                                  imageDirPath.string(),
+                                  this,
+                                  nullptr)));
 
     return 0;
+}
+
+void Manager::erase(std::string entryId)
+{
+    for(std::map<std::string, std::unique_ptr<Version>>::iterator it = versions.begin(); it != versions.end(); ++it)
+    {
+        std::string current_key = it->first;
+        std::string current_version = (*(it->second)).version();
+        if (entryId.compare(current_version) == 0)
+        {
+            fs::path imageDirPath = (*(it->second)).path(); 
+            if (fs::exists(imageDirPath))
+            {
+                fs::remove_all(imageDirPath);
+            }
+            this->versions.erase(current_key);
+        }
+    }
 }
 
 int Manager::unTar(const std::string& tarFilePath,

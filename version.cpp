@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <phosphor-logging/log.hpp>
 #include "version.hpp"
+#include "image_manager.hpp"
 
 namespace phosphor
 {
@@ -99,6 +100,14 @@ std::string Version::getBMCVersion()
     }
 
     return version;
+}
+
+void Version::delete_()
+{
+    if (parent != nullptr)
+    {
+        parent->erase(version());
+    }
 }
 
 } // namespace manager

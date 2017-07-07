@@ -177,6 +177,26 @@ int Manager::processImage(const std::string& tarFilePath)
     return 0;
 }
 
+void Manager::erase(std::string entryId)
+{
+    auto it = std::find_if(versions.begin(), versions.end(),
+        [&](std::pair<const std::string, std::unique_ptr<Version>>& t)
+        {
+            return (*(t.second)).version() == entryId;
+        });
+    if (it == versions.end())
+    {
+        return;
+    }
+    // Delete image dir
+    fs::path imageDirPath = (*(it->second)).path();
+    if (fs::exists(imageDirPath))
+    {
+        fs::remove_all(imageDirPath);
+    }
+    this->versions.erase(it->first);
+}
+
 int Manager::unTar(const std::string& tarFilePath,
                    const std::string& extractDirPath)
 {

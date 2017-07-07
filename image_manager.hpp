@@ -31,10 +31,17 @@ class Manager
          */
          int processImage(const std::string& tarballFilePath);
 
+        /**
+         * @brief Erase specified entry d-bus object
+         *
+         * @param[in] entryId - unique identifier of the entry
+         */
+        void erase(std::string entryId);
+
     private:
         /** @brief Persistent map of Version dbus objects and their
           * version id */
-        std::map<std::string, std::unique_ptr<Version>> versions;
+        std::map<std::string, std::unique_ptr<Version<Manager>>> versions;
 
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;

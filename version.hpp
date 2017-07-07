@@ -20,6 +20,7 @@ using VersionInherit = sdbusplus::server::object::object<
  *  @details A concrete implementation for xyz.openbmc_project.Software.Version
  *  DBus API.
  */
+template <class T>
 class Version : public VersionInherit
 {
     public:
@@ -30,13 +31,16 @@ class Version : public VersionInherit
          * @param[in] versionId      - The version identifier
          * @param[in] versionPurpose - The version purpose
          * @param[in] filePath       - The image filesystem path
+         * @param[in] parent         - The version's parent
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
                 const std::string& versionId,
                 VersionPurpose versionPurpose,
-                const std::string& filePath) : VersionInherit(
-                    bus, (objPath).c_str(), true)
+                const std::string& filePath,
+                T *parent) : VersionInherit(
+                    bus, (objPath).c_str(), true),
+               parent(parent)
         {
             // Set properties.
             purpose(versionPurpose);
@@ -67,9 +71,15 @@ class Version : public VersionInherit
          * @return The version identifier.
          */
         static std::string getBMCVersion();
+
+    private:
+        /** @brief This entry's parent */
+        T *parent;
+
 };
 
 } // namespace manager
 } // namespace software
 } // namespace phosphor
 
+#include "version.tpp"

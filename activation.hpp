@@ -129,6 +129,9 @@ class Activation : public ActivationInherit
          */
         Activations activation(Activations value) override;
 
+        /** @brief Activation */
+        using ActivationInherit::activation;
+
         /** @brief Overloaded requestedActivation property setter function
          *
          * @param[in] value - One of Activation::RequestedActivations

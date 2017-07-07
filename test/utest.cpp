@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "image_manager.hpp"
 
 using namespace phosphor::software::manager;
 namespace fs = std::experimental::filesystem;

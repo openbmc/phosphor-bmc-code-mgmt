@@ -112,12 +112,13 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         versions.insert(std::make_pair(
                             versionId,
                             std::make_unique<phosphor::software::
-                                manager::Version>(
+                                manager::Version<ItemUpdater>>(
                                 bus,
                                 path,
                                 version,
                                 purpose,
-                                filePath)));
+                                filePath,
+                                this)));
     }
     return;
 }
@@ -125,8 +126,9 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 void ItemUpdater::processBMCImage()
 {
     auto purpose = server::Version::VersionPurpose::BMC;
-    auto version = phosphor::software::manager::Version::getBMCVersion();
-    auto id = phosphor::software::manager::Version::getId(version);
+    auto version = phosphor::software::manager::Version<ItemUpdater>::
+                   getBMCVersion();
+    auto id = phosphor::software::manager::Version<ItemUpdater>::getId(version);
     auto path =  std::string{SOFTWARE_OBJPATH} + '/' + id;
     activations.insert(std::make_pair(
                            id,
@@ -139,12 +141,13 @@ void ItemUpdater::processBMCImage()
     versions.insert(std::make_pair(
                         id,
                         std::make_unique<phosphor::software::
-                             manager::Version>(
+                             manager::Version<ItemUpdater>>(
                              bus,
                              path,
                              version,
                              purpose,
-                             "")));
+                             "",
+                             this)));
     return;
 }
 

@@ -17,7 +17,6 @@ sbin_PROGRAMS = \
 phosphor_version_software_manager_SOURCES = \
 	image_manager_main.cpp \
 	watch.cpp \
-	version.cpp \
 	image_manager.cpp
 
 nobase_nodist_include_HEADERS = \
@@ -35,7 +34,6 @@ phosphor_download_manager_SOURCES = \
 
 phosphor_image_updater_SOURCES = \
 	activation.cpp \
-	version.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp
 

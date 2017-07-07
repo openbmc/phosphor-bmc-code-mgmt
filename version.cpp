@@ -109,9 +109,9 @@ void Version::delete_()
     }
 }
 
-void Version::addHandler(std::function<void(std::string)> callback)
+void Version::addHandler(eraseFunc callback)
 {
-    eraseCallback = std::make_unique<std::function<void(std::string)>>(callback);
+    eraseCallback = std::make_unique<eraseFunc>(callback);
 }
 
 } // namespace manager

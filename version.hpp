@@ -13,6 +13,8 @@ namespace software
 namespace manager
 {
 
+typedef std::function<void(std::string)> eraseFunc;
+
 using VersionInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::Version,
     sdbusplus::xyz::openbmc_project::Object::server::Delete,
@@ -33,14 +35,18 @@ class Version : public VersionInherit
          * @param[in] versionId      - The version identifier
          * @param[in] versionPurpose - The version purpose
          * @param[in] filePath       - The image filesystem path
+         * @param[in] eraseCallback  - The parent's erase callback 
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
                 const std::string& versionId,
                 VersionPurpose versionPurpose,
-                const std::string& filePath) : VersionInherit(
+                const std::string& filePath,
+                eraseFunc eraseCallback) : VersionInherit(
                     bus, (objPath).c_str(), true)
         {
+            // Bind erase method
+            this->addHandler(eraseCallback);
             // Set properties.
             purpose(versionPurpose);
             version(versionId);
@@ -54,7 +60,7 @@ class Version : public VersionInherit
          *
          * @param[in] callback - The parent's erase callback.
          **/
-        void addHandler(std::function<void(std::string)> callback);
+        void addHandler(eraseFunc callback);
 
         /**
          * @brief Read the manifest file to get the value of the key.
@@ -88,7 +94,7 @@ class Version : public VersionInherit
         /**
          * @brief The parent's erase callback.
          */
-        std::unique_ptr<std::function<void(std::string)>> eraseCallback;
+        std::unique_ptr<eraseFunc> eraseCallback;
 };
 
 } // namespace manager

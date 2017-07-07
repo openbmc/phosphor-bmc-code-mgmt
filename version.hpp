@@ -86,6 +86,7 @@ class Version : public VersionInherit
         eraseFunc eraseCallback;
 };
 
+
 } // namespace manager
 } // namespace software
 } // namespace phosphor

@@ -22,6 +22,10 @@ namespace fs = std::experimental::filesystem;
 
 constexpr auto bmcImage = "image-rofs";
 
+constexpr auto SYSTEMD_BUSNAME = "org.freedesktop.systemd1";
+constexpr auto SYSTEMD_PATH = "/org/freedesktop/systemd1";
+constexpr auto SYSTEMD_INTERFACE = "org.freedesktop.systemd1.Manager";
+
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
@@ -163,6 +167,34 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
         log<level::ERR>("Failed to find the BMC image.");
         return ItemUpdater::ActivationStatus::invalid;
     }
+}
+
+void ItemUpdater::reset()
+{
+    for(const auto& it : activations)
+    {
+        auto roFile = "obmc-flash-bmc-ubiro-remove@" + it.first + ".service";
+
+        // Remove the read-only partitions.
+        auto method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StartUnit");
+        method.append(roFile, "replace");
+        bus.call_noreply(method);
+    }
+
+    // Remove the read-write partition.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("obmc-flash-bmc-ubirw-remove.service", "replace");
+    bus.call_noreply(method);
+
+    return;
 }
 
 } // namespace updater

@@ -22,6 +22,10 @@ namespace fs = std::experimental::filesystem;
 
 constexpr auto bmcImage = "image-rofs";
 
+constexpr auto SYSTEMD_BUSNAME = "org.freedesktop.systemd1";
+constexpr auto SYSTEMD_PATH = "/org/freedesktop/systemd1";
+constexpr auto SYSTEMD_INTERFACE = "org.freedesktop.systemd1.Manager";
+
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
@@ -106,6 +110,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                std::make_unique<Activation>(
                                         bus,
                                         path,
+                                        *this,
                                         versionId,
                                         activationState)));
         versions.insert(std::make_pair(
@@ -132,6 +137,7 @@ void ItemUpdater::processBMCImage()
                            std::make_unique<Activation>(
                                bus,
                                path,
+                               *this,
                                id,
                                server::Activation::Activations::Active)));
     versions.insert(std::make_pair(
@@ -163,6 +169,34 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
         log<level::ERR>("Failed to find the BMC image.");
         return ItemUpdater::ActivationStatus::invalid;
     }
+}
+
+void ItemUpdater::freePriority(uint8_t value)
+{
+    //TODO openbmc/openbmc#1896 Improve the performance of this function
+    for (const auto& intf : activations)
+    {
+        if(intf.second->redundancyPriority)
+        {
+            if (intf.second->redundancyPriority.get()->priority() == value)
+            {
+                intf.second->redundancyPriority.get()->priority(value+1);
+            }
+        }
+    }
+
+void ItemUpdater::reset()
+{
+    // Mark the read-write partition for recreation upon reboot.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("obmc-flash-bmc-ubirw-remove.service", "replace");
+    bus.call_noreply(method);
+
+    return;
 }
 
 } // namespace updater

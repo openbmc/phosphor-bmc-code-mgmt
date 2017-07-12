@@ -22,6 +22,10 @@ namespace fs = std::experimental::filesystem;
 
 constexpr auto bmcImage = "image-rofs";
 
+constexpr auto SYSTEMD_BUSNAME = "org.freedesktop.systemd1";
+constexpr auto SYSTEMD_PATH = "/org/freedesktop/systemd1";
+constexpr auto SYSTEMD_INTERFACE = "org.freedesktop.systemd1.Manager";
+
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
@@ -180,6 +184,22 @@ void ItemUpdater::freePriority(uint8_t value)
             }
         }
     }
+}
+
+void ItemUpdater::reset()
+{
+    // Mark the read-write partition for recreation upon reboot.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("obmc-flash-bmc-setenv@rwreset=true.service", "replace");
+    bus.call_noreply(method);
+
+    log<level::INFO>("BMC factory reset will take effect upon reboot.");
+
+    return;
 }
 
 } // namespace updater

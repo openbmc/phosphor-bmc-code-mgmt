@@ -16,6 +16,7 @@ using ActivationInherit = sdbusplus::server::object::object<
 using ActivationBlocksTransitionInherit = sdbusplus::server::object::object<
  sdbusplus::xyz::openbmc_project::Software::server::ActivationBlocksTransition>;
 
+
 /** @class ActivationBlocksTransition
  *  @brief OpenBMC ActivationBlocksTransition implementation.
  *  @details A concrete implementation for
@@ -31,7 +32,18 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
          */
          ActivationBlocksTransition(sdbusplus::bus::bus& bus,
                                    const std::string& path) :
-                   ActivationBlocksTransitionInherit(bus, path.c_str()) {}
+                   ActivationBlocksTransitionInherit(bus, path.c_str(), true),
+                   bus(bus)
+         {
+             blockTransition();
+         }
+
+         /** @brief Persistent sdbusplus DBus bus connection */
+         sdbusplus::bus::bus& bus;
+
+         /** @brief Trigger the services that blocks BMC transition */
+         void blockTransition();
+
 };
 
 /** @class Activation

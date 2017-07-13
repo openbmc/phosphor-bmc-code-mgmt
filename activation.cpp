@@ -9,6 +9,16 @@ namespace updater
 
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
+constexpr auto SYSTEMD_SERVICE       = "org.freedesktop.systemd1";
+constexpr auto SYSTEMD_OBJ_PATH      = "/org/freedesktop/systemd1";
+constexpr auto SYSTEMD_INTERFACE     = "org.freedesktop.systemd1.Manager";
+
+const std::map<const char*, const char*> REBOOT_HALT =
+{
+     {"REBOOT", "reboot-guard"},
+     {"PRE-REBOOT", "start-reboot-guard"}
+};
+
 auto Activation::activation(Activations value) ->
         Activations
 {
@@ -47,6 +57,20 @@ auto Activation::requestedActivation(RequestedActivations value) ->
         }
     }
     return softwareServer::Activation::requestedActivation(value);
+}
+
+void ActivationBlocksTransition::blockTransition()
+{
+
+    for(auto& service : REBOOT_HALT)
+    {
+    auto method = this->bus.new_method_call(SYSTEMD_SERVICE,
+                                            SYSTEMD_OBJ_PATH,
+                                            SYSTEMD_INTERFACE,
+                                            "StartUnit");
+    method.append(service.second, "replace");
+    this->bus.call(method);
+    }
 }
 
 } // namespace updater

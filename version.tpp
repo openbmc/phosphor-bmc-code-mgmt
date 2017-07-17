@@ -107,6 +107,10 @@ std::string Version<T>::getBMCVersion()
 template <class T>
 void Version<T>::delete_()
 {
+    if (parent != nullptr)
+    {
+        parent->erase(version());
+    }
 }
 
 } // namespace manager

@@ -151,6 +151,10 @@ void ItemUpdater::processBMCImage()
     return;
 }
 
+void ItemUpdater::erase(std::string entryId)
+{
+}
+
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
              const std::string& filePath)
 {

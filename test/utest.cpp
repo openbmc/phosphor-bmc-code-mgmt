@@ -49,8 +49,8 @@ TEST_F(VersionTest, TestGetValue)
     file << "purpose=" << purpose << std::endl;
     file.close();
 
-    EXPECT_EQ(Version::getValue(manifestFilePath, "version"), version);
-    EXPECT_EQ(Version::getValue(manifestFilePath, "purpose"), purpose);
+    EXPECT_EQ(Version<int>::getValue(manifestFilePath, "version"), version);
+    EXPECT_EQ(Version<int>::getValue(manifestFilePath, "purpose"), purpose);
 }
 
 /** @brief Make sure we correctly get the Id from getId()*/
@@ -62,6 +62,6 @@ TEST_F(VersionTest, TestGetId)
     hexId << std::hex << ((std::hash<std::string> {}(
                                version)) & 0xFFFFFFFF);
 
-    EXPECT_EQ(Version::getId(version), hexId.str());
+    EXPECT_EQ(Version<int>::getId(version), hexId.str());
 
 }

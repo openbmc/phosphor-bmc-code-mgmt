@@ -59,6 +59,14 @@ class ItemUpdater
      */
     void processBMCImage();
 
+    /**
+     * @brief Erase specified entry d-bus object
+     *        if Action property is not set to Active
+     *
+     * @param[in] entryId - unique identifier of the entry
+     */
+    void erase(std::string entryId);
+
     private:
         /** @brief Callback function for Software.Version match.
          *  @details Creates an Activation dbus object.
@@ -93,6 +101,14 @@ class ItemUpdater
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;
+
+        /** @brief Clears read only partition for
+          * given Activation dbus object */
+        void removeReadOnlyPartition(std::string versionId);
+
+        /** @brief Clears read write partition for
+          * given Activation dbus object */
+        void removeReadWritePartition(std::string versionId);
 
 };
 

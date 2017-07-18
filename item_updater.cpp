@@ -143,6 +143,50 @@ void ItemUpdater::processBMCImage()
     return;
 }
 
+void ItemUpdater::erase(std::string entryId)
+{
+    std::string found_key = "";
+
+    for (const auto& itv : versions)
+    {
+        std::string current_key = itv.first;
+        std::string current_version = (*(itv.second)).version();
+
+        if (entryId.compare(current_version) == 0)
+        {
+            found_key = current_key;
+            break;
+        }
+    }
+    if (!found_key.empty())
+    {
+        std::string error_msg = "Error Failed to find version " + \
+            found_key + " in item updater. Unable to delete.";
+        log<level::ERR>(error_msg.c_str());
+        return;
+    }
+    auto ita = activations.find(found_key);
+    if (ita == activations.end())
+    {
+        std::string error_msg = "Error Failed to find activation " + \
+            found_key + " in item updater. Unable to delete.";
+        log<level::ERR>(error_msg.c_str());
+        return;
+    }
+
+    // TODO: Test if this is the currently running image
+    //       If not, don't continue.
+
+    // Delete ReadWrite, ReadOnly partitions
+    removeReadWritePartition(found_key);
+    removeReadOnlyPartition(found_key);
+
+    // Remove activation and version
+    this->activations.erase(found_key);
+    this->versions.erase(found_key);
+
+}
+
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
              const std::string& filePath)
 {
@@ -160,6 +204,36 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
         log<level::ERR>("Failed to find the BMC image.");
         return ItemUpdater::ActivationStatus::invalid;
     }
+}
+
+void ItemUpdater::removeReadOnlyPartition(std::string versionId)
+{
+        auto serviceFile = "obmc-flash-bios-ubiumount-ro@" + versionId +
+                ".service";
+
+        // Remove the read-only partitions.
+        auto method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StartUnit");
+        method.append(serviceFile, "replace");
+        bus.call_noreply(method);
+}
+
+void ItemUpdater::removeReadWritePartition(std::string versionId)
+{
+        auto serviceFile = "obmc-flash-bios-ubiumount-rw@" + versionId +
+                ".service";
+
+        // Remove the read-write partitions.
+        auto method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StartUnit");
+        method.append(serviceFile, "replace");
+        bus.call_noreply(method);
 }
 
 } // namespace updater

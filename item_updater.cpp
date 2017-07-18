@@ -24,12 +24,18 @@ constexpr auto bmcImage = "image-rofs";
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
-    sdbusplus::message::object_path objPath;
-    auto purpose = server::Version::VersionPurpose::Unknown;
+
+    using SVersion = server::Version;
+    using VersionPurpose = SVersion::VersionPurpose;
+    namespace mesg = sdbusplus::message;
+    namespace variant_ns = mesg::variant_ns;
+
+    mesg::object_path objPath;
+    auto purpose = VersionPurpose::Unknown;
     std::string version;
     std::map<std::string,
              std::map<std::string,
-                      sdbusplus::message::variant<std::string>>> interfaces;
+                      mesg::variant<std::string>>> interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
     std::string filePath;
@@ -42,15 +48,17 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             {
                 if (property.first == "Purpose")
                 {
-                    std::string str = sdbusplus::message::variant_ns::
-                        get<std::string>(property.second);
-                    purpose = server::Version::
-                        convertVersionPurposeFromString(str);
+                    auto value = SVersion::convertVersionPurposeFromString(
+                        variant_ns::get<std::string>(property.second));
+                    if (value == VersionPurpose::BMC ||
+                        value == VersionPurpose::System)
+                    {
+                        purpose = value;
+                    }
                 }
                 else if (property.first == "Version")
                 {
-                    version = sdbusplus::message::variant_ns::
-                        get<std::string>(property.second);
+                    version = variant_ns::get<std::string>(property.second);
                 }
             }
         }
@@ -60,16 +68,14 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             {
                 if (property.first == "Path")
                 {
-                    filePath = sdbusplus::message::variant_ns::get<
-                            std::string>(property.second);
+                    filePath = variant_ns::get<std::string>(property.second);
                 }
             }
         }
     }
     if (version.empty() ||
         filePath.empty() ||
-        (purpose != server::Version::VersionPurpose::BMC &&
-        purpose != server::Version::VersionPurpose::System))
+        purpose == VersionPurpose::Unknown)
     {
         return;
     }
@@ -100,6 +106,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                std::make_unique<Activation>(
                                         bus,
                                         path,
+                                        *this,
                                         versionId,
                                         activationState)));
         versions.insert(std::make_pair(
@@ -128,6 +135,7 @@ void ItemUpdater::processBMCImage()
                            std::make_unique<Activation>(
                                bus,
                                path,
+                               *this,
                                id,
                                server::Activation::Activations::Active)));
     versions.insert(std::make_pair(
@@ -234,6 +242,21 @@ void ItemUpdater::removeReadWritePartition(std::string versionId)
                 "StartUnit");
         method.append(serviceFile, "replace");
         bus.call_noreply(method);
+} 
+
+void ItemUpdater::freePriority(uint8_t value)
+{
+    //TODO openbmc/openbmc#1896 Improve the performance of this function
+    for (const auto& intf : activations)
+    {
+        if(intf.second->redundancyPriority)
+        {
+            if (intf.second->redundancyPriority.get()->priority() == value)
+            {
+                intf.second->redundancyPriority.get()->priority(value+1);
+            }
+        }
+    }
 }
 
 } // namespace updater

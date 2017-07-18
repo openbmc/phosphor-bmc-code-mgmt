@@ -48,7 +48,6 @@ class Version : public VersionInherit
             purpose(versionPurpose);
             version(versionId);
             path(filePath);
-
             // Emit deferred signal.
             emit_object_added();
         }

@@ -104,6 +104,11 @@ std::string Version<T>::getBMCVersion()
     return version;
 }
 
+template <class T>
+void Version<T>::delete_()
+{
+}
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

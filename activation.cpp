@@ -10,17 +10,23 @@ namespace updater
 
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
-constexpr auto SYSTEMD_SERVICE   = "org.freedesktop.systemd1";
-constexpr auto SYSTEMD_PATH      = "/org/freedesktop/systemd1";
-constexpr auto SIGNAL_INTERFACE  = "/org/freedesktop/systemd1";
-constexpr auto MANAGER_INTERFACE = "org.freedesktop.systemd1.Manager";
-
 void Activation::subscribeToSystemdSignals()
 {
-    auto method = this->bus.new_method_call(SYSTEMD_SERVICE,
+    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME,
                                             SYSTEMD_PATH,
-                                            SIGNAL_INTERFACE,
+                                            SYSTEMD_PATH,
                                             "Subscribe");
+    this->bus.call_noreply(method);
+
+    return;
+}
+
+void Activation::unsubscribeFromSystemdSignals()
+{
+    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME,
+                                            SYSTEMD_PATH,
+                                            SYSTEMD_PATH,
+                                            "Unsubscribe");
     this->bus.call_noreply(method);
 
     return;
@@ -48,9 +54,9 @@ auto Activation::activation(Activations value) ->
             }
 
             auto method = bus.new_method_call(
-                    SYSTEMD_SERVICE,
+                    SYSTEMD_BUSNAME,
                     SYSTEMD_PATH,
-                    MANAGER_INTERFACE,
+                    SYSTEMD_INTERFACE,
                     "StartUnit");
             method.append("obmc-flash-bmc-ubirw.service", "replace");
             bus.call_noreply(method);
@@ -58,9 +64,9 @@ auto Activation::activation(Activations value) ->
             auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId +
                     ".service";
             method = bus.new_method_call(
-                    SYSTEMD_SERVICE,
+                    SYSTEMD_BUSNAME,
                     SYSTEMD_PATH,
-                    MANAGER_INTERFACE,
+                    SYSTEMD_INTERFACE,
                     "StartUnit");
             method.append(roServiceFile, "replace");
             bus.call_noreply(method);
@@ -78,6 +84,11 @@ auto Activation::activation(Activations value) ->
             }
 
             activationBlocksTransition.reset(nullptr);
+
+            rwVolumeCreated = false;
+            roVolumeCreated = false;
+            Activation::unsubscribeFromSystemdSignals();
+
             return softwareServer::Activation::activation(
                     softwareServer::Activation::Activations::Active);
         }

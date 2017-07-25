@@ -69,6 +69,13 @@ AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
 AC_DEFINE(FILEPATH_IFACE, "xyz.openbmc_project.Common.FilePath",
     [The common file path interface])
 
+AC_DEFINE(SYSTEMD_BUSNAME, "org.freedesktop.systemd1",
+    [The systemd busname])
+AC_DEFINE(SYSTEMD_PATH, "/org/freedesktop/systemd1",
+    [The systemd path])
+AC_DEFINE(SYSTEMD_INTERFACE, "org.freedesktop.systemd1.Manager",
+    [The systemd interface])
+
 AC_ARG_VAR(IMG_UPLOAD_DIR, [Directory where downloaded software images are placed])
 AS_IF([test "x$IMG_UPLOAD_DIR" == "x"], [IMG_UPLOAD_DIR="/tmp/images"])
 AC_DEFINE_UNQUOTED([IMG_UPLOAD_DIR], ["$IMG_UPLOAD_DIR"], [Directory where downloaded software images are placed])

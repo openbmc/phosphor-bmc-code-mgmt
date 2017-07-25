@@ -22,10 +22,6 @@ namespace fs = std::experimental::filesystem;
 
 constexpr auto bmcImage = "image-rofs";
 
-constexpr auto SYSTEMD_BUSNAME = "org.freedesktop.systemd1";
-constexpr auto SYSTEMD_PATH = "/org/freedesktop/systemd1";
-constexpr auto SYSTEMD_INTERFACE = "org.freedesktop.systemd1.Manager";
-
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 

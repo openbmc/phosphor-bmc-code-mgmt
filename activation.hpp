@@ -173,6 +173,16 @@ class Activation : public ActivationInherit
          */
         void subscribeToSystemdSignals();
 
+        /**
+         * @brief unsubscribe from the systemd signals
+         *
+         * systemd signals are only of interest during the activation process.
+         * Once complete, we want to unsubscribe to avoid unnecessary calls of
+         * unitStateChange().
+         *
+         */
+        void unsubscribeFromSystemdSignals();
+
         /** @brief Persistent sdbusplus DBus bus connection */
         sdbusplus::bus::bus& bus;
 

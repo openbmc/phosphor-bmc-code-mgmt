@@ -4,6 +4,7 @@
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
+#include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 
 namespace phosphor
 {
@@ -18,6 +19,8 @@ using ActivationBlocksTransitionInherit = sdbusplus::server::object::object<
  sdbusplus::xyz::openbmc_project::Software::server::ActivationBlocksTransition>;
 using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
+using ActivationProgressInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
 
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
@@ -88,6 +91,23 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
          ActivationBlocksTransition(sdbusplus::bus::bus& bus,
                                    const std::string& path) :
                    ActivationBlocksTransitionInherit(bus, path.c_str()) {}
+};
+
+class ActivationProgress : public ActivationProgressInherit
+{
+    public:
+        /** @brief Constructs ActivationProgress.
+          *
+          * @param[in] bus    - The Dbus bus object
+          * @param[in] path   - The Dbus object path
+          */
+        ActivationProgress(sdbusplus::bus::bus& bus,
+                           const std::string& path) :
+                ActivationProgressInherit(bus, path.c_str(), true)
+        {
+            progress(0);
+            emit_object_added();
+        }
 };
 
 /** @class Activation
@@ -200,6 +220,9 @@ class Activation : public ActivationInherit
 
         /** @brief Persistent RedundancyPriority dbus object */
         std::unique_ptr<RedundancyPriority> redundancyPriority;
+
+        /** @brief Persistent ActivationProgress dbus object */
+        std::unique_ptr<ActivationProgress> activationProgress;
 
         /** @brief Used to subscribe to dbus systemd signals **/
         sdbusplus::bus::match_t systemdSignals;

@@ -46,6 +46,12 @@ auto Activation::activation(Activations value) ->
     {
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
+            if (!activationProgress)
+            {
+                activationProgress = std::make_unique<ActivationProgress>(bus,
+                        path);
+            }
+
             if (!activationBlocksTransition)
             {
                 activationBlocksTransition =
@@ -71,9 +77,13 @@ auto Activation::activation(Activations value) ->
                     "StartUnit");
             method.append(roServiceFile, "replace");
             bus.call_noreply(method);
+
+            activationProgress->progress(10);
         }
         else if (rwVolumeCreated == true && roVolumeCreated == true)
         {
+            activationProgress->progress(90);
+
             if (!redundancyPriority)
             {
                 redundancyPriority =
@@ -84,7 +94,10 @@ auto Activation::activation(Activations value) ->
                                     0);
             }
 
+            activationProgress->progress(100);
+
             activationBlocksTransition.reset(nullptr);
+            activationProgress.reset(nullptr);
 
             rwVolumeCreated = false;
             roVolumeCreated = false;
@@ -97,6 +110,7 @@ auto Activation::activation(Activations value) ->
     else
     {
         activationBlocksTransition.reset(nullptr);
+        activationProgress.reset(nullptr);
     }
     return softwareServer::Activation::activation(value);
 }
@@ -132,6 +146,12 @@ uint8_t RedundancyPriority::priority(uint8_t value)
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)
 {
+    if (softwareServer::Activation::activation() !=
+                softwareServer::Activation::Activations::Activating)
+    {
+        return;
+    }
+
     uint32_t newStateID {};
     sdbusplus::message::object_path newStateObjPath;
     std::string newStateUnit{};
@@ -146,11 +166,13 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
     if(newStateUnit == rwServiceFile && newStateResult == "done")
     {
         rwVolumeCreated = true;
+        activationProgress->progress(activationProgress->progress() + 20);
     }
 
     if(newStateUnit == roServiceFile && newStateResult == "done")
     {
         roVolumeCreated = true;
+        activationProgress->progress(activationProgress->progress() + 50);
     }
 
     if(rwVolumeCreated && roVolumeCreated)

@@ -1,6 +1,7 @@
 #include "activation.hpp"
 #include "item_updater.hpp"
 #include "config.h"
+#include "serialize.hpp"
 
 namespace phosphor
 {
@@ -141,6 +142,7 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 uint8_t RedundancyPriority::priority(uint8_t value)
 {
     parent.parent.freePriority(value);
+    storeToFile(parent.versionId, value);
     return softwareServer::RedundancyPriority::priority(value);
 }
 

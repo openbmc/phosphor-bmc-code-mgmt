@@ -6,6 +6,7 @@
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 #include <experimental/filesystem>
 #include "version.hpp"
+#include "serialize.hpp"
 
 namespace phosphor
 {
@@ -194,6 +195,7 @@ void ItemUpdater::erase(std::string entryId)
     //       If not, don't continue.
 
     this->activations.erase(entryId);
+    removeFile(entryId);
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(

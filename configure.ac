@@ -68,7 +68,8 @@ AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
     [The software version manager interface])
 AC_DEFINE(FILEPATH_IFACE, "xyz.openbmc_project.Common.FilePath",
     [The common file path interface])
-
+AC_DEFINE(PERSIST_DIR, "/var/lib/obmc/phosphor-bmc-code-mgmt/",
+    [The dir where activation data is stored in files])
 AC_DEFINE(SYSTEMD_BUSNAME, "org.freedesktop.systemd1",
     [The systemd busname])
 AC_DEFINE(SYSTEMD_PATH, "/org/freedesktop/systemd1",

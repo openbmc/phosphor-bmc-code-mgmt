@@ -122,6 +122,11 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                           this,
                                           std::placeholders::_1))));
     }
+    else
+    {
+        log<level::INFO>("Software Object with the same version already exists",
+                        entry("VERSION_ID=%s", versionId));
+    }
     return;
 }
 

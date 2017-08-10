@@ -76,6 +76,12 @@ AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
     [The software version manager interface])
 AC_DEFINE(FILEPATH_IFACE, "xyz.openbmc_project.Common.FilePath",
     [The common file path interface])
+AC_DEFINE(OS_RELEASE_FILE, "/etc/os-release",
+    [The name of the BMC table of contents file])
+AC_DEFINE(MEDIA_DIR, "/media/",
+    [The base dir where all RO partitions are mounted])
+AC_DEFINE(BMC_RO_PREFIX, "/media/ro-",
+    [The prefix path for the versioned read-only bmc partitions])
 AC_DEFINE(PERSIST_DIR, "/var/lib/obmc/phosphor-bmc-code-mgmt/",
     [The dir where activation data is stored in files])
 AC_DEFINE(SYSTEMD_BUSNAME, "org.freedesktop.systemd1",

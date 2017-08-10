@@ -73,9 +73,12 @@ class Version : public VersionInherit
         /**
          * @brief Get the active bmc version identifier.
          *
+         * @param[in] releaseFilePath - The Path to file which contains
+         *                              the release version.
+         *
          * @return The version identifier.
          */
-        static std::string getBMCVersion();
+        static std::string getBMCVersion(const std::string& releaseFilePath);
 
         /**
          * @brief Delete the d-bus object and image.

@@ -137,31 +137,81 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
 void ItemUpdater::processBMCImage()
 {
-    using VersionClass = phosphor::software::manager::Version;
-    auto purpose = server::Version::VersionPurpose::BMC;
-    auto version = phosphor::software::manager::Version::getBMCVersion();
-    auto id = phosphor::software::manager::Version::getId(version);
-    auto path =  std::string{SOFTWARE_OBJPATH} + '/' + id;
-    activations.insert(std::make_pair(
-                           id,
-                           std::make_unique<Activation>(
-                               bus,
-                               path,
-                               *this,
-                               id,
-                               server::Activation::Activations::Active)));
-    versions.insert(std::make_pair(
-                        id,
-                        std::make_unique<VersionClass>(
+    // Read os-release from folders under /media/ to get
+    // BMC Software Versions.
+    for(const auto& iter : fs::directory_iterator(MEDIA_DIR))
+    {
+        auto activationState = server::Activation::Activations::Active;
+        static const auto BMC_RO_PREFIX_LEN = strlen(BMC_RO_PREFIX);
+
+        // Check if the BMC_RO_PREFIXis the prefix of the iter.path
+        if (0 == iter.path().native().compare(0, BMC_RO_PREFIX_LEN,
+                                              BMC_RO_PREFIX))
+        {
+            auto osRelease = iter.path() / OS_RELEASE_FILE;
+            if (!fs::is_regular_file(osRelease))
+            {
+                log<level::ERR>("Failed to read osRelease\n",
+                                entry("FileName=%s", osRelease.string()));
+                activationState = server::Activation::Activations::Invalid;
+            }
+            auto version =
+                    phosphor::software::manager::Version::
+                            getBMCVersion(osRelease);
+            if (version.empty())
+            {
+                log<level::ERR>("Failed to read version from osRelease",
+                                entry("FILENAME=%s", osRelease.string()));
+                activationState = server::Activation::Activations::Invalid;
+            }
+            // The versionId is extracted from the path
+            // for example /media/ro-2a1022fe
+            auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+            auto purpose = server::Version::VersionPurpose::BMC;
+            auto path = fs::path(SOFTWARE_OBJPATH) / id;
+
+            // Create Activation instance for this version.
+            activations.insert(std::make_pair(
+                                   id,
+                                   std::make_unique<Activation>(
+                                       bus,
+                                       path,
+                                       *this,
+                                       id,
+                                       activationState)));
+
+            // If Active, create RedundancyPriority instance for this version.
+            if (activationState == server::Activation::Activations::Active)
+            {
+                uint8_t priority = std::numeric_limits<uint8_t>::max();
+                if (!restoreFromFile(id, priority))
+                {
+                    log<level::ERR>("Unable to restore priority from file.",
+                            entry("VERSIONID=%s", id));
+                }
+                activations.find(id)->second->redundancyPriority =
+                        std::make_unique<RedundancyPriority>(
                              bus,
                              path,
-                             version,
-                             purpose,
-                             "",
-                             std::bind(&ItemUpdater::erase,
+                             *(activations.find(id)->second),
+                             priority);
+            }
+
+            // Create Version instance for this version.
+            versions.insert(std::make_pair(
+                                id,
+                                std::make_unique<
+                                     phosphor::software::manager::Version>(
+                                     bus,
+                                     path,
+                                     version,
+                                     purpose,
+                                     "",
+                                     std::bind(&ItemUpdater::erase,
                                        this,
                                        std::placeholders::_1))));
-
+        }
+    }
     return;
 }
 
@@ -169,6 +219,17 @@ void ItemUpdater::erase(std::string entryId)
 {
     // Delete ReadOnly partitions
     removeReadOnlyPartition(entryId);
+    removeFile(entryId);
+
+    // Remove the priority environment variable.
+    auto serviceFile = "obmc-flash-bmc-setenv@" + entryId + ".service";
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
 
     // Removing entry in versions map
     auto it = versions.find(entryId);
@@ -195,7 +256,6 @@ void ItemUpdater::erase(std::string entryId)
     //       If not, don't continue.
 
     this->activations.erase(entryId);
-    removeFile(entryId);
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(

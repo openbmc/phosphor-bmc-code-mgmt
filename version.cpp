@@ -72,13 +72,13 @@ std::string Version::getId(const std::string& version)
     return hexId.str();
 }
 
-std::string Version::getBMCVersion()
+std::string Version::getBMCVersion(const std::string& releaseFilePath)
 {
     std::string versionKey = "VERSION_ID=";
     std::string version{};
     std::ifstream efile;
     std::string line;
-    efile.open("/etc/os-release");
+    efile.open(releaseFilePath);
 
     while (getline(efile, line))
     {

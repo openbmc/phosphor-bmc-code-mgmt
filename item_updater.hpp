@@ -4,6 +4,7 @@
 #include "activation.hpp"
 #include "version.hpp"
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
+#include <xyz/openbmc_project/Control/FieldMode/server.hpp>
 
 namespace phosphor
 {
@@ -13,7 +14,8 @@ namespace updater
 {
 
 using ItemUpdaterInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Common::server::FactoryReset>;
+    sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
+    sdbusplus::xyz::openbmc_project::Control::server::FieldMode>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
 
@@ -50,6 +52,7 @@ class ItemUpdater : public ItemUpdaterInherit
                                     std::placeholders::_1))
         {
             processBMCImage();
+            restoreFieldModeStatus();
         };
 
     /** @brief Sets the given priority free by incrementing
@@ -97,6 +100,18 @@ class ItemUpdater : public ItemUpdaterInherit
         /** @brief BMC factory reset - marks the read-write partition for
           * recreation upon reboot. */
         void reset() override;
+
+        /**
+         * @brief Enables field mode, if value=true.
+         *
+         * @param[in]  value  - If true, enables field mode.
+         * @param[out] result - Returns the current state of field mode.
+         *
+         */
+        bool fieldModeEnabled(bool value) override;
+
+        /** @brief Restores field mode status on reboot. */
+        void restoreFieldModeStatus();
 
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;

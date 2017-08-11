@@ -16,6 +16,7 @@ namespace updater
 
 // When you see server:: you know we're referencing our base class
 namespace server = sdbusplus::xyz::openbmc_project::Software::server;
+namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
@@ -230,7 +231,7 @@ void ItemUpdater::reset()
             SYSTEMD_PATH,
             SYSTEMD_INTERFACE,
             "StartUnit");
-    method.append("obmc-flash-bmc-setenv@rwreset=true.service", "replace");
+    method.append("obmc-flash-bmc-setenv@rwreset\\x3dtrue.service", "replace");
     bus.call_noreply(method);
 
     log<level::INFO>("BMC factory reset will take effect upon reboot.");
@@ -265,6 +266,52 @@ void ItemUpdater::removeReadWritePartition(std::string versionId)
             "StartUnit");
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
+}
+
+bool ItemUpdater::fieldmodeenabled(bool value)
+{
+    if (value && !control::FieldMode::fieldmodeenabled())
+    {
+        control::FieldMode::fieldmodeenabled(value);
+
+        auto method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StartUnit");
+        method.append("obmc-flash-bmc-setenv@fieldmode\\x3dtrue.service",
+                "replace");
+        bus.call_noreply(method);
+
+        method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StopUnit");
+        method.append("usr-local.mount", "replace");
+        bus.call_noreply(method);
+
+        log<level::INFO>("Field mode enabled.");
+    }
+
+    return control::FieldMode::fieldmodeenabled();
+}
+
+void ItemUpdater::restoreFieldModeStatus()
+{
+    int fieldStatus = std::system("fw_printenv fieldmode >/dev/null 2>&1");
+    if(fieldStatus == 0)
+    {
+        auto method = bus.new_method_call(
+                SYSTEMD_BUSNAME,
+                SYSTEMD_PATH,
+                SYSTEMD_INTERFACE,
+                "StopUnit");
+        method.append("usr-local.mount", "replace");
+        bus.call_noreply(method);
+
+        control::FieldMode::fieldmodeenabled(true);
+    }
 }
 
 } // namespace updater

@@ -20,7 +20,10 @@ namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-constexpr auto bmcImage = "image-rofs";
+const std::vector<std::string> bmcImages = {"image-kernel",
+                                            "image-rofs",
+                                            "image-rwfs",
+                                            "image-u-boot"};
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
@@ -191,20 +194,22 @@ void ItemUpdater::erase(std::string entryId)
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
              const std::string& filePath)
 {
+    std::ifstream efile;
 
-    fs::path file(filePath);
-    file /= bmcImage;
-    std::ifstream efile(file.c_str());
+    for (auto& bmcImage : bmcImages)
+    {
+        std::string file = filePath + "/" + bmcImage;
+        efile.open(file.c_str());
+        if (efile.good() != 1)
+        {
+            log<level::ERR>("Failed to find the BMC image.");
+            return ItemUpdater::ActivationStatus::invalid;
+        }
+        efile.close();
+        efile.clear();
+    }
 
-    if (efile.good() == 1)
-    {
-        return ItemUpdater::ActivationStatus::ready;
-    }
-    else
-    {
-        log<level::ERR>("Failed to find the BMC image.");
-        return ItemUpdater::ActivationStatus::invalid;
-    }
+    return ItemUpdater::ActivationStatus::ready;
 }
 
 void ItemUpdater::freePriority(uint8_t value)

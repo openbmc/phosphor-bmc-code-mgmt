@@ -165,8 +165,8 @@ void ItemUpdater::processBMCImage()
 
 void ItemUpdater::erase(std::string entryId)
 {
-    // Delete ReadWrite and ReadOnly partitions
-    removeReadWritePartition(entryId);
+    // Delete Kernel and ReadOnly partitions
+    removeKernelPartition(entryId);
     removeReadOnlyPartition(entryId);
 
     // Removing entry in versions map
@@ -268,9 +268,24 @@ void ItemUpdater::removeReadOnlyPartition(std::string versionId)
     bus.call_noreply(method);
 }
 
-void ItemUpdater::removeReadWritePartition(std::string versionId)
+void ItemUpdater::removeReadWritePartition()
 {
     auto serviceFile = "obmc-flash-bmc-ubirw-remove.service";
+
+    // Remove the read-write partitions.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
+}
+
+void ItemUpdater::removeKernelPartition(std::string versionId)
+{
+    auto serviceFile = "obmc-flash-bmc-ubikernel-remove@" + versionId +
+            ".service";
 
     // Remove the read-write partitions.
     auto method = bus.new_method_call(

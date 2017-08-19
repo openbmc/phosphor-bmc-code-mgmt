@@ -135,14 +135,6 @@ class ItemUpdater : public ItemUpdaterInherit
           * @param[in]  versionId - The version id.
           */
         void removeReadOnlyPartition(std::string versionId);
-
-        /** @brief Clears read write partition for
-          * given Activation dbus object.
-          *
-          * @param[in]  versionId - The version id.
-          */
-        void removeReadWritePartition(std::string versionId);
-
 };
 
 

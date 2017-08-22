@@ -18,7 +18,8 @@ phosphor_version_software_manager_SOURCES = \
 	image_manager_main.cpp \
 	watch.cpp \
 	version.cpp \
-	image_manager.cpp
+	image_manager.cpp \
+	org.openbmc.Associations.cpp
 
 nobase_nodist_include_HEADERS = \
 	xyz/openbmc_project/Software/Version/error.hpp

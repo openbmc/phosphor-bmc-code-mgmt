@@ -22,16 +22,17 @@ namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-const std::vector<std::string> bmcImages = {"image-kernel",
-                                            "image-rofs",
-                                            "image-rwfs",
-                                            "image-u-boot"};
+const std::vector<std::string> bmcImages = { "image-kernel",
+                                             "image-rofs",
+                                             "image-rwfs",
+                                             "image-u-boot" };
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
     using SVersion = server::Version;
     using VersionPurpose = SVersion::VersionPurpose;
+    using VersionClass = phosphor::software::manager::Version;
     namespace mesg = sdbusplus::message;
     namespace variant_ns = mesg::variant_ns;
 
@@ -54,7 +55,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 if (property.first == "Purpose")
                 {
                     auto value = SVersion::convertVersionPurposeFromString(
-                        variant_ns::get<std::string>(property.second));
+                            variant_ns::get<std::string>(property.second));
                     if (value == VersionPurpose::BMC ||
                         value == VersionPurpose::System)
                     {
@@ -100,8 +101,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     {
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
-        ItemUpdater::ActivationStatus result = ItemUpdater::
-                     validateSquashFSImage(filePath);
+        ItemUpdater::ActivationStatus result =
+                ItemUpdater::validateSquashFSImage(filePath);
         if (result == ItemUpdater::ActivationStatus::ready)
         {
             activationState = server::Activation::Activations::Ready;
@@ -116,8 +117,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                         activationState)));
         versions.insert(std::make_pair(
                             versionId,
-                            std::make_unique<phosphor::software::
-                                manager::Version>(
+                            std::make_unique<VersionClass>(
                                 bus,
                                 path,
                                 version,
@@ -130,13 +130,14 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     else
     {
         log<level::INFO>("Software Object with the same version already exists",
-                        entry("VERSION_ID=%s", versionId));
+                         entry("VERSION_ID=%s", versionId));
     }
     return;
 }
 
 void ItemUpdater::processBMCImage()
 {
+    using VersionClass = phosphor::software::manager::Version;
     auto purpose = server::Version::VersionPurpose::BMC;
     auto version = phosphor::software::manager::Version::getBMCVersion();
     auto id = phosphor::software::manager::Version::getId(version);
@@ -151,8 +152,7 @@ void ItemUpdater::processBMCImage()
                                server::Activation::Activations::Active)));
     versions.insert(std::make_pair(
                         id,
-                        std::make_unique<phosphor::software::
-                             manager::Version>(
+                        std::make_unique<VersionClass>(
                              bus,
                              path,
                              version,
@@ -175,8 +175,8 @@ void ItemUpdater::erase(std::string entryId)
     if (it == versions.end())
     {
         log<level::ERR>(("Error: Failed to find version " + entryId + \
-                        " in item updater versions map." \
-                        " Unable to remove.").c_str());
+                         " in item updater versions map." \
+                         " Unable to remove.").c_str());
         return;
     }
     this->versions.erase(entryId);
@@ -186,8 +186,8 @@ void ItemUpdater::erase(std::string entryId)
     if (ita == activations.end())
     {
         log<level::ERR>(("Error: Failed to find version " + entryId + \
-                        " in item updater activations map." \
-                        " Unable to remove.").c_str());
+                         " in item updater activations map." \
+                         " Unable to remove.").c_str());
         return;
     }
     // TODO: openbmc/openbmc#1986
@@ -199,7 +199,7 @@ void ItemUpdater::erase(std::string entryId)
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
-             const std::string& filePath)
+        const std::string& filePath)
 {
     bool invalid = false;
 
@@ -211,7 +211,7 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
         if (efile.good() != 1)
         {
             log<level::ERR>("Failed to find the BMC image.",
-                    entry("IMAGE=%s", bmcImage.c_str()));
+                            entry("IMAGE=%s", bmcImage.c_str()));
             invalid = true;
         }
     }
@@ -229,11 +229,11 @@ void ItemUpdater::freePriority(uint8_t value)
     //TODO openbmc/openbmc#1896 Improve the performance of this function
     for (const auto& intf : activations)
     {
-        if(intf.second->redundancyPriority)
+        if (intf.second->redundancyPriority)
         {
             if (intf.second->redundancyPriority.get()->priority() == value)
             {
-                intf.second->redundancyPriority.get()->priority(value+1);
+                intf.second->redundancyPriority.get()->priority(value + 1);
             }
         }
     }
@@ -283,7 +283,7 @@ bool ItemUpdater::fieldModeEnabled(bool value)
                 SYSTEMD_INTERFACE,
                 "StartUnit");
         method.append("obmc-flash-bmc-setenv@fieldmode\\x3dtrue.service",
-                "replace");
+                      "replace");
         bus.call_noreply(method);
 
         method = bus.new_method_call(
@@ -314,7 +314,7 @@ void ItemUpdater::restoreFieldModeStatus()
     std::string envVar;
     std::getline(input, envVar);
 
-    if(envVar.find("fieldmode=true") != std::string::npos)
+    if (envVar.find("fieldmode=true") != std::string::npos)
     {
         ItemUpdater::fieldModeEnabled(true);
     }

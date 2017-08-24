@@ -51,6 +51,7 @@ class ItemUpdater : public ItemUpdaterInherit
                                     this,
                                     std::placeholders::_1))
         {
+            setBMCInventoryPath();
             processBMCImage();
             restoreFieldModeStatus();
             emit_object_added();
@@ -110,6 +111,13 @@ class ItemUpdater : public ItemUpdaterInherit
          *
          */
         bool fieldModeEnabled(bool value) override;
+
+        /** @brief Sets the BMC inventory item path under 
+         *  /xyz/openbmc_project/inventory/system/chassis/. */
+        void setBMCInventoryPath();
+
+        /** @brief The path to the BMC inventory item. */
+        std::string bmcInventoryPath;
 
         /** @brief Restores field mode status on reboot. */
         void restoreFieldModeStatus();

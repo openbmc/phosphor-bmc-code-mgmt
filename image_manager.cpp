@@ -172,10 +172,7 @@ int Manager::processImage(const std::string& tarFilePath)
                                   objPath,
                                   version,
                                   purpose,
-                                  imageDirPath.string(),
-                                  std::bind(&Manager::erase,
-                                            this,
-                                            std::placeholders::_1))));
+                                  imageDirPath.string())));
 
     return 0;
 }

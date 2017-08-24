@@ -107,6 +107,13 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         {
             activationState = server::Activation::Activations::Ready;
         }
+
+        // Create an association to the BMC inventory item
+        AssociationList associations{(std::make_tuple(
+                                          ACTIVATION_FWD_ASSOCIATION,
+                                          ACTIVATION_REV_ASSOCIATION,
+                                          bmcInventoryPath))};
+
         activations.insert(std::make_pair(
                                versionId,
                                std::make_unique<Activation>(
@@ -114,7 +121,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                         path,
                                         *this,
                                         versionId,
-                                        activationState)));
+                                        activationState,
+                                        associations)));
         versions.insert(std::make_pair(
                             versionId,
                             std::make_unique<VersionClass>(
@@ -138,10 +146,18 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 void ItemUpdater::processBMCImage()
 {
     using VersionClass = phosphor::software::manager::Version;
+
     auto purpose = server::Version::VersionPurpose::BMC;
     auto version = phosphor::software::manager::Version::getBMCVersion();
     auto id = phosphor::software::manager::Version::getId(version);
     auto path =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+
+    // Create an association to the BMC inventory item
+    AssociationList associations{(std::make_tuple(
+                                      ACTIVATION_FWD_ASSOCIATION,
+                                      ACTIVATION_REV_ASSOCIATION,
+                                      bmcInventoryPath))};
+
     activations.insert(std::make_pair(
                            id,
                            std::make_unique<Activation>(
@@ -149,7 +165,8 @@ void ItemUpdater::processBMCImage()
                                path,
                                *this,
                                id,
-                               server::Activation::Activations::Active)));
+                               server::Activation::Activations::Active,
+                               associations)));
     versions.insert(std::make_pair(
                         id,
                         std::make_unique<VersionClass>(
@@ -317,6 +334,52 @@ void ItemUpdater::restoreFieldModeStatus()
     if (envVar.find("fieldmode=true") != std::string::npos)
     {
         ItemUpdater::fieldModeEnabled(true);
+    }
+}
+
+void ItemUpdater::setBMCInventoryPath()
+{
+    //TODO: openbmc/openbmc#1786 - Get the BMC path by looking for objects
+    //      that implement the BMC inventory interface
+    auto depth = 0;
+    auto mapperCall = bus.new_method_call(MAPPER_BUSNAME,
+                                          MAPPER_PATH,
+                                          MAPPER_INTERFACE,
+                                          "GetSubTreePaths");
+
+    mapperCall.append(CHASSIS_INVENTORY_PATH);
+    mapperCall.append(depth);
+
+    // TODO: openbmc/openbmc#2226 - Add Inventory Item filter when
+    //       mapper is fixed.
+    std::vector<std::string> filter = {};
+    mapperCall.append(filter);
+
+    auto response = bus.call(mapperCall);
+    if (response.is_method_error())
+    {
+        log<level::ERR>("Error in mapper GetSubTreePath");
+        return;
+    }
+
+    using ObjectPaths = std::vector<std::string>;
+    ObjectPaths result;
+    response.read(result);
+
+    if (result.empty())
+    {
+        log<level::ERR>("Invalid response from mapper");
+        return;
+    }
+
+    for (auto& iter : result)
+    {
+        const auto& path = iter;
+        if (path.substr(path.find_last_of('/') + 1).compare("bmc") == 0)
+        {
+            bmcInventoryPath = path;
+            return;
+        }
     }
 }
 

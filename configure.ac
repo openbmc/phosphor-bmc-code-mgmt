@@ -51,6 +51,10 @@ AS_IF([test "x$enable_oe_sdk" == "xyes"],
 AX_CXX_COMPILE_STDCXX_14([noext])
 AX_APPEND_COMPILE_FLAGS([-Wall -Werror], [CXXFLAGS])
 
+AC_DEFINE(ACTIVATION_FWD_ASSOCIATION, "activation", [The name of the activation's forward association.])
+AC_DEFINE(ACTIVATION_REV_ASSOCIATION, "inventory", [The name of the activation's reverse association.])
+AC_DEFINE(CHASSIS_INVENTORY_PATH, "/xyz/openbmc_project/inventory/system/chassis/", [The chassis inventory path root.])
+
 AC_ARG_VAR(VERSION_BUSNAME, [The Dbus busname to own])
 AS_IF([test "x$VERSION_BUSNAME" == "x"], [VERSION_BUSNAME="xyz.openbmc_project.Software.Version"])
 AC_DEFINE_UNQUOTED([VERSION_BUSNAME], ["$VERSION_BUSNAME"], [The DBus busname to own])
@@ -63,6 +67,10 @@ AC_ARG_VAR(DOWNLOAD_BUSNAME, [The Dbus busname to own])
 AS_IF([test "x$DOWNLOAD_BUSNAME" == "x"],
     [DOWNLOAD_BUSNAME="xyz.openbmc_project.Software.Download"])
 AC_DEFINE_UNQUOTED([DOWNLOAD_BUSNAME], ["$DOWNLOAD_BUSNAME"], [The DBus busname to own])
+
+AC_DEFINE([MAPPER_BUSNAME], ["xyz.openbmc_project.ObjectMapper"], [Object mapper bus name])
+AC_DEFINE([MAPPER_INTERFACE], ["xyz.openbmc_project.ObjectMapper"], [Object mapper interface])
+AC_DEFINE([MAPPER_PATH], ["/xyz/openbmc_project/object_mapper"], [Object mapper DBUS path])
 
 AC_DEFINE(VERSION_IFACE, "xyz.openbmc_project.Software.Version",
     [The software version manager interface])

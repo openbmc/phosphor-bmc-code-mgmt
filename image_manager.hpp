@@ -31,14 +31,6 @@ class Manager
          */
          int processImage(const std::string& tarballFilePath);
 
-        /**
-         * @brief Erase specified entry d-bus object
-         *        and deletes the image file.
-         *
-         * @param[in] entryId - unique identifier of the entry
-         */
-        void erase(std::string entryId);
-
     private:
         /** @brief Persistent map of Version dbus objects and their
           * version id */

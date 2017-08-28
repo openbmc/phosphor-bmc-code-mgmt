@@ -103,6 +103,9 @@ std::string Version::getBMCVersion()
 
 void Version::delete_()
 {
+    // Remove active association if there is one
+    parent.removeActiveAssociation(path);
+
     if (eraseCallback)
     {
         eraseCallback(getId(version()));

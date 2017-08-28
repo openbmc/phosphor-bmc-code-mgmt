@@ -441,6 +441,30 @@ void ItemUpdater::setBMCInventoryPath()
     }
 }
 
+void ItemUpdater::createActiveAssociation(std::string path)
+{
+    assocs.emplace_back(std::make_tuple(ACTIVE_FWD_ASSOCIATION,
+                                        ACTIVE_REV_ASSOCIATION,
+                                        path));
+    associations(assocs);
+}
+
+void ItemUpdater::removeActiveAssociation(std::string path)
+{
+    for (auto iter = assocs.begin(); iter != assocs.end();)
+    {
+        if ((std::get<2>(*iter)).compare(path) == 0)
+        {
+            iter = assocs.erase(iter);
+            associations(assocs);
+        }
+        else
+        {
+            ++iter;
+        }
+    }
+}
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

@@ -164,6 +164,8 @@ class ActivationProgress : public ActivationProgressInherit
         std::string path;
 };
 
+// TODO: openbmc/openbmc#2086 - Add removeActiveAssociation() after
+//       Delete() is implemented
 /** @class Activation
  *  @brief OpenBMC activation software management implementation.
  *  @details A concrete implementation for

@@ -5,6 +5,7 @@
 #include "version.hpp"
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
+#include "org/openbmc/Associations/server.hpp"
 
 namespace phosphor
 {
@@ -15,9 +16,13 @@ namespace updater
 
 using ItemUpdaterInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
-    sdbusplus::xyz::openbmc_project::Control::server::FieldMode>;
+    sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
+    sdbusplus::org::openbmc::server::Associations>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
+
+using AssociationList =
+        std::vector<std::tuple<std::string, std::string, std::string>>;
 
 /** @class ItemUpdater
  *  @brief Manages the activation of the BMC version items.
@@ -79,6 +84,20 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void erase(std::string entryId);
 
+
+    /** @brief Creates an active association to the
+     *  newly active software image
+     *
+     * @param[in]  path - The path to create the association to.
+     */
+    void createActiveAssociation(std::string path);
+
+    /** @brief Removes an active association to the software image
+     *
+     * @param[in]  path - The path to remove the association from.
+     */
+    void removeActiveAssociation(std::string path);
+
     private:
         /** @brief Callback function for Software.Version match.
          *  @details Creates an Activation dbus object.
@@ -136,6 +155,9 @@ class ItemUpdater : public ItemUpdaterInherit
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;
+
+        /** @brief This entry's associations */
+        AssociationList assocs = {};
 
         /** @brief Clears read only partition for
           * given Activation dbus object.

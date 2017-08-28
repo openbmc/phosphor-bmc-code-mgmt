@@ -104,6 +104,9 @@ auto Activation::activation(Activations value) ->
             roVolumeCreated = false;
             Activation::unsubscribeFromSystemdSignals();
 
+            // Create active association
+            parent.createActiveAssociation(path);
+
             return softwareServer::Activation::activation(
                     softwareServer::Activation::Activations::Active);
         }

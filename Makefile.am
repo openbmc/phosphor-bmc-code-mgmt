@@ -7,7 +7,8 @@ noinst_HEADERS = \
 	version.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
-	activation.hpp
+	activation.hpp \
+	org/openbmc/Associations/server.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \

@@ -7,7 +7,8 @@ noinst_HEADERS = \
 	version.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
-	activation.hpp
+	activation.hpp \
+	org/openbmc/Associations/server.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -21,8 +22,7 @@ phosphor_version_software_manager_SOURCES = \
 	image_manager.cpp
 
 nobase_nodist_include_HEADERS = \
-	xyz/openbmc_project/Software/Version/error.hpp \
-	org/openbmc/Associations/server.hpp
+	xyz/openbmc_project/Software/Version/error.hpp
 
 BUILT_SOURCES = \
 	xyz/openbmc_project/Software/Version/error.cpp \

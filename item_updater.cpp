@@ -130,10 +130,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                 path,
                                 version,
                                 purpose,
-                                filePath,
-                                std::bind(&ItemUpdater::erase,
-                                          this,
-                                          std::placeholders::_1))));
+                                filePath)));
     }
     else
     {
@@ -174,10 +171,7 @@ void ItemUpdater::processBMCImage()
                              path,
                              version,
                              purpose,
-                             "",
-                             std::bind(&ItemUpdater::erase,
-                                       this,
-                                       std::placeholders::_1))));
+                             "")));
 
     return;
 }

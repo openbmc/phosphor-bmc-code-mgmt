@@ -101,15 +101,6 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     return version;
 }
 
-void Version::delete_()
-{
-    if (eraseCallback)
-    {
-        eraseCallback(getId(version()));
-    }
-}
-
 } // namespace manager
 } // namespace software
 } // namepsace phosphor
-

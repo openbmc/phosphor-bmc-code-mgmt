@@ -27,9 +27,12 @@ void Download::downloadViaTFTP(std::string fileName,
 {
 
     // Sanitize the fileName string
-    fileName.erase(std::remove(fileName.begin(), fileName.end(), '/'),
-                   fileName.end());
-    fileName = fileName.substr(fileName.find_first_not_of('.'));
+    if (!fileName.empty())
+    {
+        fileName.erase(std::remove(fileName.begin(), fileName.end(), '/'),
+                       fileName.end());
+        fileName = fileName.substr(fileName.find_first_not_of('.'));
+    }
 
     if (fileName.empty())
     {

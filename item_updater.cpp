@@ -226,6 +226,24 @@ void ItemUpdater::processBMCImage()
 
 void ItemUpdater::erase(std::string entryId)
 {
+    // Find entry in versions map
+    auto it = versions.find(entryId);
+    if (it == versions.end())
+    {
+        log<level::ERR>(("Error: Failed to find version " + entryId + \
+                         " in item updater versions map." \
+                         " Unable to remove.").c_str());
+        return;
+    }
+
+    if (it->second->isActive())
+    {
+        log<level::ERR>(("Error: Version " + entryId + \
+                         " is currently running on the BMC." \
+                         " Unable to remove.").c_str());
+        return;
+    }
+
     // Delete ReadOnly partitions
     removeReadOnlyPartition(entryId);
     removeFile(entryId);
@@ -241,14 +259,6 @@ void ItemUpdater::erase(std::string entryId)
     bus.call_noreply(method);
 
     // Removing entry in versions map
-    auto it = versions.find(entryId);
-    if (it == versions.end())
-    {
-        log<level::ERR>(("Error: Failed to find version " + entryId + \
-                         " in item updater versions map." \
-                         " Unable to remove.").c_str());
-        return;
-    }
     this->versions.erase(entryId);
 
     // Removing entry in activations map
@@ -260,9 +270,6 @@ void ItemUpdater::erase(std::string entryId)
                          " Unable to remove.").c_str());
         return;
     }
-    // TODO: openbmc/openbmc#1986
-    //       Test if this is the currently running image
-    //       If not, don't continue.
 
     this->activations.erase(entryId);
 }

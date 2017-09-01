@@ -184,6 +184,15 @@ void Manager::erase(std::string entryId)
     {
         return;
     }
+
+    if (it->second->isActive())
+    {
+        log<level::ERR>(("Error: Version " + entryId + \
+                         " is currently running on the BMC." \
+                         " Unable to remove.").c_str());
+        return;
+    }
+
     // Delete image dir
     fs::path imageDirPath = (*(it->second)).path();
     if (fs::exists(imageDirPath))

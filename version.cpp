@@ -4,6 +4,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <phosphor-logging/log.hpp>
+#include "config.h"
 #include "version.hpp"
 
 namespace phosphor
@@ -99,6 +100,11 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     }
 
     return version;
+}
+
+bool Version::isActive()
+{
+    return versionStr == getBMCVersion(OS_RELEASE_FILE);
 }
 
 } // namespace manager

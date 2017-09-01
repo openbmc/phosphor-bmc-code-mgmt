@@ -39,7 +39,7 @@ class Version : public VersionInherit
                 const std::string& versionId,
                 VersionPurpose versionPurpose,
                 const std::string& filePath) : VersionInherit(
-                    bus, (objPath).c_str(), true)
+                    bus, (objPath).c_str(), true), versionStr(versionId)
         {
             // Set properties.
             purpose(versionPurpose);
@@ -73,6 +73,17 @@ class Version : public VersionInherit
          * @return The version identifier.
          */
         static std::string getBMCVersion(const std::string& releaseFilePath);
+
+        /* @brief Check if this version matches the currently running version
+         *
+         * @return - Returns true if this version matches the currently running
+         *           version.
+         */
+        bool isFunctional();
+
+    private:
+        /** @brief This Version's version string */
+        const std::string versionStr;
 };
 
 } // namespace manager

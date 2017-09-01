@@ -226,9 +226,32 @@ void ItemUpdater::processBMCImage()
 
 void ItemUpdater::erase(std::string entryId)
 {
-    // Delete ReadOnly partitions
-    removeReadOnlyPartition(entryId);
-    removeFile(entryId);
+    // Find entry in versions map
+    auto it = versions.find(entryId);
+    if (it != versions.end()) {
+        if (it->second->isActive())
+        {
+            log<level::ERR>(("Error: Version " + entryId + \
+                             " is currently running on the BMC." \
+                             " Unable to remove.").c_str());
+             return;
+        }
+
+        // Delete ReadOnly partitions if it's not active
+        removeReadOnlyPartition(entryId);
+        removeFile(entryId);
+    }
+    else
+    {
+        // Delete ReadOnly partitions even if we can't find the version
+        removeReadOnlyPartition(entryId);
+        removeFile(entryId);
+
+        log<level::ERR>(("Error: Failed to find version " + entryId + \
+                         " in item updater versions map." \
+                         " Unable to remove.").c_str());
+        return;
+    }
 
     // Remove the priority environment variable.
     auto serviceFile = "obmc-flash-bmc-setenv@" + entryId + ".service";
@@ -241,14 +264,6 @@ void ItemUpdater::erase(std::string entryId)
     bus.call_noreply(method);
 
     // Removing entry in versions map
-    auto it = versions.find(entryId);
-    if (it == versions.end())
-    {
-        log<level::ERR>(("Error: Failed to find version " + entryId + \
-                         " in item updater versions map." \
-                         " Unable to remove.").c_str());
-        return;
-    }
     this->versions.erase(entryId);
 
     // Removing entry in activations map
@@ -260,9 +275,6 @@ void ItemUpdater::erase(std::string entryId)
                          " Unable to remove.").c_str());
         return;
     }
-    // TODO: openbmc/openbmc#1986
-    //       Test if this is the currently running image
-    //       If not, don't continue.
 
     this->activations.erase(entryId);
 }

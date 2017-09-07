@@ -103,16 +103,17 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         auto activationState = server::Activation::Activations::Invalid;
         ItemUpdater::ActivationStatus result =
                 ItemUpdater::validateSquashFSImage(filePath);
+        AssociationList associations = {};
+
         if (result == ItemUpdater::ActivationStatus::ready)
         {
             activationState = server::Activation::Activations::Ready;
+            // Create an association to the BMC inventory item
+            associations.emplace_back(std::make_tuple(
+                                              ACTIVATION_FWD_ASSOCIATION,
+                                              ACTIVATION_REV_ASSOCIATION,
+                                              bmcInventoryPath));
         }
-
-        // Create an association to the BMC inventory item
-        AssociationList associations{(std::make_tuple(
-                                          ACTIVATION_FWD_ASSOCIATION,
-                                          ACTIVATION_REV_ASSOCIATION,
-                                          bmcInventoryPath))};
 
         activations.insert(std::make_pair(
                                versionId,
@@ -145,12 +146,6 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
 void ItemUpdater::processBMCImage()
 {
-    // Create an association to the BMC inventory item
-    AssociationList associations{(std::make_tuple(
-                                      ACTIVATION_FWD_ASSOCIATION,
-                                      ACTIVATION_REV_ASSOCIATION,
-                                      bmcInventoryPath))};
-
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
     for(const auto& iter : fs::directory_iterator(MEDIA_DIR))
@@ -183,6 +178,20 @@ void ItemUpdater::processBMCImage()
             auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
             auto purpose = server::Version::VersionPurpose::BMC;
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
+
+            AssociationList associations = {};
+
+            if (activationState == server::Activation::Activations::Active)
+            {
+                // Create an association to the BMC inventory item
+                associations.emplace_back(std::make_tuple(
+                                                  ACTIVATION_FWD_ASSOCIATION,
+                                                  ACTIVATION_REV_ASSOCIATION,
+                                                  bmcInventoryPath));
+
+                // Create an active association since this image is active
+                createActiveAssociation(path);
+            }
 
             // Create Activation instance for this version.
             activations.insert(std::make_pair(

@@ -156,11 +156,11 @@ void ItemUpdater::processBMCImage()
     for(const auto& iter : fs::directory_iterator(MEDIA_DIR))
     {
         auto activationState = server::Activation::Activations::Active;
-        static const auto BMC_RO_PREFIX_LEN = strlen(BMC_RO_PREFIX);
+        static const auto BMC_RO_PREFIX_LEN = strlen(BMC_ROFS_PREFIX);
 
         // Check if the BMC_RO_PREFIXis the prefix of the iter.path
         if (0 == iter.path().native().compare(0, BMC_RO_PREFIX_LEN,
-                                              BMC_RO_PREFIX))
+                                              BMC_ROFS_PREFIX))
         {
             auto osRelease = iter.path() / OS_RELEASE_FILE;
             if (!fs::is_regular_file(osRelease))

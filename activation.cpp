@@ -249,6 +249,31 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
     return;
 }
 
+void ActivationBlocksTransition::enableRebootGuard()
+{
+    log<level::INFO>("BMC image activating - BMC reboots are disabled.");
+
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("reboot-guard-enable.service", "replace");
+    bus.call_noreply(method);
+}
+
+void ActivationBlocksTransition::disableRebootGuard()
+{
+    log<level::INFO>("BMC activation has ended - BMC reboots are re-enabled.");
+
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("reboot-guard-disable.service", "replace");
+    bus.call_noreply(method);
+}
 
 } // namespace updater
 } // namespace software

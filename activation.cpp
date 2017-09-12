@@ -195,6 +195,27 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
     return;
 }
 
+void ActivationBlocksTransition::enableRebootGuard()
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("reboot-guard-enable.service", "replace");
+    bus.call_noreply(method);
+}
+
+void ActivationBlocksTransition::disableRebootGuard()
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("reboot-guard-disable.service", "replace");
+    bus.call_noreply(method);
+}
 
 } // namespace updater
 } // namespace software

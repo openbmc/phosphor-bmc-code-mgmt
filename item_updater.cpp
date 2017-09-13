@@ -143,6 +143,10 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
 void ItemUpdater::processBMCImage()
 {
+    using VersionClass = phosphor::software::manager::Version;
+    // Read os-release from /etc/ to get the functional BMC version
+    auto functionalVersion = VersionClass::getBMCVersion(OS_RELEASE_FILE);
+
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
     for(const auto& iter : fs::directory_iterator(MEDIA_DIR))
@@ -161,9 +165,7 @@ void ItemUpdater::processBMCImage()
                                 entry("FileName=%s", osRelease.string()));
                 activationState = server::Activation::Activations::Invalid;
             }
-            auto version =
-                    phosphor::software::manager::Version::
-                            getBMCVersion(osRelease);
+            auto version = VersionClass::getBMCVersion(osRelease);
             if (version.empty())
             {
                 log<level::ERR>("Failed to read version from osRelease",
@@ -175,6 +177,12 @@ void ItemUpdater::processBMCImage()
             auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
             auto purpose = server::Version::VersionPurpose::BMC;
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
+
+            // Create functional association if this is the functional version 
+            if (version.compare(functionalVersion) == 0)
+            {
+                createFunctionalAssociation(path);
+            }
 
             AssociationList associations = {};
 
@@ -446,20 +454,29 @@ void ItemUpdater::setBMCInventoryPath()
 
 void ItemUpdater::createActiveAssociation(std::string path)
 {
-    assocs.emplace_back(std::make_tuple(ACTIVE_FWD_ASSOCIATION,
-                                        ACTIVE_REV_ASSOCIATION,
-                                        path));
+    activeAssocs.emplace_back(std::make_tuple(ACTIVE_FWD_ASSOCIATION,
+                                              ACTIVE_REV_ASSOCIATION,
+                                              path));
+    associations(activeAssocs);
+}
+
+void ItemUpdater::createFunctionalAssociation(std::string path)
+{
+    // For now, only support 1 functional association.
+    AssociationList assocs{(std::make_tuple(FUNCTIONAL_FWD_ASSOCIATION,
+                                            FUNCTIONAL_REV_ASSOCIATION,
+                                            path))};
     associations(assocs);
 }
 
 void ItemUpdater::removeActiveAssociation(std::string path)
 {
-    for (auto iter = assocs.begin(); iter != assocs.end();)
+    for (auto iter = activeAssocs.begin(); iter != activeAssocs.end();)
     {
         if ((std::get<2>(*iter)).compare(path) == 0)
         {
-            iter = assocs.erase(iter);
-            associations(assocs);
+            iter = activeAssocs.erase(iter);
+            associations(activeAssocs);
         }
         else
         {

@@ -141,6 +141,13 @@ class ItemUpdater : public ItemUpdaterInherit
         /** @brief Restores field mode status on reboot. */
         void restoreFieldModeStatus();
 
+        /** @brief Creates a functional association to the
+         *  "running" BMC software image
+         *
+         * @param[in]  path - The path to create the association to.
+         */
+        void createFunctionalAssociation(std::string path);
+
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;
 
@@ -156,8 +163,8 @@ class ItemUpdater : public ItemUpdaterInherit
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;
 
-        /** @brief This entry's associations */
-        AssociationList assocs = {};
+        /** @brief This entry's active associations */
+        AssociationList activeAssocs = {};
 
         /** @brief Clears read only partition for
           * given Activation dbus object.

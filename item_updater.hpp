@@ -98,6 +98,15 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void removeActiveAssociation(std::string path);
 
+    /** @brief Determine if the given priority is the lowest
+     *
+     *  @param[in] value - The priority that needs to be checked.
+     *
+     *  @return boolean corresponding to whether the given
+     *      priority is lowest.
+     */
+    bool isLowestPriority(uint8_t value);
+
     private:
         /** @brief Callback function for Software.Version match.
          *  @details Creates an Activation dbus object.

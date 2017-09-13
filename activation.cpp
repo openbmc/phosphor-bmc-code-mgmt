@@ -151,7 +151,26 @@ uint8_t RedundancyPriority::priority(uint8_t value)
 {
     parent.parent.freePriority(value);
     storeToFile(parent.versionId, value);
+
+    if(parent.parent.isLowestPriority(value))
+    {
+        parent.updateUbootEnvVars();
+    }
+
     return softwareServer::RedundancyPriority::priority(value);
+}
+
+void Activation::updateUbootEnvVars()
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" + versionId +
+            ".service";
+    method.append(updateEnvVarsFile, "replace");
+    bus.call_noreply(method);
 }
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)

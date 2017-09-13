@@ -141,6 +141,13 @@ class ItemUpdater : public ItemUpdaterInherit
         /** @brief Restores field mode status on reboot. */
         void restoreFieldModeStatus();
 
+        /** @brief Creates a functional association to the
+         *  "running" BMC software image
+         *
+         * @param[in]  path - The path to create the association to.
+         */
+        void createFunctionalAssociation(std::string path);
+
         /** @brief Persistent sdbusplus DBus bus connection. */
         sdbusplus::bus::bus& bus;
 

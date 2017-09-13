@@ -55,11 +55,11 @@ AC_DEFINE(ACTIVATION_FWD_ASSOCIATION, "inventory", [The name of the activation's
 AC_DEFINE(ACTIVATION_REV_ASSOCIATION, "activation", [The name of the activation's reverse association.])
 AC_DEFINE(CHASSIS_INVENTORY_PATH, "/xyz/openbmc_project/inventory/system/chassis/", [The chassis inventory path root.])
 
-AC_DEFINE(ACTIVE_FWD_ASSOCIATION, "active", [The name of the active's forward association.])
-AC_DEFINE(ACTIVE_REV_ASSOCIATION, "software_version", [The name of the active's reverse association.])
+AC_DEFINE(ACTIVE_FWD_ASSOCIATION, "active", [The name of the active forward association.])
+AC_DEFINE(ACTIVE_REV_ASSOCIATION, "", [The active reverse association. Empty since the reverse association is not useful.])
 
 AC_DEFINE(FUNCTIONAL_FWD_ASSOCIATION, "functional", [The name of the functional forward association.])
-AC_DEFINE(FUNCTIONAL_REV_ASSOCIATION, "software_version", [The functional reverse association.])
+AC_DEFINE(FUNCTIONAL_REV_ASSOCIATION, "", [The functional reverse association. Empty since the reverse association is not useful.])
 
 AC_ARG_VAR(VERSION_BUSNAME, [The Dbus busname to own])
 AS_IF([test "x$VERSION_BUSNAME" == "x"], [VERSION_BUSNAME="xyz.openbmc_project.Software.Version"])

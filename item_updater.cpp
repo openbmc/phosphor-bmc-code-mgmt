@@ -323,14 +323,15 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
     return ItemUpdater::ActivationStatus::ready;
 }
 
-void ItemUpdater::freePriority(uint8_t value)
+void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 {
     //TODO openbmc/openbmc#1896 Improve the performance of this function
     for (const auto& intf : activations)
     {
         if (intf.second->redundancyPriority)
         {
-            if (intf.second->redundancyPriority.get()->priority() == value)
+            if (intf.second->redundancyPriority.get()->priority() == value &&
+                intf.second->versionId != versionId)
             {
                 intf.second->redundancyPriority.get()->priority(value + 1);
             }
@@ -498,6 +499,21 @@ void ItemUpdater::removeActiveAssociation(const std::string& path)
             ++iter;
         }
     }
+}
+
+bool ItemUpdater::isLowestPriority(uint8_t value)
+{
+    for (const auto& intf : activations)
+    {
+        if(intf.second->redundancyPriority)
+        {
+            if (intf.second->redundancyPriority.get()->priority() < value)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 } // namespace updater

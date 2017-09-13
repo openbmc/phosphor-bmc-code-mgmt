@@ -66,10 +66,11 @@ class ItemUpdater : public ItemUpdaterInherit
      *  any existing priority with the same value by 1
      *
      *  @param[in] value - The priority that needs to be set free.
-     *
+     *  @param[in] versionId - The Id of the version for which we
+     *                         are trying to free up the priority.
      *  @return None
      */
-    void freePriority(uint8_t value);
+    void freePriority(uint8_t value, const std::string& versionId);
 
     /**
      * @brief Create and populate the active BMC Version.
@@ -97,6 +98,15 @@ class ItemUpdater : public ItemUpdaterInherit
      * @param[in]  path - The path to remove the association from.
      */
     void removeActiveAssociation(const std::string& path);
+
+    /** @brief Determine if the given priority is the lowest
+     *
+     *  @param[in] value - The priority that needs to be checked.
+     *
+     *  @return boolean corresponding to whether the given
+     *      priority is lowest.
+     */
+    bool isLowestPriority(uint8_t value);
 
     private:
         /** @brief Callback function for Software.Version match.

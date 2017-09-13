@@ -2,6 +2,8 @@
 #include "item_updater.hpp"
 #include "config.h"
 #include "serialize.hpp"
+#include <phosphor-logging/log.hpp>
+
 
 namespace phosphor
 {
@@ -11,6 +13,8 @@ namespace updater
 {
 
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
+
+using namespace phosphor::logging;
 
 void Activation::subscribeToSystemdSignals()
 {
@@ -149,9 +153,39 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 
 uint8_t RedundancyPriority::priority(uint8_t value)
 {
-    parent.parent.freePriority(value);
+    parent.parent.freePriority(value, parent.versionId);
     storeToFile(parent.versionId, value);
+
+    if(parent.parent.isLowestPriority(value))
+    {
+        parent.updateUbootEnvVars();
+    }
+
     return softwareServer::RedundancyPriority::priority(value);
+}
+
+// TODO: openbmc/openbmc#2369 Add recovery policy to updateubootvars
+//       unit template.
+// TODO: openbmc/openbmc#2370 Call StartUnit synchronously to handle
+//       Errors more gracefully.
+void Activation::updateUbootEnvVars()
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" + versionId +
+            ".service";
+    method.append(updateEnvVarsFile, "replace");
+    auto result = bus.call(method);
+
+    //Check that the bus call didn't result in an error
+    if (result.is_method_error())
+    {
+        log<level::ERR>("Failed to update u-boot env variables",
+                        entry(" %s", SYSTEMD_INTERFACE));
+    }
 }
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)

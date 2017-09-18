@@ -297,6 +297,33 @@ void ItemUpdater::erase(std::string entryId)
     this->activations.erase(entryId);
 }
 
+void ItemUpdater::deleteAll()
+{
+    std::vector<std::string> deletableVersions;
+
+    for (const auto& versionIt : versions)
+    {
+        if (!versionIt.second->isFunctional())
+        {
+            deletableVersions.push_back(versionIt.first);
+        }
+    }
+
+    for (const auto& deletableIt : deletableVersions)
+    {
+        ItemUpdater::erase(deletableIt);
+    }
+
+    // Remove any volumes that do not match current versions.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("obmc-flash-bmc-cleanup.service", "replace");
+    bus.call_noreply(method);
+}
+
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
         const std::string& filePath)
 {

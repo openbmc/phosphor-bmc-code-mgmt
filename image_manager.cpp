@@ -187,9 +187,9 @@ void Manager::erase(std::string entryId)
 
     if (it->second->isFunctional())
     {
-        log<level::ERR>(("Error: Version " + entryId + \
-                         " is currently running on the BMC." \
-                         " Unable to remove.").c_str());
+        log<level::INFO>(("Version " + entryId + \
+                          " is currently running on the BMC and" \
+                          " will not be removed.").c_str());
         return;
     }
 
@@ -200,6 +200,14 @@ void Manager::erase(std::string entryId)
         fs::remove_all(imageDirPath);
     }
     this->versions.erase(entryId);
+}
+
+void Manager::deleteAll()
+{
+    for (const auto& it : versions)
+    {
+        Manager::erase(it.first);
+    }
 }
 
 void Manager::removeVersion(sdbusplus::message::message& msg)

@@ -1,6 +1,7 @@
 #pragma once
 #include <sdbusplus/server.hpp>
 #include "version.hpp"
+#include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 namespace phosphor
 {
@@ -9,6 +10,9 @@ namespace software
 namespace manager
 {
 
+using ManagerInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
+
 namespace MatchRules = sdbusplus::bus::match::rules;
 
 /** @class Manager
@@ -16,14 +20,15 @@ namespace MatchRules = sdbusplus::bus::match::rules;
  *  @details The software image manager class that contains the Version dbus
  *           objects and their version ids.
  */
-class Manager
+class Manager : public ManagerInherit
 {
     public:
         /** @brief Constructs Manager Class
          *
          * @param[in] bus - The Dbus bus object
          */
-        Manager(sdbusplus::bus::bus& bus) :
+        Manager(sdbusplus::bus::bus& bus, const std::string& path) :
+                ManagerInherit(bus, path.c_str(), false),
                 bus(bus),
                 versionMatch(
                         bus,
@@ -50,6 +55,12 @@ class Manager
          * @param[in] entryId - unique identifier of the entry
          */
         void erase(std::string entryId);
+
+        /**
+         * @brief Erases all entry d-bus objects and deletes their respective
+         *        image files.
+         */
+        void deleteAll();
 
     private:
         /** @brief Callback function for Software.Version match.

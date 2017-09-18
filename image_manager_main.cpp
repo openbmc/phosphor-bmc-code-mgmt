@@ -19,7 +19,8 @@ int main(int argc, char* argv[])
 
     try
     {
-        phosphor::software::manager::Manager imageManager(bus);
+        phosphor::software::manager::Manager imageManager(bus,
+                SOFTWARE_OBJPATH);
         phosphor::software::manager::Watch watch(loop,
                 std::bind(
                     std::mem_fn(

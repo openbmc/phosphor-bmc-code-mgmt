@@ -1,6 +1,9 @@
 #include <fstream>
 #include <string>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <elog-errors.hpp>
+#include <xyz/openbmc_project/Software/Version/error.hpp>
 #include "config.h"
 #include "item_updater.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
@@ -20,6 +23,7 @@ namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
 using namespace phosphor::logging;
+using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
 namespace fs = std::experimental::filesystem;
 
 const std::vector<std::string> bmcImages = { "image-kernel",
@@ -246,6 +250,31 @@ void ItemUpdater::processBMCImage()
                              *(activations.find(id)->second),
                              priority);
             }
+        }
+    }
+
+    // If there is no ubi volume for bmc version then read the /etc/os-release
+    // and create rofs-<versionId> under /media
+    if (activations.size() == 0)
+    {
+        auto version =
+                phosphor::software::manager::Version::
+                        getBMCVersion(OS_RELEASE_FILE);
+        auto id = phosphor::software::manager::Version::getId(version);
+        auto versionFileDir = BMC_ROFS_PREFIX + id + "/etc/";
+        try
+        {
+            if(!fs::is_directory(versionFileDir))
+            {
+                fs::create_directories(versionFileDir);
+            }
+            auto versionFilePath = BMC_ROFS_PREFIX + id + OS_RELEASE_FILE;
+            fs::create_directory_symlink(OS_RELEASE_FILE, versionFilePath);
+            ItemUpdater::processBMCImage();
+        }
+        catch (const std::exception& e)
+        {
+            log<level::ERR>(e.what());
         }
     }
     return;

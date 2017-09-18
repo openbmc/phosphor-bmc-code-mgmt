@@ -6,6 +6,7 @@
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
 #include "org/openbmc/Associations/server.hpp"
+#include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 namespace phosphor
 {
@@ -17,7 +18,8 @@ namespace updater
 using ItemUpdaterInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
     sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
-    sdbusplus::org::openbmc::server::Associations>;
+    sdbusplus::org::openbmc::server::Associations,
+    sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
 
@@ -84,6 +86,11 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void erase(std::string entryId);
 
+    /**
+     * @brief Erases all entry d-bus objects and deletes their respective
+     *        image files.
+     */
+    void deleteAll();
 
     /** @brief Creates an active association to the
      *  newly active software image

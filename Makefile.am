@@ -52,7 +52,9 @@ generic_ldflags = \
 	$(PHOSPHOR_DBUS_INTERFACES_LIBS) \
 	$(SDBUSPLUS_LIBS) \
 	$(PHOSPHOR_LOGGING_LIBS) \
-	-lstdc++fs
+	-lstdc++fs \
+	-lssl \
+	-lcrypto
 
 xyz/openbmc_project/Software/Version/error.hpp: ${top_srcdir}/xyz/openbmc_project/Software/Version.errors.yaml
 	@mkdir -p `dirname $@`

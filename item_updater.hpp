@@ -90,13 +90,13 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in]  path - The path to create the association to.
      */
-    void createActiveAssociation(std::string path);
+    void createActiveAssociation(const std::string& path);
 
     /** @brief Removes an active association to the software image
      *
      * @param[in]  path - The path to remove the association from.
      */
-    void removeActiveAssociation(std::string path);
+    void removeActiveAssociation(const std::string& path);
 
     private:
         /** @brief Callback function for Software.Version match.

@@ -198,6 +198,20 @@ void ItemUpdater::processBMCImage()
                 createActiveAssociation(path);
             }
 
+            // Create Version instance for this version.
+            std::unique_ptr<VersionClass> versionPtr =
+                    std::make_unique<VersionClass>(
+                            bus,
+                            path,
+                            version,
+                            purpose,
+                            "");
+            auto isVersionFunctional = versionPtr->isFunctional();
+            versions.insert(std::make_pair(
+                                id,
+                                std::unique_ptr<VersionClass>(
+                                        std::move(versionPtr))));
+
             // Create Activation instance for this version.
             activations.insert(std::make_pair(
                                    id,
@@ -215,8 +229,15 @@ void ItemUpdater::processBMCImage()
                 uint8_t priority = std::numeric_limits<uint8_t>::max();
                 if (!restoreFromFile(id, priority))
                 {
-                    log<level::ERR>("Unable to restore priority from file.",
-                            entry("VERSIONID=%s", id));
+                    if (isVersionFunctional)
+                    {
+                        priority = 0;
+                    }
+                    else
+                    {
+                        log<level::ERR>("Unable to restore priority from file.",
+                                entry("VERSIONID=%s", id));
+                    }
                 }
                 activations.find(id)->second->redundancyPriority =
                         std::make_unique<RedundancyPriority>(
@@ -225,17 +246,6 @@ void ItemUpdater::processBMCImage()
                              *(activations.find(id)->second),
                              priority);
             }
-
-            // Create Version instance for this version.
-            versions.insert(std::make_pair(
-                                id,
-                                std::make_unique<
-                                     phosphor::software::manager::Version>(
-                                     bus,
-                                     path,
-                                     version,
-                                     purpose,
-                                     "")));
         }
     }
     return;

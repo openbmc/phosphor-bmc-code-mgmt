@@ -77,7 +77,7 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
             std::string envVars;
             std::getline(input, envVars);
 
-            if (envVars.find(versionId) != std::string::npos)
+            if (envVars.find(versionId + "=") != std::string::npos)
             {
                 // Grab the environment variable for this versionId. These
                 // variables follow the format "versionId=priority\0"

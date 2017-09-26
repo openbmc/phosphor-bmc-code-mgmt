@@ -158,12 +158,16 @@ void ItemUpdater::processBMCImage()
         if (0 == iter.path().native().compare(0, BMC_RO_PREFIX_LEN,
                                               BMC_ROFS_PREFIX))
         {
+            // The versionId is extracted from the path
+            // for example /media/ro-2a1022fe.
+            auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
             auto osRelease = iter.path() / OS_RELEASE_FILE;
             if (!fs::is_regular_file(osRelease))
             {
                 log<level::ERR>("Failed to read osRelease\n",
                                 entry("FileName=%s", osRelease.string()));
-                activationState = server::Activation::Activations::Invalid;
+                ItemUpdater::erase(id);
+                continue;
             }
             auto version = VersionClass::getBMCVersion(osRelease);
             if (version.empty())
@@ -172,9 +176,7 @@ void ItemUpdater::processBMCImage()
                                 entry("FILENAME=%s", osRelease.string()));
                 activationState = server::Activation::Activations::Invalid;
             }
-            // The versionId is extracted from the path
-            // for example /media/ro-2a1022fe
-            auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+
             auto purpose = server::Version::VersionPurpose::BMC;
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 

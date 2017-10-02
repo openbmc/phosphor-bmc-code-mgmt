@@ -334,6 +334,7 @@ void ItemUpdater::erase(std::string entryId)
     }
 
     this->activations.erase(entryId);
+    ItemUpdater::resetUbootEnvVars();
 }
 
 void ItemUpdater::deleteAll()
@@ -580,6 +581,49 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
         }
     }
     return true;
+}
+
+void ItemUpdater::resetUbootEnvVars()
+{
+    decltype(activations.begin()->second->redundancyPriority.get()->priority())
+             lowestPriority = 255;
+    decltype(activations.begin()->second->versionId) lowestPriorityVersion;
+    for (const auto& intf : activations)
+    {
+        if (!intf.second->redundancyPriority.get())
+        {
+            // Skip this version if the redundancyPriority is not initialized.
+            continue;
+        }
+
+        if (intf.second->redundancyPriority.get()->priority()
+            <= lowestPriority)
+        {
+            lowestPriority = intf.second->redundancyPriority.get()->priority();
+            lowestPriorityVersion = intf.second->versionId;
+        }
+    }
+
+    // TODO: openbmc/openbmc#2369 Add recovery policy to updateubootvars
+    //       unit template.
+    // TODO: openbmc/openbmc#2370 Call StartUnit synchronously to handle
+    //       errors more gracefully.
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" +
+                             lowestPriorityVersion + ".service";
+    method.append(updateEnvVarsFile, "replace");
+    auto result = bus.call(method);
+
+    //Check that the bus call didn't result in an error
+    if (result.is_method_error())
+    {
+        log<level::ERR>("Failed to update u-boot env variables",
+                        entry(" %s", SYSTEMD_INTERFACE));
+    }
 }
 
 } // namespace updater

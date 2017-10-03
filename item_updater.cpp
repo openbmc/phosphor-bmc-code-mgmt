@@ -209,6 +209,12 @@ void ItemUpdater::processBMCImage()
                                        server::Activation::Activations::Active,
                                        associations)));
 
+            // Remove Delete() if this is the functional version
+            if (version.compare(functionalVersion) == 0)
+            {
+                activations.find(id)->second->deleteObject.reset(nullptr);
+            }
+
             // If Active, create RedundancyPriority instance for this version.
             if (activationState == server::Activation::Activations::Active)
             {

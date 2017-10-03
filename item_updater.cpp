@@ -119,15 +119,19 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                               bmcInventoryPath));
         }
 
-        activations.insert(std::make_pair(
-                               versionId,
-                               std::make_unique<Activation>(
-                                        bus,
-                                        path,
-                                        *this,
-                                        versionId,
-                                        activationState,
-                                        associations)));
+        auto activationPtr = std::make_unique<Activation>(
+                bus,
+                path,
+                *this,
+                versionId,
+                activationState,
+                associations);
+
+        activationPtr->deleteObject =
+                std::make_unique<Delete>(bus, path, *activationPtr);
+
+        activations.insert(std::make_pair(versionId, std::move(activationPtr)));
+
         versions.insert(std::make_pair(
                             versionId,
                             std::make_unique<VersionClass>(
@@ -212,15 +216,22 @@ void ItemUpdater::processBMCImage()
                                 std::move(versionPtr)));
 
             // Create Activation instance for this version.
-            activations.insert(std::make_pair(
-                                   id,
-                                   std::make_unique<Activation>(
-                                       bus,
-                                       path,
-                                       *this,
-                                       id,
-                                       server::Activation::Activations::Active,
-                                       associations)));
+            auto activationPtr = std::make_unique<Activation>(
+                    bus,
+                    path,
+                    *this,
+                    id,
+                    activationState,
+                    associations);
+
+            // Add Delete() if this isn't the functional version
+            if (!isVersionFunctional)
+            {
+                activationPtr->deleteObject =
+                        std::make_unique<Delete>(bus, path, *activationPtr);
+            }
+
+            activations.insert(std::make_pair(id, std::move(activationPtr)));
 
             // If Active, create RedundancyPriority instance for this version.
             if (activationState == server::Activation::Activations::Active)

@@ -38,9 +38,9 @@ void Activation::unsubscribeFromSystemdSignals()
     return;
 }
 
-void Activation::delete_()
+void Delete::delete_()
 {
-    parent.erase(versionId);
+    parent.parent.erase(parent.versionId);
 }
 
 auto Activation::activation(Activations value) ->

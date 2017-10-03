@@ -124,6 +124,12 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                         versionId,
                                         activationState,
                                         associations)));
+
+        activations.find(versionId)->second->deleteObject =
+                std::make_unique<Delete>(bus,
+                                         path,
+                                         *activations.find(versionId)->second);
+
         versions.insert(std::make_pair(
                             versionId,
                             std::make_unique<VersionClass>(
@@ -208,6 +214,15 @@ void ItemUpdater::processBMCImage()
                                        id,
                                        server::Activation::Activations::Active,
                                        associations)));
+
+            // Add Delete() if this isn't the functional version
+            if (version.compare(functionalVersion) != 0)
+            {
+                activations.find(id)->second->deleteObject =
+                        std::make_unique<Delete>(bus,
+                                                 path,
+                                                 *activations.find(id)->second);
+            }
 
             // If Active, create RedundancyPriority instance for this version.
             if (activationState == server::Activation::Activations::Active)

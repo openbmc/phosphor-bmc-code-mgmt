@@ -15,35 +15,36 @@ namespace manager
 typedef std::function<void(std::string)> eraseFunc;
 
 using VersionInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Software::server::Version,
-    sdbusplus::xyz::openbmc_project::Common::server::FilePath>;
+        sdbusplus::xyz::openbmc_project::Software::server::Version,
+        sdbusplus::xyz::openbmc_project::Common::server::FilePath>;
 
 /** @class Version
  *  @brief OpenBMC version software management implementation.
  *  @details A concrete implementation for xyz.openbmc_project.Software.Version
- *  DBus API.
+ *  D-Bus API.
  */
 class Version : public VersionInherit
 {
     public:
         /** @brief Constructs Version Software Manager
          *
-         * @param[in] bus            - The Dbus bus object
-         * @param[in] objPath        - The Dbus object path
-         * @param[in] versionId      - The version identifier
+         * @param[in] bus            - The D-Bus bus object
+         * @param[in] objPath        - The D-Bus object path
+         * @param[in] versionString  - The version string
          * @param[in] versionPurpose - The version purpose
          * @param[in] filePath       - The image filesystem path
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
-                const std::string& versionId,
+                const std::string& versionString,
                 VersionPurpose versionPurpose,
                 const std::string& filePath) : VersionInherit(
-                    bus, (objPath).c_str(), true), versionStr(versionId)
+                        bus, (objPath).c_str(), true),
+                        versionStr(versionString)
         {
             // Set properties.
             purpose(versionPurpose);
-            version(versionId);
+            version(versionString);
             path(filePath);
             // Emit deferred signal.
             emit_object_added();
@@ -58,19 +59,24 @@ class Version : public VersionInherit
                                     std::string key);
 
         /**
-         * @brief Get the Version id.
+         * @brief Calculate the version id from the version string.
+         *
+         * @details The version id is a unique 8 hexadecimal digit id
+         *          calculated from the version string.
+         *
+         * @param[in] version - The image's version string (e.g. v1.99.10-19).
          *
          * @return The id.
-         **/
+         */
         static std::string getId(const std::string& version);
 
         /**
-         * @brief Get the active bmc version identifier.
+         * @brief Get the active BMC version string.
          *
-         * @param[in] releaseFilePath - The Path to file which contains
-         *                              the release version.
+         * @param[in] releaseFilePath - The path to the file which contains
+         *                              the release version string.
          *
-         * @return The version identifier.
+         * @return The version string (e.g. v1.99.10-19).
          */
         static std::string getBMCVersion(const std::string& releaseFilePath);
 

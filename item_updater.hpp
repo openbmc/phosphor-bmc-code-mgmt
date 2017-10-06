@@ -16,13 +16,13 @@ namespace updater
 {
 
 using ItemUpdaterInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
-    sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
-    sdbusplus::org::openbmc::server::Associations,
-    sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
+        sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
+        sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
+        sdbusplus::org::openbmc::server::Associations,
+        sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
-
+using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
         std::vector<std::tuple<std::string, std::string, std::string>>;
 
@@ -44,7 +44,7 @@ class ItemUpdater : public ItemUpdaterInherit
 
         /** @brief Constructs ItemUpdater
          *
-         * @param[in] bus    - The Dbus bus object
+         * @param[in] bus    - The D-Bus bus object
          */
         ItemUpdater(sdbusplus::bus::bus& bus, const std::string& path) :
                     ItemUpdaterInherit(bus, path.c_str(), false),
@@ -64,66 +64,66 @@ class ItemUpdater : public ItemUpdaterInherit
             emit_object_added();
         };
 
-    /** @brief Sets the given priority free by incrementing
-     *  any existing priority with the same value by 1
-     *
-     *  @param[in] value - The priority that needs to be set free.
-     *  @param[in] versionId - The Id of the version for which we
-     *                         are trying to free up the priority.
-     *  @return None
-     */
-    void freePriority(uint8_t value, const std::string& versionId);
+        /** @brief Sets the given priority free by incrementing
+         *  any existing priority with the same value by 1
+         *
+         *  @param[in] value - The priority that needs to be set free.
+         *  @param[in] versionId - The Id of the version for which we
+         *                         are trying to free up the priority.
+         *  @return None
+         */
+        void freePriority(uint8_t value, const std::string& versionId);
 
-    /**
-     * @brief Create and populate the active BMC Version.
-     */
-    void processBMCImage();
+        /**
+         * @brief Create and populate the active BMC Version.
+         */
+        void processBMCImage();
 
-    /**
-     * @brief Erase specified entry d-bus object
-     *        if Action property is not set to Active
-     *
-     * @param[in] entryId - unique identifier of the entry
-     */
-    void erase(std::string entryId);
+        /**
+         * @brief Erase specified entry D-Bus object
+         *        if Action property is not set to Active
+         *
+         * @param[in] entryId - unique identifier of the entry
+         */
+        void erase(std::string entryId);
 
-    /**
-     * @brief Deletes all versions except for the current one
-     */
-    void deleteAll();
+        /**
+         * @brief Deletes all versions except for the current one
+         */
+        void deleteAll();
 
-    /** @brief Creates an active association to the
-     *  newly active software image
-     *
-     * @param[in]  path - The path to create the association to.
-     */
-    void createActiveAssociation(const std::string& path);
+        /** @brief Creates an active association to the
+         *  newly active software image
+         *
+         * @param[in]  path - The path to create the association to.
+         */
+        void createActiveAssociation(const std::string& path);
 
-    /** @brief Removes an active association to the software image
-     *
-     * @param[in]  path - The path to remove the association from.
-     */
-    void removeActiveAssociation(const std::string& path);
+        /** @brief Removes an active association to the software image
+         *
+         * @param[in]  path - The path to remove the association from.
+         */
+        void removeActiveAssociation(const std::string& path);
 
-    /** @brief Determine if the given priority is the lowest
-     *
-     *  @param[in] value - The priority that needs to be checked.
-     *
-     *  @return boolean corresponding to whether the given
-     *      priority is lowest.
-     */
-    bool isLowestPriority(uint8_t value);
+        /** @brief Determine if the given priority is the lowest
+         *
+         *  @param[in] value - The priority that needs to be checked.
+         *
+         *  @return boolean corresponding to whether the given
+         *      priority is lowest.
+         */
+        bool isLowestPriority(uint8_t value);
 
     private:
         /** @brief Callback function for Software.Version match.
-         *  @details Creates an Activation dbus object.
+         *  @details Creates an Activation D-Bus object.
          *
          * @param[in]  msg       - Data associated with subscribed signal
          */
         void createActivation(sdbusplus::message::message& msg);
 
         /**
-         * @brief Validates the presence of SquashFS iamge in the image dir.
+         * @brief Validates the presence of SquashFS image in the image dir.
          *
          * @param[in]  filePath  - The path to the image dir.
          * @param[out] result    - ActivationStatus Enum.
@@ -164,17 +164,16 @@ class ItemUpdater : public ItemUpdaterInherit
          */
         void createFunctionalAssociation(const std::string& path);
 
-        /** @brief Persistent sdbusplus DBus bus connection. */
+        /** @brief Persistent sdbusplus D-Bus bus connection. */
         sdbusplus::bus::bus& bus;
 
-        /** @brief Persistent map of Activation dbus objects and their
+        /** @brief Persistent map of Activation D-Bus objects and their
           * version id */
         std::map<std::string, std::unique_ptr<Activation>> activations;
 
-        /** @brief Persistent map of Version dbus objects and their
+        /** @brief Persistent map of Version D-Bus objects and their
           * version id */
-        std::map<std::string, std::unique_ptr<phosphor::software::
-            manager::Version>> versions;
+        std::map<std::string, std::unique_ptr<VersionClass>> versions;
 
         /** @brief sdbusplus signal match for Software.Version */
         sdbusplus::bus::match_t versionMatch;
@@ -183,14 +182,12 @@ class ItemUpdater : public ItemUpdaterInherit
         AssociationList assocs = {};
 
         /** @brief Clears read only partition for
-          * given Activation dbus object.
-          *
-          * @param[in]  versionId - The version id.
-          */
+         * given Activation D-Bus object.
+         *
+         * @param[in]  versionId - The version id.
+         */
         void removeReadOnlyPartition(std::string versionId);
 };
-
-
 
 } // namespace updater
 } // namespace software

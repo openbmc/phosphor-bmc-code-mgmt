@@ -18,7 +18,7 @@ void storeToFile(std::string versionId, uint8_t priority)
 {
     auto bus = sdbusplus::bus::new_default();
 
-    if(!fs::is_directory(PERSIST_DIR))
+    if (!fs::is_directory(PERSIST_DIR))
     {
         fs::create_directories(PERSIST_DIR);
     }
@@ -51,7 +51,7 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
             iarchive(cereal::make_nvp("priority", priority));
             return true;
         }
-        catch(cereal::RapidJSONException& e)
+        catch (cereal::RapidJSONException& e)
         {
             fs::remove(path);
         }
@@ -63,7 +63,8 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
 
     try
     {
-        while (std::getline(mtdDevices, device)) {
+        while (std::getline(mtdDevices, device))
+        {
             if (device.find("u-boot-env") != std::string::npos)
             {
                 devicePath = "/dev/" + device.substr(0, device.find(':'));

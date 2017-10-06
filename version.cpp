@@ -3,10 +3,12 @@
 #include <sstream>
 #include <fstream>
 #include <stdexcept>
+#include <openssl/sha.h>
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include "xyz/openbmc_project/Common/error.hpp"
 #include "config.h"
 #include "version.hpp"
-#include <openssl/sha.h>
 
 namespace phosphor
 {
@@ -16,6 +18,8 @@ namespace manager
 {
 
 using namespace phosphor::logging;
+using Argument = xyz::openbmc_project::Common::InvalidArgument;
+using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
 std::string Version::getValue(const std::string& manifestFilePath,
                               std::string key)
@@ -26,15 +30,17 @@ std::string Version::getValue(const std::string& manifestFilePath,
     if (manifestFilePath.empty())
     {
         log<level::ERR>("Error MANIFESTFilePath is empty");
-        throw std::runtime_error("MANIFESTFilePath is empty");
+        elog<InvalidArgument>(
+                Argument::ARGUMENT_NAME("manifestFilePath"),
+                Argument::ARGUMENT_VALUE(manifestFilePath.c_str()));
     }
 
     std::string value{};
     std::ifstream efile;
     std::string line;
-    efile.exceptions(std::ifstream::failbit
-                     | std::ifstream::badbit
-                     | std::ifstream::eofbit);
+    efile.exceptions(std::ifstream::failbit |
+                     std::ifstream::badbit |
+                     std::ifstream::eofbit);
 
     // Too many GCC bugs (53984, 66145) to do this the right way...
     try
@@ -64,7 +70,8 @@ std::string Version::getId(const std::string& version)
     if (version.empty())
     {
         log<level::ERR>("Error version is empty");
-        throw std::runtime_error("Version is empty");
+        elog<InvalidArgument>(Argument::ARGUMENT_NAME("Version"),
+                              Argument::ARGUMENT_VALUE(version.c_str()));
     }
 
     unsigned char digest[SHA512_DIGEST_LENGTH];
@@ -106,7 +113,7 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     if (version.empty())
     {
         log<level::ERR>("Error BMC current version is empty");
-        throw std::runtime_error("BMC current version is empty");
+        elog<InternalFailure>();
     }
 
     return version;

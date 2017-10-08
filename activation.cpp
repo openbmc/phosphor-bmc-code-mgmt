@@ -59,7 +59,7 @@ auto Activation::activation(Activations value) ->
             if (!activationProgress)
             {
                 activationProgress = std::make_unique<ActivationProgress>(bus,
-                        path);
+                                                                          path);
             }
 
             if (!activationBlocksTransition)
@@ -156,7 +156,7 @@ uint8_t RedundancyPriority::priority(uint8_t value)
     parent.parent.freePriority(value, parent.versionId);
     storeToFile(parent.versionId, value);
 
-    if(parent.parent.isLowestPriority(value))
+    if (parent.parent.isLowestPriority(value))
     {
         parent.updateUbootEnvVars();
     }
@@ -207,25 +207,25 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
     auto rwServiceFile = "obmc-flash-bmc-ubirw.service";
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
 
-    if(newStateUnit == rwServiceFile && newStateResult == "done")
+    if (newStateUnit == rwServiceFile && newStateResult == "done")
     {
         rwVolumeCreated = true;
         activationProgress->progress(activationProgress->progress() + 20);
     }
 
-    if(newStateUnit == roServiceFile && newStateResult == "done")
+    if (newStateUnit == roServiceFile && newStateResult == "done")
     {
         roVolumeCreated = true;
         activationProgress->progress(activationProgress->progress() + 50);
     }
 
-    if(rwVolumeCreated && roVolumeCreated)
+    if (rwVolumeCreated && roVolumeCreated)
     {
         Activation::activation(
                 softwareServer::Activation::Activations::Activating);
     }
 
-    if((newStateUnit == rwServiceFile || newStateUnit == roServiceFile) &&
+    if ((newStateUnit == rwServiceFile || newStateUnit == roServiceFile) &&
         (newStateResult == "failed" || newStateResult == "dependency"))
     {
         Activation::activation(softwareServer::Activation::Activations::Failed);

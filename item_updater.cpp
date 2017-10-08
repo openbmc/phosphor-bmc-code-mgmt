@@ -153,7 +153,7 @@ void ItemUpdater::processBMCImage()
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
-    for(const auto& iter : fs::directory_iterator(MEDIA_DIR))
+    for (const auto& iter : fs::directory_iterator(MEDIA_DIR))
     {
         auto activationState = server::Activation::Activations::Active;
         static const auto BMC_RO_PREFIX_LEN = strlen(BMC_ROFS_PREFIX);
@@ -257,14 +257,12 @@ void ItemUpdater::processBMCImage()
     // and create rofs-<versionId> under /media
     if (activations.size() == 0)
     {
-        auto version =
-                phosphor::software::manager::Version::
-                        getBMCVersion(OS_RELEASE_FILE);
+        auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
         auto id = phosphor::software::manager::Version::getId(version);
         auto versionFileDir = BMC_ROFS_PREFIX + id + "/etc/";
         try
         {
-            if(!fs::is_directory(versionFileDir))
+            if (!fs::is_directory(versionFileDir))
             {
                 fs::create_directories(versionFileDir);
             }
@@ -291,7 +289,7 @@ void ItemUpdater::erase(std::string entryId)
             log<level::ERR>(("Error: Version " + entryId + \
                              " is currently running on the BMC." \
                              " Unable to remove.").c_str());
-             return;
+            return;
         }
 
         // Delete ReadOnly partitions if it's not active
@@ -571,7 +569,7 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
 {
     for (const auto& intf : activations)
     {
-        if(intf.second->redundancyPriority)
+        if (intf.second->redundancyPriority)
         {
             if (intf.second->redundancyPriority.get()->priority() < value)
             {

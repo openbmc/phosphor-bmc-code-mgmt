@@ -160,14 +160,22 @@ int Manager::processImage(const std::string& tarFilePath)
     // Create Version object
     auto objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
 
-    this->versions.insert(std::make_pair(
-                                  id,
-                                  std::make_unique<Version>(
-                                          this->bus,
-                                          objPath,
-                                          version,
-                                          purpose,
-                                          imageDirPath.string())));
+    if (versions.find(id) == versions.end())
+    {
+        this->versions.insert(std::make_pair(
+                                      id,
+                                      std::make_unique<Version>(
+                                              this->bus,
+                                              objPath,
+                                              version,
+                                              purpose,
+                                              imageDirPath.string())));
+    }
+    else
+    {
+        log<level::INFO>("Software Object with the same version already exists",
+                         entry("VERSION_ID=%s", id));
+    }
 
     return 0;
 }

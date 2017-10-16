@@ -137,11 +137,6 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                 purpose,
                                 filePath)));
     }
-    else
-    {
-        log<level::INFO>("Software Object with the same version already exists",
-                         entry("VERSION_ID=%s", versionId));
-    }
     return;
 }
 

@@ -168,8 +168,8 @@ void ItemUpdater::processBMCImage()
             auto osRelease = iter.path() / OS_RELEASE_FILE;
             if (!fs::is_regular_file(osRelease))
             {
-                log<level::ERR>("Failed to read osRelease\n",
-                                entry("FileName=%s", osRelease.string()));
+                log<level::ERR>("Failed to read osRelease",
+                                entry("FILENAME=%s", osRelease.string()));
                 ItemUpdater::erase(id);
                 continue;
             }

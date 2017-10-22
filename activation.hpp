@@ -5,8 +5,8 @@
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
-#include "org/openbmc/Associations/server.hpp"
 #include "xyz/openbmc_project/Object/Delete/server.hpp"
+#include "org/openbmc/Associations/server.hpp"
 
 namespace phosphor
 {
@@ -19,8 +19,8 @@ using AssociationList =
      std::vector<std::tuple<std::string, std::string, std::string>>;
 using ActivationInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::Activation,
-    sdbusplus::org::openbmc::server::Associations,
-    sdbusplus::xyz::openbmc_project::Object::server::Delete>;
+    sdbusplus::xyz::openbmc_project::Object::server::Delete,
+    sdbusplus::org::openbmc::server::Associations>;
 using ActivationBlocksTransitionInherit = sdbusplus::server::object::object<
  sdbusplus::xyz::openbmc_project::Software::server::ActivationBlocksTransition>;
 using RedundancyPriorityInherit = sdbusplus::server::object::object<
@@ -266,8 +266,12 @@ class Activation : public ActivationInherit
         void unsubscribeFromSystemdSignals();
 
         /**
-         * @brief delete the d-bus object.
+         * @brief Updates the uboot variables to point to versionId, so that
+         *        the systems boots from this version on the next boot.
          */
+        void updateUbootEnvVars();
+
+        /** @brief delete the d-bus object. */
         void delete_() override;
 
         /** @brief Persistent sdbusplus DBus bus connection */

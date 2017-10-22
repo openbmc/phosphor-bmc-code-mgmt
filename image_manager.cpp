@@ -197,29 +197,6 @@ void Manager::erase(std::string entryId)
     this->versions.erase(entryId);
 }
 
-void Manager::removeVersion(sdbusplus::message::message& msg)
-{
-    namespace mesg = sdbusplus::message;
-
-    mesg::object_path objPath;
-
-    msg.read(objPath);
-    std::string path(std::move(objPath));
-
-    // Version id is the last item in the path
-    auto pos = path.rfind("/");
-    if (pos == std::string::npos)
-    {
-        log<level::INFO>("No version id found in object path",
-                         entry("OBJPATH=%s", path));
-        return;
-    }
-
-    auto versionId = path.substr(pos + 1);
-
-    erase(versionId);
-}
-
 int Manager::unTar(const std::string& tarFilePath,
                    const std::string& extractDirPath)
 {

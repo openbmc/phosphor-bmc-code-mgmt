@@ -5,8 +5,8 @@
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
-#include "org/openbmc/Associations/server.hpp"
 #include "xyz/openbmc_project/Object/Delete/server.hpp"
+#include "org/openbmc/Associations/server.hpp"
 
 namespace phosphor
 {

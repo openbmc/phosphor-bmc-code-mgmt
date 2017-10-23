@@ -3,6 +3,7 @@
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 #include "xyz/openbmc_project/Common/FilePath/server.hpp"
+#include "xyz/openbmc_project/Object/Delete/server.hpp"
 #include <functional>
 
 namespace phosphor
@@ -16,6 +17,7 @@ typedef std::function<void(std::string)> eraseFunc;
 
 using VersionInherit = sdbusplus::server::object::object<
         sdbusplus::xyz::openbmc_project::Software::server::Version,
+        sdbusplus::xyz::openbmc_project::Object::server::Delete,
         sdbusplus::xyz::openbmc_project::Common::server::FilePath>;
 
 /** @class Version
@@ -38,10 +40,13 @@ class Version : public VersionInherit
                 const std::string& objPath,
                 const std::string& versionString,
                 VersionPurpose versionPurpose,
-                const std::string& filePath) : VersionInherit(
+                const std::string& filePath,
+                eraseFunc callback) : VersionInherit(
                         bus, (objPath).c_str(), true),
                         versionStr(versionString)
         {
+            // Bind erase method
+            eraseCallback = callback;
             // Set properties.
             purpose(versionPurpose);
             version(versionString);
@@ -80,6 +85,9 @@ class Version : public VersionInherit
          */
         static std::string getBMCVersion(const std::string& releaseFilePath);
 
+        /** @brief Delete the d-bus object and image. */
+        void delete_() override;
+
         /* @brief Check if this version matches the currently running version
          *
          * @return - Returns true if this version matches the currently running
@@ -90,6 +98,10 @@ class Version : public VersionInherit
     private:
         /** @brief This Version's version string */
         const std::string versionStr;
+
+        /** @brief The parent's erase callback. */
+        eraseFunc eraseCallback;
+
 };
 
 } // namespace manager

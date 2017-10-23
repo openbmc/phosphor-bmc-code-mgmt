@@ -120,27 +120,29 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                               bmcInventoryPath));
         }
 
-        auto activationPtr = std::make_unique<Activation>(
-                bus,
-                path,
-                *this,
-                versionId,
-                activationState,
-                associations);
+        activations.insert(std::make_pair(
+                                   versionId,
+                                   std::make_unique<Activation>(
+                                           bus,
+                                           path,
+                                           *this,
+                                           versionId,
+                                           activationState,
+                                           associations)));
 
-        activationPtr->deleteObject =
-                std::make_unique<Delete>(bus, path, *activationPtr);
-
-        activations.insert(std::make_pair(versionId, std::move(activationPtr)));
-
-        versions.insert(std::make_pair(
-                            versionId,
-                            std::make_unique<VersionClass>(
-                                bus,
-                                path,
-                                version,
-                                purpose,
-                                filePath)));
+        auto versionPtr = std::make_unique<VersionClass>(
+                                  bus,
+                                  path,
+                                  version,
+                                  purpose,
+                                  filePath,
+                                  std::bind(&ItemUpdater::erase,
+                                          this,
+                                          std::placeholders::_1));
+        versionPtr->deleteObject =
+                std::make_unique<phosphor::software::manager::Delete>(
+                        bus, path, *versionPtr);
+        versions.insert(std::make_pair(versionId, std::move(versionPtr)));
     }
     return;
 }
@@ -206,33 +208,35 @@ void ItemUpdater::processBMCImage()
 
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
-                            bus,
-                            path,
-                            version,
-                            purpose,
-                            "");
+                                      bus,
+                                      path,
+                                      version,
+                                      purpose,
+                                      "",
+                                      std::bind(&ItemUpdater::erase,
+                                              this,
+                                              std::placeholders::_1));
             auto isVersionFunctional = versionPtr->isFunctional();
-            versions.insert(std::make_pair(
-                                id,
-                                std::move(versionPtr)));
-
-            // Create Activation instance for this version.
-            auto activationPtr = std::make_unique<Activation>(
-                    bus,
-                    path,
-                    *this,
-                    id,
-                    activationState,
-                    associations);
-
-            // Add Delete() if this isn't the functional version
             if (!isVersionFunctional)
             {
-                activationPtr->deleteObject =
-                        std::make_unique<Delete>(bus, path, *activationPtr);
+                versionPtr->deleteObject =
+                        std::make_unique<phosphor::software::manager::Delete>(
+                                bus, path, *versionPtr);
             }
+            versions.insert(std::make_pair(
+                                    id,
+                                    std::move(versionPtr)));
 
-            activations.insert(std::make_pair(id, std::move(activationPtr)));
+            // Create Activation instance for this version.
+            activations.insert(std::make_pair(
+                               id,
+                               std::make_unique<Activation>(
+                                        bus,
+                                        path,
+                                        *this,
+                                        id,
+                                        activationState,
+                                        associations)));
 
             // If Active, create RedundancyPriority instance for this version.
             if (activationState == server::Activation::Activations::Active)
@@ -303,9 +307,13 @@ void ItemUpdater::erase(std::string entryId)
         // Delete ReadOnly partitions if it's not active
         removeReadOnlyPartition(entryId);
         removeFile(entryId);
+
+        // Removing entry in versions map
+        this->versions.erase(entryId);
     }
     else
     {
+
         // Delete ReadOnly partitions even if we can't find the version
         removeReadOnlyPartition(entryId);
         removeFile(entryId);
@@ -313,7 +321,6 @@ void ItemUpdater::erase(std::string entryId)
         log<level::ERR>(("Error: Failed to find version " + entryId + \
                          " in item updater versions map." \
                          " Unable to remove.").c_str());
-        return;
     }
 
     // Remove the priority environment variable.
@@ -326,9 +333,6 @@ void ItemUpdater::erase(std::string entryId)
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
 
-    // Removing entry in versions map
-    this->versions.erase(entryId);
-
     // Removing entry in activations map
     auto ita = activations.find(entryId);
     if (ita == activations.end())
@@ -336,28 +340,23 @@ void ItemUpdater::erase(std::string entryId)
         log<level::ERR>(("Error: Failed to find version " + entryId + \
                          " in item updater activations map." \
                          " Unable to remove.").c_str());
-        return;
     }
-
-    this->activations.erase(entryId);
+    else
+    {
+        this->activations.erase(entryId);
+    }
     ItemUpdater::resetUbootEnvVars();
+    return;
 }
 
 void ItemUpdater::deleteAll()
 {
-    std::vector<std::string> deletableVersions;
-
     for (const auto& versionIt : versions)
     {
         if (!versionIt.second->isFunctional())
         {
-            deletableVersions.push_back(versionIt.first);
+            ItemUpdater::erase(versionIt.first);
         }
-    }
-
-    for (const auto& deletableIt : deletableVersions)
-    {
-        ItemUpdater::erase(deletableIt);
     }
 
     // Remove any volumes that do not match current versions.

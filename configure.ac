@@ -74,6 +74,11 @@ AS_IF([test "x$DOWNLOAD_BUSNAME" == "x"],
     [DOWNLOAD_BUSNAME="xyz.openbmc_project.Software.Download"])
 AC_DEFINE_UNQUOTED([DOWNLOAD_BUSNAME], ["$DOWNLOAD_BUSNAME"], [The DBus busname to own])
 
+AC_ARG_VAR(DELETE_BUSNAME, [The D-Bus busname to own])
+AS_IF([test "x$DELETE_BUSNAME" == "x"],
+    [DELETE_BUSNAME="xyz.openbmc_project.Object.Delete"])
+AC_DEFINE_UNQUOTED([DELETE_BUSNAME], ["$DELETE_BUSNAME"], [The D-Bus busname to own])
+
 AC_DEFINE([MAPPER_BUSNAME], ["xyz.openbmc_project.ObjectMapper"], [Object mapper bus name])
 AC_DEFINE([MAPPER_INTERFACE], ["xyz.openbmc_project.ObjectMapper"], [Object mapper interface])
 AC_DEFINE([MAPPER_PATH], ["/xyz/openbmc_project/object_mapper"], [Object mapper DBUS path])

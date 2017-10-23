@@ -3,6 +3,7 @@
 #include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 #include "xyz/openbmc_project/Common/FilePath/server.hpp"
+#include "xyz/openbmc_project/Object/Delete/server.hpp"
 #include <functional>
 
 namespace phosphor
@@ -17,6 +18,57 @@ typedef std::function<void(std::string)> eraseFunc;
 using VersionInherit = sdbusplus::server::object::object<
         sdbusplus::xyz::openbmc_project::Software::server::Version,
         sdbusplus::xyz::openbmc_project::Common::server::FilePath>;
+using DeleteInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Object::server::Delete>;
+
+class Version;
+class Delete;
+
+/** @class ActivationDelete
+ *  @brief OpenBMC Delete implementation.
+ *  @details A concrete implementation for xyz.openbmc_project.Object.Delete
+ *  D-Bus API.
+ */
+class Delete : public DeleteInherit
+{
+    public:
+        /** @brief Constructs Delete.
+         *
+         *  @param[in] bus    - The D-Bus bus object
+         *  @param[in] path   - The D-Bus object path
+         *  @param[in] parent - Parent object.
+         */
+        Delete(sdbusplus::bus::bus& bus,
+               const std::string& path,
+               Version& parent) :
+                DeleteInherit(bus, path.c_str(), true),
+                parent(parent),
+                bus(bus),
+                path(path)
+        {
+            std::vector<std::string> interfaces({interface});
+            bus.emit_interfaces_added(path.c_str(), interfaces);
+        }
+
+        ~Delete()
+        {
+            std::vector<std::string> interfaces({interface});
+            bus.emit_interfaces_removed(path.c_str(), interfaces);
+        }
+
+        /** @brief delete the d-bus object. */
+        void delete_() override;
+
+        /** @brief Parent Object. */
+        Version& parent;
+
+    private:
+        // TODO Remove once openbmc/openbmc#1975 is resolved
+        static constexpr auto interface =
+                "xyz.openbmc_project.Object.Delete";
+        sdbusplus::bus::bus& bus;
+        std::string path;
+};
 
 /** @class Version
  *  @brief OpenBMC version software management implementation.
@@ -33,15 +85,19 @@ class Version : public VersionInherit
          * @param[in] versionString  - The version string
          * @param[in] versionPurpose - The version purpose
          * @param[in] filePath       - The image filesystem path
+         * @param[in] callback       - The eraseFunc callback
          */
         Version(sdbusplus::bus::bus& bus,
                 const std::string& objPath,
                 const std::string& versionString,
                 VersionPurpose versionPurpose,
-                const std::string& filePath) : VersionInherit(
+                const std::string& filePath,
+                eraseFunc callback) : VersionInherit(
                         bus, (objPath).c_str(), true),
                         versionStr(versionString)
         {
+            // Bind erase method
+            eraseCallback = callback;
             // Set properties.
             purpose(versionPurpose);
             version(versionString);
@@ -87,9 +143,15 @@ class Version : public VersionInherit
          */
         bool isFunctional();
 
-    private:
+        /** @brief Persistent Delete D-Bus object */
+        std::unique_ptr<Delete> deleteObject;
+
         /** @brief This Version's version string */
         const std::string versionStr;
+
+        /** @brief The parent's erase callback. */
+        eraseFunc eraseCallback;
+
 };
 
 } // namespace manager

@@ -44,6 +44,7 @@ struct RemovablePath
 
 int Manager::processImage(const std::string& tarFilePath)
 {
+
     if (!fs::is_regular_file(tarFilePath))
     {
         log<level::ERR>("Error tarball does not exist",
@@ -162,21 +163,25 @@ int Manager::processImage(const std::string& tarFilePath)
 
     if (versions.find(id) == versions.end())
     {
-        this->versions.insert(std::make_pair(
-                                      id,
-                                      std::make_unique<Version>(
-                                              this->bus,
-                                              objPath,
-                                              version,
-                                              purpose,
-                                              imageDirPath.string())));
+        auto versionPtr = std::make_unique<Version>(
+                                  bus,
+                                  objPath,
+                                  version,
+                                  purpose,
+                                  imageDirPath.string(),
+                                  std::bind(&Manager::erase,
+                                      this,
+                                      std::placeholders::_1));
+        versionPtr->deleteObject =
+                std::make_unique<phosphor::software::manager::Delete>(
+                    bus, objPath, *versionPtr);
+        versions.insert(std::make_pair(id, std::move(versionPtr)));
     }
     else
     {
         log<level::INFO>("Software Object with the same version already exists",
                          entry("VERSION_ID=%s", id));
     }
-
     return 0;
 }
 
@@ -203,29 +208,6 @@ void Manager::erase(std::string entryId)
         fs::remove_all(imageDirPath);
     }
     this->versions.erase(entryId);
-}
-
-void Manager::removeVersion(sdbusplus::message::message& msg)
-{
-    namespace mesg = sdbusplus::message;
-
-    mesg::object_path objPath;
-
-    msg.read(objPath);
-    std::string path(std::move(objPath));
-
-    // Version id is the last item in the path
-    auto pos = path.rfind("/");
-    if (pos == std::string::npos)
-    {
-        log<level::INFO>("No version id found in object path",
-                         entry("OBJPATH=%s", path));
-        return;
-    }
-
-    auto versionId = path.substr(pos + 1);
-
-    erase(versionId);
 }
 
 int Manager::unTar(const std::string& tarFilePath,

@@ -4,7 +4,6 @@
 #include "serialize.hpp"
 #include <phosphor-logging/log.hpp>
 
-
 namespace phosphor
 {
 namespace software
@@ -36,11 +35,6 @@ void Activation::unsubscribeFromSystemdSignals()
     this->bus.call_noreply(method);
 
     return;
-}
-
-void Delete::delete_()
-{
-    parent.parent.erase(parent.versionId);
 }
 
 auto Activation::activation(Activations value) ->
@@ -113,6 +107,9 @@ auto Activation::activation(Activations value) ->
             roVolumeCreated = false;
             Activation::unsubscribeFromSystemdSignals();
 
+            // Remove version object from image manager
+            Activation::deleteImageManagerObject();
+
             // Create active association
             parent.createActiveAssociation(path);
 
@@ -126,6 +123,46 @@ auto Activation::activation(Activations value) ->
         activationProgress.reset(nullptr);
     }
     return softwareServer::Activation::activation(value);
+}
+
+void Activation::deleteImageManagerObject()
+{
+    // Get the Delete object for <versionID> inside image_manager
+    auto method = this->bus.new_method_call(MAPPER_BUSNAME,
+                                            MAPPER_PATH,
+                                            MAPPER_INTERFACE,
+                                            "GetObject");
+    method.append(path);
+    method.append(std::vector<std::string>({DELETE_BUSNAME}));
+    auto mapperResponseMsg = bus.call(method);
+    if (mapperResponseMsg.is_method_error())
+    {
+        log<level::ERR>("Error in Get Delete Object",
+                        entry("VERSIONPATH=%s", path));
+        return;
+    }
+    std::map<std::string, std::vector<std::string>> mapperResponse;
+    mapperResponseMsg.read(mapperResponse);
+    if (mapperResponse.begin() == mapperResponse.end())
+    {
+        log<level::ERR>("ERROR in reading the mapper response",
+                        entry("VERSIONPATH=%s", path));
+        return;
+    }
+
+    // Call the Delete object for <versionID> inside image_manager
+    method = this->bus.new_method_call((mapperResponse.begin()->first).c_str(),
+                                       path.c_str(),
+                                       DELETE_BUSNAME,
+                                       "Delete");
+    mapperResponseMsg = bus.call(method);
+    //Check that the bus call didn't result in an error
+    if (mapperResponseMsg.is_method_error())
+    {
+        log<level::ERR>("Error in Deleting image from image manager",
+                        entry("VERSIONPATH=%s", path));
+        return;
+    }
 }
 
 auto Activation::requestedActivation(RequestedActivations value) ->

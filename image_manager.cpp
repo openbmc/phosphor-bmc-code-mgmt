@@ -15,6 +15,7 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include "xyz/openbmc_project/Software/Version/server.hpp"
 
 namespace phosphor
 {
@@ -44,6 +45,7 @@ struct RemovablePath
 
 int Manager::processImage(const std::string& tarFilePath)
 {
+
     if (!fs::is_regular_file(tarFilePath))
     {
         log<level::ERR>("Error tarball does not exist",
@@ -176,7 +178,6 @@ int Manager::processImage(const std::string& tarFilePath)
         log<level::INFO>("Software Object with the same version already exists",
                          entry("VERSION_ID=%s", id));
     }
-
     return 0;
 }
 

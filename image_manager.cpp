@@ -15,6 +15,7 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include "xyz/openbmc_project/Software/Version/server.hpp"
 
 namespace phosphor
 {
@@ -30,6 +31,7 @@ using ManifestFail = Software::Version::ManifestFileFailure;
 using UnTarFail = Software::Version::UnTarFailure;
 using InternalFail= Software::Version::InternalFailure;
 namespace fs = std::experimental::filesystem;
+namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 
 struct RemovablePath
 {
@@ -44,6 +46,9 @@ struct RemovablePath
 
 int Manager::processImage(const std::string& tarFilePath)
 {
+
+    using VersionPurpose = server::Version::VersionPurpose;
+
     if (!fs::is_regular_file(tarFilePath))
     {
         log<level::ERR>("Error tarball does not exist",
@@ -169,6 +174,14 @@ int Manager::processImage(const std::string& tarFilePath)
                                           purpose,
                                           imageDirPath.string())));
 
+    // Deleting the version from image_manager because a copy of this
+    // would exist in either pnor or bmc updater.
+    if (purpose == VersionPurpose::BMC ||
+        purpose == VersionPurpose::System ||
+        purpose == VersionPurpose::Host)
+    {
+        this->versions.erase(id);
+    }
     return 0;
 }
 

@@ -295,6 +295,8 @@ void ItemUpdater::erase(std::string entryId)
         // Delete ReadOnly partitions if it's not active
         removeReadOnlyPartition(entryId);
         removeFile(entryId);
+        // Removing entry in versions map
+        this->versions.erase(entryId);
     }
     else
     {
@@ -305,7 +307,6 @@ void ItemUpdater::erase(std::string entryId)
         log<level::ERR>(("Error: Failed to find version " + entryId + \
                          " in item updater versions map." \
                          " Unable to remove.").c_str());
-        return;
     }
 
     // Remove the priority environment variable.
@@ -318,9 +319,6 @@ void ItemUpdater::erase(std::string entryId)
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
 
-    // Removing entry in versions map
-    this->versions.erase(entryId);
-
     // Removing entry in activations map
     auto ita = activations.find(entryId);
     if (ita == activations.end())
@@ -328,28 +326,23 @@ void ItemUpdater::erase(std::string entryId)
         log<level::ERR>(("Error: Failed to find version " + entryId + \
                          " in item updater activations map." \
                          " Unable to remove.").c_str());
-        return;
     }
-
-    this->activations.erase(entryId);
+    else
+    {
+        this->activations.erase(entryId);
+    }
     ItemUpdater::resetUbootEnvVars();
+    return;
 }
 
 void ItemUpdater::deleteAll()
 {
-    std::vector<std::string> deletableVersions;
-
     for (const auto& versionIt : versions)
     {
         if (!versionIt.second->isFunctional())
         {
-            deletableVersions.push_back(versionIt.first);
+            ItemUpdater::erase(versionIt.first);
         }
-    }
-
-    for (const auto& deletableIt : deletableVersions)
-    {
-        ItemUpdater::erase(deletableIt);
     }
 
     // Remove any volumes that do not match current versions.

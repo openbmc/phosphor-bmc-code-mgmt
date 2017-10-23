@@ -332,6 +332,12 @@ class Activation : public ActivationInherit
          */
         void unsubscribeFromSystemdSignals();
 
+        /**
+         * @brief Deletes the version from Image Manager and the
+         *        untar image from image upload dir.
+         */
+        void deleteImageManagerObject();
+
         /** @brief Persistent sdbusplus DBus bus connection */
         sdbusplus::bus::bus& bus;
 

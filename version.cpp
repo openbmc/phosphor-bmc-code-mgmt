@@ -124,6 +124,14 @@ bool Version::isFunctional()
     return versionStr == getBMCVersion(OS_RELEASE_FILE);
 }
 
+void Version::delete_()
+{
+    if (eraseCallback)
+    {
+        eraseCallback(getId(version()));
+    }
+}
+
 } // namespace manager
 } // namespace software
 } // namepsace phosphor

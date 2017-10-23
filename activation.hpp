@@ -6,7 +6,6 @@
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
-#include "xyz/openbmc_project/Object/Delete/server.hpp"
 
 namespace phosphor
 {
@@ -26,8 +25,6 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
-using DeleteInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Object::server::Delete>;
 
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
@@ -186,55 +183,6 @@ class ActivationProgress : public ActivationProgressInherit
         std::string path;
 };
 
-/** @class ActivationDelete
- *  @brief OpenBMC Delete implementation.
- *  @details A concrete implementation for xyz.openbmc_project.Object.Delete
- *  DBus API.
- */
-class Delete : public DeleteInherit
-{
-    public:
-        /** @brief Constructs Delete.
-          *
-          * @param[in] bus    - The Dbus bus object
-          * @param[in] path   - The Dbus object path
-          * @param[in] parent - Parent object.
-          */
-        // Delete(sdbusplus::bus::bus& bus, const std::string& path) :
-        Delete(sdbusplus::bus::bus& bus,
-               const std::string& path,
-               Activation& parent) :
-                DeleteInherit(bus, path.c_str(), true),
-                parent(parent),
-                bus(bus),
-                path(path)
-        {
-            std::vector<std::string> interfaces({interface});
-            bus.emit_interfaces_added(path.c_str(), interfaces);
-        }
-
-        ~Delete()
-        {
-            std::vector<std::string> interfaces({interface});
-            bus.emit_interfaces_removed(path.c_str(), interfaces);
-        }
-
-        /**
-         * @brief delete the d-bus object.
-         */
-        void delete_() override;
-
-        /** @brief Parent Object. */
-        Activation& parent;
-
-    private:
-        // TODO Remove once openbmc/openbmc#1975 is resolved
-        static constexpr auto interface =
-                "xyz.openbmc_project.Object.Delete";
-        sdbusplus::bus::bus& bus;
-        std::string path;
-};
-
 /** @class Activation
  *  @brief OpenBMC activation software management implementation.
  *  @details A concrete implementation for
@@ -332,6 +280,12 @@ class Activation : public ActivationInherit
          */
         void unsubscribeFromSystemdSignals();
 
+        /**
+         * @brief Deletes the version from Image Manager and the
+         *        untar image from image upload dir.
+         */
+        void deleteImageManagerObject();
+
         /** @brief Persistent sdbusplus DBus bus connection */
         sdbusplus::bus::bus& bus;
 
@@ -352,9 +306,6 @@ class Activation : public ActivationInherit
 
         /** @brief Persistent ActivationProgress dbus object */
         std::unique_ptr<ActivationProgress> activationProgress;
-
-        /** @brief Persistent Delete dbus object */
-        std::unique_ptr<Delete> deleteObject;
 
         /** @brief Used to subscribe to dbus systemd signals **/
         sdbusplus::bus::match_t systemdSignals;

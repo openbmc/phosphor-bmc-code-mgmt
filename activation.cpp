@@ -54,6 +54,7 @@ auto Activation::activation(Activations value) ->
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+        parent.freeSpace();
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
             if (!activationProgress)

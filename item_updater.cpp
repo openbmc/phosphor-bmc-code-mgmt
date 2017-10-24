@@ -475,7 +475,7 @@ bool ItemUpdater::fieldModeEnabled(bool value)
 
 void ItemUpdater::restoreFieldModeStatus()
 {
-    std::ifstream input("/run/fw_env");
+    std::ifstream input("/dev/mtd/u-boot-env");
     std::string envVar;
     std::getline(input, envVar);
 

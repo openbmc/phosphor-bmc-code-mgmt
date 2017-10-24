@@ -54,6 +54,12 @@ auto Activation::activation(Activations value) ->
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+
+        // Make space for the new version and free Priority 0
+        // for the new image that is about to be installed
+        parent.freeSpace();
+        parent.freePriority(0, "");
+
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
             if (!activationProgress)

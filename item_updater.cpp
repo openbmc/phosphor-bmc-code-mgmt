@@ -455,18 +455,8 @@ bool ItemUpdater::fieldModeEnabled(bool value)
                 SYSTEMD_BUSNAME,
                 SYSTEMD_PATH,
                 SYSTEMD_INTERFACE,
-                "StopUnit");
-        method.append("usr-local.mount", "replace");
-        bus.call_noreply(method);
-
-        std::vector<std::string> usrLocal = {"usr-local.mount"};
-
-        method = bus.new_method_call(
-                SYSTEMD_BUSNAME,
-                SYSTEMD_PATH,
-                SYSTEMD_INTERFACE,
-                "MaskUnitFiles");
-        method.append(usrLocal, false, true);
+                "StartUnit");
+        method.append("obmc-flash-bmc-fieldmode.service", "replace");
         bus.call_noreply(method);
     }
 
@@ -475,14 +465,13 @@ bool ItemUpdater::fieldModeEnabled(bool value)
 
 void ItemUpdater::restoreFieldModeStatus()
 {
-    std::ifstream input("/run/fw_env");
-    std::string envVar;
-    std::getline(input, envVar);
-
-    if (envVar.find("fieldmode=true") != std::string::npos)
-    {
-        ItemUpdater::fieldModeEnabled(true);
-    }
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    method.append("obmc-flash-bmc-fieldmode.service", "replace");
+    bus.call_noreply(method);
 }
 
 void ItemUpdater::setBMCInventoryPath()

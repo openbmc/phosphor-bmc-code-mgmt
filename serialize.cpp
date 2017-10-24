@@ -95,10 +95,13 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
 
 void removeFile(std::string versionId)
 {
-    std::string path = PERSIST_DIR + versionId;
-    if (fs::exists(path))
+    if(!versionId.empty())
     {
-        fs::remove(path);
+        std::string path = PERSIST_DIR + versionId;
+        if (fs::exists(path))
+        {
+            fs::remove(path);
+        }
     }
 }
 

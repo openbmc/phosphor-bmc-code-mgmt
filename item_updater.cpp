@@ -616,6 +616,35 @@ void ItemUpdater::resetUbootEnvVars()
     it->second->updateUbootEnvVars();
 }
 
+void ItemUpdater::freeSpace()
+{
+    std::ofstream file;
+    std::size_t count = 0;
+    decltype(activations.begin()->second->redundancyPriority.get()->priority())
+        highestPriority = 0;
+    decltype(activations.begin()->second->versionId) highestPriorityVersion;
+    for (const auto& iter : activations)
+    {
+        auto it = versions.find(iter.second->versionId);
+        if (iter.second.get()->activation() == server::Activation::Activations::Active)
+        {
+            count++;
+            if ((iter.second->redundancyPriority.get()->priority() >= highestPriority) &&
+                !(it->second->isFunctional()))
+            {
+                highestPriority = iter.second->redundancyPriority.get()->priority();
+                highestPriorityVersion = iter.second->versionId;
+            }
+        }
+    }
+    // Remove the bmc version with highest priority since the BMC chip
+    // can't hold more than max allowed bmc versions.
+    if (count >= ACTIVE_BMC_MAX_ALLOWED)
+    {
+        erase(highestPriorityVersion);
+    }
+}
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

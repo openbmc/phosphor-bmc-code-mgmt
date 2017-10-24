@@ -266,6 +266,13 @@ class Activation : public ActivationInherit
         void unsubscribeFromSystemdSignals();
 
         /**
+         * @brief Updates the U-Boot variables to point to this activation's
+         *        versionId, so that the systems boots from this version on
+         *        the next reboot.
+         */
+        void updateUbootEnvVars();
+
+        /**
          * @brief delete the d-bus object.
          */
         void delete_() override;

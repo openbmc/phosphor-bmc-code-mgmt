@@ -602,23 +602,9 @@ void ItemUpdater::resetUbootEnvVars()
         }
     }
 
-    // TODO: openbmc/openbmc#2369 Add recovery policy to updateubootvars
-    //       unit template.
-    auto method = bus.new_method_call(
-            SYSTEMD_BUSNAME,
-            SYSTEMD_PATH,
-            SYSTEMD_INTERFACE,
-            "StartUnit");
-    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" +
-                             lowestPriorityVersion + ".service";
-    method.append(updateEnvVarsFile, "replace");
-    auto result = bus.call(method);
-
-    //Check that the bus call didn't result in an error
-    if (result.is_method_error())
-    {
-        log<level::ERR>("Failed to update u-boot env variables");
-    }
+    // Update the U-boot environment variable to point to the lowest priority
+    auto it = activations.find(lowestPriorityVersion);
+    it->second->updateUbootEnvVars();
 }
 
 } // namespace updater

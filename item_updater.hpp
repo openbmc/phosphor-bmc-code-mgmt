@@ -114,12 +114,18 @@ class ItemUpdater : public ItemUpdaterInherit
          */
         bool isLowestPriority(uint8_t value);
 
-    /**
-     * @brief Updates the uboot variables to point to BMC version with lowest
-     *        priority, so that the system boots from this version on the
-     *        next boot.
-     */
-    void resetUbootEnvVars();
+        /**
+         * @brief Updates the uboot variables to point to BMC version with lowest
+         *        priority, so that the system boots from this version on the
+         *        next boot.
+         */
+        void resetUbootEnvVars();
+
+        /**
+         * @brief Deletes the active BMC version with highest priority
+         *        if the total number of volumes exceeds the threshold.
+         */
+        void freeSpace();
 
     private:
         /** @brief Callback function for Software.Version match.

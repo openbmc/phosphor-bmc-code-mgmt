@@ -109,7 +109,7 @@ AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
 
 # Check for header files.
-AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd developement package required])])
+AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])
 
 AC_CONFIG_FILES([Makefile test/Makefile])

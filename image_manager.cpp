@@ -59,7 +59,7 @@ int Manager::processImage(const std::string& tarFilePath)
     // Need tmp dir to write MANIFEST file to.
     if (!mkdtemp(const_cast<char*>(tmpDirPath.c_str())))
     {
-        log<level::ERR>("Error occured during mkdtemp",
+        log<level::ERR>("Error occurred during mkdtemp",
                         entry("ERRNO=%d", errno));
         report<InternalFailure>(InternalFail::FAIL("mkdtemp"));
         return -1;
@@ -143,7 +143,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     if (mkdir(imageDirPath.c_str(), S_IRWXU) != 0)
     {
-        log<level::ERR>("Error occured during mkdir",
+        log<level::ERR>("Error occurred during mkdir",
                         entry("ERRNO=%d", errno));
         report<InternalFailure>(InternalFail::FAIL("mkdir"));
         return -1;
@@ -153,7 +153,7 @@ int Manager::processImage(const std::string& tarFilePath)
     auto rc = unTar(tarFilePath, imageDirPath.string());
     if (rc < 0)
     {
-        log<level::ERR>("Error occured during untar");
+        log<level::ERR>("Error occurred during untar");
         return -1;
     }
 

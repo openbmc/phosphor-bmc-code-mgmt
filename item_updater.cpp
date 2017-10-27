@@ -1,4 +1,5 @@
 #include <fstream>
+#include <set>
 #include <string>
 #include <phosphor-logging/log.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -243,7 +244,8 @@ void ItemUpdater::processBMCImage()
                              bus,
                              path,
                              *(activations.find(id)->second),
-                             priority);
+                             priority,
+                             false);
             }
         }
     }
@@ -385,18 +387,47 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
 
 void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 {
-    //TODO openbmc/openbmc#1896 Improve the performance of this function
+    std::map<std::string, uint8_t> priorityMap;
+
     for (const auto& intf : activations)
     {
         if (intf.second->redundancyPriority)
         {
-            if (intf.second->redundancyPriority.get()->priority() == value &&
-                intf.second->versionId != versionId)
-            {
-                intf.second->redundancyPriority.get()->priority(value + 1);
-            }
+            priorityMap.insert(std::make_pair(intf.first, intf.second->redundancyPriority.get()->priority()));
         }
     }
+
+    typedef std::function<bool(std::pair<std::string, uint8_t>, std::pair<std::string, uint8_t>)> cmpPriority;
+    cmpPriority cmpPriorityFunc =
+            [](std::pair<std::string, uint8_t> priority1 ,std::pair<std::string, uint8_t> priority2)
+            {
+                return priority1.second <= priority2.second;
+            };
+ 
+    std::set<std::pair<std::string, uint8_t>, cmpPriority> prioritySet(
+            priorityMap.begin(), priorityMap.end(), cmpPriorityFunc);
+ 
+    auto freePriorityValue=value;
+    for (auto& element : prioritySet)
+    {
+        if (element.first == versionId)
+        {
+            continue;
+        }
+        if (element.second == freePriorityValue)
+        {
+            ++freePriorityValue;
+            auto it = activations.find(element.first);
+            it->second->redundancyPriority.get()->sdbusPriority(freePriorityValue);
+        }
+    }
+
+    auto lowestVersion = prioritySet.begin()->first;
+    if (value == prioritySet.begin()->second)
+    {
+        lowestVersion = versionId;
+    }
+    updateUbootEnvVars(lowestVersion);
 }
 
 void ItemUpdater::reset()
@@ -576,6 +607,26 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
     return true;
 }
 
+void ItemUpdater::updateUbootEnvVars(std::string versionId)
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" + versionId +
+            ".service";
+    method.append(updateEnvVarsFile, "replace");
+    auto result = bus.call(method);
+
+    //Check that the bus call didn't result in an error
+    if (result.is_method_error())
+    {
+        log<level::ERR>("Failed to update u-boot env variables",
+                        entry("VERSIONID=%s", versionId));
+    }
+}
+
 void ItemUpdater::resetUbootEnvVars()
 {
     decltype(activations.begin()->second->redundancyPriority.get()->priority())
@@ -598,8 +649,7 @@ void ItemUpdater::resetUbootEnvVars()
     }
 
     // Update the U-boot environment variable to point to the lowest priority
-    auto it = activations.find(lowestPriorityVersion);
-    it->second->updateUbootEnvVars();
+    updateUbootEnvVars(lowestPriorityVersion);
 }
 
 } // namespace updater

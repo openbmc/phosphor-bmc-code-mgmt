@@ -52,7 +52,8 @@ class RedundancyPriority : public RedundancyPriorityInherit
         RedundancyPriority(sdbusplus::bus::bus& bus,
                                    const std::string& path,
                                    Activation& parent,
-                                   uint8_t value) :
+                                   uint8_t value,
+                                   bool override=true) :
                                    RedundancyPriorityInherit(bus,
                                    path.c_str(), true),
                                    parent(parent),
@@ -60,7 +61,15 @@ class RedundancyPriority : public RedundancyPriorityInherit
                                    path(path)
         {
             // Set Property
-            priority(value);
+            if (override)
+            {
+                priority(value);
+            }
+            else
+            {
+                sdbusPriority(value);
+            }
+    
             std::vector<std::string> interfaces({interface});
             bus.emit_interfaces_added(path.c_str(), interfaces);
         }
@@ -78,6 +87,14 @@ class RedundancyPriority : public RedundancyPriorityInherit
          *  @return Success or exception thrown
          */
         uint8_t priority(uint8_t value) override;
+
+        /** @brief Non-Overloaded Priority property set function
+         *
+         *  @param[in] value - uint8_t
+         *
+         *  @return Success or exception thrown
+         */
+        uint8_t sdbusPriority(uint8_t value);
 
         /** @brief Priority property get function
          *
@@ -264,13 +281,6 @@ class Activation : public ActivationInherit
          *
          */
         void unsubscribeFromSystemdSignals();
-
-        /**
-         * @brief Updates the U-Boot variables to point to this activation's
-         *        versionId, so that the systems boots from this version on
-         *        the next reboot.
-         */
-        void updateUbootEnvVars();
 
         /**
          * @brief delete the d-bus object.

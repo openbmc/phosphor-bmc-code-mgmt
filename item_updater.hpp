@@ -114,12 +114,21 @@ class ItemUpdater : public ItemUpdaterInherit
          */
         bool isLowestPriority(uint8_t value);
 
-    /**
-     * @brief Updates the uboot variables to point to BMC version with lowest
-     *        priority, so that the system boots from this version on the
-     *        next boot.
-     */
-    void resetUbootEnvVars();
+        /**
+         * @brief Updates the U-Boot variables to point to the requested
+         *        versionId, so that the systems boots from this version on
+         *        the next reboot.
+         *
+         * @param[in] versionId - The version to point the system to boot from.
+         */
+        void updateUbootEnvVars(const std::string& versionId);
+
+        /**
+         * @brief Updates the uboot variables to point to BMC version with lowest
+         *        priority, so that the system boots from this version on the
+         *        next boot.
+         */
+        void resetUbootEnvVars();
 
     private:
         /** @brief Callback function for Software.Version match.

@@ -153,21 +153,14 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 
 uint8_t RedundancyPriority::priority(uint8_t value)
 {
-    parent.parent.freePriority(value, parent.versionId);
+    auto newPriority = softwareServer::RedundancyPriority::priority(value);
     storeToFile(parent.versionId, value);
+    parent.parent.freePriority(value, parent.versionId);
+    return newPriority;
+}
 
-    // Update U-Boot env variable to point to this version if it has the
-    // lowest priority. Otherwise, reset the UbootEnvVars to find the lowest
-    // priority version and set that in U-Boot.
-    if (parent.parent.isLowestPriority(value))
-    {
-        parent.updateUbootEnvVars();
-    }
-    else
-    {
-        parent.parent.resetUbootEnvVars();
-    }
-
+uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
+{
     return softwareServer::RedundancyPriority::priority(value);
 }
 

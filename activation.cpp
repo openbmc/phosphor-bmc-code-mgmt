@@ -153,44 +153,18 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 
 uint8_t RedundancyPriority::priority(uint8_t value)
 {
-    parent.parent.freePriority(value, parent.versionId);
+    // Set the priority value so that the freePriority() function can order
+    // the versions by priority.
+    auto newPriority = softwareServer::RedundancyPriority::priority(value);
     storeToFile(parent.versionId, value);
-
-    // Update U-Boot env variable to point to this version if it has the
-    // lowest priority. Otherwise, reset the UbootEnvVars to find the lowest
-    // priority version and set that in U-Boot.
-    if (parent.parent.isLowestPriority(value))
-    {
-        parent.updateUbootEnvVars();
-    }
-    else
-    {
-        parent.parent.resetUbootEnvVars();
-    }
-
-    return softwareServer::RedundancyPriority::priority(value);
+    parent.parent.freePriority(value, parent.versionId);
+    return newPriority;
 }
 
-// TODO: openbmc/openbmc#2369 Add recovery policy to updateubootvars
-//       unit template.
-void Activation::updateUbootEnvVars()
+uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 {
-    auto method = bus.new_method_call(
-            SYSTEMD_BUSNAME,
-            SYSTEMD_PATH,
-            SYSTEMD_INTERFACE,
-            "StartUnit");
-    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" + versionId +
-            ".service";
-    method.append(updateEnvVarsFile, "replace");
-    auto result = bus.call(method);
-
-    //Check that the bus call didn't result in an error
-    if (result.is_method_error())
-    {
-        log<level::ERR>("Failed to update u-boot env variables",
-                        entry("VERSIONID=%s", versionId));
-    }
+    storeToFile(parent.versionId, value);
+    return softwareServer::RedundancyPriority::priority(value);
 }
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)

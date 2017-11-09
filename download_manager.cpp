@@ -55,11 +55,13 @@ void Download::downloadViaTFTP(std::string fileName,
                      entry("FILENAME=%s", fileName),
                      entry("SERVERADDRESS=%s", serverAddress));
 
-    // Check if IMAGE DIR exists and create if necessary.
+    // Check if IMAGE DIR exists
     fs::path imgDirPath(IMG_UPLOAD_DIR);
     if (!fs::is_directory(imgDirPath))
     {
-        fs::create_directory(imgDirPath);
+        log<level::ERR>("Error Image Dir does not exist");
+        elog<InternalFailure>();
+        return;
     }
 
     pid_t pid = fork();

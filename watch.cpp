@@ -29,10 +29,7 @@ Watch::Watch(sd_event* loop,
     fs::path imgDirPath(IMG_UPLOAD_DIR);
     if (!fs::is_directory(imgDirPath))
     {
-        log<level::ERR>("ERROR No Image Dir",
-                        entry("IMAGEDIR=%s", IMG_UPLOAD_DIR));
-        throw std::runtime_error(
-            "No Image Dir, IMAGEDIR=" + std::string{IMG_UPLOAD_DIR});
+        fs::create_directories(imgDirPath);
     }
 
     fd = inotify_init1(IN_NONBLOCK);

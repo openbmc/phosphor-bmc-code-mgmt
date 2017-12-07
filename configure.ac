@@ -53,7 +53,10 @@ AX_APPEND_COMPILE_FLAGS([-Wall -Werror], [CXXFLAGS])
 
 AC_DEFINE(ACTIVATION_FWD_ASSOCIATION, "inventory", [The name of the activation's forward association.])
 AC_DEFINE(ACTIVATION_REV_ASSOCIATION, "activation", [The name of the activation's reverse association.])
-AC_DEFINE(CHASSIS_INVENTORY_PATH, "/xyz/openbmc_project/inventory/system/chassis/", [The chassis inventory path root.])
+AC_DEFINE(INVENTORY_PATH, "/xyz/openbmc_project/inventory/",
+    [The inventory path root.])
+AC_DEFINE(BMC_INVENTORY_INTERFACE, "xyz.openbmc_project.Inventory.Item.Bmc",
+    [The BMC inventory interface])
 
 AC_DEFINE(ACTIVE_FWD_ASSOCIATION, "active", [The name of the active's forward association.])
 AC_DEFINE(ACTIVE_REV_ASSOCIATION, "software_version", [The name of the active's reverse association.])

@@ -535,20 +535,15 @@ void ItemUpdater::restoreFieldModeStatus()
 
 void ItemUpdater::setBMCInventoryPath()
 {
-    //TODO: openbmc/openbmc#1786 - Get the BMC path by looking for objects
-    //      that implement the BMC inventory interface
     auto depth = 0;
     auto mapperCall = bus.new_method_call(MAPPER_BUSNAME,
                                           MAPPER_PATH,
                                           MAPPER_INTERFACE,
                                           "GetSubTreePaths");
 
-    mapperCall.append(CHASSIS_INVENTORY_PATH);
+    mapperCall.append(INVENTORY_PATH);
     mapperCall.append(depth);
-
-    // TODO: openbmc/openbmc#2226 - Add Inventory Item filter when
-    //       mapper is fixed.
-    std::vector<std::string> filter = {};
+    std::vector<std::string> filter = {BMC_INVENTORY_INTERFACE};
     mapperCall.append(filter);
 
     auto response = bus.call(mapperCall);
@@ -562,21 +557,12 @@ void ItemUpdater::setBMCInventoryPath()
     ObjectPaths result;
     response.read(result);
 
-    if (result.empty())
+    if (!result.empty())
     {
-        log<level::ERR>("Invalid response from mapper");
-        return;
+        bmcInventoryPath = result.front();
     }
 
-    for (auto& iter : result)
-    {
-        const auto& path = iter;
-        if (path.substr(path.find_last_of('/') + 1).compare("bmc") == 0)
-        {
-            bmcInventoryPath = path;
-            return;
-        }
-    }
+    return;
 }
 
 void ItemUpdater::createActiveAssociation(const std::string& path)

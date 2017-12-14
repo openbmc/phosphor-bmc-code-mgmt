@@ -77,12 +77,13 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
             std::ifstream input(devicePath.c_str());
             std::string envVars;
             std::getline(input, envVars);
+            std::string versionVar = versionId + "=";
 
-            if (envVars.find(versionId) != std::string::npos)
+            if (envVars.find(versionVar) != std::string::npos)
             {
                 // Grab the environment variable for this versionId. These
                 // variables follow the format "versionId=priority\0"
-                auto var = envVars.substr(envVars.find(versionId));
+                auto var = envVars.substr(envVars.find(versionVar));
                 priority = std::stoi(var.substr(var.find('=') + 1));
                 return true;
             }

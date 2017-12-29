@@ -1,5 +1,5 @@
 AM_DEFAULT_SOURCE_EXT = .cpp
-
+if !INSTALL_ERROR_YAML
 # Build these headers, don't install them
 noinst_HEADERS = \
 	download_manager.hpp \
@@ -80,3 +80,10 @@ phosphor_image_updater_CXXFLAGS = $(generic_cxxflags)
 phosphor_image_updater_LDFLAGS = $(generic_ldflags)
 
 SUBDIRS = test
+
+endif
+# Export error YAML to shared location
+yamldir = ${datadir}/phosphor-dbus-yaml/yaml
+nobase_yaml_DATA = \
+	xyz/openbmc_project/Software/Version.errors.yaml \
+	xyz/openbmc_project/Software/Version.metadata.yaml

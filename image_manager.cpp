@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <phosphor-logging/log.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <elog-errors.hpp>
+#include <phosphor-logging/elog-errors.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
 #include "config.h"
 #include "version.hpp"

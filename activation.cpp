@@ -127,36 +127,12 @@ auto Activation::activation(Activations value) ->
 
 void Activation::deleteImageManagerObject()
 {
-    // Get the Delete object for <versionID> inside image_manager
-    auto method = this->bus.new_method_call(MAPPER_BUSNAME,
-                                            MAPPER_PATH,
-                                            MAPPER_INTERFACE,
-                                            "GetObject");
-    method.append(path);
-    method.append(std::vector<std::string>({
-            "xyz.openbmc_project.Object.Delete"}));
-    auto mapperResponseMsg = bus.call(method);
-    if (mapperResponseMsg.is_method_error())
-    {
-        log<level::ERR>("Error in Get Delete Object",
-                        entry("VERSIONPATH=%s", path));
-        return;
-    }
-    std::map<std::string, std::vector<std::string>> mapperResponse;
-    mapperResponseMsg.read(mapperResponse);
-    if (mapperResponse.begin() == mapperResponse.end())
-    {
-        log<level::ERR>("ERROR in reading the mapper response",
-                        entry("VERSIONPATH=%s", path));
-        return;
-    }
-
     // Call the Delete object for <versionID> inside image_manager
-    method = this->bus.new_method_call((mapperResponse.begin()->first).c_str(),
+    auto method = this->bus.new_method_call(VERSION_BUSNAME,
                                        path.c_str(),
                                        "xyz.openbmc_project.Object.Delete",
                                        "Delete");
-    mapperResponseMsg = bus.call(method);
+    auto mapperResponseMsg = bus.call(method);
     //Check that the bus call didn't result in an error
     if (mapperResponseMsg.is_method_error())
     {

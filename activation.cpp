@@ -41,7 +41,8 @@ auto Activation::activation(Activations value) ->
         Activations
 {
 
-    if (value != softwareServer::Activation::Activations::Active)
+    if ((value != softwareServer::Activation::Activations::Active) &&
+        (value != softwareServer::Activation::Activations::Activating))
     {
         redundancyPriority.reset(nullptr);
     }
@@ -212,16 +213,17 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
         activationProgress->progress(activationProgress->progress() + 50);
     }
 
-    if (rwVolumeCreated && roVolumeCreated)
+    if (newStateUnit == rwServiceFile || newStateUnit == roServiceFile)
     {
-        Activation::activation(
-                softwareServer::Activation::Activations::Activating);
-    }
-
-    if ((newStateUnit == rwServiceFile || newStateUnit == roServiceFile) &&
-        (newStateResult == "failed" || newStateResult == "dependency"))
-    {
-        Activation::activation(softwareServer::Activation::Activations::Failed);
+        if (newStateResult == "failed" || newStateResult == "dependency")
+        {
+            Activation::activation(softwareServer::Activation::Activations::Failed);
+        }
+        else if (rwVolumeCreated && roVolumeCreated)
+        {
+            Activation::activation(
+                    softwareServer::Activation::Activations::Activating);
+        }
     }
 
     return;

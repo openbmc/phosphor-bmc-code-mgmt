@@ -317,6 +317,10 @@ class Activation : public ActivationInherit
         /** @brief Tracks whether the read-only volume has been created as
          * part of the activation process. **/
         bool roVolumeCreated = false;
+
+        /** @brief Tracks if the service that updates the u-boot environment
+         *         variables has completed. **/
+        bool ubootEnvVarsUpdated = false;
 };
 
 } // namespace updater

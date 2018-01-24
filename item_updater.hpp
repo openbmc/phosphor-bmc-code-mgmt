@@ -130,6 +130,15 @@ class ItemUpdater : public ItemUpdaterInherit
          */
         void resetUbootEnvVars();
 
+        /** @brief Brings the total number of active BMC versions to
+         *         ACTIVE_BMC_MAX_ALLOWED -1. This function is intended to be
+         *         run before activating a new BMC version. If this function
+         *         needs to delete any BMC version(s) it will delete the
+         *         version(s) with the highest priority, skipping the
+         *         functional BMC version.
+         */
+        void freeSpace();
+
     private:
         /** @brief Callback function for Software.Version match.
          *  @details Creates an Activation D-Bus object.

@@ -108,6 +108,11 @@ AC_ARG_VAR(MANIFEST_FILE_NAME, [The name of the MANIFEST file])
 AS_IF([test "x$MANIFEST_FILE_NAME" == "x"], [MANIFEST_FILE_NAME="MANIFEST"])
 AC_DEFINE_UNQUOTED([MANIFEST_FILE_NAME], ["$MANIFEST_FILE_NAME"], [The name of the MANIFEST file])
 
+AC_ARG_VAR(ACTIVE_BMC_MAX_ALLOWED, [The maximum allowed active BMC versions])
+AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
+AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],
+    [The maximum allowed active BMC versions])
+
 AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
 

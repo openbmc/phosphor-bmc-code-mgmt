@@ -87,35 +87,49 @@ auto Activation::activation(Activations value) ->
         }
         else if (rwVolumeCreated == true && roVolumeCreated == true)
         {
-            activationProgress->progress(90);
-
-            if (!redundancyPriority)
+            if (ubootEnvVarsUpdated == false)
             {
-                redundancyPriority =
-                          std::make_unique<RedundancyPriority>(
-                                    bus,
-                                    path,
-                                    *this,
-                                    0);
+                activationProgress->progress(90);
+
+                if (!redundancyPriority)
+                {
+                    redundancyPriority =
+                              std::make_unique<RedundancyPriority>(
+                                        bus,
+                                        path,
+                                        *this,
+                                        0);
+                }
+                else
+                {
+                    // The service file to update the environment variables is
+                    // triggered by setting the Priority, so set the "service
+                    // is complete" variable to true if no Priority was set.
+                    ubootEnvVarsUpdated = true;
+                }
             }
 
-            activationProgress->progress(100);
+            if (ubootEnvVarsUpdated == true)
+            {
+                activationProgress->progress(100);
 
-            activationBlocksTransition.reset(nullptr);
-            activationProgress.reset(nullptr);
+                activationBlocksTransition.reset(nullptr);
+                activationProgress.reset(nullptr);
 
-            rwVolumeCreated = false;
-            roVolumeCreated = false;
-            Activation::unsubscribeFromSystemdSignals();
+                rwVolumeCreated = false;
+                roVolumeCreated = false;
+                ubootEnvVarsUpdated = false;
+                Activation::unsubscribeFromSystemdSignals();
 
-            // Remove version object from image manager
-            Activation::deleteImageManagerObject();
+                // Remove version object from image manager
+                Activation::deleteImageManagerObject();
 
-            // Create active association
-            parent.createActiveAssociation(path);
+                // Create active association
+                parent.createActiveAssociation(path);
 
-            return softwareServer::Activation::activation(
-                    softwareServer::Activation::Activations::Active);
+                return softwareServer::Activation::activation(
+                        softwareServer::Activation::Activations::Active);
+            }
         }
     }
     else
@@ -148,6 +162,7 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 {
     rwVolumeCreated = false;
     roVolumeCreated = false;
+    ubootEnvVarsUpdated = false;
 
     if ((value == softwareServer::Activation::RequestedActivations::Active) &&
         (softwareServer::Activation::requestedActivation() !=
@@ -200,6 +215,8 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
 
     auto rwServiceFile = "obmc-flash-bmc-ubirw.service";
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
+    auto ubootVarsServiceFile = "obmc-flash-bmc-updateubootvars@" + versionId +
+                                ".service";
 
     if (newStateUnit == rwServiceFile && newStateResult == "done")
     {
@@ -213,14 +230,22 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
         activationProgress->progress(activationProgress->progress() + 50);
     }
 
-    if (newStateUnit == rwServiceFile || newStateUnit == roServiceFile)
+    if (newStateUnit == ubootVarsServiceFile && newStateResult == "done")
+    {
+        ubootEnvVarsUpdated = true;
+    }
+
+    if (newStateUnit == rwServiceFile ||
+        newStateUnit == roServiceFile ||
+        newStateUnit == ubootVarsServiceFile)
     {
         if (newStateResult == "failed" || newStateResult == "dependency")
         {
             Activation::activation(
                     softwareServer::Activation::Activations::Failed);
         }
-        else if (rwVolumeCreated && roVolumeCreated)
+        else if ((rwVolumeCreated && roVolumeCreated) || // Volumes were created
+                 (ubootEnvVarsUpdated)) // Enviroment variables were updated
         {
             Activation::activation(
                     softwareServer::Activation::Activations::Activating);

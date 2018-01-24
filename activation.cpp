@@ -51,6 +51,8 @@ auto Activation::activation(Activations value) ->
     {
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
+            parent.freeSpace();
+
             if (!activationProgress)
             {
                 activationProgress = std::make_unique<ActivationProgress>(bus,

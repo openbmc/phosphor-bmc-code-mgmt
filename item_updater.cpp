@@ -1,4 +1,5 @@
 #include <fstream>
+#include <queue>
 #include <set>
 #include <string>
 #include <phosphor-logging/log.hpp>
@@ -656,6 +657,44 @@ void ItemUpdater::resetUbootEnvVars()
 
     // Update the U-boot environment variable to point to the lowest priority
     updateUbootEnvVars(lowestPriorityVersion);
+}
+
+void ItemUpdater::freeSpace()
+{
+    //  Versions with the highest priority in front
+    std::priority_queue<std::pair<int, std::string>,
+                        std::vector<std::pair<int, std::string>>,
+                        std::less<std::pair<int, std::string>>> versionsPQ;
+
+    std::size_t count = 0;
+    for (const auto& iter : activations)
+    {
+        if ((iter.second.get()->activation() ==
+                    server::Activation::Activations::Active)  ||
+            (iter.second.get()->activation() ==
+                    server::Activation::Activations::Failed))
+        {
+            count++;
+            // Don't put the functional version on the queue since we can't
+            // remove the "running" BMC version.
+            if (versions.find(iter.second->versionId)->second->isFunctional())
+            {
+                continue;
+            }
+            versionsPQ.push(std::make_pair(
+                    iter.second->redundancyPriority.get()->priority(),
+                    iter.second->versionId));
+        }
+    }
+
+    // If the number of BMC versions is over ACTIVE_BMC_MAX_ALLOWED -1,
+    // remove the highest priority one(s).
+    while ((count >= ACTIVE_BMC_MAX_ALLOWED) && (!versionsPQ.empty()))
+    {
+        erase(versionsPQ.top().second);
+        versionsPQ.pop();
+        count--;
+    }
 }
 
 } // namespace updater

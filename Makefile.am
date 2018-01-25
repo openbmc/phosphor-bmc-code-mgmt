@@ -1,4 +1,5 @@
 AM_DEFAULT_SOURCE_EXT = .cpp
+ACLOCAL_AMFLAGS = -I m4
 
 # Build these headers, don't install them
 noinst_HEADERS = \

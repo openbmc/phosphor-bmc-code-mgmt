@@ -38,7 +38,16 @@ struct RemovablePath
     RemovablePath(const fs::path& path) : path(path) {}
     ~RemovablePath()
     {
-        fs::remove_all(path);
+        if (fs::exists(path))
+        {
+            fs::remove_all(path);
+        }
+        else
+        {
+            // Path should exist
+            log<level::ERR>("Error removable path does not exist",
+                            entry("PATH=%s", path.c_str()));
+        }
     }
 };
 

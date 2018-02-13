@@ -96,7 +96,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     if (pos == std::string::npos)
     {
         log<level::ERR>("No version id found in object path",
-                        entry("OBJPATH=%s", path));
+                        entry("OBJPATH=%s", path.c_str()));
         return;
     }
 
@@ -171,7 +171,7 @@ void ItemUpdater::processBMCImage()
             if (!fs::is_regular_file(osRelease))
             {
                 log<level::ERR>("Failed to read osRelease",
-                                entry("FILENAME=%s", osRelease.string()));
+                                entry("FILENAME=%s", osRelease.string().c_str()));
                 ItemUpdater::erase(id);
                 continue;
             }
@@ -179,7 +179,7 @@ void ItemUpdater::processBMCImage()
             if (version.empty())
             {
                 log<level::ERR>("Failed to read version from osRelease",
-                                entry("FILENAME=%s", osRelease.string()));
+                                entry("FILENAME=%s", osRelease.string().c_str()));
                 activationState = server::Activation::Activations::Invalid;
             }
 
@@ -251,7 +251,7 @@ void ItemUpdater::processBMCImage()
                     else
                     {
                         log<level::ERR>("Unable to restore priority from file.",
-                                entry("VERSIONID=%s", id));
+                                entry("VERSIONID=%s", id.c_str()));
                     }
                 }
                 activations.find(id)->second->redundancyPriority =
@@ -629,7 +629,7 @@ void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
     if (result.is_method_error())
     {
         log<level::ERR>("Failed to update u-boot env variables",
-                        entry("VERSIONID=%s", versionId));
+                        entry("VERSIONID=%s", versionId.c_str()));
     }
 }
 

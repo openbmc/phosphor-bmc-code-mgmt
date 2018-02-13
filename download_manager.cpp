@@ -52,8 +52,8 @@ void Download::downloadViaTFTP(std::string fileName,
     }
 
     log<level::INFO>("Downloading via TFTP",
-                     entry("FILENAME=%s", fileName),
-                     entry("SERVERADDRESS=%s", serverAddress));
+                     entry("FILENAME=%s", fileName.c_str()),
+                     entry("SERVERADDRESS=%s", serverAddress.c_str()));
 
     // Check if IMAGE DIR exists
     fs::path imgDirPath(IMG_UPLOAD_DIR);

@@ -104,7 +104,7 @@ int Watch::callback(sd_event_source* s,
             if (rc < 0)
             {
                 log<level::ERR>("Error processing image",
-                                entry("IMAGE=%s", tarballPath));
+                                entry("IMAGE=%s", tarballPath.c_str()));
             }
 
         }

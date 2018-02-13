@@ -50,7 +50,7 @@ int Manager::processImage(const std::string& tarFilePath)
     if (!fs::is_regular_file(tarFilePath))
     {
         log<level::ERR>("Error tarball does not exist",
-                        entry("FILENAME=%s", tarFilePath));
+                        entry("FILENAME=%s", tarFilePath.c_str()));
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
 
@@ -81,14 +81,21 @@ int Manager::processImage(const std::string& tarFilePath)
         execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), MANIFEST_FILE_NAME,
               "-C", tmpDirPath.c_str(), (char*)0);
         // execl only returns on fail
-        log<level::ERR>("Failed to untar file",
-                        entry("FILENAME=%s", tarFilePath));
-        report<ManifestFileFailure>(ManifestFail::PATH(manifestPath.c_str()));
+        log<level::ERR>("Failed to execute extract manifest",
+                        entry("FILENAME=%s", tarFilePath.c_str()));
+        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
     else if (pid > 0)
     {
         waitpid(pid, &status, 0);
+        if (WEXITSTATUS(status))
+        {
+            log<level::ERR>("Failed to extract manifest",
+                            entry("FILENAME=%s", tarFilePath.c_str()));
+            report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
+            return -1;
+        }
     }
     else
     {
@@ -100,8 +107,9 @@ int Manager::processImage(const std::string& tarFilePath)
     // Verify the manifest file
     if (!fs::is_regular_file(manifestPath))
     {
-        log<level::ERR>("Error No manifest file");
-        report<ManifestFileFailure>(ManifestFail::PATH(manifestPath.c_str()));
+        log<level::ERR>("Error No manifest file",
+                        entry("FILENAME=%s", tarFilePath.c_str()));
+        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
 
@@ -110,7 +118,7 @@ int Manager::processImage(const std::string& tarFilePath)
     if (version.empty())
     {
         log<level::ERR>("Error unable to read version from manifest file");
-        report<ManifestFileFailure>(ManifestFail::PATH(manifestPath.c_str()));
+        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
 
@@ -119,7 +127,7 @@ int Manager::processImage(const std::string& tarFilePath)
     if (purposeString.empty())
     {
         log<level::ERR>("Error unable to read purpose from manifest file");
-        report<ManifestFileFailure>(ManifestFail::PATH(manifestPath.c_str()));
+        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
 
@@ -182,7 +190,7 @@ int Manager::processImage(const std::string& tarFilePath)
     else
     {
         log<level::INFO>("Software Object with the same version already exists",
-                         entry("VERSION_ID=%s", id));
+                         entry("VERSION_ID=%s", id.c_str()));
     }
     return 0;
 }
@@ -224,13 +232,13 @@ int Manager::unTar(const std::string& tarFilePath,
     if (extractDirPath.empty())
     {
         log<level::ERR>("Error ExtractDirPath is empty");
-        report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
+        report<UnTarFailure>(UnTarFail::PATH(extractDirPath.c_str()));
         return -1;
     }
 
     log<level::INFO>("Untaring",
-                     entry("FILENAME=%s", tarFilePath),
-                     entry("EXTRACTIONDIR=%s", extractDirPath));
+                     entry("FILENAME=%s", tarFilePath.c_str()),
+                     entry("EXTRACTIONDIR=%s", extractDirPath.c_str()));
     int status = 0;
     pid_t pid = fork();
 
@@ -240,14 +248,21 @@ int Manager::unTar(const std::string& tarFilePath,
         execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(),
               "-C", extractDirPath.c_str(), (char*)0);
         // execl only returns on fail
-        log<level::ERR>("Failed to untar file",
-                        entry("FILENAME=%s", tarFilePath));
+        log<level::ERR>("Failed to execute untar file",
+                        entry("FILENAME=%s", tarFilePath.c_str()));
         report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
         return -1;
     }
     else if (pid > 0)
     {
         waitpid(pid, &status, 0);
+        if (WEXITSTATUS(status))
+        {
+            log<level::ERR>("Failed to untar file",
+                            entry("FILENAME=%s", tarFilePath.c_str()));
+            report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
+            return -1;
+        }
     }
     else
     {

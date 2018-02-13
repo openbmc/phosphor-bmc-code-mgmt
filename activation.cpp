@@ -144,7 +144,7 @@ void Activation::deleteImageManagerObject()
     if (mapperResponseMsg.is_method_error())
     {
         log<level::ERR>("Error in Deleting image from image manager",
-                        entry("VERSIONPATH=%s", path));
+                        entry("VERSIONPATH=%s", path.c_str()));
         return;
     }
 }

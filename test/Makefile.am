@@ -15,4 +15,6 @@ utest_LDFLAGS = -lgtest_main -lgtest $(PTHREAD_LIBS) \
 	$(PHOSPHOR_LOGGING_LIBS) -lstdc++fs -lssl -lcrypto
 
 utest_SOURCES = utest.cpp
-utest_LDADD = $(top_builddir)/phosphor_version_software_manager-version.o
+utest_LDADD = \
+	$(top_builddir)/phosphor_version_software_manager-version.o \
+	$(top_builddir)/phosphor_version_software_manager-key_manager.o

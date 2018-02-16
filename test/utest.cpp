@@ -1,4 +1,5 @@
 #include "version.hpp"
+#include "key_manager.hpp"
 #include <gtest/gtest.h>
 #include <experimental/filesystem>
 #include <stdlib.h>
@@ -10,7 +11,6 @@
 
 using namespace phosphor::software::manager;
 namespace fs = std::experimental::filesystem;
-
 
 class VersionTest : public testing::Test
 {
@@ -34,6 +34,82 @@ class VersionTest : public testing::Test
 
         std::string _directory;
 };
+
+class KeyManagerTest : public testing::Test
+{
+    protected:
+
+        virtual void SetUp()
+        {
+            char keyManagerDir[] = "./keyManagerXXXXXX";
+            _directory = mkdtemp(keyManagerDir);
+
+            if (_directory.empty())
+            {
+                throw std::bad_alloc();
+            }
+        }
+
+        virtual void TearDown()
+        {
+            fs::remove_all(_directory);
+        }
+
+        std::string _directory;
+};
+
+TEST_F(KeyManagerTest, TestGetPublicKeyPath)
+{
+    auto manifestFilePath = _directory + "/" + "MANIFEST";
+    auto publicKeyPath = "/usr/share";
+
+    std::ofstream file;
+    file.open(manifestFilePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "publickeypath=" << publicKeyPath << std::endl;
+    file.close();
+
+    EXPECT_EQ(KeyManager::getPublicKeyPath(manifestFilePath), publicKeyPath);
+}
+
+TEST_F(KeyManagerTest, TestIsPublicKeyFound)
+{
+    auto manifestFilePath = _directory + "/" + "MANIFEST";
+
+    std::ofstream file;
+    file.open(manifestFilePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file <<"-----BEGIN PUBLIC KEY-----" << std::endl;
+    file <<"MIIBIDANBgkqhkiG9w " << std::endl;
+    file <<"MIIBIDANBgkqhkiG9w " << std::endl;
+    file <<"-----END PUBLIC KEY-----" << std::endl;
+    file.close();
+
+    EXPECT_EQ(KeyManager::isPublicKeyFound(manifestFilePath), true);
+}
+
+TEST_F(KeyManagerTest, TestWritePublicKey)
+{
+    auto manifestFilePath = _directory + "/" + "MANIFEST";
+
+    std::ofstream file;
+    file.open(manifestFilePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file <<"-----BEGIN PUBLIC KEY-----" << std::endl;
+    file <<"MIIBIDANBgkqhkiG9w " << std::endl;
+    file <<"MIIBIDANBgkqhkiG9w " << std::endl;
+    file <<"-----END PUBLIC KEY-----" << std::endl;
+    file.close();
+
+    auto pubkeyFile = _directory + "/" + "pub.Pem";
+    KeyManager::writePublicKey(manifestFilePath, pubkeyFile);
+    
+    EXPECT_EQ(KeyManager::isPublicKeyFound(pubkeyFile), true);
+}
+
 
 /** @brief Make sure we correctly get the version and purpose from getValue()*/
 TEST_F(VersionTest, TestGetValue)

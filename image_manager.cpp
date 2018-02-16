@@ -15,6 +15,7 @@
 #include "version.hpp"
 #include "watch.hpp"
 #include "image_manager.hpp"
+#include "key_manager.hpp"
 
 namespace phosphor
 {
@@ -30,7 +31,6 @@ using ManifestFail = Software::Version::ManifestFileFailure;
 using UnTarFail = Software::Version::UnTarFailure;
 using InternalFail= Software::Version::InternalFailure;
 namespace fs = std::experimental::filesystem;
-
 struct RemovablePath
 {
     fs::path path;
@@ -120,6 +120,25 @@ int Manager::processImage(const std::string& tarFilePath)
         return -1;
     }
 
+    // Get public key path value
+    std::string manifestFile = manifestPath.string();
+    std::string publicKeyPath{};
+    try
+    {
+        publicKeyPath = KeyManager::getPublicKeyPath(manifestFile);
+        if (publicKeyPath.empty())
+        {
+            log<level::ERR>("Public key path is empty in the MANIFEST file");
+            report<ManifestFileFailure>(
+                ManifestFail::PATH(manifestPath.c_str()));
+        }
+    }
+    catch (const InternalFailure& e)
+    {
+        //Do not exit from image upload if failed to find public key path
+        log<level::ERR>("Error fail to read public key path from MANIFEST");
+    }
+
     auto purpose = Version::VersionPurpose::Unknown;
     try
     {
@@ -180,6 +199,26 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         log<level::INFO>("Software Object with the same version already exists",
                          entry("VERSION_ID=%s", id));
+    }
+
+    // At the end of validation override the existing public key value
+    auto pubKeyExist = KeyManager::isPublicKeyFound(manifestPath.string());
+    if (pubKeyExist)
+    {
+        try
+        {
+            //override the existing public key value
+            fs::path publicKeyFile{publicKeyPath};
+            publicKeyFile /= publicKeyFileName;
+            KeyManager::writePublicKey(manifestFile, publicKeyFile);
+        }
+        catch (InternalFailure& e)
+        {
+            log<level::ERR>("Error failed to overwrite public key file");
+            report<ManifestFileFailure>(
+                ManifestFail::PATH(manifestFile.c_str()));
+            return -1;
+        }
     }
     return 0;
 }

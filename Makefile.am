@@ -7,7 +7,8 @@ noinst_HEADERS = \
 	version.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
-	activation.hpp
+	activation.hpp \
+	key_manager.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -18,7 +19,9 @@ phosphor_version_software_manager_SOURCES = \
 	image_manager_main.cpp \
 	watch.cpp \
 	version.cpp \
-	image_manager.cpp
+	key_manager.cpp \
+	image_manager.cpp \
+	xyz/openbmc_project/Software/Version/error.cpp
 
 BUILT_SOURCES = \
 	xyz/openbmc_project/Software/Version/error.cpp \

@@ -7,7 +7,8 @@ noinst_HEADERS = \
 	version.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
-	activation.hpp
+	activation.hpp \
+	key_manager.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -37,7 +38,9 @@ phosphor_image_updater_SOURCES = \
 	version.cpp \
 	serialize.cpp \
 	item_updater.cpp \
-	item_updater_main.cpp
+	item_updater_main.cpp  \
+	key_manager.cpp
+
 
 nodist_phosphor_image_updater_SOURCES = \
 	org/openbmc/Associations/server.cpp

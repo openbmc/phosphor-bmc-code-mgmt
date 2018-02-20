@@ -1,4 +1,5 @@
 #include "version.hpp"
+#include "signature_config.hpp"
 #include <gtest/gtest.h>
 #include <experimental/filesystem>
 #include <stdlib.h>
@@ -9,7 +10,7 @@
 #include <openssl/sha.h>
 
 using namespace phosphor::software::manager;
-namespace fs = std::experimental::filesystem;
+using namespace phosphor::software::image;
 
 class VersionTest : public testing::Test
 {
@@ -69,4 +70,136 @@ TEST_F(VersionTest, TestGetId)
     std::string hexId = std::string(mdString);
     hexId = hexId.substr(0, 8);
     EXPECT_EQ(Version::getId(version), hexId);
+}
+
+class SignatureConfigTest : public testing::Test
+{
+    protected:
+
+        virtual void SetUp()
+        {
+            char SignatureConfigDir[] = "./SignatureConfigXXXXXX";
+            directory = mkdtemp(SignatureConfigDir);
+            if (directory.empty())
+            {
+                throw std::bad_alloc();
+            }
+            extractPath = directory;
+
+            signedConfPath = directory;
+            signedConfPath /= "activationdata";
+
+            fs::path manifestFilePath = extractPath;
+            manifestFilePath /= "MANIFEST";
+
+            std::ofstream manFile;
+            manFile.open(manifestFilePath, std::ofstream::out);
+            ASSERT_TRUE(manFile.is_open());
+            manFile << "HashType=" << "RSA-SHA512" << std::endl;
+            manFile << "KeyType=" << "OpenBMC" << std::endl;
+            manFile.close();
+
+            signatureConfig =
+                    std::make_unique<SignatureConfig>(extractPath, signedConfPath);
+
+        }
+
+        virtual void TearDown()
+        {
+            try
+            {
+                fs::remove_all(directory);
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "failed to remove files" << std::endl;
+            }
+        }
+
+        fs::path directory;
+        fs::path extractPath;
+        fs::path signedConfPath;
+
+        std::unique_ptr<SignatureConfig> signatureConfig;
+};
+
+TEST_F(SignatureConfigTest, TestGetHashTypeFromManifest)
+{
+    EXPECT_EQ(signatureConfig->getHashTypeFromManifest(), "RSA-SHA512");
+}
+
+TEST_F(SignatureConfigTest, TestGetKeyTypeFromManifest)
+{
+    EXPECT_EQ(signatureConfig->getKeyTypeFromManifest(), "OpenBMC");
+}
+
+TEST_F(SignatureConfigTest, TestSaveHashTypeToSystem)
+{
+    auto hashType = signatureConfig->getHashTypeFromManifest();
+
+    signatureConfig->saveHashTypeToSystem();
+
+    //check if the file is copied
+    fs::path hashFile{signedConfPath};
+    hashFile /= "OpenBMC";
+    hashFile /= HASH_FILE_NAME;
+
+    EXPECT_EQ(fs::exists(hashFile), true);
+
+    fs::remove(hashFile);
+}
+
+
+TEST_F(SignatureConfigTest, TestSavePublicKeyToSystem)
+{
+    fs::path tmpPubKeyFile{extractPath};
+    tmpPubKeyFile /= PUBLICKEY_FILE_NAME;
+
+    std::ofstream file;
+    file.open(tmpPubKeyFile.string(), std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+    file << "-----BEGIN PUBLIC KEY-----" << std::endl;
+    file << "a133#2a&*91ad~}" << std::endl;
+    file << "-----END PUBLIC KEY-----" << std::endl;
+    file.close();
+
+    signatureConfig->savePublicKeyToSystem();
+
+    //check if the file is copied
+    fs::path pubKeyFile{signedConfPath};
+    pubKeyFile /= "OpenBMC";
+    pubKeyFile /= PUBLICKEY_FILE_NAME;
+
+    EXPECT_EQ(fs::exists(pubKeyFile), true);
+
+    fs::remove(tmpPubKeyFile);
+    fs::remove(pubKeyFile);
+}
+
+TEST_F(SignatureConfigTest, TestGetKeyTypesFromSystem)
+{
+    //create key file
+    fs::path keypath{signedConfPath};
+    keypath /= "OpenBMC";
+    fs::create_directories(keypath);
+    keypath /= PUBLICKEY_FILE_NAME;
+
+    std::ofstream keyfile;
+    keyfile.open(keypath, std::ofstream::out);
+    ASSERT_TRUE(keyfile.is_open());
+    keyfile << "Dummy" << std::endl;
+    keyfile.close();
+
+    //create hash file
+    fs::path hashpath{signedConfPath};
+    hashpath /= "OpenBMC";
+    hashpath /= HASH_FILE_NAME;
+    std::ofstream hashfile;
+    hashfile.open(hashpath, std::ofstream::out);
+    ASSERT_TRUE(hashfile.is_open());
+    hashfile << "Dummy" << std::endl;
+    hashfile.close();
+
+    AvailableKeyTypes keys = signatureConfig->getAvailableKeyTypesFromSystem();
+    EXPECT_EQ(keys.size(), 1);
 }

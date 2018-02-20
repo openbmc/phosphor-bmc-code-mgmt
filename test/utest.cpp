@@ -1,16 +1,15 @@
 #include "version.hpp"
+#include "key_manager.hpp"
 #include <gtest/gtest.h>
 #include <experimental/filesystem>
 #include <stdlib.h>
 #include <fstream>
-#include <iostream>
 #include <sstream>
 #include <string>
 #include <openssl/sha.h>
 
 using namespace phosphor::software::manager;
 namespace fs = std::experimental::filesystem;
-
 
 class VersionTest : public testing::Test
 {
@@ -34,6 +33,121 @@ class VersionTest : public testing::Test
 
         std::string _directory;
 };
+
+class KeyManagerTest : public testing::Test
+{
+    protected:
+
+        virtual void SetUp()
+        {
+            char keyManagerDir[] = "./keyManagerXXXXXX";
+            _directory = mkdtemp(keyManagerDir);
+
+            if (_directory.empty())
+            {
+                throw std::bad_alloc();
+            }
+            manifestFilePath = _directory + "/" + "MANIFEST";
+            systemHashFilePath = _directory + "/" + "hash";
+            publicKeyPath = _directory + "/" + "key";
+
+            keyManager = std::make_unique<KeyManager>(manifestFilePath,
+                                systemHashFilePath, publicKeyPath);
+
+            std::ofstream manFile;
+            manFile.open(manifestFilePath, std::ofstream::out);
+            ASSERT_TRUE(manFile.is_open());
+            manFile << "HashType=" << sha512 << std::endl;
+            manFile << "KeyType=" << OpenBMC << std::endl;
+            manFile.close();
+        }
+
+        virtual void TearDown()
+        {
+            fs::remove_all(_directory);
+        }
+
+        std::string _directory;
+        std::string manifestFilePath;
+        std::string systemHashFilePath;
+        std::string publicKeyPath;
+
+        std::unique_ptr<KeyManager> keyManager;
+};
+
+TEST_F(KeyManagerTest, TestGetKeyTypeFromManifest)
+{
+    EXPECT_EQ(keyManager->getKeyTypeFromManifest(), OpenBMC);
+}
+
+TEST_F(KeyManagerTest, TestGetHashTypeFromManifest)
+{
+    EXPECT_EQ(keyManager->getHashTypeFromManifest(), sha512);
+}
+
+TEST_F(KeyManagerTest, TestGetHashTypeFromSystem)
+{
+    keyManager->saveHashTypeToSystem();
+    EXPECT_EQ(keyManager->getHashTypeFromSystem(), sha512);
+}
+
+TEST_F(KeyManagerTest, TestSavePublicKeyToSystem)
+{
+    fs::path path = _directory;
+    path /= publicKeyFileName;
+
+    std::ofstream file;
+    file.open(path.string(), std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+    file << "-----BEGIN PUBLIC KEY-----" << std::endl;
+    file << "a133#2a&*91ad~}" << std::endl;
+    file << "-----END PUBLIC KEY-----" << std::endl;
+    file.close();
+
+    keyManager->savePublicKeyToSystem(path.string());
+
+
+    //check if the file is copied
+    fs::path pubpath = publicKeyPath;
+    pubpath /= OpenBMC;
+    pubpath /= publicKeyFileName;
+    EXPECT_EQ(fs::exists(pubpath), true);
+}
+
+TEST_F(KeyManagerTest, TestGetAllKeysAndHashFromSystem)
+{
+    //create public key file
+    fs::path pubpath = publicKeyPath;
+    pubpath /= OpenBMC;
+    fs::create_directories(pubpath);
+    pubpath /= publicKeyFileName;
+    std::ofstream keyfile;
+    keyfile.open(pubpath.string(), std::ofstream::out);
+    keyfile << "-----BEGIN PUBLIC KEY-----" << std::endl;
+    keyfile << "a133#2a&*91ad~}" << std::endl;
+    keyfile << "-----END PUBLIC KEY-----" << std::endl;
+    keyfile.close();
+
+    //create hash key file
+    fs::path hashpath = systemHashFilePath;
+    hashpath /= OpenBMC;
+    fs::create_directories(hashpath);
+    hashpath /= hashFileName;
+    std::ofstream hashfile;
+    hashfile.open(hashpath.string(), std::ofstream::out);
+    hashfile << "HashType=" << sha512 << std::endl;
+    hashfile.close();
+
+    AllKeysAndHash keysAndHashList = keyManager->getAllKeysAndHashFromSystem();
+    for(auto key: keysAndHashList)
+    {
+        EXPECT_EQ(key.first, OpenBMC);
+        KeyHashPair pair = key.second;
+        EXPECT_EQ(pair.first, pubpath.string());
+        EXPECT_EQ(pair.second, hashpath.string());
+        break;
+    }
+}
 
 /** @brief Make sure we correctly get the version and purpose from getValue()*/
 TEST_F(VersionTest, TestGetValue)

@@ -120,6 +120,10 @@ AC_ARG_VAR(SIGNED_IMAGE_CONF_PATH, [Path of public key and hash function files])
 AS_IF([test "x$SIGNED_IMAGE_CONF_PATH" == "x"], [SIGNED_IMAGE_CONF_PATH="/etc/activationdata/"])
 AC_DEFINE_UNQUOTED([SIGNED_IMAGE_CONF_PATH], ["$SIGNED_IMAGE_CONF_PATH"], [Path of public key and hash function files])
 
+AC_ARG_VAR(SIGNATURE_FILE_EXT, [The extension of the Signature file])
+AS_IF([test "x$SIGNATURE_FILE_EXT" == "x"], [SIGNATURE_FILE_EXT=".sig"])
+AC_DEFINE_UNQUOTED([SIGNATURE_FILE_EXT], ["$SIGNATURE_FILE_EXT"], [The extension of the Signature file])
+
 AC_ARG_VAR(ACTIVE_BMC_MAX_ALLOWED, [The maximum allowed active BMC versions])
 AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
 AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],

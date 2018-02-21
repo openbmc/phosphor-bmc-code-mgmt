@@ -31,7 +31,8 @@ Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
     imageDirPath(imageDirPath),
     signedConfPath(signedConfPath),
-    publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME)
+    publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME),
+    isValidImage(false)
 {
     fs::path file(imageDirPath / MANIFEST_FILE_NAME);
 
@@ -90,6 +91,96 @@ inline const Hash_t Signature::getHashTypeFromFile(const HashFilePath& file)
     return Version::getValue(file, hashFunctionTag);
 }
 
+void Signature::updateHashTypeToSystem()
+{
+    try
+    {
+        // compute destination file based on key type
+        // Example: /etc/activationdata/key/OpenBmc/HashType.hash
+        if (keyType.empty())
+        {
+            log<level::ERR>("KeyType tag value not found in manifest file ");
+            elog<InternalFailure>();
+        }
+
+        fs::path filePath(signedConfPath);
+        filePath /= keyType;
+        fs::create_directories(filePath);
+
+        // add file name
+        filePath /= HASH_FILE_NAME;
+
+        // store the hash value
+        std::fstream outStream(filePath.string(), std::fstream::out);
+        outStream << hashFunctionTag << "=" << hashType << "\n";
+        outStream.close();
+
+        // set file permission to 600
+        fs::permissions(filePath, fs::perms::remove_perms | fs::perms::all);
+        fs::permissions(filePath, fs::perms::add_perms | fs::perms::owner_read |
+                        fs::perms::owner_write);
+    }
+    catch (const std::exception& e)
+    {
+        log<level::ERR>(e.what());
+        elog<InternalFailure>();
+    }
+}
+
+void  Signature::updatePublicKeyToSystem()
+{
+    try
+    {
+        // check if source file exists
+        if (!fs::exists(publicKeyFile))
+        {
+            log<level::ERR>("Public key file not found in the image",
+                            entry("FILE=%s", publicKeyFile.string().c_str()));
+            elog<InternalFailure>();
+        }
+
+        // compute destination file based on key type
+        // Example: /etc/activationdata/key/OpenBmc/publickey
+        fs::path destFile(signedConfPath);
+        destFile /= keyType;
+        fs::create_directories(destFile);
+
+        // add file name
+        destFile /= PUBLICKEY_FILE_NAME;
+
+        if (!fs::equivalent(publicKeyFile, destFile))
+        {
+            // copy file to destination
+            fs::copy_file(publicKeyFile, destFile);
+        }
+
+        // set file permission to 600
+        fs::permissions(destFile, fs::perms::remove_perms | fs::perms::all);
+        fs::permissions(destFile, fs::perms::add_perms | fs::perms::owner_read |
+                        fs::perms::owner_write);
+    }
+    catch (const std::exception& e)
+    {
+        log<level::ERR>(e.what());
+        elog<InternalFailure>();
+    }
+}
+
+void Signature::updateConfig()
+{
+    if (!isValidImage)
+    {
+        log<level::ERR>("Invalid image, Skipping signature config updates");
+        elog<InternalFailure>();
+    }
+
+    //Update image public key into the system
+    updatePublicKeyToSystem();
+
+    //Update Manifest file hash type into the system
+    updateHashTypeToSystem();
+}
+
 bool Signature::verify()
 {
     try
@@ -136,9 +227,12 @@ bool Signature::verify()
             }
         }
 
+        //Set image is valid.
+        isValidImage = true;
+
         log<level::INFO>("Sucessfully completed Signature vaildation.");
 
-        return true;
+        return isValidImage ;
     }
     catch (InternalFailure& e)
     {
@@ -255,8 +349,8 @@ bool Signature::verifyFile(const fs::path& file,
     auto signature = mapFile(sigFile, size);
 
     result = EVP_DigestVerifyFinal(rsaVerifyCtx.get(),
-                                reinterpret_cast<unsigned char*>(signature()),
-                                size);
+                                   reinterpret_cast<unsigned char*>(signature()),
+                                   size);
 
     //cleans up digest context.
     EVP_MD_CTX_cleanup(rsaVerifyCtx.get());

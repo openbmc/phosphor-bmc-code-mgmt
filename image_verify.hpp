@@ -77,6 +77,30 @@ class Signature
                         const fs::path& publicKey,
                         const std::string& hashFunc);
 
+        /**
+         * @brief Create RSA object from the public key
+         * @param[in]  - publickey
+         * @param[out] - RSA Object.
+         */
+        RSA* createPublicRSA(const fs::path& publicKey);
+
+        /**
+         * @brief Copy file contents into buffer
+         *
+         * @param[in]  - file path
+         * @param[out] - copy buffer
+         */
+        void getFileContent(const fs::path& path,
+                            std::vector<uint8_t>& fileData);
+
+        /**
+         * @brief Memory map the  file
+         * @param[in]  - file path
+         * @param[in]  - file size
+         * @param[out] - pointer to the mapped area
+         */
+        void* mapFile(const fs::path& path, size_t size);
+
         /** @brief Directory where software images are placed*/
         fs::path imageDirPath;
 

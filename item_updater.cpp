@@ -102,6 +102,15 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     if (activations.find(versionId) == activations.end())
     {
+        //Validate the signed image.
+        phosphor::software::image::Signature signature(filePath);
+
+        if(!signature.verify())
+        {
+            log<level::ERR>("Signature validation failed");
+            //TODO Add Error log.
+            return;
+        }
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
         ItemUpdater::ActivationStatus result =

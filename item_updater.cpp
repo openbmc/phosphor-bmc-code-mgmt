@@ -12,6 +12,7 @@
 #include <experimental/filesystem>
 #include "version.hpp"
 #include "serialize.hpp"
+#include "image_verify.hpp"
 
 namespace phosphor
 {
@@ -26,10 +27,8 @@ namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
+using namespace phosphor::software::image;
 namespace fs = std::experimental::filesystem;
-
-const std::vector<std::string> bmcImages = {"image-kernel", "image-rofs",
-                                            "image-rwfs", "image-u-boot"};
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {

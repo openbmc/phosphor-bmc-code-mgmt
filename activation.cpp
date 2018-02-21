@@ -3,6 +3,9 @@
 #include "config.h"
 #include "serialize.hpp"
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 namespace phosphor
 {
@@ -14,6 +17,8 @@ namespace updater
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+using InternalFailure =
+    sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 void Activation::subscribeToSystemdSignals()
 {
@@ -60,6 +65,18 @@ auto Activation::activation(Activations value) -> Activations
                     std::make_unique<ActivationBlocksTransition>(bus, path);
             }
 
+#ifdef WANT_SIGNATURE_VERIFY
+            //Validate the signed image.
+             if (!signatureObj.verify())
+            {
+                log<level::ERR>("Error occurred during image validation");
+                report<InternalFailure>();
+
+                return softwareServer::Activation::activation(
+                           softwareServer::Activation::Activations::Failed);
+            }
+#endif
+
             auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                               SYSTEMD_INTERFACE, "StartUnit");
             method.append("obmc-flash-bmc-ubirw.service", "replace");
@@ -88,6 +105,22 @@ auto Activation::activation(Activations value) -> Activations
             }
             else
             {
+#ifdef WANT_SIGNATURE_VERIFY
+                //Update signature config to the system
+                try
+                {
+                    signatureObj.updateConfig();
+                }
+                catch (InternalFailure& e)
+                {
+                    log<level::ERR>("Signature config update failed");
+                    report<InternalFailure>();
+
+                    return softwareServer::Activation::activation(
+                               softwareServer::Activation::Activations::Failed);
+                }
+#endif
+
                 activationProgress->progress(100);
 
                 activationBlocksTransition.reset(nullptr);

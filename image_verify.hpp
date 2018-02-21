@@ -1,5 +1,9 @@
 #pragma once
+#include <openssl/rsa.h>
 #include <experimental/filesystem>
+#include <unistd.h>
+#include <sys/mman.h>
+
 #include "key_manager.hpp"
 
 namespace phosphor
@@ -16,6 +20,80 @@ const std::vector<std::string> bmcImages = { "image-kernel",
                                              "image-rwfs",
                                              "image-u-boot"
                                            };
+/** @struct CustomFd
+ *
+ *  RAII wrapper for file descriptor.
+ */
+struct CustomFd
+{
+    public:
+        CustomFd() = delete;
+        CustomFd(const CustomFd&) = delete;
+        CustomFd& operator=(const CustomFd&) = delete;
+        CustomFd(CustomFd&&) = delete;
+        CustomFd& operator=(CustomFd&&) = delete;
+        /** @brief Saves File descriptor and uses it to do file operation
+          *
+          *  @param[in] fd - File descriptor
+          */
+        CustomFd(int fd) : fd(fd) {}
+
+        ~CustomFd()
+        {
+            if (fd >= 0)
+            {
+                close(fd);
+            }
+        }
+
+        int operator()() const
+        {
+            return fd;
+        }
+
+    private:
+        /** @brief File descriptor */
+        int fd = -1;
+};
+
+/** @struct CustomMap
+ *
+ *  RAII wrapper for mmap.
+ */
+struct CustomMap
+{
+    private:
+        /** @brief starting address of the map   */
+        void* addr;
+
+        /** @brief length of the mapping   */
+        size_t length;
+
+    public:
+        CustomMap() = delete;
+
+        /** @brief Saves starting address of the map and
+         *         and length of the file.
+         *  @param[in]  addr - Starting address of the map
+         *  @param[in]  length - length of the map
+         */
+        CustomMap(void* addr,  size_t length) :
+            addr(addr),
+            length(length) {}
+
+        ~CustomMap()
+        {
+            munmap(addr, length);
+        }
+
+        void* operator()() const
+        {
+            return addr;
+        }
+};
+
+
+
 /** @class Signature
  *  @brief Contains signature verification functions.
  *  @details The software image class that contains the signature
@@ -78,6 +156,21 @@ class Signature
                         const fs::path& signature,
                         const fs::path& publicKey,
                         const std::string& hashFunc);
+
+        /**
+         * @brief Create RSA object from the public key
+         * @param[in]  - publickey
+         * @param[out] - RSA Object.
+         */
+        inline RSA* createPublicRSA(const fs::path& publicKey);
+
+        /**
+         * @brief Memory map the  file
+         * @param[in]  - file path
+         * @param[in]  - file size
+         * @param[out] - Custom Mmap address
+         */
+        CustomMap mapFile(const fs::path& path, size_t size);
 
         /** @brief Directory where software images are placed*/
         fs::path imageDirPath;

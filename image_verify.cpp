@@ -260,6 +260,9 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     result = EVP_DigestVerifyFinal(
         rsaVerifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
         size);
+    result = EVP_DigestVerifyFinal(
+        rsaVerifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
+        size);
 
     // Check the verification result.
     if (result < 0)

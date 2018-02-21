@@ -147,7 +147,6 @@ class Signature
          *                     false if not
          */
         bool verify();
-
     private:
         /**
          * @brief Function used for system level file signature validation
@@ -226,6 +225,9 @@ class Signature
 
         /** @brief Hash type defined in mainfest file */
         Hash_t hashType;
+
+        /** @brief Image verify status. true indicates image is verified. */
+        bool isValidImage;
 };
 
 } // namespace image

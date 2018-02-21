@@ -31,7 +31,8 @@ Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
     imageDirPath(imageDirPath),
     signedConfPath(signedConfPath),
-    publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME)
+    publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME),
+    isValidImage(false)
 {
     fs::path file(imageDirPath / MANIFEST_FILE_NAME);
 
@@ -136,9 +137,12 @@ bool Signature::verify()
             }
         }
 
+        //Set image is valid.
+        isValidImage = true;
+
         log<level::INFO>("Sucessfully completed Signature vaildation.");
 
-        return true;
+        return isValidImage ;
     }
     catch (const InternalFailure& e)
     {
@@ -255,8 +259,8 @@ bool Signature::verifyFile(const fs::path& file,
     auto signature = mapFile(sigFile, size);
 
     result = EVP_DigestVerifyFinal(rsaVerifyCtx.get(),
-                                reinterpret_cast<unsigned char*>(signature()),
-                                size);
+                                   reinterpret_cast<unsigned char*>(signature()),
+                                   size);
 
     //cleans up digest context.
     EVP_MD_CTX_cleanup(rsaVerifyCtx.get());

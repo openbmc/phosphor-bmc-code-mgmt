@@ -3,6 +3,14 @@
 #include "config.h"
 #include "serialize.hpp"
 #include <phosphor-logging/log.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/elog-errors.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
+
+#ifdef WANT_SIGNATURE_VERIFY
+#include "image_verify.hpp"
+#include "config.h"
+#endif
 
 namespace phosphor
 {
@@ -14,6 +22,8 @@ namespace updater
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+using InternalFailure =
+    sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 void Activation::subscribeToSystemdSignals()
 {
@@ -59,6 +69,22 @@ auto Activation::activation(Activations value) -> Activations
                 activationBlocksTransition =
                     std::make_unique<ActivationBlocksTransition>(bus, path);
             }
+
+#ifdef WANT_SIGNATURE_VERIFY
+            using Signature = phosphor::software::image::Signature;
+
+            Signature signature(path, SIGNED_IMAGE_CONF_PATH)
+
+            //Validate the signed image.
+             if (!signature.verify())
+            {
+                log<level::ERR>("Error occurred during image validation");
+                report<InternalFailure>();
+
+                return softwareServer::Activation::activation(
+                           softwareServer::Activation::Activations::Failed);
+            }
+#endif
 
             auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                               SYSTEMD_INTERFACE, "StartUnit");

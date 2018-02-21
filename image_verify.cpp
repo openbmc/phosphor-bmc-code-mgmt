@@ -212,7 +212,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     }
 
     // Assign key to RSA.
-    EVP_PKEY_Ptr  pKeyPtr(EVP_PKEY_new(), ::EVP_PKEY_free);
+    EVP_PKEY_Ptr pKeyPtr(EVP_PKEY_new(), ::EVP_PKEY_free);
     EVP_PKEY_assign_RSA(pKeyPtr.get(), publicRSA);
 
     // Initializes a digest context.
@@ -231,8 +231,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     }
 
     auto result =
-        EVP_DigestVerifyInit(
-            rsaVerifyCtx.get(), nullptr, hashStruct, nullptr, pKeyPtr.get());
+        EVP_DigestVerifyInit(rsaVerifyCtx.get(), nullptr, hashStruct,
+                             nullptr, pKeyPtr.get());
 
     if (result <= 0)
     {

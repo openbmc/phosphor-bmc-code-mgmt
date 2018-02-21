@@ -6,6 +6,8 @@
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
+#include "image_verify.hpp"
+#include "config.h"
 
 namespace phosphor
 {
@@ -26,6 +28,7 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+using Signature = phosphor::software::image::Signature;
 
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
@@ -200,6 +203,23 @@ class Activation : public ActivationInherit
      * @param[in] activationStatus - The status of Activation
      * @param[in] assocs - Association objects
      */
+#ifdef WANT_SIGNATURE_VERIFY
+    Activation(sdbusplus::bus::bus& bus, const std::string& path,
+               ItemUpdater& parent, std::string& versionId,
+               sdbusplus::xyz::openbmc_project::Software::server::Activation::
+                   Activations activationStatus,
+               AssociationList& assocs) :
+        ActivationInherit(bus, path.c_str(), true),
+        bus(bus), path(path), parent(parent), versionId(versionId),
+        systemdSignals(
+            bus,
+            sdbusRule::type::signal() + sdbusRule::member("JobRemoved") +
+                sdbusRule::path("/org/freedesktop/systemd1") +
+                sdbusRule::interface("org.freedesktop.systemd1.Manager"),
+            std::bind(std::mem_fn(&Activation::unitStateChange), this,
+                      std::placeholders::_1)),
+        signatureObj(path, SIGNED_IMAGE_CONF_PATH)
+#else
     Activation(sdbusplus::bus::bus& bus, const std::string& path,
                ItemUpdater& parent, std::string& versionId,
                sdbusplus::xyz::openbmc_project::Software::server::Activation::
@@ -214,6 +234,7 @@ class Activation : public ActivationInherit
                 sdbusRule::interface("org.freedesktop.systemd1.Manager"),
             std::bind(std::mem_fn(&Activation::unitStateChange), this,
                       std::placeholders::_1))
+#endif
     {
         // Enable systemd signals
         subscribeToSystemdSignals();
@@ -315,6 +336,11 @@ class Activation : public ActivationInherit
     /** @brief Tracks if the service that updates the U-Boot environment
      *         variables has completed. **/
     bool ubootEnvVarsUpdated = false;
+
+#ifdef WANT_SIGNATURE_VERIFY
+    /** @brief Signature object **/
+    Signature signatureObj;
+#endif
 };
 
 } // namespace updater

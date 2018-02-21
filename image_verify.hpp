@@ -21,7 +21,7 @@ using HashFilePath = fs::path;
 using KeyHashPathPair = std::pair<HashFilePath, PublicKeyPath>;
 using AvailableKeyTypes = std::vector<Key_t>;
 
-//RAII support for openSSL functions. 
+//RAII support for openSSL functions.
 using RSA_Ptr = std::unique_ptr<RSA, decltype(&::RSA_free)>;
 using BIO_MEM_Ptr = std::unique_ptr<BIO, decltype(&::BIO_free)>;
 using EVP_PKEY_Ptr = std::unique_ptr<EVP_PKEY,
@@ -147,6 +147,11 @@ class Signature
          */
         bool verify();
 
+        /**
+         * @brief Update image provided public key and hash function
+         *        into the system.
+         */
+        void updateConfig();
     private:
         /**
          * @brief Function used for system level file signature validation
@@ -181,6 +186,20 @@ class Signature
          * @return Hash type
          */
         Hash_t getHashTypeFromFile(const HashFilePath& file);
+
+
+        /**
+         * @brief Save hash function details from MANIFEST file to the BMC
+         *
+         */
+        void updateHashTypeToSystem();
+
+        /**
+         *  @brief Save public key file from image to the BMC
+         *
+         *  @return true on success and false on failure
+         */
+        void updatePublicKeyToSystem();
 
         /**
          * @brief Verify the file signature using public key and hash function
@@ -225,6 +244,9 @@ class Signature
 
         /** @brief Hash type defined in mainfest file */
         Hash_t hashType;
+
+        /** @brief Image verify status. true indicates image is verified. */
+        bool isValidImage;
 };
 
 } // namespace image

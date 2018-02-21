@@ -108,6 +108,14 @@ AC_ARG_VAR(MANIFEST_FILE_NAME, [The name of the MANIFEST file])
 AS_IF([test "x$MANIFEST_FILE_NAME" == "x"], [MANIFEST_FILE_NAME="MANIFEST"])
 AC_DEFINE_UNQUOTED([MANIFEST_FILE_NAME], ["$MANIFEST_FILE_NAME"], [The name of the MANIFEST file])
 
+AC_ARG_VAR(PUBLICKEY_FILE_NAME, [The name of the public key file])
+AS_IF([test "x$PUBLICKEY_FILE_NAME" == "x"], [PUBLICKEY_FILE_NAME="publickey"])
+AC_DEFINE_UNQUOTED([PUBLICKEY_FILE_NAME], ["$PUBLICKEY_FILE_NAME"], [The name of the public key file])
+
+AC_ARG_VAR(SIGNATURE_FILE_EXT, [The extension of the Signature file])
+AS_IF([test "x$SIGNATURE_FILE_EXT" == "x"], [SIGNATURE_FILE_EXT=".sig"])
+AC_DEFINE_UNQUOTED([SIGNATURE_FILE_EXT], ["$SIGNATURE_FILE_EXT"], [The extension of the Signature file])
+
 AC_ARG_VAR(ACTIVE_BMC_MAX_ALLOWED, [The maximum allowed active BMC versions])
 AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
 AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],

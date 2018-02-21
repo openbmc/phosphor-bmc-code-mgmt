@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <systemd/sd-event.h>
 
 namespace phosphor

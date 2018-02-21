@@ -1,4 +1,8 @@
 #include <set>
+#include <fstream>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <openssl/err.h>
 
 #include "image_verify.hpp"
 #include "config.h"
@@ -138,7 +142,6 @@ bool Signature::verify()
     }
 }
 
-
 bool Signature::systemLevelVerify()
 {
     //Get available key types from the system.
@@ -195,7 +198,118 @@ bool Signature::verifyFile(const fs::path& file,
                            const fs::path& publicKey,
                            const std::string& hashFunc)
 {
+
+    //Check existence of the files in the system.
+    if (!(fs::exists(file) && fs::exists(sigFile)))
+    {
+        log<level::ERR>("Failed to find the Data or signature file.",
+                        entry("FILE=%s", file.c_str()));
+        elog<InternalFailure>();
+    }
+
+    //Create RSA.
+    auto publicRSA = createPublicRSA(publicKey);
+    if (publicRSA.get() == NULL)
+    {
+        log<level::ERR>("Failed to create RSA",
+                        entry("FILE=%s", publicKey.c_str()));
+        elog<InternalFailure>();
+    }
+
+    //Assign key to RSA.
+    auto pKey  = EVP_PKEY_new();
+    EVP_PKEY_assign_RSA(pKey, publicRSA.get());
+
+    //Initializes a digest context.
+    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_create(), ::EVP_MD_CTX_destroy);
+
+    //Adds all digest algorithms to the internal table
+    OpenSSL_add_all_digests();
+
+    //Create Hash structre.
+    auto hashStruct = EVP_get_digestbyname(hashFunc.c_str());
+    if (!hashStruct)
+    {
+        log<level::ERR>("EVP_get_digestbynam: Unknown message digest",
+                        entry("HASH=%s", hashFunc.c_str()));
+        elog<InternalFailure>();
+    }
+
+    auto result = EVP_DigestVerifyInit(rsaVerifyCtx.get(), NULL,
+                                       hashStruct, NULL, pKey);
+
+    if (result <= 0)
+    {
+        log<level::ERR>("Error occured during EVP_DigestVerifyInit",
+                        entry("ERRCODE=%lu", ERR_get_error()));
+        elog<InternalFailure>();
+    }
+
+    //Hash the data file and update the verification context
+    auto size = fs::file_size(file);
+    auto dataPtr = mapFile(file, size);
+
+    result = EVP_DigestVerifyUpdate(rsaVerifyCtx.get(), dataPtr(), size);
+    if (result <= 0)
+    {
+        log<level::ERR>("Error occured during EVP_DigestVerifyUpdate",
+                        entry("MY_ERRCODE=%lu", ERR_get_error()));
+        elog<InternalFailure>();
+    }
+
+    //Verify the data with signature.
+    size = fs::file_size(sigFile);
+    auto signature = mapFile(sigFile, size);
+
+    result = EVP_DigestVerifyFinal(rsaVerifyCtx.get(),
+                                reinterpret_cast<unsigned char*>(signature()),
+                                size);
+
+    //Check the verification result.
+    if (result < 0)
+    {
+        log<level::ERR>("Error occured during EVP_DigestVerifyFinal",
+                        entry("ERRCODE=%lu", ERR_get_error()));
+        elog<InternalFailure>();
+    }
+
+    if (result == 0)
+    {
+        log<level::ERR>("EVP_DigestVerifyFinal:Signature validation failed",
+                        entry("PATH=%s", sigFile.c_str()));
+        return false;
+    }
     return true;
+}
+
+inline RSA_Ptr Signature::createPublicRSA(const fs::path& publicKey)
+{
+    RSA* rsa = nullptr;
+    auto size = fs::file_size(publicKey);
+
+    //Read public key file
+    auto data = mapFile(publicKey, size);
+
+    BIO_MEM_Ptr keyBio(BIO_new_mem_buf(data(), -1), &::BIO_free);
+    if (keyBio.get() == nullptr)
+    {
+        log<level::ERR>("Failed to create new BIO Memory buffer");
+        elog<InternalFailure>();
+    }
+
+    RSA_Ptr rsaPtr(PEM_read_bio_RSA_PUBKEY(keyBio.get(),
+                   &rsa, nullptr, nullptr),
+                   ::RSA_free);
+    return rsaPtr;
+}
+
+CustomMap Signature::mapFile(const fs::path& path, size_t size)
+{
+
+    CustomFd fd(open(path.c_str(), O_RDONLY));
+
+    return CustomMap(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd(), 0),
+                     size);
 }
 
 } //namespace image

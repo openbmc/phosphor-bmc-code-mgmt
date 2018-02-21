@@ -1,6 +1,11 @@
 #pragma once
+#include <openssl/rsa.h>
+#include <openssl/evp.h>
+#include <openssl/pem.h>
 #include <experimental/filesystem>
 #include <set>
+#include <unistd.h>
+#include <sys/mman.h>
 
 namespace phosphor
 {
@@ -17,9 +22,94 @@ using HashFilePath = fs::path;
 using KeyHashPathPair = std::pair<HashFilePath, PublicKeyPath>;
 using AvailableKeyTypes = std::set<Key_t>;
 
+// RAII support for openSSL functions.
+using RSA_Ptr = std::unique_ptr<RSA, decltype(&::RSA_free)>;
+using BIO_MEM_Ptr = std::unique_ptr<BIO, decltype(&::BIO_free)>;
+using EVP_PKEY_Ptr = std::unique_ptr<EVP_PKEY, decltype(&::EVP_PKEY_free)>;
+using EVP_MD_CTX_Ptr =
+    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_destroy)>;
+
 // BMC flash image file name list.
 const std::vector<std::string> bmcImages = {"image-kernel", "image-rofs",
                                             "image-rwfs", "image-u-boot"};
+/** @struct CustomFd
+ *
+ *  RAII wrapper for file descriptor.
+ */
+struct CustomFd
+{
+  public:
+    CustomFd() = delete;
+    CustomFd(const CustomFd&) = delete;
+    CustomFd& operator=(const CustomFd&) = delete;
+    CustomFd(CustomFd&&) = default;
+    CustomFd& operator=(CustomFd&&) = default;
+    /** @brief Saves File descriptor and uses it to do file operation
+     *
+     *  @param[in] fd - File descriptor
+     */
+    CustomFd(int fd) : fd(fd)
+    {
+    }
+
+    ~CustomFd()
+    {
+        if (fd >= 0)
+        {
+            close(fd);
+        }
+    }
+
+    int operator()() const
+    {
+        return fd;
+    }
+
+  private:
+    /** @brief File descriptor */
+    int fd = -1;
+};
+
+/** @struct CustomMap
+ *
+ *  RAII wrapper for mmap.
+ */
+struct CustomMap
+{
+  private:
+    /** @brief starting address of the map   */
+    void* addr;
+
+    /** @brief length of the mapping   */
+    size_t length;
+
+  public:
+    CustomMap() = delete;
+    CustomMap(const CustomMap&) = delete;
+    CustomMap& operator=(const CustomMap&) = delete;
+    CustomMap(CustomMap&&) = default;
+    CustomMap& operator=(CustomMap&&) = default;
+
+    /** @brief Saves starting address of the map and
+     *         and length of the file.
+     *  @param[in]  addr - Starting address of the map
+     *  @param[in]  length - length of the map
+     */
+    CustomMap(void* addr, size_t length) : addr(addr), length(length)
+    {
+    }
+
+    ~CustomMap()
+    {
+        munmap(addr, length);
+    }
+
+    void* operator()() const
+    {
+        return addr;
+    }
+};
+
 /** @class Signature
  *  @brief Contains signature verification functions.
  *  @details The software image class that contains the signature
@@ -95,7 +185,22 @@ class Signature
     bool verifyFile(const fs::path& file, const fs::path& signature,
                     const fs::path& publicKey, const std::string& hashFunc);
 
-    /** @brief Directory where software images are placed */
+    /**
+     * @brief Create RSA object from the public key
+     * @param[in]  - publickey
+     * @param[out] - RSA Object.
+     */
+    inline RSA_Ptr createPublicRSA(const fs::path& publicKey);
+
+    /**
+     * @brief Memory map the  file
+     * @param[in]  - file path
+     * @param[in]  - file size
+     * @param[out] - Custom Mmap address
+     */
+    CustomMap mapFile(const fs::path& path, size_t size);
+
+    /** @brief Directory where software images are placed*/
     fs::path imageDirPath;
 
     /** @brief Path of public key and hash function files */

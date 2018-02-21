@@ -255,8 +255,8 @@ bool Signature::verifyFile(const fs::path& file,
     auto signature = mapFile(sigFile, size);
 
     result = EVP_DigestVerifyFinal(rsaVerifyCtx.get(),
-                                reinterpret_cast<unsigned char*>(signature()),
-                                size);
+                                   reinterpret_cast<unsigned char*>(signature()),
+                                   size);
 
     //cleans up digest context.
     EVP_MD_CTX_cleanup(rsaVerifyCtx.get());

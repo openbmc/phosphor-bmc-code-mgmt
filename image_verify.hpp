@@ -147,7 +147,6 @@ class Signature
          *                     false if not
          */
         bool verify();
-
     private:
         /**
          * @brief Function used for system level file signature validation

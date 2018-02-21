@@ -129,6 +129,15 @@ AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
 AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],
     [The maximum allowed active BMC versions])
 
+# setup signature verification
+AC_ARG_ENABLE([verify_signature],
+    AS_HELP_STRING([--enable-verify_signature], [Enable image signature validation.])
+    ,,[verify_signature=no])
+AS_IF([test x$verify_signature == xyes], \
+     [AC_DEFINE([WANT_SIGNATURE_VERIFY],"true",[Enable image signature validation.])],)
+
+AM_CONDITIONAL([WANT_SIGNATURE_VERIFY_BUILD], [test x$WANT_SIGNATURE_VERIFY = xtrue])
+
 AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
 

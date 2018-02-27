@@ -21,7 +21,7 @@ namespace Version
 {
 namespace Error
 {
-    struct UnTarFailure;
+struct UnTarFailure;
 } // namespace Error
 } // namespace Version
 } // namespace Software
@@ -41,7 +41,7 @@ namespace Version
 {
 namespace Error
 {
-    struct InternalFailure;
+struct InternalFailure;
 } // namespace Error
 } // namespace Version
 } // namespace Software
@@ -61,14 +61,13 @@ namespace Version
 {
 namespace Error
 {
-    struct ManifestFileFailure;
+struct ManifestFileFailure;
 } // namespace Error
 } // namespace Version
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
 } // namespace sdbusplus
-
 
 namespace phosphor
 {
@@ -91,16 +90,17 @@ struct PATH
 {
     static constexpr auto str = "PATH=%s";
     static constexpr auto str_short = "PATH";
-    using type = std::tuple<std::decay_t<decltype(str)>,const char*>;
-    explicit constexpr PATH(const char* a) : _entry(entry(str, a)) {};
+    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry(str, a)){};
     type _entry;
 };
 
-}  // namespace _UnTarFailure
+} // namespace _UnTarFailure
 
 struct UnTarFailure : public sdbusplus::exception_t
 {
-    static constexpr auto errName = "xyz.openbmc_project.Software.Version.UnTarFailure";
+    static constexpr auto errName =
+        "xyz.openbmc_project.Software.Version.UnTarFailure";
     static constexpr auto errDesc = "An error occurred during untar.";
     static constexpr auto L = level::ERR;
     using PATH = _UnTarFailure::PATH;
@@ -127,16 +127,15 @@ struct UnTarFailure : public sdbusplus::exception_t
 } // namespace openbmc_project
 } // namespace xyz
 
-
 namespace details
 {
 
 template <>
-struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::Error::UnTarFailure>
+struct map_exception_type<
+    sdbusplus::xyz::openbmc_project::Software::Version::Error::UnTarFailure>
 {
     using type = xyz::openbmc_project::Software::Version::UnTarFailure;
 };
-
 }
 
 namespace xyz
@@ -154,16 +153,17 @@ struct PATH
 {
     static constexpr auto str = "PATH=%s";
     static constexpr auto str_short = "PATH";
-    using type = std::tuple<std::decay_t<decltype(str)>,const char*>;
-    explicit constexpr PATH(const char* a) : _entry(entry(str, a)) {};
+    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry(str, a)){};
     type _entry;
 };
 
-}  // namespace _ManifestFileFailure
+} // namespace _ManifestFileFailure
 
 struct ManifestFileFailure : public sdbusplus::exception_t
 {
-    static constexpr auto errName = "xyz.openbmc_project.Software.Version.ManifestFileFailure";
+    static constexpr auto errName =
+        "xyz.openbmc_project.Software.Version.ManifestFileFailure";
     static constexpr auto errDesc = "An error when reading the Manifest file.";
     static constexpr auto L = level::ERR;
     using PATH = _ManifestFileFailure::PATH;
@@ -190,16 +190,15 @@ struct ManifestFileFailure : public sdbusplus::exception_t
 } // namespace openbmc_project
 } // namespace xyz
 
-
 namespace details
 {
 
 template <>
-struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::Error::ManifestFileFailure>
+struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::
+                              Error::ManifestFileFailure>
 {
     using type = xyz::openbmc_project::Software::Version::ManifestFileFailure;
 };
-
 }
 
 namespace xyz
@@ -217,17 +216,19 @@ struct FAIL
 {
     static constexpr auto str = "FAIL=%s";
     static constexpr auto str_short = "FAIL";
-    using type = std::tuple<std::decay_t<decltype(str)>,const char*>;
-    explicit constexpr FAIL(const char* a) : _entry(entry(str, a)) {};
+    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
+    explicit constexpr FAIL(const char* a) : _entry(entry(str, a)){};
     type _entry;
 };
 
-}  // namespace _InternalFailure
+} // namespace _InternalFailure
 
 struct InternalFailure : public sdbusplus::exception_t
 {
-    static constexpr auto errName = "xyz.openbmc_project.Software.Version.InternalFailure";
-    static constexpr auto errDesc = "The operation failed internally during processing the image.";
+    static constexpr auto errName =
+        "xyz.openbmc_project.Software.Version.InternalFailure";
+    static constexpr auto errDesc =
+        "The operation failed internally during processing the image.";
     static constexpr auto L = level::ERR;
     using FAIL = _InternalFailure::FAIL;
     using metadata_types = std::tuple<FAIL>;
@@ -253,18 +254,16 @@ struct InternalFailure : public sdbusplus::exception_t
 } // namespace openbmc_project
 } // namespace xyz
 
-
 namespace details
 {
 
 template <>
-struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::Error::InternalFailure>
+struct map_exception_type<
+    sdbusplus::xyz::openbmc_project::Software::Version::Error::InternalFailure>
 {
     using type = xyz::openbmc_project::Software::Version::InternalFailure;
 };
-
 }
-
 
 } // namespace logging
 

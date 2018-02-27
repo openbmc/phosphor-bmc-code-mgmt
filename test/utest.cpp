@@ -7,10 +7,10 @@
 #include <sstream>
 #include <string>
 #include <openssl/sha.h>
+#include "image_verify.hpp"
 
 using namespace phosphor::software::manager;
-namespace fs = std::experimental::filesystem;
-
+using namespace phosphor::software::image;
 
 class VersionTest : public testing::Test
 {
@@ -71,4 +71,36 @@ TEST_F(VersionTest, TestGetId)
     std::string hexId = std::string(mdString);
     hexId = hexId.substr(0, 8);
     EXPECT_EQ(Version::getId(version), hexId);
+}
+
+class SignatureTest : public testing::Test
+{
+    protected:
+
+        virtual void SetUp()
+        {
+            extractPath = "./images";
+            signedConfPath = "./conf";
+            if (!fs::is_directory(extractPath))
+            {
+                throw std::bad_alloc();
+            }
+            signature = std::make_unique<Signature>(
+                                                     extractPath,
+                                                     signedConfPath);
+        }
+
+        virtual void TearDown()
+        {
+        }
+
+        std::unique_ptr<Signature> signature;
+        fs::path extractPath;
+        fs::path signedConfPath;
+};
+
+/** @brief Make sure we verify the signed image()*/
+TEST_F(SignatureTest, TestVerify)
+{
+    EXPECT_EQ(signature->verify(), true);
 }

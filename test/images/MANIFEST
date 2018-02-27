@@ -1,0 +1,4 @@
+purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
+version=v2.1-71-gb27f209-dirty
+KeyType=OpenBMC
+HashType=RSA-SHA256

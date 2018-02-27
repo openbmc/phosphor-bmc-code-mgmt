@@ -41,6 +41,13 @@ class Signature
             keyManager(imageDirPath)
         {};
 
+        /** passing paths for unit testing purpose */
+        Signature(const fs::path& imageDirPath,
+                  const fs::path& signedConfPath):
+            imageDirPath(imageDirPath),
+            keyManager(imageDirPath, signedConfPath)
+        {};
+
         /**
          * @brief Image signature verification function.
          *        Verify the Manifest and public key file signature using the

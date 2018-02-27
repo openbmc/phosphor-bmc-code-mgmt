@@ -31,15 +31,14 @@ std::string Version::getValue(const std::string& manifestFilePath,
     {
         log<level::ERR>("Error MANIFESTFilePath is empty");
         elog<InvalidArgument>(
-                Argument::ARGUMENT_NAME("manifestFilePath"),
-                Argument::ARGUMENT_VALUE(manifestFilePath.c_str()));
+            Argument::ARGUMENT_NAME("manifestFilePath"),
+            Argument::ARGUMENT_VALUE(manifestFilePath.c_str()));
     }
 
     std::string value{};
     std::ifstream efile;
     std::string line;
-    efile.exceptions(std::ifstream::failbit |
-                     std::ifstream::badbit |
+    efile.exceptions(std::ifstream::failbit | std::ifstream::badbit |
                      std::ifstream::eofbit);
 
     // Too many GCC bugs (53984, 66145) to do this the right way...
@@ -79,10 +78,10 @@ std::string Version::getId(const std::string& version)
     SHA512_Init(&ctx);
     SHA512_Update(&ctx, version.c_str(), strlen(version.c_str()));
     SHA512_Final(digest, &ctx);
-    char mdString[SHA512_DIGEST_LENGTH*2+1];
+    char mdString[SHA512_DIGEST_LENGTH * 2 + 1];
     for (int i = 0; i < SHA512_DIGEST_LENGTH; i++)
     {
-        snprintf(&mdString[i*2], 3, "%02x", (unsigned int)digest[i]);
+        snprintf(&mdString[i * 2], 3, "%02x", (unsigned int)digest[i]);
     }
 
     // Only need 8 hex digits.

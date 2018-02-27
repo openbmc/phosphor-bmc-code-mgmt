@@ -17,10 +17,8 @@ using namespace phosphor::logging;
 
 void Activation::subscribeToSystemdSignals()
 {
-    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME,
-                                            SYSTEMD_PATH,
-                                            SYSTEMD_INTERFACE,
-                                            "Subscribe");
+    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                            SYSTEMD_INTERFACE, "Subscribe");
     this->bus.call_noreply(method);
 
     return;
@@ -28,17 +26,14 @@ void Activation::subscribeToSystemdSignals()
 
 void Activation::unsubscribeFromSystemdSignals()
 {
-    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME,
-                                            SYSTEMD_PATH,
-                                            SYSTEMD_INTERFACE,
-                                            "Unsubscribe");
+    auto method = this->bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                            SYSTEMD_INTERFACE, "Unsubscribe");
     this->bus.call_noreply(method);
 
     return;
 }
 
-auto Activation::activation(Activations value) ->
-        Activations
+auto Activation::activation(Activations value) -> Activations
 {
 
     if ((value != softwareServer::Activation::Activations::Active) &&
@@ -55,33 +50,25 @@ auto Activation::activation(Activations value) ->
 
             if (!activationProgress)
             {
-                activationProgress = std::make_unique<ActivationProgress>(bus,
-                                                                          path);
+                activationProgress =
+                    std::make_unique<ActivationProgress>(bus, path);
             }
 
             if (!activationBlocksTransition)
             {
                 activationBlocksTransition =
-                          std::make_unique<ActivationBlocksTransition>(
-                                    bus,
-                                    path);
+                    std::make_unique<ActivationBlocksTransition>(bus, path);
             }
 
-            auto method = bus.new_method_call(
-                    SYSTEMD_BUSNAME,
-                    SYSTEMD_PATH,
-                    SYSTEMD_INTERFACE,
-                    "StartUnit");
+            auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                              SYSTEMD_INTERFACE, "StartUnit");
             method.append("obmc-flash-bmc-ubirw.service", "replace");
             bus.call_noreply(method);
 
-            auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId +
-                    ".service";
-            method = bus.new_method_call(
-                    SYSTEMD_BUSNAME,
-                    SYSTEMD_PATH,
-                    SYSTEMD_INTERFACE,
-                    "StartUnit");
+            auto roServiceFile =
+                "obmc-flash-bmc-ubiro@" + versionId + ".service";
+            method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                         SYSTEMD_INTERFACE, "StartUnit");
             method.append(roServiceFile, "replace");
             bus.call_noreply(method);
 
@@ -95,12 +82,8 @@ auto Activation::activation(Activations value) ->
 
                 if (!redundancyPriority)
                 {
-                    redundancyPriority =
-                              std::make_unique<RedundancyPriority>(
-                                        bus,
-                                        path,
-                                        *this,
-                                        0);
+                    redundancyPriority = std::make_unique<RedundancyPriority>(
+                        bus, path, *this, 0);
                 }
             }
             else
@@ -122,7 +105,7 @@ auto Activation::activation(Activations value) ->
                 parent.createActiveAssociation(path);
 
                 return softwareServer::Activation::activation(
-                        softwareServer::Activation::Activations::Active);
+                    softwareServer::Activation::Activations::Active);
             }
         }
     }
@@ -137,12 +120,11 @@ auto Activation::activation(Activations value) ->
 void Activation::deleteImageManagerObject()
 {
     // Call the Delete object for <versionID> inside image_manager
-    auto method = this->bus.new_method_call(VERSION_BUSNAME,
-                                       path.c_str(),
-                                       "xyz.openbmc_project.Object.Delete",
-                                       "Delete");
+    auto method = this->bus.new_method_call(VERSION_BUSNAME, path.c_str(),
+                                            "xyz.openbmc_project.Object.Delete",
+                                            "Delete");
     auto mapperResponseMsg = bus.call(method);
-    //Check that the bus call didn't result in an error
+    // Check that the bus call didn't result in an error
     if (mapperResponseMsg.is_method_error())
     {
         log<level::ERR>("Error in Deleting image from image manager",
@@ -151,8 +133,8 @@ void Activation::deleteImageManagerObject()
     }
 }
 
-auto Activation::requestedActivation(RequestedActivations value) ->
-        RequestedActivations
+auto Activation::requestedActivation(RequestedActivations value)
+    -> RequestedActivations
 {
     rwVolumeCreated = false;
     roVolumeCreated = false;
@@ -160,16 +142,15 @@ auto Activation::requestedActivation(RequestedActivations value) ->
 
     if ((value == softwareServer::Activation::RequestedActivations::Active) &&
         (softwareServer::Activation::requestedActivation() !=
-                  softwareServer::Activation::RequestedActivations::Active))
+         softwareServer::Activation::RequestedActivations::Active))
     {
         if ((softwareServer::Activation::activation() ==
-                    softwareServer::Activation::Activations::Ready) ||
+             softwareServer::Activation::Activations::Ready) ||
             (softwareServer::Activation::activation() ==
-                    softwareServer::Activation::Activations::Failed))
+             softwareServer::Activation::Activations::Failed))
         {
             Activation::activation(
-                    softwareServer::Activation::Activations::Activating);
-
+                softwareServer::Activation::Activations::Activating);
         }
     }
     return softwareServer::Activation::requestedActivation(value);
@@ -194,23 +175,23 @@ uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 void Activation::unitStateChange(sdbusplus::message::message& msg)
 {
     if (softwareServer::Activation::activation() !=
-                softwareServer::Activation::Activations::Activating)
+        softwareServer::Activation::Activations::Activating)
     {
         return;
     }
 
-    uint32_t newStateID {};
+    uint32_t newStateID{};
     sdbusplus::message::object_path newStateObjPath;
     std::string newStateUnit{};
     std::string newStateResult{};
 
-    //Read the msg and populate each variable
+    // Read the msg and populate each variable
     msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
 
     auto rwServiceFile = "obmc-flash-bmc-ubirw.service";
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
-    auto ubootVarsServiceFile = "obmc-flash-bmc-updateubootvars@" + versionId +
-                                ".service";
+    auto ubootVarsServiceFile =
+        "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
 
     if (newStateUnit == rwServiceFile && newStateResult == "done")
     {
@@ -229,20 +210,19 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
         ubootEnvVarsUpdated = true;
     }
 
-    if (newStateUnit == rwServiceFile ||
-        newStateUnit == roServiceFile ||
+    if (newStateUnit == rwServiceFile || newStateUnit == roServiceFile ||
         newStateUnit == ubootVarsServiceFile)
     {
         if (newStateResult == "failed" || newStateResult == "dependency")
         {
             Activation::activation(
-                    softwareServer::Activation::Activations::Failed);
+                softwareServer::Activation::Activations::Failed);
         }
         else if ((rwVolumeCreated && roVolumeCreated) || // Volumes were created
                  (ubootEnvVarsUpdated)) // Enviroment variables were updated
         {
             Activation::activation(
-                    softwareServer::Activation::Activations::Activating);
+                softwareServer::Activation::Activations::Activating);
         }
     }
 
@@ -253,11 +233,8 @@ void ActivationBlocksTransition::enableRebootGuard()
 {
     log<level::INFO>("BMC image activating - BMC reboots are disabled.");
 
-    auto method = bus.new_method_call(
-            SYSTEMD_BUSNAME,
-            SYSTEMD_PATH,
-            SYSTEMD_INTERFACE,
-            "StartUnit");
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
     method.append("reboot-guard-enable.service", "replace");
     bus.call_noreply(method);
 }
@@ -266,11 +243,8 @@ void ActivationBlocksTransition::disableRebootGuard()
 {
     log<level::INFO>("BMC activation has ended - BMC reboots are re-enabled.");
 
-    auto method = bus.new_method_call(
-            SYSTEMD_BUSNAME,
-            SYSTEMD_PATH,
-            SYSTEMD_INTERFACE,
-            "StartUnit");
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
     method.append("reboot-guard-disable.service", "replace");
     bus.call_noreply(method);
 }

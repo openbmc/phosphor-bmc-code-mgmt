@@ -126,11 +126,11 @@ class Signature
         Signature& operator=(Signature&&) = delete;
         ~Signature() = default;
 
-        /** @brief Constructs Signature.
-         * @param[in]  imageDirPath - image path
-         * @param[in]  signedConfPath - Path of public key
-         *                              hash function files
-         */
+        /** passing paths for unit testing purpose
+          * @param[in]  imageDirPath - image path
+          * @param[in]  signedConfPath - Path of public key
+          *                              hash function files
+          */
         Signature(const fs::path& imageDirPath,
                   const fs::path& signedConfPath);
 

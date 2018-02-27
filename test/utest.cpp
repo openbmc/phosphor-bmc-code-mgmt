@@ -7,9 +7,10 @@
 #include <sstream>
 #include <string>
 #include <openssl/sha.h>
+#include "image_verify.hpp"
 
 using namespace phosphor::software::manager;
-namespace fs = std::experimental::filesystem;
+using namespace phosphor::software::image;
 
 class VersionTest : public testing::Test
 {
@@ -69,4 +70,143 @@ TEST_F(VersionTest, TestGetId)
     std::string hexId = std::string(mdString);
     hexId = hexId.substr(0, 8);
     EXPECT_EQ(Version::getId(version), hexId);
+}
+
+class SignatureTest : public testing::Test
+{
+    static constexpr auto opensslCmd = "openssl dgst -sha256 -sign ";
+
+  protected:
+    void command(const std::string& cmd)
+    {
+        std::cout << "COMMAND " << cmd << std::endl;
+        auto val = std::system(cmd.c_str());
+        if(val)
+        {
+            std::cout << "COMMAND Error: " << val << std::endl;
+        }
+    }
+    virtual void SetUp()
+    {
+        command("rm -rf extract*");
+        command("rm -rf conf*");
+        char tmpDir[] = "/tmp/extractXXXXXX";
+        std::string imageDir = mkdtemp(tmpDir);
+
+        char tmpConfDir[] = "/tmp/confXXXXXX";
+        std::string confDir = mkdtemp(tmpConfDir);
+
+        extractPath = imageDir;
+        extractPath /= "images";
+
+        signedConfPath = confDir;
+        signedConfPath /= "conf";
+
+        signedConfOpenBMCPath = confDir;
+        signedConfOpenBMCPath /= "conf";
+        signedConfOpenBMCPath /= "OpenBMC";
+
+        std::cout << "SETUP " << std::endl;
+
+        command("mkdir " + extractPath.string());
+        command("mkdir " + signedConfPath.string());
+        command("mkdir " + signedConfOpenBMCPath.string());
+
+        std::string hashFile = signedConfOpenBMCPath.string() + "/hashfunc";
+        command("echo \"HashType=RSA-SHA256\" > " + hashFile);
+
+        std::string manifestFile = extractPath.string() + "/" + "MANIFEST";
+        command("echo \"HashType=RSA-SHA256\" > " + manifestFile);
+        command("echo \"KeyType=OpenBMC\" >> " + manifestFile);
+
+        std::string kernelFile = extractPath.string() + "/" + "image-kernel";
+        command("echo \"image-kernel file \" > " + kernelFile);
+
+        std::string rofsFile = extractPath.string() + "/" + "image-rofs";
+        command("echo \"image-rofs file \" > " + rofsFile);
+
+        std::string rwfsFile = extractPath.string() + "/" + "image-rwfs";
+        command("echo \"image-rwfs file \" > " + rwfsFile);
+
+        std::string ubootFile = extractPath.string() + "/" + "image-u-boot";
+        command("echo \"image-u-boot file \" > " + ubootFile);
+
+        std::string pkeyFile = extractPath.string() + "/" + "private.pem";
+        command("openssl genrsa  -out " + pkeyFile + " 2048");
+
+        std::string pubkeyFile = extractPath.string() + "/" + "publickey";
+        command("openssl rsa -in " + pkeyFile + " -outform PEM " +
+                "-pubout -out " + pubkeyFile);
+
+        std::string pubKeyConfFile =
+            signedConfOpenBMCPath.string() + "/" + "publickey";
+        command("cp " + pubkeyFile + " " + signedConfOpenBMCPath.string());
+        command(opensslCmd + pkeyFile + " -out " + kernelFile + ".sig " +
+                kernelFile);
+
+        command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+                manifestFile);
+        command(opensslCmd + pkeyFile + " -out " + rofsFile + ".sig " +
+                rofsFile);
+        command(opensslCmd + pkeyFile + " -out " + rwfsFile + ".sig " +
+                rwfsFile);
+        command(opensslCmd + pkeyFile + " -out " + ubootFile + ".sig " +
+                ubootFile);
+        command(opensslCmd + pkeyFile + " -out " + pubkeyFile + ".sig " +
+                pubkeyFile);
+
+        signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    }
+    virtual void TearDown()
+    {
+        std::cout << "CAME TO TEAR DOWN " << std::endl;
+        command("rm -rf extract*");
+        command("rm -rf conf*");
+    }
+
+    std::unique_ptr<Signature> signature;
+    fs::path extractPath;
+    fs::path signedConfPath;
+    fs::path signedConfOpenBMCPath;
+};
+
+/** @brief Test for sucess scenario*/
+TEST_F(SignatureTest, TestSignatureVerify)
+{
+    EXPECT_TRUE(signature->verify());
+}
+
+/** @brief Test failure scenario with corrupted signature file*/
+TEST_F(SignatureTest, TestCorruptSignatureFile)
+{
+    // corrupt the image-kernel.sig file and ensure that verification fails
+    std::string kernelFile = extractPath.string() + "/" + "image-kernel";
+    command("echo \"dummy data\" > " + kernelFile + ".sig ");
+    EXPECT_FALSE(signature->verify());
+}
+
+/** @brief Test failure scenario with no public key in the image*/
+TEST_F(SignatureTest, TestNoPublicKeyInImage)
+{
+    // Remove publickey file from the image and ensure that verify fails
+    std::string pubkeyFile = extractPath.string() + "/" + "publickey";
+    command("rm " + pubkeyFile);
+    EXPECT_FALSE(signature->verify());
+}
+
+/** @brief Test failure scenario with invalid hash function value*/
+TEST_F(SignatureTest, TestInvalidHashValue)
+{
+    // Change the hashfunc value and ensure that verification fails
+    std::string hashFile = signedConfOpenBMCPath.string() + "/hashfunc";
+    command("echo \"HashType=md5\" > " + hashFile);
+    EXPECT_FALSE(signature->verify());
+}
+
+/** @brief Test for failure scenario with no config file in system*/
+TEST_F(SignatureTest, TestNoConfigFileInSystem)
+{
+    // Remove the conf folder in the system and ensure that verify fails
+    command("rm -rf " + signedConfOpenBMCPath.string());
+    EXPECT_FALSE(signature->verify());
 }

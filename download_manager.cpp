@@ -22,8 +22,7 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
-void Download::downloadViaTFTP(std::string fileName,
-                               std::string serverAddress)
+void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
 {
     using Argument = xyz::openbmc_project::Common::InvalidArgument;
 
@@ -69,10 +68,9 @@ void Download::downloadViaTFTP(std::string fileName,
     if (pid == 0)
     {
         // child process
-        execl("/usr/bin/tftp", "tftp", "-g", "-r",  fileName.c_str(),
+        execl("/usr/bin/tftp", "tftp", "-g", "-r", fileName.c_str(),
               serverAddress.c_str(), "-l",
-              (std::string{IMG_UPLOAD_DIR} + '/' + fileName).c_str(),
-              (char*)0);
+              (std::string{IMG_UPLOAD_DIR} + '/' + fileName).c_str(), (char*)0);
         // execl only returns on fail
         log<level::ERR>("Error occurred during the TFTP call");
         elog<InternalFailure>();
@@ -89,4 +87,3 @@ void Download::downloadViaTFTP(std::string fileName,
 } // namespace manager
 } // namespace software
 } // namespace phosphor
-

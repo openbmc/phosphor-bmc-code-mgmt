@@ -28,14 +28,16 @@ using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
 namespace Software = phosphor::logging::xyz::openbmc_project::Software;
 using ManifestFail = Software::Version::ManifestFileFailure;
 using UnTarFail = Software::Version::UnTarFailure;
-using InternalFail= Software::Version::InternalFailure;
+using InternalFail = Software::Version::InternalFailure;
 namespace fs = std::experimental::filesystem;
 
 struct RemovablePath
 {
     fs::path path;
 
-    RemovablePath(const fs::path& path) : path(path) {}
+    RemovablePath(const fs::path& path) : path(path)
+    {
+    }
     ~RemovablePath()
     {
         if (fs::exists(path))
@@ -59,7 +61,6 @@ int Manager::processImage(const std::string& tarFilePath)
                         entry("FILENAME=%s", tarFilePath.c_str()));
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
-
     }
     RemovablePath tarPathRemove(tarFilePath);
     fs::path tmpDirPath(std::string{IMG_UPLOAD_DIR});
@@ -144,7 +145,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     catch (const sdbusplus::exception::InvalidEnumString& e)
     {
-        log<level::ERR>("Error: Failed to convert manifest purpose to enum." \
+        log<level::ERR>("Error: Failed to convert manifest purpose to enum."
                         " Setting to Unknown.");
     }
 
@@ -175,22 +176,16 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Create Version object
-    auto objPath =  std::string{SOFTWARE_OBJPATH} + '/' + id;
+    auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
     if (versions.find(id) == versions.end())
     {
         auto versionPtr = std::make_unique<Version>(
-                                  bus,
-                                  objPath,
-                                  version,
-                                  purpose,
-                                  imageDirPath.string(),
-                                  std::bind(&Manager::erase,
-                                            this,
-                                            std::placeholders::_1));
+            bus, objPath, version, purpose, imageDirPath.string(),
+            std::bind(&Manager::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =
-                std::make_unique<phosphor::software::manager::Delete>(
-                    bus, objPath, *versionPtr);
+            std::make_unique<phosphor::software::manager::Delete>(bus, objPath,
+                                                                  *versionPtr);
         versions.insert(std::make_pair(id, std::move(versionPtr)));
     }
     else
@@ -211,9 +206,10 @@ void Manager::erase(std::string entryId)
 
     if (it->second->isFunctional())
     {
-        log<level::ERR>(("Error: Version " + entryId + \
-                         " is currently running on the BMC." \
-                         " Unable to remove.").c_str());
+        log<level::ERR>(("Error: Version " + entryId +
+                         " is currently running on the BMC."
+                         " Unable to remove.")
+                            .c_str());
         return;
     }
 
@@ -242,8 +238,7 @@ int Manager::unTar(const std::string& tarFilePath,
         return -1;
     }
 
-    log<level::INFO>("Untaring",
-                     entry("FILENAME=%s", tarFilePath.c_str()),
+    log<level::INFO>("Untaring", entry("FILENAME=%s", tarFilePath.c_str()),
                      entry("EXTRACTIONDIR=%s", extractDirPath.c_str()));
     int status = 0;
     pid_t pid = fork();
@@ -251,8 +246,8 @@ int Manager::unTar(const std::string& tarFilePath,
     if (pid == 0)
     {
         // child process
-        execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(),
-              "-C", extractDirPath.c_str(), (char*)0);
+        execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), "-C",
+              extractDirPath.c_str(), (char*)0);
         // execl only returns on fail
         log<level::ERR>("Failed to execute untar file",
                         entry("FILENAME=%s", tarFilePath.c_str()));

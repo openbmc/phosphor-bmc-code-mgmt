@@ -20,27 +20,25 @@ using DownloadInherit = sdbusplus::server::object::object<
  */
 class Download : public DownloadInherit
 {
-    public:
-        /** @brief Constructs Download Software Manager
-         *
-         * @param[in] bus       - The Dbus bus object
-         * @param[in] objPath   - The Dbus object path
-         */
-        Download(sdbusplus::bus::bus& bus,
-                const std::string& objPath) : DownloadInherit(
-                    bus, (objPath).c_str()) {};
+  public:
+    /** @brief Constructs Download Software Manager
+     *
+     * @param[in] bus       - The Dbus bus object
+     * @param[in] objPath   - The Dbus object path
+     */
+    Download(sdbusplus::bus::bus& bus, const std::string& objPath) :
+        DownloadInherit(bus, (objPath).c_str()){};
 
-        /**
-         * @brief Download the specified image via TFTP
-         *
-         * @param[in] fileName      - The name of the file to transfer.
-         * @param[in] serverAddress - The TFTP Server IP Address.
-         **/
-        void downloadViaTFTP(std::string fileName,
-                             std::string serverAddress) override;
+    /**
+     * @brief Download the specified image via TFTP
+     *
+     * @param[in] fileName      - The name of the file to transfer.
+     * @param[in] serverAddress - The TFTP Server IP Address.
+     **/
+    void downloadViaTFTP(std::string fileName,
+                         std::string serverAddress) override;
 };
 
 } // namespace manager
 } // namespace software
 } // namespace phosphor
-

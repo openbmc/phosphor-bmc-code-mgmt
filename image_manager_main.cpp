@@ -14,18 +14,15 @@ int main(int argc, char* argv[])
     sd_event* loop = nullptr;
     sd_event_default(&loop);
 
-    sdbusplus::server::manager::manager objManager(bus,
-                                                   SOFTWARE_OBJPATH);
+    sdbusplus::server::manager::manager objManager(bus, SOFTWARE_OBJPATH);
     bus.request_name(VERSION_BUSNAME);
 
     try
     {
         phosphor::software::manager::Manager imageManager(bus);
         phosphor::software::manager::Watch watch(
-                loop,
-                std::bind(std::mem_fn(&Manager::processImage),
-                          &imageManager,
-                          std::placeholders::_1));
+            loop, std::bind(std::mem_fn(&Manager::processImage), &imageManager,
+                            std::placeholders::_1));
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }

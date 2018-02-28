@@ -351,12 +351,19 @@ void ItemUpdater::erase(std::string entryId)
 
 void ItemUpdater::deleteAll()
 {
+    std::vector<std::string> deletableVersions;
+
     for (const auto& versionIt : versions)
     {
         if (!versionIt.second->isFunctional())
         {
-            ItemUpdater::erase(versionIt.first);
+            deletableVersions.push_back(versionIt.first);
         }
+    }
+
+    for (const auto& deletableIt : deletableVersions)
+    {
+        ItemUpdater::erase(deletableIt);
     }
 
     // Remove any volumes that do not match current versions.

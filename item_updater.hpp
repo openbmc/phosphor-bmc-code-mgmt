@@ -208,6 +208,11 @@ class ItemUpdater : public ItemUpdaterInherit
      * @param[in]  versionId - The version id.
      */
     void removeReadOnlyPartition(std::string versionId);
+
+    /** @brief Copies uboot from the currently booted BMC chip to the
+     *  alternate chip.
+     */
+    void mirrorUbootToAlt();
 };
 
 } // namespace updater

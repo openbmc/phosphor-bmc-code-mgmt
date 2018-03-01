@@ -288,6 +288,8 @@ void ItemUpdater::processBMCImage()
             log<level::ERR>(e.what());
         }
     }
+
+    mirrorUbootToAlt();
     return;
 }
 
@@ -701,6 +703,24 @@ void ItemUpdater::freeSpace()
         erase(versionsPQ.top().second);
         versionsPQ.pop();
         count--;
+    }
+}
+
+void ItemUpdater::mirrorUbootToAlt()
+{
+    auto method = bus.new_method_call(
+            SYSTEMD_BUSNAME,
+            SYSTEMD_PATH,
+            SYSTEMD_INTERFACE,
+            "StartUnit");
+    auto mirrorUbootFile = "obmc-flash-bmc-mirroruboot.service";
+    method.append(mirrorUbootFile, "replace");
+    auto result = bus.call(method);
+
+    //Check that the bus call didn't result in an error
+    if (result.is_method_error())
+    {
+        log<level::ERR>("Failed to copy uboot to alternate chip");
     }
 }
 

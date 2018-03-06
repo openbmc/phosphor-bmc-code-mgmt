@@ -2,8 +2,11 @@
 #include <experimental/filesystem>
 #include <cereal/archives/json.hpp>
 #include <fstream>
+#include <ctime>
+#include <unistd.h>
 #include "serialize.hpp"
 #include <sdbusplus/server.hpp>
+#include <phosphor-logging/log.hpp>
 
 namespace phosphor
 {
@@ -13,6 +16,8 @@ namespace updater
 {
 
 namespace fs = std::experimental::filesystem;
+
+using namespace phosphor::logging;
 
 void storeToFile(std::string versionId, uint8_t priority)
 {
@@ -34,6 +39,9 @@ void storeToFile(std::string versionId, uint8_t priority)
                                       SYSTEMD_INTERFACE, "StartUnit");
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
+
+    // Wait for service file to complete. Usually takes 1-2 seconds.
+    waitForServiceFile(serviceFile, 4);
 }
 
 bool restoreFromFile(std::string versionId, uint8_t& priority)
@@ -102,6 +110,32 @@ void removeFile(std::string versionId)
     {
         fs::remove(path);
     }
+}
+
+void waitForServiceFile(const std::string& serviceFile, int timeout)
+{
+    auto bus = sdbusplus::bus::new_default();
+
+    std::time_t start = time(0);
+    std::time_t end = time(0);
+
+    while (end - start < timeout)
+    {
+        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                          SYSTEMD_INTERFACE, "GetUnit");
+        method.append(serviceFile);
+        auto result = bus.call(method);
+
+        if (result.is_method_error())
+        {
+            return;
+        }
+
+        usleep(1000);
+        end = time(0);
+    }
+
+    log<level::ERR>("Service file timed out!");
 }
 
 } // namespace phosphor

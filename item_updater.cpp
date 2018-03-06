@@ -575,6 +575,10 @@ void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
         log<level::ERR>("Failed to update u-boot env variables",
                         entry("VERSIONID=%s", versionId.c_str()));
     }
+
+    // On average this service takes about 5 seconds. Therefore setting
+    // it to 3x average time should be more than sufficient.
+    waitForServiceFile(updateEnvVarsFile, 15);
 }
 
 void ItemUpdater::resetUbootEnvVars()

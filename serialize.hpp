@@ -30,6 +30,13 @@ bool restoreFromFile(std::string versionId, uint8_t& priority);
  **/
 void removeFile(std::string versionId);
 
+/** @brief Delays until the completion of the supplied service file or until
+ *  specified timeout is reached.
+ *  @param[in] serviceFile - Service file to wait for.
+ *  @param[in] timeout - Fallback timeout so we don't get stuck.
+ **/
+void waitForServiceFile(const std::string& serviceFile, int timeout);
+
 } // namespace phosphor
 } // namespace software
 } // namespace openpower

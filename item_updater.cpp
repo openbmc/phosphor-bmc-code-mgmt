@@ -2,6 +2,7 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <ctime>
 #include <phosphor-logging/log.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <elog-errors.hpp>
@@ -561,6 +562,27 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
     return true;
 }
 
+void ItemUpdater::waitForServiceFile(std::string serviceFile, int timeout)
+{
+    std::time_t start = time(0);
+    std::time_t end = time(0);
+
+    while (end - start < timeout)
+    {
+        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                          SYSTEMD_INTERFACE, "GetUnit");
+        method.append(serviceFile);
+        auto result = bus.call(method);
+
+        if (result.is_method_error())
+        {
+            break;
+        }
+
+        end = time(0);
+    }
+}
+
 void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
@@ -576,6 +598,8 @@ void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
         log<level::ERR>("Failed to update u-boot env variables",
                         entry("VERSIONID=%s", versionId.c_str()));
     }
+
+    ItemUpdater::waitForServiceFile(updateEnvVarsFile, 8);
 }
 
 void ItemUpdater::resetUbootEnvVars()

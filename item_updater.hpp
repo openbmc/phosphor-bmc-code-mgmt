@@ -185,6 +185,10 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void createFunctionalAssociation(const std::string& path);
 
+    /** @brief Waits for the completion of supplied service file or until
+      * timeout is reached. */
+    void waitForServiceFile(std::string serviceFile, int timeout);
+
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus::bus& bus;
 

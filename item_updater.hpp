@@ -163,6 +163,10 @@ class ItemUpdater : public ItemUpdaterInherit
           * recreation upon reboot. */
         void reset() override;
 
+        /** @brief Time delay until completion of service file or timeout is
+          * reached. */
+        void waitForServiceFile(std::string serviceFile, int timeout);
+
         /**
          * @brief Enables field mode, if value=true.
          *

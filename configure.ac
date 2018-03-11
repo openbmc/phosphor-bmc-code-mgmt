@@ -5,12 +5,12 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([subdir-objects -Wall -Werror foreign dist-xz])
 AM_SILENT_RULES([yes])
 
-# Checks for programs
+#Checks for programs
 AC_PROG_CXX
 AC_PROG_INSTALL #Checks/sets the install variable to be used
 AC_PROG_MAKE_SET
 
-# Check for libraries
+#Check for libraries
 PKG_CHECK_MODULES([SYSTEMD], [libsystemd >= 221])
 PKG_CHECK_MODULES([PHOSPHOR_DBUS_INTERFACES], [phosphor-dbus-interfaces],,\
     AC_MSG_ERROR(["Requires phosphor-dbus-interfaces package."]))
@@ -18,15 +18,15 @@ PKG_CHECK_MODULES([SDBUSPLUS], [sdbusplus],,
     AC_MSG_ERROR(["Requires sdbusplus package."]))
 PKG_CHECK_MODULES([PHOSPHOR_LOGGING], [phosphor-logging],,\
     AC_MSG_ERROR(["Requires phosphor-logging package."]))
-# Check for sdbus++
+#Check for sdbus++
 AC_PATH_PROG([SDBUSPLUSPLUS], [sdbus++])
 AS_IF([test "x$SDBUSPLUSPLUS" == "x"],
     AC_MSG_ERROR(["Requires sdbus++"]))
 
-# Checks for library functions
+#Checks for library functions
 LT_INIT # Required for systemd linking
 
-# Check/set gtest specific functions.
+#Check / set gtest specific functions.
 AX_PTHREAD([GTEST_CPPFLAGS="-DGTEST_HAS_PTHREAD=1"],[GTEST_CPPFLAGS="-DGTEST_HAS_PTHREAD=0"])
 AC_SUBST(GTEST_CPPFLAGS)
 AC_ARG_ENABLE([oe-sdk],
@@ -47,7 +47,7 @@ AS_IF([test "x$enable_oe_sdk" == "xyes"],
     AC_SUBST([OESDK_TESTCASE_FLAGS], [$testcase_flags])
 )
 
-# Checks for typedefs, structures, and compiler characteristics.
+#Checks for typedefs, structures, and compiler characteristics.
 AX_CXX_COMPILE_STDCXX_14([noext])
 AX_APPEND_COMPILE_FLAGS([-Wall -Werror], [CXXFLAGS])
 
@@ -108,15 +108,38 @@ AC_ARG_VAR(MANIFEST_FILE_NAME, [The name of the MANIFEST file])
 AS_IF([test "x$MANIFEST_FILE_NAME" == "x"], [MANIFEST_FILE_NAME="MANIFEST"])
 AC_DEFINE_UNQUOTED([MANIFEST_FILE_NAME], ["$MANIFEST_FILE_NAME"], [The name of the MANIFEST file])
 
+AC_ARG_VAR(PUBLICKEY_FILE_NAME, [The name of the public key file])
+AS_IF([test "x$PUBLICKEY_FILE_NAME" == "x"], [PUBLICKEY_FILE_NAME="publickey"])
+AC_DEFINE_UNQUOTED([PUBLICKEY_FILE_NAME], ["$PUBLICKEY_FILE_NAME"], [The name of the public key file])
+
+AC_ARG_VAR(HASH_FILE_NAME, [Hash file name])
+AS_IF([test "x$HASH_FILE_NAME" == "x"], [HASH_FILE_NAME="hashfunc"])
+AC_DEFINE_UNQUOTED([HASH_FILE_NAME], ["$HASH_FILE_NAME"], [The name of the hash file])
+
+AC_ARG_VAR(SIGNED_IMAGE_CONF_PATH, [Path of public key and hash function files])
+AS_IF([test "x$SIGNED_IMAGE_CONF_PATH" == "x"], [SIGNED_IMAGE_CONF_PATH="/etc/activationdata/"])
+AC_DEFINE_UNQUOTED([SIGNED_IMAGE_CONF_PATH], ["$SIGNED_IMAGE_CONF_PATH"], [Path of public key and hash function files])
+
+AC_ARG_VAR(SIGNATURE_FILE_EXT, [The extension of the Signature file])
+AS_IF([test "x$SIGNATURE_FILE_EXT" == "x"], [SIGNATURE_FILE_EXT=".sig"])
+AC_DEFINE_UNQUOTED([SIGNATURE_FILE_EXT], ["$SIGNATURE_FILE_EXT"], [The extension of the Signature file])
+
 AC_ARG_VAR(ACTIVE_BMC_MAX_ALLOWED, [The maximum allowed active BMC versions])
 AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
 AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],
     [The maximum allowed active BMC versions])
 
+#setup signature verification
+AC_ARG_ENABLE([verify_signature],
+    AS_HELP_STRING([--enable-verify_signature], [Enable image signature validation.])
+    ,,[verify_signature=no])
+AS_IF([test x$verify_signature == xyes], \
+     [AC_DEFINE([WANT_SIGNATURE_VERIFY],[],[Enable image signature validation.])],)
+
 AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
 
-# Check for header files.
+#Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])
 

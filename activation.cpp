@@ -250,7 +250,7 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
                 softwareServer::Activation::Activations::Failed);
         }
         else if ((rwVolumeCreated && roVolumeCreated) || // Volumes were created
-                 (ubootEnvVarsUpdated)) // Enviroment variables were updated
+                 (ubootEnvVarsUpdated)) // Environment variables were updated
         {
             Activation::activation(
                 softwareServer::Activation::Activations::Activating);

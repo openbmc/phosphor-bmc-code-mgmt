@@ -148,7 +148,7 @@ class Signature
   private:
     /**
      * @brief Function used for system level file signature validation
-     *        of image specfic publickey file and manifest file
+     *        of image specific publickey file and manifest file
      *        using the available public keys and hash functions
      *        in the system.
      *        Refer code-update documenation for more details.

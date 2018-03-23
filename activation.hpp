@@ -75,7 +75,7 @@ class RedundancyPriority : public RedundancyPriorityInherit
         bus.emit_interfaces_removed(path.c_str(), interfaces);
     }
 
-    /** @brief Overriden Priority property set function, calls freePriority
+    /** @brief Overridden Priority property set function, calls freePriority
      *         to bump the duplicated priority values.
      *
      *  @param[in] value - uint8_t

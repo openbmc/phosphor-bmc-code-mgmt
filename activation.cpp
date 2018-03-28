@@ -26,6 +26,7 @@ using namespace phosphor::logging;
 #ifdef WANT_SIGNATURE_VERIFY
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 #endif
 
 void Activation::subscribeToSystemdSignals()
@@ -86,8 +87,12 @@ auto Activation::activation(Activations value) -> Activations
                 log<level::ERR>("Error occurred during image validation");
                 report<InternalFailure>();
 
-                return softwareServer::Activation::activation(
-                    softwareServer::Activation::Activations::Failed);
+                // Stop the code update process, if fieldMode is enabled.
+                if (parent.control::FieldMode::fieldModeEnabled())
+                {
+                    return softwareServer::Activation::activation(
+                        softwareServer::Activation::Activations::Failed);
+                }
             }
 #endif
 

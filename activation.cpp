@@ -9,7 +9,6 @@
 #include <phosphor-logging/elog-errors.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include "image_verify.hpp"
-#include "config.h"
 #endif
 
 namespace phosphor
@@ -26,6 +25,7 @@ using namespace phosphor::logging;
 #ifdef WANT_SIGNATURE_VERIFY
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 #endif
 
 void Activation::subscribeToSystemdSignals()
@@ -86,8 +86,16 @@ auto Activation::activation(Activations value) -> Activations
                 log<level::ERR>("Error occurred during image validation");
                 report<InternalFailure>();
 
-                return softwareServer::Activation::activation(
-                    softwareServer::Activation::Activations::Failed);
+                // Stop the activation process, if fieldMode is enabled.
+                if (parent.control::FieldMode::fieldModeEnabled())
+                {
+                    // Cleanup
+                    activationBlocksTransition.reset(nullptr);
+                    activationProgress.reset(nullptr);
+
+                    return softwareServer::Activation::activation(
+                        softwareServer::Activation::Activations::Failed);
+                }
             }
 #endif
 

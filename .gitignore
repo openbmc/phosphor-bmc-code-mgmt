@@ -43,6 +43,8 @@ Makefile.in
 /phosphor-version-software-manager
 /phosphor-download-manager
 /phosphor-image-updater
+xyz/openbmc_project/Software/Version
+org/openbmc/Associations
 Makefile
 .deps
 /test/utest

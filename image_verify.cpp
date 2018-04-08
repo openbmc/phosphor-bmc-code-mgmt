@@ -221,7 +221,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();
 
-    // Create Hash structre.
+    // Create Hash structure.
     auto hashStruct = EVP_get_digestbyname(hashFunc.c_str());
     if (!hashStruct)
     {

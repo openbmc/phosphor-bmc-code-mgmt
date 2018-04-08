@@ -9,6 +9,7 @@ Makefile.in
 /py-compile
 /test-driver
 /ylwrap
+.dirstamp
 
 # http://www.gnu.org/software/autoconf
 
@@ -43,6 +44,10 @@ Makefile.in
 /phosphor-version-software-manager
 /phosphor-download-manager
 /phosphor-image-updater
+server.hpp
+server.cpp
+error.hpp
+error.cpp
 Makefile
 .deps
 /test/utest

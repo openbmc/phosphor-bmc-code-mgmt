@@ -151,7 +151,7 @@ class Signature
      *        of image specific publickey file and manifest file
      *        using the available public keys and hash functions
      *        in the system.
-     *        Refer code-update documenation for more details.
+     *        Refer code-update documentation for more details.
      */
     bool systemLevelVerify();
 

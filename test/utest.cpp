@@ -173,7 +173,7 @@ class SignatureTest : public testing::Test
     fs::path signedConfOpenBMCPath;
 };
 
-/** @brief Test for sucess scenario*/
+/** @brief Test for success scenario*/
 TEST_F(SignatureTest, TestSignatureVerify)
 {
     EXPECT_TRUE(signature->verify());

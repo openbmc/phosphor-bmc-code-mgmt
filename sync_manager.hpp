@@ -1,5 +1,6 @@
 #pragma once
 #include <experimental/filesystem>
+#include <sdbusplus/bus.hpp>
 
 namespace phosphor
 {
@@ -17,12 +18,24 @@ namespace fs = std::experimental::filesystem;
 class Sync
 {
   public:
-    Sync() = default;
+    Sync() = delete;
     Sync(const Sync&) = delete;
     Sync& operator=(const Sync&) = delete;
     Sync(Sync&&) = default;
     Sync& operator=(Sync&&) = default;
     ~Sync() = default;
+
+    /**
+     * @brief Constructs Sync Class
+     * @param[in] bus - The Dbus bus object
+     */
+    Sync(sdbusplus::bus::bus& bus){};
+
+    /**
+     * @brief Sync requested file.
+     * @param[out] result - 0 if successful.
+     */
+    int processFile();
 };
 
 } // namespace manager

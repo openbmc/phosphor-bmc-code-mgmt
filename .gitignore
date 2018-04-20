@@ -44,6 +44,7 @@ Makefile.in
 /phosphor-version-software-manager
 /phosphor-download-manager
 /phosphor-image-updater
+/phosphor-sync-manager
 server.hpp
 server.cpp
 error.hpp

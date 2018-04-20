@@ -77,6 +77,11 @@ AS_IF([test "x$DOWNLOAD_BUSNAME" == "x"],
     [DOWNLOAD_BUSNAME="xyz.openbmc_project.Software.Download"])
 AC_DEFINE_UNQUOTED([DOWNLOAD_BUSNAME], ["$DOWNLOAD_BUSNAME"], [The DBus busname to own])
 
+AC_ARG_VAR(SYNC_BUSNAME, [The D-Bus busname to own])
+AS_IF([test "x$SYNC_BUSNAME" == "x"],
+    [SYNC_BUSNAME="xyz.openbmc_project.Software.Sync"])
+AC_DEFINE_UNQUOTED([SYNC_BUSNAME], ["$SYNC_BUSNAME"], [The D-Bus busname to own])
+
 AC_DEFINE([MAPPER_BUSNAME], ["xyz.openbmc_project.ObjectMapper"], [Object mapper bus name])
 AC_DEFINE([MAPPER_INTERFACE], ["xyz.openbmc_project.ObjectMapper"], [Object mapper interface])
 AC_DEFINE([MAPPER_PATH], ["/xyz/openbmc_project/object_mapper"], [Object mapper DBUS path])
@@ -138,6 +143,13 @@ AM_CONDITIONAL([WANT_SIGNATURE_VERIFY_BUILD], [test "x$enable_verify_signature" 
 
 AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
+
+# setup sync of filesystem files
+AC_ARG_ENABLE([sync_bmc_files],
+    AS_HELP_STRING([--enable-sync_bmc_files], [Enable sync of filesystem files.]))
+AS_IF([test "x$enable_sync_bmc_files" == "xyes"], \
+    [AC_DEFINE([WANT_SYNC],[],[Enable sync of filesystem files.])])
+AM_CONDITIONAL([WANT_SYNC], [test "x$enable_sync_bmc_files" == "xyes"])
 
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])

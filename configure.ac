@@ -96,6 +96,8 @@ AC_DEFINE(MEDIA_DIR, "/media/",
     [The base dir where all RO partitions are mounted])
 AC_DEFINE(BMC_ROFS_PREFIX, "/media/rofs-",
     [The prefix path for the versioned read-only bmc partitions])
+AC_DEFINE(ALT_RWFS, "/media/alt/var",
+    [The mount point for the alt rwfs])
 AC_DEFINE(PERSIST_DIR, "/var/lib/obmc/phosphor-bmc-code-mgmt/",
     [The dir where activation data is stored in files])
 AC_DEFINE(SYSTEMD_BUSNAME, "org.freedesktop.systemd1",

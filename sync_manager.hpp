@@ -1,4 +1,5 @@
 #pragma once
+#include <sdbusplus/bus.hpp>
 
 namespace phosphor
 {
@@ -15,12 +16,22 @@ namespace manager
 class Sync
 {
   public:
-    Sync() = default;
     Sync(const Sync&) = delete;
     Sync& operator=(const Sync&) = delete;
     Sync(Sync&&) = default;
     Sync& operator=(Sync&&) = default;
     ~Sync() = default;
+
+    /**
+     * @brief Constructs Sync Class
+     */
+    Sync() {};
+
+    /**
+     * @brief Process requested file or directory.
+     * @param[out] result - 0 if successful.
+     */
+    int processEntry();
 };
 
 } // namespace manager

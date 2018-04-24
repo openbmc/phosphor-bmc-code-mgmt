@@ -109,6 +109,14 @@ AC_ARG_VAR(IMG_UPLOAD_DIR, [Directory where downloaded software images are place
 AS_IF([test "x$IMG_UPLOAD_DIR" == "x"], [IMG_UPLOAD_DIR="/tmp/images"])
 AC_DEFINE_UNQUOTED([IMG_UPLOAD_DIR], ["$IMG_UPLOAD_DIR"], [Directory where downloaded software images are placed])
 
+AC_ARG_VAR(SYNC_LIST_FILE_NAME, [The name of the sync list file])
+AS_IF([test "x$SYNC_LIST_FILE_NAME" == "x"], [SYNC_LIST_FILE_NAME="synclist"])
+AC_DEFINE_UNQUOTED([SYNC_LIST_FILE_NAME], ["$SYNC_LIST_FILE_NAME"], [The name of the sync list file])
+
+AC_ARG_VAR(SYNC_LIST_DIR_PATH, [The path to the sync list file directory])
+AS_IF([test "x$SYNC_LIST_DIR_PATH" == "x"], [SYNC_LIST_DIR_PATH="/etc/"])
+AC_DEFINE_UNQUOTED([SYNC_LIST_DIR_PATH], ["$SYNC_LIST_DIR_PATH"], [The path to the sync list file directory])
+
 AC_ARG_VAR(MANIFEST_FILE_NAME, [The name of the MANIFEST file])
 AS_IF([test "x$MANIFEST_FILE_NAME" == "x"], [MANIFEST_FILE_NAME="MANIFEST"])
 AC_DEFINE_UNQUOTED([MANIFEST_FILE_NAME], ["$MANIFEST_FILE_NAME"], [The name of the MANIFEST file])

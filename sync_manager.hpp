@@ -31,9 +31,11 @@ class Sync
 
     /**
      * @brief Process requested file or directory.
+     * @param[in] mask - The inotify mask.
+     * @param[in] entryPath - The file or directory to process.
      * @param[out] result - 0 if successful.
      */
-    int processEntry();
+    int processEntry(int mask, const std::string& entryPath);
 };
 
 } // namespace manager

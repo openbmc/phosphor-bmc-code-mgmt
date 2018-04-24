@@ -21,6 +21,12 @@ class Sync
     Sync(Sync&&) = default;
     Sync& operator=(Sync&&) = default;
     ~Sync() = default;
+
+    /**
+     * @brief Process requested file or directory.
+     * @param[out] result - 0 if successful.
+     */
+    int processEntry();
 };
 
 } // namespace manager

@@ -45,9 +45,14 @@ phosphor_image_updater_SOURCES += image_verify.cpp
 endif
 
 if WANT_SYNC
-noinst_HEADERS += sync_manager.hpp
+noinst_HEADERS += \
+	sync_manager.hpp \
+	sync_watch.hpp
 sbin_PROGRAMS += phosphor-sync-software-manager
-phosphor_sync_software_manager_SOURCES = sync_manager_main.cpp
+phosphor_sync_software_manager_SOURCES = \
+	sync_manager.cpp \
+	sync_watch.cpp \
+	sync_manager_main.cpp
 phosphor_sync_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_sync_software_manager_LDFLAGS = $(generic_ldflags)
 endif

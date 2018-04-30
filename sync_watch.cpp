@@ -17,7 +17,7 @@ using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
 SyncWatch::SyncWatch(sd_event* loop,
-                     std::function<int(std::string&)> syncCallback) :
+                     std::function<int(int, std::string&)> syncCallback) :
     syncCallback(syncCallback)
 {
     auto syncfile = fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME;
@@ -37,7 +37,8 @@ SyncWatch::SyncWatch(sd_event* loop,
                 continue;
             }
 
-            auto wd = inotify_add_watch(fd, line.c_str(), IN_CLOSE_WRITE);
+            auto wd =
+                inotify_add_watch(fd, line.c_str(), IN_CLOSE_WRITE | IN_DELETE);
             if (-1 == wd)
             {
                 log<level::ERR>("inotify_add_watch failed",
@@ -81,6 +82,40 @@ SyncWatch::~SyncWatch()
 int SyncWatch::callback(sd_event_source* s, int fd, uint32_t revents,
                         void* userdata)
 {
+    if (!(revents & EPOLLIN))
+    {
+        return 0;
+    }
+
+    constexpr auto maxBytes = 1024;
+    uint8_t buffer[maxBytes];
+    auto bytes = read(fd, buffer, maxBytes);
+    if (0 > bytes)
+    {
+        return 0;
+    }
+
+    auto syncWatch = static_cast<SyncWatch*>(userdata);
+    auto offset = 0;
+    while (offset < bytes)
+    {
+        auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
+
+        // fileMap<fd, std::map<wd, path>>
+        auto it1 = syncWatch->fileMap.find(fd);
+        if (it1 != syncWatch->fileMap.end())
+        {
+            auto it2 = it1->second.begin();
+            auto rc = syncWatch->syncCallback(event->mask, it2->second);
+            if (rc)
+            {
+                return rc;
+            }
+        }
+
+        offset += offsetof(inotify_event, name) + event->len;
+    }
+
     return 0;
 }
 

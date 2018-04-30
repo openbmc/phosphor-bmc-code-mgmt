@@ -26,7 +26,8 @@ class SyncWatch
      *  @param[in] syncCallback - The callback function for processing
      *                            files
      */
-    SyncWatch(sd_event* loop, std::function<int(std::string&)> syncCallback);
+    SyncWatch(sd_event* loop,
+              std::function<int(int, std::string&)> syncCallback);
 
     SyncWatch(const SyncWatch&) = delete;
     SyncWatch& operator=(const SyncWatch&) = delete;
@@ -55,7 +56,7 @@ class SyncWatch
     std::map<fd, std::map<wd, std::string>> fileMap;
 
     /** @brief The callback function for processing the inotify event */
-    std::function<int(std::string&)> syncCallback;
+    std::function<int(int, std::string&)> syncCallback;
 };
 
 } // namespace manager

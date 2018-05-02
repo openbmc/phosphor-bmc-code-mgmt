@@ -62,7 +62,7 @@ AC_DEFINE(ACTIVE_FWD_ASSOCIATION, "active", [The name of the active's forward as
 AC_DEFINE(ACTIVE_REV_ASSOCIATION, "software_version", [The name of the active's reverse association.])
 
 AC_DEFINE(FUNCTIONAL_FWD_ASSOCIATION, "functional", [The name of the functional forward association.])
-AC_DEFINE(FUNCTIONAL_REV_ASSOCIATION, "functional", [The name of the functional reverse association.])
+AC_DEFINE(FUNCTIONAL_REV_ASSOCIATION, "software_version", [The functional reverse association.])
 
 AC_ARG_VAR(VERSION_BUSNAME, [The Dbus busname to own])
 AS_IF([test "x$VERSION_BUSNAME" == "x"], [VERSION_BUSNAME="xyz.openbmc_project.Software.Version"])

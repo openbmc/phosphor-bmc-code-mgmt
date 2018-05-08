@@ -23,7 +23,8 @@ int main(int argc, char* argv[])
 
         using namespace phosphor::software::manager;
         phosphor::software::manager::SyncWatch watch(
-            *loop, std::bind(std::mem_fn(&Sync::processEntry), &syncManager));
+            *loop, std::bind(std::mem_fn(&Sync::processEntry), &syncManager,
+                            std::placeholders::_1, std::placeholders::_2));
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }

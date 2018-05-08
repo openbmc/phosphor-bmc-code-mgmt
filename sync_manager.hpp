@@ -1,11 +1,15 @@
 #pragma once
 
+#include <experimental/filesystem>
+
 namespace phosphor
 {
 namespace software
 {
 namespace manager
 {
+
+namespace fs = std::experimental::filesystem;
 
 /** @class Sync
  *  @brief Contains filesystem sync functions.
@@ -24,9 +28,11 @@ class Sync
 
     /**
      * @brief Process requested file or directory.
+     * @param[in] mask - The inotify mask.
+     * @param[in] entryPath - The file or directory to process.
      * @param[out] result - 0 if successful.
      */
-    int processEntry();
+    int processEntry(int mask, const fs::path& entryPath);
 };
 
 } // namespace manager

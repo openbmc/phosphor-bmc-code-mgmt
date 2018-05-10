@@ -67,18 +67,44 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
 
     if (pid == 0)
     {
-        // child process
-        execl("/usr/bin/tftp", "tftp", "-g", "-r", fileName.c_str(),
-              serverAddress.c_str(), "-l",
-              (std::string{IMG_UPLOAD_DIR} + '/' + fileName).c_str(), (char*)0);
-        // execl only returns on fail
-        log<level::ERR>("Error occurred during the TFTP call");
-        elog<InternalFailure>();
+        pid_t nextPid = fork();
+        if (nextPid == 0)
+        {
+            // child process
+            execl("/usr/bin/tftp", "tftp", "-g", "-r", fileName.c_str(),
+                  serverAddress.c_str(), "-l",
+                  (std::string{IMG_UPLOAD_DIR} + '/' + fileName).c_str(),
+                  (char*)0);
+            // execl only returns on fail
+            log<level::ERR>("Error occurred during the TFTP call");
+            elog<InternalFailure>();
+        }
+        else if (nextPid < 0)
+        {
+            log<level::ERR>("Error occurred during fork");
+            elog<InternalFailure>();
+        }
+        // do nothing as parent if all is going well
+        // when parent exits, child will be reparented under init
+        // and then be reaped properly
+        exit(0);
     }
     else if (pid < 0)
     {
         log<level::ERR>("Error occurred during fork");
         elog<InternalFailure>();
+    }
+    else
+    {
+        int status;
+        if (waitpid(pid, &status, 0) < 0)
+        {
+            log<level::ERR>("waitpid error");
+        }
+        else if (WEXITSTATUS(status) != 0)
+        {
+            log<level::ERR>("failed to launch tftp");
+        }
     }
 
     return;

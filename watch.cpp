@@ -60,9 +60,12 @@ Watch::Watch(sd_event* loop, std::function<int(std::string&)> imageCallback) :
 
 Watch::~Watch()
 {
-    if ((-1 != fd) && (-1 != wd))
+    if (-1 != fd)
     {
-        inotify_rm_watch(fd, wd);
+        if (-1 != wd)
+        {
+            inotify_rm_watch(fd, wd);
+        }
         close(fd);
     }
 }

@@ -80,6 +80,14 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
         log<level::ERR>("Error occurred during fork");
         elog<InternalFailure>();
     }
+    else
+    {
+        int status;
+        if (waitpid(pid, &status, 0) < 0)
+            log<level::ERR>("waitpid error");
+        if (WEXITSTATUS(status) != 0)
+            log<level::ERR>("tftp returned non-zero");
+    }
 
     return;
 }

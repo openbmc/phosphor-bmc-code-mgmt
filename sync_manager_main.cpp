@@ -19,7 +19,6 @@ int main(int argc, char* argv[])
     try
     {
         phosphor::software::manager::Sync syncManager;
-        bus.request_name(SYNC_BUSNAME);
 
         using namespace phosphor::software::manager;
         phosphor::software::manager::SyncWatch watch(

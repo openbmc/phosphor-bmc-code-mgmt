@@ -57,6 +57,7 @@ auto Activation::activation(Activations value) -> Activations
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+#ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
             parent.freeSpace();
@@ -137,6 +138,28 @@ auto Activation::activation(Activations value) -> Activations
                     softwareServer::Activation::Activations::Active);
             }
         }
+#else // !UBIFS_LAYOUT
+
+        parent.freeSpace();
+
+        flashWrite();
+
+        if (!redundancyPriority)
+        {
+            redundancyPriority = std::make_unique<RedundancyPriority>(
+                bus, path, *this, 0);
+        }
+
+        // Remove version object from image manager
+        Activation::deleteImageManagerObject();
+
+        // Create active association
+        parent.createActiveAssociation(path);
+
+        log<level::INFO>("BMC image ready, need reboot to get activated.");
+        return softwareServer::Activation::activation(
+            softwareServer::Activation::Activations::Active);
+#endif
     }
     else
     {

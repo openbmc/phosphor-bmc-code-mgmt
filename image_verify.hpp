@@ -29,8 +29,13 @@ using EVP_MD_CTX_Ptr =
     std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_destroy)>;
 
 // BMC flash image file name list.
+#ifdef UBIFS_LAYOUT
 const std::vector<std::string> bmcImages = {"image-kernel", "image-rofs",
                                             "image-rwfs", "image-u-boot"};
+#else
+const std::vector<std::string> bmcImages = {"image-bmc"};
+#endif
+
 /** @struct CustomFd
  *
  *  RAII wrapper for file descriptor.

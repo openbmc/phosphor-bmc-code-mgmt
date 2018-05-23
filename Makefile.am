@@ -39,7 +39,11 @@ phosphor_image_updater_SOURCES = \
 	item_updater.cpp \
 	item_updater_main.cpp
 
+if UBIFS_LAYOUT
 include ubi/Makefile.am.include
+else
+include fixed/Makefile.am.include
+endif
 
 if WANT_SIGNATURE_VERIFY_BUILD
 noinst_HEADERS += image_verify.hpp

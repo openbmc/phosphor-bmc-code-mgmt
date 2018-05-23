@@ -8,8 +8,9 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/elog-errors.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
-#include "image_verify.hpp"
 #endif
+
+#include "image_verify.hpp"
 
 namespace phosphor
 {
@@ -57,6 +58,7 @@ auto Activation::activation(Activations value) -> Activations
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+#ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
             parent.freeSpace();
@@ -147,6 +149,34 @@ auto Activation::activation(Activations value) -> Activations
                     softwareServer::Activation::Activations::Active);
             }
         }
+#else
+        static constexpr auto initramfsPath = "/run/initramfs";
+        static constexpr auto bmcStateService = "xyz.openbmc_project.State.BMC";
+        static constexpr auto bmcStatePath = "/xyz/openbmc_project/state/bmc0";
+        static constexpr auto bmcStateIntf = bmcStateService;
+        static constexpr auto reqTransition = "RequestedBMCTransition";
+
+        // For non-ubifs code update, putting image in /run/initramfs
+        // and reboot, an updater script will program the image to flash
+        log<level::INFO>("BMC image activating - will reboot and program.");
+        fs::path uploadDir(IMG_UPLOAD_DIR);
+        fs::path toPath(initramfsPath);
+        for (auto& bmcImage : phosphor::software::image::bmcImages)
+        {
+            fs::copy_file(uploadDir / versionId / bmcImage,
+                          toPath / bmcImage,
+                          fs::copy_options::overwrite_existing);
+        }
+        auto method = bus.new_method_call(bmcStateService,
+                                          bmcStatePath,
+                                          "org.freedesktop.DBus.Properties",
+                                          "Set");
+        sdbusplus::message::variant<std::string> value =
+            "xyz.openbmc_project.State.BMC.Transition.Reboot";
+        method.append(bmcStateIntf, reqTransition, value);
+        bus.call_noreply(method);
+
+#endif
     }
     else
     {

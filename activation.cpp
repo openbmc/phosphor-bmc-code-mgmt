@@ -1,6 +1,5 @@
 #include "activation.hpp"
 #include "item_updater.hpp"
-#include "config.h"
 #include "serialize.hpp"
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/exception.hpp>
@@ -98,25 +97,16 @@ auto Activation::activation(Activations value) -> Activations
             }
 
 #ifdef WANT_SIGNATURE_VERIFY
-            using Signature = phosphor::software::image::Signature;
-
             fs::path uploadDir(IMG_UPLOAD_DIR);
-
-            Signature signature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH);
-
-            // Validate the signed image.
-            if (!signature.verify())
+            if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
             {
-                log<level::ERR>("Error occurred during image validation");
-                report<InternalFailure>();
-
+                onVerifyFailed();
                 // Stop the activation process, if fieldMode is enabled.
                 if (parent.control::FieldMode::fieldModeEnabled())
                 {
                     // Cleanup
                     activationBlocksTransition.reset(nullptr);
                     activationProgress.reset(nullptr);
-
                     return softwareServer::Activation::activation(
                         softwareServer::Activation::Activations::Failed);
                 }
@@ -163,6 +153,19 @@ auto Activation::activation(Activations value) -> Activations
         }
 #else // !UBIFS_LAYOUT
 
+#ifdef WANT_SIGNATURE_VERIFY
+        fs::path uploadDir(IMG_UPLOAD_DIR);
+        if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
+        {
+            onVerifyFailed();
+            // Stop the activation process, if fieldMode is enabled.
+            if (parent.control::FieldMode::fieldModeEnabled())
+            {
+                return softwareServer::Activation::activation(
+                    softwareServer::Activation::Activations::Failed);
+            }
+        }
+#endif
         parent.freeSpace();
 
         flashWrite();
@@ -259,6 +262,24 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
 
     return;
 }
+
+#ifdef WANT_SIGNATURE_VERIFY
+bool Activation::verifySignature(const fs::path& imageDir,
+                                 const fs::path& confDir)
+{
+    using Signature = phosphor::software::image::Signature;
+
+    Signature signature(imageDir, confDir);
+
+    return signature.verify();
+}
+
+void Activation::onVerifyFailed()
+{
+    log<level::ERR>("Error occurred during image validation");
+    report<InternalFailure>();
+}
+#endif
 
 void ActivationBlocksTransition::enableRebootGuard()
 {

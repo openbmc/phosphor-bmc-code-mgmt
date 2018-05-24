@@ -7,12 +7,22 @@
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
 
+#include "config.h"
+
+#ifdef WANT_SIGNATURE_VERIFY
+#include <experimental/filesystem>
+#endif
+
 namespace phosphor
 {
 namespace software
 {
 namespace updater
 {
+
+#ifdef WANT_SIGNATURE_VERIFY
+namespace fs = std::experimental::filesystem;
+#endif
 
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
@@ -315,6 +325,21 @@ class Activation : public ActivationInherit
     /** @brief Tracks if the service that updates the U-Boot environment
      *         variables has completed. **/
     bool ubootEnvVarsUpdated = false;
+
+#ifdef WANT_SIGNATURE_VERIFY
+  private:
+    /** @brief Verify signature of the images.
+     *
+     * @param[in] imageDir - The path of images to verify
+     * @param[in] confDir - The path of configs for verification
+     *
+     * @return true if verification successful and false otherwise
+     */
+    bool verifySignature(const fs::path& imageDir, const fs::path& confDir);
+
+    /** @brief Called when image verification fails. */
+    void onVerifyFailed();
+#endif
 };
 
 } // namespace updater

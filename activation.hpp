@@ -7,12 +7,18 @@
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
 
+#include <experimental/filesystem>
+
+#include "config.h"
+
 namespace phosphor
 {
 namespace software
 {
 namespace updater
 {
+
+namespace fs = std::experimental::filesystem;
 
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
@@ -315,6 +321,12 @@ class Activation : public ActivationInherit
     /** @brief Tracks if the service that updates the U-Boot environment
      *         variables has completed. **/
     bool ubootEnvVarsUpdated = false;
+
+#ifdef WANT_SIGNATURE_VERIFY
+  private:
+    bool verifySignature(const fs::path& imageDir, const fs::path& confDir);
+    void onVerifyFailed();
+#endif
 };
 
 } // namespace updater

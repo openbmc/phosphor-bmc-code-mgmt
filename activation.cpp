@@ -141,10 +141,8 @@ auto Activation::activation(Activations value) -> Activations
         }
 #else
         static constexpr auto initramfsPath = "/run/initramfs";
-        static constexpr auto bmcStateService = "xyz.openbmc_project.State.BMC";
-        static constexpr auto bmcStatePath = "/xyz/openbmc_project/state/bmc0";
-        static constexpr auto bmcStateIntf = bmcStateService;
-        static constexpr auto reqTransition = "RequestedBMCTransition";
+
+        parent.freeSpace();
 
 #ifdef WANT_SIGNATURE_VERIFY
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
@@ -160,21 +158,21 @@ auto Activation::activation(Activations value) -> Activations
 #endif
         // For non-ubifs code update, putting image in /run/initramfs
         // and reboot, an updater script will program the image to flash
-        log<level::INFO>("BMC image activating - will reboot and program.");
         fs::path toPath(initramfsPath);
         for (auto& bmcImage : phosphor::software::image::bmcImages)
         {
             fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
                           fs::copy_options::overwrite_existing);
         }
-        auto method =
-            bus.new_method_call(bmcStateService, bmcStatePath,
-                                "org.freedesktop.DBus.Properties", "Set");
-        sdbusplus::message::variant<std::string> value =
-            "xyz.openbmc_project.State.BMC.Transition.Reboot";
-        method.append(bmcStateIntf, reqTransition, value);
-        bus.call_noreply(method);
+        // Remove version object from image manager
+        Activation::deleteImageManagerObject();
 
+        // Create active association
+        parent.createActiveAssociation(path);
+
+        log<level::INFO>("BMC image ready, need reboot to get activated.");
+        return softwareServer::Activation::activation(
+            softwareServer::Activation::Activations::Active);
 #endif
     }
     else

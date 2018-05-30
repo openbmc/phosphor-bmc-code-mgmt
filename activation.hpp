@@ -3,6 +3,7 @@
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
+#include "flash.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
@@ -188,7 +189,7 @@ class ActivationProgress : public ActivationProgressInherit
  *  @details A concrete implementation for
  *  xyz.openbmc_project.Software.Activation DBus API.
  */
-class Activation : public ActivationInherit
+class Activation : public ActivationInherit, Flash
 {
   public:
     /** @brief Constructs Activation Software Manager
@@ -244,6 +245,9 @@ class Activation : public ActivationInherit
      */
     RequestedActivations
         requestedActivation(RequestedActivations value) override;
+
+    /** @brief Overloaded write flash function */
+    void flashWrite() override;
 
     /** @brief Check if systemd state change is relevant to this object
      *

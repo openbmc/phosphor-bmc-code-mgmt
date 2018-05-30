@@ -3,6 +3,7 @@
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
+#include "flash.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "org/openbmc/Associations/server.hpp"
@@ -206,7 +207,8 @@ class Activation : public ActivationInherit
                    Activations activationStatus,
                AssociationList& assocs) :
         ActivationInherit(bus, path.c_str(), true),
-        bus(bus), path(path), parent(parent), versionId(versionId),
+        bus(bus), path(path), flash(bus, versionId), parent(parent),
+        versionId(versionId),
         systemdSignals(
             bus,
             sdbusRule::type::signal() + sdbusRule::member("JobRemoved") +
@@ -285,6 +287,9 @@ class Activation : public ActivationInherit
 
     /** @brief Persistent DBus object path */
     std::string path;
+
+    /** @brief Flash Object */
+    Flash flash;
 
     /** @brief Parent Object. */
     ItemUpdater& parent;

@@ -9,6 +9,8 @@ namespace software
 namespace updater
 {
 
+class Activation;
+
 /**
  *  @class Flash
  *  @brief Contains flash management functions.
@@ -24,13 +26,20 @@ class Flash
      * @param[in] bus - The Dbus bus object
      * @param[in] versionId - The software version id
      */
-    Flash(sdbusplus::bus::bus& bus, std::string& versionId) :
-        bus(bus), versionId(versionId){};
+    Flash(sdbusplus::bus::bus& bus, std::string& versionId,
+          Activation& parent) :
+        bus(bus),
+        versionId(versionId), parent(parent){};
 
     /**
      * @brief Writes the image file(s) to flash
      */
     void write();
+
+    /**
+     * @brief Takes action on service state changes that update the flash
+     */
+    void monitorStateChanges(sdbusplus::message::message& msg);
 
   private:
     /** @brief Persistent sdbusplus DBus bus connection. */
@@ -38,6 +47,9 @@ class Flash
 
     /** @brief Software version id */
     std::string versionId;
+
+    /** @brief Actviation Object. */
+    Activation& parent;
 };
 
 } // namespace updater

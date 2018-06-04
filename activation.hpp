@@ -207,7 +207,7 @@ class Activation : public ActivationInherit
                    Activations activationStatus,
                AssociationList& assocs) :
         ActivationInherit(bus, path.c_str(), true),
-        bus(bus), path(path), flash(bus, versionId), parent(parent),
+        bus(bus), path(path), flash(bus, versionId, *this), parent(parent),
         versionId(versionId),
         systemdSignals(
             bus,

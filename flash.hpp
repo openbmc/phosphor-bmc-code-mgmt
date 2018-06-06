@@ -22,6 +22,11 @@ class Flash
      * @brief Writes the image file(s) to flash
      */
     virtual void flashWrite() = 0;
+
+    /**
+     * @brief Taks action on service file state changes
+     */
+    virtual void onStateChanges(sdbusplus::message::message& msg) = 0;
 };
 
 } // namespace updater

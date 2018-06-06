@@ -249,6 +249,9 @@ class Activation : public ActivationInherit, Flash
     /** @brief Overloaded write flash function */
     void flashWrite() override;
 
+    /** @brief Overloaded function that acts on service file state changes */
+    void onStateChanges(sdbusplus::message::message&) override;
+
     /** @brief Check if systemd state change is relevant to this object
      *
      * Instance specific interface to handle the detected systemd state

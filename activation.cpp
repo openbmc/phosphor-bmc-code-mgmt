@@ -209,51 +209,7 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
         return;
     }
 
-    uint32_t newStateID{};
-    sdbusplus::message::object_path newStateObjPath;
-    std::string newStateUnit{};
-    std::string newStateResult{};
-
-    // Read the msg and populate each variable
-    msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
-
-    auto rwServiceFile = "obmc-flash-bmc-ubirw.service";
-    auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
-    auto ubootVarsServiceFile =
-        "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
-
-    if (newStateUnit == rwServiceFile && newStateResult == "done")
-    {
-        rwVolumeCreated = true;
-        activationProgress->progress(activationProgress->progress() + 20);
-    }
-
-    if (newStateUnit == roServiceFile && newStateResult == "done")
-    {
-        roVolumeCreated = true;
-        activationProgress->progress(activationProgress->progress() + 50);
-    }
-
-    if (newStateUnit == ubootVarsServiceFile && newStateResult == "done")
-    {
-        ubootEnvVarsUpdated = true;
-    }
-
-    if (newStateUnit == rwServiceFile || newStateUnit == roServiceFile ||
-        newStateUnit == ubootVarsServiceFile)
-    {
-        if (newStateResult == "failed" || newStateResult == "dependency")
-        {
-            Activation::activation(
-                softwareServer::Activation::Activations::Failed);
-        }
-        else if ((rwVolumeCreated && roVolumeCreated) || // Volumes were created
-                 (ubootEnvVarsUpdated)) // Environment variables were updated
-        {
-            Activation::activation(
-                softwareServer::Activation::Activations::Activating);
-        }
-    }
+    onStateChanges(msg);
 
     return;
 }

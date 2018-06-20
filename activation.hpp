@@ -199,7 +199,7 @@ class ActivationProgress : public ActivationProgressInherit
  *  @details A concrete implementation for
  *  xyz.openbmc_project.Software.Activation DBus API.
  */
-class Activation : public ActivationInherit, Flash
+class Activation : public ActivationInherit, public Flash
 {
   public:
     /** @brief Constructs Activation Software Manager

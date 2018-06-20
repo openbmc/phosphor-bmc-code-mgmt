@@ -5,6 +5,7 @@ noinst_HEADERS = \
 	download_manager.hpp \
 	watch.hpp \
 	version.hpp \
+	images.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
 	activation.hpp

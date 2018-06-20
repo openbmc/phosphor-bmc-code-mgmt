@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <openssl/err.h>
 
+#include "images.hpp"
 #include "image_verify.hpp"
 #include "config.h"
 #include "version.hpp"

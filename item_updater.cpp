@@ -12,7 +12,7 @@
 #include <experimental/filesystem>
 #include "version.hpp"
 #include "serialize.hpp"
-#include "image_verify.hpp"
+#include "images.hpp"
 
 namespace phosphor
 {

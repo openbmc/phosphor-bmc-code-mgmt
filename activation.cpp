@@ -1,4 +1,5 @@
 #include "activation.hpp"
+#include "images.hpp"
 #include "item_updater.hpp"
 #include "serialize.hpp"
 #include <phosphor-logging/log.hpp>

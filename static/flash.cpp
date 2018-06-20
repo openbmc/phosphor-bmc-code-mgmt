@@ -3,7 +3,7 @@
 #include "activation.hpp"
 #include "config.h"
 #include "flash.hpp"
-#include "image_verify.hpp" // For bmcImages
+#include "images.hpp"
 
 namespace
 {

@@ -2,6 +2,7 @@
 
 #include <sdbusplus/server.hpp>
 #include "activation.hpp"
+#include "item_updater_helper.hpp"
 #include "version.hpp"
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
@@ -47,7 +48,9 @@ class ItemUpdater : public ItemUpdaterInherit
      * @param[in] bus    - The D-Bus bus object
      */
     ItemUpdater(sdbusplus::bus::bus& bus, const std::string& path) :
-        ItemUpdaterInherit(bus, path.c_str(), false), bus(bus),
+        ItemUpdaterInherit(bus, path.c_str(), false),
+        bus(bus),
+        helper(bus),
         versionMatch(bus,
                      MatchRules::interfacesAdded() +
                          MatchRules::path("/xyz/openbmc_project/software"),
@@ -187,6 +190,9 @@ class ItemUpdater : public ItemUpdaterInherit
 
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus::bus& bus;
+
+    /** @brief The helper of image updater. */
+    Helper helper;
 
     /** @brief Persistent map of Activation D-Bus objects and their
      * version id */

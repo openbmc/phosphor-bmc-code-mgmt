@@ -292,12 +292,7 @@ void ItemUpdater::erase(std::string entryId)
                         entry("VERSIONID=%s", entryId.c_str()));
     }
 
-    // Remove the priority environment variable.
-    auto serviceFile = "obmc-flash-bmc-setenv@" + entryId + ".service";
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append(serviceFile, "replace");
-    bus.call_noreply(method);
+    helper.clearEntry(entryId);
 
     // Removing entry in activations map
     auto ita = activations.find(entryId);
@@ -332,11 +327,7 @@ void ItemUpdater::deleteAll()
         ItemUpdater::erase(deletableIt);
     }
 
-    // Remove any volumes that do not match current versions.
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append("obmc-flash-bmc-cleanup.service", "replace");
-    bus.call_noreply(method);
+    helper.cleanup();
 }
 
 ItemUpdater::ActivationStatus
@@ -421,26 +412,14 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 
 void ItemUpdater::reset()
 {
-    // Mark the read-write partition for recreation upon reboot.
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append("obmc-flash-bmc-setenv@rwreset\\x3dtrue.service", "replace");
-    bus.call_noreply(method);
+    helper.factoryReset();
 
     log<level::INFO>("BMC factory reset will take effect upon reboot.");
-
-    return;
 }
 
 void ItemUpdater::removeReadOnlyPartition(std::string versionId)
 {
-    auto serviceFile = "obmc-flash-bmc-ubiro-remove@" + versionId + ".service";
-
-    // Remove the read-only partitions.
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append(serviceFile, "replace");
-    bus.call_noreply(method);
+    helper.removeVersion(versionId);
 }
 
 bool ItemUpdater::fieldModeEnabled(bool value)
@@ -450,23 +429,7 @@ bool ItemUpdater::fieldModeEnabled(bool value)
     {
         control::FieldMode::fieldModeEnabled(value);
 
-        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                          SYSTEMD_INTERFACE, "StartUnit");
-        method.append("obmc-flash-bmc-setenv@fieldmode\\x3dtrue.service",
-                      "replace");
-        bus.call_noreply(method);
-
-        method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                     SYSTEMD_INTERFACE, "StopUnit");
-        method.append("usr-local.mount", "replace");
-        bus.call_noreply(method);
-
-        std::vector<std::string> usrLocal = {"usr-local.mount"};
-
-        method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                     SYSTEMD_INTERFACE, "MaskUnitFiles");
-        method.append(usrLocal, false, true);
-        bus.call_noreply(method);
+        helper.enableFieldMode();
     }
 
     return control::FieldMode::fieldModeEnabled();
@@ -564,19 +527,7 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
 
 void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
 {
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    auto updateEnvVarsFile =
-        "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
-    method.append(updateEnvVarsFile, "replace");
-    auto result = bus.call(method);
-
-    // Check that the bus call didn't result in an error
-    if (result.is_method_error())
-    {
-        log<level::ERR>("Failed to update u-boot env variables",
-                        entry("VERSIONID=%s", versionId.c_str()));
-    }
+    helper.updateVersion(versionId);
 }
 
 void ItemUpdater::resetUbootEnvVars()
@@ -644,17 +595,7 @@ void ItemUpdater::freeSpace()
 
 void ItemUpdater::mirrorUbootToAlt()
 {
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    auto mirrorUbootFile = "obmc-flash-bmc-mirroruboot.service";
-    method.append(mirrorUbootFile, "replace");
-    auto result = bus.call(method);
-
-    // Check that the bus call didn't result in an error
-    if (result.is_method_error())
-    {
-        log<level::ERR>("Failed to copy U-Boot to alternate chip");
-    }
+    helper.mirrorAlt();
 }
 
 } // namespace updater

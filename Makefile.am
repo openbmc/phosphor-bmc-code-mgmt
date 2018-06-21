@@ -8,7 +8,9 @@ noinst_HEADERS = \
 	images.hpp \
 	image_manager.hpp \
 	item_updater.hpp \
-	activation.hpp
+	activation.hpp \
+	flash.hpp \
+	item_updater_helper.hpp
 
 sbin_PROGRAMS = \
 	phosphor-version-software-manager \

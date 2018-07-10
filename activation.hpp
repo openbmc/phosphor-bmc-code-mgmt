@@ -216,8 +216,6 @@ class Activation : public ActivationInherit, Flash
             std::bind(std::mem_fn(&Activation::unitStateChange), this,
                       std::placeholders::_1))
     {
-        // Enable systemd signals
-        subscribeToSystemdSignals();
         // Set Properties.
         activation(activationStatus);
         associations(assocs);

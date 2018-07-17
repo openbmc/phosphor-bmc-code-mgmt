@@ -1,0 +1,9 @@
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Code-Review+1: Gunnar Mills <gmills@us.ibm.com>
+Code-Review+2: Lei YU <mine260309@gmail.com>
+Submitted-by: Lei YU <mine260309@gmail.com>
+Submitted-at: Tue, 17 Jul 2018 01:45:16 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/10765
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

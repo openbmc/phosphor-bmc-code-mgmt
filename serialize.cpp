@@ -16,8 +16,6 @@ namespace fs = std::experimental::filesystem;
 
 void storeToFile(std::string versionId, uint8_t priority)
 {
-    auto bus = sdbusplus::bus::new_default();
-
     if (!fs::is_directory(PERSIST_DIR))
     {
         fs::create_directories(PERSIST_DIR);
@@ -27,13 +25,6 @@ void storeToFile(std::string versionId, uint8_t priority)
     std::ofstream os(path.c_str());
     cereal::JSONOutputArchive oarchive(os);
     oarchive(cereal::make_nvp("priority", priority));
-
-    std::string serviceFile = "obmc-flash-bmc-setenv@" + versionId + "\\x3d" +
-                              std::to_string(priority) + ".service";
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append(serviceFile, "replace");
-    bus.call_noreply(method);
 }
 
 bool restoreFromFile(std::string versionId, uint8_t& priority)

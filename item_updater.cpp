@@ -356,6 +356,12 @@ ItemUpdater::ActivationStatus
     return ItemUpdater::ActivationStatus::ready;
 }
 
+void ItemUpdater::savePriority(const std::string& versionId, uint8_t value)
+{
+    storeToFile(versionId, value);
+    helper.setEntry(versionId, value);
+}
+
 void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 {
     std::map<std::string, uint8_t> priorityMap;

@@ -11,6 +11,17 @@ namespace updater
 {
 
 using namespace phosphor::logging;
+
+void Helper::setEntry(const std::string& entryId, uint8_t value)
+{
+    std::string serviceFile = "obmc-flash-bmc-setenv@" + entryId + "\\x3d" +
+                              std::to_string(value) + ".service";
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
+}
+
 void Helper::clearEntry(const std::string& entryId)
 {
     // Remove the priority environment variable.

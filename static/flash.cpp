@@ -21,7 +21,7 @@ namespace fs = std::experimental::filesystem;
 
 void Activation::flashWrite()
 {
-    // For static layout code update, just put image in /run/initramfs.
+    // For static layout code update, just put images in /run/initramfs.
     // It expects user to trigger a reboot and an updater script will program
     // the image to flash during reboot.
     fs::path uploadDir(IMG_UPLOAD_DIR);

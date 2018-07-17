@@ -28,6 +28,13 @@ class Helper
         // Empty
     }
 
+    /** @brief Set an environment variable to the specified value
+     *
+     * @param[in] entryId - The variable name
+     * @param[in] value - The variable value
+     */
+    void setEntry(const std::string entryId, uint8_t value);
+
     /** @brief Clear an image with the entry id
      *
      * @param[in] entryId - The image entry id

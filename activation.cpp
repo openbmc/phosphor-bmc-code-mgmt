@@ -240,14 +240,14 @@ uint8_t RedundancyPriority::priority(uint8_t value)
     // Set the priority value so that the freePriority() function can order
     // the versions by priority.
     auto newPriority = softwareServer::RedundancyPriority::priority(value);
-    storeToFile(parent.versionId, value);
+    parent.parent.savePriority(parent.versionId, value);
     parent.parent.freePriority(value, parent.versionId);
     return newPriority;
 }
 
 uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 {
-    storeToFile(parent.versionId, value);
+    parent.parent.savePriority(parent.versionId, value);
     return softwareServer::RedundancyPriority::priority(value);
 }
 

@@ -1,3 +1,4 @@
+#include "config.h"
 #include "item_updater_helper.hpp"
 
 namespace phosphor
@@ -19,7 +20,14 @@ void Helper::cleanup()
 
 void Helper::factoryReset()
 {
-    // TODO
+    // Set openbmconce=factory-reset env in u-boot,
+    // The init will cleanup rwfs during boot.
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    method.append(
+        "obmc-flash-bmc-setenv@openbmconce\\x3dfactory\\x2dreset.service",
+        "replace");
+    bus.call_noreply(method);
 }
 
 void Helper::removeVersion(const std::string& versionId)

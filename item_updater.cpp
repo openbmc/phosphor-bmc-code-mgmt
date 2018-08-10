@@ -464,20 +464,23 @@ void ItemUpdater::setBMCInventoryPath()
     std::vector<std::string> filter = {BMC_INVENTORY_INTERFACE};
     mapperCall.append(filter);
 
-    auto response = bus.call(mapperCall);
-    if (response.is_method_error())
+    try
+    {
+        auto response = bus.call(mapperCall);
+
+        using ObjectPaths = std::vector<std::string>;
+        ObjectPaths result;
+        response.read(result);
+
+        if (!result.empty())
+        {
+            bmcInventoryPath = result.front();
+        }
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
     {
         log<level::ERR>("Error in mapper GetSubTreePath");
         return;
-    }
-
-    using ObjectPaths = std::vector<std::string>;
-    ObjectPaths result;
-    response.read(result);
-
-    if (!result.empty())
-    {
-        bmcInventoryPath = result.front();
     }
 
     return;

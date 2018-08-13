@@ -1,0 +1,12 @@
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Code-Review+1: James Feist <james.feist@linux.intel.com>
+Code-Review+1: Jayanth Othayoth <ojayanth@in.ibm.com>
+Code-Review+1: Ratan Gupta <ratagupt@linux.vnet.ibm.com>
+Code-Review+1: Lei YU <mine260309@gmail.com>
+Code-Review+2: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-by: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-at: Mon, 13 Aug 2018 18:53:47 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/11902
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

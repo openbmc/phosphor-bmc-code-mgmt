@@ -139,98 +139,110 @@ void ItemUpdater::processBMCImage()
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
-    for (const auto& iter : fs::directory_iterator(MEDIA_DIR))
+    try
     {
-        auto activationState = server::Activation::Activations::Active;
-        static const auto BMC_RO_PREFIX_LEN = strlen(BMC_ROFS_PREFIX);
-
-        // Check if the BMC_RO_PREFIXis the prefix of the iter.path
-        if (0 ==
-            iter.path().native().compare(0, BMC_RO_PREFIX_LEN, BMC_ROFS_PREFIX))
+        for (const auto& iter : fs::directory_iterator(MEDIA_DIR))
         {
-            // The versionId is extracted from the path
-            // for example /media/ro-2a1022fe.
-            auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
-            auto osRelease = iter.path() / OS_RELEASE_FILE;
-            if (!fs::is_regular_file(osRelease))
+            auto activationState = server::Activation::Activations::Active;
+            static const auto BMC_RO_PREFIX_LEN = strlen(BMC_ROFS_PREFIX);
+
+            // Check if the BMC_RO_PREFIXis the prefix of the iter.path
+            if (0 == iter.path().native().compare(0, BMC_RO_PREFIX_LEN,
+                                                  BMC_ROFS_PREFIX))
             {
-                log<level::ERR>(
-                    "Failed to read osRelease",
-                    entry("FILENAME=%s", osRelease.string().c_str()));
-                ItemUpdater::erase(id);
-                continue;
-            }
-            auto version = VersionClass::getBMCVersion(osRelease);
-            if (version.empty())
-            {
-                log<level::ERR>(
-                    "Failed to read version from osRelease",
-                    entry("FILENAME=%s", osRelease.string().c_str()));
-                activationState = server::Activation::Activations::Invalid;
-            }
-
-            auto purpose = server::Version::VersionPurpose::BMC;
-            auto path = fs::path(SOFTWARE_OBJPATH) / id;
-
-            // Create functional association if this is the functional version
-            if (version.compare(functionalVersion) == 0)
-            {
-                createFunctionalAssociation(path);
-            }
-
-            AssociationList associations = {};
-
-            if (activationState == server::Activation::Activations::Active)
-            {
-                // Create an association to the BMC inventory item
-                associations.emplace_back(std::make_tuple(
-                    ACTIVATION_FWD_ASSOCIATION, ACTIVATION_REV_ASSOCIATION,
-                    bmcInventoryPath));
-
-                // Create an active association since this image is active
-                createActiveAssociation(path);
-            }
-
-            // Create Version instance for this version.
-            auto versionPtr = std::make_unique<VersionClass>(
-                bus, path, version, purpose, "",
-                std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
-            auto isVersionFunctional = versionPtr->isFunctional();
-            if (!isVersionFunctional)
-            {
-                versionPtr->deleteObject =
-                    std::make_unique<phosphor::software::manager::Delete>(
-                        bus, path, *versionPtr);
-            }
-            versions.insert(std::make_pair(id, std::move(versionPtr)));
-
-            // Create Activation instance for this version.
-            activations.insert(std::make_pair(
-                id, std::make_unique<Activation>(
-                        bus, path, *this, id, activationState, associations)));
-
-            // If Active, create RedundancyPriority instance for this version.
-            if (activationState == server::Activation::Activations::Active)
-            {
-                uint8_t priority = std::numeric_limits<uint8_t>::max();
-                if (!restoreFromFile(id, priority))
+                // The versionId is extracted from the path
+                // for example /media/ro-2a1022fe.
+                auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+                auto osRelease = iter.path() / OS_RELEASE_FILE;
+                if (!fs::is_regular_file(osRelease))
                 {
-                    if (isVersionFunctional)
-                    {
-                        priority = 0;
-                    }
-                    else
-                    {
-                        log<level::ERR>("Unable to restore priority from file.",
-                                        entry("VERSIONID=%s", id.c_str()));
-                    }
+                    log<level::ERR>(
+                        "Failed to read osRelease",
+                        entry("FILENAME=%s", osRelease.string().c_str()));
+                    ItemUpdater::erase(id);
+                    continue;
                 }
-                activations.find(id)->second->redundancyPriority =
-                    std::make_unique<RedundancyPriority>(
-                        bus, path, *(activations.find(id)->second), priority,
-                        false);
+                auto version = VersionClass::getBMCVersion(osRelease);
+                if (version.empty())
+                {
+                    log<level::ERR>(
+                        "Failed to read version from osRelease",
+                        entry("FILENAME=%s", osRelease.string().c_str()));
+                    activationState = server::Activation::Activations::Invalid;
+                }
+
+                auto purpose = server::Version::VersionPurpose::BMC;
+                auto path = fs::path(SOFTWARE_OBJPATH) / id;
+
+                // Create functional association if this is the functional
+                // version
+                if (version.compare(functionalVersion) == 0)
+                {
+                    createFunctionalAssociation(path);
+                }
+
+                AssociationList associations = {};
+
+                if (activationState == server::Activation::Activations::Active)
+                {
+                    // Create an association to the BMC inventory item
+                    associations.emplace_back(std::make_tuple(
+                        ACTIVATION_FWD_ASSOCIATION, ACTIVATION_REV_ASSOCIATION,
+                        bmcInventoryPath));
+
+                    // Create an active association since this image is active
+                    createActiveAssociation(path);
+                }
+
+                // Create Version instance for this version.
+                auto versionPtr = std::make_unique<VersionClass>(
+                    bus, path, version, purpose, "",
+                    std::bind(&ItemUpdater::erase, this,
+                              std::placeholders::_1));
+                auto isVersionFunctional = versionPtr->isFunctional();
+                if (!isVersionFunctional)
+                {
+                    versionPtr->deleteObject =
+                        std::make_unique<phosphor::software::manager::Delete>(
+                            bus, path, *versionPtr);
+                }
+                versions.insert(std::make_pair(id, std::move(versionPtr)));
+
+                // Create Activation instance for this version.
+                activations.insert(std::make_pair(
+                    id, std::make_unique<Activation>(bus, path, *this, id,
+                                                     activationState,
+                                                     associations)));
+
+                // If Active, create RedundancyPriority instance for this
+                // version.
+                if (activationState == server::Activation::Activations::Active)
+                {
+                    uint8_t priority = std::numeric_limits<uint8_t>::max();
+                    if (!restoreFromFile(id, priority))
+                    {
+                        if (isVersionFunctional)
+                        {
+                            priority = 0;
+                        }
+                        else
+                        {
+                            log<level::ERR>(
+                                "Unable to restore priority from file.",
+                                entry("VERSIONID=%s", id.c_str()));
+                        }
+                    }
+                    activations.find(id)->second->redundancyPriority =
+                        std::make_unique<RedundancyPriority>(
+                            bus, path, *(activations.find(id)->second),
+                            priority, false);
+                }
             }
         }
+    }
+    catch (const fs::filesystem_error&)
+    {
+        // It is ok that the dir does not exist for static flash layout system
     }
 
     // If there is no ubi volume for bmc version then read the /etc/os-release

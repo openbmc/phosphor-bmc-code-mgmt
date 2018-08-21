@@ -278,7 +278,7 @@ void ItemUpdater::erase(std::string entryId)
     auto it = versions.find(entryId);
     if (it != versions.end())
     {
-        if (it->second->isFunctional())
+        if (it->second->isFunctional() && ACTIVE_BMC_MAX_ALLOWED > 1)
         {
             log<level::ERR>("Error: Version is currently running on the BMC. "
                             "Unable to remove.",
@@ -594,7 +594,10 @@ void ItemUpdater::freeSpace()
             count++;
             // Don't put the functional version on the queue since we can't
             // remove the "running" BMC version.
-            if (versions.find(iter.second->versionId)->second->isFunctional())
+            // If ACTIVE_BMC_MAX_ALLOWED <= 1, there is only one active BMC,
+            // so remove functional version as well.
+            if (versions.find(iter.second->versionId)->second->isFunctional() &&
+                ACTIVE_BMC_MAX_ALLOWED > 1)
             {
                 continue;
             }

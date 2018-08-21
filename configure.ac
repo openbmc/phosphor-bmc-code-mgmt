@@ -87,10 +87,6 @@ AC_DEFINE(FILEPATH_IFACE, "xyz.openbmc_project.Common.FilePath",
     [The common file path interface])
 AC_DEFINE(OS_RELEASE_FILE, "/etc/os-release",
     [The name of the BMC table of contents file])
-AC_DEFINE(MEDIA_DIR, "/media/",
-    [The base dir where all RO partitions are mounted])
-AC_DEFINE(BMC_ROFS_PREFIX, "/media/rofs-",
-    [The prefix path for the versioned read-only bmc partitions])
 AC_DEFINE(ALT_RWFS, "/media/alt/var/persist",
     [The path of the alt rwfs overlay])
 AC_DEFINE(PERSIST_DIR, "/var/lib/obmc/phosphor-bmc-code-mgmt/",
@@ -101,6 +97,13 @@ AC_DEFINE(SYSTEMD_PATH, "/org/freedesktop/systemd1",
     [The systemd path])
 AC_DEFINE(SYSTEMD_INTERFACE, "org.freedesktop.systemd1.Manager",
     [The systemd interface])
+
+AC_ARG_VAR(MEDIA_DIR, [The base dir where all RO partitions are mounted])
+AS_IF([test "x$MEDIA_DIR" == "x"], [MEDIA_DIR="/media"])
+AC_DEFINE_UNQUOTED([MEDIA_DIR], ["$MEDIA_DIR"], [The base dir where all RO partitions are mounted])
+
+AC_DEFINE_UNQUOTED(BMC_ROFS_PREFIX, "$MEDIA_DIR/rofs-",
+    [The prefix path for the versioned read-only bmc partitions])
 
 AC_ARG_VAR(IMG_UPLOAD_DIR, [Directory where downloaded software images are placed])
 AS_IF([test "x$IMG_UPLOAD_DIR" == "x"], [IMG_UPLOAD_DIR="/tmp/images"])

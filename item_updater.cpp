@@ -134,6 +134,21 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 void ItemUpdater::processBMCImage()
 {
     using VersionClass = phosphor::software::manager::Version;
+
+    // Check MEDIA_DIR and create if it does not exist
+    try
+    {
+        if (!fs::is_directory(MEDIA_DIR))
+        {
+            fs::create_directory(MEDIA_DIR);
+        }
+    }
+    catch (const fs::filesystem_error& e)
+    {
+        log<level::ERR>("Failed to prepare dir", entry("ERR=%s", e.what()));
+        return;
+    }
+
     // Read os-release from /etc/ to get the functional BMC version
     auto functionalVersion = VersionClass::getBMCVersion(OS_RELEASE_FILE);
 
@@ -172,7 +187,8 @@ void ItemUpdater::processBMCImage()
             auto purpose = server::Version::VersionPurpose::BMC;
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
-            // Create functional association if this is the functional version
+            // Create functional association if this is the functional
+            // version
             if (version.compare(functionalVersion) == 0)
             {
                 createFunctionalAssociation(path);
@@ -209,7 +225,8 @@ void ItemUpdater::processBMCImage()
                 id, std::make_unique<Activation>(
                         bus, path, *this, id, activationState, associations)));
 
-            // If Active, create RedundancyPriority instance for this version.
+            // If Active, create RedundancyPriority instance for this
+            // version.
             if (activationState == server::Activation::Activations::Active)
             {
                 uint8_t priority = std::numeric_limits<uint8_t>::max();

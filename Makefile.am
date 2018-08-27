@@ -62,7 +62,7 @@ phosphor_sync_software_manager_SOURCES = \
 	sync_manager.cpp \
 	sync_watch.cpp \
 	sync_manager_main.cpp
-phosphor_sync_software_manager_CXXFLAGS = $(generic_cxxflags)
+phosphor_sync_software_manager_CXXFLAGS = $(generic_cxxflags) -flto
 phosphor_sync_software_manager_LDFLAGS = $(generic_ldflags)
 endif
 

@@ -30,6 +30,6 @@ bool restoreFromFile(std::string versionId, uint8_t& priority);
  **/
 void removeFile(std::string versionId);
 
-} // namespace phosphor
+} // namespace updater
 } // namespace software
-} // namespace openpower
+} // namespace phosphor

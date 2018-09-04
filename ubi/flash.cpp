@@ -79,4 +79,4 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
 
 } // namespace updater
 } // namespace software
-} // namepsace phosphor
+} // namespace phosphor

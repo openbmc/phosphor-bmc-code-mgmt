@@ -277,4 +277,4 @@ int Manager::unTar(const std::string& tarFilePath,
 
 } // namespace manager
 } // namespace software
-} // namepsace phosphor
+} // namespace phosphor

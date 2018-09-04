@@ -95,6 +95,6 @@ void removeFile(std::string versionId)
     }
 }
 
-} // namespace phosphor
+} // namespace updater
 } // namespace software
-} // namespace openpower
+} // namespace phosphor

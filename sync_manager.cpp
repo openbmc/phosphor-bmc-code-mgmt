@@ -78,4 +78,4 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
 
 } // namespace manager
 } // namespace software
-} // namepsace phosphor
+} // namespace phosphor

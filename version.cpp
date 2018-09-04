@@ -133,4 +133,4 @@ void Delete::delete_()
 
 } // namespace manager
 } // namespace software
-} // namepsace phosphor
+} // namespace phosphor

@@ -136,7 +136,7 @@ struct map_exception_type<
 {
     using type = xyz::openbmc_project::Software::Version::UnTarFailure;
 };
-}
+} // namespace details
 
 namespace xyz
 {
@@ -199,7 +199,7 @@ struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::
 {
     using type = xyz::openbmc_project::Software::Version::ManifestFileFailure;
 };
-}
+} // namespace details
 
 namespace xyz
 {
@@ -263,7 +263,7 @@ struct map_exception_type<
 {
     using type = xyz::openbmc_project::Software::Version::InternalFailure;
 };
-}
+} // namespace details
 
 } // namespace logging
 

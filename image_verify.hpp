@@ -1,4 +1,5 @@
 #pragma once
+#include "utils.hpp"
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
 #include <openssl/pem.h>
@@ -26,7 +27,7 @@ using AvailableKeyTypes = std::set<Key_t>;
 using BIO_MEM_Ptr = std::unique_ptr<BIO, decltype(&::BIO_free)>;
 using EVP_PKEY_Ptr = std::unique_ptr<EVP_PKEY, decltype(&::EVP_PKEY_free)>;
 using EVP_MD_CTX_Ptr =
-    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_destroy)>;
+    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_free)>;
 
 /** @struct CustomFd
  *

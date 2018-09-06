@@ -7,6 +7,10 @@
 #include <unistd.h>
 #include <sys/mman.h>
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+void EVP_MD_CTX_free(EVP_MD_CTX* ctx);
+#endif
+
 namespace phosphor
 {
 namespace software
@@ -26,7 +30,7 @@ using AvailableKeyTypes = std::set<Key_t>;
 using BIO_MEM_Ptr = std::unique_ptr<BIO, decltype(&::BIO_free)>;
 using EVP_PKEY_Ptr = std::unique_ptr<EVP_PKEY, decltype(&::EVP_PKEY_free)>;
 using EVP_MD_CTX_Ptr =
-    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_destroy)>;
+    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_free)>;
 
 /** @struct CustomFd
  *

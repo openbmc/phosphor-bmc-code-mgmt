@@ -14,6 +14,30 @@
 #include <phosphor-logging/elog-errors.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+static void* OPENSSL_zalloc(size_t num)
+{
+    void* ret = OPENSSL_malloc(num);
+
+    if (ret != NULL)
+    {
+        memset(ret, 0, num);
+    }
+    return ret;
+}
+
+EVP_MD_CTX* EVP_MD_CTX_new(void)
+{
+    return (EVP_MD_CTX*)OPENSSL_zalloc(sizeof(EVP_MD_CTX));
+}
+
+void EVP_MD_CTX_free(EVP_MD_CTX* ctx)
+{
+    EVP_MD_CTX_cleanup(ctx);
+    OPENSSL_free(ctx);
+}
+#endif
+
 namespace phosphor
 {
 namespace software
@@ -217,7 +241,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     EVP_PKEY_assign_RSA(pKeyPtr.get(), publicRSA);
 
     // Initializes a digest context.
-    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_create(), ::EVP_MD_CTX_destroy);
+    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
 
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();

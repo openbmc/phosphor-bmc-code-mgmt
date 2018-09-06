@@ -217,7 +217,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     EVP_PKEY_assign_RSA(pKeyPtr.get(), publicRSA);
 
     // Initializes a digest context.
-    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_create(), ::EVP_MD_CTX_destroy);
+    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
 
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();

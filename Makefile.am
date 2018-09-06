@@ -49,8 +49,12 @@ include static/Makefile.am.include
 endif
 
 if WANT_SIGNATURE_VERIFY_BUILD
-noinst_HEADERS += image_verify.hpp
-phosphor_image_updater_SOURCES += image_verify.cpp
+noinst_HEADERS += \
+	image_verify.hpp \
+	utils.hpp
+phosphor_image_updater_SOURCES += \
+	image_verify.cpp \
+	utils.cpp
 endif
 
 if WANT_SYNC

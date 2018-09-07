@@ -1,18 +1,21 @@
+#include "config.h"
+
+#include "item_updater.hpp"
+
+#include "images.hpp"
+#include "serialize.hpp"
+#include "version.hpp"
+#include "xyz/openbmc_project/Software/Version/server.hpp"
+
+#include <elog-errors.hpp>
+#include <experimental/filesystem>
 #include <fstream>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/log.hpp>
 #include <queue>
 #include <set>
 #include <string>
-#include <phosphor-logging/log.hpp>
-#include <phosphor-logging/elog.hpp>
-#include <elog-errors.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
-#include "config.h"
-#include "item_updater.hpp"
-#include "xyz/openbmc_project/Software/Version/server.hpp"
-#include <experimental/filesystem>
-#include "version.hpp"
-#include "serialize.hpp"
-#include "images.hpp"
 
 namespace phosphor
 {

@@ -1,10 +1,12 @@
+#include "config.h"
+
+#include "image_manager.hpp"
+#include "watch.hpp"
+
 #include <cstdlib>
 #include <exception>
-#include <sdbusplus/bus.hpp>
 #include <phosphor-logging/log.hpp>
-#include "config.h"
-#include "watch.hpp"
-#include "image_manager.hpp"
+#include <sdbusplus/bus.hpp>
 
 int main(int argc, char* argv[])
 {

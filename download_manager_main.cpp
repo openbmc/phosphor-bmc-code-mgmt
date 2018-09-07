@@ -1,6 +1,8 @@
-#include <sdbusplus/bus.hpp>
 #include "config.h"
+
 #include "download_manager.hpp"
+
+#include <sdbusplus/bus.hpp>
 
 int main(int argc, char* argv[])
 {

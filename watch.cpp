@@ -1,14 +1,18 @@
-#include <stdexcept>
-#include <cstddef>
-#include <cstring>
-#include <string>
+#include "config.h"
+
+#include "watch.hpp"
+
+#include "image_manager.hpp"
+
 #include <sys/inotify.h>
 #include <unistd.h>
+
+#include <cstddef>
+#include <cstring>
 #include <experimental/filesystem>
 #include <phosphor-logging/log.hpp>
-#include "config.h"
-#include "watch.hpp"
-#include "image_manager.hpp"
+#include <stdexcept>
+#include <string>
 
 namespace phosphor
 {

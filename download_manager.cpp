@@ -1,15 +1,19 @@
-#include <iostream>
-#include <string>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <phosphor-logging/log.hpp>
-#include <experimental/filesystem>
-#include <algorithm>
 #include "config.h"
-#include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/elog-errors.hpp>
-#include "xyz/openbmc_project/Common/error.hpp"
+
 #include "download_manager.hpp"
+
+#include "xyz/openbmc_project/Common/error.hpp"
+
+#include <sys/wait.h>
+#include <unistd.h>
+
+#include <algorithm>
+#include <experimental/filesystem>
+#include <iostream>
+#include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/log.hpp>
+#include <string>
 
 namespace phosphor
 {

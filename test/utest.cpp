@@ -1,13 +1,16 @@
+#include "image_verify.hpp"
 #include "version.hpp"
-#include <gtest/gtest.h>
-#include <experimental/filesystem>
+
+#include <openssl/sha.h>
 #include <stdlib.h>
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <openssl/sha.h>
-#include "image_verify.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace phosphor::software::manager;
 using namespace phosphor::software::image;

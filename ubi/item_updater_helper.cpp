@@ -1,7 +1,8 @@
-#include <phosphor-logging/log.hpp>
-
 #include "config.h"
+
 #include "item_updater_helper.hpp"
+
+#include <phosphor-logging/log.hpp>
 
 namespace phosphor
 {

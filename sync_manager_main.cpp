@@ -1,11 +1,14 @@
+#include "config.h"
+
+#include "sync_manager.hpp"
+#include "sync_watch.hpp"
+
+#include <systemd/sd-event.h>
+
 #include <exception>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
-#include <systemd/sd-event.h>
-#include "config.h"
-#include "sync_manager.hpp"
-#include "sync_watch.hpp"
 
 int main(int argc, char* argv[])
 {

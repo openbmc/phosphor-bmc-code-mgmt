@@ -1,7 +1,8 @@
 #pragma once
 
-#include <experimental/filesystem>
 #include "config.h"
+
+#include <experimental/filesystem>
 
 namespace phosphor
 {

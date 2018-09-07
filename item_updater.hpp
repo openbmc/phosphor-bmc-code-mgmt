@@ -142,8 +142,11 @@ class ItemUpdater : public ItemUpdaterInherit
      *         needs to delete any BMC version(s) it will delete the
      *         version(s) with the highest priority, skipping the
      *         functional BMC version.
+     *
+     * @param[in] versionId - The version that is being activated so that
+     *                        this function can make decisions on deleting it.
      */
-    void freeSpace();
+    void freeSpace(const std::string& versionId);
 
   private:
     /** @brief Callback function for Software.Version match.

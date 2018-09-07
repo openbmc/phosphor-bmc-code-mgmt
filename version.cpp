@@ -1,14 +1,18 @@
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <stdexcept>
-#include <openssl/sha.h>
-#include <phosphor-logging/log.hpp>
-#include <phosphor-logging/elog-errors.hpp>
-#include "xyz/openbmc_project/Common/error.hpp"
 #include "config.h"
+
 #include "version.hpp"
+
+#include "xyz/openbmc_project/Common/error.hpp"
+
+#include <openssl/sha.h>
+
+#include <fstream>
+#include <iostream>
+#include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/log.hpp>
+#include <sstream>
+#include <stdexcept>
+#include <string>
 
 namespace phosphor
 {

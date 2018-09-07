@@ -1,14 +1,15 @@
 #pragma once
 
+#include "config.h"
+
+#include "flash.hpp"
+#include "org/openbmc/Associations/server.hpp"
+#include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
+#include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
+
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
-#include "flash.hpp"
-#include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
-#include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
-#include "org/openbmc/Associations/server.hpp"
-
-#include "config.h"
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include <experimental/filesystem>

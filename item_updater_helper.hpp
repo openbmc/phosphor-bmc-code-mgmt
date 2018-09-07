@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <sdbusplus/bus.hpp>
+#include <string>
 
 namespace phosphor
 {

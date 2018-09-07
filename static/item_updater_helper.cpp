@@ -1,4 +1,5 @@
 #include "config.h"
+
 #include "item_updater_helper.hpp"
 
 namespace phosphor

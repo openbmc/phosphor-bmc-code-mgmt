@@ -1,20 +1,24 @@
-#include <string>
-#include <experimental/filesystem>
-#include <stdlib.h>
-#include <cstring>
-#include <stdio.h>
-#include <unistd.h>
-#include <algorithm>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <phosphor-logging/log.hpp>
-#include <phosphor-logging/elog.hpp>
-#include <elog-errors.hpp>
-#include <xyz/openbmc_project/Software/Version/error.hpp>
 #include "config.h"
+
+#include "image_manager.hpp"
+
 #include "version.hpp"
 #include "watch.hpp"
-#include "image_manager.hpp"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+#include <algorithm>
+#include <cstring>
+#include <elog-errors.hpp>
+#include <experimental/filesystem>
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/log.hpp>
+#include <string>
+#include <xyz/openbmc_project/Software/Version/error.hpp>
 
 namespace phosphor
 {

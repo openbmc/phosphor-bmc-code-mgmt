@@ -2,12 +2,12 @@
 // See elog-gen.py for more details
 #pragma once
 
+#include <phosphor-logging/elog.hpp>
+#include <phosphor-logging/log.hpp>
+#include <sdbusplus/exception.hpp>
 #include <string>
 #include <tuple>
 #include <type_traits>
-#include <sdbusplus/exception.hpp>
-#include <phosphor-logging/log.hpp>
-#include <phosphor-logging/elog.hpp>
 
 namespace sdbusplus
 {

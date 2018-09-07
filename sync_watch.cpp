@@ -1,10 +1,13 @@
+#include "config.h"
+
+#include "sync_watch.hpp"
+
+#include <sys/inotify.h>
+#include <unistd.h>
+
 #include <experimental/filesystem>
 #include <fstream>
 #include <phosphor-logging/log.hpp>
-#include <sys/inotify.h>
-#include <unistd.h>
-#include "config.h"
-#include "sync_watch.hpp"
 
 namespace phosphor
 {

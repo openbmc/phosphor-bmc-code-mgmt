@@ -583,7 +583,7 @@ void ItemUpdater::resetUbootEnvVars()
     updateUbootEnvVars(lowestPriorityVersion);
 }
 
-void ItemUpdater::freeSpace()
+void ItemUpdater::freeSpace(Activation& caller)
 {
     //  Versions with the highest priority in front
     std::priority_queue<std::pair<int, std::string>,
@@ -604,14 +604,25 @@ void ItemUpdater::freeSpace()
             // remove the "running" BMC version.
             // If ACTIVE_BMC_MAX_ALLOWED <= 1, there is only one active BMC,
             // so remove functional version as well.
-            if (versions.find(iter.second->versionId)->second->isFunctional() &&
-                ACTIVE_BMC_MAX_ALLOWED > 1)
+            // Don't delete the the Activation object that called this function.
+            if ((versions.find(iter.second->versionId)
+                     ->second->isFunctional() &&
+                 ACTIVE_BMC_MAX_ALLOWED > 1) ||
+                (iter.second->versionId == caller.versionId))
             {
                 continue;
             }
-            versionsPQ.push(std::make_pair(
-                iter.second->redundancyPriority.get()->priority(),
-                iter.second->versionId));
+
+            // Failed activations don't have priority, assign them a large value
+            // for sorting purposes.
+            auto priority = 999;
+            if (iter.second.get()->activation() ==
+                server::Activation::Activations::Active)
+            {
+                priority = iter.second->redundancyPriority.get()->priority();
+            }
+
+            versionsPQ.push(std::make_pair(priority, iter.second->versionId));
         }
     }
 

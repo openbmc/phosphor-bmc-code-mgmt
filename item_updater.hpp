@@ -143,8 +143,10 @@ class ItemUpdater : public ItemUpdaterInherit
      *         needs to delete any BMC version(s) it will delete the
      *         version(s) with the highest priority, skipping the
      *         functional BMC version.
+     *
+     * @param[in] caller - The Activation object that called this function.
      */
-    void freeSpace();
+    void freeSpace(Activation& caller);
 
   private:
     /** @brief Callback function for Software.Version match.

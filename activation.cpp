@@ -83,7 +83,7 @@ auto Activation::activation(Activations value) -> Activations
             // Enable systemd signals
             Activation::subscribeToSystemdSignals();
 
-            parent.freeSpace();
+            parent.freeSpace(versionId);
 
             if (!activationProgress)
             {
@@ -167,7 +167,7 @@ auto Activation::activation(Activations value) -> Activations
             }
         }
 #endif
-        parent.freeSpace();
+        parent.freeSpace(versionId);
 
         flashWrite();
 

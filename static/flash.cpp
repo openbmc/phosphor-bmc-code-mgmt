@@ -1,9 +1,11 @@
-#include <experimental/filesystem>
+#include "config.h"
+
+#include "flash.hpp"
 
 #include "activation.hpp"
-#include "config.h"
-#include "flash.hpp"
 #include "images.hpp"
+
+#include <experimental/filesystem>
 
 namespace
 {

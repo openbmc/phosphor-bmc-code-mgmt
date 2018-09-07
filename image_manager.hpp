@@ -1,6 +1,7 @@
 #pragma once
-#include <sdbusplus/server.hpp>
 #include "version.hpp"
+
+#include <sdbusplus/server.hpp>
 
 namespace phosphor
 {

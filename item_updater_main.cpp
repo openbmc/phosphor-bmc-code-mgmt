@@ -1,7 +1,9 @@
+#include "config.h"
+
+#include "item_updater.hpp"
+
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
-#include "config.h"
-#include "item_updater.hpp"
 
 int main(int argc, char* argv[])
 {

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <sdbusplus/bus.hpp>
 #include "xyz/openbmc_project/Common/TFTP/server.hpp"
+
+#include <sdbusplus/bus.hpp>
 
 namespace phosphor
 {

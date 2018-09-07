@@ -1,5 +1,6 @@
-#include "activation.hpp"
 #include "config.h"
+
+#include "activation.hpp"
 
 namespace phosphor
 {

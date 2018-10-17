@@ -18,7 +18,7 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <string>
-#include <xyz/openbmc_project/Software/Version/error.hpp>
+#include <xyz/openbmc_project/Software/Image/error.hpp>
 
 namespace phosphor
 {
@@ -28,11 +28,11 @@ namespace manager
 {
 
 using namespace phosphor::logging;
-using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
+using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 namespace Software = phosphor::logging::xyz::openbmc_project::Software;
-using ManifestFail = Software::Version::ManifestFileFailure;
-using UnTarFail = Software::Version::UnTarFailure;
-using InternalFail = Software::Version::InternalFailure;
+using ManifestFail = Software::Image::ManifestFileFailure;
+using UnTarFail = Software::Image::UnTarFailure;
+using InternalFail = Software::Image::InternalFailure;
 namespace fs = std::experimental::filesystem;
 
 struct RemovablePath

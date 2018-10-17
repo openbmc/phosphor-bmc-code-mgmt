@@ -17,13 +17,13 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace Error
 {
 struct UnTarFailure;
 } // namespace Error
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -37,13 +37,13 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace Error
 {
 struct InternalFailure;
 } // namespace Error
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -57,13 +57,13 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace Error
 {
 struct ManifestFileFailure;
 } // namespace Error
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -81,7 +81,7 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace _UnTarFailure
 {
@@ -100,7 +100,7 @@ struct PATH
 struct UnTarFailure : public sdbusplus::exception_t
 {
     static constexpr auto errName =
-        "xyz.openbmc_project.Software.Version.UnTarFailure";
+        "xyz.openbmc_project.Software.Image.UnTarFailure";
     static constexpr auto errDesc = "An error occurred during untar.";
     static constexpr auto L = level::ERR;
     using PATH = _UnTarFailure::PATH;
@@ -122,7 +122,7 @@ struct UnTarFailure : public sdbusplus::exception_t
     }
 };
 
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -132,9 +132,9 @@ namespace details
 
 template <>
 struct map_exception_type<
-    sdbusplus::xyz::openbmc_project::Software::Version::Error::UnTarFailure>
+    sdbusplus::xyz::openbmc_project::Software::Image::Error::UnTarFailure>
 {
-    using type = xyz::openbmc_project::Software::Version::UnTarFailure;
+    using type = xyz::openbmc_project::Software::Image::UnTarFailure;
 };
 } // namespace details
 
@@ -144,7 +144,7 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace _ManifestFileFailure
 {
@@ -163,7 +163,7 @@ struct PATH
 struct ManifestFileFailure : public sdbusplus::exception_t
 {
     static constexpr auto errName =
-        "xyz.openbmc_project.Software.Version.ManifestFileFailure";
+        "xyz.openbmc_project.Software.Image.ManifestFileFailure";
     static constexpr auto errDesc = "An error when reading the Manifest file.";
     static constexpr auto L = level::ERR;
     using PATH = _ManifestFileFailure::PATH;
@@ -185,7 +185,7 @@ struct ManifestFileFailure : public sdbusplus::exception_t
     }
 };
 
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -194,10 +194,10 @@ namespace details
 {
 
 template <>
-struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Version::
+struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Image::
                               Error::ManifestFileFailure>
 {
-    using type = xyz::openbmc_project::Software::Version::ManifestFileFailure;
+    using type = xyz::openbmc_project::Software::Image::ManifestFileFailure;
 };
 } // namespace details
 
@@ -207,7 +207,7 @@ namespace openbmc_project
 {
 namespace Software
 {
-namespace Version
+namespace Image
 {
 namespace _InternalFailure
 {
@@ -226,7 +226,7 @@ struct FAIL
 struct InternalFailure : public sdbusplus::exception_t
 {
     static constexpr auto errName =
-        "xyz.openbmc_project.Software.Version.InternalFailure";
+        "xyz.openbmc_project.Software.Image.InternalFailure";
     static constexpr auto errDesc =
         "The operation failed internally during processing the image.";
     static constexpr auto L = level::ERR;
@@ -249,7 +249,7 @@ struct InternalFailure : public sdbusplus::exception_t
     }
 };
 
-} // namespace Version
+} // namespace Image
 } // namespace Software
 } // namespace openbmc_project
 } // namespace xyz
@@ -259,9 +259,9 @@ namespace details
 
 template <>
 struct map_exception_type<
-    sdbusplus::xyz::openbmc_project::Software::Version::Error::InternalFailure>
+    sdbusplus::xyz::openbmc_project::Software::Image::Error::InternalFailure>
 {
-    using type = xyz::openbmc_project::Software::Version::InternalFailure;
+    using type = xyz::openbmc_project::Software::Image::InternalFailure;
 };
 } // namespace details
 

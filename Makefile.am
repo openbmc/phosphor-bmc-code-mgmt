@@ -24,8 +24,8 @@ phosphor_version_software_manager_SOURCES = \
 	image_manager.cpp
 
 BUILT_SOURCES = \
-	xyz/openbmc_project/Software/Version/error.cpp \
-	xyz/openbmc_project/Software/Version/error.hpp \
+	xyz/openbmc_project/Software/Image/error.cpp \
+	xyz/openbmc_project/Software/Image/error.hpp \
 	org/openbmc/Associations/server.cpp \
 	org/openbmc/Associations/server.hpp
 
@@ -88,13 +88,13 @@ generic_ldflags = \
 	-lssl \
 	-lcrypto
 
-xyz/openbmc_project/Software/Version/error.hpp: ${top_srcdir}/xyz/openbmc_project/Software/Version.errors.yaml
+xyz/openbmc_project/Software/Image/error.hpp: ${top_srcdir}/xyz/openbmc_project/Software/Image.errors.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-header xyz.openbmc_project.Software.Version > $@
+	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-header xyz.openbmc_project.Software.Image > $@
 
-xyz/openbmc_project/Software/Version/error.cpp: ${top_srcdir}/xyz/openbmc_project/Software/Version.errors.yaml
+xyz/openbmc_project/Software/Image/error.cpp: ${top_srcdir}/xyz/openbmc_project/Software/Image.errors.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-cpp xyz.openbmc_project.Software.Version > $@
+	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-cpp xyz.openbmc_project.Software.Image > $@
 
 org/openbmc/Associations/server.cpp: org/openbmc/Associations.interface.yaml
 	@mkdir -p `dirname $@`

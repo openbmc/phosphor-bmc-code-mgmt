@@ -15,7 +15,7 @@
 #include <queue>
 #include <set>
 #include <string>
-#include <xyz/openbmc_project/Software/Version/error.hpp>
+#include <xyz/openbmc_project/Software/Image/error.hpp>
 
 namespace phosphor
 {
@@ -29,7 +29,7 @@ namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
 using namespace phosphor::logging;
-using namespace sdbusplus::xyz::openbmc_project::Software::Version::Error;
+using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 using namespace phosphor::software::image;
 namespace fs = std::experimental::filesystem;
 

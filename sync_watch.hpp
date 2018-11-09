@@ -54,6 +54,12 @@ class SyncWatch
     static int callback(sd_event_source* s, int fd, uint32_t revents,
                         void* userdata);
 
+    /** @brief Adds an inotify watch to the specified file or directory path
+     *
+     *  @param[in] path - The path to the file or directory
+     */
+    void addInotifyWatch(const fs::path& path);
+
     /** @brief Map of file descriptors, watch descriptors, and file paths */
     using fd = int;
     using wd = int;
@@ -61,6 +67,9 @@ class SyncWatch
 
     /** @brief The callback function for processing the inotify event */
     std::function<int(int, fs::path&)> syncCallback;
+
+    /** @brief Persistent sd_event loop */
+    sd_event& loop;
 };
 
 } // namespace manager

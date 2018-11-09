@@ -30,7 +30,7 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
 
         // rsync needs an additional --delete argument to handle file deletions
         // so need to differentiate between the different file events.
-        if (mask & IN_CLOSE_WRITE)
+        if (mask & IN_CLOSE)
         {
             if (!(fs::exists(dst)))
             {

@@ -19,9 +19,42 @@ namespace manager
 using namespace phosphor::logging;
 namespace fs = std::experimental::filesystem;
 
+void SyncWatch::addInotifyWatch(const fs::path& path)
+{
+    auto fd = inotify_init1(IN_NONBLOCK);
+    if (-1 == fd)
+    {
+        log<level::ERR>("inotify_init1 failed", entry("ERRNO=%d", errno),
+                        entry("FILENAME=%s", path.c_str()));
+        return;
+    }
+
+    auto wd = inotify_add_watch(fd, path.c_str(), IN_CLOSE | IN_DELETE);
+    if (-1 == wd)
+    {
+        log<level::ERR>("inotify_add_watch failed", entry("ERRNO=%d", errno),
+                        entry("FILENAME=%s", path.c_str()));
+        close(fd);
+        return;
+    }
+
+    auto rc = sd_event_add_io(&loop, nullptr, fd, EPOLLIN, callback, this);
+    if (0 > rc)
+    {
+        log<level::ERR>("failed to add to event loop", entry("RC=%d", rc),
+                        entry("FILENAME=%s", path.c_str()));
+        inotify_rm_watch(fd, wd);
+        close(fd);
+        return;
+    }
+
+    fileMap[fd].insert(std::make_pair(wd, fs::path(path)));
+}
+
 SyncWatch::SyncWatch(sd_event& loop,
                      std::function<int(int, fs::path&)> syncCallback) :
-    syncCallback(syncCallback)
+    syncCallback(syncCallback),
+    loop(loop)
 {
     auto syncfile = fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME;
     if (fs::exists(syncfile))
@@ -30,42 +63,7 @@ SyncWatch::SyncWatch(sd_event& loop,
         std::ifstream file(syncfile.c_str());
         while (std::getline(file, line))
         {
-            auto fd = inotify_init1(IN_NONBLOCK);
-            if (-1 == fd)
-            {
-                log<level::ERR>("inotify_init1 failed",
-                                entry("ERRNO=%d", errno),
-                                entry("FILENAME=%s", line.c_str()),
-                                entry("SYNCFILE=%s", syncfile.c_str()));
-                continue;
-            }
-
-            auto wd =
-                inotify_add_watch(fd, line.c_str(), IN_CLOSE_WRITE | IN_DELETE);
-            if (-1 == wd)
-            {
-                log<level::ERR>("inotify_add_watch failed",
-                                entry("ERRNO=%d", errno),
-                                entry("FILENAME=%s", line.c_str()),
-                                entry("SYNCFILE=%s", syncfile.c_str()));
-                close(fd);
-                continue;
-            }
-
-            auto rc =
-                sd_event_add_io(&loop, nullptr, fd, EPOLLIN, callback, this);
-            if (0 > rc)
-            {
-                log<level::ERR>("failed to add to event loop",
-                                entry("RC=%d", rc),
-                                entry("FILENAME=%s", line.c_str()),
-                                entry("SYNCFILE=%s", syncfile.c_str()));
-                inotify_rm_watch(fd, wd);
-                close(fd);
-                continue;
-            }
-
-            fileMap[fd].insert(std::make_pair(wd, fs::path(line)));
+            addInotifyWatch(line);
         }
     }
 }
@@ -109,6 +107,14 @@ int SyncWatch::callback(sd_event_source* s, int fd, uint32_t revents,
         if (it1 != syncWatch->fileMap.end())
         {
             auto it2 = it1->second.begin();
+
+            // Watch was removed, re-add it.
+            if (event->mask & IN_IGNORED)
+            {
+                syncWatch->addInotifyWatch(it2->second);
+                return 0;
+            }
+
             auto rc = syncWatch->syncCallback(event->mask, it2->second);
             if (rc)
             {

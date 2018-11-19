@@ -21,8 +21,24 @@ namespace fs = std::experimental::filesystem;
 
 SyncWatch::SyncWatch(sd_event& loop,
                      std::function<int(int, fs::path&)> syncCallback) :
+    inotifyFd(-1),
     syncCallback(syncCallback)
 {
+    auto fd = inotify_init1(IN_NONBLOCK);
+    if (-1 == fd)
+    {
+        log<level::ERR>("inotify_init1 failed", entry("ERRNO=%d", errno));
+        return;
+    }
+    inotifyFd = fd;
+
+    auto rc = sd_event_add_io(&loop, nullptr, fd, EPOLLIN, callback, this);
+    if (0 > rc)
+    {
+        log<level::ERR>("failed to add to event loop", entry("RC=%d", rc));
+        return;
+    }
+
     auto syncfile = fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME;
     if (fs::exists(syncfile))
     {
@@ -30,16 +46,6 @@ SyncWatch::SyncWatch(sd_event& loop,
         std::ifstream file(syncfile.c_str());
         while (std::getline(file, line))
         {
-            auto fd = inotify_init1(IN_NONBLOCK);
-            if (-1 == fd)
-            {
-                log<level::ERR>("inotify_init1 failed",
-                                entry("ERRNO=%d", errno),
-                                entry("FILENAME=%s", line.c_str()),
-                                entry("SYNCFILE=%s", syncfile.c_str()));
-                continue;
-            }
-
             auto wd =
                 inotify_add_watch(fd, line.c_str(), IN_CLOSE_WRITE | IN_DELETE);
             if (-1 == wd)
@@ -48,37 +54,19 @@ SyncWatch::SyncWatch(sd_event& loop,
                                 entry("ERRNO=%d", errno),
                                 entry("FILENAME=%s", line.c_str()),
                                 entry("SYNCFILE=%s", syncfile.c_str()));
-                close(fd);
                 continue;
             }
 
-            auto rc =
-                sd_event_add_io(&loop, nullptr, fd, EPOLLIN, callback, this);
-            if (0 > rc)
-            {
-                log<level::ERR>("failed to add to event loop",
-                                entry("RC=%d", rc),
-                                entry("FILENAME=%s", line.c_str()),
-                                entry("SYNCFILE=%s", syncfile.c_str()));
-                inotify_rm_watch(fd, wd);
-                close(fd);
-                continue;
-            }
-
-            fileMap[fd].insert(std::make_pair(wd, fs::path(line)));
+            fileMap[wd] = fs::path(line);
         }
     }
 }
 
 SyncWatch::~SyncWatch()
 {
-    for (const auto& fd : fileMap)
+    if (inotifyFd != -1)
     {
-        for (const auto& wd : fd.second)
-        {
-            inotify_rm_watch(fd.first, wd.first);
-        }
-        close(fd.first);
+        close(inotifyFd);
     }
 }
 
@@ -104,16 +92,12 @@ int SyncWatch::callback(sd_event_source* s, int fd, uint32_t revents,
     {
         auto event = reinterpret_cast<inotify_event*>(&buffer[offset]);
 
-        // fileMap<fd, std::map<wd, path>>
-        auto it1 = syncWatch->fileMap.find(fd);
-        if (it1 != syncWatch->fileMap.end())
+        // fileMap<wd, path>
+        auto rc =
+            syncWatch->syncCallback(event->mask, syncWatch->fileMap[event->wd]);
+        if (rc)
         {
-            auto it2 = it1->second.begin();
-            auto rc = syncWatch->syncCallback(event->mask, it2->second);
-            if (rc)
-            {
-                return rc;
-            }
+            return rc;
         }
 
         offset += offsetof(inotify_event, name) + event->len;

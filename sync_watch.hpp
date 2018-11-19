@@ -57,7 +57,8 @@ class SyncWatch
     /** @brief Map of file descriptors, watch descriptors, and file paths */
     using fd = int;
     using wd = int;
-    std::map<fd, std::map<wd, fs::path>> fileMap;
+    fd inotifyFd;
+    std::map<wd, fs::path> fileMap;
 
     /** @brief The callback function for processing the inotify event */
     std::function<int(int, fs::path&)> syncCallback;

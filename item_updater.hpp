@@ -106,11 +106,11 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void createActiveAssociation(const std::string& path);
 
-    /** @brief Removes an active association to the software image
+    /** @brief Removes the associations from the provided software image path
      *
      * @param[in]  path - The path to remove the association from.
      */
-    void removeActiveAssociation(const std::string& path);
+    void removeAssociation(const std::string& path);
 
     /** @brief Determine if the given priority is the lowest
      *

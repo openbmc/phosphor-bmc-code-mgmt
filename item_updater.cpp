@@ -324,6 +324,7 @@ void ItemUpdater::erase(std::string entryId)
     }
     else
     {
+        removeAssociation(ita->second->path);
         this->activations.erase(entryId);
     }
     ItemUpdater::resetUbootEnvVars();
@@ -520,14 +521,13 @@ void ItemUpdater::createFunctionalAssociation(const std::string& path)
     associations(assocs);
 }
 
-void ItemUpdater::removeActiveAssociation(const std::string& path)
+void ItemUpdater::removeAssociation(const std::string& path)
 {
     for (auto iter = assocs.begin(); iter != assocs.end();)
     {
         // Since there could be multiple associations to the same path,
         // only remove ones that have an active forward association.
-        if ((std::get<0>(*iter)).compare(ACTIVE_FWD_ASSOCIATION) == 0 &&
-            (std::get<2>(*iter)).compare(path) == 0)
+        if ((std::get<2>(*iter)).compare(path) == 0)
         {
             iter = assocs.erase(iter);
             associations(assocs);

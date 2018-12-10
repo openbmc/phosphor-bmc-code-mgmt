@@ -3,6 +3,7 @@
 #include "item_updater_helper.hpp"
 
 #include <phosphor-logging/log.hpp>
+#include <sdbusplus/exception.hpp>
 
 namespace phosphor
 {
@@ -12,6 +13,7 @@ namespace updater
 {
 
 using namespace phosphor::logging;
+using sdbusplus::exception::SdBusError;
 
 void Helper::setEntry(const std::string& entryId, uint8_t value)
 {
@@ -69,10 +71,12 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     auto updateEnvVarsFile =
         "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
     method.append(updateEnvVarsFile, "replace");
-    auto result = bus.call(method);
 
-    // Check that the bus call didn't result in an error
-    if (result.is_method_error())
+    try
+    {
+        auto result = bus.call(method);
+    }
+    catch (const SdBusError& e)
     {
         log<level::ERR>("Failed to update u-boot env variables",
                         entry("VERSIONID=%s", versionId.c_str()));
@@ -105,10 +109,12 @@ void Helper::mirrorAlt()
                                       SYSTEMD_INTERFACE, "StartUnit");
     auto mirrorUbootFile = "obmc-flash-bmc-mirroruboot.service";
     method.append(mirrorUbootFile, "replace");
-    auto result = bus.call(method);
 
-    // Check that the bus call didn't result in an error
-    if (result.is_method_error())
+    try
+    {
+        auto result = bus.call(method);
+    }
+    catch (const SdBusError& e)
     {
         log<level::ERR>("Failed to copy U-Boot to alternate chip");
     }

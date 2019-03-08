@@ -44,15 +44,10 @@ struct RemovablePath
     }
     ~RemovablePath()
     {
-        if (fs::exists(path))
+        if (!path.empty())
         {
-            fs::remove_all(path);
-        }
-        else
-        {
-            // Path should exist
-            log<level::ERR>("Error removable path does not exist",
-                            entry("PATH=%s", path.c_str()));
+            std::error_code ec;
+            fs::remove_all(path, ec);
         }
     }
 };
@@ -69,9 +64,10 @@ int Manager::processImage(const std::string& tarFilePath)
     RemovablePath tarPathRemove(tarFilePath);
     fs::path tmpDirPath(std::string{IMG_UPLOAD_DIR});
     tmpDirPath /= "imageXXXXXX";
+    auto tmpDir = tmpDirPath.string();
 
     // Need tmp dir to write MANIFEST file to.
-    if (!mkdtemp(const_cast<char*>(tmpDirPath.c_str())))
+    if (!mkdtemp(tmpDir.data()))
     {
         log<level::ERR>("Error occurred during mkdtemp",
                         entry("ERRNO=%d", errno));
@@ -79,39 +75,16 @@ int Manager::processImage(const std::string& tarFilePath)
         return -1;
     }
 
-    RemovablePath tmpDirRemove(tmpDirPath);
+    tmpDirPath = tmpDir;
+    RemovablePath tmpDirToRemove(tmpDirPath);
     fs::path manifestPath = tmpDirPath;
     manifestPath /= MANIFEST_FILE_NAME;
-    int status = 0;
-    pid_t pid = fork();
 
-    // Get the MANIFEST FILE
-    if (pid == 0)
+    // Untar tarball into a tmp dir
+    auto rc = unTar(tarFilePath, tmpDirPath.string());
+    if (rc < 0)
     {
-        // child process
-        execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), MANIFEST_FILE_NAME,
-              "-C", tmpDirPath.c_str(), (char*)0);
-        // execl only returns on fail
-        log<level::ERR>("Failed to execute extract manifest",
-                        entry("FILENAME=%s", tarFilePath.c_str()));
-        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
-        return -1;
-    }
-    else if (pid > 0)
-    {
-        waitpid(pid, &status, 0);
-        if (WEXITSTATUS(status))
-        {
-            log<level::ERR>("Failed to extract manifest",
-                            entry("FILENAME=%s", tarFilePath.c_str()));
-            report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
-            return -1;
-        }
-    }
-    else
-    {
-        log<level::ERR>("fork() failed.");
-        report<InternalFailure>(InternalFail::FAIL("fork"));
+        log<level::ERR>("Error occurred during untar");
         return -1;
     }
 
@@ -163,21 +136,12 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         fs::remove_all(imageDirPath);
     }
-    if (mkdir(imageDirPath.c_str(), S_IRWXU) != 0)
-    {
-        log<level::ERR>("Error occurred during mkdir",
-                        entry("ERRNO=%d", errno));
-        report<InternalFailure>(InternalFail::FAIL("mkdir"));
-        return -1;
-    }
 
-    // Untar tarball
-    auto rc = unTar(tarFilePath, imageDirPath.string());
-    if (rc < 0)
-    {
-        log<level::ERR>("Error occurred during untar");
-        return -1;
-    }
+    // Rename the temp dir to image dir
+    fs::rename(tmpDirPath, imageDirPath);
+
+    // Clear the path, so it does not attemp to remove a non-existing path
+    tmpDirToRemove.path.clear();
 
     // Create Version object
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;

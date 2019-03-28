@@ -12,7 +12,7 @@ noinst_HEADERS = \
 	flash.hpp \
 	item_updater_helper.hpp
 
-sbin_PROGRAMS = \
+bin_PROGRAMS = \
 	phosphor-version-software-manager \
 	phosphor-download-manager \
 	phosphor-image-updater
@@ -61,7 +61,7 @@ if WANT_SYNC
 noinst_HEADERS += \
 	sync_manager.hpp \
 	sync_watch.hpp
-sbin_PROGRAMS += phosphor-sync-software-manager
+bin_PROGRAMS += phosphor-sync-software-manager
 phosphor_sync_software_manager_SOURCES = \
 	sync_manager.cpp \
 	sync_watch.cpp \

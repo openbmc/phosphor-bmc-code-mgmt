@@ -1,5 +1,5 @@
 #pragma once
-#include "utils.hpp"
+#include "openssl_alloc.hpp"
 
 #include <openssl/evp.h>
 #include <openssl/pem.h>

@@ -14,5 +14,6 @@ systemdsystemunit_DATA += \
 	%reldir%/obmc-flash-bmc-updateubootvars@.service \
 	%reldir%/reboot-guard-disable.service \
 	%reldir%/reboot-guard-enable.service \
+	%reldir%/force-reboot.service \
 	%reldir%/usr-local.mount
 endif

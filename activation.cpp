@@ -307,6 +307,118 @@ void ActivationBlocksTransition::disableRebootGuard()
     bus.call_noreply(method);
 }
 
+std::string ActivationBlocksTransition::getService(sdbusplus::bus::bus& bus,
+                       const std::string& path,
+                       const std::string& interface)
+{
+    auto method = bus.new_method_call(mapperBusIntf, mapperObjPath,
+                                      mapperBusIntf, "GetObject");
+
+    method.append(path);
+    method.append(std::vector<std::string>({interface}));
+
+    std::map<std::string, std::vector<std::string>> response;
+
+    try
+    {
+        auto reply = bus.call(method);
+        reply.read(response);
+        if (response.empty())
+        {
+            log<level::ERR>("Error in mapper response for getting service name",
+                entry("PATH=%s", path.c_str()),
+                entry("INTERFACE=%s", interface.c_str()));
+             return std::string{};
+        }
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        log<level::ERR>("Error in mapper method call",
+        entry("ERROR=%s", e.what()));
+        return std::string{};
+    }
+    return response.begin()->first;
+}
+
+bool ActivationBlocksTransition::checkApplyTimeImmediate()
+{
+    log<level::INFO>("Entering apply time check");
+    bool rc = false;
+
+    auto service = getService(bus, applyTimeObjPath, applyTimeIntf);
+    if (service.empty())
+    {
+        log<level::ALERT>("Error getting the service name for BMC image apply "
+                          "time. The BMC needs to be manually rebooted to "
+                          "complete the image activation if needed "
+                          "immediately.");
+    }
+
+    auto method = bus.new_method_call(service.c_str(), applyTimeObjPath,
+        dbusPropIntf, "Get");
+    method.append(applyTimeIntf, applyTimeProp);
+
+    try
+    {
+        auto reply = bus.call(method);
+
+        sdbusplus::message::variant<std::string> result;
+        reply.read(result);
+        auto applyTime =
+            sdbusplus::message::variant_ns::get<std::string>(result);
+        log<level::INFO>("Checking the requested image apply time",
+                         entry("Apply Time=%s",applyTime.c_str()));
+        if (applyTime == applyTimeImmediate)
+        {
+            log<level::INFO>("BMC image apply time is Immediate");
+            rc = true;
+        }
+        else if (applyTime == applyTimeOnReset)
+        {
+            log<level::INFO>("BMC image apply time is OnReset");
+        }
+
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::ERR>("Error in ApplyTime Get", entry("ERROR=%s", e.what()));
+    }
+    return rc;
+}
+
+void ActivationBlocksTransition::rebootBmc()
+{
+    log<level::INFO>("Waiting for the BMC reboot enablement completion");
+    // Wait few seconds for service that resets the reboot guard to complete
+    constexpr auto bootGuardWait = std::chrono::seconds(rebootWaitTime);
+    std::this_thread::sleep_for(bootGuardWait);
+
+    log<level::INFO>("BMC rebooting after the image activation");
+
+    auto service = getService(bus, bmcStateObjPath, bmcStateIntf);
+    if (service.empty())
+    {
+        log<level::ALERT>("Error getting the service name to reboot the BMC. "
+                          "The BMC needs to be manually rebooted to complete "
+                          "the image activation.");
+    }
+
+    auto method = bus.new_method_call(service.c_str(), bmcStateObjPath,
+        dbusPropIntf, "Set");
+    sdbusplus::message::variant<std::string> bmcReboot = bmcStateNewVal;
+    method.append(bmcStateIntf, bmcStateRebootProp, bmcReboot);
+
+    try
+    {
+        auto reply = bus.call(method);
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::INFO>("Error in Setting bmc reboot",
+                         entry("ERROR=%s", e.what()));
+    }
+}
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

@@ -13,3 +13,22 @@ void EVP_MD_CTX_free(EVP_MD_CTX* ctx);
 }
 
 #endif // OPENSSL_VERSION_NUMBER < 0x10100000L
+
+#include "config.h"
+
+#include <string>
+#include <map>
+#include <sdbusplus/server.hpp>
+
+namespace utils
+{
+
+/**
+ * @brief Get the bus service
+ *
+ * @return the bus service as a string
+ **/
+std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
+                       const std::string& interface);
+
+} // namespace utils

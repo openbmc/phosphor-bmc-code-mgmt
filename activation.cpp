@@ -25,6 +25,7 @@ namespace updater
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
+using namespace utils;
 using sdbusplus::exception::SdBusError;
 
 #ifdef WANT_SIGNATURE_VERIFY
@@ -143,7 +144,6 @@ auto Activation::activation(Activations value) -> Activations
                 rwVolumeCreated = false;
                 roVolumeCreated = false;
                 ubootEnvVarsUpdated = false;
-                Activation::unsubscribeFromSystemdSignals();
 
                 // Remove version object from image manager
                 Activation::deleteImageManagerObject();
@@ -258,8 +258,12 @@ uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)
 {
-    if (softwareServer::Activation::activation() !=
-        softwareServer::Activation::Activations::Activating)
+    if ( (softwareServer::Activation::activation() !=
+          softwareServer::Activation::Activations::Activating)
+         &&
+         (softwareServer::Activation::activation() !=
+          softwareServer::Activation::Activations::Active)
+       )
     {
         return;
     }
@@ -305,6 +309,84 @@ void ActivationBlocksTransition::disableRebootGuard()
                                       SYSTEMD_INTERFACE, "StartUnit");
     method.append("reboot-guard-disable.service", "replace");
     bus.call_noreply(method);
+}
+
+bool Activation::checkApplyTimeImmediate()
+{
+    log<level::INFO>("Entering apply time check");
+    bool rc = false;
+
+    auto service = utils::getService(bus, applyTimeObjPath, applyTimeIntf);
+    if (service.empty())
+    {
+        log<level::ALERT>("Error getting the service name for BMC image apply "
+                          "time. The BMC needs to be manually rebooted to "
+                          "complete the image activation if needed "
+                          "immediately.");
+    }
+    else
+    {
+
+        auto method = bus.new_method_call(service.c_str(), applyTimeObjPath,
+            dbusPropIntf, "Get");
+        method.append(applyTimeIntf, applyTimeProp);
+
+        try
+        {
+            auto reply = bus.call(method);
+
+            sdbusplus::message::variant<std::string> result;
+            reply.read(result);
+            auto applyTime =
+                sdbusplus::message::variant_ns::get<std::string>(result);
+            log<level::INFO>("Checking the requested image apply time",
+                             entry("Apply Time=%s",applyTime.c_str()));
+            if (applyTime == applyTimeImmediate)
+            {
+                log<level::INFO>("BMC image apply time is Immediate");
+                rc = true;
+            }
+            else if (applyTime == applyTimeOnReset)
+            {
+                log<level::INFO>("BMC image apply time is OnReset");
+            }
+        }
+        catch (const SdBusError& e)
+        {
+            log<level::ERR>("Error in ApplyTime Get",
+                entry("ERROR=%s", e.what()));
+        }
+    }
+    return rc;
+}
+
+void Activation::rebootBmc()
+{
+    log<level::INFO>("BMC rebooting after the image activation");
+
+    auto service = getService(bus, bmcStateObjPath, bmcStateIntf);
+    if (service.empty())
+    {
+        log<level::ALERT>("Error getting the service name to reboot the BMC. "
+                          "The BMC needs to be manually rebooted to complete "
+                          "the image activation.");
+        return;
+    }
+
+    auto method = bus.new_method_call(service.c_str(), bmcStateObjPath,
+        dbusPropIntf, "Set");
+    sdbusplus::message::variant<std::string> bmcReboot = bmcStateRebootVal;
+    method.append(bmcStateIntf, bmcStateRebootProp, bmcReboot);
+
+    try
+    {
+        auto reply = bus.call(method);
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::INFO>("Error in Setting bmc reboot",
+                         entry("ERROR=%s", e.what()));
+    }
 }
 
 } // namespace updater

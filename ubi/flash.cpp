@@ -41,6 +41,7 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
     auto ubootVarsServiceFile =
         "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
+    auto guardSvcFile = "reboot-guard-disable.service";
 
     if (newStateUnit == rwServiceFile && newStateResult == "done")
     {
@@ -72,6 +73,18 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
         {
             Activation::activation(
                 softwareServer::Activation::Activations::Activating);
+        }
+    }
+
+    if (newStateUnit == guardSvcFile && newStateResult == "done")
+    {
+        //Unsubscribe from systemd signals
+        Activation::unsubscribeFromSystemdSignals();
+
+        // Reboot the BMC if the apply time value is immediate
+        if (Activation::checkApplyTimeImmediate() == true)
+        {
+            Activation::rebootBmc();
         }
     }
 

@@ -4,6 +4,7 @@
 
 #include "flash.hpp"
 #include "org/openbmc/Associations/server.hpp"
+#include "utils.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 
@@ -38,6 +39,15 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+
+constexpr auto applyTimeImmediate =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
+constexpr auto applyTimeOnReset =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.OnReset";
+constexpr auto applyTimeIntf = "xyz.openbmc_project.Software.ApplyTime";
+constexpr auto dbusPropIntf = "org.freedesktop.DBus.Properties";
+constexpr auto applyTimeObjPath = "/xyz/openbmc_project/software/apply_time";
+constexpr auto applyTimeProp = "RequestedApplyTime";
 
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
@@ -295,6 +305,20 @@ class Activation : public ActivationInherit, public Flash
      *        untar image from image upload dir.
      */
     void deleteImageManagerObject();
+
+    /**
+     * @brief Determine the configured image apply time value
+     *
+     * @return true if the image apply time value is immediate
+     **/
+    bool checkApplyTimeImmediate();
+
+    /**
+     * @brief Reboot the bmc depending on image apply time value
+     *
+     * @return none
+     **/
+    void rebootBmc();
 
     /** @brief Persistent sdbusplus DBus bus connection */
     sdbusplus::bus::bus& bus;

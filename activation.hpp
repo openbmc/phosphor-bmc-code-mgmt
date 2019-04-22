@@ -39,6 +39,22 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
 
+constexpr auto applyTimeImmediate =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
+constexpr auto applyTimeOnReset =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.OnReset";
+constexpr auto applyTimeIntf = "xyz.openbmc_project.Software.ApplyTime";
+constexpr auto dbusPropIntf = "org.freedesktop.DBus.Properties";
+constexpr auto applyTimeObjPath = "/xyz/openbmc_project/software/apply_time";
+constexpr auto applyTimeProp = "RequestedApplyTime";
+constexpr auto bmcStateIntf = "xyz.openbmc_project.State.BMC";
+constexpr auto bmcStateObjPath = "/xyz/openbmc_project/state/bmc0";
+constexpr auto bmcStateRebootProp = "RequestedBMCTransition";
+constexpr auto bmcStateNewVal =
+    "xyz.openbmc_project.State.BMC.Transition.Reboot";
+constexpr auto mapperBusIntf = "xyz.openbmc_project.ObjectMapper";
+constexpr auto mapperObjPath = "/xyz/openbmc_project/object_mapper";
+
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
 class ItemUpdater;
@@ -295,6 +311,28 @@ class Activation : public ActivationInherit, public Flash
      *        untar image from image upload dir.
      */
     void deleteImageManagerObject();
+
+    /**
+     * @brief Get the bus service
+     *
+     * @return the bus service as a string
+     **/
+    std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
+                           const std::string& interface);
+
+    /**
+     * @brief Determine the configured image apply time value
+     *
+     * @return true if the image apply time value is immediate
+     **/
+    bool checkApplyTimeImmediate();
+
+    /**
+     * @brief Reboot the bmc depending on image apply time value
+     *
+     * @return none
+     **/
+    void rebootBmc();
 
     /** @brief Persistent sdbusplus DBus bus connection */
     sdbusplus::bus::bus& bus;

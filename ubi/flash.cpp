@@ -2,6 +2,8 @@
 
 #include "activation.hpp"
 
+#include <phosphor-logging/log.hpp>
+
 namespace phosphor
 {
 namespace software
@@ -10,6 +12,7 @@ namespace updater
 {
 
 namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
+using namespace phosphor::logging;
 
 void Activation::flashWrite()
 {
@@ -41,6 +44,7 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
     auto ubootVarsServiceFile =
         "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
+    auto rebootGuardDisableServiceFile = "reboot-guard-disable.service";
 
     if (newStateUnit == rwServiceFile && newStateResult == "done")
     {
@@ -72,6 +76,20 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
         {
             Activation::activation(
                 softwareServer::Activation::Activations::Activating);
+        }
+    }
+
+    if (newStateUnit == rebootGuardDisableServiceFile &&
+        newStateResult == "done")
+    {
+        // Check the reboot request flag set during activation and reboot bmc
+        // if needed
+        if (rebootRequested == true)
+        {
+            Activation::unsubscribeFromSystemdSignals();
+            log<level::INFO>("ApplyTime is immediate, rebooting bmc after "
+                             "image activation");
+            Activation::rebootBmc();
         }
     }
 

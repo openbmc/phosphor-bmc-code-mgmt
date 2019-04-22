@@ -4,6 +4,7 @@
 
 #include "flash.hpp"
 #include "org/openbmc/Associations/server.hpp"
+#include "utils.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 
@@ -38,6 +39,20 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+
+constexpr auto applyTimeImmediate =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
+constexpr auto applyTimeOnReset =
+    "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.OnReset";
+constexpr auto applyTimeIntf = "xyz.openbmc_project.Software.ApplyTime";
+constexpr auto dbusPropIntf = "org.freedesktop.DBus.Properties";
+constexpr auto applyTimeObjPath = "/xyz/openbmc_project/software/apply_time";
+constexpr auto applyTimeProp = "RequestedApplyTime";
+constexpr auto bmcStateIntf = "xyz.openbmc_project.State.BMC";
+constexpr auto bmcStateObjPath = "/xyz/openbmc_project/state/bmc0";
+constexpr auto bmcStateRebootProp = "RequestedBMCTransition";
+constexpr auto bmcStateRebootVal =
+    "xyz.openbmc_project.State.BMC.Transition.Reboot";
 
 namespace sdbusRule = sdbusplus::bus::match::rules;
 
@@ -287,14 +302,29 @@ class Activation : public ActivationInherit, public Flash
      * Once complete, we want to unsubscribe to avoid unnecessary calls of
      * unitStateChange().
      *
+     * @return true if the unsubscribe operation was successful
      */
-    void unsubscribeFromSystemdSignals();
+    bool unsubscribeFromSystemdSignals();
 
     /**
      * @brief Deletes the version from Image Manager and the
      *        untar image from image upload dir.
      */
     void deleteImageManagerObject();
+
+    /**
+     * @brief Determine the configured image apply time value
+     *
+     * @return true if the image apply time value is immediate
+     **/
+    bool checkApplyTimeImmediate();
+
+    /**
+     * @brief Reboot the bmc depending on image apply time value
+     *
+     * @return none
+     **/
+    void rebootBmc();
 
     /** @brief Persistent sdbusplus DBus bus connection */
     sdbusplus::bus::bus& bus;
@@ -331,6 +361,11 @@ class Activation : public ActivationInherit, public Flash
     /** @brief Tracks if the service that updates the U-Boot environment
      *         variables has completed. **/
     bool ubootEnvVarsUpdated = false;
+
+    /** @brief Tracks whether the BMC reboot is being set as part of the
+     * activation process.
+     */
+    bool rebootRequested = false;
 
 #ifdef WANT_SIGNATURE_VERIFY
   private:

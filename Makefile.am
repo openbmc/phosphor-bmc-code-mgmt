@@ -10,7 +10,8 @@ noinst_HEADERS = \
 	item_updater.hpp \
 	activation.hpp \
 	flash.hpp \
-	item_updater_helper.hpp
+	item_updater_helper.hpp \
+	utils.hpp
 
 bin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -40,7 +41,8 @@ phosphor_image_updater_SOURCES = \
 	version.cpp \
 	serialize.cpp \
 	item_updater.cpp \
-	item_updater_main.cpp
+	item_updater_main.cpp \
+	utils.cpp
 
 if UBIFS_LAYOUT
 include ubi/Makefile.am.include
@@ -51,10 +53,10 @@ endif
 if WANT_SIGNATURE_VERIFY_BUILD
 noinst_HEADERS += \
 	image_verify.hpp \
-	utils.hpp
+	openssl_alloc.hpp
 phosphor_image_updater_SOURCES += \
 	image_verify.cpp \
-	utils.cpp
+	openssl_alloc.cpp
 endif
 
 if WANT_SYNC

@@ -4,15 +4,14 @@
 #include "item_updater.hpp"
 #include "serialize.hpp"
 
+#include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/exception.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include "image_verify.hpp"
-
-#include <phosphor-logging/elog-errors.hpp>
-#include <phosphor-logging/elog.hpp>
-#include <xyz/openbmc_project/Common/error.hpp>
 #endif
 
 namespace phosphor
@@ -26,10 +25,10 @@ namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 using namespace phosphor::logging;
 using sdbusplus::exception::SdBusError;
-
-#ifdef WANT_SIGNATURE_VERIFY
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+
+#ifdef WANT_SIGNATURE_VERIFY
 namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 #endif
 
@@ -143,7 +142,6 @@ auto Activation::activation(Activations value) -> Activations
                 rwVolumeCreated = false;
                 roVolumeCreated = false;
                 ubootEnvVarsUpdated = false;
-                Activation::unsubscribeFromSystemdSignals();
 
                 // Remove version object from image manager
                 Activation::deleteImageManagerObject();
@@ -258,8 +256,10 @@ uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 
 void Activation::unitStateChange(sdbusplus::message::message& msg)
 {
-    if (softwareServer::Activation::activation() !=
-        softwareServer::Activation::Activations::Activating)
+    if ((softwareServer::Activation::activation() !=
+         softwareServer::Activation::Activations::Activating) &&
+        (softwareServer::Activation::activation() !=
+         softwareServer::Activation::Activations::Active))
     {
         return;
     }
@@ -305,6 +305,78 @@ void ActivationBlocksTransition::disableRebootGuard()
                                       SYSTEMD_INTERFACE, "StartUnit");
     method.append("reboot-guard-disable.service", "replace");
     bus.call_noreply(method);
+}
+
+bool Activation::checkApplyTimeImmediate()
+{
+    auto service = utils::getService(bus, applyTimeObjPath, applyTimeIntf);
+    if (service.empty())
+    {
+        log<level::INFO>("Error getting the service name for BMC image apply "
+                         "time. The BMC needs to be manually rebooted to "
+                         "complete the image activation if needed "
+                         "immediately.");
+    }
+    else
+    {
+
+        auto method = bus.new_method_call(service.c_str(), applyTimeObjPath,
+                                          dbusPropIntf, "Get");
+        method.append(applyTimeIntf, applyTimeProp);
+
+        try
+        {
+            auto reply = bus.call(method);
+
+            sdbusplus::message::variant<std::string> result;
+            reply.read(result);
+            auto applyTime =
+                sdbusplus::message::variant_ns::get<std::string>(result);
+            if (applyTime == applyTimeImmediate)
+            {
+                return true;
+            }
+        }
+        catch (const SdBusError& e)
+        {
+            log<level::ERR>("Error in getting ApplyTime",
+                            entry("ERROR=%s", e.what()));
+        }
+    }
+    return false;
+}
+
+void Activation::rebootBmc()
+{
+    log<level::INFO>("BMC rebooting after the image activation");
+
+    auto service = utils::getService(bus, bmcStateObjPath, bmcStateIntf);
+    if (service.empty())
+    {
+        log<level::ALERT>("Error getting the service name to reboot the BMC. "
+                          "The BMC needs to be manually rebooted to complete "
+                          "the image activation.");
+        return;
+    }
+
+    auto method = bus.new_method_call(service.c_str(), bmcStateObjPath,
+                                      dbusPropIntf, "Set");
+    sdbusplus::message::variant<std::string> bmcReboot = bmcStateRebootVal;
+    method.append(bmcStateIntf, bmcStateRebootProp, bmcReboot);
+
+    try
+    {
+        auto reply = bus.call(method);
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::ALERT>("Error in trying to reboot the BMC. "
+                          "The BMC needs to be manually rebooted to complete "
+                          "the image activation.");
+        log<level::ERR>("Error in Setting bmc reboot",
+                        entry("ERROR=%s", e.what()));
+        report<InternalFailure>();
+    }
 }
 
 } // namespace updater

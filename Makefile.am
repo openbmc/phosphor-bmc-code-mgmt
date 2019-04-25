@@ -17,6 +17,9 @@ bin_PROGRAMS = \
 	phosphor-download-manager \
 	phosphor-image-updater
 
+dist_bin_SCRIPTS = \
+	obmc-flash-bmc
+
 phosphor_version_software_manager_SOURCES = \
 	image_manager_main.cpp \
 	watch.cpp \
@@ -41,6 +44,19 @@ phosphor_image_updater_SOURCES = \
 	serialize.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp
+
+if HAVE_SYSTEMD
+systemdsystemunit_DATA = \
+	obmc-flash-bmc-setenv@.service \
+	xyz.openbmc_project.Software.BMC.Updater.service \
+	xyz.openbmc_project.Software.Download.service \
+	xyz.openbmc_project.Software.Sync.service \
+	xyz.openbmc_project.Software.Version.service
+
+tmpfilesdir=${exec_prefix}/lib/tmpfiles.d/
+dist_tmpfiles_DATA = \
+	software.conf
+endif
 
 if UBIFS_LAYOUT
 include ubi/Makefile.am.include
@@ -68,6 +84,8 @@ phosphor_sync_software_manager_SOURCES = \
 	sync_manager_main.cpp
 phosphor_sync_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_sync_software_manager_LDFLAGS = $(generic_ldflags)
+dist_sysconf_DATA = \
+	synclist
 endif
 
 nodist_phosphor_image_updater_SOURCES = \

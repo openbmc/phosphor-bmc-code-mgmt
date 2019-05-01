@@ -7,14 +7,15 @@
 #include "version.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 
-#include <elog-errors.hpp>
 #include <experimental/filesystem>
 #include <fstream>
+#include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <queue>
 #include <set>
 #include <string>
+#include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
 
 namespace phosphor
@@ -32,6 +33,7 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 using namespace phosphor::software::image;
 namespace fs = std::experimental::filesystem;
+using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
@@ -457,6 +459,11 @@ bool ItemUpdater::fieldModeEnabled(bool value)
         control::FieldMode::fieldModeEnabled(value);
 
         helper.enableFieldMode();
+    }
+    else if (!value)
+    {
+        elog<NotAllowed>(xyz::openbmc_project::Common::NotAllowed::REASON(
+            "FieldMode is not allowed to be cleared"));
     }
 
     return control::FieldMode::fieldModeEnabled();

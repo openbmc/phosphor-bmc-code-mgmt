@@ -29,9 +29,7 @@ phosphor_version_software_manager_SOURCES = \
 
 BUILT_SOURCES = \
 	xyz/openbmc_project/Software/Image/error.cpp \
-	xyz/openbmc_project/Software/Image/error.hpp \
-	org/openbmc/Associations/server.cpp \
-	org/openbmc/Associations/server.hpp
+	xyz/openbmc_project/Software/Image/error.hpp
 
 CLEANFILES = ${BUILT_SOURCES}
 
@@ -90,9 +88,6 @@ dist_sysconf_DATA = \
 	synclist
 endif
 
-nodist_phosphor_image_updater_SOURCES = \
-	org/openbmc/Associations/server.cpp
-
 generic_cxxflags = \
 	$(SYSTEMD_CFLAGS) \
 	$(PHOSPHOR_DBUS_INTERFACES_CFLAGS) \
@@ -115,14 +110,6 @@ xyz/openbmc_project/Software/Image/error.hpp: ${top_srcdir}/xyz/openbmc_project/
 xyz/openbmc_project/Software/Image/error.cpp: ${top_srcdir}/xyz/openbmc_project/Software/Image.errors.yaml
 	@mkdir -p `dirname $@`
 	$(SDBUSPLUSPLUS) -r $(srcdir) error exception-cpp xyz.openbmc_project.Software.Image > $@
-
-org/openbmc/Associations/server.cpp: org/openbmc/Associations.interface.yaml
-	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS) -r $(srcdir) interface server-cpp org.openbmc.Associations > $@
-
-org/openbmc/Associations/server.hpp: org/openbmc/Associations.interface.yaml
-	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS) -r $(srcdir) interface server-header org.openbmc.Associations > $@
 
 phosphor_version_software_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_version_software_manager_LDFLAGS = $(generic_ldflags)

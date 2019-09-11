@@ -2,11 +2,11 @@
 
 #include "activation.hpp"
 #include "item_updater_helper.hpp"
-#include "org/openbmc/Associations/server.hpp"
 #include "version.hpp"
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/server.hpp>
+#include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
 
@@ -20,7 +20,7 @@ namespace updater
 using ItemUpdaterInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
     sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
-    sdbusplus::org::openbmc::server::Associations,
+    sdbusplus::xyz::openbmc_project::Association::server::Definitions,
     sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;

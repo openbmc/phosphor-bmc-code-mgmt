@@ -120,6 +120,16 @@ class Version : public VersionInherit
     static std::string getId(const std::string& version);
 
     /**
+     * @brief Get the active BMC machine name string.
+     *
+     * @param[in] releaseFilePath - The path to the file which contains
+     *                              the release machine string.
+     *
+     * @return The machine name string (e.g. romulus, tiogapass).
+     */
+    static std::string getBMCMachine(const std::string& releaseFilePath);
+
+    /**
      * @brief Get the active BMC version string.
      *
      * @param[in] releaseFilePath - The path to the file which contains

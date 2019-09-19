@@ -106,6 +106,38 @@ int Manager::processImage(const std::string& tarFilePath)
         return -1;
     }
 
+    // Get running machine name
+    std::string currMachine = Version::getBMCMachine(OS_RELEASE_FILE);
+    if (currMachine.empty())
+    {
+        log<level::ERR>("Failed to read machine name from osRelease",
+                        entry("FILENAME=%s", OS_RELEASE_FILE));
+        return -1;
+    }
+
+    // Get machine name for image to be upgraded
+    std::string machineStr =
+        Version::getValue(manifestPath.string(), "MachineName");
+    if (!machineStr.empty())
+    {
+        if (machineStr != currMachine)
+        {
+            log<level::ERR>("BMC upgrade: Machine name doesn't match",
+                            entry("CURR_MACHINE=%s", currMachine.c_str()),
+                            entry("NEW_MACHINE=%s", machineStr.c_str()));
+            return -1;
+        }
+    }
+    // Only version 2.7 and 2.8 supported for non machine verification
+    // compatibility
+    else if ((version.find("2.7") == std::string::npos) &&
+             (version.find("2.8") == std::string::npos))
+    {
+        log<level::ERR>("Error unable to read machine name from manifest file");
+        report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
+        return -1;
+    }
+
     // Get purpose
     auto purposeString = Version::getValue(manifestPath.string(), "purpose");
     if (purposeString.empty())

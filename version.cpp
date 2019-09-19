@@ -93,6 +93,35 @@ std::string Version::getId(const std::string& version)
     return (hexId.substr(0, 8));
 }
 
+std::string Version::getBMCMachine(const std::string& releaseFilePath)
+{
+    std::string machineKey = "OPENBMC_TARGET_MACHINE=";
+    std::string machine{};
+    std::ifstream efile;
+    std::string line;
+    efile.open(releaseFilePath);
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, machineKey.size()).find(machineKey) !=
+            std::string::npos)
+        {
+            std::size_t pos = line.find_first_of('"') + 1;
+            machine = line.substr(pos, line.find_last_of('"') - pos);
+            break;
+        }
+    }
+    efile.close();
+
+    if (machine.empty())
+    {
+        log<level::ERR>("Error BMC current machine name is empty");
+        elog<InternalFailure>();
+    }
+
+    return machine;
+}
+
 std::string Version::getBMCVersion(const std::string& releaseFilePath)
 {
     std::string versionKey = "VERSION_ID=";

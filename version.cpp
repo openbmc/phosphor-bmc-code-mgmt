@@ -51,6 +51,11 @@ std::string Version::getValue(const std::string& manifestFilePath,
         efile.open(manifestFilePath);
         while (getline(efile, line))
         {
+            if (!line.empty() && line.back() == '\r')
+            {
+                // Remove \r from the end of line
+                line.pop_back();
+            }
             if (line.compare(0, keySize, key) == 0)
             {
                 value = line.substr(keySize);

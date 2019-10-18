@@ -48,7 +48,7 @@ TEST_F(VersionTest, TestGetValue)
     file.open(manifestFilePath, std::ofstream::out);
     ASSERT_TRUE(file.is_open());
 
-    file << "version=" << version << std::endl;
+    file << "version=" << version << "\r\n";
     file << "purpose=" << purpose << std::endl;
     file.close();
 

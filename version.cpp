@@ -51,6 +51,12 @@ std::string Version::getValue(const std::string& manifestFilePath,
         efile.open(manifestFilePath);
         while (getline(efile, line))
         {
+            if (!line.empty() && line.back() == '\r')
+            {
+                // If the manifest has CRLF line terminators, e.g. is created on
+                // Windows, the line will contain \r at the end, remove it.
+                line.pop_back();
+            }
             if (line.compare(0, keySize, key) == 0)
             {
                 value = line.substr(keySize);

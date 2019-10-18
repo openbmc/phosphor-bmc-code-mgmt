@@ -48,8 +48,26 @@ TEST_F(VersionTest, TestGetValue)
     file.open(manifestFilePath, std::ofstream::out);
     ASSERT_TRUE(file.is_open());
 
-    file << "version=" << version << std::endl;
-    file << "purpose=" << purpose << std::endl;
+    file << "version=" << version << "\n";
+    file << "purpose=" << purpose << "\n";
+    file.close();
+
+    EXPECT_EQ(Version::getValue(manifestFilePath, "version"), version);
+    EXPECT_EQ(Version::getValue(manifestFilePath, "purpose"), purpose);
+}
+
+TEST_F(VersionTest, TestGetValueWithCRLF)
+{
+    auto manifestFilePath = _directory + "/" + "MANIFEST";
+    auto version = "test-version";
+    auto purpose = "BMC";
+
+    std::ofstream file;
+    file.open(manifestFilePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "version=" << version << "\r\n";
+    file << "purpose=" << purpose << "\r\n";
     file.close();
 
     EXPECT_EQ(Version::getValue(manifestFilePath, "version"), version);

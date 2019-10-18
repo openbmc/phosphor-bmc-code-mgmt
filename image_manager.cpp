@@ -52,6 +52,24 @@ struct RemovablePath
     }
 };
 
+namespace // anonymous
+{
+
+std::vector<std::string> getSoftwareObjects(sdbusplus::bus::bus& bus)
+{
+    std::vector<std::string> paths;
+    auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
+                                      MAPPER_INTERFACE, "GetSubTreePaths");
+    method.append(SOFTWARE_OBJPATH);
+    method.append(0); // Depth 0 to search all
+    method.append(std::vector<std::string>({VERSION_BUSNAME}));
+    auto reply = bus.call(method);
+    reply.read(paths);
+    return paths;
+}
+
+} // namespace
+
 int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))
@@ -146,7 +164,10 @@ int Manager::processImage(const std::string& tarFilePath)
     // Create Version object
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
-    if (versions.find(id) == versions.end())
+    auto allSoftwareObjs = getSoftwareObjects(bus);
+    auto it =
+        std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
+    if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
     {
         auto versionPtr = std::make_unique<Version>(
             bus, objPath, version, purpose, imageDirPath.string(),

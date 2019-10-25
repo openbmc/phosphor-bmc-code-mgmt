@@ -48,6 +48,7 @@ phosphor_image_updater_SOURCES = \
 if HAVE_SYSTEMD
 systemdsystemunit_DATA = \
 	obmc-flash-bmc-setenv@.service \
+	usr-local.mount \
 	xyz.openbmc_project.Software.BMC.Updater.service \
 	xyz.openbmc_project.Software.Download.service \
 	xyz.openbmc_project.Software.Sync.service \

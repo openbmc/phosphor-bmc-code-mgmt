@@ -59,9 +59,6 @@ class Helper
      */
     void updateUbootVersionId(const std::string& versionId);
 
-    /** @brief Enable field mode */
-    void enableFieldMode();
-
     /** @brief Mirror Uboot to the alt uboot partition */
     void mirrorAlt();
 

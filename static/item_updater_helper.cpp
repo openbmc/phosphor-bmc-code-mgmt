@@ -10,11 +10,8 @@ namespace updater
 {
 // openbmconce=clean-rwfs-filesystem factory-reset
 #define ENV_FACTORY_RESET "openbmconce\\x3dfactory\\x2dreset"
-#define ENV_ENABLE_FIELD_MODE "fieldmode\\x3dtrue"
 #define SERVICE_FACTORY_RESET                                                  \
     "obmc-flash-bmc-setenv@" ENV_FACTORY_RESET ".service"
-#define SERVICE_ENABLE_FIELD_MODE                                              \
-    "obmc-flash-bmc-setenv@" ENV_ENABLE_FIELD_MODE ".service"
 
 void Helper::setEntry(const std::string& entryId, uint8_t value)
 {
@@ -49,14 +46,6 @@ void Helper::removeVersion(const std::string& versionId)
 void Helper::updateUbootVersionId(const std::string& versionId)
 {
     // Empty
-}
-
-void Helper::enableFieldMode()
-{
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append(SERVICE_ENABLE_FIELD_MODE, "replace");
-    bus.call_noreply(method);
 }
 
 void Helper::mirrorAlt()

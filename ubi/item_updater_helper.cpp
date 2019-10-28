@@ -83,26 +83,6 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     }
 }
 
-void Helper::enableFieldMode()
-{
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append("obmc-flash-bmc-setenv@fieldmode\\x3dtrue.service",
-                  "replace");
-    bus.call_noreply(method);
-
-    method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                 SYSTEMD_INTERFACE, "StopUnit");
-    method.append("usr-local.mount", "replace");
-    bus.call_noreply(method);
-
-    std::vector<std::string> usrLocal = {"usr-local.mount"};
-
-    method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                 SYSTEMD_INTERFACE, "MaskUnitFiles");
-    method.append(usrLocal, false, true);
-    bus.call_noreply(method);
-}
 void Helper::mirrorAlt()
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,

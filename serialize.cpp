@@ -41,7 +41,7 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
             iarchive(cereal::make_nvp("priority", priority));
             return true;
         }
-        catch (cereal::RapidJSONException& e)
+        catch (cereal::Exception& e)
         {
             fs::remove(path);
         }

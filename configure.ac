@@ -107,7 +107,7 @@ AC_DEFINE(OS_RELEASE_FILE, "/etc/os-release",
     [The name of the BMC table of contents file])
 AC_DEFINE(ALT_RWFS, "/media/alt/var/persist",
     [The path of the alt rwfs overlay])
-AC_DEFINE(PERSIST_DIR, "/var/lib/obmc/phosphor-bmc-code-mgmt/",
+AC_DEFINE(PERSIST_DIR, "/var/lib/phosphor-bmc-code-mgmt/",
     [The dir where activation data is stored in files])
 AC_DEFINE(SYSTEMD_BUSNAME, "org.freedesktop.systemd1",
     [The systemd busname])

@@ -16,34 +16,42 @@ namespace updater
 
 namespace fs = std::experimental::filesystem;
 
-void storeToFile(std::string versionId, uint8_t priority)
+const std::string priorityName = "priority";
+
+void storePriority(const std::string& versionId, uint8_t priority)
 {
-    if (!fs::is_directory(PERSIST_DIR))
+    auto path = fs::path(PERSIST_DIR) / versionId;
+    if (!fs::is_directory(path))
     {
-        fs::create_directories(PERSIST_DIR);
+        if (fs::exists(path))
+        {
+            // Delete if it's a non-directory file
+            fs::remove_all(path);
+        }
+        fs::create_directories(path);
     }
-    std::string path = PERSIST_DIR + versionId;
+    path = path / priorityName;
 
     std::ofstream os(path.c_str());
     cereal::JSONOutputArchive oarchive(os);
-    oarchive(cereal::make_nvp("priority", priority));
+    oarchive(cereal::make_nvp(priorityName, priority));
 }
 
-bool restoreFromFile(std::string versionId, uint8_t& priority)
+bool restorePriority(const std::string& versionId, uint8_t& priority)
 {
-    std::string path = PERSIST_DIR + versionId;
+    auto path = fs::path(PERSIST_DIR) / versionId / priorityName;
     if (fs::exists(path))
     {
         std::ifstream is(path.c_str(), std::ios::in);
         try
         {
             cereal::JSONInputArchive iarchive(is);
-            iarchive(cereal::make_nvp("priority", priority));
+            iarchive(cereal::make_nvp(priorityName, priority));
             return true;
         }
         catch (cereal::Exception& e)
         {
-            fs::remove(path);
+            fs::remove_all(path);
         }
     }
 
@@ -88,12 +96,12 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
     return false;
 }
 
-void removeFile(std::string versionId)
+void removePersistDataDirectory(const std::string& versionId)
 {
-    std::string path = PERSIST_DIR + versionId;
+    auto path = fs::path(PERSIST_DIR) / versionId;
     if (fs::exists(path))
     {
-        fs::remove(path);
+        fs::remove_all(path);
     }
 }
 

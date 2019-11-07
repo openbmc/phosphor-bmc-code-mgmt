@@ -16,29 +16,50 @@ namespace updater
 
 namespace fs = std::experimental::filesystem;
 
-void storeToFile(std::string versionId, uint8_t priority)
+const std::string priorityName = "priority";
+
+/** @brief Get the name of the serialized file, create the persist dir if needed
+ *  @param[in] versionId - The version associated with the serialized values
+ *  @param[in] name - The name of the property file
+ *  @param[in] create - True to specifiy to create the persist dir
+ *  @return the path to the serialization file for the specified version
+ **/
+fs::path getPath(const std::string& versionId, const std::string& name,
+                 const bool& create = false)
 {
-    if (!fs::is_directory(PERSIST_DIR))
+    auto path = fs::path(PERSIST_DIR) / versionId;
+
+    if (create)
     {
-        fs::create_directories(PERSIST_DIR);
+        if (!fs::exists(path))
+        {
+            fs::create_directories(path);
+        }
     }
-    std::string path = PERSIST_DIR + versionId;
+
+    return path / name;
+}
+
+void storePriorityToFile(std::string versionId, uint8_t priority)
+{
+    auto path = getPath(versionId, priorityName, true);
 
     std::ofstream os(path.c_str());
     cereal::JSONOutputArchive oarchive(os);
-    oarchive(cereal::make_nvp("priority", priority));
+    oarchive(cereal::make_nvp(priorityName, priority));
 }
 
-bool restoreFromFile(std::string versionId, uint8_t& priority)
+bool restorePriorityFromFile(std::string versionId, uint8_t& priority)
 {
-    std::string path = PERSIST_DIR + versionId;
+    auto path = getPath(versionId, priorityName);
+
     if (fs::exists(path))
     {
         std::ifstream is(path.c_str(), std::ios::in);
         try
         {
             cereal::JSONInputArchive iarchive(is);
-            iarchive(cereal::make_nvp("priority", priority));
+            iarchive(cereal::make_nvp(priorityName, priority));
             return true;
         }
         catch (cereal::Exception& e)
@@ -90,10 +111,10 @@ bool restoreFromFile(std::string versionId, uint8_t& priority)
 
 void removeFile(std::string versionId)
 {
-    std::string path = PERSIST_DIR + versionId;
+    auto path = getPath(versionId, "");
     if (fs::exists(path))
     {
-        fs::remove(path);
+        fs::remove_all(path);
     }
 }
 

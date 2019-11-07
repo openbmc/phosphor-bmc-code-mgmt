@@ -235,7 +235,7 @@ void ItemUpdater::processBMCImage()
             if (activationState == server::Activation::Activations::Active)
             {
                 uint8_t priority = std::numeric_limits<uint8_t>::max();
-                if (!restoreFromFile(id, priority))
+                if (!restorePriorityFromFile(id, priority))
                 {
                     if (isVersionFunctional)
                     {
@@ -381,7 +381,7 @@ ItemUpdater::ActivationStatus
 
 void ItemUpdater::savePriority(const std::string& versionId, uint8_t value)
 {
-    storeToFile(versionId, value);
+    storePriorityToFile(versionId, value);
     helper.setEntry(versionId, value);
 }
 

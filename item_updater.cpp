@@ -190,6 +190,8 @@ void ItemUpdater::processBMCImage()
             }
 
             auto purpose = server::Version::VersionPurpose::BMC;
+            restorePurpose(id, purpose);
+
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
             // Create functional association if this is the functional

@@ -134,6 +134,9 @@ auto Activation::activation(Activations value) -> Activations
             {
                 activationProgress->progress(90);
 
+                storePurpose(
+                    versionId,
+                    parent.versions.find(versionId)->second->purpose());
                 if (!redundancyPriority)
                 {
                     redundancyPriority = std::make_unique<RedundancyPriority>(
@@ -188,6 +191,8 @@ auto Activation::activation(Activations value) -> Activations
 
         flashWrite();
 
+        storePurpose(versionId,
+                     parent.versions.find(versionId)->second->purpose());
         if (!redundancyPriority)
         {
             redundancyPriority =

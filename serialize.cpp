@@ -17,6 +17,7 @@ namespace updater
 namespace fs = std::experimental::filesystem;
 
 const std::string priorityName = "priority";
+const std::string purposeName = "purpose";
 
 void storePriority(const std::string& versionId, uint8_t priority)
 {
@@ -30,6 +31,20 @@ void storePriority(const std::string& versionId, uint8_t priority)
     std::ofstream os(path.c_str());
     cereal::JSONOutputArchive oarchive(os);
     oarchive(cereal::make_nvp(priorityName, priority));
+}
+
+void storePurpose(const std::string& versionId, VersionPurpose purpose)
+{
+    auto path = fs::path(PERSIST_DIR) / versionId;
+    if (!fs::is_directory(path))
+    {
+        fs::create_directories(path);
+    }
+    path = path / purposeName;
+
+    std::ofstream os(path.c_str());
+    cereal::JSONOutputArchive oarchive(os);
+    oarchive(cereal::make_nvp(purposeName, purpose));
 }
 
 bool restorePriority(const std::string& versionId, uint8_t& priority)
@@ -86,6 +101,27 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
     }
     catch (const std::exception& e)
     {
+    }
+
+    return false;
+}
+
+bool restorePurpose(const std::string& versionId, VersionPurpose& purpose)
+{
+    auto path = fs::path(PERSIST_DIR) / versionId / purposeName;
+    if (fs::exists(path))
+    {
+        std::ifstream is(path.c_str(), std::ios::in);
+        try
+        {
+            cereal::JSONInputArchive iarchive(is);
+            iarchive(cereal::make_nvp(purposeName, purpose));
+            return true;
+        }
+        catch (cereal::Exception& e)
+        {
+            fs::remove(path);
+        }
     }
 
     return false;

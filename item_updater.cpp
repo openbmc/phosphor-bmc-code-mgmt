@@ -358,16 +358,25 @@ ItemUpdater::ActivationStatus
 {
     bool invalid = false;
 
-    for (auto& bmcImage : bmcImages)
+    for (auto& bmcFlashImage : bmcFlashImages)
     {
         fs::path file(filePath);
-        file /= bmcImage;
+        file /= bmcFlashImage;
         std::ifstream efile(file.c_str());
         if (efile.good() != 1)
         {
-            log<level::ERR>("Failed to find the BMC image.",
-                            entry("IMAGE=%s", bmcImage.c_str()));
-            invalid = true;
+            for (auto& bmcImage : bmcImages)
+            {
+                fs::path file(filePath);
+                file /= bmcImage;
+                std::ifstream efile(file.c_str());
+                if (efile.good() != 1)
+                {
+                    log<level::ERR>("Failed to find the BMC image.",
+                                    entry("IMAGE=%s", bmcImage.c_str()));
+                    invalid = true;
+                }
+            }
         }
     }
 

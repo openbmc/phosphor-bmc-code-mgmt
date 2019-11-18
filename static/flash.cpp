@@ -6,6 +6,7 @@
 #include "images.hpp"
 
 #include <experimental/filesystem>
+#include <fstream>
 
 namespace
 {
@@ -28,10 +29,25 @@ void Activation::flashWrite()
     // the image to flash during reboot.
     fs::path uploadDir(IMG_UPLOAD_DIR);
     fs::path toPath(PATH_INITRAMFS);
-    for (auto& bmcImage : phosphor::software::image::bmcImages)
+    for (auto& bmcFlashImage : phosphor::software::image::bmcFlashImages)
     {
-        fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
-                      fs::copy_options::overwrite_existing);
+        fs::path file(uploadDir.c_str());
+        file /= versionId;
+        file /= bmcFlashImage;
+        std::ifstream efile(file.c_str());
+        if (efile.good() != 1)
+        {
+            for (auto& bmcImage : phosphor::software::image::bmcImages)
+            {
+                fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
+                              fs::copy_options::overwrite_existing);
+            }
+        }
+        else
+        {
+            fs::copy_file(uploadDir / versionId / bmcFlashImage, toPath / bmcFlashImage,
+                          fs::copy_options::overwrite_existing);
+        }
     }
 }
 

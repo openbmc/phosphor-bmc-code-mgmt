@@ -52,7 +52,10 @@ systemdsystemunit_DATA = \
 	xyz.openbmc_project.Software.BMC.Updater.service \
 	xyz.openbmc_project.Software.Download.service \
 	xyz.openbmc_project.Software.Sync.service \
-	xyz.openbmc_project.Software.Version.service
+	xyz.openbmc_project.Software.Version.service \
+	reboot-guard-disable.service \
+	reboot-guard-enable.service \
+	force-reboot.service
 
 tmpfilesdir=${exec_prefix}/lib/tmpfiles.d/
 dist_tmpfiles_DATA = \

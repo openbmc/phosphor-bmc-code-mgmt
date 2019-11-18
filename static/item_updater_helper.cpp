@@ -8,6 +8,7 @@ namespace software
 {
 namespace updater
 {
+
 // openbmconce=clean-rwfs-filesystem factory-reset
 #define ENV_FACTORY_RESET "openbmconce\\x3dfactory\\x2dreset"
 #define SERVICE_FACTORY_RESET                                                  \

@@ -4,6 +4,7 @@
 
 #include "activation.hpp"
 #include "images.hpp"
+#include "item_updater.hpp"
 
 #include <filesystem>
 
@@ -20,6 +21,7 @@ namespace updater
 {
 
 namespace fs = std::filesystem;
+using namespace phosphor::software::image;
 
 void Activation::flashWrite()
 {
@@ -28,7 +30,8 @@ void Activation::flashWrite()
     // the image to flash during reboot.
     fs::path uploadDir(IMG_UPLOAD_DIR);
     fs::path toPath(PATH_INITRAMFS);
-    for (auto& bmcImage : phosphor::software::image::bmcImages)
+
+    for (const auto& bmcImage : parent.imageUpdateList)
     {
         fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
                       fs::copy_options::overwrite_existing);

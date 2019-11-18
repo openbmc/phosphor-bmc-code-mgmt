@@ -402,24 +402,22 @@ void ItemUpdater::deleteAll()
 ItemUpdater::ActivationStatus
     ItemUpdater::validateSquashFSImage(const std::string& filePath)
 {
-    bool invalid = false;
+    bool valid = true;
 
-    for (auto& bmcImage : bmcImages)
+    // Record the images which are being updated
+    // First check for the fullimage, then check for images with partitions
+    imageUpdateList.push_back(bmcFullImages);
+    valid = checkImage(filePath, imageUpdateList);
+    if (!valid)
     {
-        fs::path file(filePath);
-        file /= bmcImage;
-        std::ifstream efile(file.c_str());
-        if (efile.good() != 1)
+        imageUpdateList.clear();
+        imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
+        valid = checkImage(filePath, imageUpdateList);
+        if (!valid)
         {
-            log<level::ERR>("Failed to find the BMC image.",
-                            entry("IMAGE=%s", bmcImage.c_str()));
-            invalid = true;
+            log<level::ERR>("Failed to find the needed BMC images.");
+            return ItemUpdater::ActivationStatus::invalid;
         }
-    }
-
-    if (invalid)
-    {
-        return ItemUpdater::ActivationStatus::invalid;
     }
 
     return ItemUpdater::ActivationStatus::ready;
@@ -718,6 +716,26 @@ void ItemUpdater::freeSpace(Activation& caller)
 void ItemUpdater::mirrorUbootToAlt()
 {
     helper.mirrorAlt();
+}
+
+bool ItemUpdater::checkImage(const std::string& filePath,
+                             const std::vector<std::string>& imageList)
+{
+    bool valid = true;
+
+    for (auto& bmcImage : imageList)
+    {
+        fs::path file(filePath);
+        file /= bmcImage;
+        std::ifstream efile(file.c_str());
+        if (efile.good() != 1)
+        {
+            valid = false;
+            break;
+        }
+    }
+
+    return valid;
 }
 
 } // namespace updater

@@ -200,7 +200,23 @@ auto Activation::activation(Activations value) -> Activations
         // Create active association
         parent.createActiveAssociation(path);
 
-        log<level::INFO>("BMC image ready, need reboot to get activated.");
+        if (Activation::checkApplyTimeImmediate() == true)
+        {
+            log<level::INFO>("Image Active. ApplyTime is immediate, "
+                             "rebooting BMC.");
+            auto reply = std::system("/sbin/reboot");
+            if (reply < 0)
+            {
+                log<level::ALERT>("Error in trying to reboot the BMC. "
+                                  "The BMC needs to be manually rebooted to complete "
+                                  "the image activation.");
+            }
+        }
+        else
+        {
+            log<level::INFO>("BMC image ready, need reboot to get activated.");
+        }
+
         return softwareServer::Activation::activation(
             softwareServer::Activation::Activations::Active);
 #endif

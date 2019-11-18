@@ -7,6 +7,7 @@
 
 #include <sdbusplus/server.hpp>
 #include <string>
+#include <vector>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
@@ -160,6 +161,9 @@ class ItemUpdater : public ItemUpdaterInherit
      * version id */
     std::map<std::string, std::unique_ptr<VersionClass>> versions;
 
+    /** @brief Vector of needed BMC images in the tarball*/
+    std::vector<std::string> imageUpdateList;
+
   private:
     /** @brief Callback function for Software.Version match.
      *  @details Creates an Activation D-Bus object.
@@ -237,6 +241,17 @@ class ItemUpdater : public ItemUpdaterInherit
      *  alternate chip.
      */
     void mirrorUbootToAlt();
+
+    /** @brief Check the required image files
+     *
+     * @param[in] filePath - BMC tarball file path
+     * @param[in] imageList - Image filenames included in the BMC tarball
+     * @param[out] result - Boolean
+     *                      true if all image files are found in BMC tarball
+     *                      false if one of image files is missing
+     */
+    bool checkImage(const std::string& filePath,
+                    const std::vector<std::string>& imageList);
 };
 
 } // namespace updater

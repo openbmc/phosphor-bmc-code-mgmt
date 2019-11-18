@@ -11,8 +11,5 @@ systemdsystemunit_DATA += \
 	%reldir%/obmc-flash-bmc-ubiro-remove@.service \
 	%reldir%/obmc-flash-bmc-ubirw.service \
 	%reldir%/obmc-flash-bmc-ubirw-remove.service \
-	%reldir%/obmc-flash-bmc-updateubootvars@.service \
-	%reldir%/reboot-guard-disable.service \
-	%reldir%/reboot-guard-enable.service \
-	%reldir%/force-reboot.service
+	%reldir%/obmc-flash-bmc-updateubootvars@.service
 endif

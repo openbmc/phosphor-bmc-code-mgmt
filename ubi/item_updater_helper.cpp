@@ -2,6 +2,8 @@
 
 #include "item_updater_helper.hpp"
 
+#include <experimental/filesystem>
+#include <fstream>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/exception.hpp>
 
@@ -12,6 +14,7 @@ namespace software
 namespace updater
 {
 
+namespace fs = std::experimental::filesystem;
 using namespace phosphor::logging;
 using sdbusplus::exception::SdBusError;
 

@@ -2,12 +2,20 @@
 
 #include "item_updater_helper.hpp"
 
+#include <experimental/filesystem>
+#include <fstream>
+#include <phosphor-logging/log.hpp>
+
 namespace phosphor
 {
 namespace software
 {
 namespace updater
 {
+
+using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
+
 // openbmconce=clean-rwfs-filesystem factory-reset
 #define ENV_FACTORY_RESET "openbmconce\\x3dfactory\\x2dreset"
 #define SERVICE_FACTORY_RESET                                                  \

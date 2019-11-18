@@ -35,6 +35,9 @@ using namespace phosphor::software::image;
 namespace fs = std::experimental::filesystem;
 using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
+// List of images which are being updated 
+std::vector<std::string> imageUpdateList;
+
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
@@ -358,22 +361,20 @@ ItemUpdater::ActivationStatus
 {
     bool invalid = false;
 
-    for (auto& bmcImage : bmcImages)
-    {
-        fs::path file(filePath);
-        file /= bmcImage;
-        std::ifstream efile(file.c_str());
-        if (efile.good() != 1)
-        {
-            log<level::ERR>("Failed to find the BMC image.",
-                            entry("IMAGE=%s", bmcImage.c_str()));
-            invalid = true;
-        }
-    }
-
+    invalid = checkBMCImage(filePath, bmcFlashImages);
     if (invalid)
     {
-        return ItemUpdater::ActivationStatus::invalid;
+        invalid = checkBMCImage(filePath, bmcImages);
+        if (invalid)
+        {
+            return ItemUpdater::ActivationStatus::invalid;
+        }
+        // Record the images which are being updated
+        imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
+    }
+    else
+    {
+        imageUpdateList.assign(bmcFlashImages.begin(), bmcFlashImages.end());
     }
 
     return ItemUpdater::ActivationStatus::ready;
@@ -660,6 +661,14 @@ void ItemUpdater::freeSpace(Activation& caller)
 void ItemUpdater::mirrorUbootToAlt()
 {
     helper.mirrorAlt();
+}
+
+bool ItemUpdater::checkBMCImage(const std::string& filePath,
+                                const std::vector<std::string> imageList)
+{
+    bool invalid = helper.checkImage(filePath, imageList);
+
+    return invalid;
 }
 
 } // namespace updater

@@ -2,6 +2,8 @@
 
 #include "item_updater_helper.hpp"
 
+#include <experimental/filesystem>
+#include <fstream>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/exception.hpp>
 
@@ -12,6 +14,7 @@ namespace software
 namespace updater
 {
 
+namespace fs = std::experimental::filesystem;
 using namespace phosphor::logging;
 using sdbusplus::exception::SdBusError;
 
@@ -98,6 +101,29 @@ void Helper::mirrorAlt()
     {
         log<level::ERR>("Failed to copy U-Boot to alternate chip");
     }
+}
+
+bool Helper::checkImage(const std::string& filePath,
+                        const std::vector<std::string> imageList)
+{
+    bool invalid = false;
+
+    for (auto& bmcImage : imageList)
+    {
+        fs::path file(filePath);
+        file /= bmcImage;
+        std::ifstream efile(file.c_str());
+        if (efile.good() != 1)
+        {
+            invalid = true;
+            log<level::INFO>("Failed to find the BMC image.",
+                             entry("IMAGE=%s", bmcImage.c_str()));
+
+            break;
+        }
+    }
+
+    return invalid;
 }
 
 } // namespace updater

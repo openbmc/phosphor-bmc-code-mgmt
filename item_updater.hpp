@@ -6,6 +6,7 @@
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/server.hpp>
+#include <vector>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
@@ -27,6 +28,8 @@ namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
+
+extern std::vector<std::string> imageUpdateList;
 
 /** @class ItemUpdater
  *  @brief Manages the activation of the BMC version items.
@@ -229,6 +232,17 @@ class ItemUpdater : public ItemUpdaterInherit
      *  alternate chip.
      */
     void mirrorUbootToAlt();
+
+    /** @brief Check image files included in BMC tarball.
+     *
+     * @param[in] filePath - BMC tarball file path
+     * @param[in] imageList - Image filenames included in the BMC tarball
+     * @param[out] result - Boolean
+     *                      false if all image files are found in BMC tarball
+     *                      true if one of image files is massing
+     */
+    bool checkBMCImage(const std::string& filePath,
+                       const std::vector<std::string> imageList);
 };
 
 } // namespace updater

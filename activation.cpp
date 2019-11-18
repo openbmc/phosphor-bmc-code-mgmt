@@ -229,7 +229,17 @@ auto Activation::activation(Activations value) -> Activations
         // Create active association
         parent.createActiveAssociation(path);
 
-        log<level::INFO>("BMC image ready, need reboot to get activated.");
+        if (Activation::checkApplyTimeImmediate() == true)
+        {
+            log<level::INFO>("Image Active. ApplyTime is immediate, "
+                             "rebooting BMC.");
+            Activation::rebootBmc();
+        }
+        else
+        {
+            log<level::INFO>("BMC image ready, need reboot to get activated.");
+        }
+
         return softwareServer::Activation::activation(
             softwareServer::Activation::Activations::Active);
 #endif

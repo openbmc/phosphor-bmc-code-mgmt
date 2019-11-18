@@ -6,6 +6,7 @@
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/server.hpp>
+#include <vector>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
@@ -152,6 +153,9 @@ class ItemUpdater : public ItemUpdaterInherit
      * version id */
     std::map<std::string, std::unique_ptr<VersionClass>> versions;
 
+    /** @brief Vector of needed BMC images in the tarball*/
+    std::vector<std::string> imageUpdateList;
+
   private:
     /** @brief Callback function for Software.Version match.
      *  @details Creates an Activation D-Bus object.
@@ -229,6 +233,7 @@ class ItemUpdater : public ItemUpdaterInherit
      *  alternate chip.
      */
     void mirrorUbootToAlt();
+
 };
 
 } // namespace updater

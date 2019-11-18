@@ -62,6 +62,17 @@ class Helper
     /** @brief Mirror Uboot to the alt uboot partition */
     void mirrorAlt();
 
+    /** @brief Check the required image files
+     *
+     * @param[in] filePath - BMC tarball file path
+     * @param[in] imageList - Image filenames included in the BMC tarball
+     * @param[out] result - Boolean
+     *                      true if all image files are found in BMC tarball
+     *                      false if one of image files is missing
+     */
+    bool checkImage(const std::string& filePath,
+                    const std::vector<std::string>& imageList);
+
   private:
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus::bus& bus;

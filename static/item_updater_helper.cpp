@@ -2,12 +2,20 @@
 
 #include "item_updater_helper.hpp"
 
+#include <experimental/filesystem>
+#include <fstream>
+#include <phosphor-logging/log.hpp>
+
 namespace phosphor
 {
 namespace software
 {
 namespace updater
 {
+
+using namespace phosphor::logging;
+namespace fs = std::experimental::filesystem;
+
 // openbmconce=clean-rwfs-filesystem factory-reset
 #define ENV_FACTORY_RESET "openbmconce\\x3dfactory\\x2dreset"
 #define SERVICE_FACTORY_RESET                                                  \
@@ -51,6 +59,29 @@ void Helper::updateUbootVersionId(const std::string& versionId)
 void Helper::mirrorAlt()
 {
     // Empty
+}
+
+bool Helper::checkImage(const std::string& filePath,
+                        const std::vector<std::string>& imageList)
+{
+    bool valid = true;
+
+    for (auto& bmcImage : imageList)
+    {
+        fs::path file(filePath);
+        file /= bmcImage;
+        std::ifstream efile(file.c_str());
+        if (efile.good() != 1)
+        {
+            valid = false;
+            log<level::INFO>("Failed to find the BMC image.",
+                             entry("IMAGE=%s", bmcImage.c_str()));
+
+            break;
+        }
+    }
+
+    return valid;
 }
 
 } // namespace updater

@@ -80,12 +80,16 @@ auto Activation::activation(Activations value) -> Activations
 {
 
     if ((value != softwareServer::Activation::Activations::Active) &&
-        (value != softwareServer::Activation::Activations::Activating))
+        (value != softwareServer::Activation::Activations::Activating) &&
+        (value !=
+         softwareServer::Activation::Activations::ActivatingAsStandbySpare))
     {
         redundancyPriority.reset(nullptr);
     }
 
-    if (value == softwareServer::Activation::Activations::Activating)
+    if (value == softwareServer::Activation::Activations::Activating ||
+        value ==
+            softwareServer::Activation::Activations::ActivatingAsStandbySpare)
     {
 #ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
@@ -254,6 +258,20 @@ auto Activation::requestedActivation(RequestedActivations value)
         {
             Activation::activation(
                 softwareServer::Activation::Activations::Activating);
+        }
+    }
+    else if ((value ==
+              softwareServer::Activation::RequestedActivations::StandbySpare) &&
+             (softwareServer::Activation::requestedActivation() !=
+              softwareServer::Activation::RequestedActivations::StandbySpare))
+    {
+        if ((softwareServer::Activation::activation() ==
+             softwareServer::Activation::Activations::Ready) ||
+            (softwareServer::Activation::activation() ==
+             softwareServer::Activation::Activations::Failed))
+        {
+            Activation::activation(softwareServer::Activation::Activations::
+                                       ActivatingAsStandbySpare);
         }
     }
     return softwareServer::Activation::requestedActivation(value);

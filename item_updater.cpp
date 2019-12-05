@@ -236,7 +236,8 @@ void ItemUpdater::processBMCImage()
             // version.
             if (activationState == server::Activation::Activations::Active)
             {
-                uint8_t priority = std::numeric_limits<uint8_t>::max();
+                // 255 is a NA priority value so use the next value up
+                uint8_t priority = std::numeric_limits<uint8_t>::max() - 1;
                 if (!restorePriority(id, priority))
                 {
                     if (isVersionFunctional)

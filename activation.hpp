@@ -238,7 +238,9 @@ class Activation : public ActivationInherit, public Flash
         // Set Properties.
         activation(activationStatus);
         associations(assocs);
-
+        uint8_t priority = std::numeric_limits<uint8_t>::max();
+        redundancyPriority =
+            std::make_unique<RedundancyPriority>(bus, path, *this, priority);
         // Emit deferred signal.
         emit_object_added();
     }

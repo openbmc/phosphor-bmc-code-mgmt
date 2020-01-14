@@ -64,6 +64,9 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                     auto value = SVersion::convertVersionPurposeFromString(
                         variant_ns::get<std::string>(property.second));
                     if (value == VersionPurpose::BMC ||
+#ifdef HOST_BIOS_UPGRADE
+                        value == VersionPurpose::Host ||
+#endif
                         value == VersionPurpose::System)
                     {
                         purpose = value;
@@ -107,8 +110,12 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     {
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
-        ItemUpdater::ActivationStatus result =
-            ItemUpdater::validateSquashFSImage(filePath);
+        ItemUpdater::ActivationStatus result;
+        if (purpose == VersionPurpose::BMC || purpose == VersionPurpose::System)
+            result = ItemUpdater::validateSquashFSImage(filePath);
+        else
+            result = ItemUpdater::ActivationStatus::ready;
+
         AssociationList associations = {};
 
         if (result == ItemUpdater::ActivationStatus::ready)

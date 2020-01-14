@@ -184,6 +184,13 @@ AS_IF([test "x$enable_ubifs_layout" == "xyes"], \
     [AC_DEFINE([UBIFS_LAYOUT],[],[Enable ubifs support.])])
 AM_CONDITIONAL([UBIFS_LAYOUT], [test "x$enable_ubifs_layout" == "xyes"])
 
+# setup host bios upgrade support
+AC_ARG_ENABLE([host_bios_upgrade],
+    AS_HELP_STRING([--enable-host_bios_upgrade], [Enable host bios upgrade support.]))
+AS_IF([test "x$enable_host_bios_upgrade" == "xyes"], \
+    [AC_DEFINE([HOST_BIOS_UPGRADE],[],[Enable host bios upgrade support.])])
+AM_CONDITIONAL([HOST_BIOS_UPGRADE], [test "x$enable_host_bios_upgrade" == "xyes"])
+
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])

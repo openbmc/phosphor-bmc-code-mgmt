@@ -87,6 +87,30 @@ auto Activation::activation(Activations value) -> Activations
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+
+#ifdef HOST_BIOS_UPGRADE
+        auto purpose = parent.versions.find(versionId)->second->purpose();
+        if (purpose == VersionPurpose::Host)
+        {
+            if (!activationProgress)
+            {
+                activationProgress =
+                    std::make_unique<ActivationProgress>(bus, path);
+            }
+
+            // Enable systemd signals
+            subscribeToSystemdSignals();
+
+            // Set initial progress
+            activationProgress->progress(20);
+
+            // Initiate image writing to flash
+            flashWriteHost();
+
+            return softwareServer::Activation::activation(value);
+        }
+#endif
+
 #ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
@@ -283,6 +307,15 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
         return;
     }
 
+#ifdef HOST_BIOS_UPGRADE
+    auto purpose = parent.versions.find(versionId)->second->purpose();
+    if (purpose == VersionPurpose::Host)
+    {
+        onStateChangesBios(msg);
+        return;
+    }
+#endif
+
     onStateChanges(msg);
 
     return;
@@ -364,6 +397,68 @@ bool Activation::checkApplyTimeImmediate()
     }
     return false;
 }
+
+#ifdef HOST_BIOS_UPGRADE
+void Activation::flashWriteHost()
+{
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
+    method.append(biosServiceFile, "replace");
+    try
+    {
+        auto reply = bus.call(method);
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::ERR>("Error in trying to upgrade Host Bios.");
+        report<InternalFailure>();
+    }
+}
+
+void Activation::onStateChangesBios(sdbusplus::message::message& msg)
+{
+    uint32_t newStateID{};
+    sdbusplus::message::object_path newStateObjPath;
+    std::string newStateUnit{};
+    std::string newStateResult{};
+
+    // Read the msg and populate each variable
+    msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
+
+    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
+
+    if (newStateUnit == biosServiceFile)
+    {
+        // unsubscribe to systemd signals
+        unsubscribeFromSystemdSignals();
+
+        // Remove version object from image manager
+        deleteImageManagerObject();
+
+        if (newStateResult == "done")
+        {
+            // Set activation progress to 100
+            activationProgress->progress(100);
+
+            // Set Activation value to active
+            activation(softwareServer::Activation::Activations::Active);
+
+            log<level::INFO>("Bios upgrade completed successfully.");
+        }
+        else if (newStateResult == "failed")
+        {
+            // Set Activation value to Failed
+            activation(softwareServer::Activation::Activations::Failed);
+
+            log<level::ERR>("Bios upgrade failed.");
+        }
+    }
+
+    return;
+}
+
+#endif
 
 void Activation::rebootBmc()
 {

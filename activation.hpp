@@ -266,6 +266,14 @@ class Activation : public ActivationInherit, public Flash
     /** @brief Overloaded write flash function */
     void flashWrite() override;
 
+#ifdef HOST_BIOS_UPGRADE
+    /* @brief write to Host flash function */
+    void flashWriteHost();
+
+    /** @brief Function that acts on Bios upgrade service file state changes */
+    void onStateChangesBios(sdbusplus::message::message&);
+#endif
+
     /** @brief Overloaded function that acts on service file state changes */
     void onStateChanges(sdbusplus::message::message&) override;
 

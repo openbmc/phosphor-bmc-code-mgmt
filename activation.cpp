@@ -87,6 +87,12 @@ auto Activation::activation(Activations value) -> Activations
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+        if (purposeId == VersionPurpose::Host)
+        {
+            flashWriteHost();
+            return softwareServer::Activation::activation(value);
+        }
+
 #ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
         {
@@ -363,6 +369,23 @@ bool Activation::checkApplyTimeImmediate()
         }
     }
     return false;
+}
+
+void Activation::flashWriteHost()
+{
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
+    method.append(biosServiceFile, "replace");
+    try
+    {
+        auto reply = bus.call(method);
+    }
+    catch (const SdBusError& e)
+    {
+        log<level::ALERT>("Error in trying to upgrade Host Bios.");
+        report<InternalFailure>();
+    }
 }
 
 void Activation::rebootBmc()

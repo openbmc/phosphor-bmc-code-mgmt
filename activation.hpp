@@ -6,6 +6,7 @@
 #include "utils.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
+#include "xyz/openbmc_project/Software/Version/server.hpp"
 
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
@@ -39,6 +40,8 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+using VersionPurpose =
+    sdbusplus::xyz::openbmc_project::Software::server::Version::VersionPurpose;
 
 constexpr auto applyTimeImmediate =
     "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
@@ -222,11 +225,13 @@ class Activation : public ActivationInherit, public Flash
      */
     Activation(sdbusplus::bus::bus& bus, const std::string& path,
                ItemUpdater& parent, std::string& versionId,
+               VersionPurpose purposeId,
                sdbusplus::xyz::openbmc_project::Software::server::Activation::
                    Activations activationStatus,
                AssociationList& assocs) :
         ActivationInherit(bus, path.c_str(), true),
         bus(bus), path(path), parent(parent), versionId(versionId),
+        purposeId(purposeId),
         systemdSignals(
             bus,
             sdbusRule::type::signal() + sdbusRule::member("JobRemoved") +
@@ -265,6 +270,9 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Overloaded write flash function */
     void flashWrite() override;
+
+    /* @brief write to Host flash function */
+    void flashWriteHost();
 
     /** @brief Overloaded function that acts on service file state changes */
     void onStateChanges(sdbusplus::message::message&) override;
@@ -329,6 +337,9 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Version id */
     std::string versionId;
+
+    /** @brief Purpose id */
+    VersionPurpose purposeId;
 
     /** @brief Persistent ActivationBlocksTransition dbus object */
     std::unique_ptr<ActivationBlocksTransition> activationBlocksTransition;

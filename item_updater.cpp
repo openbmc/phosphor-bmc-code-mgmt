@@ -64,6 +64,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                     auto value = SVersion::convertVersionPurposeFromString(
                         variant_ns::get<std::string>(property.second));
                     if (value == VersionPurpose::BMC ||
+                        value == VersionPurpose::Host ||
                         value == VersionPurpose::System)
                     {
                         purpose = value;
@@ -107,8 +108,12 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     {
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
-        ItemUpdater::ActivationStatus result =
-            ItemUpdater::validateSquashFSImage(filePath);
+        ItemUpdater::ActivationStatus result;
+        if (purpose == VersionPurpose::BMC)
+            result = ItemUpdater::validateSquashFSImage(filePath);
+        else
+            result = ItemUpdater::ActivationStatus::ready;
+
         AssociationList associations = {};
 
         if (result == ItemUpdater::ActivationStatus::ready)
@@ -122,7 +127,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
         activations.insert(std::make_pair(
             versionId,
-            std::make_unique<Activation>(bus, path, *this, versionId,
+            std::make_unique<Activation>(bus, path, *this, versionId, purpose,
                                          activationState, associations)));
 
         auto versionPtr = std::make_unique<VersionClass>(
@@ -229,8 +234,9 @@ void ItemUpdater::processBMCImage()
 
             // Create Activation instance for this version.
             activations.insert(std::make_pair(
-                id, std::make_unique<Activation>(
-                        bus, path, *this, id, activationState, associations)));
+                id,
+                std::make_unique<Activation>(bus, path, *this, id, purpose,
+                                             activationState, associations)));
 
             // If Active, create RedundancyPriority instance for this
             // version.

@@ -5,6 +5,7 @@
 #include "flash.hpp"
 #include "utils.hpp"
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
+#include "xyz/openbmc_project/Software/ApplyOptions/server.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 
 #include <sdbusplus/server.hpp>
@@ -39,6 +40,8 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+using ApplyOptionsInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Software::server::ApplyOptions>;
 
 constexpr auto applyTimeImmediate =
     "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
@@ -199,6 +202,38 @@ class ActivationProgress : public ActivationProgressInherit
     // TODO Remove once openbmc/openbmc#1975 is resolved
     static constexpr auto interface =
         "xyz.openbmc_project.Software.ActivationProgress";
+    sdbusplus::bus::bus& bus;
+    std::string path;
+};
+
+class ApplyOptions : public ApplyOptionsInherit
+{
+  public:
+    /** @brief Constructs ApplyOptions.
+     *
+     * @param[in] bus    - The Dbus bus object
+     * @param[in] path   - The Dbus object path
+     */
+    ApplyOptions(sdbusplus::bus::bus& bus, const std::string& path,
+                 const bool value) :
+        ApplyOptionsInherit(bus, path.c_str(), true),
+        bus(bus), path(path)
+    {
+        clearConfig(value);
+        std::vector<std::string> interfaces({interface});
+        bus.emit_interfaces_added(path.c_str(), interfaces);
+    }
+
+    ~ApplyOptions()
+    {
+        std::vector<std::string> interfaces({interface});
+        bus.emit_interfaces_removed(path.c_str(), interfaces);
+    }
+
+  private:
+    // TODO Remove once openbmc/openbmc#1975 is resolved
+    static constexpr auto interface =
+        "xyz.openbmc_project.Software.ApplyOptions";
     sdbusplus::bus::bus& bus;
     std::string path;
 };

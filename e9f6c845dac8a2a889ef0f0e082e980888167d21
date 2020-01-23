@@ -1,0 +1,9 @@
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Code-Review+1: Patrick Williams <patrick@stwcx.xyz>
+Code-Review+2: Gunnar Mills <gmills@us.ibm.com>
+Submitted-by: Gunnar Mills <gmills@us.ibm.com>
+Submitted-at: Thu, 23 Jan 2020 17:41:58 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/28457
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

@@ -52,6 +52,9 @@ systemdsystemunit_DATA = \
 	xyz.openbmc_project.Software.BMC.Updater.service \
 	xyz.openbmc_project.Software.Download.service \
 	xyz.openbmc_project.Software.Sync.service \
+if HOST_BIOS_UPGRADE
+	obmc-flash-host-bios@.service \
+endif
 	xyz.openbmc_project.Software.Version.service
 
 tmpfilesdir=${exec_prefix}/lib/tmpfiles.d/

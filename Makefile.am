@@ -54,6 +54,10 @@ systemdsystemunit_DATA = \
 	xyz.openbmc_project.Software.Sync.service \
 	xyz.openbmc_project.Software.Version.service
 
+if HOST_BIOS_UPGRADE
+	systemdsystemunit_DATA += obmc-flash-host-bios@.service
+endif
+
 tmpfilesdir=${exec_prefix}/lib/tmpfiles.d/
 dist_tmpfiles_DATA = \
 	software.conf

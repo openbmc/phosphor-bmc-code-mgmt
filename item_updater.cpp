@@ -201,11 +201,12 @@ void ItemUpdater::processBMCImage()
 
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
-            // Create functional association if this is the functional
-            // version
+            // Create functional and updateable association
+            // if this is active version
             if (version.compare(functionalVersion) == 0)
             {
                 createFunctionalAssociation(path);
+                createUpdateableAssociation(path);
             }
 
             AssociationList associations = {};
@@ -550,6 +551,13 @@ void ItemUpdater::createFunctionalAssociation(const std::string& path)
 {
     assocs.emplace_back(std::make_tuple(FUNCTIONAL_FWD_ASSOCIATION,
                                         FUNCTIONAL_REV_ASSOCIATION, path));
+    associations(assocs);
+}
+
+void ItemUpdater::createUpdateableAssociation(const std::string& path)
+{
+    assocs.emplace_back(std::make_tuple(UPDATEABLE_FWD_ASSOCIATION,
+                                        UPDATEABLE_REV_ASSOCIATION, path));
     associations(assocs);
 }
 

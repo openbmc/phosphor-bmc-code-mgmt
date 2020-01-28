@@ -221,6 +221,10 @@ void ItemUpdater::processBMCImage()
                 createActiveAssociation(path);
             }
 
+            // All updateable firmware components must expose the updateable
+            // association.
+            createUpdateableAssociation(path);
+
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, "",
@@ -550,6 +554,13 @@ void ItemUpdater::createFunctionalAssociation(const std::string& path)
 {
     assocs.emplace_back(std::make_tuple(FUNCTIONAL_FWD_ASSOCIATION,
                                         FUNCTIONAL_REV_ASSOCIATION, path));
+    associations(assocs);
+}
+
+void ItemUpdater::createUpdateableAssociation(const std::string& path)
+{
+    assocs.emplace_back(std::make_tuple(UPDATEABLE_FWD_ASSOCIATION,
+                                        UPDATEABLE_REV_ASSOCIATION, path));
     associations(assocs);
 }
 

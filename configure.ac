@@ -82,6 +82,9 @@ AC_DEFINE(ACTIVE_REV_ASSOCIATION, "software_version", [The name of the active's 
 AC_DEFINE(FUNCTIONAL_FWD_ASSOCIATION, "functional", [The name of the functional forward association.])
 AC_DEFINE(FUNCTIONAL_REV_ASSOCIATION, "software_version", [The functional reverse association.])
 
+AC_DEFINE(UPDATEABLE_FWD_ASSOCIATION, "updateable", [The name of the updateable forward association.])
+AC_DEFINE(UPDATEABLE_REV_ASSOCIATION, "software_version", [The updateable reverse association.])
+
 AC_ARG_VAR(VERSION_BUSNAME, [The Dbus busname to own])
 AS_IF([test "x$VERSION_BUSNAME" == "x"], [VERSION_BUSNAME="xyz.openbmc_project.Software.Version"])
 AC_DEFINE_UNQUOTED([VERSION_BUSNAME], ["$VERSION_BUSNAME"], [The DBus busname to own])

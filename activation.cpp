@@ -185,6 +185,10 @@ auto Activation::activation(Activations value) -> Activations
                 // Create active association
                 parent.createActiveAssociation(path);
 
+                // Create updateable association as this
+                // can be re-programmed.
+                parent.createUpdateableAssociation(path);
+
                 if (Activation::checkApplyTimeImmediate() == true)
                 {
                     log<level::INFO>("Image Active. ApplyTime is immediate, "

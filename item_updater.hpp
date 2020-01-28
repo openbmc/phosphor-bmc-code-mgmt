@@ -202,6 +202,13 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void createFunctionalAssociation(const std::string& path);
 
+    /** @brief Creates a updateable association to the
+     *  "running" BMC software image
+     *
+     * @param[in]  path - The path to create the association.
+     */
+    void createUpdateableAssociation(const std::string& path);
+
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus::bus& bus;
 

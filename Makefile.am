@@ -11,7 +11,8 @@ noinst_HEADERS = \
 	activation.hpp \
 	flash.hpp \
 	item_updater_helper.hpp \
-	utils.hpp
+	utils.hpp \
+	msl_verify.hpp
 
 bin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -26,6 +27,7 @@ phosphor_version_software_manager_SOURCES = \
 	watch.cpp \
 	version.cpp \
 	image_manager.cpp
+
 
 BUILT_SOURCES = \
 	xyz/openbmc_project/Software/Image/error.cpp \
@@ -43,7 +45,8 @@ phosphor_image_updater_SOURCES = \
 	serialize.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp \
-	utils.cpp
+	utils.cpp \
+	msl_verify.cpp
 
 if HAVE_SYSTEMD
 systemdsystemunit_DATA = \

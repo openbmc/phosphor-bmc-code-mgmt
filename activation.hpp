@@ -340,6 +340,7 @@ class Activation : public ActivationInherit, public Flash
     /** @brief Called when image verification fails. */
     void onVerifyFailed();
 #endif
+    // bool rc;
 };
 
 } // namespace updater

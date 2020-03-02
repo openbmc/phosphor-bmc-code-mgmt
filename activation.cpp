@@ -78,7 +78,6 @@ void Activation::unsubscribeFromSystemdSignals()
 
 auto Activation::activation(Activations value) -> Activations
 {
-
     if ((value != softwareServer::Activation::Activations::Active) &&
         (value != softwareServer::Activation::Activations::Activating))
     {
@@ -133,6 +132,7 @@ auto Activation::activation(Activations value) -> Activations
 
 #ifdef WANT_SIGNATURE_VERIFY
             fs::path uploadDir(IMG_UPLOAD_DIR);
+            rc = minimum_ship_level::verify();
             if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
             {
                 onVerifyFailed();
@@ -200,6 +200,7 @@ auto Activation::activation(Activations value) -> Activations
 
 #ifdef WANT_SIGNATURE_VERIFY
         fs::path uploadDir(IMG_UPLOAD_DIR);
+        rc = minimum_ship_level::verify();
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
         {
             onVerifyFailed();
@@ -322,6 +323,7 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
 }
 
 #ifdef WANT_SIGNATURE_VERIFY
+minimum_ship_level::verify();
 bool Activation::verifySignature(const fs::path& imageDir,
                                  const fs::path& confDir)
 {

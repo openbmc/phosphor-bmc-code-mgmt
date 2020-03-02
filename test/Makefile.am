@@ -15,8 +15,11 @@ utest_LDFLAGS = -lgtest_main -lgtest $(PTHREAD_LIBS) \
 	$(PHOSPHOR_DBUS_INTERFACES_LIBS) $(OESDK_TESTCASE_FLAGS) \
 	$(PHOSPHOR_LOGGING_LIBS) -lstdc++fs -lssl -lcrypto
 
-utest_SOURCES = utest.cpp
+utest_SOURCES = \
+	msl_verify_test.cpp \
+	utest.cpp
 
 utest_LDADD = \
         $(top_builddir)/image_verify.cpp \
-        $(top_builddir)/version.cpp
+        $(top_builddir)/version.cpp \
+	$(top_builddir)/msl_verify.cpp

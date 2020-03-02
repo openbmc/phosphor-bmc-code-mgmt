@@ -3,6 +3,7 @@
 #include "images.hpp"
 #include "item_updater.hpp"
 #include "serialize.hpp"
+#include "msl_verify.hpp"
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -78,7 +79,7 @@ void Activation::unsubscribeFromSystemdSignals()
 
 auto Activation::activation(Activations value) -> Activations
 {
-
+    uint rc = 0;
     if ((value != softwareServer::Activation::Activations::Active) &&
         (value != softwareServer::Activation::Activations::Activating))
     {
@@ -109,7 +110,29 @@ auto Activation::activation(Activations value) -> Activations
 
             return softwareServer::Activation::activation(value);
         }
+
 #endif
+
+    auto versionStr = parent.versions.find(versionId)->second->version();
+
+    rc = minimum_ship_level::verify(versionStr);
+
+    switch (rc)
+    {
+       case 0:
+          log<level::INFO>("Image at Minimum Ship Level");
+	  break;
+       case 1:
+          log<level::INFO>("Image above Minimum Ship Level");
+	  break;
+       case -1:
+          log<level::ERR>("Image does not meet Minimum Ship Level requirements");
+          activationBlocksTransition.reset(nullptr);
+          activationProgress.reset(nullptr);
+          return softwareServer::Activation::activation(softwareServer::Activation::Activations::Failed);
+       default:
+	  break;
+    }
 
 #ifdef UBIFS_LAYOUT
         if (rwVolumeCreated == false && roVolumeCreated == false)
@@ -146,6 +169,7 @@ auto Activation::activation(Activations value) -> Activations
                         softwareServer::Activation::Activations::Failed);
                 }
             }
+
 #endif
 
             flashWrite();
@@ -196,6 +220,8 @@ auto Activation::activation(Activations value) -> Activations
                     softwareServer::Activation::Activations::Active);
             }
         }
+
+
 #else // !UBIFS_LAYOUT
 
 #ifdef WANT_SIGNATURE_VERIFY

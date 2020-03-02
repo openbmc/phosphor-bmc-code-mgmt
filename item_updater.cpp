@@ -17,6 +17,7 @@
 #include <string>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
+#include "msl_verify.hpp"
 
 namespace phosphor
 {
@@ -145,7 +146,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
 void ItemUpdater::processBMCImage()
 {
-    using VersionClass = phosphor::software::manager::Version;
+   //uint   result = 0;
+   using VersionClass = phosphor::software::manager::Version;
 
     // Check MEDIA_DIR and create if it does not exist
     try
@@ -163,6 +165,7 @@ void ItemUpdater::processBMCImage()
 
     // Read os-release from /etc/ to get the functional BMC version
     auto functionalVersion = VersionClass::getBMCVersion(OS_RELEASE_FILE);
+   
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
@@ -286,6 +289,13 @@ void ItemUpdater::processBMCImage()
             log<level::ERR>(e.what());
         }
     }
+   
+    // aqui puedes llamar verify para probar, ejemplo:
+    //result = minimum_ship_level::verify("fw1010.10-25");
+    //fprintf(stderr, "result of call verify = %d\n", result);
+
+    //result1 = minimum_ship_level::verify("fw1010.10-25");
+    //fprintf(stderr, "result new=%d\n", result1);
 
     mirrorUbootToAlt();
     return;

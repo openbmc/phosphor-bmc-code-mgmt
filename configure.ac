@@ -170,6 +170,12 @@ AM_CONDITIONAL([WANT_SIGNATURE_VERIFY_BUILD], [test "x$enable_verify_signature" 
 AC_DEFINE(BUSNAME_UPDATER, "xyz.openbmc_project.Software.BMC.Updater",
     [The item updater DBus busname to own.])
 
+AC_DEFINE(ASSOCIATIONS_INTERFACE, "xyz.openbmc_project.Association.Definitions",
+    [The associations interface.])
+
+AC_DEFINE(SYSTEMD_PROPERTY_INTERFACE, "org.freedesktop.DBus.Properties",
+    [systemd properties interface.])
+
 # setup sync of filesystem files
 AC_ARG_ENABLE([sync_bmc_files],
     AS_HELP_STRING([--enable-sync_bmc_files], [Enable sync of filesystem files.]))
@@ -190,6 +196,12 @@ AC_ARG_ENABLE([host_bios_upgrade],
 AS_IF([test "x$enable_host_bios_upgrade" == "xyes"], \
     [AC_DEFINE([HOST_BIOS_UPGRADE],[],[Enable host bios upgrade support.])])
 AM_CONDITIONAL([HOST_BIOS_UPGRADE], [test "x$enable_host_bios_upgrade" == "xyes"])
+
+#BMC MSL
+AC_ARG_VAR(BMC_MSL, [The BMC minimum ship level])
+AS_IF([test "x$BMC_MSL" == "x"], [BMC_MSL=""])
+AC_DEFINE_UNQUOTED([BMC_MSL], ["$BMC_MSL"], [The BMC minimum ship level])
+
 
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])

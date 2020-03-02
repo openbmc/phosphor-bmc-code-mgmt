@@ -133,6 +133,7 @@ auto Activation::activation(Activations value) -> Activations
 
 #ifdef WANT_SIGNATURE_VERIFY
             fs::path uploadDir(IMG_UPLOAD_DIR);
+            minimum_ship_lever::verify();
             if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
             {
                 onVerifyFailed();
@@ -200,6 +201,7 @@ auto Activation::activation(Activations value) -> Activations
 
 #ifdef WANT_SIGNATURE_VERIFY
         fs::path uploadDir(IMG_UPLOAD_DIR);
+        minimum_ship_lever::verify();
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
         {
             onVerifyFailed();
@@ -322,6 +324,7 @@ void Activation::unitStateChange(sdbusplus::message::message& msg)
 }
 
 #ifdef WANT_SIGNATURE_VERIFY
+minimum_ship_lever::verify();
 bool Activation::verifySignature(const fs::path& imageDir,
                                  const fs::path& confDir)
 {

@@ -16,7 +16,9 @@ noinst_HEADERS = \
 bin_PROGRAMS = \
 	phosphor-version-software-manager \
 	phosphor-download-manager \
-	phosphor-image-updater
+	phosphor-image-updater \
+	phosphor-bmc-msl 
+
 
 dist_bin_SCRIPTS = \
 	obmc-flash-bmc
@@ -45,9 +47,14 @@ phosphor_image_updater_SOURCES = \
 	item_updater_main.cpp \
 	utils.cpp
 
+phosphor_bmc_msl_SOURCES = \
+	msl_verify.cpp \
+	msl_verify_main.cpp
+
 if HAVE_SYSTEMD
 systemdsystemunit_DATA = \
 	obmc-flash-bmc-setenv@.service \
+	ph-bmc-msl.service \
 	usr-local.mount \
 	xyz.openbmc_project.Software.BMC.Updater.service \
 	xyz.openbmc_project.Software.Download.service \
@@ -122,5 +129,7 @@ phosphor_download_manager_CXXFLAGS = $(generic_cxxflags)
 phosphor_download_manager_LDFLAGS = $(generic_ldflags)
 phosphor_image_updater_CXXFLAGS = $(generic_cxxflags)
 phosphor_image_updater_LDFLAGS = $(generic_ldflags)
+phosphor_bmc_msl_CXXFLAGS = $(generic_cxxflags)
+phosphor_bmc_msl_LDFLAGS = $(generic_ldflags)
 
 SUBDIRS = test

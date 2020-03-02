@@ -11,7 +11,8 @@ noinst_HEADERS = \
 	activation.hpp \
 	flash.hpp \
 	item_updater_helper.hpp \
-	utils.hpp
+	utils.hpp \
+	msl_verify.hpp
 
 bin_PROGRAMS = \
 	phosphor-version-software-manager \
@@ -43,7 +44,8 @@ phosphor_image_updater_SOURCES = \
 	serialize.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp \
-	utils.cpp
+	utils.cpp \
+	msl_verify.cpp
 
 if HAVE_SYSTEMD
 systemdsystemunit_DATA = \

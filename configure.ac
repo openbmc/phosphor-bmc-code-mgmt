@@ -191,6 +191,17 @@ AS_IF([test "x$enable_host_bios_upgrade" == "xyes"], \
     [AC_DEFINE([HOST_BIOS_UPGRADE],[],[Enable host bios upgrade support.])])
 AM_CONDITIONAL([HOST_BIOS_UPGRADE], [test "x$enable_host_bios_upgrade" == "xyes"])
 
+#BMC MSL
+AC_ARG_VAR(BMC_MSL, [The BMC minimum ship level])
+AS_IF([test "x$BMC_MSL" == "x"], [BMC_MSL=""])
+AC_DEFINE_UNQUOTED([BMC_MSL], ["$BMC_MSL"], [The BMC minimum ship level])
+
+#BMC REGEX
+AC_ARG_VAR(REGEX_BMC_MSL, [Regular expresion capture])
+AS_IF([test "x$REGEX_BMC_MSL" == "x"], [REGEX_BMC_MSL=""])
+AC_DEFINE_UNQUOTED([REGEX_BMC_MSL], ["$REGEX_BMC_MSL"], [Regular expresion capture])
+
+
 # Check for header files.
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])
 AC_CHECK_HEADER(sdbusplus/server.hpp, ,[AC_MSG_ERROR([Could not find sdbusplus/server.hpp...openbmc/sdbusplus package required])])

@@ -16,7 +16,7 @@ noinst_HEADERS = \
 bin_PROGRAMS = \
 	phosphor-version-software-manager \
 	phosphor-download-manager \
-	phosphor-image-updater
+	phosphor-image-updater 
 
 dist_bin_SCRIPTS = \
 	obmc-flash-bmc
@@ -43,7 +43,11 @@ phosphor_image_updater_SOURCES = \
 	serialize.cpp \
 	item_updater.cpp \
 	item_updater_main.cpp \
-	utils.cpp
+	utils.cpp 
+
+#phosphor_bmc_msl_SOURCES = \
+#	msl_verify.cpp \
+#	msl_verify_main.cpp
 
 if HAVE_SYSTEMD
 systemdsystemunit_DATA = \
@@ -72,10 +76,13 @@ endif
 if WANT_SIGNATURE_VERIFY_BUILD
 noinst_HEADERS += \
 	image_verify.hpp \
-	openssl_alloc.hpp
+	openssl_alloc.hpp \
+	msl_verify.hpp
 phosphor_image_updater_SOURCES += \
 	image_verify.cpp \
-	openssl_alloc.cpp
+	openssl_alloc.cpp \
+	msl_verfy.cpp \
+	msl_verify_main.cpp 
 endif
 
 if WANT_SYNC

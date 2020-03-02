@@ -1,0 +1,9 @@
+[Unit]
+Description=OpenBMC Minimum Ship Level Verification
+
+[Service]
+ExecStart=/usr/bin/phosphor-bmc-msl
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

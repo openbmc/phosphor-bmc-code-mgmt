@@ -148,6 +148,13 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void freeSpace(Activation& caller);
 
+    /** @brief Creates a updateable association to the
+     *  "running" BMC software image
+     *
+     * @param[in]  path - The path to create the association.
+     */
+    void createUpdateableAssociation(const std::string& path);
+
     /** @brief Persistent map of Version D-Bus objects and their
      * version id */
     std::map<std::string, std::unique_ptr<VersionClass>> versions;
@@ -201,13 +208,6 @@ class ItemUpdater : public ItemUpdaterInherit
      * @param[in]  path - The path to create the association to.
      */
     void createFunctionalAssociation(const std::string& path);
-
-    /** @brief Creates a updateable association to the
-     *  "running" BMC software image
-     *
-     * @param[in]  path - The path to create the association.
-     */
-    void createUpdateableAssociation(const std::string& path);
 
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus::bus& bus;

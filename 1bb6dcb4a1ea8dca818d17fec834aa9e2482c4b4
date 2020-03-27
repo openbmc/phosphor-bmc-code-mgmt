@@ -1,0 +1,9 @@
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Code-Review+1: Zhikui Ren <zhikui.ren@intel.com>
+Code-Review+2: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-by: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-at: Fri, 27 Mar 2020 20:14:36 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/30736
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

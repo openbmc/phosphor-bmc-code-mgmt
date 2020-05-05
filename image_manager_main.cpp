@@ -8,7 +8,7 @@
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/bus.hpp>
 
-int main(int argc, char* argv[])
+int main()
 {
     using namespace phosphor::software::manager;
     auto bus = sdbusplus::bus::new_default();

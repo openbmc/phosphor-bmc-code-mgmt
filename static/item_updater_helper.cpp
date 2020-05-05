@@ -13,12 +13,12 @@ namespace updater
 #define SERVICE_FACTORY_RESET                                                  \
     "obmc-flash-bmc-setenv@" ENV_FACTORY_RESET ".service"
 
-void Helper::setEntry(const std::string& entryId, uint8_t value)
+void Helper::setEntry(const std::string& /* entryId */, uint8_t /* value */)
 {
     // Empty
 }
 
-void Helper::clearEntry(const std::string& entryId)
+void Helper::clearEntry(const std::string& /* entryId */)
 {
     // Empty
 }
@@ -38,12 +38,12 @@ void Helper::factoryReset()
     bus.call_noreply(method);
 }
 
-void Helper::removeVersion(const std::string& versionId)
+void Helper::removeVersion(const std::string& /* versionId */)
 {
     // Empty
 }
 
-void Helper::updateUbootVersionId(const std::string& versionId)
+void Helper::updateUbootVersionId(const std::string& /* versionId */)
 {
     // Empty
 }

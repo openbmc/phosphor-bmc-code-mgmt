@@ -14,6 +14,10 @@ option('host-bios-upgrade', type: 'feature',
 option('sync-bmc-files', type: 'feature',
     description: 'Enable sync of filesystem files.')
 
+option('tests', type: 'feature', description: 'Build tests')
+
+option('oe-sdk', type: 'feature', description: 'Enable OE SDK')
+
 option('verify-signature', type: 'feature',
     description: 'Enable image signature validation.')
 

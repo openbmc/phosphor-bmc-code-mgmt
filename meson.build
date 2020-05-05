@@ -75,6 +75,9 @@ deps = [
 
 ssl = dependency('openssl')
 
+systemd = dependency('systemd')
+systemd_system_unit_dir = systemd.get_pkgconfig_variable('systemdsystemunitdir')
+
 sdbuspp = find_program('sdbus++')
 subdir('xyz/openbmc_project/Software/Image')
 
@@ -92,6 +95,10 @@ if get_option('bmc-layout').contains('static')
 endif
 if get_option('bmc-layout').contains('ubi')
   subdir('ubi')
+endif
+
+if get_option('host-bios-upgrade').enabled()
+  unit_files += 'obmc-flash-host-bios@.service'
 endif
 
 if get_option('sync-bmc-files').enabled()
@@ -153,3 +160,22 @@ install_data('obmc-flash-bmc',
 install_data('software.conf',
   install_dir: '/usr/lib/tmpfiles.d/'
 )
+
+unit_files = [
+  'obmc-flash-bmc-setenv@.service',
+  'usr-local.mount',
+  'xyz.openbmc_project.Software.BMC.Updater.service',
+  'xyz.openbmc_project.Software.Download.service',
+  'xyz.openbmc_project.Software.Sync.service',
+  'xyz.openbmc_project.Software.Version.service'
+]
+
+foreach u : unit_files
+  configure_file(
+    copy: true,
+    input: u,
+    install: true,
+    install_dir: systemd_system_unit_dir,
+    output: u,
+  )
+endforeach

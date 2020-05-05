@@ -4,7 +4,6 @@
 
 #include "version.hpp"
 
-#include <experimental/filesystem>
 #include <string>
 
 namespace phosphor
@@ -14,7 +13,6 @@ namespace software
 namespace updater
 {
 
-namespace fs = std::experimental::filesystem;
 using VersionPurpose =
     sdbusplus::xyz::openbmc_project::Software::server::Version::VersionPurpose;
 

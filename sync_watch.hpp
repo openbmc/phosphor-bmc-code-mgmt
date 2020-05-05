@@ -2,7 +2,7 @@
 
 #include <systemd/sd-event.h>
 
-#include <experimental/filesystem>
+#include <filesystem>
 #include <functional>
 #include <map>
 
@@ -13,7 +13,7 @@ namespace software
 namespace manager
 {
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 /** @class SyncWatch
  *

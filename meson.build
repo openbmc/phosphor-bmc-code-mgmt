@@ -67,5 +67,76 @@ conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
 
 configure_file(output: 'config.h', configuration: conf)
 
+deps = [
+  dependency('phosphor-dbus-interfaces'),
+  dependency('phosphor-logging'),
+  dependency('sdbusplus')
+]
+
+ssl = dependency('openssl')
+
 sdbuspp = find_program('sdbus++')
 subdir('xyz/openbmc_project/Software/Image')
+
+image_updater_sources = files(
+  'activation.cpp',
+  'item_updater.cpp',
+  'item_updater_main.cpp',
+  'serialize.cpp',
+  'version.cpp',
+  'utils.cpp'
+)
+
+if get_option('bmc-layout').contains('static')
+  subdir('static')
+endif
+if get_option('bmc-layout').contains('ubi')
+  subdir('ubi')
+endif
+
+if get_option('sync-bmc-files').enabled()
+  executable(
+    'phosphor-sync-software-manager',
+      'sync_manager.cpp',
+      'sync_manager_main.cpp',
+      'sync_watch.cpp',
+    dependencies: deps,
+    install: true
+  )
+endif
+
+if get_option('verify-signature').enabled()
+  image_updater_sources += files(
+    'image_verify.cpp',
+    'openssl_alloc.cpp'
+  )
+endif
+
+executable(
+  'phosphor-download-manager',
+  'download_manager.cpp',
+  'download_manager_main.cpp',
+  dependencies: deps,
+  install: true
+)
+
+executable(
+  'phosphor-image-updater',
+  image_error_cpp,
+  image_error_hpp,
+  image_updater_sources,
+  dependencies: [deps, ssl],
+  install: true
+)
+
+executable(
+  'phosphor-version-software-manager',
+  image_error_cpp,
+  image_error_hpp,
+  'image_manager.cpp',
+  'image_manager_main.cpp',
+  'version.cpp',
+  'watch.cpp',
+  dependencies: [deps, ssl],
+  install: true
+)

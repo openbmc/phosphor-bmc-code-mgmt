@@ -5,7 +5,7 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
-#include <experimental/filesystem>
+#include <filesystem>
 #include <fstream>
 #include <phosphor-logging/log.hpp>
 
@@ -17,7 +17,6 @@ namespace manager
 {
 
 using namespace phosphor::logging;
-namespace fs = std::experimental::filesystem;
 
 void SyncWatch::addInotifyWatch(const fs::path& path)
 {

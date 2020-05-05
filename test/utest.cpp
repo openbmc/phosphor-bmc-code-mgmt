@@ -194,8 +194,6 @@ class SignatureTest : public testing::Test
         command("openssl rsa -in " + pkeyFile + " -outform PEM " +
                 "-pubout -out " + pubkeyFile);
 
-        std::string pubKeyConfFile =
-            signedConfOpenBMCPath.string() + "/" + "publickey";
         command("cp " + pubkeyFile + " " + signedConfOpenBMCPath.string());
         command(opensslCmd + pkeyFile + " -out " + kernelFile + ".sig " +
                 kernelFile);

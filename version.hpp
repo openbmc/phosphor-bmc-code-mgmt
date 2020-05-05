@@ -76,10 +76,8 @@ class Version : public VersionInherit
             const std::string& versionString, VersionPurpose versionPurpose,
             const std::string& filePath, eraseFunc callback) :
         VersionInherit(bus, (objPath).c_str(), true),
-        versionStr(versionString)
+        eraseCallback(callback), versionStr(versionString)
     {
-        // Bind erase method
-        eraseCallback = callback;
         // Set properties.
         purpose(versionPurpose);
         version(versionString);

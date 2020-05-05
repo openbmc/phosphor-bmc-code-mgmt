@@ -74,7 +74,7 @@ Watch::~Watch()
     }
 }
 
-int Watch::callback(sd_event_source* s, int fd, uint32_t revents,
+int Watch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
                     void* userdata)
 {
     if (!(revents & EPOLLIN))

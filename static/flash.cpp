@@ -5,7 +5,7 @@
 #include "activation.hpp"
 #include "images.hpp"
 
-#include <experimental/filesystem>
+#include <filesystem>
 
 namespace
 {
@@ -19,7 +19,7 @@ namespace software
 namespace updater
 {
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 void Activation::flashWrite()
 {

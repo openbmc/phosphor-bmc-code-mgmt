@@ -1,6 +1,6 @@
 #pragma once
 
-#include <experimental/filesystem>
+#include <filesystem>
 
 namespace phosphor
 {
@@ -9,7 +9,7 @@ namespace software
 namespace manager
 {
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 /** @class Sync
  *  @brief Contains filesystem sync functions.

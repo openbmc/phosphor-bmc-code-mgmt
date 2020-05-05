@@ -103,6 +103,10 @@ if get_option('sync-bmc-files').enabled()
     dependencies: deps,
     install: true
   )
+
+  install_data('synclist',
+    install_dir:  get_option('sysconfdir')
+  )
 endif
 
 if get_option('verify-signature').enabled()
@@ -139,4 +143,13 @@ executable(
   'watch.cpp',
   dependencies: [deps, ssl],
   install: true
+)
+
+install_data('obmc-flash-bmc',
+  install_mode: 'rwxr-xr-x',
+  install_dir: get_option('bindir')
+)
+
+install_data('software.conf',
+  install_dir: '/usr/lib/tmpfiles.d/'
 )

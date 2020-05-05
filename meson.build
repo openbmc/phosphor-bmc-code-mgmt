@@ -179,3 +179,8 @@ foreach u : unit_files
         output: u,
     )
 endforeach
+
+build_tests = get_option('tests')
+if not build_tests.disabled()
+    subdir('test')
+endif

@@ -66,3 +66,6 @@ conf.set_quoted('SYNC_LIST_DIR_PATH', get_option('sync-list-dir-path'))
 conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
 
 configure_file(output: 'config.h', configuration: conf)
+
+sdbuspp = find_program('sdbus++')
+subdir('xyz/openbmc_project/Software/Image')

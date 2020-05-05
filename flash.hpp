@@ -18,6 +18,9 @@ namespace updater
 class Flash
 {
   public:
+    /* Destructor */
+    virtual ~Flash() = default;
+
     /**
      * @brief Writes the image file(s) to flash
      */

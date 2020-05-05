@@ -10,7 +10,7 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
 
-int main(int argc, char* argv[])
+int main()
 {
     auto bus = sdbusplus::bus::new_default();
 

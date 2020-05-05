@@ -16,11 +16,14 @@ namespace updater
 void Helper::setEntry(const std::string& entryId, uint8_t value)
 {
     // Empty
+    (void)(entryId);
+    (void)(value);
 }
 
 void Helper::clearEntry(const std::string& entryId)
 {
     // Empty
+    (void)(entryId);
 }
 
 void Helper::cleanup()
@@ -41,11 +44,13 @@ void Helper::factoryReset()
 void Helper::removeVersion(const std::string& versionId)
 {
     // Empty
+    (void)(versionId);
 }
 
 void Helper::updateUbootVersionId(const std::string& versionId)
 {
     // Empty
+    (void)(versionId);
 }
 
 void Helper::mirrorAlt()

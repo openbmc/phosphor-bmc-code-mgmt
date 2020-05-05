@@ -72,7 +72,7 @@ SyncWatch::~SyncWatch()
     }
 }
 
-int SyncWatch::callback(sd_event_source* s, int fd, uint32_t revents,
+int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
                         void* userdata)
 {
     if (!(revents & EPOLLIN))

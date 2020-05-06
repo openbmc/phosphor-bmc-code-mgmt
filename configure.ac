@@ -120,7 +120,7 @@ AC_DEFINE(SYSTEMD_INTERFACE, "org.freedesktop.systemd1.Manager",
     [The systemd interface])
 
 AC_ARG_VAR(MEDIA_DIR, [The base dir where all RO partitions are mounted])
-AS_IF([test "x$MEDIA_DIR" == "x"], [MEDIA_DIR="/media"])
+AS_IF([test "x$MEDIA_DIR" == "x"], [MEDIA_DIR="/run/media"])
 AC_DEFINE_UNQUOTED([MEDIA_DIR], ["$MEDIA_DIR"], [The base dir where all RO partitions are mounted])
 
 AC_DEFINE_UNQUOTED(BMC_ROFS_PREFIX, "$MEDIA_DIR/rofs-",
@@ -159,7 +159,7 @@ AS_IF([test "x$SIGNATURE_FILE_EXT" == "x"], [SIGNATURE_FILE_EXT=".sig"])
 AC_DEFINE_UNQUOTED([SIGNATURE_FILE_EXT], ["$SIGNATURE_FILE_EXT"], [The extension of the Signature file])
 
 AC_ARG_VAR(ACTIVE_BMC_MAX_ALLOWED, [The maximum allowed active BMC versions])
-AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=2])
+AS_IF([test "x$ACTIVE_BMC_MAX_ALLOWED" == "x"], [ACTIVE_BMC_MAX_ALLOWED=1])
 AC_DEFINE_UNQUOTED([ACTIVE_BMC_MAX_ALLOWED], [$ACTIVE_BMC_MAX_ALLOWED],
     [The maximum allowed active BMC versions])
 

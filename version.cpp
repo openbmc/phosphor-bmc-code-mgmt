@@ -129,6 +129,7 @@ std::string Version::getBMCMachine(const std::string& releaseFilePath)
 std::string Version::getBMCVersion(const std::string& releaseFilePath)
 {
     std::string versionKey = "VERSION_ID=";
+    std::string versionValue{};
     std::string version{};
     std::ifstream efile;
     std::string line;
@@ -139,8 +140,12 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
         if (line.substr(0, versionKey.size()).find(versionKey) !=
             std::string::npos)
         {
-            std::size_t pos = line.find_first_of('"') + 1;
-            version = line.substr(pos, line.find_last_of('"') - pos);
+            // Remove the versionKey so that we're left with only the value.
+            // This allows to support values with and without quotes.
+            versionValue = line.substr(versionKey.size());
+            std::size_t pos = versionValue.find_first_of('"') + 1;
+            version =
+                versionValue.substr(pos, versionValue.find_last_of('"') - pos);
             break;
         }
     }

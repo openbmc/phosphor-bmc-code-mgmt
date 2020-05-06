@@ -74,6 +74,36 @@ TEST_F(VersionTest, TestGetValueWithCRLF)
     EXPECT_EQ(Version::getValue(manifestFilePath, "purpose"), purpose);
 }
 
+TEST_F(VersionTest, TestGetVersionWithQuotes)
+{
+    auto releasePath = _directory + "/" + "os-release";
+    auto version = "1.2.3-test-version";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "VERSION_ID=\"" << version << "\"\n";
+    file.close();
+
+    EXPECT_EQ(Version::getBMCVersion(releasePath), version);
+}
+
+TEST_F(VersionTest, TestGetVersionWithoutQuotes)
+{
+    auto releasePath = _directory + "/" + "os-release";
+    auto version = "9.88.1-test-version";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "VERSION_ID=" << version << "\n";
+    file.close();
+
+    EXPECT_EQ(Version::getBMCVersion(releasePath), version);
+}
+
 /** @brief Make sure we correctly get the Id from getId()*/
 TEST_F(VersionTest, TestGetId)
 {

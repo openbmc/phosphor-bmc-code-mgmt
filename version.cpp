@@ -129,6 +129,7 @@ std::string Version::getBMCMachine(const std::string& releaseFilePath)
 std::string Version::getBMCVersion(const std::string& releaseFilePath)
 {
     std::string versionKey = "VERSION_ID=";
+    std::string versionValue{};
     std::string version{};
     std::ifstream efile;
     std::string line;
@@ -139,8 +140,24 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
         if (line.substr(0, versionKey.size()).find(versionKey) !=
             std::string::npos)
         {
-            std::size_t pos = line.find_first_of('"') + 1;
-            version = line.substr(pos, line.find_last_of('"') - pos);
+            // Support quoted and unquoted values
+            // 1. Remove the versionKey so that we process the value only.
+            versionValue = line.substr(versionKey.size());
+
+            // 2. Look for a starting quote, then increment the position by 1 to
+            //    skip the quote character. If no quote is found,
+            //    find_first_of() returns npos (-1), which by adding +1 sets pos
+            //    to 0 (beginning of unquoted string).
+            std::size_t pos = versionValue.find_first_of('"') + 1;
+
+            // 3. Look for ending quote, then decrease the position by pos to
+            //    get the size of the string up to before the ending quote. If
+            //    no quote is found, find_last_of() returns npos (-1), and pos
+            //    is 0 for the unquoted case, so substr() is called with a len
+            //    parameter of npos (-1) which according to the documentation
+            //    indicates to use all characters until the end of the string.
+            version =
+                versionValue.substr(pos, versionValue.find_last_of('"') - pos);
             break;
         }
     }

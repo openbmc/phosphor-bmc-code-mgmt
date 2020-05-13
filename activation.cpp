@@ -146,7 +146,7 @@ auto Activation::activation(Activations value) -> Activations
 
         flashWrite();
 
-#ifdef UBIFS_LAYOUT
+#if defined UBIFS_LAYOUT || defined MMC_LAYOUT
 
         return softwareServer::Activation::activation(value);
 

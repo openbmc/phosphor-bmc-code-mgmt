@@ -446,6 +446,58 @@ mirroruboot() {
   fi
 }
 
+mmc_get_secondary_device() {
+  rofs_a="/dev/mapper/rofs-a"
+  rofs_b="/dev/mapper/rofs-b"
+  rootmatch=" on / "
+  root="$(mount | grep "${rootmatch}")"
+  if [[ "${root}" == *"${rofs_a} "* ]]; then
+    echo "${rofs_b}"
+  else
+    echo "${rofs_a}"
+  fi
+}
+
+mmc_update() {
+  # Update the kernel, copy the file to the /boot directory and create a symlink
+  # for u-boot to use.
+  cp /tmp/images/${version}/image-kernel /boot/kernel-"${version}"
+
+  # Update the secondary (non-running) rofs device
+  device="$(mmc_get_secondary_device)"
+  zstd -d -c /tmp/images/${version}/image-rofs | dd of="${device}"
+
+  # Store the device where the other properties like purpose and priority are
+  # preserved so that it can be used for the remove function.
+  device_dir="/var/lib/phosphor-bmc-code-mgmt/${version}"
+  device_file="${device_dir}/device"
+  mkdir -p "${device_dir}"
+  echo "$device" > "${device_file}"
+}
+
+mmc_remove() {
+  # Delete the kernel file if the BMC is not set to boot from it.
+  kernel_primary="/boot/fitImage"
+  kernel_file="/boot/kernel-${version}"
+  if [[ $(readlink -f "${kernel_primary}") == "${kernel_file}"  ]]; then
+    echo "Kernel ${kernel_file} is set as primary, cannot delete"
+    return 1
+  fi
+  rm -f /boot/kernel-"${version}"
+
+  # Use mkfs to erase the rofs contents. If the device property does not exist,
+  # assume it's the secondary (non-running) one since the running device cannot
+  # be erased.
+  device=""
+  device_file="/var/lib/phosphor-bmc-code-mgmt/${version}/device"
+  if [ -f "${device_file}" ]; then
+    device="$(cat "${device_file}")"
+  else
+    device="$(mmc_get_secondary_device)"
+  fi
+  mkfs.ext4 -F "${device}"
+}
+
 case "$1" in
   mtduboot)
     reqmtd="$2"
@@ -508,6 +560,14 @@ case "$1" in
     ;;
   mirroruboot)
     mirroruboot
+    ;;
+  mmc)
+    version="$2"
+    mmc_update
+    ;;
+  mmc-remove)
+    version="$2"
+    mmc_remove
     ;;
   *)
     echo "Invalid argument"

@@ -48,6 +48,7 @@ conf.set_quoted('PERSIST_DIR', '/var/lib/phosphor-bmc-code-mgmt/')
 # Supported BMC layout types
 conf.set('STATIC_LAYOUT', get_option('bmc-layout').contains('static'))
 conf.set('UBIFS_LAYOUT', get_option('bmc-layout').contains('ubi'))
+conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())

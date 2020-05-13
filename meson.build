@@ -104,9 +104,10 @@ image_updater_sources = files(
 
 if get_option('bmc-layout').contains('static')
     subdir('static')
-endif
-if get_option('bmc-layout').contains('ubi')
+elif get_option('bmc-layout').contains('ubi')
     subdir('ubi')
+elif get_option('bmc-layout').contains('mmc')
+    subdir('mmc')
 endif
 
 if get_option('host-bios-upgrade').enabled()

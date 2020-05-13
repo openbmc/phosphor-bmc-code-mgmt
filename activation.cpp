@@ -384,7 +384,7 @@ bool Activation::checkApplyTimeImmediate()
         {
             auto reply = bus.call(method);
 
-            sdbusplus::message::variant<std::string> result;
+            std::variant<std::string> result;
             reply.read(result);
             auto applyTime = std::get<std::string>(result);
             if (applyTime == applyTimeImmediate)

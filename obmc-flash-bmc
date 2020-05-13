@@ -446,6 +446,20 @@ mirroruboot() {
   fi
 }
 
+mmc_update() {
+  # Populate rootfs. There are two devices for the eMMC rootfs: /dev/dm-0 and
+  # /dev/dm-1. Find the running one to write to the non-running one.
+  target=""
+  rootmatch=" on / "
+  m="$(mount | grep "${rootmatch}")"
+  if [[ "${m}" == *"/dev/mapper/rootfs-a "* ]]; then
+    target="/dev/mapper/rootfs-b"
+  else
+    target="/dev/mapper/rootfs-a"
+  fi
+  zstd -d -c /tmp/images/${version}/image-rofs | dd of="${target}"
+}
+
 case "$1" in
   mtduboot)
     reqmtd="$2"
@@ -508,6 +522,10 @@ case "$1" in
     ;;
   mirroruboot)
     mirroruboot
+    ;;
+  mmc)
+    version="$2"
+    mmc_update
     ;;
   *)
     echo "Invalid argument"

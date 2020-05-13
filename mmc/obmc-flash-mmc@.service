@@ -1,0 +1,7 @@
+[Unit]
+Description=Write the eMMC image %I to BMC storage
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/obmc-flash-bmc mmc %i

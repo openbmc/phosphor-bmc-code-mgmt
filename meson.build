@@ -38,6 +38,8 @@ conf.set_quoted('UPDATEABLE_REV_ASSOCIATION', 'software_version')
 # Filesystem files and directories
 # The path of the alt rwfs overlay
 conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
+# The prefix path for the versioned kernel partitions
+conf.set_quoted('BMC_KERNEL_PREFIX', get_option('boot-dir') + '/kernel-')
 # The prefix path for the versioned read-only bmc partitions
 conf.set_quoted('BMC_ROFS_PREFIX', get_option('media-dir') + '/rofs-')
 # The name of the BMC table of contents file
@@ -55,6 +57,7 @@ conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
+conf.set_quoted('BOOT_DIR', get_option('boot-dir'))
 conf.set_quoted('HASH_FILE_NAME', get_option('hash-file-name'))
 conf.set_quoted('IMG_UPLOAD_DIR', get_option('img-upload-dir'))
 conf.set_quoted('MANIFEST_FILE_NAME', get_option('manifest-file-name'))

@@ -30,6 +30,12 @@ option(
 )
 
 option(
+    'boot-dir', type: 'string',
+    value: '/boot',
+    description: 'The boot dir where boot images like the kernel are stored.',
+)
+
+option(
     'hash-file-name', type: 'string',
     value: 'hashfunc',
     description: 'The name of the hash file.',

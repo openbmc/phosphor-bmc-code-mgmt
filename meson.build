@@ -96,6 +96,9 @@ endif
 if get_option('bmc-layout').contains('ubi')
     subdir('ubi')
 endif
+if get_option('bmc-layout').contains('mmc')
+    subdir('mmc')
+endif
 
 if get_option('host-bios-upgrade').enabled()
     unit_files += 'obmc-flash-host-bios@.service'

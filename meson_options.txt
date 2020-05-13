@@ -2,8 +2,9 @@
 # https://github.com/openbmc/docs/blob/master/code-update/flash-layout.md#supported-filesystem-choices
 # - static: NOR flash configured with fixed-sized MTD partitions.
 # - ubi: NOR flash device configured with UBI volumes.
+# - mmc: eMMC flash device configured with ext4 filesystems.
 option('bmc-layout', type: 'combo',
-    choices: ['static', 'ubi'],
+    choices: ['static', 'ubi', 'mmc'],
     value: 'static',
     description: 'The BMC layout type.')
 

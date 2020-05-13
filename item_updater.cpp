@@ -42,7 +42,6 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     using VersionPurpose = SVersion::VersionPurpose;
     using VersionClass = phosphor::software::manager::Version;
     namespace mesg = sdbusplus::message;
-    namespace variant_ns = mesg::variant_ns;
 
     mesg::object_path objPath;
     auto purpose = VersionPurpose::Unknown;
@@ -62,7 +61,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 if (property.first == "Purpose")
                 {
                     auto value = SVersion::convertVersionPurposeFromString(
-                        variant_ns::get<std::string>(property.second));
+                        std::get<std::string>(property.second));
                     if (value == VersionPurpose::BMC ||
 #ifdef HOST_BIOS_UPGRADE
                         value == VersionPurpose::Host ||
@@ -74,7 +73,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 }
                 else if (property.first == "Version")
                 {
-                    version = variant_ns::get<std::string>(property.second);
+                    version = std::get<std::string>(property.second);
                 }
             }
         }
@@ -84,7 +83,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             {
                 if (property.first == "Path")
                 {
-                    filePath = variant_ns::get<std::string>(property.second);
+                    filePath = std::get<std::string>(property.second);
                 }
             }
         }

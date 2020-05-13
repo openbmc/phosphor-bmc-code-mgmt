@@ -446,6 +446,61 @@ mirroruboot() {
   fi
 }
 
+# The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
+# Return the label (a or b) for the non-running partition.
+mmc_get_secondary_label() {
+  rootmatch=" on / "
+  root="$(mount -l | grep "${rootmatch}")"
+  if [[ "${root}" == *"rofs-a"* ]]; then
+    echo "b"
+  else
+    echo "a"
+  fi
+}
+
+mmc_update() {
+  # Update the secondary (non-running) boot and rofs partitions.
+  label="$(mmc_get_secondary_label)"
+
+  # Update the boot and rootfs partitions, restore their labels after the update
+  # by getting the partition number mmcblk0pX from their label.
+  zstd -d -c ${imgpath}/${version}/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
+  number="$(readlink -f /dev/disk/by-partlabel/boot-${label})"
+  number="${number##*mmcblk0p}"
+  sgdisk --change-name=${number}:boot-${label} /dev/mmcblk0 1>/dev/null
+
+  zstd -d -c ${imgpath}/${version}/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
+  number="$(readlink -f /dev/disk/by-partlabel/rofs-${label})"
+  number="${number##*mmcblk0p}"
+  sgdisk --change-name=${number}:rofs-${label} /dev/mmcblk0 1>/dev/null
+
+  # Run this after sgdisk for labels to take effect.
+  partprobe
+
+  # Store the label where the other properties like purpose and priority are
+  # preserved via the storePriority() function in the serialize files, so that
+  # it can be used for the remove function.
+  label_dir="/var/lib/phosphor-bmc-code-mgmt/${version}"
+  label_file="${label_dir}/partlabel"
+  mkdir -p "${label_dir}"
+  echo "${label}" > "${label_file}"
+}
+
+mmc_remove() {
+  # Use mkfs to erase the partitions. If the label property does not exist,
+  # assume it's the secondary (non-running) one since the running device cannot
+  # be erased.
+  label=""
+  label_file="/var/lib/phosphor-bmc-code-mgmt/${version}/partlabel"
+  if [ -f "${label_file}" ]; then
+    label="$(cat "${label_file}")"
+  else
+    label="$(mmc_get_secondary_label)"
+  fi
+  mkfs.ext4 -F -L "boot-${label}" "/dev/disk/by-partlabel/boot-${label}" 1>/dev/null
+  mkfs.ext4 -F -L "rofs-${label}" "/dev/disk/by-partlabel/rofs-${label}" 1>/dev/null
+}
+
 case "$1" in
   mtduboot)
     reqmtd="$2"
@@ -508,6 +563,15 @@ case "$1" in
     ;;
   mirroruboot)
     mirroruboot
+    ;;
+  mmc)
+    version="$2"
+    imgpath="$3"
+    mmc_update
+    ;;
+  mmc-remove)
+    version="$2"
+    mmc_remove
     ;;
   *)
     echo "Invalid argument"

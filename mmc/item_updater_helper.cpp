@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include "item_updater_helper.hpp"
 
 namespace phosphor
@@ -27,9 +29,13 @@ void Helper::factoryReset()
     // Empty
 }
 
-void Helper::removeVersion(const std::string& /* versionId */)
+void Helper::removeVersion(const std::string& versionId)
 {
-    // Empty
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto serviceFile = "obmc-flash-mmc-remove@" + versionId + ".service";
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
 }
 
 void Helper::updateUbootVersionId(const std::string& /* versionId */)

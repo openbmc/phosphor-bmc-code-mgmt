@@ -230,6 +230,15 @@ class Activation : public ActivationInherit, public Flash
     /** @brief Overloaded write flash function */
     void flashWrite() override;
 
+    /**
+     * @brief Handle the success of the flashWrite() function
+     *
+     * @details Perform anything that is necessary to mark the activation
+     * successful after the image has been written to flash. Sets the Activation
+     * value to Active.
+     */
+    void onFlashWriteSuccess();
+
 #ifdef HOST_BIOS_UPGRADE
     /* @brief write to Host flash function */
     void flashWriteHost();

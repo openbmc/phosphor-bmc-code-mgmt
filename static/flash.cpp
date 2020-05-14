@@ -33,6 +33,8 @@ void Activation::flashWrite()
         fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
                       fs::copy_options::overwrite_existing);
     }
+
+    Activation::onFlashWriteSuccess();
 }
 
 void Activation::onStateChanges(sdbusplus::message::message& /*msg*/)

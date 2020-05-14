@@ -67,11 +67,25 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
             Activation::activation(
                 softwareServer::Activation::Activations::Failed);
         }
-        else if ((rwVolumeCreated && roVolumeCreated) || // Volumes were created
-                 (ubootEnvVarsUpdated)) // Environment variables were updated
+        else if (rwVolumeCreated && roVolumeCreated) // Volumes were created
         {
-            Activation::activation(
-                softwareServer::Activation::Activations::Activating);
+            if (!ubootEnvVarsUpdated)
+            {
+                activationProgress->progress(90);
+
+                // Set the priority which triggers the service that updates the
+                // environment variables.
+                if (!Activation::redundancyPriority)
+                {
+                    Activation::redundancyPriority =
+                        std::make_unique<RedundancyPriority>(bus, path, *this,
+                                                             0);
+                }
+            }
+            else // Environment variables were updated
+            {
+                Activation::onFlashWriteSuccess();
+            }
         }
     }
 

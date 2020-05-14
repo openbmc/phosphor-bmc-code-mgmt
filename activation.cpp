@@ -111,97 +111,6 @@ auto Activation::activation(Activations value) -> Activations
         }
 #endif
 
-#ifdef UBIFS_LAYOUT
-        if (rwVolumeCreated == false && roVolumeCreated == false)
-        {
-            // Enable systemd signals
-            Activation::subscribeToSystemdSignals();
-
-            parent.freeSpace(*this);
-
-            if (!activationProgress)
-            {
-                activationProgress =
-                    std::make_unique<ActivationProgress>(bus, path);
-            }
-
-            if (!activationBlocksTransition)
-            {
-                activationBlocksTransition =
-                    std::make_unique<ActivationBlocksTransition>(bus, path);
-            }
-
-#ifdef WANT_SIGNATURE_VERIFY
-            fs::path uploadDir(IMG_UPLOAD_DIR);
-            if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
-            {
-                onVerifyFailed();
-                // Stop the activation process, if fieldMode is enabled.
-                if (parent.control::FieldMode::fieldModeEnabled())
-                {
-                    // Cleanup
-                    activationBlocksTransition.reset(nullptr);
-                    activationProgress.reset(nullptr);
-                    return softwareServer::Activation::activation(
-                        softwareServer::Activation::Activations::Failed);
-                }
-            }
-#endif
-
-            flashWrite();
-
-            activationProgress->progress(10);
-        }
-        else if (rwVolumeCreated == true && roVolumeCreated == true)
-        {
-            if (ubootEnvVarsUpdated == false)
-            {
-                activationProgress->progress(90);
-
-                storePurpose(
-                    versionId,
-                    parent.versions.find(versionId)->second->purpose());
-                if (!redundancyPriority)
-                {
-                    redundancyPriority = std::make_unique<RedundancyPriority>(
-                        bus, path, *this, 0);
-                }
-            }
-            else
-            {
-                activationProgress->progress(100);
-
-                activationBlocksTransition.reset(nullptr);
-                activationProgress.reset(nullptr);
-
-                rwVolumeCreated = false;
-                roVolumeCreated = false;
-                ubootEnvVarsUpdated = false;
-                Activation::unsubscribeFromSystemdSignals();
-
-                // Remove version object from image manager
-                Activation::deleteImageManagerObject();
-
-                // Create active association
-                parent.createActiveAssociation(path);
-
-                // Create updateable association as this
-                // can be re-programmed.
-                parent.createUpdateableAssociation(path);
-
-                if (Activation::checkApplyTimeImmediate() == true)
-                {
-                    log<level::INFO>("Image Active. ApplyTime is immediate, "
-                                     "rebooting BMC.");
-                    Activation::rebootBmc();
-                }
-
-                return softwareServer::Activation::activation(
-                    softwareServer::Activation::Activations::Active);
-            }
-        }
-#else // !UBIFS_LAYOUT
-
 #ifdef WANT_SIGNATURE_VERIFY
         fs::path uploadDir(IMG_UPLOAD_DIR);
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
@@ -215,36 +124,36 @@ auto Activation::activation(Activations value) -> Activations
             }
         }
 #endif
+
+        if (!activationProgress)
+        {
+            activationProgress =
+                std::make_unique<ActivationProgress>(bus, path);
+        }
+
+        if (!activationBlocksTransition)
+        {
+            activationBlocksTransition =
+                std::make_unique<ActivationBlocksTransition>(bus, path);
+        }
+
+        activationProgress->progress(10);
+
         parent.freeSpace(*this);
+
+        // Enable systemd signals
+        Activation::subscribeToSystemdSignals();
 
         flashWrite();
 
-        storePurpose(versionId,
-                     parent.versions.find(versionId)->second->purpose());
-        if (!redundancyPriority)
-        {
-            redundancyPriority =
-                std::make_unique<RedundancyPriority>(bus, path, *this, 0);
-        }
+#ifdef UBIFS_LAYOUT
 
-        // Remove version object from image manager
-        Activation::deleteImageManagerObject();
+        return softwareServer::Activation::activation(value);
 
-        // Create active association
-        parent.createActiveAssociation(path);
+#else // !UBIFS_LAYOUT
 
-        if (Activation::checkApplyTimeImmediate() == true)
-        {
-            log<level::INFO>("Image Active. ApplyTime is immediate, "
-                             "rebooting BMC.");
-            Activation::rebootBmc();
-        }
-        else
-        {
-            log<level::INFO>("BMC image ready, need reboot to get activated.");
-        }
-
-        return softwareServer::Activation::activation(
+        onFlashWriteSuccess();
+		return softwareServer::Activation::activation(
             softwareServer::Activation::Activations::Active);
 #endif
     }
@@ -254,6 +163,50 @@ auto Activation::activation(Activations value) -> Activations
         activationProgress.reset(nullptr);
     }
     return softwareServer::Activation::activation(value);
+}
+
+void Activation::onFlashWriteSuccess()
+{
+    activationProgress->progress(100);
+
+    activationBlocksTransition.reset(nullptr);
+    activationProgress.reset(nullptr);
+
+    rwVolumeCreated = false;
+    roVolumeCreated = false;
+    ubootEnvVarsUpdated = false;
+    Activation::unsubscribeFromSystemdSignals();
+
+    storePurpose(versionId, parent.versions.find(versionId)->second->purpose());
+
+    if (!redundancyPriority)
+    {
+        redundancyPriority =
+            std::make_unique<RedundancyPriority>(bus, path, *this, 0);
+    }
+
+    // Remove version object from image manager
+    Activation::deleteImageManagerObject();
+
+    // Create active association
+    parent.createActiveAssociation(path);
+
+    // Create updateable association as this
+    // can be re-programmed.
+    parent.createUpdateableAssociation(path);
+
+    if (Activation::checkApplyTimeImmediate() == true)
+    {
+        log<level::INFO>("Image Active. ApplyTime is immediate, "
+                         "rebooting BMC.");
+        Activation::rebootBmc();
+    }
+    else
+    {
+        log<level::INFO>("BMC image ready, need reboot to get activated.");
+    }
+
+    activation(softwareServer::Activation::Activations::Active);
 }
 
 void Activation::deleteImageManagerObject()

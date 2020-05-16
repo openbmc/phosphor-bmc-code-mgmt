@@ -3,6 +3,7 @@
 #include <systemd/sd-event.h>
 
 #include <functional>
+#include <string>
 
 namespace phosphor
 {

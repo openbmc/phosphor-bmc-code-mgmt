@@ -10,6 +10,8 @@
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
 
+#include <string>
+
 namespace phosphor
 {
 namespace software

@@ -3,6 +3,8 @@
 
 #include <sdbusplus/server.hpp>
 
+#include <string>
+
 namespace phosphor
 {
 namespace software

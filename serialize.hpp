@@ -5,6 +5,7 @@
 #include "version.hpp"
 
 #include <experimental/filesystem>
+#include <string>
 
 namespace phosphor
 {

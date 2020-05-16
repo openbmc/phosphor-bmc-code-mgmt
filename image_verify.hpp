@@ -9,6 +9,7 @@
 
 #include <experimental/filesystem>
 #include <set>
+#include <string>
 
 namespace phosphor
 {

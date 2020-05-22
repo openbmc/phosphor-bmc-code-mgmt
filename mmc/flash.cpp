@@ -43,7 +43,9 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
     // Read the msg and populate each variable
     msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
 
-    auto mmcServiceFile = "obmc-flash-bmc-mmc@" + versionId + ".service";
+    auto mmcServiceFile = "obmc-flash-mmc@" + versionId + ".service";
+    auto mmcSetPrimary =
+        "obmc-flash-mmc-setprimary@" + versionId + ".service";
 
     if (newStateUnit == mmcServiceFile && newStateResult == "done")
     {
@@ -51,7 +53,12 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
         activationProgress->progress(activationProgress->progress() + 50);
     }
 
-    if (newStateUnit == mmcServiceFile)
+    if (newStateUnit == mmcSetPrimary && newStateResult == "done")
+    {
+        ubootEnvVarsUpdated = true;
+    }
+
+    if (newStateUnit == mmcServiceFile || newStateUnit == mmcSetPrimary)
     {
         if (newStateResult == "failed" || newStateResult == "dependency")
         {
@@ -60,7 +67,23 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
         }
         else if (roVolumeCreated)
         {
-            Activation::onFlashWriteSuccess();
+            if (!ubootEnvVarsUpdated)
+            {
+                activationProgress->progress(90);
+
+                // Set the priority which triggers the service that updates the
+                // environment variables.
+                if (!Activation::redundancyPriority)
+                {
+                    Activation::redundancyPriority =
+                        std::make_unique<RedundancyPriority>(bus, path, *this,
+                                                             0);
+                }
+            }
+            else // Environment variables were updated
+            {
+                Activation::onFlashWriteSuccess();
+            }
         }
     }
 

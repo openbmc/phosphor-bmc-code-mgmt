@@ -5,6 +5,7 @@ image_updater_sources += files(
 
 mmc_unit_files = [
     'obmc-flash-mmc@.service',
+    'obmc-flash-mmc-setprimary@.service',
 ]
 
 foreach u : mmc_unit_files

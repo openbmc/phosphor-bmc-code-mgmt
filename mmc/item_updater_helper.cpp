@@ -39,9 +39,13 @@ void Helper::removeVersion(const std::string& versionId)
     fs::remove(fs::path(BMC_KERNEL_PREFIX + versionId));
 }
 
-void Helper::updateUbootVersionId(const std::string& /* versionId */)
+void Helper::updateUbootVersionId(const std::string& versionId)
 {
-    // Empty
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto serviceFile = "obmc-flash-bmc-mmc-setprimary@" + versionId + ".service";
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
 }
 
 void Helper::mirrorAlt()

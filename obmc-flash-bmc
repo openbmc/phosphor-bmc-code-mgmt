@@ -460,6 +460,47 @@ mmc_update() {
   zstd -d -c /tmp/images/${version}/image-rofs | dd of="${target}"
 }
 
+# Set the requested version as primary for the BMC to boot from upon reboot.
+mmc_setprimary {
+  # Kernel
+  kernel_target="/boot/fitImage"
+  kernel_source="/boot/kernel-${version}"
+  if [ -f "${kernel_source}" ]; then
+    if [[ $(readlink -f "${kernel_target}") != ${kernel_source}  ]]; then
+      rm -f ${kernel_target}
+      ln -sfv ${kernel_source} ${kernel_target}
+    fi
+  else
+    echo "Kernel file kernel-${version} does not exist"
+    return 1
+  fi
+
+  # BMC rootfs
+  functional=$(busctl call xyz.openbmc_project.ObjectMapper \
+               /xyz/openbmc_project/software/functional \
+               org.freedesktop.DBus.Properties Get ss \
+               xyz.openbmc_project.Association endpoints)
+
+  rootmatch=" on / "
+  rootdev="$(mount | grep "${rootmatch}")"
+
+  # If requested version is already functional, set root to running device.
+  # Else set root to the non-running one.
+  if [[ "${functional}" =~ "${version}" ]]; then
+    if [[ "${rootdev}" == *"/dev/mapper/rootfs-a "* ]]; then
+      fw_setenv root /dev/mapper/rootfs-a
+    else
+      fw_setenv root /dev/mapper/rootfs-b
+    fi
+  else
+    if [[ "${rootdev}" == *"/dev/mapper/rootfs-a "* ]]; then
+      fw_setenv root /dev/mapper/rootfs-b
+    else
+      fw_setenv root /dev/mapper/rootfs-a
+    fi
+  fi
+}
+
 case "$1" in
   mtduboot)
     reqmtd="$2"
@@ -526,6 +567,10 @@ case "$1" in
   mmc)
     version="$2"
     mmc_update
+    ;;
+  mmcprimary)
+    version="$2"
+    mmc_setprimary
     ;;
   *)
     echo "Invalid argument"

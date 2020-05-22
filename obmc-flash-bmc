@@ -447,6 +447,18 @@ mirroruboot() {
 }
 
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
+# Return the label (a or b) for the running partition.
+mmc_get_primary_label() {
+  rootmatch=" on / "
+  root="$(mount -l | grep "${rootmatch}")"
+  if [[ "${root}" == *"rofs-a"* ]]; then
+    echo "a"
+  else
+    echo "b"
+  fi
+}
+
+# The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the non-running partition.
 mmc_get_secondary_label() {
   rootmatch=" on / "
@@ -499,6 +511,28 @@ mmc_remove() {
   fi
   mkfs.ext4 -F -L "boot-${label}" "/dev/disk/by-partlabel/boot-${label}" 1>/dev/null
   mkfs.ext4 -F -L "rofs-${label}" "/dev/disk/by-partlabel/rofs-${label}" 1>/dev/null
+}
+
+# Set the requested version as primary for the BMC to boot from upon reboot.
+mmc_setprimary() {
+  # Point root to the label of the requested BMC rootfs. If the label property
+  # does not exist, determine if the requested version is functional or not.
+  label=""
+  label_file="/var/lib/phosphor-bmc-code-mgmt/${version}/partlabel"
+  if [ -f "${label_file}" ]; then
+    label="$(cat "${label_file}")"
+  else
+    functional="$(busctl call xyz.openbmc_project.ObjectMapper \
+                  /xyz/openbmc_project/software/functional \
+                  org.freedesktop.DBus.Properties Get ss \
+                  xyz.openbmc_project.Association endpoints)"
+    if [[ "${functional}" =~ "${version}" ]]; then
+      label="$(mmc_get_primary_label)"
+    else
+      label="$(mmc_get_secondary_label)"
+    fi
+  fi
+  fw_setenv bootside "${label}"
 }
 
 case "$1" in
@@ -572,6 +606,10 @@ case "$1" in
   mmc-remove)
     version="$2"
     mmc_remove
+    ;;
+  mmc-setprimary)
+    version="$2"
+    mmc_setprimary
     ;;
   *)
     echo "Invalid argument"

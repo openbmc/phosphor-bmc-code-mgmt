@@ -446,6 +446,18 @@ mirroruboot() {
   fi
 }
 
+mmc_get_primary_device() {
+  rofs_a="/dev/mapper/rofs-a"
+  rofs_b="/dev/mapper/rofs-b"
+  rootmatch=" on / "
+  root="$(mount | grep "${rootmatch}")"
+  if [[ "${root}" == *"${rofs_a} "* ]]; then
+    echo "${rofs_a}"
+  else
+    echo "${rofs_b}"
+  fi
+}
+
 mmc_get_secondary_device() {
   rofs_a="/dev/mapper/rofs-a"
   rofs_b="/dev/mapper/rofs-b"
@@ -496,6 +508,42 @@ mmc_remove() {
     device="$(mmc_get_secondary_device)"
   fi
   mkfs.ext4 -F "${device}"
+}
+
+# Set the requested version as primary for the BMC to boot from upon reboot.
+mmc_setprimary() {
+  # Point the fitImage to the kernel file of the requested version.
+  kernel_target="/boot/fitImage"
+  kernel_source="/boot/kernel-${version}"
+  if [ -f "${kernel_source}" ]; then
+    if [[ $(readlink -f "${kernel_target}") != "${kernel_source}"  ]]; then
+      # Remove it first, the kernel_target could be a file instead of a symlink
+      rm -f "${kernel_target}"
+      ln -sfv "${kernel_source}" "${kernel_target}"
+    fi
+  else
+    echo "Kernel file ${kernel_source} does not exist"
+    return 1
+  fi
+
+  # Point root to the device of the requested BMC rootfs. If the device property
+  # does not exist, determine if the requested version is functional or not.
+  device=""
+  device_file="/var/lib/phosphor-bmc-code-mgmt/${version}/device"
+  if [ -f "${device_file}" ]; then
+    device="$(cat "${device_file}")"
+  else
+    functional="$(busctl call xyz.openbmc_project.ObjectMapper \
+                  /xyz/openbmc_project/software/functional \
+                  org.freedesktop.DBus.Properties Get ss \
+                  xyz.openbmc_project.Association endpoints)"
+    if [[ "${functional}" =~ "${version}" ]]; then
+      device="$(mmc_get_primary_device)"
+    else
+      device="$(mmc_get_secondary_device)"
+    fi
+  fi
+  fw_setenv root "${device}"
 }
 
 case "$1" in
@@ -568,6 +616,10 @@ case "$1" in
   mmc-remove)
     version="$2"
     mmc_remove
+    ;;
+  mmcprimary)
+    version="$2"
+    mmc_setprimary
     ;;
   *)
     echo "Invalid argument"

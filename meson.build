@@ -133,6 +133,7 @@ elif get_option('bmc-layout').contains('mmc')
     unit_files += [
         'mmc/obmc-flash-mmc@.service.in',
         'mmc/obmc-flash-mmc-remove@.service.in',
+        'mmc/obmc-flash-mmc-setprimary@.service.in',
     ]
 endif
 

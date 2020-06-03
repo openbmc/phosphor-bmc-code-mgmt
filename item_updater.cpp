@@ -41,12 +41,11 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     using SVersion = server::Version;
     using VersionPurpose = SVersion::VersionPurpose;
     using VersionClass = phosphor::software::manager::Version;
-    namespace mesg = sdbusplus::message;
 
-    mesg::object_path objPath;
+    sdbusplus::message::object_path objPath;
     auto purpose = VersionPurpose::Unknown;
     std::string version;
-    std::map<std::string, std::map<std::string, mesg::variant<std::string>>>
+    std::map<std::string, std::map<std::string, std::variant<std::string>>>
         interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));

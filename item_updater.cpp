@@ -7,17 +7,18 @@
 #include "version.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 
-#include <filesystem>
-#include <fstream>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
+#include <xyz/openbmc_project/Software/Image/error.hpp>
+
+#include <filesystem>
+#include <fstream>
 #include <queue>
 #include <set>
 #include <string>
 #include <thread>
-#include <xyz/openbmc_project/Common/error.hpp>
-#include <xyz/openbmc_project/Software/Image/error.hpp>
 
 namespace phosphor
 {

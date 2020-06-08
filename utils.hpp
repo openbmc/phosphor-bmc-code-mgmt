@@ -1,7 +1,8 @@
 #include "config.h"
 
-#include <map>
 #include <sdbusplus/server.hpp>
+
+#include <map>
 #include <string>
 
 namespace utils

@@ -6,10 +6,11 @@
 
 #include <openssl/sha.h>
 
-#include <fstream>
-#include <iostream>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/log.hpp>
+
+#include <fstream>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>

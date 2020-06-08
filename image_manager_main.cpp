@@ -3,10 +3,11 @@
 #include "image_manager.hpp"
 #include "watch.hpp"
 
-#include <cstdlib>
-#include <exception>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/bus.hpp>
+
+#include <cstdlib>
+#include <exception>
 
 int main()
 {

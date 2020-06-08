@@ -5,10 +5,11 @@
 
 #include <systemd/sd-event.h>
 
-#include <exception>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
+
+#include <exception>
 
 int main()
 {

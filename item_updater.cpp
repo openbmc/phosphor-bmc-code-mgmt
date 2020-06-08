@@ -175,9 +175,7 @@ void ItemUpdater::processBMCImage()
         if (0 ==
             iter.path().native().compare(0, BMC_RO_PREFIX_LEN, BMC_ROFS_PREFIX))
         {
-            // The versionId is extracted from the path
-            // for example /media/ro-2a1022fe.
-            auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+            // Get the version to calculate the id
             fs::path releaseFile(OS_RELEASE_FILE);
             auto osRelease = iter.path() / releaseFile.relative_path();
             if (!fs::is_regular_file(osRelease))
@@ -185,7 +183,15 @@ void ItemUpdater::processBMCImage()
                 log<level::ERR>(
                     "Failed to read osRelease",
                     entry("FILENAME=%s", osRelease.string().c_str()));
+
+                // Try to get the version id from the mount directory name and
+                // call to delete it as this version may be corrupted. Dynamic
+                // volumes created by the UBI layout for example have the id in
+                // the mount directory name. The worst that can happen is that
+                // erase() is called with an non-existent id and returns.
+                auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
                 ItemUpdater::erase(id);
+
                 continue;
             }
             auto version = VersionClass::getBMCVersion(osRelease);
@@ -194,8 +200,16 @@ void ItemUpdater::processBMCImage()
                 log<level::ERR>(
                     "Failed to read version from osRelease",
                     entry("FILENAME=%s", osRelease.string().c_str()));
-                activationState = server::Activation::Activations::Invalid;
+
+                // Try to delete the version, same as above if the
+                // OS_RELEASE_FILE does not exist.
+                auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+                ItemUpdater::erase(id);
+
+                continue;
             }
+
+            auto id = VersionClass::getId(version);
 
             auto purpose = server::Version::VersionPurpose::BMC;
             restorePurpose(id, purpose);
@@ -269,8 +283,9 @@ void ItemUpdater::processBMCImage()
         }
     }
 
-    // If there is no ubi volume for bmc version then read the /etc/os-release
-    // and create rofs-<versionId> under /media
+    // If there are no bmc versions mounted under MEDIA_DIR, then read the
+    // /etc/os-release and create rofs-<versionId> under MEDIA_DIR, then call
+    // again processBMCImage() to create the D-Bus interface for it.
     if (activations.size() == 0)
     {
         auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);

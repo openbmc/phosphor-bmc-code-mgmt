@@ -3,10 +3,11 @@
 #include "serialize.hpp"
 
 #include <cereal/archives/json.hpp>
-#include <filesystem>
-#include <fstream>
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/server.hpp>
+
+#include <filesystem>
+#include <fstream>
 
 namespace phosphor
 {
@@ -116,8 +117,7 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
         }
     }
     catch (const std::exception& e)
-    {
-    }
+    {}
 
     return false;
 }

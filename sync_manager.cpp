@@ -6,8 +6,9 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include <filesystem>
 #include <phosphor-logging/log.hpp>
+
+#include <filesystem>
 
 namespace phosphor
 {

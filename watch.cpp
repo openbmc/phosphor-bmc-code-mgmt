@@ -7,10 +7,11 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
+#include <phosphor-logging/log.hpp>
+
 #include <cstddef>
 #include <cstring>
 #include <filesystem>
-#include <phosphor-logging/log.hpp>
 #include <stdexcept>
 #include <string>
 

@@ -9,12 +9,13 @@
 #include <openssl/err.h>
 #include <sys/stat.h>
 
-#include <fstream>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
-#include <set>
 #include <xyz/openbmc_project/Common/error.hpp>
+
+#include <fstream>
+#include <set>
 
 namespace phosphor
 {

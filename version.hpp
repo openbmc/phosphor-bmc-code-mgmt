@@ -4,8 +4,9 @@
 #include "xyz/openbmc_project/Object/Delete/server.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 
-#include <functional>
 #include <sdbusplus/bus.hpp>
+
+#include <functional>
 #include <string>
 
 namespace phosphor

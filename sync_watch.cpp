@@ -5,9 +5,10 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
+#include <phosphor-logging/log.hpp>
+
 #include <filesystem>
 #include <fstream>
-#include <phosphor-logging/log.hpp>
 
 namespace phosphor
 {

@@ -6,10 +6,11 @@
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/server.hpp>
-#include <string>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
+
+#include <string>
 
 namespace phosphor
 {

@@ -178,7 +178,8 @@ void ItemUpdater::processBMCImage()
             // The versionId is extracted from the path
             // for example /media/ro-2a1022fe.
             auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
-            auto osRelease = iter.path() / OS_RELEASE_FILE;
+            fs::path releaseFile(OS_RELEASE_FILE);
+            auto osRelease = iter.path() / releaseFile.relative_path();
             if (!fs::is_regular_file(osRelease))
             {
                 log<level::ERR>(

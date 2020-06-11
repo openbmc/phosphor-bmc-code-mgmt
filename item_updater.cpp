@@ -309,7 +309,30 @@ void ItemUpdater::erase(std::string entryId)
                             entry("VERSIONID=%s", entryId.c_str()));
             return;
         }
+    }
 
+    // First call resetUbootEnvVars() so that the BMC points to a valid image to
+    // boot from. If resetUbootEnvVars() is called after the image is actually
+    // deleted from the BMC flash, there'd be a time window where the BMC would
+    // be pointing to a non-existent image to boot from.
+    // Need to remove the entries from the activations map before that call so
+    // that resetUbootEnvVars() doesn't use the version to be deleted.
+    auto ita = activations.find(entryId);
+    if (ita == activations.end())
+    {
+        log<level::ERR>("Error: Failed to find version in item updater "
+                        "activations map. Unable to remove.",
+                        entry("VERSIONID=%s", entryId.c_str()));
+    }
+    else
+    {
+        removeAssociations(ita->second->path);
+        this->activations.erase(entryId);
+    }
+    ItemUpdater::resetUbootEnvVars();
+
+    if (it != versions.end())
+    {
         // Delete ReadOnly partitions if it's not active
         removeReadOnlyPartition(entryId);
         removePersistDataDirectory(entryId);
@@ -330,20 +353,6 @@ void ItemUpdater::erase(std::string entryId)
 
     helper.clearEntry(entryId);
 
-    // Removing entry in activations map
-    auto ita = activations.find(entryId);
-    if (ita == activations.end())
-    {
-        log<level::ERR>("Error: Failed to find version in item updater "
-                        "activations map. Unable to remove.",
-                        entry("VERSIONID=%s", entryId.c_str()));
-    }
-    else
-    {
-        removeAssociations(ita->second->path);
-        this->activations.erase(entryId);
-    }
-    ItemUpdater::resetUbootEnvVars();
     return;
 }
 

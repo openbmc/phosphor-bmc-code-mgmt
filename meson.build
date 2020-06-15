@@ -1,8 +1,9 @@
 project('phosphor-bmc-code-mgmt', 'cpp',
     default_options: [
+        'buildtype=debugoptimized',
+        'cpp_std=c++17',
         'warning_level=3',
-        'werror=true',
-        'cpp_std=c++17'
+        'werror=true'
     ],
     license: 'Apache-2.0',
     version: '1.0')

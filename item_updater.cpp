@@ -211,6 +211,14 @@ void ItemUpdater::processBMCImage()
 
             auto id = VersionClass::getId(version);
 
+            // Check if the id has already been added. This can happen if the
+            // BMC partitions / devices were manually flashed with the same
+            // image.
+            if (versions.find(id) != versions.end())
+            {
+                continue;
+            }
+
             auto purpose = server::Version::VersionPurpose::BMC;
             restorePurpose(id, purpose);
 

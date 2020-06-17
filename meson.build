@@ -80,15 +80,15 @@ systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_pkgconfig_variable('systemdsystemunitdir')
 
 unit_files = [
-    'obmc-flash-bmc-setenv@.service',
-    'reboot-guard-disable.service',
-    'reboot-guard-enable.service',
-    'force-reboot.service',
-    'usr-local.mount',
-    'xyz.openbmc_project.Software.BMC.Updater.service',
-    'xyz.openbmc_project.Software.Download.service',
-    'xyz.openbmc_project.Software.Sync.service',
-    'xyz.openbmc_project.Software.Version.service'
+    'obmc-flash-bmc-setenv@.service.in',
+    'reboot-guard-disable.service.in',
+    'reboot-guard-enable.service.in',
+    'force-reboot.service.in',
+    'usr-local.mount.in',
+    'xyz.openbmc_project.Software.BMC.Updater.service.in',
+    'xyz.openbmc_project.Software.Download.service.in',
+    'xyz.openbmc_project.Software.Sync.service.in',
+    'xyz.openbmc_project.Software.Version.service.in'
 ]
 
 sdbuspp = find_program('sdbus++')
@@ -104,15 +104,35 @@ image_updater_sources = files(
 )
 
 if get_option('bmc-layout').contains('static')
-    subdir('static')
+    image_updater_sources += files(
+        'static/flash.cpp',
+        'static/item_updater_helper.cpp'
+    )
 elif get_option('bmc-layout').contains('ubi')
-    subdir('ubi')
+    image_updater_sources += files(
+        'ubi/flash.cpp',
+        'ubi/item_updater_helper.cpp'
+    )
+
+    unit_files += [
+        'ubi/obmc-flash-bmc-cleanup.service.in',
+        'ubi/obmc-flash-bmc-mirroruboot.service.in',
+        'ubi/obmc-flash-bmc-ubiremount.service.in',
+        'ubi/obmc-flash-bmc-ubiro@.service.in',
+        'ubi/obmc-flash-bmc-ubiro-remove@.service.in',
+        'ubi/obmc-flash-bmc-ubirw.service.in',
+        'ubi/obmc-flash-bmc-ubirw-remove.service.in',
+        'ubi/obmc-flash-bmc-updateubootvars@.service.in'
+    ]
 elif get_option('bmc-layout').contains('mmc')
-    subdir('mmc')
+    image_updater_sources += files(
+        'mmc/flash.cpp',
+        'mmc/item_updater_helper.cpp'
+    )
 endif
 
 if get_option('host-bios-upgrade').enabled()
-    unit_files += 'obmc-flash-host-bios@.service'
+    unit_files += 'obmc-flash-host-bios@.service.in'
 endif
 
 if get_option('sync-bmc-files').enabled()
@@ -177,11 +197,11 @@ install_data('software.conf',
 
 foreach u : unit_files
     configure_file(
-        copy: true,
         input: u,
+        output: '@BASENAME@',
+        configuration: conf,
         install: true,
         install_dir: systemd_system_unit_dir,
-        output: u,
     )
 endforeach
 

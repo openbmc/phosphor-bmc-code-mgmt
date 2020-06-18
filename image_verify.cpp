@@ -120,6 +120,30 @@ bool Signature::verify()
                 return false;
             }
         }
+        // Validate the optional image files.
+        auto optionalImages = getOptionalImages();
+        for (const auto& optionalImage : optionalImages)
+        {
+            // Build Image File name
+            fs::path file(imageDirPath);
+            file /= bmcImage;
+
+            if (fs::exists(file))
+            {
+                // Build Signature File name
+                fs::path sigFile(file);
+                sigFile.replace_extension(SIGNATURE_FILE_EXT);
+
+                // Verify the signature.
+                auto valid = verifyFile(file, sigFile, publicKeyFile, hashType);
+                if (valid == false)
+                {
+                    log<level::ERR>("Image file Signature Validation failed",
+                                    entry("IMAGE=%s", bmcImage.c_str()));
+                    return false;
+                }
+            }
+        }
 
         log<level::DEBUG>("Successfully completed Signature vaildation.");
 

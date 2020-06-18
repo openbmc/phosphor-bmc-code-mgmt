@@ -60,6 +60,12 @@ conf.set_quoted('HASH_FILE_NAME', get_option('hash-file-name'))
 conf.set_quoted('IMG_UPLOAD_DIR', get_option('img-upload-dir'))
 conf.set_quoted('MANIFEST_FILE_NAME', get_option('manifest-file-name'))
 conf.set_quoted('MEDIA_DIR', get_option('media-dir'))
+optional_array = get_option('optional-images')
+optional_images = ''
+foreach optiona_image : optional_array
+    optional_images = ' '.join([optional_images, optiona_image])
+endforeach
+conf.set_quoted('OPTIONAL_IMAGES', optional_images)
 conf.set_quoted('PUBLICKEY_FILE_NAME', get_option('publickey-file-name'))
 conf.set_quoted('SIGNATURE_FILE_EXT', get_option('signature-file-ext'))
 conf.set_quoted('SIGNED_IMAGE_CONF_PATH', get_option('signed-image-conf-path'))
@@ -96,6 +102,7 @@ subdir('xyz/openbmc_project/Software/Image')
 
 image_updater_sources = files(
     'activation.cpp',
+    'images.cpp',
     'item_updater.cpp',
     'item_updater_main.cpp',
     'serialize.cpp',

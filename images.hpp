@@ -14,6 +14,8 @@ namespace image
 const std::vector<std::string> bmcImages = {"image-kernel", "image-rofs",
                                             "image-rwfs", "image-u-boot"};
 
+std::vector<std::string> getOptionalImages();
+
 } // namespace image
 } // namespace software
 } // namespace phosphor

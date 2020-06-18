@@ -385,6 +385,12 @@ ItemUpdater::ActivationStatus
         }
     }
 
+    auto optionalImages = getOptionalImages();
+    for (auto& optionalImage : optionalImages)
+    {
+        // Same check as bmcImages
+    }
+
     if (invalid)
     {
         return ItemUpdater::ActivationStatus::invalid;

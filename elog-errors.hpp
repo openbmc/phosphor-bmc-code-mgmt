@@ -12,31 +12,38 @@
 
 namespace sdbusplus
 {
-namespace xyz
+namespace Image
 {
-namespace openbmc_project
+namespace Error
 {
-namespace Software
+struct ManifestFileFailure;
+} // namespace Error
+} // namespace Image
+} // namespace sdbusplus
+
+namespace sdbusplus
 {
 namespace Image
 {
 namespace Error
 {
-struct UnTarFailure;
+struct ImageFailure;
 } // namespace Error
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 } // namespace sdbusplus
 
 namespace sdbusplus
 {
-namespace xyz
+namespace Image
 {
-namespace openbmc_project
+namespace Error
 {
-namespace Software
+struct BusyFailure;
+} // namespace Error
+} // namespace Image
+} // namespace sdbusplus
+
+namespace sdbusplus
 {
 namespace Image
 {
@@ -45,29 +52,17 @@ namespace Error
 struct InternalFailure;
 } // namespace Error
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 } // namespace sdbusplus
 
 namespace sdbusplus
-{
-namespace xyz
-{
-namespace openbmc_project
-{
-namespace Software
 {
 namespace Image
 {
 namespace Error
 {
-struct ManifestFileFailure;
+struct UnTarFailure;
 } // namespace Error
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 } // namespace sdbusplus
 
 namespace phosphor
@@ -76,12 +71,6 @@ namespace phosphor
 namespace logging
 {
 
-namespace xyz
-{
-namespace openbmc_project
-{
-namespace Software
-{
 namespace Image
 {
 namespace _UnTarFailure
@@ -89,62 +78,39 @@ namespace _UnTarFailure
 
 struct PATH
 {
-    static constexpr auto str = "PATH=%s";
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
     static constexpr auto str_short = "PATH";
-    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
-    explicit constexpr PATH(const char* a) : _entry(entry(str, a)){};
+    using type = std::tuple<std::decay_t<decltype("PATH=%s")>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry("PATH=%s", a)){};
     type _entry;
 };
 
 } // namespace _UnTarFailure
 
-struct UnTarFailure : public sdbusplus::exception_t
+struct UnTarFailure
 {
-    static constexpr auto errName =
-        "xyz.openbmc_project.Software.Image.UnTarFailure";
-    static constexpr auto errDesc = "An error occurred during untar.";
     static constexpr auto L = level::ERR;
     using PATH = _UnTarFailure::PATH;
     using metadata_types = std::tuple<PATH>;
-
-    const char* name() const noexcept
-    {
-        return errName;
-    }
-
-    const char* description() const noexcept
-    {
-        return errDesc;
-    }
-
-    const char* what() const noexcept
-    {
-        return errName;
-    }
 };
 
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 
 namespace details
 {
 
 template <>
-struct map_exception_type<
-    sdbusplus::xyz::openbmc_project::Software::Image::Error::UnTarFailure>
+struct map_exception_type<sdbusplus::Image::Error::UnTarFailure>
 {
-    using type = xyz::openbmc_project::Software::Image::UnTarFailure;
+    using type = Image::UnTarFailure;
 };
+
 } // namespace details
 
-namespace xyz
-{
-namespace openbmc_project
-{
-namespace Software
-{
 namespace Image
 {
 namespace _ManifestFileFailure
@@ -152,62 +118,39 @@ namespace _ManifestFileFailure
 
 struct PATH
 {
-    static constexpr auto str = "PATH=%s";
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
     static constexpr auto str_short = "PATH";
-    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
-    explicit constexpr PATH(const char* a) : _entry(entry(str, a)){};
+    using type = std::tuple<std::decay_t<decltype("PATH=%s")>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry("PATH=%s", a)){};
     type _entry;
 };
 
 } // namespace _ManifestFileFailure
 
-struct ManifestFileFailure : public sdbusplus::exception_t
+struct ManifestFileFailure
 {
-    static constexpr auto errName =
-        "xyz.openbmc_project.Software.Image.ManifestFileFailure";
-    static constexpr auto errDesc = "An error when reading the Manifest file.";
     static constexpr auto L = level::ERR;
     using PATH = _ManifestFileFailure::PATH;
     using metadata_types = std::tuple<PATH>;
-
-    const char* name() const noexcept
-    {
-        return errName;
-    }
-
-    const char* description() const noexcept
-    {
-        return errDesc;
-    }
-
-    const char* what() const noexcept
-    {
-        return errName;
-    }
 };
 
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 
 namespace details
 {
 
 template <>
-struct map_exception_type<sdbusplus::xyz::openbmc_project::Software::Image::
-                              Error::ManifestFileFailure>
+struct map_exception_type<sdbusplus::Image::Error::ManifestFileFailure>
 {
-    using type = xyz::openbmc_project::Software::Image::ManifestFileFailure;
+    using type = Image::ManifestFileFailure;
 };
+
 } // namespace details
 
-namespace xyz
-{
-namespace openbmc_project
-{
-namespace Software
-{
 namespace Image
 {
 namespace _InternalFailure
@@ -215,55 +158,130 @@ namespace _InternalFailure
 
 struct FAIL
 {
-    static constexpr auto str = "FAIL=%s";
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
     static constexpr auto str_short = "FAIL";
-    using type = std::tuple<std::decay_t<decltype(str)>, const char*>;
-    explicit constexpr FAIL(const char* a) : _entry(entry(str, a)){};
+    using type = std::tuple<std::decay_t<decltype("FAIL=%s")>, const char*>;
+    explicit constexpr FAIL(const char* a) : _entry(entry("FAIL=%s", a)){};
     type _entry;
 };
 
 } // namespace _InternalFailure
 
-struct InternalFailure : public sdbusplus::exception_t
+struct InternalFailure
 {
-    static constexpr auto errName =
-        "xyz.openbmc_project.Software.Image.InternalFailure";
-    static constexpr auto errDesc =
-        "The operation failed internally during processing the image.";
     static constexpr auto L = level::ERR;
     using FAIL = _InternalFailure::FAIL;
     using metadata_types = std::tuple<FAIL>;
-
-    const char* name() const noexcept
-    {
-        return errName;
-    }
-
-    const char* description() const noexcept
-    {
-        return errDesc;
-    }
-
-    const char* what() const noexcept
-    {
-        return errName;
-    }
 };
 
 } // namespace Image
-} // namespace Software
-} // namespace openbmc_project
-} // namespace xyz
 
 namespace details
 {
 
 template <>
-struct map_exception_type<
-    sdbusplus::xyz::openbmc_project::Software::Image::Error::InternalFailure>
+struct map_exception_type<sdbusplus::Image::Error::InternalFailure>
 {
-    using type = xyz::openbmc_project::Software::Image::InternalFailure;
+    using type = Image::InternalFailure;
 };
+
+} // namespace details
+
+namespace Image
+{
+namespace _ImageFailure
+{
+
+struct FAIL
+{
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
+    static constexpr auto str_short = "FAIL";
+    using type = std::tuple<std::decay_t<decltype("FAIL=%s")>, const char*>;
+    explicit constexpr FAIL(const char* a) : _entry(entry("FAIL=%s", a)){};
+    type _entry;
+};
+struct PATH
+{
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
+    static constexpr auto str_short = "PATH";
+    using type = std::tuple<std::decay_t<decltype("PATH=%s")>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry("PATH=%s", a)){};
+    type _entry;
+};
+
+} // namespace _ImageFailure
+
+struct ImageFailure
+{
+    static constexpr auto L = level::ERR;
+    using FAIL = _ImageFailure::FAIL;
+    using PATH = _ImageFailure::PATH;
+    using metadata_types = std::tuple<FAIL, PATH>;
+};
+
+} // namespace Image
+
+namespace details
+{
+
+template <>
+struct map_exception_type<sdbusplus::Image::Error::ImageFailure>
+{
+    using type = Image::ImageFailure;
+};
+
+} // namespace details
+
+namespace Image
+{
+namespace _BusyFailure
+{
+
+struct PATH
+{
+    /*
+     * We can't use -fsanitize=undefined if we declare a
+     * 'static constexpr auto str' member, so don't. Instead, open-code the
+     * mako template lookups.
+     */
+    static constexpr auto str_short = "PATH";
+    using type = std::tuple<std::decay_t<decltype("PATH=%s")>, const char*>;
+    explicit constexpr PATH(const char* a) : _entry(entry("PATH=%s", a)){};
+    type _entry;
+};
+
+} // namespace _BusyFailure
+
+struct BusyFailure
+{
+    static constexpr auto L = level::ERR;
+    using PATH = _BusyFailure::PATH;
+    using metadata_types = std::tuple<PATH>;
+};
+
+} // namespace Image
+
+namespace details
+{
+
+template <>
+struct map_exception_type<sdbusplus::Image::Error::BusyFailure>
+{
+    using type = Image::BusyFailure;
+};
+
 } // namespace details
 
 } // namespace logging

@@ -3,6 +3,7 @@
 #include "images.hpp"
 #include "item_updater.hpp"
 #include "serialize.hpp"
+#include "msl_verify.hpp"
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -77,8 +78,7 @@ void Activation::unsubscribeFromSystemdSignals()
 }
 
 auto Activation::activation(Activations value) -> Activations
-{
-
+{    
     if ((value != softwareServer::Activation::Activations::Active) &&
         (value != softwareServer::Activation::Activations::Activating))
     {
@@ -110,6 +110,29 @@ auto Activation::activation(Activations value) -> Activations
             return softwareServer::Activation::activation(value);
         }
 #endif
+
+auto versionStr = parent.versions.find(versionId)->second->version();
+uint rc = 0;
+ rc = minimum_ship_level::verify(versionStr);
+
+    switch (rc)
+    {
+    case 0:
+        log<level::INFO>("MSL Image equal to actual");
+        break;
+    case 1:
+        log<level::INFO>("MSL Image is going to be upgraded");
+        break;
+    case -1:
+        log<level::ERR>("Image not minimum ship level");
+        activationBlocksTransition.reset(nullptr);
+        activationProgress.reset(nullptr);
+        return softwareServer::Activation::activation(softwareServer::
+        Activation::Activations::Failed);
+    default:
+    break;
+     }
+
 
 #ifdef WANT_SIGNATURE_VERIFY
         fs::path uploadDir(IMG_UPLOAD_DIR);

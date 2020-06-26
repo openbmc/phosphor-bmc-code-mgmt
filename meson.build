@@ -65,6 +65,9 @@ conf.set_quoted('SIGNATURE_FILE_EXT', get_option('signature-file-ext'))
 conf.set_quoted('SIGNED_IMAGE_CONF_PATH', get_option('signed-image-conf-path'))
 conf.set_quoted('SYNC_LIST_DIR_PATH', get_option('sync-list-dir-path'))
 conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
+conf.set_quoted('BMC_MSL', get_option('bmc-msl'))
+conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
+
 
 configure_file(output: 'config.h', configuration: conf)
 
@@ -100,7 +103,8 @@ image_updater_sources = files(
     'item_updater_main.cpp',
     'serialize.cpp',
     'version.cpp',
-    'utils.cpp'
+    'utils.cpp',
+    'msl_verify.cpp'
 )
 
 if get_option('bmc-layout').contains('static')

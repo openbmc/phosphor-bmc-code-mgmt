@@ -89,3 +89,15 @@ option(
     value: 'synclist',
     description: 'The name of the sync list file.',
 )
+
+option(
+    'bmc-msl', type: 'string',
+    value: '',
+    description: 'The BMC minimum ship level.',
+)
+
+option(
+    'regex-bmc-msl', type: 'string',
+    value: '',
+    description: 'The Regular expression to parse the MSL.',
+)

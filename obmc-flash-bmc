@@ -489,6 +489,14 @@ mmc_update() {
   # Run this after sgdisk for labels to take effect.
   partprobe
 
+  # Update hostfw
+  if [ -f ${imgpath}/${version}/image-hostfw ]; then
+    hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
+    cp ${imgpath}/${version}/image-hostfw ${hostfwdir}/hostfw-${label}
+    mkdir -p ${hostfwdir}/secondary
+    mount ${hostfwdir}/hostfw-${label} ${hostfwdir}/secondary -o ro
+  fi
+
   # Store the label where the other properties like purpose and priority are
   # preserved via the storePriority() function in the serialize files, so that
   # it can be used for the remove function.
@@ -512,6 +520,13 @@ mmc_remove() {
   fi
   dd if=/dev/zero of=/dev/disk/by-partlabel/boot-${label} count=2048
   dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-${label} count=2048
+
+  hostfwsec=$(grep "hostfw/secondary" /proc/mounts | cut -d " " -f 2)
+  if [ ! =z "${hostfwsec}" ]; then
+    umount "${hostfwsec}"
+  fi
+  hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
+  rm -f ${hostfwdir}/hostfw-${label}
 }
 
 # Set the requested version as primary for the BMC to boot from upon reboot.

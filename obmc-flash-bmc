@@ -449,24 +449,31 @@ mirroruboot() {
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the running partition.
 mmc_get_primary_label() {
+  # Get root device /dev/mmcblkpX
   rootmatch=" on / "
-  root="$(mount -l | grep "${rootmatch}")"
-  if [[ "${root}" == *"rofs-a"* ]]; then
+  root="$(mount | grep "${rootmatch}")"
+  root="${root%${rootmatch}*}"
+
+  # Find the device label
+  if [[ $(readlink -f /dev/disk/by-partlabel/rofs-a) == "${root}" ]]; then
     echo "a"
-  else
+  elif [[ $(readlink -f /dev/disk/by-partlabel/rofs-b) == "${root}" ]]; then
     echo "b"
+  else
+    echo ""
   fi
 }
 
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the non-running partition.
 mmc_get_secondary_label() {
-  rootmatch=" on / "
-  root="$(mount -l | grep "${rootmatch}")"
-  if [[ "${root}" == *"rofs-a"* ]]; then
+  root="$(mmc_get_primary_label)"
+  if [[ "${root}" == "a" ]]; then
     echo "b"
-  else
+  elif [[ "${root}" == "b" ]]; then
     echo "a"
+  else
+    echo ""
   fi
 }
 

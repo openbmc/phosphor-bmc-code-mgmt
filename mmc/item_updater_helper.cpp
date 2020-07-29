@@ -38,6 +38,11 @@ void Helper::removeVersion(const std::string& versionId)
     auto serviceFile = "obmc-flash-mmc-remove@" + versionId + ".service";
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
+
+    // Wait a few seconds for the service file to finish, otherwise the BMC may
+    // start the update while the image is still being deleted.
+    constexpr auto removeWait = std::chrono::seconds(3);
+    std::this_thread::sleep_for(removeWait);
 }
 
 void Helper::updateUbootVersionId(const std::string& versionId)

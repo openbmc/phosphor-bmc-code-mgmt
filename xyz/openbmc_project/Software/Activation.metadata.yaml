@@ -1,0 +1,8 @@
+- name: WrongBootVersion
+  level: ERR
+  meta:
+    - str: "BOOTED_VERSION=%s"
+      type: string
+    - str: "EXPECTED_VERSION=%s"
+      type: string
+    

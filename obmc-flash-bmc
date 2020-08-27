@@ -498,6 +498,11 @@ mmc_update() {
 
   # Update hostfw
   if [ -f ${imgpath}/${version}/image-hostfw ]; then
+    # Remove patches
+    patchdir="/usr/local/share/hostfw/alternate"
+    if [ -d "${patchdir}" ]; then
+      rm -rf "${patchdir}"/*
+    fi
     hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
     cp ${imgpath}/${version}/image-hostfw ${hostfwdir}/hostfw-${label}
     mkdir -p ${hostfwdir}/alternate

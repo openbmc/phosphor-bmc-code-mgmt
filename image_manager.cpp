@@ -211,6 +211,7 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         log<level::INFO>("Software Object with the same version already exists",
                          entry("VERSION_ID=%s", id.c_str()));
+        fs::remove_all(imageDirPath);
     }
     return 0;
 }

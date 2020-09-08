@@ -1,0 +1,7 @@
+- name: WrongBootVersion
+  description: >
+    A system has booted from an alternate version instead of the requested
+    version and need to be notified to the user. Some usage examples for this
+    error include creating logging events and providing information on which
+    image the system has booted from and check its priority to identify it is
+    the highest from the available versions.

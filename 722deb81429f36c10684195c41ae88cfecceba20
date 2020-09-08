@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4c03cd1_f51ca075",
+        "filename": "xyz/openbmc_project/Software/Activation.errors.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-09-08T20:34:40Z",
+      "side": 1,
+      "message": "The description field gets printed to the journal when an error is created and when the messages are long it makes the journal a little unwieldly. I think it would be OK if you just kept the text up to \u0027instead of the requested version\u0027.  You  could put the rest of the description into the commit message.",
+      "revId": "722deb81429f36c10684195c41ae88cfecceba20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+- name: WrongBootVersion
+  description: >
+    A system has booted from an alternate version instead of the requested
+    version.

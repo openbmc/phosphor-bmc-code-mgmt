@@ -88,6 +88,24 @@
       "revId": "722deb81429f36c10684195c41ae88cfecceba20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d9179f_fe7e3a23",
+        "filename": "xyz/openbmc_project/Software/Activation.errors.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2020-09-14T20:57:45Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "8bc8fce3_68f074fa",
+      "revId": "722deb81429f36c10684195c41ae88cfecceba20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

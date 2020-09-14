@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bd3e992_8db82c48",
+        "filename": "xyz/openbmc_project/Software/Activation.metadata.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2020-09-14T20:57:45Z",
+      "side": 1,
+      "message": "If does stay, trailing space?",
+      "revId": "4703b676d618df34a38669a2eba4d009b7546bbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -446,6 +446,30 @@ mirroruboot() {
   fi
 }
 
+# Compare the device where u-boot resides with an image file. Specify the full
+# path to the device and image file to use for the compare. Print a value of
+# "0" if identical, "1" otherwise.
+cmp_uboot() {
+  device=$1
+  image=$2
+
+  # Since the image file can be smaller than the device, copy the device to a
+  # tmp file and write the image file on top, then compare the sum of each.
+  # Use cat / redirection since busybox does not have the conv=notrunc option.
+  tmpFile="$(mktemp ubootdev.XXXXXX)"
+  dd if="${device}" of="${tmpFile}"
+  devSum="$(sha256sum ${tmpFile})"
+  cat < "${image}" 1<> "${tmpFile}"
+  imgSum="$(sha256sum ${tmpFile})"
+  rm -f "${tmpFile}"
+
+  if [ "${imgSum}" == "${devSum}" ]; then
+    echo "0";
+  else
+    echo "1";
+  fi
+}
+
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the running partition.
 mmc_get_primary_label() {
@@ -478,6 +502,15 @@ mmc_get_secondary_label() {
 }
 
 mmc_update() {
+  # Update u-boot if needed
+  devUBoot="/dev/mmcblk0boot0"
+  imgUBoot="${imgpath}/${version}/image-u-boot"
+  if [ ! "$(cmp_uboot ${devUBoot} ${imgUBoot})" == "0" ]; then
+    echo 0 > /sys/block/mmcblk0boot0/force_ro
+    dd if="${imgUBoot}" of="${devUBoot}"
+    echo 1 > /sys/block/mmcblk0boot0/force_ro
+  fi
+
   # Update the secondary (non-running) boot and rofs partitions.
   label="$(mmc_get_secondary_label)"
 

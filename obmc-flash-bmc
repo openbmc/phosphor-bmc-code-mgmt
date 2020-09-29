@@ -478,6 +478,27 @@ mmc_get_secondary_label() {
 }
 
 mmc_update() {
+  # Update u-boot if needed
+  # Since the image file is smaller than the device, copy the device to a tmp
+  # file and write the image file on top, then compare the sum of each.
+  # Use cat / redirection since busybox does not have the conv=notrunc option.
+  devUBoot="/dev/mmcblk0boot0"
+  tmpFile="$(mktemp mmcblk0boot0.XXXXXX)"
+
+  dd if="${devUBoot}" of="${tmpFile}"
+  devSum="$(sha256sum ${tmpFile})"
+
+  imgUBoot="${imgpath}/${version}/image-u-boot"
+  cat < "${imgUBoot}" 1<> "${tmpFile}"
+  imgSum="$(sha256sum ${tmpFile})"
+
+  if [ ! "${imgSum}" == "${devSum}" ]; then
+    echo 0 > /sys/block/mmcblk0boot0/force_ro
+    dd if="${imgUBoot}" of="${devUBoot}"
+    echo 1 > /sys/block/mmcblk0boot0/force_ro
+  fi
+  rm -f "${tmpFile}"
+
   # Update the secondary (non-running) boot and rofs partitions.
   label="$(mmc_get_secondary_label)"
 

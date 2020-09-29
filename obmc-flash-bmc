@@ -478,6 +478,17 @@ mmc_get_secondary_label() {
 }
 
 mmc_update() {
+  # Update u-boot if needed
+  imgUBoot="${imgpath}/${version}/image-u-boot"
+  imgSize="$(stat -c '%s' ${imgUBoot})"
+  imgSha="$(hexdump ${imgUBoot} | sha256sum)"
+  devUBoot="/dev/mmcblk0boot0"
+  devSha="$(hexdump -n ${imgSize} ${devUBoot} | sha256sum)"
+  if [ ! "${imgSha}" == "${devSha}" ]; then
+    echo 0 > /sys/block/mmcblk0boot0/force_ro
+    dd if="${imgUBoot}" of="${devUBoot}"
+  fi
+
   # Update the secondary (non-running) boot and rofs partitions.
   label="$(mmc_get_secondary_label)"
 

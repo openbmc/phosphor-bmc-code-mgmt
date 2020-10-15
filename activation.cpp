@@ -386,19 +386,47 @@ bool Activation::checkApplyTimeImmediate()
 #ifdef HOST_BIOS_UPGRADE
 void Activation::flashWriteHost()
 {
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
-    method.append(biosServiceFile, "replace");
-    try
+    for (auto device = parent.devices.begin(); device != parent.devices.end();
+         device++)
     {
-        auto reply = bus.call(method);
+        if (parent.toBeUpdatedObj.find(*device)->second->firmwareUpdate() ==
+            true)
+        {
+            auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                              SYSTEMD_INTERFACE, "StartUnit");
+            auto biosServiceFile =
+                "obmc-flash-host-" + *device + "@" + versionId + ".service";
+            method.append(biosServiceFile, "replace");
+            try
+            {
+                auto reply = bus.call(method);
+            }
+            catch (const SdBusError& e)
+            {
+                log<level::ERR>("Error in trying to upgrade Host Bios.");
+                report<InternalFailure>();
+            }
+        }
     }
-    catch (const SdBusError& e)
+}
+
+bool Activation::IsFirmwareUpdatedForAllSelectedDevices()
+{
+    for (auto device = parent.devices.begin(); device != parent.devices.end();
+         device++)
     {
-        log<level::ERR>("Error in trying to upgrade Host Bios.");
-        report<InternalFailure>();
+        if (parent.toBeUpdatedObj.find(*device)->second->firmwareUpdate() ==
+            true)
+        {
+            return false;
+        }
     }
+    return true;
+}
+
+void Activation::setFirmwareUpdateProcessed(std::string device)
+{
+    parent.toBeUpdatedObj.find(device)->second->firmwareUpdate(false);
 }
 
 void Activation::onStateChangesBios(sdbusplus::message::message& msg)
@@ -411,32 +439,46 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
     // Read the msg and populate each variable
     msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
 
-    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
-
-    if (newStateUnit == biosServiceFile)
+    std::map<std::string, std::string> biosServiceFile;
+    for (auto device = parent.devices.begin(); device != parent.devices.end();
+         device++)
     {
-        // unsubscribe to systemd signals
-        unsubscribeFromSystemdSignals();
+        auto serviceFile =
+            "obmc-flash-host-" + *device + "@" + versionId + ".service";
+        biosServiceFile.insert(std::make_pair(serviceFile, *device));
+    }
 
-        // Remove version object from image manager
-        deleteImageManagerObject();
+    if (biosServiceFile.find(newStateUnit) != biosServiceFile.end())
+    {
+        setFirmwareUpdateProcessed(biosServiceFile.find(newStateUnit)->second);
 
         if (newStateResult == "done")
+        {
+            std::string logMsg = "Bios upgrade completed successfully for " +
+                                 biosServiceFile.find(newStateUnit)->second;
+            log<level::INFO>(logMsg.c_str());
+        }
+        else if (newStateResult == "failed")
+        {
+            // Set Activation value to Failed
+            activation(softwareServer::Activation::Activations::Failed);
+            std::string logMsg = "Bios upgrade failed for " +
+                                 biosServiceFile.find(newStateUnit)->second;
+            log<level::ERR>(logMsg.c_str());
+        }
+
+        if (IsFirmwareUpdatedForAllSelectedDevices())
         {
             // Set activation progress to 100
             activationProgress->progress(100);
 
             // Set Activation value to active
             activation(softwareServer::Activation::Activations::Active);
+            // unsubscribe to systemd signals
+            unsubscribeFromSystemdSignals();
 
-            log<level::INFO>("Bios upgrade completed successfully.");
-        }
-        else if (newStateResult == "failed")
-        {
-            // Set Activation value to Failed
-            activation(softwareServer::Activation::Activations::Failed);
-
-            log<level::ERR>("Bios upgrade failed.");
+            // Remove version object from image manager
+            deleteImageManagerObject();
         }
     }
 

@@ -245,6 +245,15 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Function that acts on Bios upgrade service file state changes */
     void onStateChangesBios(sdbusplus::message::message&);
+
+    /** @brief Function that says if Firmware update completed for all seleted
+     * devices */
+    bool IsFirmwareUpdatedForAllSelectedDevices();
+
+    /** @brief Function that sets Firmware update processed for mentioned device
+     */
+    void setFirmwareUpdateProcessed(std::string device);
+
 #endif
 
     /** @brief Overloaded function that acts on service file state changes */

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "activation.hpp"
+#include "firmwareUpdate.hpp"
 #include "item_updater_helper.hpp"
 #include "version.hpp"
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
@@ -59,6 +60,7 @@ class ItemUpdater : public ItemUpdaterInherit
                      std::bind(std::mem_fn(&ItemUpdater::createActivation),
                                this, std::placeholders::_1))
     {
+        createFirmwareUpdateInterface();
         setBMCInventoryPath();
         processBMCImage();
         restoreFieldModeStatus();
@@ -88,6 +90,16 @@ class ItemUpdater : public ItemUpdaterInherit
      * @brief Create and populate the active BMC Version.
      */
     void processBMCImage();
+
+    /**
+     * @brief Create FirmwareUpdate Interface for all the host
+     */
+    void createFirmwareUpdateInterface();
+
+    /**
+     * @brief Get Firmware update device objects from inventory
+     */
+    std::vector<std::string> getInventoryObjects();
 
     /**
      * @brief Erase specified entry D-Bus object
@@ -164,6 +176,12 @@ class ItemUpdater : public ItemUpdaterInherit
 
     /** @brief Vector of needed BMC images in the tarball*/
     std::vector<std::string> imageUpdateList;
+
+    /** @brief Persistent vector of FirmwareUpdate D-Bus objects */
+    std::map<std::string, std::unique_ptr<FirmwareUpdate>> toBeUpdatedObj;
+
+    /** @brief Vector for all the devices found from inventory */
+    std::vector<std::string> devices;
 
   private:
     /** @brief Callback function for Software.Version match.

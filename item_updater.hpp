@@ -160,7 +160,7 @@ class ItemUpdater : public ItemUpdaterInherit
 
     /** @brief Persistent map of Version D-Bus objects and their
      * version id */
-    std::map<std::string, std::unique_ptr<VersionClass>> versions;
+    std::multimap<std::string, std::unique_ptr<VersionClass>> versions;
 
     /** @brief Vector of needed BMC images in the tarball*/
     std::vector<std::string> imageUpdateList;

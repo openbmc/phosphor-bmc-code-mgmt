@@ -106,7 +106,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     auto versionId = path.substr(pos + 1);
 
-    if (activations.find(versionId) == activations.end())
+    if (activations.find(path) == activations.end())
     {
         // Determine the Activation state by processing the given image dir.
         auto activationState = server::Activation::Activations::Invalid;
@@ -128,9 +128,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
         }
 
         activations.insert(std::make_pair(
-            versionId,
-            std::make_unique<Activation>(bus, path, *this, versionId,
-                                         activationState, associations)));
+            path, std::make_unique<Activation>(bus, path, *this, versionId,
+                                               activationState, associations)));
 
         auto versionPtr = std::make_unique<VersionClass>(
             bus, path, version, purpose, filePath,

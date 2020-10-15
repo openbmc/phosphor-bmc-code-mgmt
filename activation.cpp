@@ -388,7 +388,19 @@ void Activation::flashWriteHost()
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
-    auto biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
+    auto pos = path.find("host");
+    std::string biosServiceFile;
+    if (pos)
+    {
+        // Find the N value in hostN
+        std::string host = path.substr(pos + 4, 1);
+        biosServiceFile =
+            "obmc-flash-host" + host + "-bios@" + versionId + ".service";
+    }
+    else
+    {
+        biosServiceFile = "obmc-flash-host-bios@" + versionId + ".service";
+    }
     method.append(biosServiceFile, "replace");
     try
     {

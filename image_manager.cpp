@@ -188,30 +188,35 @@ int Manager::processImage(const std::string& tarFilePath)
     // Clear the path, so it does not attemp to remove a non-existing path
     tmpDirToRemove.path.clear();
 
-    auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
+    for (int host = 1; host <= NUM_OF_HOST; host++)
+    {
+        auto objPath = std::string{SOFTWARE_OBJPATH} + "/host" +
+                       std::to_string(host) + "/" + id;
 
-    // This service only manages the uploaded versions, and there could be
-    // active versions on D-Bus that is not managed by this service.
-    // So check D-Bus if there is an existing version.
-    auto allSoftwareObjs = getSoftwareObjects(bus);
-    auto it =
-        std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
-    if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
-    {
-        // Create Version object
-        auto versionPtr = std::make_unique<Version>(
-            bus, objPath, version, purpose, imageDirPath.string(),
-            std::bind(&Manager::erase, this, std::placeholders::_1));
-        versionPtr->deleteObject =
-            std::make_unique<phosphor::software::manager::Delete>(bus, objPath,
-                                                                  *versionPtr);
-        versions.insert(std::make_pair(id, std::move(versionPtr)));
-    }
-    else
-    {
-        log<level::INFO>("Software Object with the same version already exists",
-                         entry("VERSION_ID=%s", id.c_str()));
-        fs::remove_all(imageDirPath);
+        // This service only manages the uploaded versions, and there could be
+        // active versions on D-Bus that is not managed by this service.
+        // So check D-Bus if there is an existing version.
+        auto allSoftwareObjs = getSoftwareObjects(bus);
+        auto it =
+            std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
+        if (it == allSoftwareObjs.end())
+        {
+            // Create Version object
+            auto versionPtr = std::make_unique<Version>(
+                bus, objPath, version, purpose, imageDirPath.string(),
+                std::bind(&Manager::erase, this, std::placeholders::_1));
+            versionPtr->deleteObject =
+                std::make_unique<phosphor::software::manager::Delete>(
+                    bus, objPath, *versionPtr);
+            versions.insert(std::make_pair(id, std::move(versionPtr)));
+        }
+        else
+        {
+            log<level::INFO>(
+                "Software Object with the same version already exists",
+                entry("VERSION_ID=%s", id.c_str()));
+            fs::remove_all(imageDirPath);
+        }
     }
     return 0;
 }

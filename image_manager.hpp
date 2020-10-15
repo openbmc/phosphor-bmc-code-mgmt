@@ -46,7 +46,7 @@ class Manager
   private:
     /** @brief Persistent map of Version dbus objects and their
      * version id */
-    std::map<std::string, std::unique_ptr<Version>> versions;
+    std::multimap<std::string, std::unique_ptr<Version>> versions;
 
     /** @brief Persistent sdbusplus DBus bus connection. */
     sdbusplus::bus::bus& bus;

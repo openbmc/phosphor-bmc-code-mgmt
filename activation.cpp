@@ -418,11 +418,11 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
         // unsubscribe to systemd signals
         unsubscribeFromSystemdSignals();
 
-        // Remove version object from image manager
-        deleteImageManagerObject();
-
         if (newStateResult == "done")
         {
+            // Remove version object from image manager
+            deleteImageManagerObject();
+
             // Set activation progress to 100
             activationProgress->progress(100);
 

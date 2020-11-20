@@ -12,9 +12,11 @@
 #include <unistd.h>
 
 #include <elog-errors.hpp>
+#include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
+#include <xyz/openbmc_project/Software/Version/error.hpp>
 
 #include <algorithm>
 #include <cstring>
@@ -209,8 +211,14 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     else
     {
+        using VersionAlreadyExistsError = sdbusplus::xyz::openbmc_project::
+            Software::Version::Error::AlreadyExists;
+        using VersionAlreadyExists =
+            xyz::openbmc_project::Software::Version::AlreadyExists;
         log<level::INFO>("Software Object with the same version already exists",
                          entry("VERSION_ID=%s", id.c_str()));
+        report<VersionAlreadyExistsError>(
+            VersionAlreadyExists::IMAGE_VERSION(version.c_str()));
         fs::remove_all(imageDirPath);
     }
     return 0;

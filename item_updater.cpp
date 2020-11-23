@@ -11,7 +11,6 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
-#include <xyz/openbmc_project/Software/Image/error.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -32,7 +31,6 @@ namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
 using namespace phosphor::logging;
-using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 using namespace phosphor::software::image;
 namespace fs = std::filesystem;
 using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;

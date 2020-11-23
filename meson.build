@@ -101,9 +101,6 @@ unit_files = [
     'xyz.openbmc_project.Software.Version.service.in'
 ]
 
-sdbuspp = find_program('sdbus++')
-subdir('xyz/openbmc_project/Software/Image')
-
 image_updater_sources = files(
     'activation.cpp',
     'images.cpp',
@@ -187,8 +184,6 @@ executable(
 
 executable(
     'phosphor-image-updater',
-    image_error_cpp,
-    image_error_hpp,
     image_updater_sources,
     dependencies: [deps, ssl],
     install: true
@@ -196,8 +191,6 @@ executable(
 
 executable(
     'phosphor-version-software-manager',
-    image_error_cpp,
-    image_error_hpp,
     'image_manager.cpp',
     'image_manager_main.cpp',
     'version.cpp',

@@ -456,7 +456,7 @@ cmp_uboot() {
   # Since the image file can be smaller than the device, copy the device to a
   # tmp file and write the image file on top, then compare the sum of each.
   # Use cat / redirection since busybox does not have the conv=notrunc option.
-  tmpFile="$(mktemp ubootdev.XXXXXX)"
+  tmpFile="$(mktemp /tmp/ubootdev.XXXXXX)"
   dd if="${device}" of="${tmpFile}"
   devSum="$(sha256sum ${tmpFile})"
   cat < "${image}" 1<> "${tmpFile}"

@@ -16,6 +16,24 @@
       "revId": "1ec5f4394cdbc9326bcad9d58b01413d590763db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cb3f3b5_5a05dc39",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-12-02T19:54:32Z",
+      "side": 1,
+      "message": "We\u0027ll be going with just the VERSION string, so we\u0027d pass \"version\" instead of id.c_str.",
+      "parentUuid": "86f210e6_c8a6a331",
+      "revId": "1ec5f4394cdbc9326bcad9d58b01413d590763db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

@@ -315,6 +315,9 @@ void ItemUpdater::processBMCImage()
         }
     }
 
+    auto id = VersionClass::getId(functionalVersion);
+    checkBootVersion(activations.find(id)->second->redundancyPriority, id);
+
     mirrorUbootToAlt();
     return;
 }
@@ -481,6 +484,42 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
         lowestVersion = versionId;
     }
     updateUbootEnvVars(lowestVersion);
+}
+
+void ItemUpdater::checkBootVersion(uint8_t value, const std::string& versionId)
+{
+    std::map<std::string, uint8_t> priorityMap;
+
+    for (const auto& intf : activations)
+    {
+        if (intf.second->redundancyPriority)
+        {
+            priorityMap.insert(std::make_pair(
+                intf.first, intf.second->redundancyPriority.get()->priority()));
+        }
+    }
+
+    // Lambda function to compare 2 priority values, use <= to allow duplicates
+    typedef std::function<bool(std::pair<std::string, uint8_t>,
+                               std::pair<std::string, uint8_t>)>
+        cmpPriority;
+    cmpPriority cmpPriorityFunc =
+        [](std::pair<std::string, uint8_t> priority1,
+           std::pair<std::string, uint8_t> priority2) {
+            return priority1.second <= priority2.second;
+        };
+
+    // Sort versions by ascending priority
+    std::set<std::pair<std::string, uint8_t>, cmpPriority> prioritySet(
+        priorityMap.begin(), priorityMap.end(), cmpPriorityFunc);
+
+    if (versionId != prioritySet.begin()->first &&
+        value < prioritySet.begin()->second)
+    {
+        log<level::ERR>(
+            "Error: Wrong boot version", entry("BOOTED_VERSION=%s", versionId),
+            entry("EXPECTED_VERSION=%s", prioritySet.begin()->first));
+    }
 }
 
 void ItemUpdater::reset()

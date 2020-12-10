@@ -84,6 +84,15 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void freePriority(uint8_t value, const std::string& versionId);
 
+    /** @brief Checks if the priority value from the BMC boot version is
+     * greather than 0, then send an error log message
+     *
+     *  @param[in] value - The priority value
+     *  @param[in] versionId - The Id of the version
+     *  @return None
+     */
+    void checkBootVersion(uint8_t value, const std::string& versionId);
+
     /**
      * @brief Create and populate the active BMC Version.
      */

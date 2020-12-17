@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fc2953b_d35a803b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-12-17T06:29:10Z",
+      "side": 1,
+      "message": "I do not understand why it is needed.\nIs it to prevent the user who removes part of the images from the tarball?\nIf yes, one could just remove the image-full.sig becase the code does not check this signature if it does not exist.",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "a8d9638da0ba80d6a822282235b4604b91dc8181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

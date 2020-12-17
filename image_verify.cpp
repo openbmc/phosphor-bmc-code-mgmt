@@ -85,6 +85,50 @@ inline KeyHashPathPair Signature::getKeyHashFileNames(const Key_t& key) const
     return std::make_pair(std::move(hashpath), std::move(keyPath));
 }
 
+bool Signature::verifyFullImage()
+{
+    bool ret = true;
+
+#ifdef WANT_SIGNATURE_FULL_VERIFY
+    static const std::vector<std::string> fullImages = {
+        "image-hostfw.sig", "image-kernel.sig", "image-rofs.sig",
+        "image-rwfs.sig",   "image-u-boot.sig", "MANIFEST.sig",
+        "publickey.sig"};
+
+    std::string imageFullSig = "image-full.sig";
+    std::string tmpFullFile = "/tmp/image-full";
+    // Merge files
+    std::ofstream desFile(tmpFullFile, std::ios::out);
+    std::ifstream inFile;
+    char c;
+    for (auto& image : fullImages)
+    {
+        auto imagePath = fs::path(imageDirPath) / image;
+        inFile.open(imagePath, std::ios::in);
+        while (inFile.get(c))
+        {
+            desFile << c;
+        }
+        inFile.close();
+    }
+    desFile.close();
+
+    // Validate the full image files
+    fs::path pkeyFullFile(tmpFullFile);
+
+    fs::path pkeyFullFileSig(imageDirPath / imageFullSig);
+    pkeyFullFileSig.replace_extension(SIGNATURE_FILE_EXT);
+
+    // image specific publickey file name.
+    fs::path publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME);
+
+    ret = verifyFile(pkeyFullFile, pkeyFullFileSig, publicKeyFile, hashType);
+    std::remove(tmpFullFile.c_str());
+#endif
+
+    return ret;
+}
+
 bool Signature::verify()
 {
     try
@@ -143,6 +187,12 @@ bool Signature::verify()
                     return false;
                 }
             }
+        }
+
+        if (verifyFullImage() == false)
+        {
+            log<level::ERR>("Image full file Signature Validation failed");
+            return false;
         }
 
         log<level::DEBUG>("Successfully completed Signature vaildation.");

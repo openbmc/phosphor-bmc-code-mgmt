@@ -3,6 +3,7 @@
 #include "image_verify.hpp"
 
 #include "images.hpp"
+#include "utils.hpp"
 #include "version.hpp"
 
 #include <fcntl.h>
@@ -85,6 +86,41 @@ inline KeyHashPathPair Signature::getKeyHashFileNames(const Key_t& key) const
     return std::make_pair(std::move(hashpath), std::move(keyPath));
 }
 
+bool Signature::verifyFullImage()
+{
+    bool ret = true;
+#ifdef WANT_SIGNATURE_FULL_VERIFY
+    std::vector<std::string> fullImages = {
+        fs::path(imageDirPath) / "image-bmc.sig",
+        fs::path(imageDirPath) / "image-hostfw.sig",
+        fs::path(imageDirPath) / "image-kernel.sig",
+        fs::path(imageDirPath) / "image-rofs.sig",
+        fs::path(imageDirPath) / "image-rwfs.sig",
+        fs::path(imageDirPath) / "image-u-boot.sig",
+        fs::path(imageDirPath) / "MANIFEST.sig",
+        fs::path(imageDirPath) / "publickey.sig"};
+
+    // Merge files
+    std::string tmpFullFile = "/tmp/image-full";
+    utils::mergeFiles(fullImages, tmpFullFile);
+
+    // Validate the full image files
+    fs::path pkeyFullFile(tmpFullFile);
+
+    std::string imageFullSig = "image-full.sig";
+    fs::path pkeyFullFileSig(imageDirPath / imageFullSig);
+    pkeyFullFileSig.replace_extension(SIGNATURE_FILE_EXT);
+
+    // image specific publickey file name.
+    fs::path publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME);
+
+    ret = verifyFile(pkeyFullFile, pkeyFullFileSig, publicKeyFile, hashType);
+    fs::remove(tmpFullFile);
+#endif
+
+    return ret;
+}
+
 bool Signature::verify()
 {
     try
@@ -142,6 +178,12 @@ bool Signature::verify()
                     return false;
                 }
             }
+        }
+
+        if (verifyFullImage() == false)
+        {
+            log<level::ERR>("Image full file Signature Validation failed");
+            return false;
         }
 
         log<level::DEBUG>("Successfully completed Signature vaildation.");

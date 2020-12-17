@@ -1,4 +1,5 @@
 #include "image_verify.hpp"
+#include "utils.hpp"
 #include "version.hpp"
 
 #include <openssl/sha.h>
@@ -9,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -261,4 +263,73 @@ TEST_F(SignatureTest, TestNoConfigFileInSystem)
     // Remove the conf folder in the system and ensure that verify fails
     command("rm -rf " + signedConfOpenBMCPath.string());
     EXPECT_FALSE(signature->verify());
+}
+
+class FileTest : public testing::Test
+{
+  protected:
+    std::string readFile(fs::path path)
+    {
+        std::ifstream f(path, std::ios::in);
+        const auto sz = fs::file_size(path);
+        std::string result(sz, '\0');
+        f.read(result.data(), sz);
+
+        return result;
+    }
+
+    void command(const std::string& cmd)
+    {
+        auto val = std::system(cmd.c_str());
+        if (val)
+        {
+            std::cout << "COMMAND Error: " << val << std::endl;
+        }
+    }
+
+    virtual void SetUp()
+    {
+        // Create test base directory.
+        tmpDir = fs::temp_directory_path() / "testFileXXXXXX";
+        if (!mkdtemp(tmpDir.data()))
+        {
+            throw "Failed to create tmp dir";
+        }
+
+        std::string file1 = tmpDir + "/file1";
+        std::string file2 = tmpDir + "/file2";
+        command("echo \"File Test1\n\n\" > " + file1);
+        command("echo \"FileTe st2\n\nte st2\" > " + file2);
+
+        srcFiles.push_back(file1);
+        srcFiles.push_back(file2);
+    }
+
+    virtual void TearDown()
+    {
+        fs::remove_all(tmpDir);
+    }
+
+    std::vector<std::string> srcFiles;
+    std::string tmpDir;
+};
+
+TEST_F(FileTest, TestMergeFiles)
+{
+    std::string retFile = tmpDir + "/retFile";
+    for (auto file : srcFiles)
+    {
+        command("cat " + file + " >> " + retFile);
+    }
+
+    std::string dstFile = tmpDir + "/dstFile";
+    utils::mergeFiles(srcFiles, dstFile);
+
+    ASSERT_NE(fs::file_size(retFile), static_cast<uintmax_t>(-1));
+    ASSERT_NE(fs::file_size(dstFile), static_cast<uintmax_t>(-1));
+    ASSERT_EQ(fs::file_size(retFile), fs::file_size(dstFile));
+
+    std::string ssRetFile = readFile(fs::path(retFile));
+    std::string ssDstFile = readFile(fs::path(dstFile));
+    ASSERT_EQ(ssRetFile, ssDstFile);
 }

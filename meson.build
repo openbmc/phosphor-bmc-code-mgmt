@@ -54,6 +54,7 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())
 conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
+conf.set('WANT_SIGNATURE_FULL_VERIFY', get_option('verify-full-signature').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -172,6 +173,7 @@ endif
 
 if get_option('verify-signature').enabled()
     image_updater_sources += files(
+        'utils.cpp',
         'image_verify.cpp',
         'openssl_alloc.cpp'
     )
@@ -246,6 +248,7 @@ if not build_tests.disabled()
 
     gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
     include_srcs = declare_dependency(sources: [
+        'utils.cpp',
         'image_verify.cpp',
         'images.cpp',
         'version.cpp']

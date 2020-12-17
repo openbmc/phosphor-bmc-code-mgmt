@@ -22,6 +22,9 @@ option('oe-sdk', type: 'feature', description: 'Enable OE SDK')
 option('verify-signature', type: 'feature',
     description: 'Enable image signature validation.')
 
+option('verify-full-signature', type: 'feature',
+    description: 'Enable image full signature validation.')
+
 # Variables
 option(
     'active-bmc-max-allowed', type: 'integer',

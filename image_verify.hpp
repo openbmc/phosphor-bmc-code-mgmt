@@ -198,6 +198,13 @@ class Signature
      */
     CustomMap mapFile(const fs::path& path, size_t size);
 
+    /**
+     * @brief Verify the full file signature using public key and hash function
+     *
+     * @return true if signature verification was successful, false if not
+     */
+    bool verifyFullImage();
+
     /** @brief Directory where software images are placed*/
     fs::path imageDirPath;
 

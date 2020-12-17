@@ -54,6 +54,7 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())
 conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
+conf.set('WANT_SIGNATURE_FULL_VERIFY', get_option('verify-full-signature').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -68,6 +69,7 @@ foreach optiona_image : optional_array
 endforeach
 conf.set_quoted('OPTIONAL_IMAGES', optional_images)
 conf.set_quoted('PUBLICKEY_FILE_NAME', get_option('publickey-file-name'))
+conf.set_quoted('PUBLICKEY_FULL_NAME', get_option('publickey-full-name'))
 conf.set_quoted('SIGNATURE_FILE_EXT', get_option('signature-file-ext'))
 conf.set_quoted('SIGNED_IMAGE_CONF_PATH', get_option('signed-image-conf-path'))
 conf.set_quoted('SYNC_LIST_DIR_PATH', get_option('sync-list-dir-path'))

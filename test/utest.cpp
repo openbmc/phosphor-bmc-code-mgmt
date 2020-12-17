@@ -1,4 +1,5 @@
 #include "image_verify.hpp"
+#include "utils.hpp"
 #include "version.hpp"
 
 #include <openssl/sha.h>
@@ -9,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -261,4 +263,67 @@ TEST_F(SignatureTest, TestNoConfigFileInSystem)
     // Remove the conf folder in the system and ensure that verify fails
     command("rm -rf " + signedConfOpenBMCPath.string());
     EXPECT_FALSE(signature->verify());
+}
+
+class FileTest : public testing::Test
+{
+    static constexpr auto testPath = "/tmp/_testFile";
+
+  protected:
+    void command(const std::string& cmd)
+    {
+        auto val = std::system(cmd.c_str());
+        if (val)
+        {
+            std::cout << "COMMAND Error: " << val << std::endl;
+        }
+    }
+
+    virtual void SetUp()
+    {
+        // Create test base directory.
+        fs::create_directories(testPath);
+
+        std::string tmpDir(testPath);
+        tmpDir += "/testFileXXXXXX";
+        std::string imageDir = mkdtemp(const_cast<char*>(tmpDir.c_str()));
+
+        filePath = imageDir;
+        command("mkdir " + filePath.string());
+
+        std::string file1 = fs::path(filePath) / "file1";
+        std::string file2 = fs::path(filePath) / "file2";
+        command("echo \"FileTest1\" > " + file1);
+        command("echo \"FileTest1\" > " + file2);
+
+        srcFiles.push_back(file1);
+        srcFiles.push_back(file2);
+    }
+
+    virtual void TearDown()
+    {
+        for (auto file : srcFiles)
+        {
+            fs::remove(file);
+        }
+    }
+
+    std::vector<std::string> srcFiles;
+    fs::path filePath;
+};
+
+TEST_F(FileTest, TestMergeFiles)
+{
+    std::string retFile = fs::path(filePath) / "retFile";
+    for (auto file : srcFiles)
+    {
+        command("cat " + file + " >> " + retFile);
+    }
+
+    std::string dstFile = fs::path(filePath) / "dstFile";
+    utils::mergeFiles(srcFiles, dstFile);
+
+    ASSERT_NE(fs::file_size(retFile), static_cast<uintmax_t>(-1));
+    ASSERT_NE(fs::file_size(dstFile), static_cast<uintmax_t>(-1));
+    ASSERT_EQ(fs::file_size(retFile), fs::file_size(dstFile));
 }

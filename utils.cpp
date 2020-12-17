@@ -41,4 +41,29 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
     return response[0].first;
 }
 
+void mergeFiles(std::vector<std::string>& srcFiles, std::string& dstFile)
+{
+    std::ofstream outFile(dstFile, std::ios::out);
+    for (auto& file : srcFiles)
+    {
+        std::ifstream inFile;
+        inFile.open(file, std::ios_base::in);
+        if (!inFile)
+        {
+            continue;
+        }
+
+        inFile.peek();
+        if (inFile.eof())
+        {
+            inFile.close();
+            continue;
+        }
+
+        outFile << inFile.rdbuf();
+        inFile.close();
+    }
+    outFile.close();
+}
+
 } // namespace utils

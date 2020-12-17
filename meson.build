@@ -68,6 +68,7 @@ foreach optiona_image : optional_array
 endforeach
 conf.set_quoted('OPTIONAL_IMAGES', optional_images)
 conf.set_quoted('PUBLICKEY_FILE_NAME', get_option('publickey-file-name'))
+conf.set_quoted('PUBLICKEY_FULL_NAME', get_option('publickey-full-name'))
 conf.set_quoted('SIGNATURE_FILE_EXT', get_option('signature-file-ext'))
 conf.set_quoted('SIGNED_IMAGE_CONF_PATH', get_option('signed-image-conf-path'))
 conf.set_quoted('SYNC_LIST_DIR_PATH', get_option('sync-list-dir-path'))

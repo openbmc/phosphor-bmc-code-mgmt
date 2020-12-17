@@ -67,6 +67,12 @@ option(
 )
 
 option(
+    'publickey-full-name', type: 'string',
+    value: 'image-full',
+    description: 'The name of the public full file.',
+)
+
+option(
     'signature-file-ext', type: 'string',
     value: '.sig',
     description: 'The extension of the Signature file.',

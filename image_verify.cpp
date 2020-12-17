@@ -145,6 +145,22 @@ bool Signature::verify()
             }
         }
 
+        // Validate the full image files
+        fs::path pkeyFullFile(imageDirPath / PUBLICKEY_FULL_NAME);
+        if (fs::exists(pkeyFullFile))
+        {
+            fs::path pkeyFullFileSig(pkeyFullFile);
+            pkeyFullFileSig.replace_extension(SIGNATURE_FILE_EXT);
+            auto valid = verifyFile(pkeyFullFile, pkeyFullFileSig,
+                                    publicKeyFile, hashType);
+            if (valid == false)
+            {
+                log<level::ERR>("Image full file Signature Validation failed",
+                                entry("IMAGE=%s", PUBLICKEY_FULL_NAME));
+                return false;
+            }
+        }
+
         log<level::DEBUG>("Successfully completed Signature vaildation.");
 
         return true;

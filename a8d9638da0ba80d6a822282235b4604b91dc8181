@@ -94,6 +94,23 @@
       "revId": "a8d9638da0ba80d6a822282235b4604b91dc8181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e90cbb8d_1085f702",
+        "filename": "image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-05T22:58:15Z",
+      "side": 1,
+      "message": "Instead of verifying a file, we\u0027ll need to create it using the .sig files that came in the tarball, in order to ensure the contents of the tarball are the ones that got packaged when the image signature file was created.",
+      "revId": "a8d9638da0ba80d6a822282235b4604b91dc8181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

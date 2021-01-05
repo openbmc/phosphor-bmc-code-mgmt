@@ -46,6 +46,30 @@
       "revId": "a8d9638da0ba80d6a822282235b4604b91dc8181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43ce8ffa_d43bf885",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-05T22:11:28Z",
+      "side": 1,
+      "message": "Hi Lei. Right, the concern is not only that the user can remove parts of the image, but also a user can mix parts of the image. For example a tarball can be created with the kernel + kernel.sig from another package and the user would not know that their system is now running with a kernel level different than they thought they put on.",
+      "parentUuid": "bd8b9576_0897be31",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "a8d9638da0ba80d6a822282235b4604b91dc8181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

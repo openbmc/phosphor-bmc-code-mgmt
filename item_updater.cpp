@@ -5,6 +5,7 @@
 #include "images.hpp"
 #include "serialize.hpp"
 #include "version.hpp"
+#include "xyz/openbmc_project/Software/ExtendedVersion/server.hpp"
 #include "xyz/openbmc_project/Software/Version/server.hpp"
 
 #include <phosphor-logging/elog-errors.hpp>
@@ -45,6 +46,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
     sdbusplus::message::object_path objPath;
     auto purpose = VersionPurpose::Unknown;
+    std::string extendedVersion;
     std::string version;
     std::map<std::string, std::map<std::string, std::variant<std::string>>>
         interfaces;
@@ -84,6 +86,16 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 if (property.first == "Path")
                 {
                     filePath = std::get<std::string>(property.second);
+                }
+            }
+        }
+        else if (intf.first == EXTENDED_VERSION_IFACE)
+        {
+            for (const auto& property : intf.second)
+            {
+                if (property.first == "ExtendedVersion")
+                {
+                    extendedVersion = std::get<std::string>(property.second);
                 }
             }
         }
@@ -132,7 +144,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                          activationState, associations)));
 
         auto versionPtr = std::make_unique<VersionClass>(
-            bus, path, version, purpose, filePath,
+            bus, path, version, purpose, extendedVersion, filePath,
             std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
@@ -221,6 +233,10 @@ void ItemUpdater::processBMCImage()
             auto purpose = server::Version::VersionPurpose::BMC;
             restorePurpose(id, purpose);
 
+            // Read os-release from /etc/ to get the BMC extended version
+            std::string extendedVersion =
+                VersionClass::getBMCExtendedVersion(osRelease);
+
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
             // Create functional association if this is the functional
@@ -249,7 +265,7 @@ void ItemUpdater::processBMCImage()
 
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
-                bus, path, version, purpose, "",
+                bus, path, version, purpose, extendedVersion, "",
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
             auto isVersionFunctional = versionPtr->isFunctional();
             if (!isVersionFunctional)

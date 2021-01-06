@@ -89,6 +89,7 @@ bool Signature::verify()
 {
     try
     {
+        bool valid;
         // Verify the MANIFEST and publickey file using available
         // public keys and hash on the system.
         if (false == systemLevelVerify())
@@ -100,26 +101,24 @@ bool Signature::verify()
         // image specific publickey file name.
         fs::path publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME);
 
-        // Validate the BMC image files.
-        for (const auto& bmcImage : bmcImages)
+        // Record the images which are being updated
+        // First check and Validate for the fullimage, then check and Validate
+        // for images with partitions
+        std::vector<std::string> imageUpdateList = {bmcFullImages};
+        valid =
+            checkAndVerifyImage(imageDirPath, publicKeyFile, imageUpdateList);
+        if (!valid)
         {
-            // Build Image File name
-            fs::path file(imageDirPath);
-            file /= bmcImage;
-
-            // Build Signature File name
-            fs::path sigFile(file);
-            sigFile.replace_extension(SIGNATURE_FILE_EXT);
-
-            // Verify the signature.
-            auto valid = verifyFile(file, sigFile, publicKeyFile, hashType);
-            if (valid == false)
+            imageUpdateList.clear();
+            imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
+            valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
+                                        imageUpdateList);
+            if (!valid)
             {
-                log<level::ERR>("Image file Signature Validation failed",
-                                entry("IMAGE=%s", bmcImage.c_str()));
                 return false;
             }
         }
+
         // Validate the optional image files.
         auto optionalImages = getOptionalImages();
         for (const auto& optionalImage : optionalImages)
@@ -135,7 +134,7 @@ bool Signature::verify()
                 sigFile.replace_extension(SIGNATURE_FILE_EXT);
 
                 // Verify the signature.
-                auto valid = verifyFile(file, sigFile, publicKeyFile, hashType);
+                valid = verifyFile(file, sigFile, publicKeyFile, hashType);
                 if (valid == false)
                 {
                     log<level::ERR>("Image file Signature Validation failed",
@@ -334,6 +333,38 @@ CustomMap Signature::mapFile(const fs::path& path, size_t size)
                      size);
 }
 
+bool Signature::checkAndVerifyImage(const std::string& filePath,
+                                    const std::string& publicKeyPath,
+                                    const std::vector<std::string>& imageList)
+{
+    bool valid = true;
+
+    for (auto& bmcImage : imageList)
+    {
+        fs::path file(filePath);
+        file /= bmcImage;
+
+        if (!fs::exists(file))
+        {
+            valid = false;
+            break;
+        }
+
+        fs::path sigFile(file);
+        sigFile.replace_extension(SIGNATURE_FILE_EXT);
+
+        // Verify the signature.
+        auto valid = verifyFile(file, sigFile, publicKeyPath, hashType);
+        if (valid == false)
+        {
+            log<level::ERR>("Image file Signature Validation failed",
+                            entry("IMAGE=%s", bmcImage.c_str()));
+            return false;
+        }
+    }
+
+    return valid;
+}
 } // namespace image
 } // namespace software
 } // namespace phosphor

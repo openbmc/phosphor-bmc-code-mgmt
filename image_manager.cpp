@@ -171,6 +171,10 @@ int Manager::processImage(const std::string& tarFilePath)
                         " Setting to Unknown.");
     }
 
+    // Get ExtendedVersion
+    std::string extendedVersion =
+        Version::getValue(manifestPath.string(), "ExtendedVersion");
+
     // Compute id
     auto id = Version::getId(version);
 
@@ -200,7 +204,8 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         // Create Version object
         auto versionPtr = std::make_unique<Version>(
-            bus, objPath, version, purpose, imageDirPath.string(),
+            bus, objPath, version, purpose, extendedVersion,
+            imageDirPath.string(),
             std::bind(&Manager::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =
             std::make_unique<phosphor::software::manager::Delete>(bus, objPath,

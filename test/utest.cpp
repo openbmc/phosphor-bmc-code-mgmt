@@ -123,6 +123,21 @@ TEST_F(VersionTest, TestGetId)
     EXPECT_EQ(Version::getId(version), hexId);
 }
 
+TEST_F(VersionTest, TestGetExtendedVersion)
+{
+    auto releasePath = _directory + "/" + "os-release";
+    auto ExtendedVersion = "9.88.1-test-ExtendedVersion";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "EXTENDED_VERSION=" << ExtendedVersion << "\n";
+    file.close();
+
+    EXPECT_EQ(Version::getBMCExtendedVersion(releasePath), ExtendedVersion);
+}
+
 class SignatureTest : public testing::Test
 {
     static constexpr auto opensslCmd = "openssl dgst -sha256 -sign ";

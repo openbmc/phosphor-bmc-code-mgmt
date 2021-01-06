@@ -127,6 +127,30 @@ std::string Version::getBMCMachine(const std::string& releaseFilePath)
     return machine;
 }
 
+std::string Version::getBMCExtendedVersion(const std::string& releaseFilePath)
+{
+    std::string extendedVersionKey = "EXTENDED_VERSION=";
+    std::string extendedVersionValue{};
+    std::string extendedVersion{};
+    std::ifstream efile(releaseFilePath);
+    std::string line;
+
+    while (getline(efile, line))
+    {
+        if (line.substr(0, extendedVersionKey.size())
+                .find(extendedVersionKey) != std::string::npos)
+        {
+            extendedVersionValue = line.substr(extendedVersionKey.size());
+            std::size_t pos = extendedVersionValue.find_first_of('"') + 1;
+            extendedVersion = extendedVersionValue.substr(
+                pos, extendedVersionValue.find_last_of('"') - pos);
+            break;
+        }
+    }
+
+    return extendedVersion;
+}
+
 std::string Version::getBMCVersion(const std::string& releaseFilePath)
 {
     std::string versionKey = "VERSION_ID=";

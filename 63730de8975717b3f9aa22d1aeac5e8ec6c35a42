@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75befb92_2859f18b",
+        "filename": "image_verify.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-07T22:00:22Z",
+      "side": 1,
+      "message": "We\u0027ll want to build this list because image-hostfw for example is optional and not always included in the tarball.\nWe already have the signature files (variable \"sigFile\") from the verify() function below. Let\u0027s use those to build a list that we can then pass to this new function, something like:\n  in verify():\n  fullImagesSig +\u003d sigFile (syntax not correct, just the idea that we want to add all the sigFiles to a variable)\n  verifyFullImage(fullImageSig);\n\nThen on this verifyFullImage function we\u0027d sort the fullImagesSig in alphabetical order to create the image-full file.",
+      "revId": "63730de8975717b3f9aa22d1aeac5e8ec6c35a42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bcd5d4a_95efd30f",
+        "filename": "meson_options.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-07T22:00:22Z",
+      "side": 1,
+      "message": "No need for this option since it doesn\u0027t matter what the name of the temporary full-image file is that holds the signatures to be decrypted, so we don\u0027t need to give the user this option.",
+      "revId": "63730de8975717b3f9aa22d1aeac5e8ec6c35a42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

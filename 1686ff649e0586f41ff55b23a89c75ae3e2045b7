@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17ef27e8_53660557",
+        "filename": "image_verify.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-11T22:14:31Z",
+      "side": 1,
+      "message": "Need to specify the full path to the image files, otherwise the app won\u0027t find them. The path is already populated in the constructor via the imageDirPath  variable, so something like: \"auto imagePath \u003d fs::path(imageDirPath) / image;\" then you can pass imagePath to the open() function.",
+      "revId": "1686ff649e0586f41ff55b23a89c75ae3e2045b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "374f0066_c4538b78",
+        "filename": "image_verify.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-11T22:14:31Z",
+      "side": 1,
+      "message": "The full-image signature file is located in the \"imageDirPath\" directory, not under /tmp.",
+      "revId": "1686ff649e0586f41ff55b23a89c75ae3e2045b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

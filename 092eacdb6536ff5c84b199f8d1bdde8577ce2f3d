@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db7d2489_0c52c531",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-12T21:16:43Z",
+      "side": 1,
+      "message": "I tried testing this but getting an error even though the image-full file is the same one as the one built during the build:\nan 12 20:57:18 bmc phosphor-image-updater[6846]: EVP_DigestVerifyFinal:Signature validation failed\nJan 12 20:57:18 bmc phosphor-image-updater[6846]: Image full file Signature Validation failed\n\nCould you see why the validation may be failing? You can then add to the commit msg \"Tested:\" and a summary of your results. Thanks.",
+      "revId": "092eacdb6536ff5c84b199f8d1bdde8577ce2f3d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "741c4861_a50826b8",
+        "filename": "image_verify.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-12T21:16:43Z",
+      "side": 1,
+      "message": "This needs to open the new \"imagePath\" instead of \"image\".",
+      "revId": "092eacdb6536ff5c84b199f8d1bdde8577ce2f3d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

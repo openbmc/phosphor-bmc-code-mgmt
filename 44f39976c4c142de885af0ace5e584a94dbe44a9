@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a578a1ac_7aa53198",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000994
+      },
+      "writtenOn": "2021-01-12T17:26:55Z",
+      "side": 1,
+      "message": "ok @Adriana Kobylak,\n\nI will push commit to meta-phosphor/classes/image_types_phosphor.bbclass and meta-phosphor/recipes-core/os-release/os-release.bbappend to add the ExtendedVersion to MANIFEST file and os-release\n\nAnd I suggest the \"ExtendedVersion\" value will be similar with the \"MACHINE\" field. It is typically set in the\nopenbmc/meta-*/meta-MACHINE/conf/local.conf.sample file.\n\nFollow: https://gerrit.openbmc-project.xyz/c/openbmc/meta-phosphor/+/16489/\n\nPlease raise your idea ? Thank you !",
+      "parentUuid": "2ba010f2_a1d2a39c",
+      "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa5f5a4d_4621038c",
         "filename": "image_manager.cpp",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2021-01-07T22:25:19Z",
       "side": 1,
       "message": "The extended version is probably optional, so let\u0027s not create any logs.",
+      "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180a297c_03b0b230",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000994
+      },
+      "writtenOn": "2021-01-12T17:26:55Z",
+      "side": 1,
+      "message": "Yes, I will remove it in next patchset",
+      "parentUuid": "aa5f5a4d_4621038c",
       "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -64,6 +100,24 @@
       "writtenOn": "2021-01-07T22:25:19Z",
       "side": 1,
       "message": "We\u0027ll need the extended version to exist in os-release, so it can be parsed. Otherwise this field will become empty after a bmc reboot.",
+      "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61326e6a_af8ad43d",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000994
+      },
+      "writtenOn": "2021-01-12T17:26:55Z",
+      "side": 1,
+      "message": "Ok, I will implement the Version::getBMCExtendedVersion() to get the ExtendedVersion from os-release . It will be in next patchset",
+      "parentUuid": "ee5829c0_3c27501d",
       "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

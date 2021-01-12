@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "91206ac8_a889c6ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-12T21:24:15Z",
+      "side": 1,
+      "message": "Yeah it\u0027d be similar to the change to add \"OPENBMC_TARGET_MACHINE\". I\u0027d suggest sending the proposal to the mailing list (openbmc@lists.ozlabs.org) with an example of the new field name and value in os-release in case other people have additional feedback. Thanks.",
+      "parentUuid": "a578a1ac_7aa53198",
+      "revId": "44f39976c4c142de885af0ace5e584a94dbe44a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa5f5a4d_4621038c",
         "filename": "image_manager.cpp",
         "patchSetId": 1

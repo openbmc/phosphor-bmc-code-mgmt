@@ -16,6 +16,24 @@
       "revId": "691c8fb78ddd0f3d3cbaa1ed8708c19273fac1e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a078f2f8_3a3a5ffd",
+        "filename": "image_verify.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-01-15T01:22:01Z",
+      "side": 1,
+      "message": "Yes, Need to check if the file exist.\nDone",
+      "parentUuid": "1441b23e_0cabd63b",
+      "revId": "691c8fb78ddd0f3d3cbaa1ed8708c19273fac1e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

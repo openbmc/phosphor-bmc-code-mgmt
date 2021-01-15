@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35f5bbc2_6c67f04b",
+        "filename": "image_verify.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-15T09:52:52Z",
+      "side": 1,
+      "message": "Possibly make this fs::path?",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "d3dbb9b527585b8c3c6f52073e0107ee1384107d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a43e5f8_24edea1d",
+        "filename": "test/utest.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-15T09:52:52Z",
+      "side": 1,
+      "message": "Please use fs::temp_directory_path() to get the temp dir.",
+      "revId": "d3dbb9b527585b8c3c6f52073e0107ee1384107d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e99ccd61_37cff6c9",
+        "filename": "test/utest.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-15T09:52:52Z",
+      "side": 1,
+      "message": "Then you could do something like this:\n\n  auto tmpPath \u003d fs::temp_directory_path();\n  tmpDir \u003d (tmpPath / \"test_XXXXXX\");\n  if (!mkdtemp(tmpDir.data()))\n  {\n    throw ...\n  }\n\nWhere tmpDir is the test class\u0027s member.\n\nAnd when the test is done, remove the folder without removing the files one-by-one.",
+      "revId": "d3dbb9b527585b8c3c6f52073e0107ee1384107d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

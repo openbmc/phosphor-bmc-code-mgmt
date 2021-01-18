@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "292288e1_5593aff6",
+        "filename": "test/utest.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-18T05:03:53Z",
+      "side": 1,
+      "message": "Not only file size, you should check that the content of dstFile and retFile shall be the same.\n\nAnd possibly add an extra case that contains several blank lines to make sure the merged file\u0027s content is expected.",
+      "revId": "71c44ea9b64307ef6f1d18db10b4f5bda2253025",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

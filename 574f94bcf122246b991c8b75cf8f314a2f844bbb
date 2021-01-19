@@ -1,0 +1,9 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: George Liu <117408864@qq.com>
+Code-Review+2: Adriana Kobylak <anoo@linux.ibm.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-at: Tue, 19 Jan 2021 17:35:02 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/39702
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

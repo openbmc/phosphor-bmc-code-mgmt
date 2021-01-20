@@ -2,6 +2,8 @@
 
 #include "item_updater_helper.hpp"
 
+#include "utils.hpp"
+
 #include <phosphor-logging/log.hpp>
 #include <sdbusplus/exception.hpp>
 
@@ -47,10 +49,7 @@ void Helper::cleanup()
 void Helper::factoryReset()
 {
     // Mark the read-write partition for recreation upon reboot.
-    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append("obmc-flash-bmc-setenv@rwreset\\x3dtrue.service", "replace");
-    bus.call_noreply(method);
+    utils::execute("/sbin/fw_setenv", "rwreset", "true");
 }
 
 void Helper::removeVersion(const std::string& versionId)

@@ -1,5 +1,7 @@
 #include "utils.hpp"
 
+#include <unistd.h>
+
 #include <phosphor-logging/log.hpp>
 
 namespace utils
@@ -65,5 +67,64 @@ void mergeFiles(std::vector<std::string>& srcFiles, std::string& dstFile)
     }
     outFile.close();
 }
+
+namespace internal
+{
+
+/* @brief Helper function to build a string from command arguments */
+static std::string buildCommandStr(const char* name, char** args)
+{
+    std::string command = name;
+    for (int i = 0; args[i]; i++)
+    {
+        command += " ";
+        command += args[i];
+    }
+    return command;
+}
+
+int executeCmd(const char* path, char** args)
+{
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+        execv(path, args);
+
+        // execv only retruns on error
+        auto error = errno;
+        auto command = buildCommandStr(path, args);
+        log<level::ERR>("Failed to execute command", entry("ERRNO=%d", error),
+                        entry("COMMAND=%s", command.c_str()));
+        return -1;
+    }
+    else if (pid > 0)
+    {
+        int status;
+        if (waitpid(pid, &status, 0) < 0)
+        {
+            auto error = errno;
+            log<level::ERR>("waitpid error", entry("ERRNO=%d", error));
+            return -1;
+        }
+        else if (WEXITSTATUS(status) != 0)
+        {
+            auto command = buildCommandStr(path, args);
+            log<level::ERR>("Error occurred when executing command",
+                            entry("STATUS=%d", status),
+                            entry("COMMAND=%s", command.c_str()));
+            return -1;
+        }
+    }
+    else
+    {
+        auto error = errno;
+        log<level::ERR>("Error occurred during fork", entry("ERRNO=%d", error));
+        return -1;
+    }
+
+    return 0;
+}
+
+} // namespace internal
 
 } // namespace utils

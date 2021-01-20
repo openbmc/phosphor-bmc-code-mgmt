@@ -333,3 +333,39 @@ TEST_F(FileTest, TestMergeFiles)
     std::string ssDstFile = readFile(fs::path(dstFile));
     ASSERT_EQ(ssRetFile, ssDstFile);
 }
+
+TEST(ExecTest, TestConstructArgv)
+{
+    auto name = "/bin/ls";
+    auto arg1 = "-a";
+    auto arg2 = "-l";
+    auto arg3 = "-t";
+    auto arg4 = "-rS";
+    auto argV = utils::internal::constructArgv(name, arg1, arg2, arg3, arg4);
+    char** charArray = argV.data();
+    EXPECT_EQ(argV.size(), 6);
+    EXPECT_EQ(charArray[0], name);
+    EXPECT_EQ(charArray[1], arg1);
+    EXPECT_EQ(charArray[2], arg2);
+    EXPECT_EQ(charArray[3], arg3);
+    EXPECT_EQ(charArray[4], arg4);
+    EXPECT_EQ(charArray[5], nullptr);
+
+    name = "/usr/bin/du";
+    argV = utils::internal::constructArgv(name);
+    charArray = argV.data();
+    EXPECT_EQ(argV.size(), 2);
+    EXPECT_EQ(charArray[0], name);
+    EXPECT_EQ(charArray[1], nullptr);
+
+    name = "/usr/bin/hexdump";
+    arg1 = "-C";
+    arg2 = "/path/to/filename";
+    argV = utils::internal::constructArgv(name, arg1, arg2);
+    charArray = argV.data();
+    EXPECT_EQ(argV.size(), 4);
+    EXPECT_EQ(charArray[0], name);
+    EXPECT_EQ(charArray[1], arg1);
+    EXPECT_EQ(charArray[2], arg2);
+    EXPECT_EQ(charArray[3], nullptr);
+}

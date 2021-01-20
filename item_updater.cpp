@@ -18,7 +18,6 @@
 #include <queue>
 #include <set>
 #include <string>
-#include <thread>
 
 namespace phosphor
 {
@@ -485,12 +484,7 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 
 void ItemUpdater::reset()
 {
-    constexpr auto setFactoryResetWait = std::chrono::seconds(3);
     helper.factoryReset();
-
-    // Need to wait for env variables to complete, otherwise an immediate reboot
-    // will not factory reset.
-    std::this_thread::sleep_for(setFactoryResetWait);
 
     log<level::INFO>("BMC factory reset will take effect upon reboot.");
 }

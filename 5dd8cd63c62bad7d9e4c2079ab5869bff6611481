@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23e02412_d6ba7921",
+        "filename": "static/item_updater_helper.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-21T02:41:09Z",
+      "side": 1,
+      "message": "I have a little concern that this is a blocking call, so it blocks the whole event loop.\nHopefully it runs fast, but when it blocks, the service becomes unresponsive.",
+      "revId": "5dd8cd63c62bad7d9e4c2079ab5869bff6611481",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

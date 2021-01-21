@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "647c56b8_6f7ce757",
+        "filename": "utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-21T02:39:37Z",
+      "side": 1,
+      "message": "It may be better to split this function into two, one is to constructing the args, and the other to execute the cmd.\nThen it becomes easier to write unit tests.",
+      "revId": "770d3ed3cd278386a12f2ce6b50a366e7c00ccf5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -34,6 +34,24 @@
       "revId": "5dd8cd63c62bad7d9e4c2079ab5869bff6611481",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0785216_dd2498d5",
+        "filename": "static/item_updater_helper.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-01-27T05:41:44Z",
+      "side": 1,
+      "message": "I am OK with this for now since it\u0027s just setting the env in u-boot.\nBut for other operations like code update, we could not really use this blocking call.",
+      "parentUuid": "81136e7d_89c3d02f",
+      "revId": "5dd8cd63c62bad7d9e4c2079ab5869bff6611481",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09d546ce_19be841d",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-29T22:22:32Z",
+      "side": 1,
+      "message": "Could you add a \"_IFACE\" or \"_INTERFACE\" suffix so that it\u0027s obvious it\u0027s an interface name? Thanks.",
+      "revId": "a4c0de550334f8b411baa846f983b15c50867eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c74314de_eeb055d8",
+        "filename": "version.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-29T22:22:32Z",
+      "side": 1,
+      "message": "+        if (line.substr(0, extendedVersionKey.size())\n+                .find(extendedVersionKey) !\u003d std::string::npos)",
+      "revId": "a4c0de550334f8b411baa846f983b15c50867eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ef0bb0_41635081",
+        "filename": "version.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-29T22:22:32Z",
+      "side": 1,
+      "message": "+    static std::string\n+        getBMCExtendedVersion(const std::string\u0026 releaseFilePath);",
+      "revId": "a4c0de550334f8b411baa846f983b15c50867eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

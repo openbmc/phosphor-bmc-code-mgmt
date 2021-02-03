@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe7359e9_0dde28c8",
+        "filename": "version.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-02-03T16:43:06Z",
+      "side": 1,
+      "message": "Could you add some unit tests for this?\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/878377d3a7049a113a6c538d860c5caa91fffa24/test/utest.cpp#L91",
+      "revId": "1cbf938ccaae7eae1a04a2790c20b0f5fbff9b42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

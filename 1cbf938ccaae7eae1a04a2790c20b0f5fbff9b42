@@ -16,6 +16,24 @@
       "revId": "1cbf938ccaae7eae1a04a2790c20b0f5fbff9b42",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0065873_171d2362",
+        "filename": "version.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000994
+      },
+      "writtenOn": "2021-02-04T10:19:49Z",
+      "side": 1,
+      "message": "Ok Gunnar,\n \nBUT I can\u0027t build the phosphor-bmc-code-mgmt by meson follow the README.md. ERROR: Dependency \"phosphor-dbus-interfaces\" not found.\n\n\n\u003d\u003e meson build\nThe Meson build system\nVersion: 0.56.2\nSource dir: /DISK4T/work/community/phosphor-bmc-code-mgmt\nBuild dir: /DISK4T/work/community/phosphor-bmc-code-mgmt/build\nBuild type: native build\nProject name: phosphor-bmc-code-mgmt\nProject version: 1.0\nC++ compiler for the host machine: c++ (gcc 7.5.0 \"c++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0\")\nC++ linker for the host machine: c++ ld.bfd 2.30\nHost machine cpu family: x86_64\nHost machine cpu: x86_64\nConfiguring config.h using configuration\nFound pkg-config: /usr/bin/pkg-config (0.29.1)\nFound CMake: /usr/bin/cmake (3.10.2)\nRun-time dependency phosphor-dbus-interfaces found: NO (tried pkgconfig and cmake)\n\nmeson.build:81:0: ERROR: Dependency \"phosphor-dbus-interfaces\" not found, tried pkgconfig and cmake\n\nA full log can be found at /DISK4T/work/community/phosphor-bmc-code-mgmt/build/meson-logs/meson-log.txt",
+      "parentUuid": "fe7359e9_0dde28c8",
+      "revId": "1cbf938ccaae7eae1a04a2790c20b0f5fbff9b42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

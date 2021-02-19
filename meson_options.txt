@@ -104,3 +104,9 @@ option(
     value: '',
     description: 'The Regular expression to parse the MSL.',
 )
+
+option(
+    'bios-object-path', type: 'string',
+    value: '/xyz/openbmc_project/software/bios_active',
+    description: 'The BIOS DBus object path.',
+)

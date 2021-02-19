@@ -748,6 +748,40 @@ bool ItemUpdater::checkImage(const std::string& filePath,
     return valid;
 }
 
+#ifdef HOST_BIOS_UPGRADE
+void ItemUpdater::createBIOSObject()
+{
+    std::string path = BIOS_OBJPATH;
+    // Get version id from last item in the path
+    auto pos = path.rfind("/");
+    if (pos == std::string::npos)
+    {
+        log<level::ERR>("No version id found in object path",
+                        entry("BIOS_OBJPATH=%s", path.c_str()));
+        return;
+    }
+
+    createActiveAssociation(path);
+    createFunctionalAssociation(path);
+
+    auto versionId = path.substr(pos + 1);
+    auto version = "null";
+    AssociationList assocs = {};
+    biosActivation = std::make_unique<Activation>(
+        bus, path, *this, versionId, server::Activation::Activations::Active,
+        assocs);
+    auto dummyErase = [](std::string /*entryId*/) {
+        // Do nothing;
+    };
+    biosVersion = std::make_unique<VersionClass>(
+        bus, path, version, VersionPurpose::Host, "", "",
+        std::bind(dummyErase, std::placeholders::_1));
+    biosVersion->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, path,
+                                                              *biosVersion);
+}
+#endif
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

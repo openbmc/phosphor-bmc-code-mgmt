@@ -79,6 +79,9 @@ conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
 conf.set_quoted('BMC_MSL', get_option('bmc-msl'))
 conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
 
+if get_option('host-bios-upgrade').enabled()
+    conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
+endif
 
 configure_file(output: 'config.h', configuration: conf)
 

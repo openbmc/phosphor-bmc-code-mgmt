@@ -34,6 +34,7 @@ namespace Software = phosphor::logging::xyz::openbmc_project::Software;
 using ManifestFail = Software::Image::ManifestFileFailure;
 using UnTarFail = Software::Image::UnTarFailure;
 using InternalFail = Software::Image::InternalFailure;
+using ImageFail = Software::Image::ImageFailure;
 namespace fs = std::filesystem;
 
 struct RemovablePath
@@ -130,6 +131,8 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         log<level::ERR>("Failed to read machine name from osRelease",
                         entry("FILENAME=%s", OS_RELEASE_FILE));
+        report<ImageFailure>(ImageFail::FAIL("Failed to read machine name"),
+                             ImageFail::PATH("OS_RELEASE_FILE"));
         return -1;
     }
 
@@ -143,12 +146,18 @@ int Manager::processImage(const std::string& tarFilePath)
             log<level::ERR>("BMC upgrade: Machine name doesn't match",
                             entry("CURR_MACHINE=%s", currMachine.c_str()),
                             entry("NEW_MACHINE=%s", machineStr.c_str()));
+            report<ImageFailure>(
+                ImageFail::FAIL("Machine name does not match"),
+                ImageFail::PATH(manifestPath.string().c_str()));
             return -1;
         }
     }
     else
     {
         log<level::WARNING>("No machine name in Manifest file");
+        report<ImageFailure>(
+            ImageFail::FAIL("MANIFEST is missing machine name"),
+            ImageFail::PATH(manifestPath.string().c_str()));
     }
 
     // Get purpose

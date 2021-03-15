@@ -69,6 +69,28 @@ std::vector<std::string> getSoftwareObjects(sdbusplus::bus::bus& bus)
     return paths;
 }
 
+bool getFieldModeEnabled(sdbusplus::bus::bus& bus)
+{
+    constexpr auto propIntf = "org.freedesktop.DBus.Properties";
+    constexpr auto fieldModeIntf = "xyz.openbmc_project.Control.FieldMode";
+    auto method =
+        bus.new_method_call(BUSNAME_UPDATER, SOFTWARE_OBJPATH, propIntf, "Get");
+    method.append(fieldModeIntf, "FieldModeEnabled");
+    try
+    {
+        auto reply = bus.call(method);
+        std::variant<bool> result;
+        reply.read(result);
+        return std::get<bool>(result);
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        log<level::ERR>("Error reading FieldModeEnabled",
+                        entry("ERROR=%s", e.what()));
+    }
+    return false;
+}
+
 } // namespace
 
 int Manager::processImage(const std::string& tarFilePath)
@@ -149,7 +171,10 @@ int Manager::processImage(const std::string& tarFilePath)
             report<ImageFailure>(
                 ImageFail::FAIL("Machine name does not match"),
                 ImageFail::PATH(manifestPath.string().c_str()));
-            return -1;
+            if (getFieldModeEnabled(bus))
+            {
+                return -1;
+            }
         }
     }
     else

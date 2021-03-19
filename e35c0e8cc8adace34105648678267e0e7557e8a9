@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e889e3a_67798040",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-03-19T20:12:32Z",
+      "side": 1,
+      "message": "That\u0027s true, building an image with a blank MachineName would work.",
+      "parentUuid": "426378b7_26c6d29e",
+      "range": {
+        "startLine": 9,
+        "startChar": 56,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "e35c0e8cc8adace34105648678267e0e7557e8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2fca5d0_105c0526",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1

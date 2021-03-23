@@ -78,7 +78,7 @@ class Version : public VersionInherit
      */
     Version(sdbusplus::bus::bus& bus, const std::string& objPath,
             const std::string& versionString, VersionPurpose versionPurpose,
-            std::string& extVersion, const std::string& filePath,
+            const std::string& extVersion, const std::string& filePath,
             eraseFunc callback) :
         VersionInherit(bus, (objPath).c_str(), true),
         eraseCallback(callback), versionStr(versionString)

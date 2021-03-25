@@ -34,6 +34,24 @@
       "revId": "6e9fb1d6ec428d1cc05c78b9b394b214b46c0364",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9ea1b3_f1498d22",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-03-25T20:59:46Z",
+      "side": 1,
+      "message": "I see, makes sense.",
+      "parentUuid": "736e9cbe_af99521e",
+      "revId": "6e9fb1d6ec428d1cc05c78b9b394b214b46c0364",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

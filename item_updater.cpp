@@ -704,7 +704,8 @@ void ItemUpdater::freeSpace(Activation& caller)
             // for sorting purposes.
             auto priority = 999;
             if (iter.second.get()->activation() ==
-                server::Activation::Activations::Active)
+                    server::Activation::Activations::Active &&
+                iter.second->redundancyPriority)
             {
                 priority = iter.second->redundancyPriority.get()->priority();
             }

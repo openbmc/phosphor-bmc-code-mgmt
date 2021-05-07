@@ -429,6 +429,8 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
             activation(softwareServer::Activation::Activations::Active);
 
             log<level::INFO>("Bios upgrade completed successfully.");
+            parent.biosVersion->version(
+                parent.versions.find(versionId)->second->version());
         }
         else if (newStateResult == "failed")
         {

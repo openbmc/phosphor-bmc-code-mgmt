@@ -269,6 +269,7 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Persistent Activation D-Bus object for BIOS */
     std::unique_ptr<Activation> biosActivation;
 
+  public:
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
 #endif

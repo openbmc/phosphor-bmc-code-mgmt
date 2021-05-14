@@ -90,6 +90,7 @@ deps = [
     dependency('phosphor-logging'),
     dependency('sdbusplus')
 ]
+sdeventplus = dependency('sdeventplus')
 
 ssl = dependency('openssl')
 
@@ -199,7 +200,7 @@ executable(
     image_error_cpp,
     image_error_hpp,
     image_updater_sources,
-    dependencies: [deps, ssl],
+    dependencies: [deps, ssl, sdeventplus],
     install: true
 )
 

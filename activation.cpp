@@ -432,6 +432,12 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
             log<level::INFO>("Bios upgrade completed successfully.");
             parent.biosVersion->version(
                 parent.versions.find(versionId)->second->version());
+
+            // Delete the uploaded activation
+            parent.scheduleCallback(
+                [&parent = parent, versionId = versionId]() {
+                    parent.erase(versionId);
+                });
         }
         else if (newStateResult == "failed")
         {

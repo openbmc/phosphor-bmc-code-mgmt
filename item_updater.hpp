@@ -6,10 +6,14 @@
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/server.hpp>
+#include <sdeventplus/clock.hpp>
+#include <sdeventplus/event.hpp>
+#include <sdeventplus/utility/timer.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
 
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -273,6 +277,17 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
 #endif
+  public:
+    using callbackFunc = std::function<void()>;
+    void scheduleCallback(callbackFunc&& func);
+
+  private:
+    /** @brief Helper timer to schedule async methods */
+    std::unique_ptr<
+        sdeventplus::utility::Timer<sdeventplus::ClockId::Monotonic>>
+        timer;
+    std::queue<callbackFunc> callbacks;
+    void timerCallback();
 };
 
 } // namespace updater

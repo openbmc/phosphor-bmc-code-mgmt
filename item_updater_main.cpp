@@ -4,6 +4,8 @@
 
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
+#include <sdeventplus/event.hpp>
+#include <sdeventplus/exception.hpp>
 
 int main()
 {
@@ -16,10 +18,16 @@ int main()
 
     bus.request_name(BUSNAME_UPDATER);
 
-    while (true)
+    try
     {
-        bus.process_discard();
-        bus.wait();
+        auto event = sdeventplus::Event::get_default();
+        bus.attach_event(event.get(), SD_EVENT_PRIORITY_NORMAL);
+        event.loop();
+    }
+    catch (const sdeventplus::SdEventError& e)
+    {
+        perror("Error occurred during the sdeventplus loop");
+        throw;
     }
     return 0;
 }

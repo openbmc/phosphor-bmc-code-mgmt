@@ -783,6 +783,34 @@ void ItemUpdater::createBIOSObject()
 }
 #endif
 
+void ItemUpdater::scheduleCallback(callbackFunc&& func)
+{
+    callbacks.push(std::move(func));
+    if (!timer)
+    {
+        timer = std::make_unique<
+            sdeventplus::utility::Timer<sdeventplus::ClockId::Monotonic>>(
+            sdeventplus::Event::get_default(),
+            std::bind(&ItemUpdater::timerCallback, this),
+            std::chrono::milliseconds{1});
+    }
+    if (!timer->isEnabled())
+    {
+        timer->setEnabled(true);
+    }
+}
+
+void ItemUpdater::timerCallback()
+{
+    assert(!callbacks.empty());
+    callbacks.front()();
+    callbacks.pop();
+    if (callbacks.empty())
+    {
+        timer->setEnabled(false);
+    }
+}
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

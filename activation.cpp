@@ -5,6 +5,7 @@
 #include "msl_verify.hpp"
 #include "serialize.hpp"
 
+#include <boost/asio.hpp>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
@@ -15,6 +16,8 @@
 #ifdef WANT_SIGNATURE_VERIFY
 #include "image_verify.hpp"
 #endif
+
+extern boost::asio::io_service& getIOService();
 
 namespace phosphor
 {
@@ -431,6 +434,11 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
             log<level::INFO>("Bios upgrade completed successfully.");
             parent.biosVersion->version(
                 parent.versions.find(versionId)->second->version());
+
+            // Delete the uploaded activation
+            getIOService().post([&parent = parent, versionId = versionId]() {
+                parent.erase(versionId);
+            });
         }
         else if (newStateResult == "failed")
         {

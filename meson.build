@@ -8,6 +8,17 @@ project('phosphor-bmc-code-mgmt', 'cpp',
     license: 'Apache-2.0',
     version: '1.0')
 
+add_project_arguments(
+    '-DBOOST_SYSTEM_NO_DEPRECATED',
+    '-DBOOST_ERROR_CODE_HEADER_ONLY',
+    '-DBOOST_NO_RTTI',
+    '-DBOOST_NO_TYPEID',
+    '-DBOOST_ALL_NO_LIB',
+    '-DBOOST_ASIO_DISABLE_THREADS',
+    '-DBOOST_ALLOW_DEPRECATED_HEADERS',
+    language: 'cpp',
+)
+
 conf = configuration_data()
 
 # DBus information

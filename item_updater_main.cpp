@@ -2,12 +2,20 @@
 
 #include "item_updater.hpp"
 
+#include <boost/asio/io_context.hpp>
+#include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
 
+boost::asio::io_context& getIOContext()
+{
+    static boost::asio::io_context io;
+    return io;
+}
+
 int main()
 {
-    auto bus = sdbusplus::bus::new_default();
+    sdbusplus::asio::connection bus(getIOContext());
 
     // Add sdbusplus ObjectManager.
     sdbusplus::server::manager::manager objManager(bus, SOFTWARE_OBJPATH);
@@ -16,10 +24,7 @@ int main()
 
     bus.request_name(BUSNAME_UPDATER);
 
-    while (true)
-    {
-        bus.process_discard();
-        bus.wait();
-    }
+    getIOContext().run();
+
     return 0;
 }

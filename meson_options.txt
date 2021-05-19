@@ -58,7 +58,6 @@ option(
 
 option(
     'optional-images', type: 'array',
-    choices: ['image-hostfw'],
     value: [],
     description: 'A list of additional image files in the BMC tarball.',
 )

@@ -15,6 +15,7 @@
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <cassert>
 #include <fstream>
 #include <set>
 
@@ -134,6 +135,7 @@ bool Signature::verify()
             return false;
         }
 
+        bool bmcFilesFound = false;
         // image specific publickey file name.
         fs::path publicKeyFile(imageDirPath / PUBLICKEY_FILE_NAME);
 
@@ -141,15 +143,21 @@ bool Signature::verify()
         // First check and Validate for the fullimage, then check and Validate
         // for images with partitions
         std::vector<std::string> imageUpdateList = {bmcFullImages};
-        valid =
-            checkAndVerifyImage(imageDirPath, publicKeyFile, imageUpdateList);
+        valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
+                                    imageUpdateList, bmcFilesFound);
+        if (bmcFilesFound && !valid)
+        {
+            return false;
+        }
+
         if (!valid)
         {
+            // Validate bmcImages
             imageUpdateList.clear();
             imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
             valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                        imageUpdateList);
-            if (!valid)
+                                        imageUpdateList, bmcFilesFound);
+            if (bmcFilesFound && !valid)
             {
                 return false;
             }
@@ -157,6 +165,8 @@ bool Signature::verify()
 
         // Validate the optional image files.
         auto optionalImages = getOptionalImages();
+        bool optionalFilesFound = false;
+        bool optionalImagesValid = false;
         for (const auto& optionalImage : optionalImages)
         {
             // Build Image File name
@@ -165,13 +175,15 @@ bool Signature::verify()
 
             if (fs::exists(file))
             {
+                optionalFilesFound = true;
                 // Build Signature File name
                 fs::path sigFile(file);
                 sigFile += SIGNATURE_FILE_EXT;
 
                 // Verify the signature.
-                valid = verifyFile(file, sigFile, publicKeyFile, hashType);
-                if (valid == false)
+                optionalImagesValid =
+                    verifyFile(file, sigFile, publicKeyFile, hashType);
+                if (!optionalImagesValid)
                 {
                     log<level::ERR>("Image file Signature Validation failed",
                                     entry("IMAGE=%s", optionalImage.c_str()));
@@ -186,8 +198,16 @@ bool Signature::verify()
             return false;
         }
 
-        log<level::DEBUG>("Successfully completed Signature vaildation.");
+        if (!bmcFilesFound && !optionalFilesFound)
+        {
+            log<level::ERR>("Unable to find files to verify");
+            return false;
+        }
 
+        // Either BMC images or optional images shall be valid
+        assert(valid || optionalImagesValid);
+
+        log<level::DEBUG>("Successfully completed Signature vaildation.");
         return true;
     }
     catch (const InternalFailure& e)
@@ -377,10 +397,12 @@ CustomMap Signature::mapFile(const fs::path& path, size_t size)
 
 bool Signature::checkAndVerifyImage(const std::string& filePath,
                                     const std::string& publicKeyPath,
-                                    const std::vector<std::string>& imageList)
+                                    const std::vector<std::string>& imageList,
+                                    bool& fileFound)
 {
     bool valid = true;
 
+    fileFound = false;
     for (auto& bmcImage : imageList)
     {
         fs::path file(filePath);
@@ -391,6 +413,7 @@ bool Signature::checkAndVerifyImage(const std::string& filePath,
             valid = false;
             break;
         }
+        fileFound = true;
 
         fs::path sigFile(file);
         sigFile += SIGNATURE_FILE_EXT;

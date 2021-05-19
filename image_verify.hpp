@@ -223,13 +223,15 @@ class Signature
      * @param[in] filePath - BMC tarball file path
      * @param[in] publicKeyPath - publicKey file Path
      * @param[in] imageList - Image filenames included in the BMC tarball
-     * @param[out] result - Boolean
-     *                      true if all image files are found in BMC tarball and
+     * @param[out] fileFound - Indicate if the file to verify is found or not
+     *
+     * @return true if all image files are found in BMC tarball and
      * Verify Sucess false if one of image files is missing
      */
     bool checkAndVerifyImage(const std::string& filePath,
                              const std::string& publicKeyPath,
-                             const std::vector<std::string>& imageList);
+                             const std::vector<std::string>& imageList,
+                             bool& fileFound);
 };
 
 } // namespace image

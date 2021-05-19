@@ -88,6 +88,19 @@ auto Activation::activation(Activations value) -> Activations
 
     if (value == softwareServer::Activation::Activations::Activating)
     {
+#ifdef WANT_SIGNATURE_VERIFY
+        fs::path uploadDir(IMG_UPLOAD_DIR);
+        if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
+        {
+            onVerifyFailed();
+            // Stop the activation process, if fieldMode is enabled.
+            if (parent.control::FieldMode::fieldModeEnabled())
+            {
+                return softwareServer::Activation::activation(
+                    softwareServer::Activation::Activations::Failed);
+            }
+        }
+#endif
 
 #ifdef HOST_BIOS_UPGRADE
         auto purpose = parent.versions.find(versionId)->second->purpose();
@@ -129,20 +142,6 @@ auto Activation::activation(Activations value) -> Activations
             return softwareServer::Activation::activation(
                 softwareServer::Activation::Activations::Failed);
         }
-
-#ifdef WANT_SIGNATURE_VERIFY
-        fs::path uploadDir(IMG_UPLOAD_DIR);
-        if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
-        {
-            onVerifyFailed();
-            // Stop the activation process, if fieldMode is enabled.
-            if (parent.control::FieldMode::fieldModeEnabled())
-            {
-                return softwareServer::Activation::activation(
-                    softwareServer::Activation::Activations::Failed);
-            }
-        }
-#endif
 
         if (!activationProgress)
         {

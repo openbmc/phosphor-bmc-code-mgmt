@@ -167,7 +167,7 @@ bool Signature::verify()
             {
                 // Build Signature File name
                 fs::path sigFile(file);
-                sigFile.replace_extension(SIGNATURE_FILE_EXT);
+                sigFile += SIGNATURE_FILE_EXT;
 
                 // Verify the signature.
                 valid = verifyFile(file, sigFile, publicKeyFile, hashType);
@@ -393,7 +393,7 @@ bool Signature::checkAndVerifyImage(const std::string& filePath,
         }
 
         fs::path sigFile(file);
-        sigFile.replace_extension(SIGNATURE_FILE_EXT);
+        sigFile += SIGNATURE_FILE_EXT;
 
         // Verify the signature.
         auto valid = verifyFile(file, sigFile, publicKeyPath, hashType);

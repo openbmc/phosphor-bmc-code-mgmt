@@ -16,6 +16,24 @@
       "revId": "e53a7bcaa29bcfe8ab417c95e897ddc0b8a78e1b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f09b75_8cc10ca9",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-05-20T02:01:50Z",
+      "side": 1,
+      "message": "With this change alone, there will be duplicated DBus objects, one is this `bios_active`, the other is the one created by the uploaded image, which is exactly this activation object.\n\nWe have patches locally to remove the activation object of the uploaded image after update.\nIn such case, after the BIOS code update, there will be only the `bios_active` object, and the uploaded one (with the hash value as the object path) will be deleted.\n\nThe above is done by using a timer to schedule a callback to remove the activation object, because we could not \"delete this\" here.\n\nI am not sure if that is appropriate change for upstream or not.",
+      "parentUuid": "264925cf_c4d02318",
+      "revId": "e53a7bcaa29bcfe8ab417c95e897ddc0b8a78e1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

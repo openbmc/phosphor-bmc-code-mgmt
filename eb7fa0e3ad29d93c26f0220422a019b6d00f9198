@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f879771b_92041d30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-05-21T20:53:06Z",
+      "side": 1,
+      "message": "I ran through different options in paper and didn\u0027t find that this could weakened the signature verification algorithm.",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2ad4fe1_2a5aafd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-05-21T20:53:06Z",
+      "side": 1,
+      "message": "I guess if someone wanted the full signature option they could add the name to the hardcoded list.",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0755b94d_8a00a829",
+        "filename": "image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-05-21T20:53:06Z",
+      "side": 1,
+      "message": "nit: typo (s/Fouind/Found)",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

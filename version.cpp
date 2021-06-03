@@ -68,7 +68,9 @@ std::string Version::getValue(const std::string& manifestFilePath,
     }
     catch (const std::exception& e)
     {
-        log<level::ERR>("Error in reading MANIFEST file");
+        log<level::ERR>("Error occurred when reading MANIFEST file",
+                        entry("KEY=%s", key.c_str()),
+                        entry("ERROR=%s", e.what()));
     }
 
     return value;

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "117c63e2_81d81597",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-06-04T09:15:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f879771b_92041d30",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2ad4fe1_2a5aafd8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1515293c_e14171ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-06-04T09:15:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2ad4fe1_2a5aafd8",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0755b94d_8a00a829",
         "filename": "image_verify.cpp",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e05df71d_f8f95dba",
+        "filename": "image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-06-04T09:15:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0755b94d_8a00a829",
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -73,6 +127,30 @@
       "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f45c851_c1d00ea9",
+        "filename": "image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-06-04T09:15:15Z",
+      "side": 1,
+      "message": "Yes, in theory it could be removed.\nThe code logic here is kind of complicated, this `optionalFilesFound` helps understanding the code, and there is an assertion below to make sure the code runs as expected.\nSo I prefer to keep it.",
+      "parentUuid": "0fd0ccf3_0e858b38",
+      "range": {
+        "startLine": 168,
+        "startChar": 7,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "eb7fa0e3ad29d93c26f0220422a019b6d00f9198",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

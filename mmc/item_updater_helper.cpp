@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "item_updater_helper.hpp"
+#include "utils.hpp"
 
 #include <thread>
 
@@ -28,7 +29,8 @@ void Helper::cleanup()
 
 void Helper::factoryReset()
 {
-    // Empty
+    // Mark the read-write partition for recreation upon reboot.
+    utils::execute("/sbin/fw_setenv", "rwreset", "true");
 }
 
 void Helper::removeVersion(const std::string& versionId)

@@ -48,6 +48,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     auto purpose = VersionPurpose::Unknown;
     std::string extendedVersion;
     std::string version;
+    std::string bmcMachine;
     std::map<std::string, std::map<std::string, std::variant<std::string>>>
         interfaces;
     msg.read(objPath, interfaces);
@@ -76,6 +77,10 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 else if (property.first == "Version")
                 {
                     version = std::get<std::string>(property.second);
+                }
+                else if (property.first == "BmcMachine")
+                {
+                    bmcMachine = std::get<std::string>(property.second);
                 }
             }
         }
@@ -144,7 +149,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                          activationState, associations)));
 
         auto versionPtr = std::make_unique<VersionClass>(
-            bus, path, version, purpose, extendedVersion, filePath,
+            bus, path, version, purpose, extendedVersion, bmcMachine, filePath,
             std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
@@ -233,6 +238,14 @@ void ItemUpdater::processBMCImage()
             auto purpose = server::Version::VersionPurpose::BMC;
             restorePurpose(id, purpose);
 
+            auto bmcMachine = VersionClass::getBMCMachine(osRelease);
+            if (bmcMachine.empty())
+            {
+                log<level::ERR>(
+                    "Failed to read bmcMachine from osRelease",
+                    entry("FILENAME=%s", osRelease.string().c_str()));
+            }
+
             // Read os-release from /etc/ to get the BMC extended version
             std::string extendedVersion =
                 VersionClass::getBMCExtendedVersion(osRelease);
@@ -265,7 +278,7 @@ void ItemUpdater::processBMCImage()
 
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
-                bus, path, version, purpose, extendedVersion, "",
+                bus, path, version, purpose, extendedVersion, bmcMachine, "",
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
             auto isVersionFunctional = versionPtr->isFunctional();
             if (!isVersionFunctional)

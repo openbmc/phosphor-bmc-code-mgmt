@@ -72,14 +72,15 @@ class Version : public VersionInherit
      * @param[in] objPath        - The D-Bus object path
      * @param[in] versionString  - The version string
      * @param[in] versionPurpose - The version purpose
+     * @param[in] bmcMachineStr  - The BMC machine string
      * @param[in] extVersion     - The extended version
      * @param[in] filePath       - The image filesystem path
      * @param[in] callback       - The eraseFunc callback
      */
     Version(sdbusplus::bus::bus& bus, const std::string& objPath,
             const std::string& versionString, VersionPurpose versionPurpose,
-            const std::string& extVersion, const std::string& filePath,
-            eraseFunc callback) :
+            const std::string& extVersion, const std::string& bmcMachineStr,
+            const std::string& filePath, eraseFunc callback) :
         VersionInherit(bus, (objPath).c_str(), true),
         eraseCallback(callback), versionStr(versionString)
     {
@@ -87,6 +88,7 @@ class Version : public VersionInherit
         extendedVersion(extVersion);
         purpose(versionPurpose);
         version(versionString);
+        bmcMachine(bmcMachineStr);
         path(filePath);
         // Emit deferred signal.
         emit_object_added();

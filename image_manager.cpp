@@ -213,7 +213,7 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         // Create Version object
         auto versionPtr = std::make_unique<Version>(
-            bus, objPath, version, purpose, extendedVersion,
+            bus, objPath, version, purpose, extendedVersion, currMachine,
             imageDirPath.string(),
             std::bind(&Manager::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =

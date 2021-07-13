@@ -70,6 +70,24 @@
       "revId": "bdd042e176a1ea1a2122f58670d7fad436b00841",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5144f29_f4c9bc1b",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-07-13T11:54:00Z",
+      "side": 1,
+      "message": "The \"match\" way is a bit complicated, and the case here really just needs an async call to erase the uploaded BIOS object.\nSo the code is updated to use boost asio to post a lambda to erase the object, which is more clear than the timer callback way.",
+      "parentUuid": "e0d5df4e_d056cd22",
+      "revId": "bdd042e176a1ea1a2122f58670d7fad436b00841",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

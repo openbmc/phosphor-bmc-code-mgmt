@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17580a34_4ebc7931",
+        "filename": "item_updater_main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-07-21T17:50:31Z",
+      "side": 1,
+      "message": "Isn\u0027t this deprecated ?\nhttps://github.com/openbmc/bmcweb/commit/fb4fd5d43bc621e84add3499911a6f2a08694f8b",
+      "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39633d7e_19ac32bb",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-07-21T17:50:31Z",
+      "side": 1,
+      "message": "Why do we want this?\nInstead maybe \n\u0027-DBOOST_ASIO_NO_DEPRECATED\u0027, ?",
+      "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

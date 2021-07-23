@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b4fcd403_9e795da7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-07-23T20:54:19Z",
+      "side": 1,
+      "message": "Isaac mentioned the variable may be changing to \u0027force\u0027 instead of \u0027true\u0027, so holding on until that\u0027s decided.",
+      "revId": "49de6212a2e6ab94b75b3536cbb88066f02d7f9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89353f99_5fca2774",
         "filename": "mmc/item_updater_helper.cpp",
         "patchSetId": 2
@@ -13,6 +30,24 @@
       "writtenOn": "2021-07-21T17:45:27Z",
       "side": 1,
       "message": "This is how we do it in the other layouts. Wondering if a service wouldn\u0027t be better here though?",
+      "revId": "49de6212a2e6ab94b75b3536cbb88066f02d7f9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea97a95a_33833238",
+        "filename": "mmc/item_updater_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-07-23T20:54:19Z",
+      "side": 1,
+      "message": "The advantage over a service file is that a service file is async so we don\u0027t know when it\u0027s complete, so the user can reboot the bmc before the environment variable is set, that\u0027s the reason we had a sleep when calling the factory reset service before the utils execute() was created.",
+      "parentUuid": "89353f99_5fca2774",
       "revId": "49de6212a2e6ab94b75b3536cbb88066f02d7f9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "03a24952_cb2e5b96",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-07-26T04:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44dd9626_20b3c034",
+      "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17580a34_4ebc7931",
         "filename": "item_updater_main.cpp",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1ddd5ced_2fdde05c",
+        "filename": "item_updater_main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-07-26T04:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17580a34_4ebc7931",
+      "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39633d7e_19ac32bb",
         "filename": "meson.build",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71e0d39b_980cc174",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-07-26T04:57:02Z",
+      "side": 1,
+      "message": "It\u0027s copied from other repos, e.g. dbus-sensors.\nChanged to BOOST_ASIO_NO_DEPRECATED and it builds fine.",
+      "parentUuid": "39633d7e_19ac32bb",
+      "revId": "e8641d1ddad018dbb6d2d90539e4429b48c54c1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

@@ -6,6 +6,7 @@
 #include "serialize.hpp"
 
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/post.hpp>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
@@ -436,9 +437,10 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
                 parent.versions.find(versionId)->second->version());
 
             // Delete the uploaded activation
-            getIOService().post([&parent = parent, versionId = versionId]() {
-                parent.erase(versionId);
-            });
+            boost::asio::post(getIOContext(),
+                              [&parent = parent, versionId = versionId]() {
+                                  parent.erase(versionId);
+                              });
         }
         else if (newStateResult == "failed")
         {

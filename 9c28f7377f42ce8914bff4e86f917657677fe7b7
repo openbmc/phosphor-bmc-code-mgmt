@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c1429e9e_8e1e5e1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-08-06T05:20:25Z",
+      "side": 1,
+      "message": "It could be enabled either by enable this feature by default, or enable this feature in openbmc-build-scripts.\n\nThe former is not good because it is an optional feature and it was disabled by default before;\nThe latter requires repo-specific configs, probably we could do this.",
+      "parentUuid": "9de50f5c_533fa549",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd6413fd_a0776fe5",
         "filename": "activation.cpp",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-08-06T04:54:58Z",
       "side": 1,
       "message": "Are the assignments necessary in this lambda capture?  It seems equivalent to [\u0026parent, versionId] to me.",
+      "range": {
+        "startLine": 441,
+        "startChar": 31,
+        "endLine": 441,
+        "endChar": 70
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f0c09d0_56494a3f",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-08-06T05:20:25Z",
+      "side": 1,
+      "message": "They are necessary because the variables are members of the class, otherwise the compiler says something like below\n\n error: capture of non-variable ‘phosphor::software::updater::Activation::parent’\n error: capture of non-variable ‘phosphor::software::updater::Activation::versionId’\n\nProbably we could capture this here, but capturing the parent and versionId may be more clear here?",
+      "parentUuid": "fd6413fd_a0776fe5",
       "range": {
         "startLine": 441,
         "startChar": 31,

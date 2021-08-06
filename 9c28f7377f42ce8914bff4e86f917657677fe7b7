@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9de50f5c_533fa549",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-06T04:54:58Z",
+      "side": 1,
+      "message": "This is unfortunate.  Can we fix this so that the maximum amount of code is tested in CI?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6413fd_a0776fe5",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-06T04:54:58Z",
+      "side": 1,
+      "message": "Are the assignments necessary in this lambda capture?  It seems equivalent to [\u0026parent, versionId] to me.",
+      "range": {
+        "startLine": 441,
+        "startChar": 31,
+        "endLine": 441,
+        "endChar": 70
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

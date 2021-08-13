@@ -402,6 +402,13 @@ void ItemUpdater::deleteAll()
     {
         if (!versionIt.second->isFunctional())
         {
+            fs::path tempImageDir = std::string{IMG_UPLOAD_DIR};
+            tempImageDir /= versionIt.first;
+            if (fs::exists(tempImageDir))
+            {
+                fs::remove_all(tempImageDir);
+            }
+
             deletableVersions.push_back(versionIt.first);
         }
     }

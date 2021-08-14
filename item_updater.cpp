@@ -365,6 +365,7 @@ void ItemUpdater::erase(std::string entryId)
     else
     {
         removeAssociations(iteratorActivations->second->path);
+        iteratorActivations->second->deleteImageManagerObject();
         this->activations.erase(entryId);
     }
     ItemUpdater::resetUbootEnvVars();
@@ -377,6 +378,13 @@ void ItemUpdater::erase(std::string entryId)
 
         // Removing entry in versions map
         this->versions.erase(entryId);
+
+        // Delete image if found in tmp/images/
+        auto tempImageDir = fs::path{IMG_UPLOAD_DIR} / entryId;
+        if (fs::exists(tempImageDir))
+        {
+            fs::remove_all(tempImageDir);
+        }
     }
     else
     {

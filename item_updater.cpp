@@ -363,6 +363,7 @@ void ItemUpdater::erase(std::string entryId)
     else
     {
         removeAssociations(iteratorActivations->second->path);
+        iteratorActivations->second->deleteImageManagerObject();
         this->activations.erase(entryId);
     }
     ItemUpdater::resetUbootEnvVars();

@@ -422,9 +422,6 @@ void Activation::onStateChangesBios(sdbusplus::message::message& msg)
 
         if (newStateResult == "done")
         {
-            // Remove version object from image manager
-            deleteImageManagerObject();
-
             // Set activation progress to 100
             activationProgress->progress(100);
 

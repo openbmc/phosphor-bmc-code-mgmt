@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "176dd4ac_b123b555",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-18T11:25:37Z",
+      "side": 1,
+      "message": "\u003e The former is not good because it is an optional feature and it was disabled by default before;\n\nThis just means we need to update the recipe as well to disable by default in the PACKAGECONFIG.  Not a significant change, I think.\n\nThis is the approach that most repositories are taking though: enable everything in CI to test the most code and set sane defaults in PACKAGECONFIG.\n\n\u003e The latter requires repo-specific configs, probably we could do this.\n\nI would like to avoid this.  Having to update a repository + openbmc-build-scripts + recipe on every new feature is a little much.",
+      "parentUuid": "c1429e9e_8e1e5e1e",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd6413fd_a0776fe5",
         "filename": "activation.cpp",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "They are necessary because the variables are members of the class, otherwise the compiler says something like below\n\n error: capture of non-variable ‘phosphor::software::updater::Activation::parent’\n error: capture of non-variable ‘phosphor::software::updater::Activation::versionId’\n\nProbably we could capture this here, but capturing the parent and versionId may be more clear here?",
       "parentUuid": "fd6413fd_a0776fe5",
+      "range": {
+        "startLine": 441,
+        "startChar": 31,
+        "endLine": 441,
+        "endChar": 70
+      },
+      "revId": "9c28f7377f42ce8914bff4e86f917657677fe7b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8d5389_8f5644f4",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-18T11:25:37Z",
+      "side": 1,
+      "message": "You haven\u0027t changed anything, so I think this is fine as is.\n\nMy personal opinion is that a capture of `this` is more obvious, but I don\u0027t really have _that_ strong of an opinion.  As it is right now, my initial assumption at a cursory glance would be that \u0027parent\u0027 is a local variable, because capturing an object member seems unusual.  Having in the lambda `this-\u003eparent.erase(this-\u003eversionId)` seems more evident.",
+      "parentUuid": "9f0c09d0_56494a3f",
       "range": {
         "startLine": 441,
         "startChar": 31,

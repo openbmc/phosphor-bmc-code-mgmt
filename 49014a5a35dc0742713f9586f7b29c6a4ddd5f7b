@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0382464d_dd364fce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-18T21:28:06Z",
+      "side": 1,
+      "message": "Add a bit of detail on the title on what this commit is doing, like \"item_updater: deleteAll(): delete tmp image file\" or something like that.",
+      "revId": "49014a5a35dc0742713f9586f7b29c6a4ddd5f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d48662e_61814c27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-18T21:28:06Z",
+      "side": 1,
+      "message": "\"functional\". Also \"flashed on\" sounds that they were activated in which case the image file would had been deleted, so perhaps \"uploaded\" since that leaves the image file in /tmp/.",
+      "revId": "49014a5a35dc0742713f9586f7b29c6a4ddd5f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bc29ca3_4cf490d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-18T21:28:06Z",
+      "side": 1,
+      "message": "Let\u0027s add a reason for this change, something like when an image is uploaded and deleted, the file in /tmp/images remain, and therefore takes up space unless the bmc is rebooted, this can cause space issues when a subsequent image is uploaded.",
+      "revId": "49014a5a35dc0742713f9586f7b29c6a4ddd5f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acc704f6_6b2b31b7",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-18T21:28:06Z",
+      "side": 1,
+      "message": "Can use \"auto tempImageDir \u003d fs::path(IMG_UPLOAD_DIR) / versionIt.first;\" and save a line.",
+      "revId": "49014a5a35dc0742713f9586f7b29c6a4ddd5f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6253c1ae_518e3765",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-18T21:28:06Z",
+      "side": 1,
+      "message": "We should probably add this logic in ItemUpdater::erase() instead, to also cover the scenario where the method to delete a specific version is called, such as with:\n\nbusctl call xyz.openbmc_project.Software.BMC.Updater /xyz/openbmc_project/software/\u003cid\u003e xyz.openbmc_project.Object.Delete Delete\n\nProbably after the read-only image is removed, before clearEntry() is called.",
+      "revId": "49014a5a35dc0742713f9586f7b29c6a4ddd5f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

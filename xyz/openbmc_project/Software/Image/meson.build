@@ -2,7 +2,7 @@ image_error_hpp = custom_target(
     'error.hpp',
     capture: true,
     command: [
-        sdbuspp,
+        sdbusplusplus_prog,
         '-r', meson.source_root(),
         'error',
         'exception-header',
@@ -18,7 +18,7 @@ image_error_cpp = custom_target(
     'error.cpp',
     capture: true,
     command: [
-        sdbuspp,
+        sdbusplusplus_prog,
         '-r', meson.source_root(),
         'error',
         'exception-cpp',

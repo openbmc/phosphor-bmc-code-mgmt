@@ -226,6 +226,13 @@ class SignatureTest : public testing::Test
         command(opensslCmd + pkeyFile + " -out " + pubkeyFile + ".sig " +
                 pubkeyFile);
 
+        std::string fullFile = extractPath.string() + "/" + "image-full";
+        command("cat " + kernelFile + ".sig " + rofsFile + ".sig " + rwfsFile +
+                ".sig " + ubootFile + ".sig " + manifestFile + ".sig " +
+                pubkeyFile + ".sig > " + fullFile);
+        command(opensslCmd + pkeyFile + " -out " + fullFile + ".sig " +
+                fullFile);
+
         signature = std::make_unique<Signature>(extractPath, signedConfPath);
     }
     virtual void TearDown()

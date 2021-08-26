@@ -1,7 +1,7 @@
 project('phosphor-bmc-code-mgmt', 'cpp',
     default_options: [
         'buildtype=debugoptimized',
-        'cpp_std=c++17',
+        'cpp_std=c++20',
         'warning_level=3',
         'werror=true'
     ],
@@ -18,6 +18,8 @@ add_project_arguments(
     '-DBOOST_ASIO_NO_DEPRECATED',
     language: 'cpp',
 )
+
+cpp = meson.get_compiler('cpp')
 
 conf = configuration_data()
 
@@ -96,10 +98,52 @@ endif
 
 configure_file(output: 'config.h', configuration: conf)
 
+sdbusplus_dep = dependency('sdbusplus', required: false)
+sdbusplus_proj = dependency('', required: false)
+if not sdbusplus_dep.found() or sdbusplus_dep.type_name() == 'internal'
+    sdbusplus_proj = subproject('sdbusplus')
+endif
+if not sdbusplus_dep.found()
+    sdbusplus_dep = sdbusplus_proj.get_variable('sdbusplus_dep')
+endif
+
+if sdbusplus_proj.found()
+    sdbusplusplus_prog = sdbusplus_proj.get_variable('sdbusplusplus_prog')
+    sdbuspp_gen_meson_prog = sdbusplus_proj.get_variable(
+        'sdbuspp_gen_meson_prog')
+else
+    sdbusplusplus_prog = find_program('sdbus++', native: true)
+    sdbuspp_gen_meson_prog = find_program('sdbus++-gen-meson', native: true)
+endif
+
+cereal_dep = dependency('cereal', required: false)
+has_cereal = cpp.has_header_symbol(
+    'cereal/cereal.hpp',
+    'cereal::specialize',
+    dependencies: cereal_dep,
+    required: false)
+if not has_cereal
+    cereal_opts = import('cmake').subproject_options()
+    cereal_opts.add_cmake_defines({'BUILD_TESTS': 'OFF'})
+    cereal_proj = import('cmake').subproject(
+        'cereal',
+        options: cereal_opts,
+        required: false)
+    assert(cereal_proj.found(), 'cereal is required')
+    cereal_dep = cereal_proj.dependency('cereal')
+endif
+
 deps = [
-    dependency('phosphor-dbus-interfaces'),
-    dependency('phosphor-logging'),
-    dependency('sdbusplus')
+    dependency(
+        'phosphor-dbus-interfaces',
+        fallback: ['phosphor-dbus-interfaces', 'phosphor_dbus_interfaces_dep'],
+    ),
+    dependency(
+        'phosphor-logging',
+        fallback: ['phosphor-logging', 'phosphor_logging_dep'],
+    ),
+    sdbusplus_dep,
+    cereal_dep,
 ]
 
 ssl = dependency('openssl')
@@ -119,7 +163,6 @@ unit_files = [
     'xyz.openbmc_project.Software.Version.service.in'
 ]
 
-sdbuspp = find_program('sdbus++')
 subdir('xyz/openbmc_project/Software/Image')
 
 image_updater_sources = files(

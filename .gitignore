@@ -1,1 +1,3 @@
-build
+build*/
+subprojects/*
+!subprojects/*.wrap

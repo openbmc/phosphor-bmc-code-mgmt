@@ -1,0 +1,4 @@
+[wrap-git]
+url = https://github.com/USCiLab/cereal.git
+revision = HEAD
+# need at least for C++20 fixes 3e4d1b84cab4891368d2179a61a7ba06a5693e7f

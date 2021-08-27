@@ -1,0 +1,12 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Patrick Williams <patrick@stwcx.xyz>
+Code-Review+1: Jayanth Othayoth <ojayanth@gmail.com>
+Code-Review+1: Gunnar Mills <gmills@us.ibm.com>
+Code-Review+1: Adriana Kobylak <anoo@linux.ibm.com>
+Code-Review+2: Lei YU <yulei.sh@bytedance.com>
+Submitted-by: Lei YU <yulei.sh@bytedance.com>
+Submitted-at: Fri, 27 Aug 2021 06:10:09 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/45669
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

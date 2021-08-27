@@ -7,7 +7,7 @@
 #include <openssl/sha.h>
 
 #include <phosphor-logging/elog-errors.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <fstream>
 #include <iostream>
@@ -22,6 +22,7 @@ namespace software
 namespace manager
 {
 
+PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using Argument = xyz::openbmc_project::Common::InvalidArgument;
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
@@ -34,7 +35,7 @@ std::string Version::getValue(const std::string& manifestFilePath,
 
     if (manifestFilePath.empty())
     {
-        log<level::ERR>("Error MANIFESTFilePath is empty");
+        error("ManifestFilePath is empty.");
         elog<InvalidArgument>(
             Argument::ARGUMENT_NAME("manifestFilePath"),
             Argument::ARGUMENT_VALUE(manifestFilePath.c_str()));
@@ -68,9 +69,8 @@ std::string Version::getValue(const std::string& manifestFilePath,
     }
     catch (const std::exception& e)
     {
-        log<level::ERR>("Error occurred when reading MANIFEST file",
-                        entry("KEY=%s", key.c_str()),
-                        entry("ERROR=%s", e.what()));
+        error("Error occurred when reading MANIFEST file: {ERROR}", "KEY", key,
+              "ERROR", e);
     }
 
     return value;
@@ -81,7 +81,7 @@ std::string Version::getId(const std::string& version)
 
     if (version.empty())
     {
-        log<level::ERR>("Error version is empty");
+        error("Version is empty.");
         elog<InvalidArgument>(Argument::ARGUMENT_NAME("Version"),
                               Argument::ARGUMENT_VALUE(version.c_str()));
     }
@@ -122,7 +122,7 @@ std::string Version::getBMCMachine(const std::string& releaseFilePath)
 
     if (machine.empty())
     {
-        log<level::ERR>("Unable to find OPENBMC_TARGET_MACHINE");
+        error("Unable to find OPENBMC_TARGET_MACHINE");
         elog<InternalFailure>();
     }
 
@@ -192,7 +192,7 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
 
     if (version.empty())
     {
-        log<level::ERR>("Error BMC current version is empty");
+        error("BMC current version is empty");
         elog<InternalFailure>();
     }
 

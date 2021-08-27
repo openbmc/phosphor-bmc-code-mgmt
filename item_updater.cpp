@@ -10,7 +10,7 @@
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
 
@@ -31,6 +31,7 @@ namespace updater
 namespace server = sdbusplus::xyz::openbmc_project::Software::server;
 namespace control = sdbusplus::xyz::openbmc_project::Control::server;
 
+PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 using namespace phosphor::software::image;
@@ -110,8 +111,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     auto pos = path.rfind("/");
     if (pos == std::string::npos)
     {
-        log<level::ERR>("No version id found in object path",
-                        entry("OBJPATH=%s", path.c_str()));
+        error("No version id found in object path: {PATH}", "PATH", path);
         return;
     }
 
@@ -168,7 +168,7 @@ void ItemUpdater::processBMCImage()
     }
     catch (const fs::filesystem_error& e)
     {
-        log<level::ERR>("Failed to prepare dir", entry("ERR=%s", e.what()));
+        error("Failed to prepare dir: {ERROR}", "ERROR", e);
         return;
     }
 
@@ -191,9 +191,7 @@ void ItemUpdater::processBMCImage()
             auto osRelease = iter.path() / releaseFile.relative_path();
             if (!fs::is_regular_file(osRelease))
             {
-                log<level::ERR>(
-                    "Failed to read osRelease",
-                    entry("FILENAME=%s", osRelease.string().c_str()));
+                error("Failed to read osRelease: {PATH}", "PATH", osRelease);
 
                 // Try to get the version id from the mount directory name and
                 // call to delete it as this version may be corrupted. Dynamic
@@ -208,9 +206,8 @@ void ItemUpdater::processBMCImage()
             auto version = VersionClass::getBMCVersion(osRelease);
             if (version.empty())
             {
-                log<level::ERR>(
-                    "Failed to read version from osRelease",
-                    entry("FILENAME=%s", osRelease.string().c_str()));
+                error("Failed to read version from osRelease: {PATH}", "PATH",
+                      osRelease);
 
                 // Try to delete the version, same as above if the
                 // OS_RELEASE_FILE does not exist.
@@ -294,8 +291,9 @@ void ItemUpdater::processBMCImage()
                     }
                     else
                     {
-                        log<level::ERR>("Unable to restore priority from file.",
-                                        entry("VERSIONID=%s", id.c_str()));
+                        error(
+                            "Unable to restore priority from file for {VERSIONID}",
+                            "VERSIONID", id);
                     }
                 }
                 activations.find(id)->second->redundancyPriority =
@@ -326,7 +324,7 @@ void ItemUpdater::processBMCImage()
         }
         catch (const std::exception& e)
         {
-            log<level::ERR>(e.what());
+            error("Exception during processing: {ERROR}", "ERROR", e);
         }
     }
 
@@ -342,9 +340,9 @@ void ItemUpdater::erase(std::string entryId)
     {
         if (it->second->isFunctional() && ACTIVE_BMC_MAX_ALLOWED > 1)
         {
-            log<level::ERR>("Error: Version is currently running on the BMC. "
-                            "Unable to remove.",
-                            entry("VERSIONID=%s", entryId.c_str()));
+            error(
+                "Version ({VERSIONID}) is currently running on the BMC; unable to remove.",
+                "VERSIONID", entryId);
             return;
         }
     }
@@ -358,9 +356,9 @@ void ItemUpdater::erase(std::string entryId)
     auto iteratorActivations = activations.find(entryId);
     if (iteratorActivations == activations.end())
     {
-        log<level::ERR>("Error: Failed to find version in item updater "
-                        "activations map. Unable to remove.",
-                        entry("VERSIONID=%s", entryId.c_str()));
+        error(
+            "Failed to find version ({VERSIONID}) in item updater activations map; unable to remove.",
+            "VERSIONID", entryId);
     }
     else
     {
@@ -384,9 +382,9 @@ void ItemUpdater::erase(std::string entryId)
         removeReadOnlyPartition(entryId);
         removePersistDataDirectory(entryId);
 
-        log<level::ERR>("Error: Failed to find version in item updater "
-                        "versions map. Unable to remove.",
-                        entry("VERSIONID=%s", entryId.c_str()));
+        error(
+            "Failed to find version ({VERSIONID}) in item updater versions map; unable to remove.",
+            "VERSIONID", entryId);
     }
 
     helper.clearEntry(entryId);
@@ -430,7 +428,7 @@ ItemUpdater::ActivationStatus
         valid = checkImage(filePath, imageUpdateList);
         if (!valid)
         {
-            log<level::ERR>("Failed to find the needed BMC images.");
+            error("Failed to find the needed BMC images.");
             return ItemUpdater::ActivationStatus::invalid;
         }
     }
@@ -502,7 +500,7 @@ void ItemUpdater::reset()
 {
     helper.factoryReset();
 
-    log<level::INFO>("BMC factory reset will take effect upon reboot.");
+    info("BMC factory reset will take effect upon reboot.");
 }
 
 void ItemUpdater::removeReadOnlyPartition(std::string versionId)
@@ -582,7 +580,7 @@ void ItemUpdater::setBMCInventoryPath()
     }
     catch (const sdbusplus::exception::SdBusError& e)
     {
-        log<level::ERR>("Error in mapper GetSubTreePath");
+        error("Error in mapper GetSubTreePath: {ERROR}", "ERROR", e);
         return;
     }
 
@@ -757,8 +755,7 @@ void ItemUpdater::createBIOSObject()
     auto pos = path.rfind("/");
     if (pos == std::string::npos)
     {
-        log<level::ERR>("No version id found in object path",
-                        entry("BIOS_OBJPATH=%s", path.c_str()));
+        error("No version id found in object path {PATH}", "PATH", path);
         return;
     }
 

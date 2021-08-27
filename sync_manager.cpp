@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
 
@@ -17,7 +17,7 @@ namespace software
 namespace manager
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 namespace fs = std::filesystem;
 
 int Sync::processEntry(int mask, const fs::path& entryPath)
@@ -52,9 +52,8 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
             execl("/usr/bin/rsync", "rsync", "-a", entryPath.c_str(),
                   dst.c_str(), nullptr);
             // execl only returns on fail
-            log<level::ERR>("Error occurred during the rsync call",
-                            entry("ERRNO=%d", errno),
-                            entry("PATH=%s", entryPath.c_str()));
+            error("Error ({ERRNO}) occurred during the rsync call on {PATH}",
+                  "ERRNO", errno, "PATH", entryPath);
             return -1;
         }
         else if (mask & IN_DELETE)
@@ -62,9 +61,9 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
             execl("/usr/bin/rsync", "rsync", "-a", "--delete",
                   entryPath.c_str(), dst.c_str(), nullptr);
             // execl only returns on fail
-            log<level::ERR>("Error occurred during the rsync delete call",
-                            entry("ERRNO=%d", errno),
-                            entry("PATH=%s", entryPath.c_str()));
+            error(
+                "Error ({ERRNO}) occurred during the rsync delete call on {PATH}",
+                "ERRNO", errno, "PATH", entryPath);
             return -1;
         }
     }
@@ -74,7 +73,7 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
     }
     else
     {
-        log<level::ERR>("Error occurred during fork", entry("ERRNO=%d", errno));
+        error("Error ({ERRNO}) occurred during fork", "ERRNO", errno);
         return -1;
     }
 

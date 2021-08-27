@@ -3,7 +3,7 @@
 #include "image_manager.hpp"
 #include "watch.hpp"
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
 
 #include <cstdlib>
@@ -31,8 +31,7 @@ int main()
     }
     catch (std::exception& e)
     {
-        using namespace phosphor::logging;
-        log<level::ERR>(e.what());
+        lg2::error("Error in event loop: {ERROR}", "ERROR", e);
         return -1;
     }
 

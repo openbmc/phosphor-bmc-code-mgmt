@@ -9,7 +9,7 @@
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <algorithm>
 #include <filesystem>
@@ -24,6 +24,7 @@ namespace manager
 {
 
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
+PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 namespace fs = std::filesystem;
 
@@ -41,7 +42,7 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
 
     if (fileName.empty())
     {
-        log<level::ERR>("Error FileName is empty");
+        error("Filename is empty");
         elog<InvalidArgument>(Argument::ARGUMENT_NAME("FileName"),
                               Argument::ARGUMENT_VALUE(fileName.c_str()));
         return;
@@ -49,21 +50,20 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
 
     if (serverAddress.empty())
     {
-        log<level::ERR>("Error ServerAddress is empty");
+        error("ServerAddress is empty");
         elog<InvalidArgument>(Argument::ARGUMENT_NAME("ServerAddress"),
                               Argument::ARGUMENT_VALUE(serverAddress.c_str()));
         return;
     }
 
-    log<level::INFO>("Downloading via TFTP",
-                     entry("FILENAME=%s", fileName.c_str()),
-                     entry("SERVERADDRESS=%s", serverAddress.c_str()));
+    info("Downloading {PATH} via TFTP: {SERVERADDRESS}", "PATH", fileName,
+         "SERVERADDRESS", serverAddress);
 
     // Check if IMAGE DIR exists
     fs::path imgDirPath(IMG_UPLOAD_DIR);
     if (!fs::is_directory(imgDirPath))
     {
-        log<level::ERR>("Error Image Dir does not exist");
+        error("Image Dir {PATH} does not exist", "PATH", imgDirPath);
         elog<InternalFailure>();
         return;
     }
@@ -81,12 +81,13 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
                   (std::string{IMG_UPLOAD_DIR} + '/' + fileName).c_str(),
                   (char*)0);
             // execl only returns on fail
-            log<level::ERR>("Error occurred during the TFTP call");
+            error("Error ({ERRNO}) occurred during the TFTP call", "ERRNO",
+                  errno);
             elog<InternalFailure>();
         }
         else if (nextPid < 0)
         {
-            log<level::ERR>("Error occurred during fork");
+            error("Error ({ERRNO}) occurred during fork", "ERRNO", errno);
             elog<InternalFailure>();
         }
         // do nothing as parent if all is going well
@@ -96,7 +97,7 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
     }
     else if (pid < 0)
     {
-        log<level::ERR>("Error occurred during fork");
+        error("Error ({ERRNO}) occurred during fork", "ERRNO", errno);
         elog<InternalFailure>();
     }
     else
@@ -104,11 +105,12 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
         int status;
         if (waitpid(pid, &status, 0) < 0)
         {
-            log<level::ERR>("waitpid error");
+            error("Error ({ERRNO}) occurred during waitpid", "ERRNO", errno);
         }
         else if (WEXITSTATUS(status) != 0)
         {
-            log<level::ERR>("failed to launch tftp");
+
+            error("Failed ({STATUS}) to launch tftp", "STATUS", status);
         }
     }
 

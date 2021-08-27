@@ -13,7 +13,7 @@
 
 #include <elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
 
 #include <algorithm>
@@ -28,6 +28,7 @@ namespace software
 namespace manager
 {
 
+PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 namespace Software = phosphor::logging::xyz::openbmc_project::Software;
@@ -75,8 +76,7 @@ int Manager::processImage(const std::string& tarFilePath)
 {
     if (!fs::is_regular_file(tarFilePath))
     {
-        log<level::ERR>("Error tarball does not exist",
-                        entry("FILENAME=%s", tarFilePath.c_str()));
+        error("Tarball {PATH} does not exist", "PATH", tarFilePath);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -88,8 +88,7 @@ int Manager::processImage(const std::string& tarFilePath)
     // Create a tmp dir to extract tarball.
     if (!mkdtemp(tmpDir.data()))
     {
-        log<level::ERR>("Error occurred during mkdtemp",
-                        entry("ERRNO=%d", errno));
+        error("Error ({ERRNO}) occurred during mkdtemp", "ERRNO", errno);
         report<InternalFailure>(InternalFail::FAIL("mkdtemp"));
         return -1;
     }
@@ -103,15 +102,14 @@ int Manager::processImage(const std::string& tarFilePath)
     auto rc = unTar(tarFilePath, tmpDirPath.string());
     if (rc < 0)
     {
-        log<level::ERR>("Error occurred during untar");
+        error("Error ({RC}) occurred during untar", "RC", rc);
         return -1;
     }
 
     // Verify the manifest file
     if (!fs::is_regular_file(manifestPath))
     {
-        log<level::ERR>("Error No manifest file",
-                        entry("FILENAME=%s", tarFilePath.c_str()));
+        error("No manifest file {PATH}", "PATH", tarFilePath);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -120,7 +118,8 @@ int Manager::processImage(const std::string& tarFilePath)
     auto version = Version::getValue(manifestPath.string(), "version");
     if (version.empty())
     {
-        log<level::ERR>("Error unable to read version from manifest file");
+        error("Unable to read version from manifest file {PATH}", "PATH",
+              tarFilePath);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -129,10 +128,11 @@ int Manager::processImage(const std::string& tarFilePath)
     std::string currMachine = Version::getBMCMachine(OS_RELEASE_FILE);
     if (currMachine.empty())
     {
-        log<level::ERR>("Failed to read machine name from osRelease",
-                        entry("FILENAME=%s", OS_RELEASE_FILE));
+        auto path = OS_RELEASE_FILE;
+        error("Failed to read machine name from osRelease: {PATH}", "PATH",
+              path);
         report<ImageFailure>(ImageFail::FAIL("Failed to read machine name"),
-                             ImageFail::PATH("OS_RELEASE_FILE"));
+                             ImageFail::PATH(path));
         return -1;
     }
 
@@ -143,9 +143,9 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         if (machineStr != currMachine)
         {
-            log<level::ERR>("BMC upgrade: Machine name doesn't match",
-                            entry("CURR_MACHINE=%s", currMachine.c_str()),
-                            entry("NEW_MACHINE=%s", machineStr.c_str()));
+            error(
+                "BMC upgrade: Machine name doesn't match: {CURRENT_MACHINE} vs {NEW_MACHINE}",
+                "CURRENT_MACHINE", currMachine, "NEW_MACHINE", machineStr);
             report<ImageFailure>(
                 ImageFail::FAIL("Machine name does not match"),
                 ImageFail::PATH(manifestPath.string().c_str()));
@@ -154,7 +154,7 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     else
     {
-        log<level::WARNING>("No machine name in Manifest file");
+        warning("No machine name in Manifest file");
         report<ImageFailure>(
             ImageFail::FAIL("MANIFEST is missing machine name"),
             ImageFail::PATH(manifestPath.string().c_str()));
@@ -164,21 +164,23 @@ int Manager::processImage(const std::string& tarFilePath)
     auto purposeString = Version::getValue(manifestPath.string(), "purpose");
     if (purposeString.empty())
     {
-        log<level::ERR>("Error unable to read purpose from manifest file");
+        error("Unable to read purpose from manifest file {PATH}", "PATH",
+              tarFilePath);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
 
-    auto purpose = Version::VersionPurpose::Unknown;
-    try
+    auto convertedPurpose =
+        sdbusplus::message::convert_from_string<Version::VersionPurpose>(
+            purposeString);
+
+    if (!convertedPurpose)
     {
-        purpose = Version::convertVersionPurposeFromString(purposeString);
+        error(
+            "Failed to convert manifest purpose ({PURPOSE}) to enum; setting to Unknown.",
+            "PURPOSE", purposeString);
     }
-    catch (const sdbusplus::exception::InvalidEnumString& e)
-    {
-        log<level::ERR>("Error: Failed to convert manifest purpose to enum."
-                        " Setting to Unknown.");
-    }
+    auto purpose = convertedPurpose.value_or(Version::VersionPurpose::Unknown);
 
     // Get ExtendedVersion
     std::string extendedVersion =
@@ -223,8 +225,8 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     else
     {
-        log<level::INFO>("Software Object with the same version already exists",
-                         entry("VERSION_ID=%s", id.c_str()));
+        info("Software Object with the same version ({VERSION}) already exists",
+             "VERSION", id);
         fs::remove_all(imageDirPath);
     }
     return 0;
@@ -240,10 +242,9 @@ void Manager::erase(std::string entryId)
 
     if (it->second->isFunctional())
     {
-        log<level::ERR>(("Error: Version " + entryId +
-                         " is currently running on the BMC."
-                         " Unable to remove.")
-                            .c_str());
+        error(
+            "Version {VERSION} is currently running on the BMC; unable to remove",
+            "VERSION", entryId);
         return;
     }
 
@@ -261,19 +262,19 @@ int Manager::unTar(const std::string& tarFilePath,
 {
     if (tarFilePath.empty())
     {
-        log<level::ERR>("Error TarFilePath is empty");
+        error("TarFilePath is empty");
         report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
         return -1;
     }
     if (extractDirPath.empty())
     {
-        log<level::ERR>("Error ExtractDirPath is empty");
+        error("ExtractDirPath is empty");
         report<UnTarFailure>(UnTarFail::PATH(extractDirPath.c_str()));
         return -1;
     }
 
-    log<level::INFO>("Untaring", entry("FILENAME=%s", tarFilePath.c_str()),
-                     entry("EXTRACTIONDIR=%s", extractDirPath.c_str()));
+    info("Untaring {PATH} to {EXTRACTIONDIR}", "PATH", tarFilePath,
+         "EXTRACTIONDIR", extractDirPath);
     int status = 0;
     pid_t pid = fork();
 
@@ -283,8 +284,7 @@ int Manager::unTar(const std::string& tarFilePath,
         execl("/bin/tar", "tar", "-xf", tarFilePath.c_str(), "-C",
               extractDirPath.c_str(), (char*)0);
         // execl only returns on fail
-        log<level::ERR>("Failed to execute untar file",
-                        entry("FILENAME=%s", tarFilePath.c_str()));
+        error("Failed to execute untar on {PATH}", "PATH", tarFilePath);
         report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -293,15 +293,15 @@ int Manager::unTar(const std::string& tarFilePath,
         waitpid(pid, &status, 0);
         if (WEXITSTATUS(status))
         {
-            log<level::ERR>("Failed to untar file",
-                            entry("FILENAME=%s", tarFilePath.c_str()));
+            error("Failed ({STATUS}) to untar file {PATH}", "STATUS", status,
+                  "PATH", tarFilePath);
             report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
             return -1;
         }
     }
     else
     {
-        log<level::ERR>("fork() failed.");
+        error("fork() failed: {ERRNO}", "ERRNO", errno);
         report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
         return -1;
     }

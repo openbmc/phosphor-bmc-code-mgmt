@@ -3,7 +3,7 @@
 #include "serialize.hpp"
 
 #include <cereal/archives/json.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/server.hpp>
 
 #include <filesystem>
@@ -16,7 +16,7 @@ namespace software
 namespace updater
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 namespace fs = std::filesystem;
 
 const std::string priorityName = "priority";
@@ -30,8 +30,7 @@ void storePriority(const std::string& versionId, uint8_t priority)
         if (fs::exists(path))
         {
             // Delete if it's a non-directory file
-            log<level::WARNING>("Removing non-directory file",
-                                entry("PATH=%s", path.c_str()));
+            warning("Removing non-directory file: {PATH}", "PATH", path);
             fs::remove_all(path);
         }
         fs::create_directories(path);
@@ -51,8 +50,7 @@ void storePurpose(const std::string& versionId, VersionPurpose purpose)
         if (fs::exists(path))
         {
             // Delete if it's a non-directory file
-            log<level::WARNING>("Removing non-directory file",
-                                entry("PATH=%s", path.c_str()));
+            warning("Removing non-directory file: {PATH}", "PATH", path);
             fs::remove_all(path);
         }
         fs::create_directories(path);
@@ -117,7 +115,9 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
         }
     }
     catch (const std::exception& e)
-    {}
+    {
+        error("Error during processing: {ERROR}", "ERROR", e);
+    }
 
     return false;
 }

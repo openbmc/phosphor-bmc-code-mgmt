@@ -12,7 +12,7 @@
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cassert>
@@ -26,6 +26,7 @@ namespace software
 namespace image
 {
 
+PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using namespace phosphor::software::manager;
 using InternalFailure =
@@ -52,7 +53,7 @@ AvailableKeyTypes Signature::getAvailableKeyTypesFromSystem() const
     // Find the path of all the files
     if (!fs::is_directory(signedConfPath))
     {
-        log<level::ERR>("Signed configuration path not found in the system");
+        error("Signed configuration path not found in the system");
         elog<InternalFailure>();
     }
 
@@ -131,7 +132,7 @@ bool Signature::verify()
         // public keys and hash on the system.
         if (false == systemLevelVerify())
         {
-            log<level::ERR>("System level Signature Validation failed");
+            error("System level Signature Validation failed");
             return false;
         }
 
@@ -185,8 +186,8 @@ bool Signature::verify()
                     verifyFile(file, sigFile, publicKeyFile, hashType);
                 if (!optionalImagesValid)
                 {
-                    log<level::ERR>("Image file Signature Validation failed",
-                                    entry("IMAGE=%s", optionalImage.c_str()));
+                    error("Image file Signature Validation failed on {IMAGE}",
+                          "IMAGE", optionalImage);
                     return false;
                 }
             }
@@ -194,20 +195,20 @@ bool Signature::verify()
 
         if (verifyFullImage() == false)
         {
-            log<level::ERR>("Image full file Signature Validation failed");
+            error("Image full file Signature Validation failed");
             return false;
         }
 
         if (!bmcFilesFound && !optionalFilesFound)
         {
-            log<level::ERR>("Unable to find files to verify");
+            error("Unable to find files to verify");
             return false;
         }
 
         // Either BMC images or optional images shall be valid
         assert(valid || optionalImagesValid);
 
-        log<level::DEBUG>("Successfully completed Signature vaildation.");
+        debug("Successfully completed Signature vaildation.");
         return true;
     }
     catch (const InternalFailure& e)
@@ -216,7 +217,7 @@ bool Signature::verify()
     }
     catch (const std::exception& e)
     {
-        log<level::ERR>(e.what());
+        error("Error during processing: {ERROR}", "ERROR", e);
         return false;
     }
 }
@@ -227,7 +228,7 @@ bool Signature::systemLevelVerify()
     auto keyTypes = getAvailableKeyTypesFromSystem();
     if (keyTypes.empty())
     {
-        log<level::ERR>("Missing Signature configuration data in system");
+        error("Missing Signature configuration data in system");
         elog<InternalFailure>();
     }
 
@@ -286,8 +287,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     // Check existence of the files in the system.
     if (!(fs::exists(file) && fs::exists(sigFile)))
     {
-        log<level::ERR>("Failed to find the Data or signature file.",
-                        entry("FILE=%s", file.c_str()));
+        error("Failed to find the Data or signature file {PATH}.", "PATH",
+              file);
         elog<InternalFailure>();
     }
 
@@ -295,8 +296,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     auto publicRSA = createPublicRSA(publicKey);
     if (publicRSA == nullptr)
     {
-        log<level::ERR>("Failed to create RSA",
-                        entry("FILE=%s", publicKey.c_str()));
+        error("Failed to create RSA from {PATH}", "PATH", publicKey);
         elog<InternalFailure>();
     }
 
@@ -314,8 +314,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     auto hashStruct = EVP_get_digestbyname(hashFunc.c_str());
     if (!hashStruct)
     {
-        log<level::ERR>("EVP_get_digestbynam: Unknown message digest",
-                        entry("HASH=%s", hashFunc.c_str()));
+        error("EVP_get_digestbynam: Unknown message digest: {HASH}", "HASH",
+              hashFunc);
         elog<InternalFailure>();
     }
 
@@ -324,8 +324,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
 
     if (result <= 0)
     {
-        log<level::ERR>("Error occurred during EVP_DigestVerifyInit",
-                        entry("ERRCODE=%lu", ERR_get_error()));
+        error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
+              ERR_get_error());
         elog<InternalFailure>();
     }
 
@@ -336,8 +336,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     result = EVP_DigestVerifyUpdate(rsaVerifyCtx.get(), dataPtr(), size);
     if (result <= 0)
     {
-        log<level::ERR>("Error occurred during EVP_DigestVerifyUpdate",
-                        entry("ERRCODE=%lu", ERR_get_error()));
+        error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
+              ERR_get_error());
         elog<InternalFailure>();
     }
 
@@ -352,15 +352,15 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     // Check the verification result.
     if (result < 0)
     {
-        log<level::ERR>("Error occurred during EVP_DigestVerifyFinal",
-                        entry("ERRCODE=%lu", ERR_get_error()));
+        error("Error ({RC}) occurred during EVP_DigestVerifyFinal", "RC",
+              ERR_get_error());
         elog<InternalFailure>();
     }
 
     if (result == 0)
     {
-        log<level::ERR>("EVP_DigestVerifyFinal:Signature validation failed",
-                        entry("PATH=%s", sigFile.c_str()));
+        error("EVP_DigestVerifyFinal:Signature validation failed on {PATH}",
+              "PATH", sigFile);
         return false;
     }
     return true;
@@ -377,7 +377,7 @@ inline RSA* Signature::createPublicRSA(const fs::path& publicKey)
     BIO_MEM_Ptr keyBio(BIO_new_mem_buf(data(), -1), &::BIO_free);
     if (keyBio.get() == nullptr)
     {
-        log<level::ERR>("Failed to create new BIO Memory buffer");
+        error("Failed to create new BIO Memory buffer");
         elog<InternalFailure>();
     }
 
@@ -422,8 +422,8 @@ bool Signature::checkAndVerifyImage(const std::string& filePath,
         auto valid = verifyFile(file, sigFile, publicKeyPath, hashType);
         if (valid == false)
         {
-            log<level::ERR>("Image file Signature Validation failed",
-                            entry("IMAGE=%s", bmcImage.c_str()));
+            error("Image file Signature Validation failed on {PATH}", "PATH",
+                  bmcImage);
             return false;
         }
     }

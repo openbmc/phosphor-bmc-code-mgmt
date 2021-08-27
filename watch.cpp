@@ -7,7 +7,7 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <cstddef>
 #include <cstring>
@@ -22,7 +22,7 @@ namespace software
 namespace manager
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 using namespace std::string_literals;
 namespace fs = std::filesystem;
 
@@ -103,8 +103,8 @@ int Watch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
             auto rc = static_cast<Watch*>(userdata)->imageCallback(tarballPath);
             if (rc < 0)
             {
-                log<level::ERR>("Error processing image",
-                                entry("IMAGE=%s", tarballPath.c_str()));
+                error("Error ({RC}) processing image {IMAGE}", "RC", rc,
+                      "IMAGE", tarballPath);
             }
         }
 

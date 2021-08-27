@@ -5,7 +5,7 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -17,7 +17,7 @@ namespace software
 namespace manager
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 
 void SyncWatch::addInotifyWatch(const fs::path& path)
 {
@@ -25,8 +25,8 @@ void SyncWatch::addInotifyWatch(const fs::path& path)
         inotify_add_watch(inotifyFd, path.c_str(), IN_CLOSE_WRITE | IN_DELETE);
     if (-1 == wd)
     {
-        log<level::ERR>("inotify_add_watch failed", entry("ERRNO=%d", errno),
-                        entry("FILENAME=%s", path.c_str()));
+        error("inotify_add_watch on {PATH} failed: {ERRNO}", "ERRNO", errno,
+              "PATH", path);
         return;
     }
 
@@ -41,7 +41,7 @@ SyncWatch::SyncWatch(sd_event& loop,
     auto fd = inotify_init1(IN_NONBLOCK);
     if (-1 == fd)
     {
-        log<level::ERR>("inotify_init1 failed", entry("ERRNO=%d", errno));
+        error("inotify_init1 failed: {ERRNO}", "ERRNO", errno);
         return;
     }
     inotifyFd = fd;
@@ -49,7 +49,7 @@ SyncWatch::SyncWatch(sd_event& loop,
     auto rc = sd_event_add_io(&loop, nullptr, fd, EPOLLIN, callback, this);
     if (0 > rc)
     {
-        log<level::ERR>("failed to add to event loop", entry("RC=%d", rc));
+        error("failed to add to event loop: {RC}", "RC", rc);
         return;
     }
 
@@ -104,10 +104,8 @@ int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
             }
             else
             {
-                log<level::INFO>(
-                    "The inotify watch was removed",
-                    entry("FILENAME=%s",
-                          (syncWatch->fileMap[event->wd]).c_str()));
+                info("The inotify watch on {PATH} was removed", "PATH",
+                     syncWatch->fileMap[event->wd]);
             }
             return 0;
         }

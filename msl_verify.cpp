@@ -4,11 +4,12 @@
 
 #include "version.hpp"
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
+#include <xyz/openbmc_project/Software/Version/server.hpp>
 
 #include <regex>
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 
 int minimum_ship_level::compare(const Version& versionToCompare,
                                 const Version& mslVersion)
@@ -44,8 +45,7 @@ void minimum_ship_level::parse(const std::string& inpVersion,
 
     if (!std::regex_search(inpVersion, match, rx))
     {
-        log<level::ERR>("Unable to parse BMC version",
-                        entry("VERSION=%s", inpVersion.c_str()));
+        error("Unable to parse BMC version: {VERSION}", "VERSION", inpVersion);
         return;
     }
 
@@ -83,12 +83,12 @@ bool minimum_ship_level::verify(const std::string& versionManifest)
     auto rc = compare(actualVersion, mslVersion);
     if (rc < 0)
     {
-        log<level::ERR>(
-            "BMC Minimum Ship Level NOT met",
-            entry("MIN_VERSION=%s", msl.c_str()),
-            entry("ACTUAL_VERSION=%s", tmpStr.c_str()),
-            entry("VERSION_PURPOSE=%s",
-                  "xyz.openbmc_project.Software.Version.VersionPurpose.BMC"));
+        auto purpose = sdbusplus::xyz::openbmc_project::Software::server::
+            Version::VersionPurpose::BMC;
+        error(
+            "BMC Minimum Ship Level ({MIN_VERSION}) NOT met by {ACTUAL_VERSION}",
+            "MIN_VERSION", msl, "ACTUAL_VERSION", tmpStr, "VERSION_PURPOSE",
+            purpose);
         return false;
     }
 

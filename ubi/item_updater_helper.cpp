@@ -1,10 +1,9 @@
 #include "config.h"
 
 #include "item_updater_helper.hpp"
-
 #include "utils.hpp"
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/exception.hpp>
 
 namespace phosphor
@@ -14,7 +13,7 @@ namespace software
 namespace updater
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 using sdbusplus::exception::SdBusError;
 
 void Helper::setEntry(const std::string& entryId, uint8_t value)
@@ -77,8 +76,7 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     }
     catch (const SdBusError& e)
     {
-        log<level::ERR>("Failed to update u-boot env variables",
-                        entry("VERSIONID=%s", versionId.c_str()));
+        error("Failed to update u-boot env variables", "VERSIONID", versionid);
     }
 }
 
@@ -95,7 +93,7 @@ void Helper::mirrorAlt()
     }
     catch (const SdBusError& e)
     {
-        log<level::ERR>("Failed to copy U-Boot to alternate chip");
+        error("Failed to copy U-Boot to alternate chip: {ERROR}", "ERROR", e);
     }
 }
 

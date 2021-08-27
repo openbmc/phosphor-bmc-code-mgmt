@@ -2,12 +2,12 @@
 
 #include <unistd.h>
 
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 namespace utils
 {
 
-using namespace phosphor::logging;
+PHOSPHOR_LOG2_USING;
 
 std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
                        const std::string& interface)
@@ -26,18 +26,16 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
         reply.read(response);
         if (response.empty())
         {
-            log<level::ERR>("Error in mapper response for getting service name",
-                            entry("PATH=%s", path.c_str()),
-                            entry("INTERFACE=%s", interface.c_str()));
+            error(
+                "Empty response from mapper for getting service name: {PATH} {INTERFACE}",
+                "PATH", path, "INTERFACE", interface);
             return std::string{};
         }
     }
     catch (const sdbusplus::exception::SdBusError& e)
     {
-        log<level::ERR>("Error in mapper method call",
-                        entry("ERROR=%s", e.what()),
-                        entry("PATH=%s", path.c_str()),
-                        entry("INTERFACE=%s", interface.c_str()));
+        error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
+              "ERROR", e, "PATH", path, "INTERFACE", interface);
         return std::string{};
     }
     return response[0].first;
@@ -90,11 +88,11 @@ int executeCmd(const char* path, char** args)
     {
         execv(path, args);
 
-        // execv only retruns on error
-        auto error = errno;
+        // execv only retruns on err
+        auto err = errno;
         auto command = buildCommandStr(path, args);
-        log<level::ERR>("Failed to execute command", entry("ERRNO=%d", error),
-                        entry("COMMAND=%s", command.c_str()));
+        error("Failed ({ERRNO}) to execute command: {COMMAND}", "ERRNO", err,
+              "COMMAND", command);
         return -1;
     }
     else if (pid > 0)
@@ -102,23 +100,20 @@ int executeCmd(const char* path, char** args)
         int status;
         if (waitpid(pid, &status, 0) < 0)
         {
-            auto error = errno;
-            log<level::ERR>("waitpid error", entry("ERRNO=%d", error));
+            error("Error ({ERRNO}) during waitpid.", "ERRNO", errno);
             return -1;
         }
         else if (WEXITSTATUS(status) != 0)
         {
             auto command = buildCommandStr(path, args);
-            log<level::ERR>("Error occurred when executing command",
-                            entry("STATUS=%d", status),
-                            entry("COMMAND=%s", command.c_str()));
+            error("Error ({STATUS}) occurred when executing command: {COMMAND}",
+                  "STATUS", status, "COMMAND", command);
             return -1;
         }
     }
     else
     {
-        auto error = errno;
-        log<level::ERR>("Error occurred during fork", entry("ERRNO=%d", error));
+        error("Error ({ERRNO}) during fork.", "ERRNO", errno);
         return -1;
     }
 

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a22ebcff_5b217d66",
+        "filename": "item_updater.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-08-27T15:00:03Z",
+      "side": 1,
+      "message": "Seems the deleteImageManagerObject() function already removes the files in tmp, so we probably don\u0027t need to call this?",
+      "revId": "d56e39face362a246b7e08e01c7cfbf10c04b925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

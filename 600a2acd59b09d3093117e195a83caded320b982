@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "8eb5fa2c_37000f58",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-08-27T02:01:45Z",
+      "side": 1,
+      "message": "Sorry for the misleading information.\n\nI actually misunderstood the question \"Can we do this part first?\" that I thought it was suggesting to make the commit before https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/45669/\n\nNow I understand it\u0027s suggesting to make the bitbake change first, and yup, let\u0027s do this.",
+      "parentUuid": "ab20b3ee_3dcd16c2",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 16
+      },
+      "revId": "600a2acd59b09d3093117e195a83caded320b982",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33fcf141_1205951d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2

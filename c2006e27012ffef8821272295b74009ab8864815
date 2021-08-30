@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "430f7bc5_7e0b54d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-08-30T18:42:10Z",
+      "side": 1,
+      "message": "Thanks for the commit Zami! \nWe follow https://chris.beams.io/posts/git-commit/ for commit msgs. \n    Separate subject from body with a blank line\n    Limit the subject line to 50 characters\n    Capitalize the subject line\n    Do not end the subject line with a period\n    Use the imperative mood in the subject line\n    Wrap the body at 72 characters\n    Use the body to explain what and why vs. how\n\nCould you wrap this subject like at 50 chars and include an empty line after it? \n\nE.g. \nitem updater: erase(): remove uploaded images\n\nRemove uploaded images and their /tmp/images/ directory on erase().\n\nThis method...",
+      "revId": "c2006e27012ffef8821272295b74009ab8864815",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9277b43d_ee073958",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-08-30T18:42:10Z",
+      "side": 1,
+      "message": "nitpick: spelling",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "c2006e27012ffef8821272295b74009ab8864815",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

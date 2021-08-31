@@ -16,6 +16,24 @@
       "revId": "1037820bf84ef563ed12a05bc02706f45e92f439",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a987e8a5_679884c1",
+        "filename": "image_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-31T21:17:41Z",
+      "side": 1,
+      "message": "Correct.  I switched this to a non-throwing version.  It gives a std::optional.",
+      "parentUuid": "a3f30989_776340ea",
+      "revId": "1037820bf84ef563ed12a05bc02706f45e92f439",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

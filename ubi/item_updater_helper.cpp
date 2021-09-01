@@ -77,7 +77,7 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     }
     catch (const SdBusError& e)
     {
-        error("Failed to update u-boot env variables", "VERSIONID", versionid);
+        error("Failed to update u-boot env variables", "VERSIONID", versionId);
     }
 }
 

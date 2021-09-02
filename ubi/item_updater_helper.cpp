@@ -15,7 +15,6 @@ namespace updater
 {
 
 PHOSPHOR_LOG2_USING;
-using sdbusplus::exception::SdBusError;
 
 void Helper::setEntry(const std::string& entryId, uint8_t value)
 {
@@ -75,7 +74,7 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     {
         bus.call_noreply(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Failed to update u-boot env variables", "VERSIONID", versionId);
     }
@@ -92,7 +91,7 @@ void Helper::mirrorAlt()
     {
         bus.call_noreply(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Failed to copy U-Boot to alternate chip: {ERROR}", "ERROR", e);
     }

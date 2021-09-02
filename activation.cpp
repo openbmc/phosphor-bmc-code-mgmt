@@ -31,7 +31,6 @@ namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using sdbusplus::exception::SdBusError;
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
@@ -47,7 +46,7 @@ void Activation::subscribeToSystemdSignals()
     {
         this->bus.call_noreply(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         if (e.name() != nullptr &&
             strcmp("org.freedesktop.systemd1.AlreadySubscribed", e.name()) == 0)
@@ -73,7 +72,7 @@ void Activation::unsubscribeFromSystemdSignals()
     {
         this->bus.call_noreply(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Error unsubscribing from systemd signals: {ERROR}", "ERROR", e);
     }
@@ -239,7 +238,7 @@ void Activation::deleteImageManagerObject()
     {
         bus.call_noreply(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Error deleting image ({PATH}) from image manager: {ERROR}",
               "PATH", path, "ERROR", e);
@@ -374,7 +373,7 @@ bool Activation::checkApplyTimeImmediate()
                 return true;
             }
         }
-        catch (const SdBusError& e)
+        catch (const sdbusplus::exception::exception& e)
         {
             error("Error in getting ApplyTime: {ERROR}", "ERROR", e);
         }
@@ -393,7 +392,7 @@ void Activation::flashWriteHost()
     {
         auto reply = bus.call(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Error in trying to upgrade Host Bios: {ERROR}", "ERROR", e);
         report<InternalFailure>();
@@ -460,7 +459,7 @@ void Activation::rebootBmc()
     {
         auto reply = bus.call(method);
     }
-    catch (const SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         alert("Error in trying to reboot the BMC. The BMC needs to be manually "
               "rebooted to complete the image activation. {ERROR}",

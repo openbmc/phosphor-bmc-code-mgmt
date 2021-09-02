@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e1aac30_bf41c0ca",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-09-02T06:26:05Z",
+      "side": 1,
+      "message": "I have a little concern about deleteImageManagerObject() being called twice.\n\nE.g. in the below code path:\n\n1. When the BIOS is updated successfully, the deleteImageManagerObject() is called:\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/activation.cpp#L423\n2. Then it schedules a erase() call in the event loop to delete the activation:\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/activation.cpp#L437\n\nThen the code runs here, and it calls deleteImageManagerObject() again.",
+      "revId": "a8f6e8c7f855a443fbdfe4208a6d5bd79fd92a76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -32,7 +32,7 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
             return std::string{};
         }
     }
-    catch (const sdbusplus::exception::SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
               "ERROR", e, "PATH", path, "INTERFACE", interface);

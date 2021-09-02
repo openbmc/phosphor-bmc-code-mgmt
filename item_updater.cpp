@@ -578,7 +578,7 @@ void ItemUpdater::setBMCInventoryPath()
             bmcInventoryPath = result.front();
         }
     }
-    catch (const sdbusplus::exception::SdBusError& e)
+    catch (const sdbusplus::exception::exception& e)
     {
         error("Error in mapper GetSubTreePath: {ERROR}", "ERROR", e);
         return;

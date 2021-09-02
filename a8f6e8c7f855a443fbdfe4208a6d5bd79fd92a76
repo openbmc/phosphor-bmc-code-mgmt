@@ -16,6 +16,24 @@
       "revId": "a8f6e8c7f855a443fbdfe4208a6d5bd79fd92a76",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37189d44_a22e7b55",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1001179
+      },
+      "writtenOn": "2021-09-02T14:21:44Z",
+      "side": 1,
+      "message": "I see. Would it help to add a conditional to check if the image is in the upload directory to ensure this line will not be called on an image that has been activated?",
+      "parentUuid": "0e1aac30_bf41c0ca",
+      "revId": "a8f6e8c7f855a443fbdfe4208a6d5bd79fd92a76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

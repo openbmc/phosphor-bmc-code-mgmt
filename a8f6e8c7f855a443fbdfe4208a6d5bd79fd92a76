@@ -34,6 +34,24 @@
       "revId": "a8f6e8c7f855a443fbdfe4208a6d5bd79fd92a76",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fc6c6e8_075cf47b",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-09-03T04:50:31Z",
+      "side": 1,
+      "message": "It could do.\nOr you may consider moving the deleteImageManagerObject() call into erase() here",
+      "parentUuid": "37189d44_a22e7b55",
+      "revId": "a8f6e8c7f855a443fbdfe4208a6d5bd79fd92a76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

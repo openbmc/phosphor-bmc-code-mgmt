@@ -192,17 +192,6 @@ int Manager::processImage(const std::string& tarFilePath)
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
 
-    if (fs::exists(imageDirPath))
-    {
-        fs::remove_all(imageDirPath);
-    }
-
-    // Rename the temp dir to image dir
-    fs::rename(tmpDirPath, imageDirPath);
-
-    // Clear the path, so it does not attemp to remove a non-existing path
-    tmpDirToRemove.path.clear();
-
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
     // This service only manages the uploaded versions, and there could be
@@ -213,6 +202,9 @@ int Manager::processImage(const std::string& tarFilePath)
         std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
     if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
     {
+        // Rename the temp dir to image dir
+        fs::rename(tmpDirPath, imageDirPath);
+
         // Create Version object
         auto versionPtr = std::make_unique<Version>(
             bus, objPath, version, purpose, extendedVersion,
@@ -225,10 +217,16 @@ int Manager::processImage(const std::string& tarFilePath)
     }
     else
     {
+        if (fs::exists(tmpDirPath))
+        {
+            // remove the tmpdir because that image is already present
+            fs::remove_all(tmpDirPath);
+        }
         info("Software Object with the same version ({VERSION}) already exists",
              "VERSION", id);
-        fs::remove_all(imageDirPath);
     }
+    // Clear the path, so it does not attemp to remove a non-existing path
+    tmpDirToRemove.path.clear();
     return 0;
 }
 

@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13ac0622_a8187fee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-09-13T20:59:20Z",
+      "side": 1,
+      "message": "nit: \"trying\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 8
+      },
+      "revId": "566b7b8b834dfffb6deaf7a1a58576e0f76edead",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a39b9bab_57f17fb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-09-13T20:59:20Z",
+      "side": 1,
+      "message": "I think I understand the issue, if you have a version in Ready state, with the image files in /tmp/images/\u003cid\u003e, and you upload that same version again, your image files will be deleted because the duplicate version removes the /tmp/images/\u003cid\u003e directory, so we want to keep the temporary directory name until we know it\u0027s a unique version.",
+      "revId": "566b7b8b834dfffb6deaf7a1a58576e0f76edead",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

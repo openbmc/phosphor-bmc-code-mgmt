@@ -63,6 +63,24 @@
       "revId": "566b7b8b834dfffb6deaf7a1a58576e0f76edead",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc58034c_7280303f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001074
+      },
+      "writtenOn": "2021-09-14T05:05:00Z",
+      "side": 1,
+      "message": "yes, your understanding is exactly correct.",
+      "parentUuid": "a39b9bab_57f17fb1",
+      "revId": "566b7b8b834dfffb6deaf7a1a58576e0f76edead",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

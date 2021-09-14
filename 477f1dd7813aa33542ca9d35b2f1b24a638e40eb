@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c05dce3_9659f95a",
+        "filename": "image_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-09-14T05:31:05Z",
+      "side": 1,
+      "message": "I think you could put the `tmpDirToRemove.path.clear();` here, and this is the valid case.",
+      "revId": "477f1dd7813aa33542ca9d35b2f1b24a638e40eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42408d19_04788dd1",
+        "filename": "image_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-09-14T05:31:05Z",
+      "side": 1,
+      "message": "And then you do not have to delete the tmpDirPath here, because tmpDirToRemove will remove it for you.",
+      "revId": "477f1dd7813aa33542ca9d35b2f1b24a638e40eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b506a76a_13f66f55",
+        "filename": "image_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-09-14T05:31:05Z",
+      "side": 1,
+      "message": "As suggested above, move this into the above \"if\".",
+      "revId": "477f1dd7813aa33542ca9d35b2f1b24a638e40eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

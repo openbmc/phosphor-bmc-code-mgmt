@@ -29,7 +29,7 @@ int main()
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }
-    catch (std::exception& e)
+    catch (const std::exception& e)
     {
         lg2::error("Error in event loop: {ERROR}", "ERROR", e);
         return -1;

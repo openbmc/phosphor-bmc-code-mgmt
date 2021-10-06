@@ -74,7 +74,7 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
             iarchive(cereal::make_nvp(priorityName, priority));
             return true;
         }
-        catch (cereal::Exception& e)
+        catch (const cereal::Exception& e)
         {
             fs::remove_all(path);
         }
@@ -134,7 +134,7 @@ bool restorePurpose(const std::string& versionId, VersionPurpose& purpose)
             iarchive(cereal::make_nvp(purposeName, purpose));
             return true;
         }
-        catch (cereal::Exception& e)
+        catch (const cereal::Exception& e)
         {
             fs::remove_all(path);
         }

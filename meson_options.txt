@@ -109,3 +109,8 @@ option(
     value: '/xyz/openbmc_project/software/bios_active',
     description: 'The BIOS DBus object path.',
 )
+
+option(
+    'usb-code-update', type: 'feature',
+    description: 'Firmware update via USB.',
+)

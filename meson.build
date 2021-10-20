@@ -326,3 +326,7 @@ if not build_tests.disabled()
         )
 )
 endif
+
+if get_option('usb-code-update').enabled()
+    subdir('usb')
+endif

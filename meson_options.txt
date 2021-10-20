@@ -25,6 +25,11 @@ option('verify-signature', type: 'feature', value: 'enabled',
 option('verify-full-signature', type: 'feature', value: 'enabled',
     description: 'Enable image full signature validation.')
 
+option(
+    'usb-code-update', type: 'feature', value: 'enabled',
+    description: 'Firmware update via USB.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed', type: 'integer',

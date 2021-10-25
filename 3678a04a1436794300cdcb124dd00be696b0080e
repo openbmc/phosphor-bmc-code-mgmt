@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "721dd284_0f992201",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-10-25T08:53:47Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4f3d845_98a3b885",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-10-25T08:53:47Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 58,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "929bfe0c_f9f047b1",
+        "filename": "subprojects/CLI11.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-10-25T08:53:47Z",
+      "side": 1,
+      "message": "Will this cause unexpected build errors in case a revision breaks the build?",
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

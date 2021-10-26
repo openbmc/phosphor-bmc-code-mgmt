@@ -1,0 +1,2 @@
+SUBSYSTEM=="block", KERNEL=="sda1", RUN+="/usr/bin/usb_update.sh %E{ID_FS_LABEL}"
+SUBSYSTEM=="block", KERNEL=="sdb1", RUN+="/usr/bin/usb_update.sh %E{ID_FS_LABEL}"

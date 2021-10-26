@@ -13,22 +13,23 @@ int main(int argc, char** argv)
     // Get a default event loop
     auto event = sdeventplus::Event::get_default();
 
-    std::string fileName{};
+    std::string deviceName{};
 
     CLI::App app{"Update the firmware of OpenBMC via USB app"};
-    app.add_option("-f,--fileName", fileName,
-                   "Get the name of the USB mount folder, eg: sda1, sdb1");
+    app.add_option("-d,--device", deviceName,
+                   "Get the name of the USB device name, eg: sda1, sdb1");
 
     CLI11_PARSE(app, argc, argv);
 
-    if (fileName.empty())
+    if (deviceName.empty())
     {
         lg2::error("The file name passed in is empty.");
         return -1;
     }
 
-    fs::path usbPath = fs::path{"/run/media/usb"} / fileName;
-    phosphor::usb::USBManager manager(bus, event, usbPath);
+    fs::path devicePath = fs::path{"/dev"} / deviceName;
+    fs::path usbPath = fs::path{"/run/media/usb"} / deviceName;
+    phosphor::usb::USBManager manager(bus, event, devicePath, usbPath);
 
     // Attach the bus to sd_event to service user requests
     bus.attach_event(event.get(), SD_EVENT_PRIORITY_NORMAL);

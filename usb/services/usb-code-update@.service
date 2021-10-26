@@ -1,0 +1,14 @@
+[Unit]
+Description=FW Code Update via USB %I
+BindsTo=dev-%i.device
+After=dev-%i.device
+Wants=xyz.openbmc_project.Software.Version.service
+After=xyz.openbmc_project.Software.Version.service
+Wants=xyz.openbmc_project.Software.BMC.Updater.service
+After=xyz.openbmc_project.Software.BMC.Updater.service
+
+[Service]
+Restart=no
+ExecStart=/usr/bin/phosphor-usb-code-update --device %i
+Type=simple
+RemainAfterExit=yes

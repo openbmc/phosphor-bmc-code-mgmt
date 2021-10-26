@@ -25,9 +25,10 @@ class USBManager
     USBManager& operator=(USBManager&&) = default;
 
     explicit USBManager(sdbusplus::bus::bus& bus, sdeventplus::Event& event,
-                        const fs::path& path) :
+                        const fs::path& devPath, const fs::path& usbPath) :
         bus(bus),
-        event(event), usbPath(path), isUSBCodeUpdate(false),
+        event(event), devicePath(devPath), usbPath(usbPath),
+        isUSBCodeUpdate(false),
         fwUpdateMatcher(bus,
                         MatchRules::interfacesAdded() +
                             MatchRules::path("/xyz/openbmc_project/software"),
@@ -75,7 +76,10 @@ class USBManager
     /** sd event handler. */
     sdeventplus::Event& event;
 
-    /** The USB path detected. */
+    /** The USB device path. */
+    const fs::path& devicePath;
+
+    /** The USB mount path. */
     const fs::path& usbPath;
 
     /** Indicates whether USB codeupdate is going on. */

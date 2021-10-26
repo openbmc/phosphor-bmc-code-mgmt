@@ -2,6 +2,8 @@
 
 #include "usb_manager.hpp"
 
+#include <sys/mount.h>
+
 namespace phosphor
 {
 namespace usb
@@ -10,8 +12,13 @@ namespace usb
 bool USBManager::run()
 {
     fs::path dir(usbPath);
-    if (!fs::exists(dir))
+    fs::create_directories(dir);
+
+    auto rc = mount(devicePath.c_str(), usbPath.c_str(), "vfat", 0, NULL);
+    if (rc)
     {
+        lg2::error("Error ({ERRNO}) occurred during the mount call", "ERRNO",
+                   errno);
         return false;
     }
 

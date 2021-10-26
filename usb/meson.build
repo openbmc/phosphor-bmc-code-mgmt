@@ -39,3 +39,21 @@ executable(
     install: true,
     install_dir: get_option('bindir')
 )
+
+systemd_system_unit_dir = dependency('systemd').get_pkgconfig_variable(
+    'systemdsystemunitdir',
+    define_variable: ['prefix', get_option('prefix')])
+udev_dir = dependency('udev').get_pkgconfig_variable(
+    'udev_dir',
+    define_variable: ['prefix', get_option('prefix')])
+
+install_data(
+    'services/usb-code-update@.service',
+    install_dir: systemd_system_unit_dir
+)
+
+install_data(
+    '70-bmc-usb.rules',
+    install_dir: udev_dir / 'rules.d'
+)
+

@@ -1,0 +1,2 @@
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="sda1", ENV{SYSTEMD_WANTS}="usb-code-update@sda1", TAG+="systemd"
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="sdb1", ENV{SYSTEMD_WANTS}="usb-code-update@sdb1", TAG+="systemd"

@@ -1,0 +1,2 @@
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="sda1", RUN+="/usr/bin/usb_update.sh sda1"
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="sdb1", RUN+="/usr/bin/usb_update.sh sdb1"

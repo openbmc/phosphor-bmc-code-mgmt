@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "7cc72a7a_0bbb715c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-10-26T03:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4f3d845_98a3b885",
+      "range": {
+        "startLine": 15,
+        "startChar": 58,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0969b981_25039595",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-10-26T03:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721dd284_0f992201",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "929bfe0c_f9f047b1",
         "filename": "subprojects/CLI11.wrap",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2021-10-25T08:53:47Z",
       "side": 1,
       "message": "Will this cause unexpected build errors in case a revision breaks the build?",
+      "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95d7b0ed_7f99baf6",
+        "filename": "subprojects/CLI11.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-10-26T03:02:14Z",
+      "side": 1,
+      "message": "Yes, It will try pkgconfig and cmake.",
+      "parentUuid": "929bfe0c_f9f047b1",
       "revId": "3678a04a1436794300cdcb124dd00be696b0080e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

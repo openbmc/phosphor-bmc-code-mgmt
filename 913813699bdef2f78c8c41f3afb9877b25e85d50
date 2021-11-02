@@ -22,6 +22,30 @@
       "revId": "913813699bdef2f78c8c41f3afb9877b25e85d50",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97520069_680f7ab2",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-02T02:32:54Z",
+      "side": 1,
+      "message": "Correct, will fix it",
+      "parentUuid": "66d14c32_12535058",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 45
+      },
+      "revId": "913813699bdef2f78c8c41f3afb9877b25e85d50",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

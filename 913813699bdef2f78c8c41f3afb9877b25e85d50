@@ -46,6 +46,29 @@
       "revId": "913813699bdef2f78c8c41f3afb9877b25e85d50",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15c6372b_57a3a0cb",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000400
+      },
+      "writtenOn": "2021-11-02T03:08:51Z",
+      "side": 1,
+      "message": "If this new feature is only used to update BMC fw, I think we should judge here that this tar is BMC fw rather than pnor/BIOS/PSU fw.",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 42
+      },
+      "revId": "913813699bdef2f78c8c41f3afb9877b25e85d50",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

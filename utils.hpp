@@ -9,6 +9,8 @@
 namespace utils
 {
 
+using PropertyValue = std::variant<std::string>;
+
 /**
  * @brief Get the bus service
  *
@@ -16,6 +18,36 @@ namespace utils
  **/
 std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
                        const std::string& interface);
+
+/** @brief Get property(type: variant)
+ *
+ *  @param[in] bus              -   bus handler
+ *  @param[in] objectPath       -   D-Bus object path
+ *  @param[in] interface        -   D-Bus interface
+ *  @param[in] propertyName     -   D-Bus property name
+ *
+ *  @return The value of the property(type: variant)
+ *
+ *  @throw sdbusplus::exception::exception when it fails
+ */
+const PropertyValue getProperty(sdbusplus::bus::bus& bus,
+                                const std::string& objectPath,
+                                const std::string& interface,
+                                const std::string& propertyName);
+
+/** @brief Set D-Bus property
+ *
+ *  @param[in] bus              -   bus handler
+ *  @param[in] objectPath       -   D-Bus object path
+ *  @param[in] interface        -   D-Bus interface
+ *  @param[in] propertyName     -   D-Bus property name
+ *  @param[in] value            -   The value to be set
+ *
+ *  @throw sdbusplus::exception::exception when it fails
+ */
+void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+                 const std::string& interface, const std::string& propertyName,
+                 const PropertyValue& value);
 
 /**
  * @brief Merge more files

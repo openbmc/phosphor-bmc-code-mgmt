@@ -10,6 +10,7 @@ endif
 source = [
     'usb_manager_main.cpp',
     'usb_manager.cpp',
+    '../utils.cpp',
     ]
 
 phosphor_logging_dep = dependency(
@@ -24,6 +25,7 @@ executable(
     dependencies: [
         CLI11_dep,
         phosphor_logging_dep,
+        sdbusplus_dep,
     ],
     install: true,
     install_dir: get_option('bindir')

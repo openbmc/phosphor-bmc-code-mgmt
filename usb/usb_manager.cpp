@@ -46,5 +46,79 @@ bool USBManager::run()
     return false;
 }
 
+void USBManager::setApplyTime()
+{
+    utils::PropertyValue value =
+        "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.OnReset";
+    constexpr auto objectPath = "/xyz/openbmc_project/software/apply_time";
+    constexpr auto interface = "xyz.openbmc_project.Software.ApplyTime";
+    constexpr auto propertyName = "RequestedApplyTime";
+    try
+    {
+        utils::setProperty(bus, objectPath, interface, propertyName, value);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to set RequestedApplyTime property, ERROR:{ERROR}",
+                   "ERROR", e.what());
+    }
+}
+
+void USBManager::setRequestedActivation(const std::string& path)
+{
+    utils::PropertyValue value =
+        "xyz.openbmc_project.Software.Activation.RequestedActivations.Active";
+    constexpr auto interface = "xyz.openbmc_project.Software.Activation";
+    constexpr auto propertyName = "RequestedActivation";
+    try
+    {
+        utils::setProperty(bus, path, interface, propertyName, value);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to set RequestedActivation property, ERROR:{ERROR}",
+                   "ERROR", e.what());
+    }
+
+    return;
+}
+
+void USBManager::updateActivation(sdbusplus::message::message& msg)
+{
+    std::map<std::string, std::map<std::string, std::variant<std::string>>>
+        interfaces;
+    sdbusplus::message::object_path path;
+    msg.read(path, interfaces);
+
+    constexpr auto imageInterface = "xyz.openbmc_project.Software.Activation";
+    constexpr auto readyPro =
+        "xyz.openbmc_project.Software.Activation.Activations.Ready";
+    for (auto& interface : interfaces)
+    {
+        if (interface.first != imageInterface)
+        {
+            continue;
+        }
+
+        try
+        {
+            auto propVal =
+                utils::getProperty(bus, path.str, imageInterface, "Activation");
+            const auto& imageProp = std::get<std::string>(propVal);
+            if (imageProp == readyPro && isUSBCodeUpdate)
+            {
+                setApplyTime();
+                setRequestedActivation(path.str);
+                event.exit(0);
+            }
+        }
+        catch (const std::exception& e)
+        {
+            lg2::error("Failed in getting Activation status, ERROR:{ERROR}",
+                       "ERROR", e.what());
+        }
+    }
+}
+
 } // namespace usb
 } // namespace phosphor

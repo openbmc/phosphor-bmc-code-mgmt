@@ -13,6 +13,14 @@ source = [
     '../utils.cpp',
     ]
 
+sdeventplus_dep = dependency(
+    'sdeventplus',
+    fallback: [
+        'sdeventplus',
+        'sdeventplus_dep'
+    ],
+)
+
 phosphor_logging_dep = dependency(
     'phosphor-logging',
     fallback: ['phosphor-logging', 'phosphor_logging_dep'],
@@ -26,6 +34,7 @@ executable(
         CLI11_dep,
         phosphor_logging_dep,
         sdbusplus_dep,
+        sdeventplus_dep,
     ],
     install: true,
     install_dir: get_option('bindir')

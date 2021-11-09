@@ -2,10 +2,16 @@
 
 #include <CLI/CLI.hpp>
 #include <phosphor-logging/lg2.hpp>
+#include <sdeventplus/event.hpp>
 
 int main(int argc, char** argv)
 {
     namespace fs = std::filesystem;
+    // Dbus constructs
+    auto bus = sdbusplus::bus::new_default();
+
+    // Get a default event loop
+    auto event = sdeventplus::Event::get_default();
 
     std::string fileName{};
 
@@ -22,14 +28,11 @@ int main(int argc, char** argv)
     }
 
     fs::path usbPath = fs::path{"/run/media/usb"} / fileName;
-    phosphor::usb::USBManager manager(usbPath);
+    phosphor::usb::USBManager manager(bus, event, usbPath);
 
-    if (!manager.run())
-    {
-        lg2::error("Failed to FW Update via USB, usbPath:{USBPATH}", "USBPATH",
-                   usbPath);
-        return -1;
-    }
+    // Attach the bus to sd_event to service user requests
+    bus.attach_event(event.get(), SD_EVENT_PRIORITY_NORMAL);
+    event.loop();
 
     return 0;
 }

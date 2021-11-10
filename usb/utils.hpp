@@ -11,7 +11,7 @@ namespace utils
 {
 constexpr auto DBUS_PROPERTY_IFACE = "org.freedesktop.DBus.Properties";
 
-using PropertyValue = std::variant<std::string>;
+using PropertyValue = std::variant<std::string, bool>;
 
 /**
  *  @class DBusHandler

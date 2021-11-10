@@ -9,7 +9,7 @@
 namespace utils
 {
 
-using PropertyValue = std::variant<std::string>;
+using PropertyValue = std::variant<std::string, bool>;
 
 /**
  * @brief Get the bus service

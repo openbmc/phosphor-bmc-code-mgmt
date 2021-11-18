@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9593c737_e87115a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T21:56:06Z",
+      "side": 1,
+      "message": "The udev rules do not automatically mount the usb device, therefore, need to add an additional function to create the mount directory and mount the device on that directory.\nEx:\n$ mkdir /media/usb/\n$ mount /dev/sda1 /media/usb/\n$ systemctl start USBCodeUpdate@usb.service",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10335ff6_2a9782e4",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -31,6 +48,75 @@
       "side": 1,
       "message": "Sorry, Bruce, We don’t have machine testing, we need IBM to help test it.",
       "parentUuid": "10335ff6_2a9782e4",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b05c7afe_7033a0c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T21:56:06Z",
+      "side": 1,
+      "message": "I\u0027ll be helping to test this.",
+      "parentUuid": "d0c5ee81_14a73fd8",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7020896_31241143",
+        "filename": "usb/usb_code_update_main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T21:56:06Z",
+      "side": 1,
+      "message": "Use \"MEDIA_DIR\" variable instead of \"/media/\" since it\u0027s configurable.",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6414fe58_5f9175f5",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T21:56:06Z",
+      "side": 1,
+      "message": "The BMC has \u0027cp\u0027 under /bin/cp, not /usr/bin/cp. Actually, could you use the c++ filesystem::copy_file() api? We try not to use system() calls in openbmc in general. Since it\u0027ll be an api call, there won\u0027t be a need to have a separate copyTar() function, you can call copy_file() from the run() function below.",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "951e2188_e3150e3c",
+        "filename": "usb/usb_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T21:56:06Z",
+      "side": 1,
+      "message": "\u0027/tmp/images\u0027 is a meson option that can be changed, so let\u0027s put in the comment \"image directory\" instead of \"/tmp/images\"",
       "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

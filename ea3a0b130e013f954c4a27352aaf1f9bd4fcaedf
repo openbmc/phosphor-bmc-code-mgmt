@@ -16,6 +16,24 @@
       "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0c5ee81_14a73fd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-18T09:44:27Z",
+      "side": 1,
+      "message": "Sorry, Bruce, We don’t have machine testing, we need IBM to help test it.",
+      "parentUuid": "10335ff6_2a9782e4",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

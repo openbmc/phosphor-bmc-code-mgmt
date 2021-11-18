@@ -16,6 +16,23 @@
       "revId": "9123313a9c55bf531bcfd9c7458e8905e87589da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c942763a_23202eb3",
+        "filename": "usb/70-bmc-usb.rules",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T22:11:22Z",
+      "side": 1,
+      "message": "I read that ID_FS_LABEL should be the device path, are you expecting it should be like \u0027/dev/sda1\u0027? Maybe the variable needs to be specified differently since it\u0027s translating to RED/HAT/ENT for some reason. This is what I see on p10bmc:\n\nNov 18 21:20:17 p10bmc kernel:  sda: sda1\nNov 18 21:20:17 p10bmc kernel: sd 0:0:0:0: [sda] Attached SCSI removable disk\nNov 18 21:20:17 p10bmc systemd[1]: Starting FW Code Update via USB RED/HAT/ENT...\nNov 18 21:20:17 p10bmc phosphor-usb-code-update[1844]: Failed to FW Update via USB, usbPath:/media/RED-HAT-ENT\nNov 18 21:20:17 p10bmc systemd[1]: USBCodeUpdate@RED-HAT-ENT.service: Deactivated successfully.\nNov 18 21:20:17 p10bmc systemd[1]: Finished FW Code Update via USB RED/HAT/ENT.",
+      "revId": "9123313a9c55bf531bcfd9c7458e8905e87589da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

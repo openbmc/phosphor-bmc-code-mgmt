@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "997d7881_33a39f0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-18T22:03:42Z",
+      "side": 1,
+      "message": "The signal doesn\u0027t seem to be triggering. Could you verify this, perhaps by copying a tarball file to /media/usb directory? Traces:\n\nroot@p10bmc:~# systemctl start USBCodeUpdate@usb.service\nNov 18 21:34:53 p10bmc systemd[1]: Starting FW Code Update via USB usb...\nNov 18 21:35:01 p10bmc phosphor-version-software-manager[547]: Untaring /tmp/images/obmc-phosphor-image-p10bmc.ext4.mmc.tar to /tmp/images/imagedG6tVK\nNov 18 21:35:02 p10bmc systemd[1]: USBCodeUpdate@usb.service: Deactivated successfully.\nNov 18 21:35:02 p10bmc systemd[1]: Finished FW Code Update via USB usb.\n\n\nNo other traces after that, code update didn\u0027t start, image still in tmp:\n\nroot@p10bmc:~# ls /tmp/images/\n2af8582f",
+      "revId": "02a0f49436c621a25b27d53e5255e34da68178db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff9321b5_5a8f2f17",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2

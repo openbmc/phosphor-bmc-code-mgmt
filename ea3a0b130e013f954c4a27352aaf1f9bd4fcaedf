@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa0d40c7_2845badc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-19T10:08:45Z",
+      "side": 1,
+      "message": "I see, I will update this logic to this patch:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/48236",
+      "parentUuid": "9593c737_e87115a5",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10335ff6_2a9782e4",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "0d438d2d_54610b9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-19T10:08:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b05c7afe_7033a0c0",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7020896_31241143",
         "filename": "usb/usb_code_update_main.cpp",
         "patchSetId": 3
@@ -86,6 +122,24 @@
       "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66993767_3e1fbc03",
+        "filename": "usb/usb_code_update_main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-19T10:08:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7020896_31241143",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "1128c101_0dd17fcd",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-19T10:08:45Z",
+      "side": 1,
+      "message": "Correct.\nDone",
+      "parentUuid": "6414fe58_5f9175f5",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "951e2188_e3150e3c",
         "filename": "usb/usb_manager.hpp",
         "patchSetId": 3
@@ -120,6 +192,24 @@
       "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2e29c9a_b15f92e4",
+        "filename": "usb/usb_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-19T10:08:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "951e2188_e3150e3c",
+      "revId": "ea3a0b130e013f954c4a27352aaf1f9bd4fcaedf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

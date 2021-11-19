@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47c3d235_e3241985",
+        "filename": "utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T20:56:03Z",
+      "side": 1,
+      "message": "Thinking more about this commmit, I\u0027m not sure it\u0027s worth having these new functions because they only apply to string properties. Ideally a generic set/get property function would be a templated function that can set/get any type of property type variant. Seems in your usb code you only do one get and one set call, so maybe make those calls in the usb code instead of adding these get/set property functions?",
+      "revId": "a3b6ff5b8375ee942bad12792360fea2005e5bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "222bd301_1f27a82b",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T21:08:03Z",
+      "side": 1,
+      "message": "I\u0027m going to add a coment to the design doc to say that usb code update would not reboot the bmc, so that we don\u0027t get into a potential loop if the key is left inserted. That\u0027d require that before we set the RequestedActivation property, we set the ApplyTime property to OnReset.",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ee09696_a26a468a",
         "filename": "usb/usb_manager.cpp",
         "patchSetId": 3

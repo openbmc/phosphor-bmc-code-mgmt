@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32093dd4_d013f490",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T21:01:30Z",
+      "side": 1,
+      "message": "For some reason the imageProp is empty (I put a debug trace to print it). Could you try to verify this? You should be able to trigger the usb app manually by pointing it to a directory in the bmc where you copy a tarball file.",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee09696_a26a468a",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T21:01:30Z",
+      "side": 1,
+      "message": "Don\u0027t exit here because the Activation interface may not be included when the first group of interfaces are added, first the Version interface is added, then later Activation. Instead exit when Activation has been found and setRequestedActivation() is called.",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

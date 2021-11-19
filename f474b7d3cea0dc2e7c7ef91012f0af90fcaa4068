@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58764317_1f04ce23",
+        "filename": "usb/usb_code_update_main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T20:49:30Z",
+      "side": 1,
+      "message": "Because the usb script now has the mount directory hard-coded to /media/run/ in commit https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/48236 , we\u0027ll need to hard-code that /media/run/ path here, because MEDIA_DIR can be /media on some systems and /media/run on others.",
+      "revId": "f474b7d3cea0dc2e7c7ef91012f0af90fcaa4068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e24ec25_238c6bc4",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-19T20:49:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure why the copy_file() command is failing even though a tar file exists:\n\nNov 19 15:59:54 p10bmc phosphor-usb-code-update[1223]: Error when copying /media/sda1/obmc-phosphor-image-p10bmc.ext4.mmc.tar to /tmp/images: filesystem error: cannot copy file: Operation not supported [/media/sda1/obmc-phosphor-image-p10bmc.ext4.mmc.tar] [/tmp/images]\n\nroot@p10bmc:~# ls -l /media/sda1/obmc-phosphor-image-p10bmc.ext4.mmc.tar\n-rwxr-xr-x    1 root     root     225894400 Nov  5 14:44 /media/sda1/obmc-phosphor-image-p10bmc.ext4.mmc.tar\n\n\nCan you check it out? You should be able to manually call this app and specify a directory where a tarball file exists.",
+      "revId": "f474b7d3cea0dc2e7c7ef91012f0af90fcaa4068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

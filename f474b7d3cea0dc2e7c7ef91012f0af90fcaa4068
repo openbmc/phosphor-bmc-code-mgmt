@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ab5f7f78_04db9d89",
+        "filename": "usb/usb_code_update_main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:03:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58764317_1f04ce23",
+      "revId": "f474b7d3cea0dc2e7c7ef91012f0af90fcaa4068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e24ec25_238c6bc4",
         "filename": "usb/usb_manager.cpp",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "f474b7d3cea0dc2e7c7ef91012f0af90fcaa4068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8b8ef2c_b540fa20",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:03:09Z",
+      "side": 1,
+      "message": "Yes, I checked it out and updated it.\nAlso, I tested it and passed.",
+      "parentUuid": "7e24ec25_238c6bc4",
+      "revId": "f474b7d3cea0dc2e7c7ef91012f0af90fcaa4068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

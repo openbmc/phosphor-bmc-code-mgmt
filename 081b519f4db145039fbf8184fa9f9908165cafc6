@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6f82d08a_f425008d",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:05:15Z",
+      "side": 1,
+      "message": "Yeah, The code is wrong, and I have updated it",
+      "parentUuid": "32093dd4_d013f490",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "222bd301_1f27a82b",
         "filename": "usb/usb_manager.cpp",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2d08dc4b_5dd99708",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:05:15Z",
+      "side": 1,
+      "message": "Sure, I added a method to set ApplyTime property to OnReset.",
+      "parentUuid": "222bd301_1f27a82b",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ee09696_a26a468a",
         "filename": "usb/usb_manager.cpp",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2021-11-19T21:01:30Z",
       "side": 1,
       "message": "Don\u0027t exit here because the Activation interface may not be included when the first group of interfaces are added, first the Version interface is added, then later Activation. Instead exit when Activation has been found and setRequestedActivation() is called.",
+      "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dd8b890_a65cd00e",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:05:15Z",
+      "side": 1,
+      "message": "Correct.\nMoved to L: 85",
+      "parentUuid": "8ee09696_a26a468a",
       "revId": "081b519f4db145039fbf8184fa9f9908165cafc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

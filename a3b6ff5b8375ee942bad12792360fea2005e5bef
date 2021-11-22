@@ -16,6 +16,24 @@
       "revId": "a3b6ff5b8375ee942bad12792360fea2005e5bef",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f902b25_6d814bf8",
+        "filename": "utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-11-22T05:04:01Z",
+      "side": 1,
+      "message": "I don’t think so. \nFor the set/get property functions, it is everywhere in a repo.\neg (https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/activation.cpp#L361 ),\nwe define it as a general interface for direct use by the caller.",
+      "parentUuid": "47c3d235_e3241985",
+      "revId": "a3b6ff5b8375ee942bad12792360fea2005e5bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

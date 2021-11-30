@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa9eca35_8f7047a3",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-30T22:18:07Z",
+      "side": 1,
+      "message": "I\u0027m seeing this usb app start the activation even if i manually copy a tarball to /tmp/images. Would it make sense to set isUSBCodeUpdate to false, or perhaps remove the match, or exit the app, so that it doesn\u0027t trigger anymore?",
+      "revId": "3995447fbb17497459a4d96c0ed03b9ad192d27a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

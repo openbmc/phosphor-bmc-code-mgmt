@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60691005_0069389f",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-30T22:14:54Z",
+      "side": 1,
+      "message": "syntax error, Need a space here between the quote and square bracket: \n| -if [ ! -d \"${usb_dir}\"]; then\n| +if [ ! -d \"${usb_dir}\" ]; then",
+      "range": {
+        "startLine": 6,
+        "startChar": 21,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "453b2b7d3f19a3e4556851b66ef8a83131286d4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8cfede0_fd489ca1",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-30T22:14:54Z",
+      "side": 1,
+      "message": "We can wait for the service to finish and exit, no reason to do a --no-block?",
+      "range": {
+        "startLine": 12,
+        "startChar": 10,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "453b2b7d3f19a3e4556851b66ef8a83131286d4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2122c9e_04543492",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-30T22:14:54Z",
+      "side": 1,
+      "message": "Also I\u0027m seeing the service start twice for some reason in the middle of the update, I put a debug trace in this script but doesn\u0027t seem this script is calling the service twice. I\u0027ll do some more debugging.\n\nNov 30 21:50:05 p10bmc systemd[1]: Starting FW Code Update via USB sda1...\nNov 30 21:50:17 p10bmc systemd[1]: Starting Write image 7637c6d0 to BMC storage...\nNov 30 21:50:17 p10bmc systemd[1]: USBCodeUpdate@sda1.service: Deactivated successfully.\nNov 30 21:50:17 p10bmc systemd[1]: Finished FW Code Update via USB sda1.\nNov 30 21:50:56 p10bmc obmc-flash-bmc[1785]: 437384+0 records out\nNov 30 21:50:58 p10bmc systemd[1]: Starting FW Code Update via USB sda1...\nNov 30 21:50:59 p10bmc systemd[1]: Finished Write image 7637c6d0 to BMC storage.\nNov 30 21:51:00 p10bmc phosphor-version-software-manager[549]: Software Object with the same version (7637c6d0) already exists",
+      "revId": "453b2b7d3f19a3e4556851b66ef8a83131286d4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

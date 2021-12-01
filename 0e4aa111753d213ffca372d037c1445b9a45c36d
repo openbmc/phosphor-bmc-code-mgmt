@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b280f4e8_ec800da8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-01T02:47:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7cd6bb2_7ae8df74",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "0e4aa111753d213ffca372d037c1445b9a45c36d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fae9095_3c4cbee0",
         "filename": "usb/usb_code_update_main.cpp",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "0e4aa111753d213ffca372d037c1445b9a45c36d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f7643c9_6983880f",
+        "filename": "usb/usb_code_update_main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-01T02:47:33Z",
+      "side": 1,
+      "message": "`lg2::info` is better.",
+      "parentUuid": "4fae9095_3c4cbee0",
+      "revId": "0e4aa111753d213ffca372d037c1445b9a45c36d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

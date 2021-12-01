@@ -16,6 +16,24 @@
       "revId": "3995447fbb17497459a4d96c0ed03b9ad192d27a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd48625_9639a220",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-01T01:59:05Z",
+      "side": 1,
+      "message": "I added `isUSBCodeUpdate \u003d false` here.\nBut I am a bit confused, because I added `event.exit(0)`, so I think it will exit the usb app directly?",
+      "parentUuid": "fa9eca35_8f7047a3",
+      "revId": "3995447fbb17497459a4d96c0ed03b9ad192d27a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

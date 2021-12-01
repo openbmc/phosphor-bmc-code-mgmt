@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d6fe4cd_c3ba9a0e",
+        "filename": "utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-12-01T02:33:02Z",
+      "side": 1,
+      "message": "Have we investigated sdbusplus::asio::getProperty ?",
+      "revId": "ea4c8c8f0d0aa8f40a53343fddf90e5d7f1dd16f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

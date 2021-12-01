@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "993dcbb5_5e71582f",
+        "filename": "usb/70-bmc-usb.rules",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-01T22:45:21Z",
+      "side": 1,
+      "message": "This seems to trigger on unplug too, we may need to add a \"ACTION\u003d\u003d\"add\"\" but let me try and confirm.",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb0e5fb6_8012a29a",
+        "filename": "usb/services/USBCodeUpdate@.service",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-01T22:45:21Z",
+      "side": 1,
+      "message": "The systemd service files in the bmc appear they\u0027re all lower case. Let\u0027s change this file name to something like \u0027usb-code-update@.service\u0027",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d787f16a_8e3a5287",
+        "filename": "usb/services/USBCodeUpdate@.service",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-01T22:45:21Z",
+      "side": 1,
+      "message": "oneshot is for a short running command, so the service is timing out because it doesn\u0027t return until the activation is triggered, then it\u0027s restarted, please change to simple and add remain after exit so that it does not run again:\n\nType\u003dsimple\nRemainAfterExit\u003dyes",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca513c55_3b2776d0",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-01T22:45:21Z",
+      "side": 1,
+      "message": "For some reason the usb device is not mounted when it\u0027s called from the udev rules when key is inserted, but it\u0027s mounted when the usb_update.sh is called manually from the bmc command line. I\u0027ve put some debug echos and mount does not fail but not sure why it doesn\u0027t mount. Need to do some more debug here.",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

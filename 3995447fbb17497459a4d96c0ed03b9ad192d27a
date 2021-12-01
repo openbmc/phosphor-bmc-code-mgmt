@@ -34,6 +34,24 @@
       "revId": "3995447fbb17497459a4d96c0ed03b9ad192d27a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61d372fc_2cc39370",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-01T22:40:25Z",
+      "side": 1,
+      "message": "I found the issue, is that if the usb service file does not exit because for example \"Same version exists\", then the usb app never activates and continues to wait for a signal. I think we can remove the isUSBCodeUpdate\u003dfalse, but let me finish some more bad path testing.",
+      "parentUuid": "8cd48625_9639a220",
+      "revId": "3995447fbb17497459a4d96c0ed03b9ad192d27a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

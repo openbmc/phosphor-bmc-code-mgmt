@@ -139,6 +139,24 @@
       "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ea10da1_a474425a",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-02T21:40:30Z",
+      "side": 1,
+      "message": "I\u0027m testing a theory of having udev call systemcl start usb-code-update@.service and doing the mount from the usb manager app instead of a script.",
+      "parentUuid": "65875e03_aef6b413",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

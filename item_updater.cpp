@@ -363,7 +363,11 @@ void ItemUpdater::erase(std::string entryId)
     else
     {
         removeAssociations(iteratorActivations->second->path);
-        iteratorActivations->second->deleteImageManagerObject();
+        auto tempImageDir = fs::path{IMG_UPLOAD_DIR} / entryId;
+        if (fs::exists(tempImageDir))
+        {
+            iteratorActivations->second->deleteImageManagerObject();
+        }
         this->activations.erase(entryId);
     }
     ItemUpdater::resetUbootEnvVars();

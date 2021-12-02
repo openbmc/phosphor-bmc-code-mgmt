@@ -363,7 +363,40 @@ void ItemUpdater::erase(std::string entryId)
     else
     {
         removeAssociations(iteratorActivations->second->path);
-        iteratorActivations->second->deleteImageManagerObject();
+        const std::string path = std::string{SOFTWARE_OBJPATH} + '/' + entryId;
+        const std::string interface = std::string{VERSION_IFACE};
+        auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
+                                          MAPPER_BUSNAME, "GetObject");
+
+        method.append(path);
+        method.append(std::vector<std::string>({interface}));
+
+        std::map<std::string, std::vector<std::string>> response;
+        std::map<std::string, std::vector<std::string>>::iterator it;
+
+        try
+        {
+            auto reply = bus.call(method);
+            reply.read(response);
+            if (response.empty())
+            {
+                error(
+                    "Empty response from mapper for getting service name: {PATH} {INTERFACE}",
+                    "PATH", path, "INTERFACE", interface);
+            }
+            it = response.find(VERSION_IFACE);
+            if (it != response.end())
+            {
+                iteratorActivations->second->deleteImageManagerObject();
+            }
+        }
+        catch (const sdbusplus::exception::exception& e)
+        {
+            error(
+                "Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
+                "ERROR", e, "PATH", path, "INTERFACE", interface);
+        }
+
         this->activations.erase(entryId);
     }
     ItemUpdater::resetUbootEnvVars();

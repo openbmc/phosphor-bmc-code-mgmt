@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "115b0688_f17c69a0",
+        "filename": "usb/70-bmc-usb.rules",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-02T06:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "993dcbb5_5e71582f",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb0e5fb6_8012a29a",
         "filename": "usb/services/USBCodeUpdate@.service",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "631b50c6_35f612b4",
+        "filename": "usb/services/USBCodeUpdate@.service",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-02T06:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb0e5fb6_8012a29a",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6b0a22d7_694210d8",
+        "filename": "usb/services/USBCodeUpdate@.service",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-02T06:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d787f16a_8e3a5287",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca513c55_3b2776d0",
         "filename": "usb/usb_update.sh",
         "patchSetId": 9
@@ -67,6 +121,24 @@
       "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65875e03_aef6b413",
+        "filename": "usb/usb_update.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-02T06:46:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ca513c55_3b2776d0",
+      "revId": "637335663a7fb8f8fe1c9be0f16cdac737631cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

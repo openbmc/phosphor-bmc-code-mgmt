@@ -231,20 +231,45 @@ void Activation::onFlashWriteSuccess()
 
 void Activation::deleteImageManagerObject()
 {
-    // Call the Delete object for <versionID> inside image_manager
-    auto method = this->bus.new_method_call(VERSION_BUSNAME, path.c_str(),
-                                            "xyz.openbmc_project.Object.Delete",
-                                            "Delete");
+    // Call the Delete object for <versionID> inside image_manager if the object
+    // has not already been deleted due to a successful update or Delete call
+    const std::string interface = std::string{VERSION_IFACE};
+    auto method = this->bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
+                                            MAPPER_BUSNAME, "GetObject");
+    method.append(path.c_str());
+    method.append(std::vector<std::string>({interface}));
+
+    std::map<std::string, std::vector<std::string>> response;
+
     try
     {
-        bus.call_noreply(method);
+        auto reply = bus.call(method);
+        reply.read(response);
+        auto it = response.find(VERSION_IFACE);
+        if (it != response.end())
+        {
+            auto deleteMethod = this->bus.new_method_call(
+                VERSION_BUSNAME, path.c_str(),
+                "xyz.openbmc_project.Object.Delete", "Delete");
+            try
+            {
+                bus.call_noreply(deleteMethod);
+            }
+            catch (const sdbusplus::exception::exception& e)
+            {
+                error(
+                    "Error deleting image ({PATH}) from image manager: {ERROR}",
+                    "PATH", path, "ERROR", e);
+                return;
+            }
+        }
     }
     catch (const sdbusplus::exception::exception& e)
     {
-        error("Error deleting image ({PATH}) from image manager: {ERROR}",
-              "PATH", path, "ERROR", e);
-        return;
+        error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
+              "ERROR", e, "PATH", path, "INTERFACE", interface);
     }
+    return;
 }
 
 auto Activation::requestedActivation(RequestedActivations value)

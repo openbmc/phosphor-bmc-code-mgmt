@@ -189,7 +189,7 @@ class Signature
      * @param[in]  - publickey
      * @param[out] - RSA Object.
      */
-    inline RSA* createPublicRSA(const fs::path& publicKey);
+    inline EVP_PKEY_Ptr createPublicRSA(const fs::path& publicKey);
 
     /**
      * @brief Memory map the  file

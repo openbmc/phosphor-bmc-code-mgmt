@@ -2,7 +2,7 @@
 #include "utils.hpp"
 #include "version.hpp"
 
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 #include <stdlib.h>
 
 #include <filesystem>
@@ -110,13 +110,17 @@ TEST_F(VersionTest, TestGetVersionWithoutQuotes)
 TEST_F(VersionTest, TestGetId)
 {
     auto version = "test-id";
-    unsigned char digest[SHA512_DIGEST_LENGTH];
-    SHA512_CTX ctx;
-    SHA512_Init(&ctx);
-    SHA512_Update(&ctx, version, strlen(version));
-    SHA512_Final(digest, &ctx);
-    char mdString[SHA512_DIGEST_LENGTH * 2 + 1];
-    for (int i = 0; i < SHA512_DIGEST_LENGTH; i++)
+    unsigned char digest[EVP_MAX_MD_SIZE];
+    unsigned int digest_count = 0;
+
+    EVP_MD_CTX_Ptr ctx(EVP_MD_CTX_new(), &::EVP_MD_CTX_free);
+
+    EVP_DigestInit(ctx.get(), EVP_sha512());
+    EVP_DigestUpdate(ctx.get(), version, strlen(version));
+    EVP_DigestFinal(ctx.get(), digest, &digest_count);
+
+    char mdString[EVP_MAX_MD_SIZE * 2 + 1];
+    for (decltype(digest_count) i = 0; i < digest_count; i++)
     {
         snprintf(&mdString[i * 2], 3, "%02x", (unsigned int)digest[i]);
     }

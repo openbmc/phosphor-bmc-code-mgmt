@@ -4,7 +4,7 @@
 
 #include "xyz/openbmc_project/Common/error.hpp"
 
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -76,6 +76,9 @@ std::string Version::getValue(const std::string& manifestFilePath,
     return value;
 }
 
+using EVP_MD_CTX_Ptr =
+    std::unique_ptr<EVP_MD_CTX, decltype(&::EVP_MD_CTX_free)>;
+
 std::string Version::getId(const std::string& version)
 {
 
@@ -86,20 +89,20 @@ std::string Version::getId(const std::string& version)
                               Argument::ARGUMENT_VALUE(version.c_str()));
     }
 
-    unsigned char digest[SHA512_DIGEST_LENGTH];
-    SHA512_CTX ctx;
-    SHA512_Init(&ctx);
-    SHA512_Update(&ctx, version.c_str(), strlen(version.c_str()));
-    SHA512_Final(digest, &ctx);
-    char mdString[SHA512_DIGEST_LENGTH * 2 + 1];
-    for (int i = 0; i < SHA512_DIGEST_LENGTH; i++)
-    {
-        snprintf(&mdString[i * 2], 3, "%02x", (unsigned int)digest[i]);
-    }
+    std::array<unsigned char, EVP_MAX_MD_SIZE> digest{};
+    EVP_MD_CTX_Ptr ctx(EVP_MD_CTX_new(), &::EVP_MD_CTX_free);
 
-    // Only need 8 hex digits.
-    std::string hexId = std::string(mdString);
-    return (hexId.substr(0, 8));
+    EVP_DigestInit(ctx.get(), EVP_sha512());
+    EVP_DigestUpdate(ctx.get(), version.c_str(), strlen(version.c_str()));
+    EVP_DigestFinal(ctx.get(), digest.data(), nullptr);
+
+    // We are only using the first 8 characters.
+    char mdString[9];
+    snprintf(mdString, sizeof(mdString), "%02x%02x%02x%02x",
+             (unsigned int)digest[0], (unsigned int)digest[1],
+             (unsigned int)digest[2], (unsigned int)digest[3]);
+
+    return mdString;
 }
 
 std::string Version::getBMCMachine(const std::string& releaseFilePath)

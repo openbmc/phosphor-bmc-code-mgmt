@@ -21,6 +21,11 @@
 #include <filesystem>
 #include <string>
 
+#ifdef ALLOW_DUPLICATE_IMAGE_UPLOAD
+#include <fstream>
+#include <iostream>
+#endif
+
 namespace phosphor
 {
 namespace software
@@ -189,8 +194,8 @@ int Manager::processImage(const std::string& tarFilePath)
     // Compute id
     auto id = Version::getId(version);
 
-    fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
-    imageDirPath /= id;
+    /*fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
+    imageDirPath /= id;*/
 
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
@@ -200,28 +205,72 @@ int Manager::processImage(const std::string& tarFilePath)
     auto allSoftwareObjs = getSoftwareObjects(bus);
     auto it =
         std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
-    if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
+    if (!(versions.find(id) == versions.end() && it == allSoftwareObjs.end()))
     {
-        // Rename the temp dir to image dir
-        fs::rename(tmpDirPath, imageDirPath);
-        // Clear the path, so it does not attemp to remove a non-existing path
-        tmpDirToRemove.path.clear();
+#ifdef ALLOW_DUPLICATE_IMAGE_UPLOAD
+        std::string key = "version=";
+        auto keySize = key.length();
+        fs::path tmpManifestPath = tmpDirPath;
+        tmpManifestPath /= "tempMANIFEST";
+        std::ifstream efile;
+        std::ofstream tfile;
+        std::string line;
 
-        // Create Version object
-        auto versionPtr = std::make_unique<Version>(
-            bus, objPath, version, purpose, extendedVersion,
-            imageDirPath.string(),
-            std::bind(&Manager::erase, this, std::placeholders::_1));
-        versionPtr->deleteObject =
-            std::make_unique<phosphor::software::manager::Delete>(bus, objPath,
-                                                                  *versionPtr);
-        versions.insert(std::make_pair(id, std::move(versionPtr)));
-    }
-    else
-    {
+        efile.open(manifestPath.string());
+        tfile.open(tmpManifestPath.string());
+        while (getline(efile, line))
+        {
+            if (!line.empty() && line.back() == '\r')
+            {
+                line.pop_back();
+            }
+            if (line.compare(0, keySize, key) == 0)
+            {
+                line.append("_duplicate");
+            }
+            tfile << line << std::endl;
+        }
+        efile.close();
+        tfile.close();
+
+        remove(manifestPath.c_str());
+        rename(tmpManifestPath.c_str(), manifestPath.c_str());
+
+        auto tmpVersion = Version::getValue(manifestPath.string(), "version");
+        if (tmpVersion.empty() || (tmpVersion == version))
+        {
+            error("Error occured while writing duplicate MANIFEST file. "
+                  "Unable to create a unique image path.");
+            return 0;
+        }
+        version = tmpVersion;
+        id = Version::getId(version);
+#else
         info("Software Object with the same version ({VERSION}) already exists",
              "VERSION", id);
+        return 0;
+#endif
     }
+
+    fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
+    imageDirPath /= id;
+
+    objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
+
+    // Rename the temp dir to image dir
+    fs::rename(tmpDirPath, imageDirPath);
+    // Clear the path, so it does not attemp to remove a non-existing path
+    tmpDirToRemove.path.clear();
+
+    // Create Version object
+    auto versionPtr = std::make_unique<Version>(
+        bus, objPath, version, purpose, extendedVersion, imageDirPath.string(),
+        std::bind(&Manager::erase, this, std::placeholders::_1));
+    versionPtr->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, objPath,
+                                                              *versionPtr);
+    versions.insert(std::make_pair(id, std::move(versionPtr)));
+
     return 0;
 }
 

@@ -72,6 +72,7 @@ conf.set('WANT_SIGNATURE_VERIFY', \
     get_option('verify-signature').enabled() or \
     get_option('verify-full-signature').enabled())
 conf.set('WANT_SIGNATURE_FULL_VERIFY', get_option('verify-full-signature').enabled())
+conf.set('ALLOW_DUPLICATE_IMAGE_UPLOAD', get_option('duplicate-images').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))

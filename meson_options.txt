@@ -25,6 +25,9 @@ option('verify-signature', type: 'feature', value: 'enabled',
 option('verify-full-signature', type: 'feature', value: 'enabled',
     description: 'Enable image full signature validation.')
 
+option('duplicate-images', type: 'feature', value: 'enabled',
+    description: 'Enable ability for identical image activation.')
+
 # Variables
 option(
     'active-bmc-max-allowed', type: 'integer',

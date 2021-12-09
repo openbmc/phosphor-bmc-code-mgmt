@@ -21,6 +21,10 @@
 #include <filesystem>
 #include <string>
 
+#ifdef ALLOW_DUPLICATE_IMAGE_UPLOAD
+#define FORCE_DUPLICATE_UPLOAD 1
+#endif
+
 namespace phosphor
 {
 namespace software
@@ -200,7 +204,28 @@ int Manager::processImage(const std::string& tarFilePath)
     auto allSoftwareObjs = getSoftwareObjects(bus);
     auto it =
         std::find(allSoftwareObjs.begin(), allSoftwareObjs.end(), objPath);
-    if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
+
+#ifdef ALLOW_DUPLICATE_IMAGE_UPLOAD
+    if ((versions.find(id) != versions.end() || it != allSoftwareObjs.end()) ||
+        fs::exists(imageDirPath))
+    {
+        auto method = bus.new_method_call(
+            "xyz.openbmc_project.Software.BMC.Updater", objPath.c_str(),
+            "xyz.openbmc_project.Object.Delete", "Delete");
+        try
+        {
+            bus.call_noreply(method);
+        }
+        catch (const sdbusplus::exception::exception& e)
+        {
+            error("Error deleting image ({PATH}) from image manager: {ERROR}",
+                  "PATH", objPath, "ERROR", e);
+        }
+    }
+#endif
+
+    if ((versions.find(id) == versions.end() && it == allSoftwareObjs.end()) ||
+        FORCE_DUPLICATE_UPLOAD)
     {
         // Rename the temp dir to image dir
         fs::rename(tmpDirPath, imageDirPath);

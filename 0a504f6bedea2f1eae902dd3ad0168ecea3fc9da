@@ -22,6 +22,30 @@
       "revId": "0a504f6bedea2f1eae902dd3ad0168ecea3fc9da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "659ef800_a3519f9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-10T16:42:35Z",
+      "side": 1,
+      "message": "On a 2-version system, the \u0027free space\u0027 function calls delete to remove the backup version, so this error is logged on every update since the change was made to delete the image manager object as part of delete.\nI think as part of the delete image manager object function, we can call GetObject to see if the Version interface exists, and if so then call the Delete method.",
+      "parentUuid": "94f8ed7e_b7fadd2a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "0a504f6bedea2f1eae902dd3ad0168ecea3fc9da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

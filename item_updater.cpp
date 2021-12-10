@@ -175,6 +175,7 @@ void ItemUpdater::processBMCImage()
 
     // Functional images are mounted as rofs-<location>-functional
     constexpr auto functionalSuffix = "-functional";
+    bool functionalFound = false;
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
@@ -238,6 +239,7 @@ void ItemUpdater::processBMCImage()
                 // Set functional to true and remove the functional suffix
                 functional = true;
                 flashId.erase(flashId.length() - strlen(functionalSuffix));
+                functionalFound = true;
             }
 
             auto purpose = server::Version::VersionPurpose::BMC;
@@ -321,11 +323,11 @@ void ItemUpdater::processBMCImage()
         }
     }
 
-    // If there are no bmc versions mounted under MEDIA_DIR, then read the
-    // /etc/os-release and create rofs-<versionId>-functional under MEDIA_DIR,
-    // then call again processBMCImage() to create the D-Bus interface for it.
-    if (activations.size() == 0)
+    if (!functionalFound)
     {
+        // If there is no functional version found, read the /etc/os-release and
+        // create rofs-<versionId>-functional under MEDIA_DIR, then call again
+        // processBMCImage() to create the D-Bus interface for it.
         auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
         auto id = phosphor::software::manager::Version::getId(version +
                                                               functionalSuffix);

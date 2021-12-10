@@ -245,7 +245,7 @@ ubi_cleanup() {
     done
 }
 
-mount_alt_rwfs() {
+mount_ubi_alt_rwfs() {
   altNum="$(findmtdnum "alt-bmc")"
   if [ ! -z "${altNum}" ]; then
     altRwfs=$(ubinfo -a -d ${altNum} | grep -w "rwfs") || true
@@ -302,6 +302,18 @@ remount_ubi() {
   done
 
   set_wdt2bite
+}
+
+mount_static_alt() {
+  typ=$1
+  altFs=$2
+  altNum="$(findmtdnum ${altFs})"
+  if [ ! -z "${altNum}" ]; then
+    altFsMount="/run/media/${altFs}"
+    mkdir -p "${altFsMount}"
+    altFsBlock="/dev/mtdblock${altNum}"
+    mount -t "${typ}" "${altFsBlock}" "${altFsMount}"
+  fi
 }
 
 # Read the current env variable and set it on the alternate boot env
@@ -656,7 +668,7 @@ case "$1" in
     ;;
   ubiremount)
     remount_ubi
-    mount_alt_rwfs
+    mount_ubi_alt_rwfs
     ;;
   createenvbackup)
     backup_env_vars
@@ -690,6 +702,9 @@ case "$1" in
   mmc-setprimary)
     flashid="$2"
     mmc_setprimary
+    ;;
+  static-altfs)
+    mount_static_alt "$2" "$3"
     ;;
   *)
     echo "Invalid argument"

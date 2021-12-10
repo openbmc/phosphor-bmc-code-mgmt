@@ -176,6 +176,28 @@ void ItemUpdater::processBMCImage()
     // Functional images are mounted as rofs-<location>-functional
     constexpr auto functionalSuffix = "-functional";
 
+    // Read the /etc/os-release and create rofs-<versionId>-functional under
+    // MEDIA_DIR, then call again processBMCImage() to create the D-Bus
+    // interface for it.
+    auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
+    auto id =
+        phosphor::software::manager::Version::getId(version + functionalSuffix);
+    auto versionFileDir = BMC_ROFS_PREFIX + id + functionalSuffix + "/etc/";
+    try
+    {
+        if (!fs::is_directory(versionFileDir))
+        {
+            fs::create_directories(versionFileDir);
+        }
+        auto versionFilePath =
+            BMC_ROFS_PREFIX + id + functionalSuffix + OS_RELEASE_FILE;
+        fs::create_directory_symlink(OS_RELEASE_FILE, versionFilePath);
+    }
+    catch (const std::exception& e)
+    {
+        error("Exception during processing: {ERROR}", "ERROR", e);
+    }
+
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
     for (const auto& iter : fs::directory_iterator(MEDIA_DIR))
@@ -204,7 +226,7 @@ void ItemUpdater::processBMCImage()
 
                 continue;
             }
-            auto version = VersionClass::getBMCVersion(osRelease);
+            version = VersionClass::getBMCVersion(osRelease);
             if (version.empty())
             {
                 error("Failed to read version from osRelease: {PATH}", "PATH",
@@ -221,7 +243,7 @@ void ItemUpdater::processBMCImage()
             // The flash location is part of the mount name: rofs-<location>
             auto flashId = iter.path().native().substr(BMC_RO_PREFIX_LEN);
 
-            auto id = VersionClass::getId(version + flashId);
+            id = VersionClass::getId(version + flashId);
 
             // Check if the id has already been added. This can happen if the
             // BMC partitions / devices were manually flashed with the same
@@ -318,32 +340,6 @@ void ItemUpdater::processBMCImage()
                         bus, path, *(activations.find(id)->second), priority,
                         false);
             }
-        }
-    }
-
-    // If there are no bmc versions mounted under MEDIA_DIR, then read the
-    // /etc/os-release and create rofs-<versionId>-functional under MEDIA_DIR,
-    // then call again processBMCImage() to create the D-Bus interface for it.
-    if (activations.size() == 0)
-    {
-        auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
-        auto id = phosphor::software::manager::Version::getId(version +
-                                                              functionalSuffix);
-        auto versionFileDir = BMC_ROFS_PREFIX + id + functionalSuffix + "/etc/";
-        try
-        {
-            if (!fs::is_directory(versionFileDir))
-            {
-                fs::create_directories(versionFileDir);
-            }
-            auto versionFilePath =
-                BMC_ROFS_PREFIX + id + functionalSuffix + OS_RELEASE_FILE;
-            fs::create_directory_symlink(OS_RELEASE_FILE, versionFilePath);
-            ItemUpdater::processBMCImage();
-        }
-        catch (const std::exception& e)
-        {
-            error("Exception during processing: {ERROR}", "ERROR", e);
         }
     }
 

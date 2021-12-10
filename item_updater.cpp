@@ -351,6 +351,43 @@ void ItemUpdater::processBMCImage()
     return;
 }
 
+void ItemUpdater::processSecondaryBMC()
+{
+#ifdef BMC_STATIC_DUAL_IMAGE
+    // Check alt-rofs dir and create secondary activation
+    std::error_code ec;
+    std::string altVersionFile = std::string(ALT_ROFS_DIR) + OS_RELEASE_FILE;
+    if (!fs::exists(altVersionFile, ec))
+    {
+        // No alt-rofs, skip creating secondary bmc object
+        info("Alt vresion file {PATH} does not exist", "PATH", altVersionFile);
+        return;
+    }
+    auto version = VersionClass::getBMCVersion(altVersionFile);
+    if (version.empty())
+    {
+        error("Failed to read version from alt osRelease: {PATH}", "PATH",
+              altVersionFile);
+        return;
+    }
+
+    // The image could be the same as the other one, append "_alt" to get a
+    // different version ID.
+    constexpr auto altVersionSalt = "alt";
+    auto id = VersionClass::getId(version + altVersionSalt);
+
+    auto purpose = server::Version::VersionPurpose::BMC;
+
+    auto path = fs::path(SOFTWARE_OBJPATH) / id;
+
+    // Create Version instance for this version.
+    auto versionPtr = std::make_unique<VersionClass>(
+        bus, path, version, purpose, "", "",
+        std::bind(&ItemUpdater::erase, this, std::placeholders::_1), id);
+    versions.insert(std::make_pair(id, std::move(versionPtr)));
+#endif
+}
+
 void ItemUpdater::erase(std::string entryId)
 {
     // Find entry in versions map

@@ -61,6 +61,7 @@ class ItemUpdater : public ItemUpdaterInherit
     {
         setBMCInventoryPath();
         processBMCImage();
+        processSecondaryBMC();
         restoreFieldModeStatus();
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
@@ -91,6 +92,11 @@ class ItemUpdater : public ItemUpdaterInherit
      * @brief Create and populate the active BMC Version.
      */
     void processBMCImage();
+
+    /**
+     * @brief Check and populate the secondary BMC Version.
+     */
+    void processSecondaryBMC();
 
     /**
      * @brief Erase specified entry D-Bus object

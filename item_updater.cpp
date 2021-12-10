@@ -801,6 +801,14 @@ void ItemUpdater::createBIOSObject()
 }
 #endif
 
+void ItemUpdater::getRunningSlot()
+{
+    // Check /run/media/slot to get the slot number
+    constexpr auto slotFile = "/run/media/slot";
+    std::fstream f(slotFile, std::ios_base::in);
+    f >> runningImageSlot;
+}
+
 } // namespace updater
 } // namespace software
 } // namespace phosphor

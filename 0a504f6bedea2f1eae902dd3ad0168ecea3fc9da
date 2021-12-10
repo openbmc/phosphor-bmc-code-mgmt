@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94f8ed7e_b7fadd2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-12-10T02:37:50Z",
+      "side": 1,
+      "message": "Could you elaborate in which cases the issue occurs.\nFrom the \"tested\" description, it may occur when you invoke a `delete` DBus call, is it?\n\nIf yes, I think the behavior is expected, that you really delete the object twice, and the log only indicates the issue.\n\nLet me know if my understanding is wrong.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "0a504f6bedea2f1eae902dd3ad0168ecea3fc9da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

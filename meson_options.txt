@@ -114,3 +114,12 @@ option(
     value: '/xyz/openbmc_project/software/bios_active',
     description: 'The BIOS DBus object path.',
 )
+
+option('bmc-static-dual-image', type: 'feature', value: 'enabled',
+    description: 'Enable the dual image support for static layout.')
+
+option(
+    'alt-rofs-dir', type: 'string',
+    value: '/run/alt-rofs',
+    description: 'The base dir where all read-only partitions are mounted.',
+)

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "800086a4_7f8d3a96",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-10T17:32:51Z",
+      "side": 1,
+      "message": "that is an interesting idea, i think we can give that a try. the only side effect would be that on reboot, the version id would be different because it be calculated on the os-release version only, but that\u0027s probably ok since nobody is hard-coding the version id, it\u0027s all dynamic based on functional associations. so perhaps something like:\nif ALLOW_DUPLICATE\n   if version exists and not functional\n   id \u003d version+\"uploaded\"",
+      "parentUuid": "2fcc44e3_5811579a",
+      "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f949b64_618aef1a",
         "filename": "image_manager.cpp",
         "patchSetId": 1

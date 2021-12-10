@@ -59,6 +59,7 @@ class ItemUpdater : public ItemUpdaterInherit
                      std::bind(std::mem_fn(&ItemUpdater::createActivation),
                                this, std::placeholders::_1))
     {
+        getRunningSlot();
         setBMCInventoryPath();
         processBMCImage();
         restoreFieldModeStatus();
@@ -168,6 +169,9 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Vector of needed BMC images in the tarball*/
     std::vector<std::string> imageUpdateList;
 
+    /** @breif The slot of running BMC image */
+    uint32_t runningImageSlot = 0;
+
   private:
     /** @brief Callback function for Software.Version match.
      *  @details Creates an Activation D-Bus object.
@@ -273,6 +277,9 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
 #endif
+
+    /** @brief Get the slot number of running image */
+    void getRunningSlot();
 };
 
 } // namespace updater

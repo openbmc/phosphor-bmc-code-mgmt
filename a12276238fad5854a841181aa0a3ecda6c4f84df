@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f949b64_618aef1a",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-12-10T02:47:29Z",
+      "side": 1,
+      "message": "This is likely to delete a active image. For static layout it\u0027s OK because it only delete the dbus object without erasing the flash.\n\nFor ubi and emmc, let\u0027s wait for @Adriana\u0027s comment and see if it works.",
+      "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9be1fe69_8b8c412a",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2021-12-10T02:47:29Z",
+      "side": 1,
+      "message": "When ALLOW_DUPLICATE_IMAGE_UPLOAD is not defined, this is undefined as well.",
+      "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

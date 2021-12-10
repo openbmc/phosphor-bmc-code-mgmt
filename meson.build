@@ -97,6 +97,11 @@ if get_option('host-bios-upgrade').enabled()
     conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
 endif
 
+if get_option('bmc-static-dual-image').enabled()
+  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').enabled())
+  conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
+endif
+
 configure_file(output: 'config.h', configuration: conf)
 
 sdbusplus_dep = dependency('sdbusplus', required: false)
@@ -215,6 +220,10 @@ endif
 
 if get_option('host-bios-upgrade').enabled()
     unit_files += 'obmc-flash-host-bios@.service.in'
+endif
+
+if get_option('bmc-static-dual-image').enabled()
+    unit_files += 'static/obmc-flash-bmc-static-mount-alt.service.in'
 endif
 
 if get_option('sync-bmc-files').enabled()

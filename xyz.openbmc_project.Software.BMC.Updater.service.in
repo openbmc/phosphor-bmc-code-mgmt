@@ -7,6 +7,7 @@ After=obmc-mapper.target
 
 [Service]
 ExecStartPre=-/usr/bin/obmc-flash-bmc static-altfs squashfs alt-rofs
+ExecStartPre=-/usr/bin/detect-slot-aspeed.sh
 ExecStart=/usr/bin/phosphor-image-updater
 Restart=always
 Type=dbus

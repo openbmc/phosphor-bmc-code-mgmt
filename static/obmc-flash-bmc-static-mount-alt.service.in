@@ -10,6 +10,7 @@ RemainAfterExit=no
 # The alt flash may be empty or contain invalid data so the mount could fail.
 # So prepend with `-` to ignore such failures
 ExecStart=-/usr/bin/obmc-flash-bmc static-altfs squashfs alt-rofs rofs-alt
+ExecStart=-/usr/bin/detect-slot-aspeed
 
 [Install]
 WantedBy=multi-user.target

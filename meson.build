@@ -52,8 +52,6 @@ conf.set_quoted('UPDATEABLE_FWD_ASSOCIATION', 'updateable')
 conf.set_quoted('UPDATEABLE_REV_ASSOCIATION', 'software_version')
 
 # Filesystem files and directories
-# The path of the alt rwfs overlay
-conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
 # The prefix path for the versioned read-only bmc partitions
 conf.set_quoted('BMC_ROFS_PREFIX', get_option('media-dir') + '/rofs-')
 # The name of the BMC table of contents file
@@ -100,6 +98,9 @@ endif
 if get_option('bmc-static-dual-image').enabled()
   conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').enabled())
   conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
+  conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
+else
+  conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
 endif
 
 configure_file(output: 'config.h', configuration: conf)

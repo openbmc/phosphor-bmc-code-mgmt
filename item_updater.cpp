@@ -323,6 +323,22 @@ void ItemUpdater::processBMCImage()
                 id, std::make_unique<Activation>(
                         bus, path, *this, id, activationState, associations)));
 
+#ifdef BMC_STATIC_DUAL_IMAGE
+            uint8_t priority;
+            if ((functional && (runningImageSlot == 0)) ||
+                (!functional && (runningImageSlot == 1)))
+            {
+                priority = 0;
+            }
+            else
+            {
+                priority = 1;
+            }
+            activations.find(id)->second->redundancyPriority =
+                std::make_unique<RedundancyPriority>(
+                    bus, path, *(activations.find(id)->second), priority,
+                    false);
+#else
             // If Active, create RedundancyPriority instance for this
             // version.
             if (activationState == server::Activation::Activations::Active)
@@ -346,6 +362,7 @@ void ItemUpdater::processBMCImage()
                         bus, path, *(activations.find(id)->second), priority,
                         false);
             }
+#endif
         }
     }
 

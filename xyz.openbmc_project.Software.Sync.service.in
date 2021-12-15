@@ -2,6 +2,8 @@
 Description=Phosphor Sync Manager that syncs files to the alternate BMC chip
 
 [Service]
+ExecStartPre=-/usr/bin/obmc-flash-bmc static-altfs jffs2 alt-rwfs
+ExecStartPre=-/usr/bin/sync-once.sh
 ExecStart=/usr/bin/phosphor-sync-software-manager
 Restart=always
 

@@ -123,3 +123,9 @@ option(
     value: '/run/media/rofs-alt',
     description: 'The base dir where all read-only partitions are mounted.',
 )
+
+option(
+    'alt-rwfs-dir', type: 'string',
+    value: '/run/media/rwfs-alt/cow',
+    description: 'The dir for alt-rwfs partition.',
+)

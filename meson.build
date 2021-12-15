@@ -236,6 +236,11 @@ if get_option('sync-bmc-files').enabled()
     install_data('synclist',
         install_dir:  get_option('sysconfdir')
     )
+
+    install_data('sync-once.sh',
+        install_mode: 'rwxr-xr-x',
+        install_dir: get_option('bindir')
+    )
 endif
 
 if (get_option('verify-signature').enabled() or \

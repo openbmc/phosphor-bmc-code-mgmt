@@ -1,0 +1,13 @@
+[Unit]
+Description=Prepare sync for static dual image layout
+Requires=xyz.openbmc_project.Software.Sync.service
+Before=xyz.openbmc_project.Software.Sync.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/bin/obmc-flash-bmc static-altfs jffs2 alt-rwfs rwfs-alt
+ExecStart=-/usr/bin/sync-once.sh
+
+[Install]
+WantedBy=xyz.openbmc_project.Software.Sync.service

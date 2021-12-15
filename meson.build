@@ -224,7 +224,10 @@ if get_option('host-bios-upgrade').enabled()
 endif
 
 if get_option('bmc-static-dual-image').enabled()
-    unit_files += 'static/obmc-flash-bmc-static-mount-alt.service.in'
+    unit_files += [
+        'static/obmc-flash-bmc-static-mount-alt.service.in',
+        'static/obmc-flash-bmc-prepare-for-sync.service.in',
+    ]
 endif
 
 if get_option('sync-bmc-files').enabled()
@@ -239,6 +242,11 @@ if get_option('sync-bmc-files').enabled()
 
     install_data('synclist',
         install_dir:  get_option('sysconfdir')
+    )
+
+    install_data('sync-once.sh',
+        install_mode: 'rwxr-xr-x',
+        install_dir: get_option('bindir')
     )
 endif
 

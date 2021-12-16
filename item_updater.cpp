@@ -238,13 +238,17 @@ void ItemUpdater::processBMCImage()
 
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
+#ifdef BMC_STATIC_DUAL_IMAGE
+            // The running image is always functional
+            createFunctionalAssociation(path);
+#else
             // Create functional association if this is the functional
             // version
             if (version.compare(functionalVersion) == 0)
             {
                 createFunctionalAssociation(path);
             }
-
+#endif
             AssociationList associations = {};
 
             if (activationState == server::Activation::Activations::Active)
@@ -267,7 +271,12 @@ void ItemUpdater::processBMCImage()
                 bus, path, version, purpose, extendedVersion, "",
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1),
                 id);
+#ifdef BMC_STATIC_DUAL_IMAGE
+            // This is the running image, set it functional
+            bool isVersionFunctional = true;
+#else
             auto isVersionFunctional = versionPtr->isFunctional();
+#endif
             if (!isVersionFunctional)
             {
                 versionPtr->deleteObject =
@@ -377,7 +386,28 @@ void ItemUpdater::processSecondaryBMC()
     auto versionPtr = std::make_unique<VersionClass>(
         bus, path, version, purpose, "", "",
         std::bind(&ItemUpdater::erase, this, std::placeholders::_1), id);
+    versionPtr->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, path,
+                                                              *versionPtr);
     versions.insert(std::make_pair(id, std::move(versionPtr)));
+
+    // Create Activation instance
+    AssociationList associations = {};
+    associations.emplace_back(std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
+                                              ACTIVATION_REV_ASSOCIATION,
+                                              bmcInventoryPath));
+    createActiveAssociation(path);
+    createUpdateableAssociation(path);
+
+    activations.insert(std::make_pair(
+        id, std::make_unique<Activation>(
+                bus, path, *this, id, server::Activation::Activations::Active,
+                associations)));
+
+    uint8_t priority = runningImageSlot == 0 ? 1 : 0;
+    activations.find(id)->second->redundancyPriority =
+        std::make_unique<RedundancyPriority>(
+            bus, path, *(activations.find(id)->second), priority, false);
 #endif
 }
 

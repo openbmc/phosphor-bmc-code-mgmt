@@ -748,8 +748,29 @@ void ItemUpdater::resetUbootEnvVars()
     updateUbootEnvVars(lowestPriorityVersion);
 }
 
-void ItemUpdater::freeSpace(const Activation& caller)
+void ItemUpdater::freeSpace([[maybe_unused]] const Activation& caller)
 {
+#ifdef BMC_STATIC_DUAL_IMAGE
+    // For the golden image case, always remove the version on the primary side
+    std::string versionIDtoErase;
+    for (const auto& iter : activations)
+    {
+        if (iter.second->redundancyPriority &&
+            iter.second->redundancyPriority.get()->priority() == 0)
+        {
+            versionIDtoErase = iter.second->versionId;
+            break;
+        }
+    }
+    if (!versionIDtoErase.empty())
+    {
+        erase(versionIDtoErase);
+    }
+    else
+    {
+        warning("Failed to find version to erase");
+    }
+#else
     //  Versions with the highest priority in front
     std::priority_queue<std::pair<int, std::string>,
                         std::vector<std::pair<int, std::string>>,
@@ -800,6 +821,7 @@ void ItemUpdater::freeSpace(const Activation& caller)
         versionsPQ.pop();
         count--;
     }
+#endif
 }
 
 void ItemUpdater::mirrorUbootToAlt()

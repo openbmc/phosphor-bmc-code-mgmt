@@ -255,7 +255,6 @@ void ItemUpdater::processBMCImage()
             {
                 createFunctionalAssociation(path);
             }
-
             AssociationList associations = {};
 
             if (activationState == server::Activation::Activations::Active)
@@ -392,7 +391,28 @@ void ItemUpdater::processSecondaryBMC()
     auto versionPtr = std::make_unique<VersionClass>(
         bus, path, version, purpose, "", "",
         std::bind(&ItemUpdater::erase, this, std::placeholders::_1), id);
+    versionPtr->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, path,
+                                                              *versionPtr);
     versions.insert(std::make_pair(id, std::move(versionPtr)));
+
+    // Create Activation instance
+    AssociationList associations = {};
+    associations.emplace_back(std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
+                                              ACTIVATION_REV_ASSOCIATION,
+                                              bmcInventoryPath));
+    createActiveAssociation(path);
+    createUpdateableAssociation(path);
+
+    activations.insert(std::make_pair(
+        id, std::make_unique<Activation>(
+                bus, path, *this, id, server::Activation::Activations::Active,
+                associations)));
+
+    uint8_t priority = runningImageSlot == 0 ? 1 : 0;
+    activations.find(id)->second->redundancyPriority =
+        std::make_unique<RedundancyPriority>(
+            bus, path, *(activations.find(id)->second), priority, false);
 #endif
 }
 

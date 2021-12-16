@@ -172,9 +172,14 @@ auto Activation::activation(Activations value) -> Activations
 
 #else // STATIC_LAYOUT
 
-        onFlashWriteSuccess();
-        return softwareServer::Activation::activation(
-            softwareServer::Activation::Activations::Active);
+        if (parent.runningImageSlot == 0)
+        {
+            // On primary, update it as before
+            onFlashWriteSuccess();
+            return softwareServer::Activation::activation(
+                softwareServer::Activation::Activations::Active);
+        }
+        // On secondary, wait for the service to complete
 #endif
     }
     else

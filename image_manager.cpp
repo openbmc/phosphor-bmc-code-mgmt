@@ -236,14 +236,6 @@ void Manager::erase(std::string entryId)
         return;
     }
 
-    if (it->second->isFunctional())
-    {
-        error(
-            "Version {VERSION} is currently running on the BMC; unable to remove",
-            "VERSION", entryId);
-        return;
-    }
-
     // Delete image dir
     fs::path imageDirPath = (*(it->second)).path();
     if (fs::exists(imageDirPath))

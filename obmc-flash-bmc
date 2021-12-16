@@ -295,6 +295,12 @@ mount_static_alt() {
   fi
 }
 
+umount_static_alt() {
+  altFs=$1
+  altFsMount="/run/${altFs}"
+  umount "${altFsMount}"
+}
+
 # Read the current env variable and set it on the alternate boot env
 copy_env_var_to_alt() {
   varName=$1
@@ -691,6 +697,9 @@ case "$1" in
     ;;
   static-altfs)
     mount_static_alt "$2" "$3"
+    ;;
+  umount-static-altfs)
+    umount_static_alt "$2"
     ;;
   *)
     echo "Invalid argument"

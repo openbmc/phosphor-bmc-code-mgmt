@@ -4,4 +4,8 @@ Description=Flash image-bmc to the alt chip
 [Service]
 Type=oneshot
 RemainAfterExit=no
+ExecStartPre=-/usr/bin/obmc-flash-bmc umount-static-altfs rofs-alt
+ExecStartPre=-/usr/bin/obmc-flash-bmc umount-static-altfs rwfs-alt
 ExecStart=/usr/sbin/flashcp /tmp/images/%i/image-bmc /dev/mtd/alt-bmc
+ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs squashfs alt-rofs rofs-alt
+ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs jffs2 alt-rwfs rwfs-alt

@@ -1,5 +1,5 @@
 [Unit]
-Description=Flash image-bmc to the alt chip
+Description=Flash image-bmc to the alt chip and reset cs0
 
 [Service]
 Type=oneshot
@@ -9,3 +9,4 @@ ExecStartPre=-/usr/bin/obmc-flash-bmc umount-static-altfs alt-rwfs
 ExecStart=/usr/sbin/flashcp /tmp/images/%i/image-bmc /dev/mtd/alt-bmc
 ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs squashfs alt-rofs
 ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs jffs2 alt-rwfs
+ExecStartPost=-/usr/bin/reset-cs0-aspeed.sh

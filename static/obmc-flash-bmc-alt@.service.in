@@ -1,5 +1,5 @@
 [Unit]
-Description=Flash image-bmc to the alt chip
+Description=Flash image-bmc to the alt chip and reset cs0
 
 [Service]
 Type=oneshot
@@ -11,3 +11,4 @@ ExecStart=/usr/sbin/flashcp /tmp/images/%i/image-bmc /dev/mtd/alt-bmc
 ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs squashfs alt-rofs rofs-alt
 ExecStartPost=-/usr/bin/obmc-flash-bmc static-altfs jffs2 alt-rwfs rwfs-alt
 ExecStartPost=-/bin/systemctl start xyz.openbmc_project.Software.Sync.service
+ExecStartPost=-/usr/bin/reset-cs0-aspeed

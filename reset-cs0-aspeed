@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Write 1 to /sys/class/watchdog/watchdog1/access_cs0 to reset the boot code
+# selection and reset the chip select, so that the next boot is from the
+# primary chip.
+# This needs to be done in the shutdown script after umount the rootfs,
+# otherwise the filesystem will get error because the content is switched
+# back to CS0 chip.
+
+SHUTDOWN_EXTRA_SCRIPT="/run/initramfs/shutdown_task_after_umount"
+
+cat <<'EOF' >"${SHUTDOWN_EXTRA_SCRIPT}"
+#!/bin/sh
+ACCESS_CS0="/sys/class/watchdog/watchdog1/access_cs0"
+if [ -f "${ACCESS_CS0}" ]; then
+    echo "Reset aspeed chip select"
+    echo 1 > "${ACCESS_CS0}"
+fi
+EOF
+chmod +x "${SHUTDOWN_EXTRA_SCRIPT}"
+
+
+# Insert the shutdown_task_after_umount into the shutdown script
+# This change could be apply to obmc-shutdown.sh in obmc-phosphor-initfs.bb
+# if this is accepted.
+sed -i "s/echo Remaining mounts/\/run\/initramfs\/shutdown_task_after_umount\\necho Remaining mounts/" /run/initramfs/shutdown

@@ -301,6 +301,11 @@ install_data('detect-slot-aspeed.sh',
     install_dir: get_option('bindir')
 )
 
+install_data('reset-cs0-aspeed.sh',
+    install_mode: 'rwxr-xr-x',
+    install_dir: get_option('bindir')
+)
+
 install_data('software.conf',
     install_dir: '/usr/lib/tmpfiles.d/'
 )

@@ -354,6 +354,9 @@ class Activation : public ActivationInherit, public Flash
      *         variables has completed. **/
     bool ubootEnvVarsUpdated = false;
 
+    /** @brief Tracks if the service that updates the alt flash is running. */
+    bool updatingAltFlash = false;
+
 #ifdef WANT_SIGNATURE_VERIFY
   private:
     /** @brief Verify signature of the images.

@@ -172,16 +172,14 @@ auto Activation::activation(Activations value) -> Activations
 
 #else // STATIC_LAYOUT
 
-        // Check the UpdateTarget setting and update the target slot(s)
-        // TODO:
-        if (parent.runningImageSlot == 0)
+        if (!updatingAltFlash)
         {
-            // On primary, update it as before
+            // Updating self, return directly
             onFlashWriteSuccess();
             return softwareServer::Activation::activation(
                 softwareServer::Activation::Activations::Active);
         }
-        // On secondary, wait for the service to complete
+        // Updating alt flash, wait for the service to complete
 #endif
     }
     else
@@ -208,8 +206,26 @@ void Activation::onFlashWriteSuccess()
 
     if (!redundancyPriority)
     {
+#ifdef BMC_STATIC_DUAL_IMAGE
+        // Set the priority:
+        // 0 if the updated flash is primary.
+        // 1 if the updated flash is secondary;
+        auto priority = 0;
+        if ((parent.runningImageSlot == 0 && updatingAltFlash) ||
+            (parent.runningImageSlot != 0 && !updatingAltFlash))
+        {
+            priority = 1;
+        }
+
+        // Retain the priorities
+        redundancyPriority = std::make_unique<RedundancyPriority>(
+            bus, path, *this, priority, false);
+
+        updateTarget.reset();
+#else
         redundancyPriority =
             std::make_unique<RedundancyPriority>(bus, path, *this, 0);
+#endif
     }
 
     // Remove version object from image manager

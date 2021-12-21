@@ -375,6 +375,10 @@ void ItemUpdater::erase(std::string entryId)
 {
     // Find entry in versions map
     auto it = versions.find(entryId);
+
+    // For dual image case there could be two version objects with the same
+    // version so remove the entryId anyway without functional check.
+#ifndef BMC_STATIC_DUAL_IMAGE
     if (it != versions.end())
     {
         if (it->second->isFunctional() && ACTIVE_BMC_MAX_ALLOWED > 1)
@@ -385,6 +389,7 @@ void ItemUpdater::erase(std::string entryId)
             return;
         }
     }
+#endif
 
     // First call resetUbootEnvVars() so that the BMC points to a valid image to
     // boot from. If resetUbootEnvVars() is called after the image is actually
@@ -707,15 +712,24 @@ void ItemUpdater::resetUbootEnvVars()
     updateUbootEnvVars(lowestPriorityVersion);
 }
 
-void ItemUpdater::freeSpace([[maybe_unused]] const Activation& caller)
+void ItemUpdater::freeSpace(const Activation& caller)
 {
 #ifdef BMC_STATIC_DUAL_IMAGE
-    // For the golden image case, always remove the version on the primary side
+    // For dual image case, erase the slot depends on the updateTarget
+    auto targetSlot = UpdateTarget::TargetSlot::Primary;
+    if (caller.updateTarget)
+    {
+        targetSlot = caller.updateTarget->updateTargetSlot();
+    }
+    auto priorityToErase =
+        targetSlot == UpdateTarget::TargetSlot::Primary ? 0 : 1;
+
     std::string versionIDtoErase;
     for (const auto& iter : activations)
     {
         if (iter.second->redundancyPriority &&
-            iter.second->redundancyPriority.get()->priority() == 0)
+            iter.second->redundancyPriority.get()->priority() ==
+                priorityToErase)
         {
             versionIDtoErase = iter.second->versionId;
             break;

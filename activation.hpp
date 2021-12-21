@@ -11,6 +11,7 @@
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
+#include <xyz/openbmc_project/Software/UpdateTarget/server.hpp>
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include <filesystem>
@@ -39,6 +40,8 @@ using RedundancyPriorityInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object::object<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+using UpdateTargetInherit = sdbusplus::server::object::object<
+    sdbusplus::xyz::openbmc_project::Software::server::UpdateTarget>;
 
 constexpr auto applyTimeImmediate =
     "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
@@ -165,6 +168,19 @@ class ActivationProgress : public ActivationProgressInherit
     {
         progress(0);
     }
+};
+
+class UpdateTarget : public UpdateTargetInherit
+{
+  public:
+    /** @brief Constructs UpdateTarget
+     *
+     * @param[in] bus    - The Dbus bus object
+     * @param[in] path   - The Dbus object path
+     */
+    UpdateTarget(sdbusplus::bus::bus& bus, const std::string& path) :
+        UpdateTargetInherit(bus, path.c_str(), action::emit_interface_added)
+    {}
 };
 
 /** @class Activation
@@ -319,6 +335,9 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Persistent ActivationProgress dbus object */
     std::unique_ptr<ActivationProgress> activationProgress;
+
+    /** @brief Persistent UpdateTarget dbus object */
+    std::unique_ptr<UpdateTarget> updateTarget;
 
     /** @brief Used to subscribe to dbus systemd signals **/
     sdbusplus::bus::match_t systemdSignals;

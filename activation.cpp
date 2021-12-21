@@ -172,6 +172,8 @@ auto Activation::activation(Activations value) -> Activations
 
 #else // STATIC_LAYOUT
 
+        // Check the UpdateTarget setting and update the target slot(s)
+        // TODO:
         if (parent.runningImageSlot == 0)
         {
             // On primary, update it as before

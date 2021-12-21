@@ -28,33 +28,56 @@ PHOSPHOR_LOG2_USING;
 namespace fs = std::filesystem;
 using namespace phosphor::software::image;
 
-void Activation::flashWrite()
+static void copyStaticFiles(const Activation& a)
 {
-#ifdef BMC_STATIC_DUAL_IMAGE
-    if (parent.runningImageSlot != 0)
-    {
-        // It's running on the secondary chip, update the primary one
-        info("Flashing primary flash from secondary, id: {ID}", "ID",
-             versionId);
-        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                          SYSTEMD_INTERFACE, "StartUnit");
-        auto serviceFile = FLASH_ALT_SERVICE_TMPL + versionId + ".service";
-        method.append(serviceFile, "replace");
-        bus.call_noreply(method);
-        return;
-    }
-#endif
     // For static layout code update, just put images in /run/initramfs.
     // It expects user to trigger a reboot and an updater script will program
     // the image to flash during reboot.
     fs::path uploadDir(IMG_UPLOAD_DIR);
     fs::path toPath(PATH_INITRAMFS);
 
-    for (const auto& bmcImage : parent.imageUpdateList)
+    for (const auto& bmcImage : a.parent.imageUpdateList)
     {
-        fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
+        fs::copy_file(uploadDir / a.versionId / bmcImage, toPath / bmcImage,
                       fs::copy_options::overwrite_existing);
     }
+}
+
+void Activation::flashWrite()
+{
+#ifdef BMC_STATIC_DUAL_IMAGE
+    // If in secondary:
+    //   1. UpdateTarget == primary: Update primary by service;
+    //   2. UpdateTarget == secondary: Update itself;
+    //   3. UpdateTarget == both: Update primary by service, then update itself;
+    // If in primary:
+    //   1. UpdateTarget == primary: Update itself;
+    //   2. UpdateTarget == secondary: Update secondary by service;
+    //   3. UpdateTarget == both: Update secondary by service, then update
+    //   itself;
+    auto targetSlot = UpdateTarget::TargetSlot::Primary;
+    if (updateTarget)
+    {
+        targetSlot = updateTarget->updateTargetSlot();
+    }
+    if ((parent.runningImageSlot != 0 &&
+         targetSlot == UpdateTarget::TargetSlot::Primary) ||
+        (parent.runningImageSlot == 0 &&
+         targetSlot == UpdateTarget::TargetSlot::Secondary) ||
+        targetSlot == UpdateTarget::TargetSlot::Both)
+    {
+        info("Flashing alt flash, id: {ID}", "ID", versionId);
+        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                          SYSTEMD_INTERFACE, "StartUnit");
+        auto serviceFile = FLASH_ALT_SERVICE_TMPL + versionId + ".service";
+        method.append(serviceFile, "replace");
+        bus.call_noreply(method);
+        updatingAltFlash = true;
+        return;
+    }
+
+#endif
+    copyStaticFiles(*this);
 }
 
 void Activation::onStateChanges(
@@ -74,8 +97,17 @@ void Activation::onStateChanges(
     }
     if (newStateResult == "done")
     {
-        activationProgress->progress(90);
+        auto progress = 90;
+        if (updateTarget &&
+            updateTarget->updateTargetSlot() == UpdateTarget::TargetSlot::Both)
+        {
+            // The alt update is done, update itself
+            copyStaticFiles(*this);
+            progress = 50;
+        }
+        activationProgress->progress(progress);
         onFlashWriteSuccess();
+        updatingAltFlash = false;
     }
     else
     {

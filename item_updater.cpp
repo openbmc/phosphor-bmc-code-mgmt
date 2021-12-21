@@ -147,10 +147,10 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                                                   *versionPtr);
         versions.insert(std::make_pair(versionId, std::move(versionPtr)));
 
-        activations.insert(std::make_pair(
-            versionId,
-            std::make_unique<Activation>(bus, path, *this, versionId,
-                                         activationState, associations)));
+        auto activationPtr = std::make_unique<Activation>(
+            bus, path, *this, versionId, activationState, associations);
+        activationPtr->updateTarget = std::make_unique<UpdateTarget>(bus, path);
+        activations.insert(std::make_pair(versionId, std::move(activationPtr)));
     }
     return;
 }

@@ -43,6 +43,22 @@ static void copyStaticFiles(const Activation& a)
     }
 }
 
+static void restartUnit(sdbusplus::bus::bus& bus, const std::string& unit)
+{
+    try
+    {
+        auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                          SYSTEMD_INTERFACE, "RestartUnit");
+        method.append(unit.c_str(), "replace");
+        bus.call_noreply(method);
+    }
+    catch (const sdbusplus::exception::exception& ex)
+    {
+        error("Failed to restart service {UINT}, error: {ERR}", "UNIT", unit,
+              "ERR", ex.what());
+    }
+}
+
 void Activation::flashWrite()
 {
 #ifdef BMC_STATIC_DUAL_IMAGE
@@ -108,6 +124,11 @@ void Activation::onStateChanges(
         activationProgress->progress(progress);
         onFlashWriteSuccess();
         updatingAltFlash = false;
+
+        // Restart sync manager so that the files are synced
+        constexpr auto syncManagerUnit =
+            "xyz.openbmc_project.Software.Sync.service";
+        restartUnit(bus, syncManagerUnit);
     }
     else
     {

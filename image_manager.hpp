@@ -3,6 +3,7 @@
 
 #include <sdbusplus/server.hpp>
 
+#include <random>
 #include <string>
 
 namespace phosphor
@@ -50,6 +51,9 @@ class Manager
 
     /** @brief Persistent sdbusplus DBus bus connection. */
     sdbusplus::bus::bus& bus;
+
+    /** @brief The random generator to get the version salt */
+    std::mt19937 randomGen;
 
     /**
      * @brief Untar the tarball.

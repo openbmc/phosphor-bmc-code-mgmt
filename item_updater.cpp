@@ -145,7 +145,8 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
         auto versionPtr = std::make_unique<VersionClass>(
             bus, path, version, purpose, extendedVersion, filePath,
-            std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
+            std::bind(&ItemUpdater::erase, this, std::placeholders::_1),
+            versionId);
         versionPtr->deleteObject =
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
                                                                   *versionPtr);
@@ -158,6 +159,7 @@ void ItemUpdater::processBMCImage()
 {
     using VersionClass = phosphor::software::manager::Version;
 
+    const std::string runningVersionSalt = "running";
     // Check MEDIA_DIR and create if it does not exist
     try
     {
@@ -217,7 +219,7 @@ void ItemUpdater::processBMCImage()
                 continue;
             }
 
-            auto id = VersionClass::getId(version);
+            auto id = VersionClass::getId(version + runningVersionSalt);
 
             // Check if the id has already been added. This can happen if the
             // BMC partitions / devices were manually flashed with the same
@@ -263,7 +265,8 @@ void ItemUpdater::processBMCImage()
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, "",
-                std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
+                std::bind(&ItemUpdater::erase, this, std::placeholders::_1),
+                id);
             auto isVersionFunctional = versionPtr->isFunctional();
             if (!isVersionFunctional)
             {
@@ -310,7 +313,8 @@ void ItemUpdater::processBMCImage()
     if (activations.size() == 0)
     {
         auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
-        auto id = phosphor::software::manager::Version::getId(version);
+        auto id = phosphor::software::manager::Version::getId(
+            version + runningVersionSalt);
         auto versionFileDir = BMC_ROFS_PREFIX + id + "/etc/";
         try
         {
@@ -774,7 +778,7 @@ void ItemUpdater::createBIOSObject()
     };
     biosVersion = std::make_unique<VersionClass>(
         bus, path, version, VersionPurpose::Host, "", "",
-        std::bind(dummyErase, std::placeholders::_1));
+        std::bind(dummyErase, std::placeholders::_1), "");
     biosVersion->deleteObject =
         std::make_unique<phosphor::software::manager::Delete>(bus, path,
                                                               *biosVersion);

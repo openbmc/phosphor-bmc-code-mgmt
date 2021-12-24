@@ -3,7 +3,7 @@ image_error_hpp = custom_target(
     capture: true,
     command: [
         sdbusplusplus_prog,
-        '-r', meson.source_root(),
+        '-r', meson.project_source_root(),
         'error',
         'exception-header',
         'xyz.openbmc_project.Software.Image',
@@ -19,7 +19,7 @@ image_error_cpp = custom_target(
     capture: true,
     command: [
         sdbusplusplus_prog,
-        '-r', meson.source_root(),
+        '-r', meson.project_source_root(),
         'error',
         'exception-cpp',
         'xyz.openbmc_project.Software.Image',

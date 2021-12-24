@@ -40,12 +40,12 @@ executable(
     install_dir: get_option('bindir')
 )
 
-systemd_system_unit_dir = dependency('systemd').get_pkgconfig_variable(
-    'systemdsystemunitdir',
-    define_variable: ['prefix', get_option('prefix')])
-udev_dir = dependency('udev').get_pkgconfig_variable(
-    'udev_dir',
-    define_variable: ['prefix', get_option('prefix')])
+systemd_system_unit_dir = dependency('systemd').get_variable(
+    pkgconfig: 'systemdsystemunitdir',
+    pkgconfig_define: ['prefix', get_option('prefix')])
+udev_dir = dependency('udev').get_variable(
+    pkgconfig: 'udev_dir',
+    pkgconfig_define: ['prefix', get_option('prefix')])
 
 install_data(
     'services/usb-code-update@.service',

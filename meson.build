@@ -150,7 +150,7 @@ deps = [
 ssl = dependency('openssl')
 
 systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_pkgconfig_variable('systemdsystemunitdir')
+systemd_system_unit_dir = systemd.get_variable(pkgconfig : 'systemdsystemunitdir')
 
 unit_files = [
     'obmc-flash-bmc-setenv@.service.in',

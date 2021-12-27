@@ -57,11 +57,11 @@ void USBManager::setApplyTime()
 {
     utils::PropertyValue value =
         "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.OnReset";
-    constexpr auto objectPath = "/xyz/openbmc_project/software/apply_time";
-    constexpr auto interface = "xyz.openbmc_project.Software.ApplyTime";
-    constexpr auto propertyName = "RequestedApplyTime";
     try
     {
+        constexpr auto objectPath = "/xyz/openbmc_project/software/apply_time";
+        constexpr auto interface = "xyz.openbmc_project.Software.ApplyTime";
+        constexpr auto propertyName = "RequestedApplyTime";
         utils::setProperty(bus, objectPath, interface, propertyName, value);
     }
     catch (const std::exception& e)
@@ -75,10 +75,10 @@ void USBManager::setRequestedActivation(const std::string& path)
 {
     utils::PropertyValue value =
         "xyz.openbmc_project.Software.Activation.RequestedActivations.Active";
-    constexpr auto interface = "xyz.openbmc_project.Software.Activation";
-    constexpr auto propertyName = "RequestedActivation";
     try
     {
+        constexpr auto interface = "xyz.openbmc_project.Software.Activation";
+        constexpr auto propertyName = "RequestedActivation";
         utils::setProperty(bus, path, interface, propertyName, value);
     }
     catch (const std::exception& e)

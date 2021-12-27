@@ -24,7 +24,7 @@ class Manager
      *
      * @param[in] bus - The Dbus bus object
      */
-    Manager(sdbusplus::bus::bus& bus) : bus(bus){};
+    explicit Manager(sdbusplus::bus::bus& bus) : bus(bus){};
 
     /**
      * @brief Verify and untar the tarball. Verify the manifest file.

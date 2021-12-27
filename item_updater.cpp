@@ -669,7 +669,7 @@ void ItemUpdater::resetUbootEnvVars()
     updateUbootEnvVars(lowestPriorityVersion);
 }
 
-void ItemUpdater::freeSpace(Activation& caller)
+void ItemUpdater::freeSpace(const Activation& caller)
 {
     //  Versions with the highest priority in front
     std::priority_queue<std::pair<int, std::string>,

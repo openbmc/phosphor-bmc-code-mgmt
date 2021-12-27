@@ -152,7 +152,7 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in] caller - The Activation object that called this function.
      */
-    void freeSpace(Activation& caller);
+    void freeSpace(const Activation& caller);
 
     /** @brief Creates a updateable association to the
      *  "running" BMC software image

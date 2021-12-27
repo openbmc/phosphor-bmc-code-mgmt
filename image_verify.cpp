@@ -413,7 +413,7 @@ bool Signature::checkAndVerifyImage(const std::string& filePath,
         sigFile += SIGNATURE_FILE_EXT;
 
         // Verify the signature.
-        auto valid = verifyFile(file, sigFile, publicKeyPath, hashType);
+        valid = verifyFile(file, sigFile, publicKeyPath, hashType);
         if (valid == false)
         {
             error("Image file Signature Validation failed on {PATH}", "PATH",

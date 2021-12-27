@@ -56,7 +56,8 @@ void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
  * @param[out] dstFile - destination file
  * @return
  **/
-void mergeFiles(std::vector<std::string>& srcFiles, std::string& dstFile);
+void mergeFiles(const std::vector<std::string>& srcFiles,
+                const std::string& dstFile);
 
 namespace internal
 {

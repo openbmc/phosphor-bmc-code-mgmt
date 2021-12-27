@@ -80,10 +80,11 @@ void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
     bus.call_noreply(method);
 }
 
-void mergeFiles(std::vector<std::string>& srcFiles, std::string& dstFile)
+void mergeFiles(const std::vector<std::string>& srcFiles,
+                const std::string& dstFile)
 {
     std::ofstream outFile(dstFile, std::ios::out);
-    for (auto& file : srcFiles)
+    for (const auto& file : srcFiles)
     {
         std::ifstream inFile;
         inFile.open(file, std::ios_base::in);

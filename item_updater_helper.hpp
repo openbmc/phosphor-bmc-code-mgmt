@@ -24,7 +24,7 @@ class Helper
      *
      *  @param[in] bus - sdbusplus D-Bus bus connection
      */
-    Helper(sdbusplus::bus::bus& bus) : bus(bus)
+    explicit Helper(sdbusplus::bus::bus& bus) : bus(bus)
     {
         // Empty
     }

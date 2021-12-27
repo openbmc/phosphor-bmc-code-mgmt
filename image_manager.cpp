@@ -42,7 +42,7 @@ struct RemovablePath
 {
     fs::path path;
 
-    RemovablePath(const fs::path& path) : path(path)
+    explicit RemovablePath(const fs::path& path) : path(path)
     {}
     ~RemovablePath()
     {

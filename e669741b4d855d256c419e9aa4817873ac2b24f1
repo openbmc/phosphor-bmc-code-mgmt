@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "423b6d3d_61fe5b36",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-27T13:19:29Z",
+      "side": 1,
+      "message": "What did this solve?  Seems like a pointless move.",
+      "revId": "e669741b4d855d256c419e9aa4817873ac2b24f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571d44c5_5835a4eb",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-27T13:19:29Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "e669741b4d855d256c419e9aa4817873ac2b24f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

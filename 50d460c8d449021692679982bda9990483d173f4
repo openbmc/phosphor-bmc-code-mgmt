@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dff77e90_99020ac2",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-28T05:34:24Z",
+      "side": 1,
+      "message": "could you add comment?",
+      "range": {
+        "startLine": 162,
+        "startChar": 3,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "50d460c8d449021692679982bda9990483d173f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e631d9a5_fba308e5",
+        "filename": "version.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-28T05:34:24Z",
+      "side": 1,
+      "message": "Add id description information",
+      "revId": "50d460c8d449021692679982bda9990483d173f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1402f1dc_f98c71bd",
+        "filename": "version.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2021-12-28T05:34:24Z",
+      "side": 1,
+      "message": "Nit: swap position",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 53
+      },
+      "revId": "50d460c8d449021692679982bda9990483d173f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

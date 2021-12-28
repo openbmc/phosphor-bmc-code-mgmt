@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f767252c_ed720fee",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-28T02:15:13Z",
+      "side": 1,
+      "message": "Yeah, I’m not especially a fan of cppcheck because it gives way too many false positives like this.",
+      "parentUuid": "a6d1462b_f1353823",
+      "revId": "e669741b4d855d256c419e9aa4817873ac2b24f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "571d44c5_5835a4eb",
         "filename": "usb/usb_manager.cpp",
         "patchSetId": 1

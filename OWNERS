@@ -38,6 +38,7 @@ owners:
 
 reviewers:
 - ojayanth@in.ibm.com
+- liuxiwei@inspur.com
 
 matches:
 
@@ -54,3 +55,6 @@ openbmc:
 - name: Jayanth Othayoth
   email: ojayanth@in.ibm.com
   discord: Jayanth
+- name: George Liu
+  email: liuxiwei@inspur.com
+  discord: George Liu

@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "2fcc44e3_5811579a",
         "filename": "image_manager.cpp",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "How about adding some extra string, e.g. `version + \"uploaded\"` to make it generate a different id, so that the other code will not be changed at all?\n\n@Adriana",
       "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "800086a4_7f8d3a96",
         "filename": "image_manager.cpp",
@@ -32,10 +33,28 @@
       "message": "that is an interesting idea, i think we can give that a try. the only side effect would be that on reboot, the version id would be different because it be calculated on the os-release version only, but that\u0027s probably ok since nobody is hard-coding the version id, it\u0027s all dynamic based on functional associations. so perhaps something like:\nif ALLOW_DUPLICATE\n   if version exists and not functional\n   id \u003d version+\"uploaded\"",
       "parentUuid": "2fcc44e3_5811579a",
       "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b6d95a_9720055d",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-05T22:14:16Z",
+      "side": 1,
+      "message": "Lei has made a change that\u0027s more generic here: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/49972 . Thanks Lei!",
+      "parentUuid": "800086a4_7f8d3a96",
+      "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "5f949b64_618aef1a",
         "filename": "image_manager.cpp",
@@ -49,10 +68,10 @@
       "side": 1,
       "message": "This is likely to delete a active image. For static layout it\u0027s OK because it only delete the dbus object without erasing the flash.\n\nFor ubi and emmc, let\u0027s wait for @Adriana\u0027s comment and see if it works.",
       "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9be1fe69_8b8c412a",
         "filename": "image_manager.cpp",
@@ -66,8 +85,7 @@
       "side": 1,
       "message": "When ALLOW_DUPLICATE_IMAGE_UPLOAD is not defined, this is undefined as well.",
       "revId": "a12276238fad5854a841181aa0a3ecda6c4f84df",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

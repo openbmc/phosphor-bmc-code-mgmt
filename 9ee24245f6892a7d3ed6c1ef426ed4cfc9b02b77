@@ -16,6 +16,24 @@
       "message": "Thanks Lei for this change. This works on mmc which support 2 versions. The only observation is that if you activate the same version so that both flash devices have the same image, upon reboot there\u0027s only one software d-bus object created because the id ends up being the same (version +\u0027running\u0027). I think that\u0027s ok for now, because even if we assign a random salt to each version after reboot, we still can\u0027t tell which one is functional and which is the non-functional since both versions are the same string as os-release.\nI\u0027ll be looking at enhancing this support so that the code creates the 2 d-bus versions even if they\u0027re the same, perhaps by having \"isFunctional\" determining which device is mounted, and then the salt could be \u0027running\u0027 for the functional one and no salt or different salt for the non-functional one, so that both exist on d-bus and we can delete the backup version (if it doesn\u0027t exist on dbus we can\u0027t delete it). Reason why we want this same-version support is that we\u0027ve heard from customers that if there\u0027s a security vulnerability that is fixed for example, they want to be able to update both flash devices with the fixed image, because leaving the vulnerable one on the system that could be used to boot from, or deleting the vulnerable backup one and just having the fixed image on the system that\u0027s supposed to support a backup version too, is not ideal. Being able to update both flash devices with the fixed image and being able to manage them separately via d-bus objects and being displayed in the gui would be the goal, and this change you made gets us closer to that 😊",
       "revId": "9ee24245f6892a7d3ed6c1ef426ed4cfc9b02b77",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22d6105_4ec8640c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-01-06T02:04:02Z",
+      "side": 1,
+      "message": "\u003e I\u0027ll be looking at enhancing this support so that the code creates the 2 d-bus versions even if they\u0027re the same, perhaps by having \"isFunctional\" determining which device is mounted.\n\nYup, I have similar idea for dual image support with static layout.\nI will submit a series of patches to implement the https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/36407\nIt will use \"version\" + \"alt\" to create the secondary image\u0027s DBus object.\nIn the meanwhile, the \"functional\" association is created only for the running image, and the \"isFunctional()\" API is not really used because it only compares the version string, and it does not work well for the case with the 2 same versions.",
+      "parentUuid": "0bcac3cb_b0a68616",
+      "revId": "9ee24245f6892a7d3ed6c1ef426ed4cfc9b02b77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

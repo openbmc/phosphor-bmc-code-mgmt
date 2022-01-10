@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78afc0a8_d4b4078a",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-10T22:00:44Z",
+      "side": 1,
+      "message": "Probably don\u0027t need to add this explicit remove anymore.",
+      "revId": "6c386280e71945b8354d4937b97ef339cba5a718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba3f114_ed3a03bf",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-10T22:00:44Z",
+      "side": 1,
+      "message": "Can we move this check to deleteImageManagerObject()? in that way any caller that needs to call deleteImageManagerObject() doesn\u0027t need to check first if the interface exists, but instead it\u0027s handled by the deleteImageManagerObject() api which will do the delete if it exists or return success if it doesn\u0027t.",
+      "revId": "6c386280e71945b8354d4937b97ef339cba5a718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

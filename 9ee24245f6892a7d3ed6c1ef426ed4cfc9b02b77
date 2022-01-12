@@ -88,6 +88,24 @@
       "parentUuid": "1f5ab95e_18d3ca05",
       "revId": "9ee24245f6892a7d3ed6c1ef426ed4cfc9b02b77",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a351a1e4_7e941c9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-12T21:33:42Z",
+      "side": 1,
+      "message": "I was making the ubi changes to name the volumes rofs-\u003cmtd\u003e instead of rofs-\u003cid\u003e, and found there\u0027s another area tied to the version id, which is the serialize.cpp file that stores the priority and purpose under an \u003cid\u003e directory. We\u0027ll need to change that too, I\u0027ll see if changing the directory name to be the device name such as \u003cmtd\u003e instead of version id would work.",
+      "parentUuid": "39f4778c_802d54f6",
+      "revId": "9ee24245f6892a7d3ed6c1ef426ed4cfc9b02b77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

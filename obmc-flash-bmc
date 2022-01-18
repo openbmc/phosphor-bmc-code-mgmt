@@ -264,6 +264,9 @@ remount_ubi() {
   altbmcmtd="$(findmtd "alt-bmc")"
   mtds="${bmcmtd: -1}","${altbmcmtd: -1}"
 
+  rootubi="$(findrootubi)"
+  rootname="$(findname "${rootubi}")"
+
   IFS=',' read -r -a mtds <<< "$mtds"
   mtds=($(echo "${mtds[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
   for mtd in ${mtds[@]}; do
@@ -279,7 +282,11 @@ remount_ubi() {
       name="$(echo -e "${name}" | tr -d '[:space:]')"
 
       if [[ ${name} == rofs-* ]]; then
-        mountdir="/media/${name}"
+        if [[ "${name}" == "${rootname}" ]]; then
+          mountdir="/media/${name}-functional"
+        else
+          mountdir="/media/${name}"
+        fi
 
         if [ ! -d ${mountdir} ]; then
           mkdir -p "${mountdir}"
@@ -515,6 +522,20 @@ mmc_get_secondary_label() {
   fi
 }
 
+mmc_mount() {
+  primaryId="$(mmc_get_primary_label)"
+  secondaryId="$(mmc_get_secondary_label)"
+
+  primaryDir="${mediaDir}/rofs-${primaryId}-functional"
+  secondaryDir="${mediaDir}/rofs-${secondaryId}"
+
+  mkdir -p "${primaryDir}"
+  mkdir -p "${secondaryDir}"
+
+  mount PARTLABEL=rofs-${primaryId} "${primaryDir}" -t ext4 -o ro || rmdir "${primaryDir}"
+  mount PARTLABEL=rofs-${secondaryId} "${secondaryDir}" -t ext4 -o ro || rmdir "${secondaryDir}"
+}
+
 mmc_update() {
   # Update u-boot if needed
   bootPartition="mmcblk0boot0"
@@ -657,6 +678,10 @@ case "$1" in
     version="$2"
     imgpath="$3"
     mmc_update
+    ;;
+  mmc-mount)
+    mediaDir="$2"
+    mmc_mount
     ;;
   mmc-remove)
     flashid="$2"

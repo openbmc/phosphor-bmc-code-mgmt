@@ -172,8 +172,8 @@ void ItemUpdater::processBMCImage()
         return;
     }
 
-    // Read os-release from /etc/ to get the functional BMC version
-    auto functionalVersion = VersionClass::getBMCVersion(OS_RELEASE_FILE);
+    // Functional images are mounted as rofs-<location>-functional
+    constexpr auto functionalSuffix = "-functional";
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
@@ -229,6 +229,14 @@ void ItemUpdater::processBMCImage()
 
             // The flash location is part of the mount name: rofs-<location>
             auto flashId = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+            auto functional = false;
+            if (iter.path().native().find(functionalSuffix) !=
+                std::string::npos)
+            {
+                // Set functional to true and remove the functional suffix
+                functional = true;
+                flashId.erase(flashId.length() - strlen(functionalSuffix));
+            }
 
             auto purpose = server::Version::VersionPurpose::BMC;
             restorePurpose(flashId, purpose);
@@ -241,7 +249,7 @@ void ItemUpdater::processBMCImage()
 
             // Create functional association if this is the functional
             // version
-            if (version.compare(functionalVersion) == 0)
+            if (functional)
             {
                 createFunctionalAssociation(path);
             }
@@ -267,8 +275,11 @@ void ItemUpdater::processBMCImage()
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, flashId,
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
-            auto isVersionFunctional = versionPtr->isFunctional();
-            if (!isVersionFunctional)
+            if (functional)
+            {
+                versionPtr->setFunctional(true);
+            }
+            else
             {
                 versionPtr->deleteObject =
                     std::make_unique<phosphor::software::manager::Delete>(
@@ -288,7 +299,7 @@ void ItemUpdater::processBMCImage()
                 uint8_t priority = std::numeric_limits<uint8_t>::max();
                 if (!restorePriority(flashId, priority))
                 {
-                    if (isVersionFunctional)
+                    if (functional)
                     {
                         priority = 0;
                     }
@@ -308,20 +319,21 @@ void ItemUpdater::processBMCImage()
     }
 
     // If there are no bmc versions mounted under MEDIA_DIR, then read the
-    // /etc/os-release and create rofs-<versionId> under MEDIA_DIR, then call
-    // again processBMCImage() to create the D-Bus interface for it.
+    // /etc/os-release and create rofs-<versionId>-functional under MEDIA_DIR,
+    // then call again processBMCImage() to create the D-Bus interface for it.
     if (activations.size() == 0)
     {
         auto version = VersionClass::getBMCVersion(OS_RELEASE_FILE);
         auto id = phosphor::software::manager::Version::getId(version);
-        auto versionFileDir = BMC_ROFS_PREFIX + id + "/etc/";
+        auto versionFileDir = BMC_ROFS_PREFIX + id + functionalSuffix + "/etc/";
         try
         {
             if (!fs::is_directory(versionFileDir))
             {
                 fs::create_directories(versionFileDir);
             }
-            auto versionFilePath = BMC_ROFS_PREFIX + id + OS_RELEASE_FILE;
+            auto versionFilePath =
+                BMC_ROFS_PREFIX + id + functionalSuffix + OS_RELEASE_FILE;
             fs::create_directory_symlink(OS_RELEASE_FILE, versionFilePath);
             ItemUpdater::processBMCImage();
         }

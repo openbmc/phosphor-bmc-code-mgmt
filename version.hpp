@@ -143,12 +143,22 @@ class Version : public VersionInherit
      */
     static std::string getBMCVersion(const std::string& releaseFilePath);
 
-    /* @brief Check if this version matches the currently running version
+    /* @brief Check if this version is functional.
      *
-     * @return - Returns true if this version matches the currently running
-     *           version.
+     * @return - Returns the functional value.
      */
-    bool isFunctional();
+    bool isFunctional() const
+    {
+        return functional;
+    }
+
+    /** @brief Set the functional value.
+     * @param[in] value - True or False
+     */
+    void setFunctional(bool value)
+    {
+        functional = value;
+    }
 
     /** @brief Persistent Delete D-Bus object */
     std::unique_ptr<Delete> deleteObject;
@@ -159,6 +169,9 @@ class Version : public VersionInherit
   private:
     /** @brief This Version's version string */
     const std::string versionStr;
+
+    /** @brief If this version is the functional one */
+    bool functional = false;
 };
 
 } // namespace manager

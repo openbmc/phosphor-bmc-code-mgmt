@@ -71,11 +71,11 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Save priority value to persistent storage (flash and optionally
      *  a U-Boot environment variable)
      *
-     *  @param[in] versionId - The Id of the version
+     *  @param[in] flashId - The flash id of the version
      *  @param[in] value - The priority value
      *  @return None
      */
-    void savePriority(const std::string& versionId, uint8_t value);
+    void savePriority(const std::string& flashId, uint8_t value);
 
     /** @brief Sets the given priority free by incrementing
      *  any existing priority with the same value by 1

@@ -227,8 +227,11 @@ void ItemUpdater::processBMCImage()
                 continue;
             }
 
+            // The flash location is part of the mount name: rofs-<location>
+            auto flashId = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+
             auto purpose = server::Version::VersionPurpose::BMC;
-            restorePurpose(id, purpose);
+            restorePurpose(flashId, purpose);
 
             // Read os-release from /etc/ to get the BMC extended version
             std::string extendedVersion =
@@ -260,9 +263,6 @@ void ItemUpdater::processBMCImage()
             // association.
             createUpdateableAssociation(path);
 
-            // The flash location is part of the mount name: rofs-<location>
-            auto flashId = iter.path().native().substr(BMC_RO_PREFIX_LEN);
-
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, flashId,
@@ -286,7 +286,7 @@ void ItemUpdater::processBMCImage()
             if (activationState == server::Activation::Activations::Active)
             {
                 uint8_t priority = std::numeric_limits<uint8_t>::max();
-                if (!restorePriority(id, priority))
+                if (!restorePriority(flashId, priority))
                 {
                     if (isVersionFunctional)
                     {
@@ -350,6 +350,8 @@ void ItemUpdater::erase(std::string entryId)
         }
     }
 
+    std::string flashId{};
+
     // First call resetUbootEnvVars() so that the BMC points to a valid image to
     // boot from. If resetUbootEnvVars() is called after the image is actually
     // deleted from the BMC flash, there'd be a time window where the BMC would
@@ -373,6 +375,8 @@ void ItemUpdater::erase(std::string entryId)
 
     if (it != versions.end())
     {
+        flashId = it->second->path();
+
         // Delete ReadOnly partitions if it's not active
         removeReadOnlyPartition(entryId);
         removePersistDataDirectory(entryId);
@@ -391,7 +395,7 @@ void ItemUpdater::erase(std::string entryId)
             "VERSIONID", entryId);
     }
 
-    helper.clearEntry(entryId);
+    helper.clearEntry(flashId);
 
     return;
 }
@@ -440,10 +444,10 @@ ItemUpdater::ActivationStatus
     return ItemUpdater::ActivationStatus::ready;
 }
 
-void ItemUpdater::savePriority(const std::string& versionId, uint8_t value)
+void ItemUpdater::savePriority(const std::string& flashId, uint8_t value)
 {
-    storePriority(versionId, value);
-    helper.setEntry(versionId, value);
+    storePriority(flashId, value);
+    helper.setEntry(flashId, value);
 }
 
 void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)

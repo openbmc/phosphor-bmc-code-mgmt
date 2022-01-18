@@ -197,7 +197,8 @@ void Activation::onFlashWriteSuccess()
     ubootEnvVarsUpdated = false;
     Activation::unsubscribeFromSystemdSignals();
 
-    storePurpose(versionId, parent.versions.find(versionId)->second->purpose());
+    auto flashId = parent.versions.find(versionId)->second->path();
+    storePurpose(flashId, parent.versions.find(versionId)->second->purpose());
 
     if (!redundancyPriority)
     {
@@ -274,14 +275,18 @@ uint8_t RedundancyPriority::priority(uint8_t value)
     // Set the priority value so that the freePriority() function can order
     // the versions by priority.
     auto newPriority = softwareServer::RedundancyPriority::priority(value);
-    parent.parent.savePriority(parent.versionId, value);
+    auto flashId =
+        parent.parent.versions.find(parent.versionId)->second->path();
+    parent.parent.savePriority(flashId, value);
     parent.parent.freePriority(value, parent.versionId);
     return newPriority;
 }
 
 uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
 {
-    parent.parent.savePriority(parent.versionId, value);
+    auto flashId =
+        parent.parent.versions.find(parent.versionId)->second->path();
+    parent.parent.savePriority(flashId, value);
     return softwareServer::RedundancyPriority::priority(value);
 }
 

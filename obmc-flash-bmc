@@ -67,6 +67,14 @@ findname() {
   echo "${n}"
 }
 
+# Get the flash location of the specified version id
+get_flashid() {
+  flashid=$(busctl get-property xyz.openbmc_project.Software.BMC.Updater \
+            "/xyz/openbmc_project/software/${version}" \
+            xyz.openbmc_project.Common.FilePath Path |  awk '{print $NF;}' | tr -d '"')
+  echo "${flashid}"
+}
+
 # Set the version path property to the flash location where the image was
 # successfully flashed
 set_flashid() {
@@ -554,31 +562,21 @@ mmc_update() {
     mount ${hostfwdir}/hostfw-${label} ${hostfwdir}/alternate -o ro
   fi
 
-  # Store the label where the other properties like purpose and priority are
-  # preserved via the storePriority() function in the serialize files, so that
-  # it can be used for the remove function.
-  label_dir="/var/lib/phosphor-bmc-code-mgmt/${version}"
-  label_file="${label_dir}/partlabel"
-  mkdir -p "${label_dir}"
-  echo "${label}" > "${label_file}"
-
   set_flashid "${label}"
 }
 
 mmc_remove() {
   # Render the filesystem unbootable by wiping out the first 1MB, this
   # invalidates the filesystem header.
-  # If the label property does not exist, assume it's the secondary
-  # (non-running) one since the running device should not be erased.
-  label=""
-  label_file="/var/lib/phosphor-bmc-code-mgmt/${version}/partlabel"
-  if [ -f "${label_file}" ]; then
-    label="$(cat "${label_file}")"
-  else
-    label="$(mmc_get_secondary_label)"
+  # Check if the requested version is the one the BMC is running from since dd
+  # will still write and corrupt the running partition.
+  flashid="$(get_flashid)"
+  primaryid="$(mmc_get_primary_label)"
+  if [[ "${flashid}" == "${primaryid}" ]]; then
+    return -1
   fi
-  dd if=/dev/zero of=/dev/disk/by-partlabel/boot-${label} count=2048
-  dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-${label} count=2048
+  dd if=/dev/zero of=/dev/disk/by-partlabel/boot-${flashid} count=2048
+  dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-${flashid} count=2048
 
   hostfw_alt="hostfw/alternate"
   if grep -q "${hostfw_alt}" /proc/mounts; then
@@ -588,30 +586,27 @@ mmc_remove() {
   hostfw_base="hostfw "
   if grep -q "${hostfw_base}" /proc/mounts; then
     hostfw_base=$(grep "${hostfw_base}" /proc/mounts | cut -d " " -f 2)
-    rm -f ${hostfw_base}/hostfw-${label}
+    rm -f ${hostfw_base}/hostfw-${flashid}
   fi
 }
 
 # Set the requested version as primary for the BMC to boot from upon reboot.
 mmc_setprimary() {
-  # Point root to the label of the requested BMC rootfs. If the label property
+  # Point root to the flashid of the requested BMC rootfs. If the flashid value
   # does not exist, determine if the requested version is functional or not.
-  label=""
-  label_file="/var/lib/phosphor-bmc-code-mgmt/${version}/partlabel"
-  if [ -f "${label_file}" ]; then
-    label="$(cat "${label_file}")"
-  else
+  flashid="$(get_flashid)"
+  if [ -z "${flashid}" ]; then
     functional="$(busctl call xyz.openbmc_project.ObjectMapper \
                   /xyz/openbmc_project/software/functional \
                   org.freedesktop.DBus.Properties Get ss \
                   xyz.openbmc_project.Association endpoints)"
     if [[ "${functional}" =~ "${version}" ]]; then
-      label="$(mmc_get_primary_label)"
+      flashid="$(mmc_get_primary_label)"
     else
-      label="$(mmc_get_secondary_label)"
+      flashid="$(mmc_get_secondary_label)"
     fi
   fi
-  fw_setenv bootside "${label}"
+  fw_setenv bootside "${flashid}"
 }
 
 case "$1" in

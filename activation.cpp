@@ -197,7 +197,8 @@ void Activation::onFlashWriteSuccess()
     ubootEnvVarsUpdated = false;
     Activation::unsubscribeFromSystemdSignals();
 
-    storePurpose(versionId, parent.versions.find(versionId)->second->purpose());
+    auto flashId = parent.versions.find(versionId)->second->path();
+    storePurpose(flashId, parent.versions.find(versionId)->second->purpose());
 
     if (!redundancyPriority)
     {

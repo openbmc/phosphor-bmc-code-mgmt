@@ -232,16 +232,17 @@ ubi_remove() {
 
 ubi_cleanup() {
     # When ubi_cleanup is run, it expects one or no active version.
-    activeVersion=$(busctl --list --no-pager tree \
+    version=$(busctl --list --no-pager tree \
             xyz.openbmc_project.Software.BMC.Updater | \
             grep /xyz/openbmc_project/software/ | tail -c 9)
+    flashid="$(get_flashid)"
 
-    if [[ -z "$activeVersion" ]]; then
+    if [[ -z "$version" ]]; then
         vols=$(ubinfo -a | grep "rofs-" | cut -c 14-)
         vols=(${vols})
     else
         vols=$(ubinfo -a | grep "rofs-" | \
-                grep -v "$activeVersion" | cut -c 14-)
+                grep -v "$flashid" | cut -c 14-)
         vols=(${vols})
     fi
 
@@ -378,7 +379,8 @@ backup_env_vars() {
 }
 
 update_env_vars() {
-  vol="$(findubi rofs-"${version}")"
+  flashid="$(get_flashid)"
+  vol="$(findubi rofs-"${flashid}")"
   if [ -z "${vol}" ]; then
     return 1
   fi
@@ -387,7 +389,7 @@ update_env_vars() {
   if [ ! -e "${block}" ]; then
     return 1
   fi
-  ubi_setenv "kernelname=kernel-${version}"
+  ubi_setenv "kernelname=kernel-${flashid}"
   ubi_setenv "ubiblock=$(echo "${ubidevid}" | sed 's/_/,/')"
   ubi_setenv "root=${block}"
 }
@@ -644,6 +646,11 @@ case "$1" in
     ;;
   ubiremove)
     name="$2"
+    version="$3"
+    if [ -n "${version}" ]; then
+      flashid="$(get_flashid)"
+      name="${name}-${flashid}"
+    fi
     ubi_remove "${name}"
     ;;
   ubicleanup)

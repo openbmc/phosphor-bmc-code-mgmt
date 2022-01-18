@@ -260,9 +260,12 @@ void ItemUpdater::processBMCImage()
             // association.
             createUpdateableAssociation(path);
 
+            // The flash location is part of the mount name: rofs-<location>
+            auto flashId = iter.path().native().substr(BMC_RO_PREFIX_LEN);
+
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
-                bus, path, version, purpose, extendedVersion, "",
+                bus, path, version, purpose, extendedVersion, flashId,
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
             auto isVersionFunctional = versionPtr->isFunctional();
             if (!isVersionFunctional)

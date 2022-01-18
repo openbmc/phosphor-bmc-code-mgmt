@@ -67,6 +67,15 @@ findname() {
   echo "${n}"
 }
 
+# Set the version path property to the flash location where the image was
+# successfully flashed
+set_flashid() {
+  busctl set-property xyz.openbmc_project.Software.BMC.Updater \
+    "/xyz/openbmc_project/software/${version}" \
+    xyz.openbmc_project.Common.FilePath \
+    Path s "$1"
+}
+
 # Set the u-boot envs that perform a side switch on failure to boot
 set_wdt2bite() {
   if ! fw_printenv wdt2bite 2>/dev/null; then
@@ -170,6 +179,8 @@ ubi_ro() {
     ubimkvol "${ubidev}" -N "${name}" -s "${imgsize}" --type=static
     vol="$(findubi "${name}")"
   fi
+
+  set_flashid "${version}"
 }
 
 # Squashfs images need a ubi block
@@ -550,6 +561,8 @@ mmc_update() {
   label_file="${label_dir}/partlabel"
   mkdir -p "${label_dir}"
   echo "${label}" > "${label_file}"
+
+  set_flashid "${label}"
 }
 
 mmc_remove() {

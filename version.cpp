@@ -202,11 +202,6 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     return version;
 }
 
-bool Version::isFunctional()
-{
-    return versionStr == getBMCVersion(OS_RELEASE_FILE);
-}
-
 void Delete::delete_()
 {
     if (parent.eraseCallback)

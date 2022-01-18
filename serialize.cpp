@@ -22,9 +22,9 @@ namespace fs = std::filesystem;
 const std::string priorityName = "priority";
 const std::string purposeName = "purpose";
 
-void storePriority(const std::string& versionId, uint8_t priority)
+void storePriority(const std::string& flashId, uint8_t priority)
 {
-    auto path = fs::path(PERSIST_DIR) / versionId;
+    auto path = fs::path(PERSIST_DIR) / flashId;
     if (!fs::is_directory(path))
     {
         if (fs::exists(path))
@@ -42,9 +42,9 @@ void storePriority(const std::string& versionId, uint8_t priority)
     oarchive(cereal::make_nvp(priorityName, priority));
 }
 
-void storePurpose(const std::string& versionId, VersionPurpose purpose)
+void storePurpose(const std::string& flashId, VersionPurpose purpose)
 {
-    auto path = fs::path(PERSIST_DIR) / versionId;
+    auto path = fs::path(PERSIST_DIR) / flashId;
     if (!fs::is_directory(path))
     {
         if (fs::exists(path))
@@ -62,9 +62,9 @@ void storePurpose(const std::string& versionId, VersionPurpose purpose)
     oarchive(cereal::make_nvp(purposeName, purpose));
 }
 
-bool restorePriority(const std::string& versionId, uint8_t& priority)
+bool restorePriority(const std::string& flashId, uint8_t& priority)
 {
-    auto path = fs::path(PERSIST_DIR) / versionId / priorityName;
+    auto path = fs::path(PERSIST_DIR) / flashId / priorityName;
     if (fs::exists(path))
     {
         std::ifstream is(path.c_str(), std::ios::in);
@@ -101,13 +101,13 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
             std::string envVars;
             std::getline(input, envVars);
 
-            std::string versionVar = versionId + "=";
+            std::string versionVar = flashId + "=";
             auto varPosition = envVars.find(versionVar);
 
             if (varPosition != std::string::npos)
             {
-                // Grab the environment variable for this versionId. These
-                // variables follow the format "versionId=priority\0"
+                // Grab the environment variable for this flashId. These
+                // variables follow the format "flashId=priority\0"
                 auto var = envVars.substr(varPosition);
                 priority = std::stoi(var.substr(versionVar.length()));
                 return true;
@@ -122,9 +122,9 @@ bool restorePriority(const std::string& versionId, uint8_t& priority)
     return false;
 }
 
-bool restorePurpose(const std::string& versionId, VersionPurpose& purpose)
+bool restorePurpose(const std::string& flashId, VersionPurpose& purpose)
 {
-    auto path = fs::path(PERSIST_DIR) / versionId / purposeName;
+    auto path = fs::path(PERSIST_DIR) / flashId / purposeName;
     if (fs::exists(path))
     {
         std::ifstream is(path.c_str(), std::ios::in);
@@ -143,9 +143,9 @@ bool restorePurpose(const std::string& versionId, VersionPurpose& purpose)
     return false;
 }
 
-void removePersistDataDirectory(const std::string& versionId)
+void removePersistDataDirectory(const std::string& flashId)
 {
-    auto path = fs::path(PERSIST_DIR) / versionId;
+    auto path = fs::path(PERSIST_DIR) / flashId;
     if (fs::exists(path))
     {
         fs::remove_all(path);

@@ -375,24 +375,18 @@ void ItemUpdater::erase(std::string entryId)
     {
         auto flashId = it->second->path();
 
-        // Delete ReadOnly partitions if it's not active
-        removeReadOnlyPartition(entryId);
-        removePersistDataDirectory(flashId);
+        // Delete version data if it has been installed on flash (path is not
+        // the upload directory)
+        if (flashId.find(IMG_UPLOAD_DIR) == std::string::npos)
+        {
+            removeReadOnlyPartition(entryId);
+            removePersistDataDirectory(flashId);
+            helper.clearEntry(flashId);
+        }
 
         // Removing entry in versions map
         this->versions.erase(entryId);
     }
-    else
-    {
-        // Delete ReadOnly partitions even if we can't find the version
-        removeReadOnlyPartition(entryId);
-
-        error(
-            "Failed to find version ({VERSIONID}) in item updater versions map; unable to remove.",
-            "VERSIONID", entryId);
-    }
-
-    helper.clearEntry(entryId);
 
     return;
 }
@@ -445,7 +439,7 @@ void ItemUpdater::savePriority(const std::string& versionId, uint8_t value)
 {
     auto flashId = versions.find(versionId)->second->path();
     storePriority(flashId, value);
-    helper.setEntry(versionId, value);
+    helper.setEntry(flashId, value);
 }
 
 void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
@@ -511,7 +505,8 @@ void ItemUpdater::reset()
 
 void ItemUpdater::removeReadOnlyPartition(std::string versionId)
 {
-    helper.removeVersion(versionId);
+    auto flashId = versions.find(versionId)->second->path();
+    helper.removeVersion(flashId);
 }
 
 bool ItemUpdater::fieldModeEnabled(bool value)
@@ -647,7 +642,8 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
 
 void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
 {
-    helper.updateUbootVersionId(versionId);
+    auto flashId = versions.find(versionId)->second->path();
+    helper.updateUbootVersionId(flashId);
 }
 
 void ItemUpdater::resetUbootEnvVars()

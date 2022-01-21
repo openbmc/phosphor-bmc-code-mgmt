@@ -3,6 +3,7 @@
 #include "flash.hpp"
 
 #include "activation.hpp"
+#include "item_updater.hpp"
 
 namespace phosphor
 {
@@ -33,7 +34,8 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
     msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);
 
     auto mmcServiceFile = "obmc-flash-mmc@" + versionId + ".service";
-    auto mmcSetPrimary = "obmc-flash-mmc-setprimary@" + versionId + ".service";
+    auto flashId = parent.versions.find(versionId)->second->path();
+    auto mmcSetPrimary = "obmc-flash-mmc-setprimary@" + flashId + ".service";
 
     if (newStateUnit == mmcServiceFile && newStateResult == "done")
     {

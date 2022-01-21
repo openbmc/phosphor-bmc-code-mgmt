@@ -48,17 +48,17 @@ class Helper
     /** @brief Do factory reset */
     void factoryReset();
 
-    /** @brief Remove the image with the version id
+    /** @brief Remove the image with the flash id
      *
-     * @param[in] versionId - The version id of the image
+     * @param[in] flashId - The flash id of the image
      */
-    void removeVersion(const std::string& versionId);
+    void removeVersion(const std::string& flashId);
 
-    /** @brief Update version id in uboot env
+    /** @brief Update flash id in uboot env
      *
-     * @param[in] versionId - The version id of the image
+     * @param[in] flashId - The flash id of the image
      */
-    void updateUbootVersionId(const std::string& versionId);
+    void updateUbootVersionId(const std::string& flashId);
 
     /** @brief Mirror Uboot to the alt uboot partition */
     void mirrorAlt();

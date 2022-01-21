@@ -3,6 +3,8 @@
 
 #include <sdbusplus/server.hpp>
 
+#include <chrono>
+#include <random>
 #include <string>
 
 namespace phosphor
@@ -50,6 +52,10 @@ class Manager
 
     /** @brief Persistent sdbusplus DBus bus connection. */
     sdbusplus::bus::bus& bus;
+
+    /** @brief The random generator to get the version salt */
+    std::mt19937 randomGen{static_cast<unsigned>(
+        std::chrono::system_clock::now().time_since_epoch().count())};
 
     /**
      * @brief Untar the tarball.

@@ -79,9 +79,9 @@ class Version : public VersionInherit
     Version(sdbusplus::bus::bus& bus, const std::string& objPath,
             const std::string& versionString, VersionPurpose versionPurpose,
             const std::string& extVersion, const std::string& filePath,
-            eraseFunc callback) :
+            eraseFunc callback, const std::string& id) :
         VersionInherit(bus, (objPath).c_str(), true),
-        eraseCallback(callback), versionStr(versionString)
+        eraseCallback(callback), id(id), versionStr(versionString)
     {
         // Set properties.
         extendedVersion(extVersion);
@@ -106,11 +106,13 @@ class Version : public VersionInherit
      * @details The version id is a unique 8 hexadecimal digit id
      *          calculated from the version string.
      *
-     * @param[in] version - The image's version string (e.g. v1.99.10-19).
+     * @param[in] versionWithSalt - The image's version string
+     *                              (e.g. v1.99.10-19) plus an optional salt
+     *                              string.
      *
      * @return The id.
      */
-    static std::string getId(const std::string& version);
+    static std::string getId(const std::string& versionWithSalt);
 
     /**
      * @brief Get the active BMC machine name string.
@@ -163,6 +165,9 @@ class Version : public VersionInherit
 
     /** @brief The parent's erase callback. */
     eraseFunc eraseCallback;
+
+    /** @brief The version ID of the object */
+    const std::string id;
 
   private:
     /** @brief This Version's version string */

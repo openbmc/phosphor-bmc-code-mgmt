@@ -206,7 +206,7 @@ void Delete::delete_()
 {
     if (parent.eraseCallback)
     {
-        parent.eraseCallback(parent.getId(parent.version()));
+        parent.eraseCallback(parent.id);
     }
 }
 

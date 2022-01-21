@@ -51,9 +51,9 @@ void Helper::factoryReset()
     utils::execute("/sbin/fw_setenv", "rwreset", "true");
 }
 
-void Helper::removeVersion(const std::string& versionId)
+void Helper::removeVersion(const std::string& flashId)
 {
-    auto serviceFile = "obmc-flash-bmc-ubiro-remove@" + versionId + ".service";
+    auto serviceFile = "obmc-flash-bmc-ubiro-remove@" + flashId + ".service";
 
     // Remove the read-only partitions.
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
@@ -62,12 +62,12 @@ void Helper::removeVersion(const std::string& versionId)
     bus.call_noreply(method);
 }
 
-void Helper::updateUbootVersionId(const std::string& versionId)
+void Helper::updateUbootVersionId(const std::string& flashId)
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
     auto updateEnvVarsFile =
-        "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
+        "obmc-flash-bmc-updateubootvars@" + flashId + ".service";
     method.append(updateEnvVarsFile, "replace");
 
     try
@@ -76,7 +76,8 @@ void Helper::updateUbootVersionId(const std::string& versionId)
     }
     catch (const sdbusplus::exception::exception& e)
     {
-        error("Failed to update u-boot env variables", "VERSIONID", versionId);
+        error("Failed to update u-boot env variables: {FLASHID}", "FLASHID",
+              flashId);
     }
 }
 

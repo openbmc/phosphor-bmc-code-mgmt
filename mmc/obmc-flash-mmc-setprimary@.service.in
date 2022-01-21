@@ -1,5 +1,5 @@
 [Unit]
-Description=Set %I as primary version
+Description=Set %I as primary partition
 
 [Service]
 Type=oneshot

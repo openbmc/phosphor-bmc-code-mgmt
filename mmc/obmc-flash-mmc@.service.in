@@ -1,6 +1,5 @@
 [Unit]
 Description=Write image %I to BMC storage
-OnFailure=obmc-flash-mmc-remove@%i.service
 
 [Service]
 Type=oneshot

@@ -34,11 +34,11 @@ void Helper::factoryReset()
     utils::execute("/sbin/fw_setenv", "rwreset", "true");
 }
 
-void Helper::removeVersion(const std::string& versionId)
+void Helper::removeVersion(const std::string& flashId)
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
-    auto serviceFile = "obmc-flash-mmc-remove@" + versionId + ".service";
+    auto serviceFile = "obmc-flash-mmc-remove@" + flashId + ".service";
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
 
@@ -48,11 +48,11 @@ void Helper::removeVersion(const std::string& versionId)
     std::this_thread::sleep_for(removeWait);
 }
 
-void Helper::updateUbootVersionId(const std::string& versionId)
+void Helper::updateUbootVersionId(const std::string& flashId)
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
-    auto serviceFile = "obmc-flash-mmc-setprimary@" + versionId + ".service";
+    auto serviceFile = "obmc-flash-mmc-setprimary@" + flashId + ".service";
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
 

@@ -31,12 +31,12 @@ void Helper::factoryReset()
     utils::execute("/sbin/fw_setenv", "openbmconce", "factory-reset");
 }
 
-void Helper::removeVersion(const std::string& /* versionId */)
+void Helper::removeVersion(const std::string& /* flashId */)
 {
     // Empty
 }
 
-void Helper::updateUbootVersionId(const std::string& /* versionId */)
+void Helper::updateUbootVersionId(const std::string& /* flashId */)
 {
     // Empty
 }

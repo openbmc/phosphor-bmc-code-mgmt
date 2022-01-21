@@ -1,5 +1,5 @@
 [Unit]
-Description= Updates the u-boot variable to point BMC version to %I
+Description=Updates the u-boot variable to point BMC to %I
 
 [Service]
 Type=oneshot

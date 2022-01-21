@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "activation.hpp"
+#include "item_updater.hpp"
 
 namespace phosphor
 {
@@ -39,8 +40,9 @@ void Activation::onStateChanges(sdbusplus::message::message& msg)
 
     auto rwServiceFile = "obmc-flash-bmc-ubirw.service";
     auto roServiceFile = "obmc-flash-bmc-ubiro@" + versionId + ".service";
+    auto flashId = parent.versions.find(versionId)->second->path();
     auto ubootVarsServiceFile =
-        "obmc-flash-bmc-updateubootvars@" + versionId + ".service";
+        "obmc-flash-bmc-updateubootvars@" + flashId + ".service";
 
     if (newStateUnit == rwServiceFile && newStateResult == "done")
     {

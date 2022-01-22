@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa8fea3_c6bccf46",
+        "filename": "image_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-22T20:38:51Z",
+      "side": 1,
+      "message": "Was getting the same \"random\" id after rebooting the bmc and re-uploading the image. Doing some reading, seems there\u0027s a recommendation to add a seed based on time to ensure uniqueness and avoid the same random number being generated.",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

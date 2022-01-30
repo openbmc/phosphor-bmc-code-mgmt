@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c2c56e3_7cceefa3",
+        "filename": "ubi/item_updater_helper.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-01-30T06:29:33Z",
+      "side": 1,
+      "message": "Just noticed this log has issue, that the `FLASHID` is not in the string.\nIt should be changed to something like:\n\n error(\"Failed to update u-boot env variables: {FLASHID}\", \"FLASHID\", flashId);",
+      "revId": "c50a814b06a02352f120ae2ed0efb53a2d8991e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "288e2ba1_301c7c74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-31T22:32:29Z",
+      "side": 1,
+      "message": "I should probably specify that we can now update to the same image on the dual-flash layouts and have both \u0027sides\u0027 of flash have the same firmware version.",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffa8fea3_c6bccf46",
         "filename": "image_manager.cpp",
         "patchSetId": 4

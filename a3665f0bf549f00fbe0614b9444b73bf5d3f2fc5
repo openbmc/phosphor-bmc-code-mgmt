@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f65710f3_08a89a57",
+        "filename": "version.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-31T22:29:16Z",
+      "side": 1,
+      "message": "Done. Makes sense.",
+      "parentUuid": "35007fb4_1f798b2b",
+      "revId": "a3665f0bf549f00fbe0614b9444b73bf5d3f2fc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d8c11bd_85c46fee",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-30T06:33:12Z",
       "side": 1,
       "message": "Possibly change this to `void setFunctional(bool)` so that a version could be set to non-functional in case it is needed.",
+      "revId": "a3665f0bf549f00fbe0614b9444b73bf5d3f2fc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f4ba0f_261a18dc",
+        "filename": "version.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-31T22:29:16Z",
+      "side": 1,
+      "message": "Done. Agree.",
+      "parentUuid": "6d8c11bd_85c46fee",
       "revId": "a3665f0bf549f00fbe0614b9444b73bf5d3f2fc5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

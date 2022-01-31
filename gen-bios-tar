@@ -48,6 +48,7 @@ F0nIdUAhR0yTfKM=
 '
 
 do_sign=false
+PRIVATE_KEY_PATH=${PRIVATE_KEY_PATH:-}
 private_key_path="${PRIVATE_KEY_PATH}"
 outfile=""
 machine=""
@@ -62,7 +63,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -s|--sign)
       do_sign=true
-      if [[ ! -z "${2}"  && "${2}" != -* ]]; then
+      if [[ -n "${2}"  && "${2}" != -* ]]; then
         private_key_path="$2"
         shift 2
       else
@@ -105,18 +106,18 @@ if [[ -z $version ]]; then
 fi
 
 if [[ -z $outfile ]]; then
-  outfile=`pwd`/obmc-bios.tar.gz
+  outfile=$(pwd)/obmc-bios.tar.gz
 else
   if [[ $outfile != /* ]]; then
-    outfile=`pwd`/$outfile
+    outfile=$(pwd)/$outfile
   fi
 fi
 
-scratch_dir=`mktemp -d`
+scratch_dir=$(mktemp -d)
 # Remove the temp directory on exit.
 # The files in the temp directory may contain read-only files, so add
 # --interactive=never to skip the prompt.
-trap "{ rm -r --interactive=never ${scratch_dir}; }" EXIT
+trap '{ rm -r --interactive=never ${scratch_dir}; }' EXIT
 
 if [[ "${do_sign}" == true ]]; then
   if [[ -z "${private_key_path}" ]]; then
@@ -134,22 +135,22 @@ if [[ "${do_sign}" == true ]]; then
 
   public_key_file=publickey
   public_key_path=${scratch_dir}/$public_key_file
-  openssl pkey -in "${private_key_path}" -pubout -out ${public_key_path}
+  openssl pkey -in "${private_key_path}" -pubout -out "${public_key_path}"
 fi
 
 manifest_location="MANIFEST"
 files_to_sign="$manifest_location $public_key_file"
 
 # Go to scratch_dir
-cp ${file} ${scratch_dir}
+cp "${file}" "${scratch_dir}"
 cd "${scratch_dir}"
-files_to_sign+=" $(basename ${file})"
+files_to_sign+=" $(basename "${file}")"
 
 echo "Creating MANIFEST for the image"
 echo -e "purpose=xyz.openbmc_project.Software.Version.VersionPurpose.Host\n\
 version=$version" > $manifest_location
 
-if [[ ! -z "${machine}" ]]; then
+if [[ -n "${machine}" ]]; then
     echo -e "MachineName=${machine}" >> $manifest_location
 fi
 
@@ -160,11 +161,11 @@ if [[ "${do_sign}" == true ]]; then
   echo HashType="RSA-SHA256" >> $manifest_location
 
   for file in $files_to_sign; do
-    openssl dgst -sha256 -sign ${private_key_path} -out "${file}.sig" $file
+    openssl dgst -sha256 -sign "${private_key_path}" -out "${file}.sig" "$file"
   done
 
   additional_files="*.sig"
 fi
 
-tar -czvf $outfile $files_to_sign $additional_files
+tar -czvf "$outfile" "$files_to_sign" "$additional_files"
 echo "Bios image tarball is at $outfile"

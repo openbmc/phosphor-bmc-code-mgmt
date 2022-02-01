@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21bf2f7f_14738af4",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1001179
+      },
+      "writtenOn": "2022-02-01T23:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a41e59_43fbee69",
+      "revId": "6c386280e71945b8354d4937b97ef339cba5a718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ba3f114_ed3a03bf",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "6ba3f114_ed3a03bf",
+      "revId": "6c386280e71945b8354d4937b97ef339cba5a718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7cb2f7_405be784",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1001179
+      },
+      "writtenOn": "2022-02-01T23:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8638e4e3_56f2dace",
       "revId": "6c386280e71945b8354d4937b97ef339cba5a718",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

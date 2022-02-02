@@ -63,7 +63,7 @@ findubiname_onmtd() {
 
 # Get the name from the requested ubiX_Y volume
 findname() {
-  n="$(cat /sys/class/ubi/$1/name)"
+  n="$(cat /sys/class/ubi/"$1"/name)"
   echo "${n}"
 }
 
@@ -99,9 +99,9 @@ ubi_remove_volumes()
   # the BMC is booted from, and when a version is identified to be deleted,
   # delete both the rofs and kernel volumes for that version.
   rmnames="$(findubiname_onmtd "${name%-*}-" "${ro}")"
-  rmnames=(${rmnames})
+  mapfile -t rmnames <<< "${rmnames}"
   ubicount="${#rmnames[@]}"
-  while [ ${ubicount} -ge ${keepmax} ]; do
+  while [ "${ubicount}" -ge "${keepmax}" ]; do
     # Loop through existing volumes and skip currently active ones
     for (( index=0; index<${#rmnames[@]}; index++ )); do
       rmname="${rmnames[${index}]}"
@@ -128,7 +128,7 @@ ubi_rw() {
   ubidev="/dev/ubi${rw}"
 
   # Update rwfs_size, check imgsize was specified, otherwise it'd clear the var
-  if [ ! -z "$imgsize" ]; then
+  if [ -n "$imgsize" ]; then
     rwsize="$(fw_printenv -n rwfs_size 2>/dev/null)" || true
     if [[ "${imgsize}" != "${rwsize}" ]]; then
       fw_setenv rwfs_size "${imgsize}"
@@ -166,10 +166,10 @@ ubi_ro() {
 
   # Create a ubi volume, dynamically sized to fit BMC image if size unspecified
   img="/tmp/images/${version}/${imgfile}"
-  imgsize="$(stat -c '%s' ${img})"
+  imgsize="$(stat -c '%s' "${img}")"
 
   vol="$(findubi "${name}")"
-  if [ ! -z "${vol}" ]; then
+  if [ -n "${vol}" ]; then
     # Allow a duplicate kernel volume on the alt mtd
     if [[ "${name}" =~ "kernel" ]]; then
       vol="$(findubi_onmtd "${name}" "${ro}")"
@@ -203,13 +203,13 @@ ubi_updatevol() {
 ubi_remove() {
     rmname="$1"
     rmmtd="$2"
-    if [ ! -z "${rmmtd}" ]; then
+    if [ -n "${rmmtd}" ]; then
       vol="$(findubi_onmtd "${rmname}" "${rmmtd}")"
     else
       vol="$(findubi "${rmname}")"
     fi
 
-    if [ ! -z "$vol" ]; then
+    if [ -n "$vol" ]; then
         vol="${vol%_*}"
 
         if grep -q "$rmname" /proc/mounts; then
@@ -230,26 +230,26 @@ ubi_cleanup() {
 
     if [[ -z "$activeVersion" ]]; then
         vols=$(ubinfo -a | grep "rofs-" | cut -c 14-)
-        vols=(${vols})
+        mapfile -t vols <<< "${vols}"
     else
         flashid=$(busctl get-property xyz.openbmc_project.Software.BMC.Updater \
             "/xyz/openbmc_project/software/${activeVersion}" \
             xyz.openbmc_project.Common.FilePath Path |  awk '{print $NF;}' | tr -d '"')
-        vols=$(ubinfo -a | grep "rofs-" | \
+        volus=$(ubinfo -a | grep "rofs-" | \
                 grep -v "$flashid" | cut -c 14-) || true
-        vols=(${vols})
+        mapfile -t vols <<< "${volus}"
     fi
 
     for (( index=0; index<${#vols[@]}; index++ )); do
-         ubi_remove ${vols[index]}
+         ubi_remove "${vols[index]}"
     done
 }
 
 mount_alt_rwfs() {
   altNum="$(findmtdnum "alt-bmc")"
-  if [ ! -z "${altNum}" ]; then
-    altRwfs=$(ubinfo -a -d ${altNum} | grep -w "rwfs") || true
-    if [ ! -z "${altRwfs}" ]; then
+  if [ -n "${altNum}" ]; then
+    altRwfs=$(ubinfo -a -d "${altNum}" | grep -w "rwfs") || true
+    if [ -n "${altRwfs}" ]; then
       altVarMount="/media/alt/var"
       mkdir -p "${altVarMount}"
       if mount ubi"${altNum}":rwfs "${altVarMount}" -t ubifs -o defaults; then
@@ -268,14 +268,14 @@ remount_ubi() {
   rootname="$(findname "${rootubi}")"
 
   IFS=',' read -r -a mtds <<< "$mtds"
-  mtds=($(echo "${mtds[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-  for mtd in ${mtds[@]}; do
+  mapfile -t mtds < <(echo "${mtds[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+  for mtd in "${mtds[@]}"; do
     # Get information on all ubi volumes
-    ubinfo=$(ubinfo -d ${mtd})
+    ubinfo=$(ubinfo -d "${mtd}")
     presentVolumes=${ubinfo##*:}
     IFS=', ' read -r -a array <<< "$presentVolumes"
-    for element in ${array[@]}; do
-      elementProperties=$(ubinfo -d $mtd -n $element)
+    for element in "${array[@]}"; do
+      elementProperties=$(ubinfo -d "$mtd" -n "$element")
       # Get ubi volume name by getting rid of additional properties
       name=${elementProperties#*Name:}
       name="${name%Character*}"
@@ -288,12 +288,12 @@ remount_ubi() {
           mountdir="/media/${name}"
         fi
 
-        if [ ! -d ${mountdir} ]; then
+        if [ ! -d "${mountdir}" ]; then
           mkdir -p "${mountdir}"
           # U-Boot will create the ubiblock for the running version, but not
           # for the version on the other chip
           if [ ! -e "/dev/ubiblock${mtd}_${element}" ]; then
-            ubiblock --create /dev/ubi${mtd}_${element}
+            ubiblock --create /dev/ubi"${mtd}"_"${element}"
           fi
           mount -t squashfs -o ro "/dev/ubiblock${mtd}_${element}" "${mountdir}"
         fi
@@ -357,7 +357,7 @@ ubi_setenv() {
         value="${variable##*=}"
         # Write only if var is not set already to the requested value
         currentValue="$(fw_printenv -n "${varName}" 2>/dev/null)" || true
-        if [[ "${currenValue}" != "${value}" ]]; then
+        if [[ "${currentValue}" != "${value}" ]]; then
           fw_setenv "$varName" "$value"
           fw_setenv "$varName" "$value"
         fi
@@ -370,7 +370,7 @@ ubi_setenv() {
 mtd_write() {
   flashmtd="$(findmtd "${reqmtd}")"
   img="/tmp/images/${version}/${imgfile}"
-  flashcp -v ${img} /dev/${flashmtd}
+  flashcp -v "${img}" /dev/"${flashmtd}"
 }
 
 backup_env_vars() {
@@ -390,7 +390,7 @@ update_env_vars() {
     return 1
   fi
   ubi_setenv "kernelname=kernel-${flashid}"
-  ubi_setenv "ubiblock=$(echo "${ubidevid}" | sed 's/_/,/')"
+  ubi_setenv "ubiblock=${ubidevid//_/,}"
   ubi_setenv "root=${block}"
 }
 
@@ -402,8 +402,8 @@ rebootguardenable() {
   units=("reboot" "poweroff" "halt")
 
   for unit in "${units[@]}"; do
-    mkdir -p ${dir}${unit}.target.d
-    echo -e "[Unit]\nRefuseManualStart=yes" >> ${dir}${unit}.target.d/${file}
+    mkdir -p ${dir}"${unit}".target.d
+    echo -e "[Unit]\nRefuseManualStart=yes" >> ${dir}"${unit}".target.d/${file}
   done
 }
 
@@ -415,7 +415,7 @@ rebootguarddisable() {
   units=("reboot" "poweroff" "halt")
 
   for unit in "${units[@]}"; do
-    rm -rf ${dir}${unit}.target.d/${file}
+    rm -rf ${dir}"${unit}".target.d/${file}
   done
 }
 
@@ -423,7 +423,7 @@ rebootguarddisable() {
 create_vol_in_alt() {
   alt="alt-bmc"
   altmtd="$(findmtd "${alt}")"
-  if [ ! -z "${altmtd}" ]; then
+  if [ -n "${altmtd}" ]; then
     reqmtd="${alt}"
     reqmtd2="${alt}"
     ubi_ro
@@ -479,9 +479,9 @@ cmp_uboot() {
   # Use cat / redirection since busybox does not have the conv=notrunc option.
   tmpFile="$(mktemp /tmp/ubootdev.XXXXXX)"
   dd if="${device}" of="${tmpFile}"
-  devSum="$(sha256sum ${tmpFile})"
+  devSum="$(sha256sum "${tmpFile}")"
   cat < "${image}" 1<> "${tmpFile}"
-  imgSum="$(sha256sum ${tmpFile})"
+  imgSum="$(sha256sum "${tmpFile}")"
   rm -f "${tmpFile}"
 
   if [ "${imgSum}" == "${devSum}" ]; then
@@ -532,8 +532,8 @@ mmc_mount() {
   mkdir -p "${primaryDir}"
   mkdir -p "${secondaryDir}"
 
-  mount PARTLABEL=rofs-${primaryId} "${primaryDir}" -t ext4 -o ro || rmdir "${primaryDir}"
-  mount PARTLABEL=rofs-${secondaryId} "${secondaryDir}" -t ext4 -o ro || rmdir "${secondaryDir}"
+  mount PARTLABEL=rofs-"${primaryId}" "${primaryDir}" -t ext4 -o ro || rmdir "${primaryDir}"
+  mount PARTLABEL=rofs-"${secondaryId}" "${secondaryDir}" -t ext4 -o ro || rmdir "${secondaryDir}"
 }
 
 mmc_update() {
@@ -552,30 +552,30 @@ mmc_update() {
 
   # Update the boot and rootfs partitions, restore their labels after the update
   # by getting the partition number mmcblk0pX from their label.
-  zstd -d -c ${imgpath}/${version}/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
-  number="$(readlink -f /dev/disk/by-partlabel/boot-${label})"
+  zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
+  number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
   number="${number##*mmcblk0p}"
-  sgdisk --change-name=${number}:boot-${label} /dev/mmcblk0 1>/dev/null
+  sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
 
-  zstd -d -c ${imgpath}/${version}/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
-  number="$(readlink -f /dev/disk/by-partlabel/rofs-${label})"
+  zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
+  number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
   number="${number##*mmcblk0p}"
-  sgdisk --change-name=${number}:rofs-${label} /dev/mmcblk0 1>/dev/null
+  sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
 
   # Run this after sgdisk for labels to take effect.
   partprobe
 
   # Update hostfw
-  if [ -f ${imgpath}/${version}/image-hostfw ]; then
+  if [ -f "${imgpath}"/"${version}"/image-hostfw ]; then
     # Remove patches
     patchdir="/usr/local/share/hostfw/alternate"
     if [ -d "${patchdir}" ]; then
-      rm -rf "${patchdir}"/*
+      rm -rf "${patchdir:?}"/*
     fi
     hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
-    cp ${imgpath}/${version}/image-hostfw ${hostfwdir}/hostfw-${label}
-    mkdir -p ${hostfwdir}/alternate
-    mount ${hostfwdir}/hostfw-${label} ${hostfwdir}/alternate -o ro
+    cp "${imgpath}"/"${version}"/image-hostfw "${hostfwdir}"/hostfw-"${label}"
+    mkdir -p "${hostfwdir}"/alternate
+    mount "${hostfwdir}"/hostfw-"${label}" "${hostfwdir}"/alternate -o ro
   fi
 
   set_flashid "${label}"
@@ -588,10 +588,10 @@ mmc_remove() {
   # can still write and corrupt the running partition.
   primaryid="$(mmc_get_primary_label)"
   if [[ "${flashid}" == "${primaryid}" ]]; then
-    return -1
+    return 1
   fi
-  dd if=/dev/zero of=/dev/disk/by-partlabel/boot-${flashid} count=2048
-  dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-${flashid} count=2048
+  dd if=/dev/zero of=/dev/disk/by-partlabel/boot-"${flashid}" count=2048
+  dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-"${flashid}" count=2048
 
   hostfw_alt="hostfw/alternate"
   if grep -q "${hostfw_alt}" /proc/mounts; then
@@ -601,7 +601,7 @@ mmc_remove() {
   hostfw_base="hostfw "
   if grep -q "${hostfw_base}" /proc/mounts; then
     hostfw_base=$(grep "${hostfw_base}" /proc/mounts | cut -d " " -f 2)
-    rm -f ${hostfw_base}/hostfw-${flashid}
+    rm -f "${hostfw_base}"/hostfw-"${flashid}"
   fi
 }
 

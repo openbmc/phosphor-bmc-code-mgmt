@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae35da9_f1d6ea72",
+        "filename": "version.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T06:28:04Z",
+      "side": 1,
+      "message": "This may be better to `bool value \u003d true`, then the caller could skip setting true by default.\nBut for now it\u0027s OK as well.",
+      "range": {
+        "startLine": 158,
+        "startChar": 23,
+        "endLine": 158,
+        "endChar": 33
+      },
+      "revId": "1e81f23c40b5ee98b4451431d88692a632c33b2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

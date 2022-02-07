@@ -20,6 +20,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "162252cf_0822fd46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:02:27Z",
+      "side": 1,
+      "message": "Yup, please add this info.",
+      "parentUuid": "288e2ba1_301c7c74",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82328040_be201b27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:02:27Z",
+      "side": 1,
+      "message": "Please also add your sign-off here as well.",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffa8fea3_c6bccf46",
         "filename": "image_manager.cpp",
         "patchSetId": 4
@@ -31,6 +66,24 @@
       "writtenOn": "2022-01-22T20:38:51Z",
       "side": 1,
       "message": "Was getting the same \"random\" id after rebooting the bmc and re-uploading the image. Doing some reading, seems there\u0027s a recommendation to add a seed based on time to ensure uniqueness and avoid the same random number being generated.",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42419e7e_94f3ab3c",
+        "filename": "image_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:02:27Z",
+      "side": 1,
+      "message": "Right, but the randomGen does not need to be created/destroyed everytime an image is uploaded, so we could move this back to the hpp to make it a member of the class, and initialize it with std::time(nullptr)",
+      "parentUuid": "ffa8fea3_c6bccf46",
       "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

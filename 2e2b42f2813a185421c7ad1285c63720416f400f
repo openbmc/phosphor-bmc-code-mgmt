@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbed966_555473ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:32:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "162252cf_0822fd46",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82328040_be201b27",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-02-07T09:02:27Z",
       "side": 1,
       "message": "Please also add your sign-off here as well.",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14175be5_dd625d4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:32:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82328040_be201b27",
       "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -84,6 +120,24 @@
       "side": 1,
       "message": "Right, but the randomGen does not need to be created/destroyed everytime an image is uploaded, so we could move this back to the hpp to make it a member of the class, and initialize it with std::time(nullptr)",
       "parentUuid": "ffa8fea3_c6bccf46",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e05d151_134405a7",
+        "filename": "image_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-07T09:32:27Z",
+      "side": 1,
+      "message": "I uploaded a new PS to fix the issue.",
+      "parentUuid": "42419e7e_94f3ab3c",
       "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

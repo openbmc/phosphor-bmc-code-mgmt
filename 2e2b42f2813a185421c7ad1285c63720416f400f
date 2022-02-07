@@ -140,6 +140,24 @@
       "parentUuid": "42419e7e_94f3ab3c",
       "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8f1f0b_5662c22e",
+        "filename": "image_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-07T20:19:56Z",
+      "side": 1,
+      "message": "That\u0027s better, thanks.",
+      "parentUuid": "5e05d151_134405a7",
+      "revId": "2e2b42f2813a185421c7ad1285c63720416f400f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

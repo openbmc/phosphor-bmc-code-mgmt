@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3c3ced_b051e1d3",
+        "filename": "reset-cs0-aspeed.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-10T01:45:29Z",
+      "side": 1,
+      "message": "Seems to me like it would be cleaner to create a flag file in `/run` and have the shutdown script check for its existence?",
+      "revId": "586b014275ade2b7b78aaabfe335bb023c51b7ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

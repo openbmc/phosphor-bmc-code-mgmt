@@ -33,6 +33,24 @@
       "message": "I still need to look at the rest of the commit chain, just have a question about if we don\u0027t need/want to create an active association and Activation object for this backup version?",
       "revId": "ba729a0b9514b0b71e636c381a2f03b93c84fc03",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9605f5e7_ddf52891",
+        "filename": "item_updater.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:51:18Z",
+      "side": 1,
+      "message": "I got to commit https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/50274 that adds the Priority, and seems to me that we don\u0027t need this new function, but instead we can mount the alt image in directory name rofs-alt and have the processBMC() function automatically process this alt image. One additional thought is that not sure that processBMC() would know the id for this backup image to add the Priority value, but if we have processBMC() process the primary and alternate images then it knows the id to add the Priority value, in addition to saving from having a new function that is a bit duplicate.",
+      "parentUuid": "70e99818_783af883",
+      "revId": "ba729a0b9514b0b71e636c381a2f03b93c84fc03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

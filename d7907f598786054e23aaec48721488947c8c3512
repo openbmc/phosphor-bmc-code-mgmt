@@ -22,6 +22,30 @@
       },
       "revId": "d7907f598786054e23aaec48721488947c8c3512",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c331686_a05b8737",
+        "filename": "static/obmc-flash-bmc-static-mount-alt.service.in",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T22:01:11Z",
+      "side": 1,
+      "message": "To make this work with processBMCImage() , we\u0027ll need to mount the primary image too, it could be as rofs-bmc or whatever rofs-X name (no need to have a \"-functional\" suffix to specify which version is functional from the directory name). Once the priority is determined from the slot position then the functional association etc can be set.",
+      "parentUuid": "664b1ebd_8ca2b534",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d7907f598786054e23aaec48721488947c8c3512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3e823e_06205591",
+        "filename": "item_updater.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:54:55Z",
+      "side": 1,
+      "message": "I\u0027m not fully clear on how we can find the alternate image id that was created on processSecondaryBMC() function, also only the primary image would enter through this loop because the mount directory for alt doesn\u0027t start with rofs- so seems only the primary image would get a Priority value. Instead I added some comments in the previous commits to see if we can simplify things by having the alt image mounted as rofs-alt and have this function process both images, add the priority value, etc, and we can remove the processSecondaryBMC() function.",
+      "range": {
+        "startLine": 300,
+        "startChar": 29,
+        "endLine": 300,
+        "endChar": 31
+      },
+      "revId": "90646bef148f266a9d87eb9636d1ad360ff87d91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

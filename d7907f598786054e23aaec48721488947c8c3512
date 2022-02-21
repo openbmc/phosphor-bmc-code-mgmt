@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664b1ebd_8ca2b534",
+        "filename": "static/obmc-flash-bmc-static-mount-alt.service.in",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:47:48Z",
+      "side": 1,
+      "message": "If we make the mount directory name \"rofs-alt\" instead of \"alt-rofs\", then processBMCImage() would process this image automatically and seems to me we wouldn\u0027t need a new processSecondaryBMC() function since the version id would be calculate with the salt \"alt\" taken from the mount directory.",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d7907f598786054e23aaec48721488947c8c3512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

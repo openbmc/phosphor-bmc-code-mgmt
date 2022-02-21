@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "595a8445_5e6ccd1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:36:48Z",
+      "side": 1,
+      "message": "For my reference, tested mmc and getRunningSlot is 0 as expected even if the detect-slot-aspeed is not run and /run/media/slot does not exist (fstream doesn\u0027t fail and we\u0027re not checking that the open failed).",
+      "revId": "2c9cc2d2f7389d676ff86ddcb0a5986669056e8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcbd8e4b_336cf28f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:36:48Z",
+      "side": 1,
+      "message": "Just need to rename the script file.",
+      "revId": "2c9cc2d2f7389d676ff86ddcb0a5986669056e8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "655f1eb6_56de9de7",
+        "filename": "detect-slot-aspeed.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-21T21:36:48Z",
+      "side": 1,
+      "message": "Please remove the .sh extension from the file name. Patrick has made previous comments that having a file suffix all it\u0027s doing is adding maintenance trouble if we decide to refactor it into another language down the line.",
+      "revId": "2c9cc2d2f7389d676ff86ddcb0a5986669056e8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

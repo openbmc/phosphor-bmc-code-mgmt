@@ -193,6 +193,11 @@ void ItemUpdater::processBMCImage()
             auto osRelease = iter.path() / releaseFile.relative_path();
             if (!fs::is_regular_file(osRelease))
             {
+#ifdef BMC_STATIC_DUAL_IMAGE
+                // For dual image, it is possible that the secondary image is
+                // empty or contains invalid data, ignore such case.
+                info("Unable to find osRelease: {PATH}", "PATH", osRelease);
+#else
                 error("Failed to read osRelease: {PATH}", "PATH", osRelease);
 
                 // Try to get the version id from the mount directory name and
@@ -202,6 +207,7 @@ void ItemUpdater::processBMCImage()
                 // erase() is called with an non-existent id and returns.
                 auto id = iter.path().native().substr(BMC_RO_PREFIX_LEN);
                 ItemUpdater::erase(id);
+#endif
 
                 continue;
             }
@@ -380,6 +386,7 @@ void ItemUpdater::erase(std::string entryId)
         error(
             "Failed to find version ({VERSIONID}) in item updater activations map; unable to remove.",
             "VERSIONID", entryId);
+        return;
     }
     else
     {

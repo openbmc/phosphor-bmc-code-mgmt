@@ -70,6 +70,30 @@
       },
       "revId": "d7907f598786054e23aaec48721488947c8c3512",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ea0551e_e97cbde8",
+        "filename": "static/obmc-flash-bmc-static-mount-alt.service.in",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-22T14:55:37Z",
+      "side": 1,
+      "message": "Right, we can mount both primary and secondary image in this mount service, one as rofs-bmc (or rofs-bmc-functional) for example and the other as rofs-alt. If functional depends on which slot is mounted, the mount name doesn\u0027t have to have -functional, we can set the functional info as part of determining slot location.",
+      "parentUuid": "0778bf63_07193511",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d7907f598786054e23aaec48721488947c8c3512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

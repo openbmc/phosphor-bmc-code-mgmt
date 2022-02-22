@@ -46,6 +46,30 @@
       },
       "revId": "d7907f598786054e23aaec48721488947c8c3512",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0778bf63_07193511",
+        "filename": "static/obmc-flash-bmc-static-mount-alt.service.in",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-22T12:35:12Z",
+      "side": 1,
+      "message": "Good suggestion, I did not realize the processBMCImage() could process secondary image.\nI tried to use /run/media/rofs-alt, and it works as expected.\n\nBut it has a side effect that the processBMCImage() has the logic of:\n\n if (activations.size() \u003d\u003d 0)\n {\n     // create os-release symbol link in /run/media/rofs-xxx-functional\n }\n\nIn case the secondary image has a valid os-release, `activations.size()` is not 0, and thus the logic in the `if` is not run, and thus it does not create the functional activation.\n\nLet\u0027s see how to handle this case.",
+      "parentUuid": "4c331686_a05b8737",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d7907f598786054e23aaec48721488947c8c3512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

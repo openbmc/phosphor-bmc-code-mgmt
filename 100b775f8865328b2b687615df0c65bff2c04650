@@ -16,6 +16,24 @@
       "message": "Milton is always on the lookout to prevent unnecessary wear of the flash by doing writes that are not needed, that\u0027s why for example we compare the u-boot contents before flashing to since it doesn\u0027t change that often.\nProbably a compare can be done on the files and if different, write the file, that can be an enhancement.",
       "revId": "100b775f8865328b2b687615df0c65bff2c04650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1491a7e_3ce0719e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-23T22:32:50Z",
+      "side": 1,
+      "message": "Oh I see the next commit is going to make that change :) . I \u0027ll comment there about doing a compare instead of writing a file that doesn\u0027t change often on every reboot to avoid flash wear.",
+      "parentUuid": "f6272ef9_04e01fdd",
+      "revId": "100b775f8865328b2b687615df0c65bff2c04650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

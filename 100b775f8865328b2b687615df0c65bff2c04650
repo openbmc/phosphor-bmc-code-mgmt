@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6272ef9_04e01fdd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-23T22:31:30Z",
+      "side": 1,
+      "message": "Milton is always on the lookout to prevent unnecessary wear of the flash by doing writes that are not needed, that\u0027s why for example we compare the u-boot contents before flashing to since it doesn\u0027t change that often.\nProbably a compare can be done on the files and if different, write the file, that can be an enhancement.",
+      "revId": "100b775f8865328b2b687615df0c65bff2c04650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

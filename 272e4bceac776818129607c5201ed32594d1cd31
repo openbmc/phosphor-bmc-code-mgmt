@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310f6947_c1c107f1",
+        "filename": "item_updater.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-23T22:04:37Z",
+      "side": 1,
+      "message": "Could you put this etc symlink inside a check that sees if there\u0027s already a \"*-functional\" mount directory and only do the symlink if it doesn\u0027t exist? The reason is that ubi/mmc use the mount directory name to communicate what\u0027s the \u0027flash id\u0027 so for example for mmc it needs to be rofs-a and rofs-b instead of rofs-\u003cversion\u003e. I don\u0027t see an issue if add a new iterator over the media dir, then it iterates again below, since it\u0027s only 0-2 directories. I\u0027m thinking something like this:\n\nfor (const auto\u0026 iter : fs::directory_iterator(MEDIA_DIR))\n{\n    if iter.path() contains \"-functional\"\n    {\n        functionalFound \u003d true;\n    }\n}\nif (!functionalFound)\n{\n    // Create rofs-\u003cversionid\u003e-functional\n}",
+      "revId": "272e4bceac776818129607c5201ed32594d1cd31",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaa16337_80905f71",
+        "filename": "item_updater.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-23T22:04:37Z",
+      "side": 1,
+      "message": "We can remove this text about \"calling again processBMCImage()\" to avoid confusion.",
+      "range": {
+        "startLine": 180,
+        "startChar": 18,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "272e4bceac776818129607c5201ed32594d1cd31",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

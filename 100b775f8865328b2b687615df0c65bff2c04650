@@ -34,6 +34,24 @@
       "parentUuid": "f6272ef9_04e01fdd",
       "revId": "100b775f8865328b2b687615df0c65bff2c04650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b42b0f1e_45505cc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-28T22:17:23Z",
+      "side": 1,
+      "message": "doh forgot about rsync which only updates if needed, so no concerns doing a sync on every boot.",
+      "parentUuid": "d1491a7e_3ce0719e",
+      "revId": "100b775f8865328b2b687615df0c65bff2c04650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

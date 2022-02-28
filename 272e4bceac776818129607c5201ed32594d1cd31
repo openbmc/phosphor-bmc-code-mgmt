@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f2c6ed_a703e293",
+        "filename": "item_updater.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-28T11:25:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310f6947_c1c107f1",
+      "revId": "272e4bceac776818129607c5201ed32594d1cd31",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaa16337_80905f71",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-02-23T22:04:37Z",
       "side": 1,
       "message": "We can remove this text about \"calling again processBMCImage()\" to avoid confusion.",
+      "range": {
+        "startLine": 180,
+        "startChar": 18,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "272e4bceac776818129607c5201ed32594d1cd31",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c8f838_9a86634d",
+        "filename": "item_updater.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-02-28T11:25:29Z",
+      "side": 1,
+      "message": "With the updated code this is still needed.",
+      "parentUuid": "aaa16337_80905f71",
       "range": {
         "startLine": 180,
         "startChar": 18,

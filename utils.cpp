@@ -46,6 +46,7 @@ const PropertyValue getProperty(sdbusplus::bus::bus& bus,
                                 const std::string& interface,
                                 const std::string& propertyName)
 {
+    // This is a comment
     PropertyValue value{};
     auto service = getService(bus, objectPath, interface);
     if (service.empty())

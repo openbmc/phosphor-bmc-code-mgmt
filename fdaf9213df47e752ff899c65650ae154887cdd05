@@ -16,6 +16,24 @@
       "message": "Is there an issue if there\u0027s not an entry in the activations map? I believe we don\u0027t return because we want to try to clean up as much as possible, so if an activations entry doesn\u0027t exist, we still try to delete the versions entry if it exists (logic below).",
       "revId": "fdaf9213df47e752ff899c65650ae154887cdd05",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a16268_e4c5e23e",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-02T10:02:34Z",
+      "side": 1,
+      "message": "OK, I see, I thought it should return if the activation is not found, I did not realize the version should be erased as well.\n\nDone",
+      "parentUuid": "04ac950e_e350e2a4",
+      "revId": "fdaf9213df47e752ff899c65650ae154887cdd05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

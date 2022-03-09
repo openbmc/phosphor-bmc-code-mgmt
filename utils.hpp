@@ -84,7 +84,7 @@ constexpr auto constructArgv(const char* name, Arg&&... args)
  * @param[in] args - Optional arguments
  * @return 0 on success
  */
-int executeCmd(const char* path, char** args);
+std::pair<int, std::string> executeCmd(char** args);
 
 } // namespace internal
 
@@ -95,11 +95,11 @@ int executeCmd(const char* path, char** args);
  * @return 0 on success
  */
 template <typename... Arg>
-int execute(const char* path, Arg&&... args)
+std::pair<int, std::string> execute(const char* path, Arg&&... args)
 {
     auto argArray = internal::constructArgv(path, std::forward<Arg>(args)...);
 
-    return internal::executeCmd(path, argArray.data());
+    return internal::executeCmd(argArray.data());
 }
 
 } // namespace utils

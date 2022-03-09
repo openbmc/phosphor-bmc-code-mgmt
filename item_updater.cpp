@@ -561,11 +561,11 @@ bool ItemUpdater::fieldModeEnabled(bool value)
 
 void ItemUpdater::restoreFieldModeStatus()
 {
-    std::ifstream input("/dev/mtd/u-boot-env");
-    std::string envVar;
-    std::getline(input, envVar);
-
-    if (envVar.find("fieldmode=true") != std::string::npos)
+    std::pair<int, std::string> mode =
+        utils::execute("/sbin/fw_printenv", "-n", "fieldmode");
+    // truncate any extra characters off the end
+    std::string result = mode.second.substr(0, 4);
+    if (result == "true")
     {
         ItemUpdater::fieldModeEnabled(true);
     }

@@ -96,11 +96,10 @@ constexpr auto constructArgv(const char* name, Arg&&... args)
 
 /**
  * @brief Helper function to execute command in child process
- * @param[in] path - Fully qualified name of the executable to run
- * @param[in] args - Optional arguments
- * @return 0 on success
+ * @param[in] args - Executable plus optional arguments
+ * @return 0 and command output on success
  */
-int executeCmd(const char* path, char** args);
+std::pair<int, std::string> executeCmd(char** args);
 
 } // namespace internal
 
@@ -108,14 +107,14 @@ int executeCmd(const char* path, char** args);
  * @brief Execute command in child process
  * @param[in] path - Fully qualified name of the executable to run
  * @param[in] args - Optional arguments
- * @return 0 on success
+ * @return 0 and command output on success
  */
 template <typename... Arg>
-int execute(const char* path, Arg&&... args)
+std::pair<int, std::string> execute(const char* path, Arg&&... args)
 {
     auto argArray = internal::constructArgv(path, std::forward<Arg>(args)...);
 
-    return internal::executeCmd(path, argArray.data());
+    return internal::executeCmd(argArray.data());
 }
 
 } // namespace utils

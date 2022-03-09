@@ -602,11 +602,20 @@ bool ItemUpdater::fieldModeEnabled(bool value)
 
 void ItemUpdater::restoreFieldModeStatus()
 {
-    std::ifstream input("/dev/mtd/u-boot-env");
-    std::string envVar;
-    std::getline(input, envVar);
+    // The fieldmode u-boot environment variable may not exist since it is not
+    // part of the default environment, run fw_printenv with 2>&1 to ignore the
+    // error message in the journal "Error: "fieldmode" not defined"
+    std::pair<int, std::string> ret =
+        utils::execute("/sbin/fw_printenv", "-n", "fieldmode", "2>&1");
 
-    if (envVar.find("fieldmode=true") != std::string::npos)
+    if (ret.first != 0)
+    {
+        return;
+    }
+
+    // truncate any extra characters off the end to compare against a "true" str
+    std::string result = ret.second.substr(0, 4);
+    if (result == "true")
     {
         ItemUpdater::fieldModeEnabled(true);
     }

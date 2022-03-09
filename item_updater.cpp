@@ -138,11 +138,6 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                                 ACTIVATION_REV_ASSOCIATION, bmcInventoryPath));
         }
 
-        activations.insert(std::make_pair(
-            versionId,
-            std::make_unique<Activation>(bus, path, *this, versionId,
-                                         activationState, associations)));
-
         auto versionPtr = std::make_unique<VersionClass>(
             bus, path, version, purpose, extendedVersion, filePath,
             std::bind(&ItemUpdater::erase, this, std::placeholders::_1),
@@ -151,6 +146,11 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
                                                                   *versionPtr);
         versions.insert(std::make_pair(versionId, std::move(versionPtr)));
+
+        activations.insert(std::make_pair(
+            versionId,
+            std::make_unique<Activation>(bus, path, *this, versionId,
+                                         activationState, associations)));
     }
     return;
 }

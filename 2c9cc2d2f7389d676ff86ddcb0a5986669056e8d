@@ -50,6 +50,24 @@
       "message": "Please remove the .sh extension from the file name. Patrick has made previous comments that having a file suffix all it\u0027s doing is adding maintenance trouble if we decide to refactor it into another language down the line.",
       "revId": "2c9cc2d2f7389d676ff86ddcb0a5986669056e8d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "219954bd_f14c2bb5",
+        "filename": "detect-slot-aspeed.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-14T05:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "655f1eb6_56de9de7",
+      "revId": "2c9cc2d2f7389d676ff86ddcb0a5986669056e8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -114,6 +114,12 @@ auto Activation::activation(Activations value) -> Activations
                     std::make_unique<ActivationProgress>(bus, path);
             }
 
+            if (!activationBlocksTransition)
+            {
+                activationBlocksTransition =
+                    std::make_unique<ActivationBlocksTransition>(bus, path);
+            }
+
             // Enable systemd signals
             subscribeToSystemdSignals();
 

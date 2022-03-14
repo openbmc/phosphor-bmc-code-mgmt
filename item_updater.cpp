@@ -658,7 +658,12 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
 
 void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
 {
-    auto flashId = versions.find(versionId)->second->path();
+    auto it = versions.find(versionId);
+    if (it == versions.end())
+    {
+        return;
+    }
+    auto flashId = it->second->path();
     helper.updateUbootVersionId(flashId);
 }
 

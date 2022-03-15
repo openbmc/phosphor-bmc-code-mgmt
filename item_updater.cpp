@@ -49,11 +49,14 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
     auto purpose = VersionPurpose::Unknown;
     std::string extendedVersion;
     std::string version;
-    std::map<std::string, std::map<std::string, std::variant<std::string>>>
+    std::map<std::string,
+             std::map<std::string,
+                      std::variant<std::string, std::vector<std::string>>>>
         interfaces;
     msg.read(objPath, interfaces);
     std::string path(std::move(objPath));
     std::string filePath;
+    std::vector<std::string> compatibleNames;
 
     for (const auto& intf : interfaces)
     {
@@ -97,6 +100,17 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
                 if (property.first == "ExtendedVersion")
                 {
                     extendedVersion = std::get<std::string>(property.second);
+                }
+            }
+        }
+        else if (intf.first == COMPATIBLE_IFACE)
+        {
+            for (const auto& property : intf.second)
+            {
+                if (property.first == "Names")
+                {
+                    compatibleNames =
+                        std::get<std::vector<std::string>>(property.second);
                 }
             }
         }
@@ -145,6 +159,7 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 
         auto versionPtr = std::make_unique<VersionClass>(
             bus, path, version, purpose, extendedVersion, filePath,
+            compatibleNames,
             std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
         versionPtr->deleteObject =
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
@@ -263,6 +278,7 @@ void ItemUpdater::processBMCImage()
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, "",
+                std::vector<std::string>(),
                 std::bind(&ItemUpdater::erase, this, std::placeholders::_1));
             auto isVersionFunctional = versionPtr->isFunctional();
             if (!isVersionFunctional)
@@ -774,6 +790,7 @@ void ItemUpdater::createBIOSObject()
     };
     biosVersion = std::make_unique<VersionClass>(
         bus, path, version, VersionPurpose::Host, "", "",
+        std::vector<std::string>(),
         std::bind(dummyErase, std::placeholders::_1));
     biosVersion->deleteObject =
         std::make_unique<phosphor::software::manager::Delete>(bus, path,

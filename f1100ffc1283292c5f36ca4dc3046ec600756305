@@ -33,6 +33,24 @@
       "message": "Thanks for the submission, makes sense. Just to avoid duplication in adding the BlocksTransition in Host update and then later in line 160 below for BMC updates, could you instead move this whole \"#ifdef HOST_BIOS_UPGRADE\" block underneath line 166 below \"activationProgress-\u003eprogress(10);\"? I think that\u0027ll make the code even make more sense, it\u0027d look like:\n\n- verify signatures\n\u003c-- host update was here, remove it\n- verify min ship level\n- add progress interface\n- add activationBlocksTransition\n- set progress to 10% (update is about to start)\n- NEW host update block moves here (progress is set to 20% and the host is updated)",
       "revId": "f1100ffc1283292c5f36ca4dc3046ec600756305",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b803ea_8f71c875",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2022-03-15T02:55:49Z",
+      "side": 1,
+      "message": "Thanks for your comments. I updated the code as your suggestion, but I swap 2 last steps to avoid duplication setting progress if the purpose is updating HOST BIOS.",
+      "parentUuid": "dca8f226_8234576f",
+      "revId": "f1100ffc1283292c5f36ca4dc3046ec600756305",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

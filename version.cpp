@@ -30,6 +30,23 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 std::string Version::getValue(const std::string& manifestFilePath,
                               std::string key)
 {
+    std::vector<std::string> values = getRepeatedValues(manifestFilePath, key);
+    if (values.empty())
+    {
+        return std::string{};
+    }
+    if (values.size() > 1)
+    {
+        error("Multiple values found in MANIFEST file for key: {KEY}", "KEY",
+              key);
+    }
+    return values.at(0);
+}
+
+std::vector<std::string>
+    Version::getRepeatedValues(const std::string& manifestFilePath,
+                               std::string key)
+{
     key = key + "=";
     auto keySize = key.length();
 
@@ -41,11 +58,10 @@ std::string Version::getValue(const std::string& manifestFilePath,
             Argument::ARGUMENT_VALUE(manifestFilePath.c_str()));
     }
 
-    std::string value{};
+    std::vector<std::string> values{};
     std::ifstream efile;
     std::string line;
-    efile.exceptions(std::ifstream::failbit | std::ifstream::badbit |
-                     std::ifstream::eofbit);
+    efile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
     // Too many GCC bugs (53984, 66145) to do this the right way...
     try
@@ -61,19 +77,26 @@ std::string Version::getValue(const std::string& manifestFilePath,
             }
             if (line.compare(0, keySize, key) == 0)
             {
-                value = line.substr(keySize);
-                break;
+                values.push_back(line.substr(keySize));
             }
         }
         efile.close();
     }
     catch (const std::exception& e)
     {
-        error("Error occurred when reading MANIFEST file: {ERROR}", "KEY", key,
-              "ERROR", e);
+        if (!efile.eof())
+        {
+            error("Error occurred when reading MANIFEST file: {ERROR}", "KEY",
+                  key, "ERROR", e);
+        }
     }
 
-    return value;
+    if (values.empty())
+    {
+        error("No values found in MANIFEST file for key: {KEY}", "KEY", key);
+    }
+
+    return values;
 }
 
 using EVP_MD_CTX_Ptr =

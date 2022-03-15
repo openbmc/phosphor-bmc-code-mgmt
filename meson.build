@@ -40,6 +40,7 @@ conf.set_quoted('SYSTEMD_INTERFACE', 'org.freedesktop.systemd1.Manager')
 conf.set_quoted('VERSION_BUSNAME', 'xyz.openbmc_project.Software.Version')
 conf.set_quoted('VERSION_IFACE', 'xyz.openbmc_project.Software.Version')
 conf.set_quoted('EXTENDED_VERSION_IFACE', 'xyz.openbmc_project.Software.ExtendedVersion')
+conf.set_quoted('COMPATIBLE_IFACE', 'xyz.openbmc_project.Inventory.Decorator.Compatible')
 
 # Names of the forward and reverse associations
 conf.set_quoted('ACTIVATION_FWD_ASSOCIATION', 'inventory')

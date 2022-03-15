@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "589f69ae_6af5b8b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-15T02:14:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88d61e82_1aaed887",
+      "revId": "586b014275ade2b7b78aaabfe335bb023c51b7ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a3c3ced_b051e1d3",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-10T01:45:29Z",
       "side": 1,
       "message": "Seems to me like it would be cleaner to create a flag file in `/run` and have the shutdown script check for its existence?",
+      "revId": "586b014275ade2b7b78aaabfe335bb023c51b7ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0e9217_250dbdbb",
+        "filename": "reset-cs0-aspeed.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-15T02:14:43Z",
+      "side": 1,
+      "message": "That\u0027s true.\nPossibly we could add an extra script to run during shutdown, and the shutdown script could check and run it if it exists.\n\nWill update.",
+      "parentUuid": "6a3c3ced_b051e1d3",
       "revId": "586b014275ade2b7b78aaabfe335bb023c51b7ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

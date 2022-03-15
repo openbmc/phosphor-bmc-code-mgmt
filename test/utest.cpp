@@ -58,6 +58,25 @@ TEST_F(VersionTest, TestGetValue)
     EXPECT_EQ(Version::getValue(manifestFilePath, "purpose"), purpose);
 }
 
+TEST_F(VersionTest, TestGetRepeatedValue)
+{
+    auto manifestFilePath = _directory + "/" + "MANIFEST";
+    const std::vector<std::string> names = {"foo.bar", "baz.bim"};
+
+    std::ofstream file;
+    file.open(manifestFilePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    for (const auto& name : names)
+    {
+        file << "CompatibleName=" << name << "\n";
+    }
+    file.close();
+
+    EXPECT_EQ(Version::getRepeatedValues(manifestFilePath, "CompatibleName"),
+              names);
+}
+
 TEST_F(VersionTest, TestGetValueWithCRLF)
 {
     auto manifestFilePath = _directory + "/" + "MANIFEST";

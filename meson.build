@@ -188,9 +188,6 @@ if get_option('bmc-layout').contains('static')
         'static/flash.cpp',
         'static/item_updater_helper.cpp'
     )
-    unit_files += [
-        'static/obmc-flash-bmc-alt@.service.in',
-    ]
 elif get_option('bmc-layout').contains('ubi')
     image_updater_sources += files(
         'ubi/flash.cpp',
@@ -228,6 +225,7 @@ endif
 
 if get_option('bmc-static-dual-image').enabled()
     unit_files += [
+        'static/obmc-flash-bmc-alt@.service.in',
         'static/obmc-flash-bmc-static-mount-alt.service.in',
         'static/obmc-flash-bmc-prepare-for-sync.service.in',
     ]

@@ -1,30 +1,16 @@
 if cpp.has_header('CLI/CLI.hpp')
     CLI11_dep = declare_dependency()
 else
-    CLI11_dep = dependency(
-        'CLI11',
-        fallback: [ 'CLI11', 'CLI11_dep' ],
-    )
+    CLI11_dep = dependency('CLI11')
 endif
+
+sdeventplus_dep = dependency('sdeventplus')
 
 source = [
     'usb_manager_main.cpp',
     'usb_manager.cpp',
     '../utils.cpp',
     ]
-
-sdeventplus_dep = dependency(
-    'sdeventplus',
-    fallback: [
-        'sdeventplus',
-        'sdeventplus_dep'
-    ],
-)
-
-phosphor_logging_dep = dependency(
-    'phosphor-logging',
-    fallback: ['phosphor-logging', 'phosphor_logging_dep'],
-)
 
 executable(
     'phosphor-usb-code-update',

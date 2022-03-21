@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b1ad9b_411253ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-03-21T17:45:07Z",
+      "side": 1,
+      "message": "Thanks Justin for taking on this work.",
+      "revId": "47216fd5afa4d31f0d2df4831849255d3920d0ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9becdedd_df133761",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-03-21T17:45:07Z",
+      "side": 1,
+      "message": "I wish we could get this \"meson-as-a-header\" pattern removed...",
+      "revId": "47216fd5afa4d31f0d2df4831849255d3920d0ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

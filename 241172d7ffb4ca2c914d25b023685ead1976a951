@@ -16,6 +16,23 @@
       "message": "Checked on Ampere Mt.Jade",
       "revId": "241172d7ffb4ca2c914d25b023685ead1976a951",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2785f045_a87e603e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2022-03-21T02:29:20Z",
+      "side": 1,
+      "message": "Hi all,\nDo you have any comments for this commit?",
+      "revId": "241172d7ffb4ca2c914d25b023685ead1976a951",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "201e2ad3_f226c592",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-22T20:00:39Z",
+      "side": 1,
+      "message": "Could you also submit a change to the image_types_phosphor.bbclass in openbmc/openbmc to define the \"CompatibleName\" in the MANIFEST similar to this commit:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/openbmc/+/40123\nand initialize it to an empty string? Just so that we know where this field is coming from.",
+      "revId": "984facb7c6dbf91f8b5bbfebd485aea5e37959ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a49c1238_2b2879b1",
+        "filename": "item_updater.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-22T20:00:39Z",
+      "side": 1,
+      "message": "We\u0027ll probably want to eventually change the storePurpose()/restorePurpose() interfaces to store the compatible names so that the values can be restored when the bmc reboots.",
+      "revId": "984facb7c6dbf91f8b5bbfebd485aea5e37959ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

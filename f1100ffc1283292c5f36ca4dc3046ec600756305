@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb588325_45c07392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2022-03-22T08:28:31Z",
+      "side": 1,
+      "message": "Hi @Lei YU,\n\nWhen BMC turns on the HOST, it will trigger obmc-power-start-pre@.taget unit. This target file waits until \"xyz.openbmc_project.Software.ActivationBlocksTransition\" interface has been deleted https://github.com/openbmc/phosphor-state-manager/blob/master/target_files/obmc-power-start-pre%40.target#L5.\n\nBy adding ActivationBlocksTransition before flashing HOST BIOS image it will create \"xyz.openbmc_project.Software.ActivationBlocksTransition\" interface. Therefore, BMC will block HOST booting until flashing is finished.\n\nThanks,\nThang Tran",
+      "parentUuid": "ac9d65f0_03866b5d",
+      "revId": "f1100ffc1283292c5f36ca4dc3046ec600756305",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dca8f226_8234576f",

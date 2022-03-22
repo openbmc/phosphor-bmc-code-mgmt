@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac9d65f0_03866b5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-22T08:08:37Z",
+      "side": 1,
+      "message": "The reboot guard blocks the BMC from rebooting.\nBut I do not see the related code to block t he Host BIOS boot.\nCould you kindly point the related changes?",
+      "parentUuid": "73efa04a_a6aa985f",
+      "revId": "f1100ffc1283292c5f36ca4dc3046ec600756305",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dca8f226_8234576f",
         "filename": "activation.cpp",
         "patchSetId": 1

@@ -2,7 +2,7 @@
 Description=Phosphor Version Software Manager
 
 [Service]
-ExecStartPre=/bin/sh -c 'mkdir -p /tmp/images'
+ExecStartPre=/bin/sh -c 'mkdir -m 775 -p /tmp/images; chown -R root:wheel /tmp/images'
 ExecStart=/usr/bin/phosphor-version-software-manager
 Restart=always
 Type=dbus

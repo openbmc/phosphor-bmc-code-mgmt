@@ -342,3 +342,7 @@ endif
 if get_option('usb-code-update').enabled()
     subdir('usb')
 endif
+
+if get_option('side-switch-on-boot').enabled()
+    subdir('side-switch')
+endif

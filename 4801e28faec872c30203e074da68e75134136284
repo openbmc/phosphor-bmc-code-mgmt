@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be988c0_527256a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2022-03-23T22:06:16Z",
+      "side": 1,
+      "message": "Rather than asserting they are being corrected state that you are allowing group wheel to upload to the/tmp/images.\n\ndo we unpack and verify signature in a root only directory?",
+      "revId": "4801e28faec872c30203e074da68e75134136284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

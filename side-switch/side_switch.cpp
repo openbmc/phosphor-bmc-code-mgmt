@@ -1,18 +1,18 @@
 #include "side_switch.hpp"
 
 #include <phosphor-logging/lg2.hpp>
-#include <sdbusplus/bus.hpp>
 
 #include <exception>
 #include <string>
+#include <thread>
 #include <variant>
 #include <vector>
 
 PHOSPHOR_LOG2_USING;
 
-bool sideSwitchNeeded()
+bool sideSwitchNeeded(sdbusplus::bus::bus& bus)
 {
-    auto bus = sdbusplus::bus::new_default();
+
     std::string fwRunningVersionPath;
     uint8_t fwRunningPriority = 0;
 
@@ -138,13 +138,75 @@ bool sideSwitchNeeded()
     return (false);
 }
 
+bool powerOffSystem(sdbusplus::bus::bus& bus)
+{
+
+    try
+    {
+        auto method =
+            bus.new_method_call("xyz.openbmc_project.State.Chassis",
+                                "/xyz/openbmc_project/state/chassis0",
+                                "org.freedesktop.DBus.Properties", "Set");
+
+        method.append("xyz.openbmc_project.State.Chassis",
+                      "RequestedPowerTransition",
+                      std::variant<std::string>{
+                          "xyz.openbmc_project.State.Chassis.Transition.Off"});
+        auto reply = bus.call(method);
+    }
+    catch (const std::exception& e)
+    {
+        error("chassis off request failed: {ERROR}", "ERROR", e);
+        return (false);
+    }
+
+    // Now just wait for power to turn off
+    for (int i = 0; i < 30; i++)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        try
+        {
+            auto method =
+                bus.new_method_call("xyz.openbmc_project.State.Chassis",
+                                    "/xyz/openbmc_project/state/chassis0",
+                                    "org.freedesktop.DBus.Properties", "Get");
+            method.append("xyz.openbmc_project.State.Chassis",
+                          "CurrentPowerState");
+            std::variant<std::string> currentPwrState;
+            auto reply = bus.call(method);
+            reply.read(currentPwrState);
+            if (std::get<std::string>(currentPwrState) ==
+                "xyz.openbmc_project.State.Chassis.PowerState.Off")
+            {
+                info("chassis power is off");
+                return (true);
+            }
+        }
+        catch (const std::exception& e)
+        {
+            error("reading chassis power state failed: {ERROR}", "ERROR", e);
+            return (false);
+        }
+    }
+    error("timeout waiting for chassis power to turn off");
+    return (false);
+}
+
 int main()
 {
     info("Checking for side switch reboot");
 
-    if (!sideSwitchNeeded())
+    auto bus = sdbusplus::bus::new_default();
+
+    if (!sideSwitchNeeded(bus))
     {
         info("Side switch not needed");
+        return 0;
+    }
+
+    if (!powerOffSystem(bus))
+    {
+        error("unable to power off chassis");
         return 0;
     }
 

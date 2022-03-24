@@ -16,6 +16,24 @@
       "message": "Per Joseph, this requirement comes from an ibm feature, perhaps add this commit for reference: \nhttps://github.com/openbmc/openbmc/commit/68e567f9e76d4e54a70a84dbc43050d4cf214562",
       "revId": "51b2fa918d14810740f8676353fe994580de9e27",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f1ecc2_55457553",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2022-03-24T21:34:08Z",
+      "side": 1,
+      "message": "also we need to check what happens when the feature is not included.  the group wheel may not exist.",
+      "parentUuid": "496fb53f_128578ed",
+      "revId": "51b2fa918d14810740f8676353fe994580de9e27",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

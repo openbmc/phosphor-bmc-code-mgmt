@@ -3,18 +3,18 @@
 #include "utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
-#include <sdbusplus/bus.hpp>
 
 #include <exception>
 #include <string>
+#include <thread>
 #include <variant>
 #include <vector>
 
 PHOSPHOR_LOG2_USING;
 
-bool sideSwitchNeeded()
+bool sideSwitchNeeded(sdbusplus::bus::bus& bus)
 {
-    auto bus = sdbusplus::bus::new_default();
+
     std::string fwRunningVersionPath;
     uint8_t fwRunningPriority = 0;
 
@@ -124,13 +124,69 @@ bool sideSwitchNeeded()
     return (false);
 }
 
+bool powerOffSystem(sdbusplus::bus::bus& bus)
+{
+
+    try
+    {
+        utils::PropertyValue chassOff =
+            "xyz.openbmc_project.State.Chassis.Transition.Off";
+        utils::setProperty(bus, "/xyz/openbmc_project/state/chassis0",
+                           "xyz.openbmc_project.State.Chassis",
+                           "RequestedPowerTransition", chassOff);
+    }
+    catch (const std::exception& e)
+    {
+        error("chassis off request failed: {ERROR}", "ERROR", e);
+        return (false);
+    }
+
+    // Now just wait for power to turn off
+    // Worst case is a systemd service hangs in power off for 2 minutes so
+    // take that and double it to avoid any timing issues. The user has
+    // requested we switch to the other side, so a lengthy delay is warranted
+    // if needed. On most systems the power off takes 5-15 seconds.
+    for (int i = 0; i < 240; i++)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        try
+        {
+            auto currentPwrState = utils::getProperty<std::string>(
+                bus, "/xyz/openbmc_project/state/chassis0",
+                "xyz.openbmc_project.State.Chassis", "CurrentPowerState");
+
+            if (currentPwrState ==
+                "xyz.openbmc_project.State.Chassis.PowerState.Off")
+            {
+                info("chassis power is off");
+                return (true);
+            }
+        }
+        catch (const std::exception& e)
+        {
+            error("reading chassis power state failed: {ERROR}", "ERROR", e);
+            return (false);
+        }
+    }
+    error("timeout waiting for chassis power to turn off");
+    return (false);
+}
+
 int main()
 {
     info("Checking for side switch reboot");
 
-    if (!sideSwitchNeeded())
+    auto bus = sdbusplus::bus::new_default();
+
+    if (!sideSwitchNeeded(bus))
     {
         info("Side switch not needed");
+        return 0;
+    }
+
+    if (!powerOffSystem(bus))
+    {
+        error("unable to power off chassis");
         return 0;
     }
 

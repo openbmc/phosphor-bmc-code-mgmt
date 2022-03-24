@@ -15,3 +15,10 @@ bool sideSwitchNeeded(sdbusplus::bus::bus& bus);
  *  @return True if chassis off success, false otherwise
  */
 bool powerOffSystem(sdbusplus::bus::bus& bus);
+
+/** @brief Configure BMC to auto power on the host after reboot
+ *
+ *  @param[in] bus       - The Dbus bus object
+ *  @return True if policy set correctly, false otherwise
+ */
+bool setAutoPowerRestart(sdbusplus::bus::bus& bus);

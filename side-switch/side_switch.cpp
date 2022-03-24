@@ -172,6 +172,30 @@ bool powerOffSystem(sdbusplus::bus::bus& bus)
     return (false);
 }
 
+bool setAutoPowerRestart(sdbusplus::bus::bus& bus)
+{
+    try
+    {
+        // Set the one-time power on policy to AlwaysOn so system auto boots
+        // after BMC reboot
+        utils::PropertyValue restorePolicyOn =
+            "xyz.openbmc_project.Control.Power.RestorePolicy.Policy.AlwaysOn";
+
+        utils::setProperty(
+            bus,
+            "/xyz/openbmc_project/control/host0/power_restore_policy/one_time",
+            "xyz.openbmc_project.Control.Power.RestorePolicy",
+            "PowerRestorePolicy", restorePolicyOn);
+    }
+    catch (const std::exception& e)
+    {
+        error("setting power policy to always on failed: {ERROR}", "ERROR", e);
+        return (false);
+    }
+    info("RestorePolicy set to AlwaysOn");
+    return (true);
+}
+
 int main()
 {
     info("Checking for side switch reboot");
@@ -188,6 +212,13 @@ int main()
     {
         error("unable to power off chassis");
         return 0;
+    }
+
+    if (!setAutoPowerRestart(bus))
+    {
+        error("unable to set the auto power on restart policy");
+        // system has been powered off, best to at least continue and
+        // switch to new firmware image so continue
     }
 
     // TODO - Future commits in series to fill in rest of logic

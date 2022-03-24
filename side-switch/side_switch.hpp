@@ -22,3 +22,10 @@ bool powerOffSystem(sdbusplus::bus::bus& bus);
  *  @return True if policy set correctly, false otherwise
  */
 bool setAutoPowerRestart(sdbusplus::bus::bus& bus);
+
+/** @brief Reboot the BMC
+ *
+ *  @param[in] bus       - The Dbus bus object
+ *  @return True if reboot request had no error, false otherwise
+ */
+bool rebootTheBmc(sdbusplus::bus::bus& bus);

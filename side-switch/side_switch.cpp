@@ -196,6 +196,26 @@ bool setAutoPowerRestart(sdbusplus::bus::bus& bus)
     return (true);
 }
 
+bool rebootTheBmc(sdbusplus::bus::bus& bus)
+{
+    try
+    {
+        utils::PropertyValue bmcReboot =
+            "xyz.openbmc_project.State.BMC.Transition.Reboot";
+
+        utils::setProperty(bus, "/xyz/openbmc_project/state/bmc0",
+                           "xyz.openbmc_project.State.BMC",
+                           "RequestedBMCTransition", bmcReboot);
+    }
+    catch (const std::exception& e)
+    {
+        error("rebooting the bmc failed: {ERROR}", "ERROR", e);
+        return (false);
+    }
+    info("BMC reboot initiated");
+    return (true);
+}
+
 int main()
 {
     info("Checking for side switch reboot");
@@ -221,5 +241,13 @@ int main()
         // switch to new firmware image so continue
     }
 
-    // TODO - Future commits in series to fill in rest of logic
+    if (!rebootTheBmc(bus))
+    {
+        error("unable to reboot the BMC");
+        // Return invalid rc to trigger systemd target recovery and appropriate
+        // error logging
+        return -1;
+    }
+
+    return 0;
 }

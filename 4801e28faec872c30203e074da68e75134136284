@@ -106,6 +106,24 @@
       "parentUuid": "e48c62a6_167b9759",
       "revId": "4801e28faec872c30203e074da68e75134136284",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c00e917f_fa3e44d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001090
+      },
+      "writtenOn": "2022-03-25T19:58:16Z",
+      "side": 1,
+      "message": "So it looks like the image is unpacked specifically in image_manager.cpp\u0027s processImage function, which uses mkdtemp. mkdtemp creates a subdirectory with permissions 700 to do the processing in.",
+      "parentUuid": "682efd15_065f1f03",
+      "revId": "4801e28faec872c30203e074da68e75134136284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

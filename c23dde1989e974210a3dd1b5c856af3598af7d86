@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64362b8_02980464",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-25T20:33:08Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 238,
+        "startChar": 8,
+        "endLine": 238,
+        "endChar": 13
+      },
+      "revId": "c23dde1989e974210a3dd1b5c856af3598af7d86",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e45d136_7fdaaf98",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-25T20:33:08Z",
+      "side": 1,
+      "message": "shellcheck should be ok if quoting the whole string like \"/dev/ubi${mtd}_${element}\"",
+      "revId": "c23dde1989e974210a3dd1b5c856af3598af7d86",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[Unit]
+Description=Check if flash side switch is needed
+Wants=obmc-host-start-pre@0.target
+Before=obmc-host-start-pre@0.target
+Wants=obmc-mapper.target
+After=obmc-mapper.target
+Wants=xyz.openbmc_project.Software.BMC.Updater.service
+After=xyz.openbmc_project.Software.BMC.Updater.service
+Wants=xyz.openbmc_project.State.BMC.service
+After=xyz.openbmc_project.State.BMC.service
+Wants=xyz.openbmc_project.State.Chassis.service
+After=xyz.openbmc_project.State.Chassis.service
+Wants=xyz.openbmc_project.Settings.service
+After=xyz.openbmc_project.Settings.service
+ConditionPathExists=!/run/openbmc/host@0-on
+
+[Service]
+Restart=no
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/phosphor-bmc-side-switch
+
+[Install]
+WantedBy=obmc-host-startmin@0.target

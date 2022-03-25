@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3dcf524b_c8d3940e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-03-25T00:39:21Z",
+      "side": 1,
+      "message": "Created the change in https://gerrit.openbmc-project.xyz/c/openbmc/openbmc/+/52355.",
+      "parentUuid": "201e2ad3_f226c592",
+      "revId": "984facb7c6dbf91f8b5bbfebd485aea5e37959ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a49c1238_2b2879b1",
         "filename": "item_updater.cpp",
         "patchSetId": 6

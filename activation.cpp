@@ -94,7 +94,9 @@ auto Activation::activation(Activations value) -> Activations
         fs::path uploadDir(IMG_UPLOAD_DIR);
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
         {
-            onVerifyFailed();
+            using InvalidSignatureErr = sdbusplus::xyz::openbmc_project::
+                Software::Version::Error::InvalidSignature;
+            report<InvalidSignatureErr>();
             // Stop the activation process, if fieldMode is enabled.
             if (parent.control::FieldMode::fieldModeEnabled())
             {
@@ -108,7 +110,6 @@ auto Activation::activation(Activations value) -> Activations
 
         if (!minimum_ship_level::verify(versionStr))
         {
-            using namespace phosphor::logging;
             using IncompatibleErr = sdbusplus::xyz::openbmc_project::Software::
                 Version::Error::Incompatible;
             using Incompatible =
@@ -341,12 +342,6 @@ bool Activation::verifySignature(const fs::path& imageDir,
     Signature signature(imageDir, confDir);
 
     return signature.verify();
-}
-
-void Activation::onVerifyFailed()
-{
-    error("Error occurred during image validation");
-    report<InternalFailure>();
 }
 #endif
 

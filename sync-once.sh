@@ -7,7 +7,7 @@
 SYNCLIST=/etc/synclist
 DEST_DIR=/run/media/rwfs-alt/cow
 
-while read l; do
+while read -r l; do
     echo rsync -a -R "${l}" "${DEST_DIR}"
     rsync -a -R "${l}" "${DEST_DIR}"
 done < ${SYNCLIST}

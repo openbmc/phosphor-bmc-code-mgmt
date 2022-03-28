@@ -52,6 +52,24 @@
       "parentUuid": "de7a6a2d_052f1034",
       "revId": "82232e5f4e07a4ddf5990bcceb2301fee5ae3e5b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c4c7a1_7d3d246a",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-03-28T13:25:49Z",
+      "side": 1,
+      "message": "\u003e Still don\u0027t think we should assume 0.\n\nIt really comes down to whether the complexity of the code to handle that (and the potential bugs) is worth the chance that someone could have a system where 0 does not mean the highest priority. It seems like Adriana was on the fence and Gunnar believes a non-0 highest priority should be handled. I\u0027ll unresolve this comment and look into the code to handle it.",
+      "parentUuid": "41eeb915_36d69f46",
+      "revId": "82232e5f4e07a4ddf5990bcceb2301fee5ae3e5b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

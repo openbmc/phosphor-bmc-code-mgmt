@@ -16,6 +16,24 @@
       "message": "This can be an empty file, no need to have new lines in it.",
       "revId": "74b3cc06d1a68228053cb11066e22db2e67b06b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b7633a_745489df",
+        "filename": ".shellcheck",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001090
+      },
+      "writtenOn": "2022-03-28T16:40:38Z",
+      "side": 1,
+      "message": "Addressed in patch set 4",
+      "parentUuid": "619577d2_9cfe0a34",
+      "revId": "74b3cc06d1a68228053cb11066e22db2e67b06b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

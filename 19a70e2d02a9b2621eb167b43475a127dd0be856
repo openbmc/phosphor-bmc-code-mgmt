@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dafd781_497a9328",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-30T21:13:04Z",
+      "side": 1,
+      "message": "This is causing a failure:\n\nMar 28 21:34:25 witherspoon systemd[1]: Starting Remount the ubi volume after a reboot...\nMar 28 21:34:29 witherspoon obmc-flash-bmc[329]: ubinfo: error!: strtoul: unable to parse the number \u00270 4 \u0027\nMar 28 21:34:29 witherspoon obmc-flash-bmc[329]: ubinfo: error!: bad UBI device number: \"0 4 \"\n\nI\u0027ll push a fix shortly.",
+      "revId": "19a70e2d02a9b2621eb167b43475a127dd0be856",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc1328e_c6238203",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-03-30T21:21:12Z",
+      "side": 1,
+      "message": "Even though this wasn\u0027t tested, the same changes were done to the script that generates the openpower bios tarball and that was verified that the tarball was built successfully:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/openpower-pnor-code-mgmt/+/42509",
+      "revId": "a1d2f86112bd6caceddfece80cb5ddf55ac86924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

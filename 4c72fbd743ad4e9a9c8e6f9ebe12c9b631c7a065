@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014c19fe_bf51be86",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-05T19:02:37Z",
+      "side": 1,
+      "message": "I assume it\u0027s been determined that 30s is a good number to wait for the chassis to power off, perhaps by other apps that implement the power off function? Perhaps add to the comment above something like \"// Now just.. . 30s has been shown to be long enough\" so we know it\u0027s based on observation.",
+      "revId": "4c72fbd743ad4e9a9c8e6f9ebe12c9b631c7a065",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

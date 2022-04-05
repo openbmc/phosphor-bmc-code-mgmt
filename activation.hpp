@@ -189,7 +189,8 @@ class Activation : public ActivationInherit, public Flash
                sdbusplus::xyz::openbmc_project::Software::server::Activation::
                    Activations activationStatus,
                AssociationList& assocs) :
-        ActivationInherit(bus, path.c_str(), true),
+        ActivationInherit(bus, path.c_str(),
+                          ActivationInherit::action::defer_emit),
         bus(bus), path(path), parent(parent), versionId(versionId),
         systemdSignals(
             bus,

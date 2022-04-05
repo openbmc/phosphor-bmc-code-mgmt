@@ -80,7 +80,8 @@ class Version : public VersionInherit
             const std::string& versionString, VersionPurpose versionPurpose,
             const std::string& extVersion, const std::string& filePath,
             eraseFunc callback, const std::string& id) :
-        VersionInherit(bus, (objPath).c_str(), true),
+        VersionInherit(bus, (objPath).c_str(),
+                       VersionInherit::action::defer_emit),
         eraseCallback(callback), id(id), versionStr(versionString)
     {
         // Set properties.

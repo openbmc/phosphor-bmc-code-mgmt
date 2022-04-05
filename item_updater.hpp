@@ -52,7 +52,9 @@ class ItemUpdater : public ItemUpdaterInherit
      * @param[in] bus    - The D-Bus bus object
      */
     ItemUpdater(sdbusplus::bus::bus& bus, const std::string& path) :
-        ItemUpdaterInherit(bus, path.c_str(), false), bus(bus), helper(bus),
+        ItemUpdaterInherit(bus, path.c_str(),
+                           ItemUpdaterInherit::action::defer_emit),
+        bus(bus), helper(bus),
         versionMatch(bus,
                      MatchRules::interfacesAdded() +
                          MatchRules::path("/xyz/openbmc_project/software"),

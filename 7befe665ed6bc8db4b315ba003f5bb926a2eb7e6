@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06d478d7_ea6b37d1",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-04-06T01:36:11Z",
+      "side": 1,
+      "message": "I think we can use the get/set methods in utils.hpp file if we simply encapsulate `PropertyValue`? (https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/utils.hpp#L33)",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 70
+      },
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8d984f2_1991082b",
         "filename": "side-switch/side_switch.cpp",
         "patchSetId": 2
@@ -19,6 +42,29 @@
         "startChar": 44,
         "endLine": 32,
         "endChar": 56
+      },
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce4a463_65390abd",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-04-06T01:36:11Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 72
       },
       "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

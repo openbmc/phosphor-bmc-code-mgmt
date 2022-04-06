@@ -30,10 +30,26 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
  *
  *  @throw sdbusplus::exception::exception when it fails
  */
-const PropertyValue getProperty(sdbusplus::bus::bus& bus,
-                                const std::string& objectPath,
-                                const std::string& interface,
-                                const std::string& propertyName);
+template <typename T>
+T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+              const std::string& interface, const std::string& propertyName)
+{
+    std::variant<T> value{};
+    auto service = getService(bus, objectPath, interface);
+    if (service.empty())
+    {
+        return std::get<T>(value);
+    }
+
+    auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
+                                      "org.freedesktop.DBus.Properties", "Get");
+    method.append(interface, propertyName);
+
+    auto reply = bus.call(method);
+    reply.read(value);
+
+    return std::get<T>(value);
+}
 
 /** @brief Set D-Bus property
  *

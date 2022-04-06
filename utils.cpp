@@ -41,28 +41,6 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
     return response[0].first;
 }
 
-const PropertyValue getProperty(sdbusplus::bus::bus& bus,
-                                const std::string& objectPath,
-                                const std::string& interface,
-                                const std::string& propertyName)
-{
-    PropertyValue value{};
-    auto service = getService(bus, objectPath, interface);
-    if (service.empty())
-    {
-        return value;
-    }
-
-    auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
-                                      "org.freedesktop.DBus.Properties", "Get");
-    method.append(interface, propertyName);
-
-    auto reply = bus.call(method);
-    reply.read(value);
-
-    return value;
-}
-
 void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
                  const std::string& interface, const std::string& propertyName,
                  const PropertyValue& value)

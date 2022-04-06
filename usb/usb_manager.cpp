@@ -109,9 +109,9 @@ void USBManager::updateActivation(sdbusplus::message::message& msg)
 
         try
         {
-            auto propVal =
-                utils::getProperty(bus, path.str, imageInterface, "Activation");
-            const auto& imageProp = std::get<std::string>(propVal);
+            auto imageProp = utils::getProperty<std::string>(
+                bus, path.str, imageInterface, "Activation");
+
             if (imageProp == readyPro && isUSBCodeUpdate)
             {
                 setApplyTime();

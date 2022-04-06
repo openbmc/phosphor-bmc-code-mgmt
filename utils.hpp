@@ -30,10 +30,9 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
  *
  *  @throw sdbusplus::exception::exception when it fails
  */
-const PropertyValue getProperty(sdbusplus::bus::bus& bus,
-                                const std::string& objectPath,
-                                const std::string& interface,
-                                const std::string& propertyName);
+template <typename T>
+T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+              const std::string& interface, const std::string& propertyName);
 
 /** @brief Set D-Bus property
  *

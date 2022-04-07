@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e11bbbf0_218f0fed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T00:32:13Z",
+      "side": 1,
+      "message": "I still have comments to address, my focus at first was on getting the getProperty interface to be more generic. But I\u0027m having some issues with that (last commit in this series)",
+      "revId": "ffcac422435a3a756add527dacc9072722ca0e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

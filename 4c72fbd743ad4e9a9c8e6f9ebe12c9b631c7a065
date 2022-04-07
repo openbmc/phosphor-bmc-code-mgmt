@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03a4d12d_b48f14fa",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "Yeah, I think our Everest takes the longest of all systems, and it\u0027s 10-15s in the good path. It does bring up a good point on the error paths though. A power off could hang up to 2 minutes if a power off service gets hung. So, I\u0027m thinking maybe it\u0027s best to make this something huge. The user has requested a side switch, so we should basically wait as long as worst case. So 2 min service timeout then double that for safety, 4 minutes.",
+      "parentUuid": "014c19fe_bf51be86",
+      "revId": "4c72fbd743ad4e9a9c8e6f9ebe12c9b631c7a065",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "628b624a_ade51483",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-04-06T01:36:14Z",
       "side": 1,
       "message": "Can we start a 30s timer and then listen for changes in the value of the `CurrentPowerState` property?\n\nI suspect that executing the Get method every second will put performance pressure on dbus?",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 69
+      },
+      "revId": "4c72fbd743ad4e9a9c8e6f9ebe12c9b631c7a065",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b9fb57_d4018b5b",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "It\u0027s the ole code complexity vs. efficiency discussion. A d-bus transaction every second is just noise (there are 100\u0027s per second most of the time). I\u0027d prefer to just keep it simple as-is here.",
+      "parentUuid": "628b624a_ade51483",
       "range": {
         "startLine": 166,
         "startChar": 8,

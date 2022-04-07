@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab4b6e0_620df698",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "ok, I added a new commit at the beginning of this series to template getProperty and I\u0027ve utilized it now in this commit.",
+      "parentUuid": "dcff12e0_2eb1874b",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 70
+      },
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8d984f2_1991082b",
@@ -85,6 +109,30 @@
       "writtenOn": "2022-04-05T18:58:48Z",
       "side": 1,
       "message": "\"single image\" may not be obvious to people to know it\u0027s systems where there are no separate host firmware images, otherwise the association would show at least 2 functional images, and you\u0027d need to check the Purpose to differentiate between BMC and Host images. Could you update this to say something like \"systems with only BMC images\" or \"BMC-type images\" or \"BMC-purpose images\"..",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a34fd50c_9aff3429",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d984f2_1991082b",
       "range": {
         "startLine": 32,
         "startChar": 44,
@@ -120,6 +168,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0d148de9_2617101e",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ce4a463_65390abd",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 72
+      },
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "66073b97_5d52b280",
         "filename": "side-switch/side_switch.cpp",
         "patchSetId": 2
@@ -131,6 +203,24 @@
       "writtenOn": "2022-04-05T18:58:48Z",
       "side": 1,
       "message": "The same result is returned with querying the /xyz/openbmc_project/software/active associations. Don\u0027t know if there\u0027s a performance difference on calling a get property vs get subtree paths.",
+      "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a71ae6_fccfd8d6",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-07T16:27:48Z",
+      "side": 1,
+      "message": "I\u0027m assuming the difference either way is pretty negligible and this is a one-time per boot check so lets just leave it.",
+      "parentUuid": "66073b97_5d52b280",
       "revId": "7befe665ed6bc8db4b315ba003f5bb926a2eb7e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

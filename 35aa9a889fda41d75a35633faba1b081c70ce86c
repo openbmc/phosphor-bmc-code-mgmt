@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be8c5026_336558da",
+        "filename": "item_updater.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-04-08T04:07:06Z",
+      "side": 1,
+      "message": "It was using `false` but calling emit_object_added(), so the `false` was unexpected, is it?",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "35aa9a889fda41d75a35633faba1b081c70ce86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

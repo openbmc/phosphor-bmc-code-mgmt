@@ -22,6 +22,30 @@
       },
       "revId": "35aa9a889fda41d75a35633faba1b081c70ce86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c9621a9_4f959356",
+        "filename": "item_updater.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-08T04:18:07Z",
+      "side": 1,
+      "message": "Yes, because of line 71.  I\u0027m not sure why it was set to false when there are properties being set between 64 and 69 and then the emit call on 71.",
+      "parentUuid": "be8c5026_336558da",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "35aa9a889fda41d75a35633faba1b081c70ce86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aaeddeb_e40fb615",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-08T21:15:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c4bae77_0dcd27ba",
+      "revId": "349a211dead4833c9ae08b9e7fa1b3ad5d52c571",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da3f0719_e4bc434d",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-08T19:49:51Z",
       "side": 1,
       "message": "This is not needed since the logging namespace is already defined in the top of the file, could you remove it? Seems the minimum ship level error below in line 112 has the same, could you remove it from there too to avoid it being copied in the future?",
+      "revId": "349a211dead4833c9ae08b9e7fa1b3ad5d52c571",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1cf8e00_28cc4d83",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-08T21:15:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3f0719_e4bc434d",
       "revId": "349a211dead4833c9ae08b9e7fa1b3ad5d52c571",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

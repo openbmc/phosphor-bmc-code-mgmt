@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96fac43d_869bb0e9",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-08T19:49:51Z",
+      "side": 0,
+      "message": "I think it\u0027s that this journal entry was removed because the error message will say it\u0027s a signature validation error.\n\nBefore:\nApr 08 19:04:44 witherspoon phosphor-image-updater[416]: Error occurred during image validation\nApr 08 19:04:44 witherspoon phosphor-image-updater[416]: The operation failed internally.\n\nAfter:\nJan 01 00:11:10 witherspoon phosphor-image-updater[403]: Signature Validation failed for image version.",
+      "revId": "c026f6cdc3f7e305d98dc824fcba0f199a7aa157",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

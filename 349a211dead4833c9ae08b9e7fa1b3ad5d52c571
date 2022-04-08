@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4bae77_0dcd27ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-08T19:49:51Z",
+      "side": 1,
+      "message": "I tested on witherspoon, could you add the tested tag to the commit msg:\n\nTested:\n- Before:\nApr 08 19:04:44 witherspoon phosphor-image-updater[416]: Error occurred during image validation\nApr 08 19:04:44 witherspoon phosphor-image-updater[416]: The operation failed internally.\n- After:\nJan 01 00:11:10 witherspoon phosphor-image-updater[403]: Signature Validation failed for image version.\n$ busctl get-property xyz.openbmc_project.Logging /xyz/openbmc_project/logging/entry/4 xyz.openbmc_project.Logging.Entry Message\ns \"xyz.openbmc_project.Software.Version.Error.InvalidSignature\"",
+      "revId": "349a211dead4833c9ae08b9e7fa1b3ad5d52c571",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3f0719_e4bc434d",
+        "filename": "activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-08T19:49:51Z",
+      "side": 1,
+      "message": "This is not needed since the logging namespace is already defined in the top of the file, could you remove it? Seems the minimum ship level error below in line 112 has the same, could you remove it from there too to avoid it being copied in the future?",
+      "revId": "349a211dead4833c9ae08b9e7fa1b3ad5d52c571",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

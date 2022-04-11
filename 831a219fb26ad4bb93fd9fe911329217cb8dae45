@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "715813d0_b3e2b4c0",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-04-11T17:57:54Z",
+      "side": 1,
+      "message": "Use util:setProperty",
+      "revId": "831a219fb26ad4bb93fd9fe911329217cb8dae45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a1f71c2_bdd792c3",
+        "filename": "side-switch/side_switch.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-04-11T20:20:26Z",
+      "side": 1,
+      "message": "Ugh just saw this one, could we get it changed to utils::getProperty()?",
+      "revId": "a3659bce331caa1d3f17dca1d841d689746eb083",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

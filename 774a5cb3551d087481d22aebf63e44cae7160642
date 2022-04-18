@@ -37,6 +37,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f5d1d4df_57040f45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-18T18:47:43Z",
+      "side": 1,
+      "message": "The OpenBMC community does not have the \"wheel\" group by default.  An IBM downstream repo needs this change: it has a user who has \"sudo\" access via their membership in the \"wheel\" group.  It is desired for that user to be able to upload images into /tmp/images, and they need this change to make the Linux file permissions work.\n\nThis code review should be abandoned, and this code should go into IBM\u0027s downstream version.",
+      "revId": "774a5cb3551d087481d22aebf63e44cae7160642",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f735c7ad_5e2f74be",
         "filename": "xyz.openbmc_project.Software.Version.service.in",
         "patchSetId": 3

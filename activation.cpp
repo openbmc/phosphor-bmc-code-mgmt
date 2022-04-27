@@ -110,15 +110,6 @@ auto Activation::activation(Activations value) -> Activations
 
         if (!minimum_ship_level::verify(versionStr))
         {
-            using IncompatibleErr = sdbusplus::xyz::openbmc_project::Software::
-                Version::Error::Incompatible;
-            using Incompatible =
-                xyz::openbmc_project::Software::Version::Incompatible;
-
-            report<IncompatibleErr>(
-                prev_entry<Incompatible::MIN_VERSION>(),
-                prev_entry<Incompatible::ACTUAL_VERSION>(),
-                prev_entry<Incompatible::VERSION_PURPOSE>());
             return softwareServer::Activation::activation(
                 softwareServer::Activation::Activations::Failed);
         }

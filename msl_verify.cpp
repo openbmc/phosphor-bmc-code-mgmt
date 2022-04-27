@@ -4,8 +4,10 @@
 
 #include "version.hpp"
 
+#include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/lg2.hpp>
-#include <xyz/openbmc_project/Software/Version/server.hpp>
+#include <xyz/openbmc_project/Software/Version/error.hpp>
 
 #include <regex>
 
@@ -83,12 +85,21 @@ bool minimum_ship_level::verify(const std::string& versionManifest)
     auto rc = compare(actualVersion, mslVersion);
     if (rc < 0)
     {
-        auto purpose = sdbusplus::xyz::openbmc_project::Software::server::
-            Version::VersionPurpose::BMC;
+        using namespace phosphor::logging;
+        using IncompatibleErr = sdbusplus::xyz::openbmc_project::Software::
+            Version::Error::Incompatible;
+        using Incompatible =
+            xyz::openbmc_project::Software::Version::Incompatible;
+        std::string purpose =
+            "xyz.openbmc_project.Software.Version.VersionPurpose.BMC";
+
         error(
             "BMC Minimum Ship Level ({MIN_VERSION}) NOT met by {ACTUAL_VERSION}",
             "MIN_VERSION", msl, "ACTUAL_VERSION", tmpStr, "VERSION_PURPOSE",
             purpose);
+        report<IncompatibleErr>(Incompatible::MIN_VERSION(msl.c_str()),
+                                Incompatible::ACTUAL_VERSION(tmpStr.c_str()),
+                                Incompatible::VERSION_PURPOSE(purpose.c_str()));
         return false;
     }
 

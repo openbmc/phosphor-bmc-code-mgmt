@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a649d218_f12f7376",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-05-02T20:00:48Z",
+      "side": 1,
+      "message": "Seems prev_entry() doesn\u0027t work anymore, I even added a 5s delay between the journal entry and the error log and still didn\u0027t find the metadata, seems the SIGRTMIN signal that the phosphor logging emits to refresh the journal happens until you create the error log. Seems we\u0027re the only component using prev_entry() by searching the openbmc repos, so I\u0027d agree to move the error log. In the past we\u0027ve seen race conditions where the metadata didn\u0027t make it to the journal in time for the prev_entry() function to find it, seems it\u0027s now very consistent.\n\nApr 26 20:25:25 p10bmc phosphor-image-updater[10603]: TEST: BMC Minimum Ship Level (0429) NOT met by 0999\n...\nApr 26 20:25:30 p10bmc phosphor-image-updater[10603]: A system component has a software version that is incompatible as determined by the implementation and needs to be updated. Some usage examples for this error include creating logging events and providing information on implementation reactions such as when the system is prevented from powering on if a minimum version level is not met.\nApr 26 20:25:30 p10bmc systemd[1]: systemd-journald.service: Sent signal SIGRTMIN+1 to main process 235 (systemd-journal) on client request.\nApr 26 20:25:30 p10bmc phosphor-log-manager[353]: Failed to find metadata: ACTUAL_VERSION\nApr 26 20:25:30 p10bmc phosphor-log-manager[353]: Failed to find metadata: MIN_VERSION\nApr 26 20:25:30 p10bmc phosphor-log-manager[353]: Failed to find metadata: VERSION_PURPOSE",
+      "revId": "58dde6983fb11b51d484a36ade3538e0329b1e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

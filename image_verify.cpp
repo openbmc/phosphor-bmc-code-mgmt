@@ -44,6 +44,12 @@ Signature::Signature(const fs::path& imageDirPath,
 
     keyType = Version::getValue(file, keyTypeTag);
     hashType = Version::getValue(file, hashFunctionTag);
+
+    // Get purpose
+    auto purposeString = Version::getValue(file, "purpose");
+    auto convertedPurpose =
+        sdbusplus::message::convert_from_string<VersionPurpose>(purposeString);
+    purpose = convertedPurpose.value_or(Version::VersionPurpose::Unknown);
 }
 
 AvailableKeyTypes Signature::getAvailableKeyTypesFromSystem() const
@@ -92,6 +98,12 @@ bool Signature::verifyFullImage()
 {
     bool ret = true;
 #ifdef WANT_SIGNATURE_FULL_VERIFY
+    // Only verify full image for BMC
+    if (purpose != VersionPurpose::BMC)
+    {
+        return ret;
+    }
+
     std::vector<std::string> fullImages = {
         fs::path(imageDirPath) / "image-bmc.sig",
         fs::path(imageDirPath) / "image-hostfw.sig",

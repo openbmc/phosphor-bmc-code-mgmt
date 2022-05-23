@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include "image_verify.hpp"
 #include "utils.hpp"
 #include "version.hpp"
@@ -165,6 +167,7 @@ TEST_F(VersionTest, TestGetExtendedVersion)
 
 class SignatureTest : public testing::Test
 {
+  public:
     static constexpr auto opensslCmd = "openssl dgst -sha256 -sign ";
     static constexpr auto testPath = "/tmp/_testSig";
 
@@ -212,7 +215,10 @@ class SignatureTest : public testing::Test
         command("echo \"HashType=RSA-SHA256\" > " + hashFile);
 
         std::string manifestFile = extractPath.string() + "/" + "MANIFEST";
-        command("echo \"HashType=RSA-SHA256\" > " + manifestFile);
+        command(
+            "echo \"purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC\" > " +
+            manifestFile);
+        command("echo \"HashType=RSA-SHA256\" >> " + manifestFile);
         command("echo \"KeyType=OpenBMC\" >> " + manifestFile);
 
         std::string kernelFile = extractPath.string() + "/" + "image-kernel";
@@ -311,6 +317,36 @@ TEST_F(SignatureTest, TestNoConfigFileInSystem)
     command("rm -rf " + signedConfOpenBMCPath.string());
     EXPECT_FALSE(signature->verify());
 }
+
+#ifdef WANT_SIGNATURE_FULL_VERIFY
+/** @brief Test for failure scenario without full verification */
+TEST_F(SignatureTest, TestNoFullSignature)
+{
+    // Remove the full signature and ensure that verify fails
+    std::string fullFile = extractPath.string() + "/" + "image-full.sig";
+    command("rm " + fullFile);
+    EXPECT_FALSE(signature->verify());
+}
+
+/** @brief Test for failure scenario without full verification */
+TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
+{
+    // Remove the full signature
+    std::string fullFile = extractPath.string() + "/" + "image-full.sig";
+    command("rm " + fullFile);
+
+    // Change the purpose to BIOS
+    std::string manifestFile = extractPath.string() + "/" + "MANIFEST";
+    std::string pkeyFile = extractPath.string() + "/" + "private.pem";
+    command("sed -i s/VersionPurpose.BMC/VersionPurpose.BIOS/ " + manifestFile);
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+
+    // Re-create signature object and make sure verify succeed.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_TRUE(signature->verify());
+}
+#endif
 
 class FileTest : public testing::Test
 {

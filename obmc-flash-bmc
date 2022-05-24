@@ -514,6 +514,7 @@ mmc_get_primary_label() {
   # Get root device /dev/mmcblkpX
   rootmatch=" on / "
   root="$(mount | grep "${rootmatch}")"
+  # shellcheck disable=SC2295
   root="${root%${rootmatch}*}"
 
   # Find the device label

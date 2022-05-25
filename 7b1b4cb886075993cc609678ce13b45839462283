@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f455cb41_2dc3eb94",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-05-25T21:04:48Z",
+      "side": 1,
+      "message": "Ok to ignore when trying to match wildcard, per https://github.com/koalaman/shellcheck/wiki/SC2295:\nExceptions:\nIf you wanted to treat the string as a pattern, such as suffix\u003d\".*\"; file\u003d\"${var%$suffix}\"; then you can ignore this suggestion.",
+      "revId": "7b1b4cb886075993cc609678ce13b45839462283",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

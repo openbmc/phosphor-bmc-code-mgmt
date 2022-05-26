@@ -1,0 +1,8 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Adriana Kobylak <anoo@linux.ibm.com>
+Code-Review+2: Lei YU <yulei.sh@bytedance.com>
+Submitted-by: Lei YU <yulei.sh@bytedance.com>
+Submitted-at: Thu, 26 May 2022 02:14:17 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/53951
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

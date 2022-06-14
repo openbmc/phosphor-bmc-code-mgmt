@@ -93,7 +93,7 @@ std::vector<std::string>
 
     if (values.empty())
     {
-        error("No values found in MANIFEST file for key: {KEY}", "KEY", key);
+        info("No values found in MANIFEST file for key: {KEY}", "KEY", key);
     }
 
     return values;

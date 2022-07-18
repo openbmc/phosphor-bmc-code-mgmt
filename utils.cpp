@@ -2,6 +2,9 @@
 
 #include <unistd.h>
 
+#include <sstream>
+#include <fstream>
+
 #include <phosphor-logging/lg2.hpp>
 
 namespace utils
@@ -9,11 +12,118 @@ namespace utils
 
 PHOSPHOR_LOG2_USING;
 
+//inline
+size_t offset(const char* buf, size_t len, const char* str)
+{
+    return std::search(buf, buf + len, str, str + strlen(str)) - buf;
+}
+
+std::string getMtdDev(std::string name)
+{
+    std::ifstream infile("/proc/mtd");
+    std::string match = "\"" + name + "\"";
+
+    if (infile)
+    {
+        std::string line;
+        while (std::getline(infile, line))
+        {
+            std::istringstream iss(line);
+            std::string f1,f2,f3,f4;
+            if (!(iss >> f1 >> f2 >> f3 >> f4)) { break; } // error
+            if (f4 == match)
+            {
+                f1.pop_back();
+                return f1;
+            }
+        }
+    }
+    return "";
+}
+
+int parseVersion(std::string& property, std::string& version)
+{
+    std::size_t pos;
+    std::map<int, std::string> hostPropertyData;
+    std::string line;
+    std::stringstream input(property);
+    char buf[255] = {0};
+
+    std::getline(input, line); // Get magic word
+    for(int i = 0; i < TOTAL; i++)
+    {
+        std::getline(input, line);
+        pos = line.find(_hostPropertyMap.at(i));
+
+        if (pos != std::string::npos)
+        {
+            hostPropertyData[i] = line.substr(_hostPropertyMap.at(i).size());
+            hostPropertyData[i].erase(hostPropertyData[i].end()-1, hostPropertyData[i].end()); // Remove the last null
+        }
+        else
+        {
+            error("Host information incorrect!");
+            return 0;
+        } 
+    }
+
+    // Compose Host Version Information
+    snprintf(buf, 255, "%s v%s.%s (%s/%s/%s)",
+            hostPropertyData[FAMILY].data(), hostPropertyData[MAJOR].data(),
+            hostPropertyData[MINOR].data(), hostPropertyData[DAY].data(),
+            hostPropertyData[MONTH].data(), hostPropertyData[YEAR].data());
+    version = buf;
+
+    return 1;
+}
+
+std::string getHostVersion() 
+{
+    std::ifstream efile;
+    std::string property;
+    std::string version("unknown-0\nProduct-unknown-0");
+    char buffer[BUF_SIZE];
+
+    std::string mtddev = getMtdDev("host-prime");
+    if (mtddev == "")
+    {
+        return version;
+    }
+    mtddev = "/dev/" + mtddev;
+    try
+    {
+    efile.open(mtddev);
+    efile.seekg(PROPERTY_OFFSET, std::ios::beg);
+    efile.read(buffer, BUF_SIZE);
+    efile.close();
+    }
+    catch (const std::exception& e)
+    {
+    if (!efile.eof())
+    {
+        error("Error in reading host information");
+    }
+    efile.close();
+    }
+
+    size_t propOffset = offset(buffer, BUF_SIZE, MAGIC_WORD);
+    if (propOffset != BUF_SIZE) 
+    { // Found magic word
+        std::string property(buffer+propOffset);
+        if (!parseVersion(property, version)) 
+        {
+            version = "unknown-0\nProduct-unknown-0";
+        }
+    }
+
+return version;
+}
+
 std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
-                       const std::string& interface)
+                    const std::string& interface)
 {
     auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
-                                      MAPPER_BUSNAME, "GetObject");
+                                    MAPPER_BUSNAME, "GetObject");
 
     method.append(path);
     method.append(std::vector<std::string>({interface}));
@@ -42,8 +152,8 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
 }
 
 void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
-                 const std::string& interface, const std::string& propertyName,
-                 const PropertyValue& value)
+                const std::string& interface, const std::string& propertyName,
+                const PropertyValue& value)
 {
     auto service = getService(bus, objectPath, interface);
     if (service.empty())
@@ -52,7 +162,7 @@ void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
     }
 
     auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
-                                      "org.freedesktop.DBus.Properties", "Set");
+                                    "org.freedesktop.DBus.Properties", "Set");
     method.append(interface.c_str(), propertyName.c_str(), value);
 
     bus.call_noreply(method);
@@ -140,4 +250,33 @@ int executeCmd(const char* path, char** args)
 
 } // namespace internal
 
+int flashEraseMTD(const std::string& mtdName)
+{
+std::string mtdDevice = getMtdDev(mtdName);
+int rc = -1;
+
+if (mtdDevice == "")
+{
+    error("Failed to match mtd device: {DEV_NAME}", "DEV_NAME", mtdName.c_str());
+    return rc;
+}
+
+// Erase mtd device by flash_eraseall command
+std::string cmd = "flash_eraseall /dev/" + mtdDevice;
+std::array<char, 512> buffer;
+std::stringstream result;
+
+FILE* pipe = popen(cmd.c_str(), "r");
+if (!pipe)
+{
+    throw std::runtime_error("popen() failed!");
+}
+while (fgets(buffer.data(), buffer.size(), pipe) != nullptr)
+{
+    result << buffer.data();
+}
+rc = pclose(pipe);
+
+return rc;
+}
 } // namespace utils

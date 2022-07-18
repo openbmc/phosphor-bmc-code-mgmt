@@ -38,6 +38,28 @@ using namespace phosphor::software::image;
 namespace fs = std::filesystem;
 using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
+/*
+#ifdef HOST_BIOS_UPGRADE
+
+void GardReset::reset()
+{
+    int rc;
+
+    rc = utils::flashEraseMTD("host-reserved");
+    if (rc != 0)
+    {
+        log<level::ERR>("Failed to reset Host configuration",
+                        entry("RETURNCODE=%d", rc));
+    }
+    else
+    {
+        log<level::INFO>("Reset Host configuration sucessfully");
+    }
+    return;
+}
+#endif
+*/
+
 void ItemUpdater::createActivation(sdbusplus::message::message& msg)
 {
 
@@ -161,6 +183,13 @@ void ItemUpdater::createActivation(sdbusplus::message::message& msg)
             std::make_unique<phosphor::software::manager::Delete>(bus, path,
                                                                   *versionPtr);
         versions.insert(std::make_pair(versionId, std::move(versionPtr)));
+
+        // Need to clear association by assigning an empty List
+        AssociationList temp = {};
+        this->associations(temp);
+
+        // Re-assign associations
+        this->associations(assocs);
 
         activations.insert(std::make_pair(
             versionId,
@@ -391,6 +420,135 @@ void ItemUpdater::processBMCImage()
     mirrorUbootToAlt();
     return;
 }
+
+#ifdef HOST_BIOS_UPGRADE
+void ItemUpdater::processBIOSImage()
+{
+    std::string version = utils::getHostVersion();
+    auto id = VersionClass::getId(version);
+    std::vector<std::string> compatibleNames;
+
+    if (id.empty())
+    {
+        // Possibly a corrupted PNOR
+        return;
+    }
+
+    auto activationState = server::Activation::Activations::Active;
+    if (version.empty())
+    {
+        log<level::ERR>("Failed to read version");
+        activationState = server::Activation::Activations::Invalid;
+    }
+
+    auto purpose = server::Version::VersionPurpose::Host;
+    auto path = fs::path(SOFTWARE_OBJPATH) / id;
+    AssociationList associations = {};
+
+    if (activationState == server::Activation::Activations::Active)
+    {
+        // Create an association to the host inventory item
+        associations.emplace_back(std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
+                                                  ACTIVATION_REV_ASSOCIATION,
+                                                  "/xyz/openbmc_project/inventory/system/chassis"));
+
+        // Create an active association since this image is active
+        createActiveAssociation(path);
+    }
+
+    // Create Activation instance for this version.
+    activations.insert(std::make_pair(
+        id, std::make_unique<Activation>(
+                bus, path, *this, id, activationState, associations)));
+
+    // If Active, create RedundancyPriority instance for this version.
+    if (activationState == server::Activation::Activations::Active)
+    {
+        // For now only one PNOR is supported with static layout
+        activations.find(id)->second->redundancyPriority =
+            std::make_unique<RedundancyPriority>(
+                bus, path, *(activations.find(id)->second), 0);
+    }
+
+    // Create Version instance for this version.
+    auto versionPtr = std::make_unique<VersionClass>(
+        bus, path, version, purpose, "", "", compatibleNames,
+        std::bind(&ItemUpdater::erase, this, std::placeholders::_1), "");
+
+/*
+    // TODO: Placeholder to validate BIOS image
+    if (!versionPtr->isFunctional()) {
+    }
+*/
+    versionPtr->deleteObject =
+            std::make_unique<phosphor::software::manager::Delete>(
+            bus, path, *versionPtr);
+    versions.insert(std::make_pair(id, std::move(versionPtr)));
+
+    if (!id.empty())
+    {
+        createFunctionalAssociation(path);
+    }
+}
+
+void ItemUpdater::biosErase(std::string entryId)
+{
+    // Removing entry in versions map
+    auto it = versions.find(entryId);
+    if (it == versions.end())
+    {
+        log<level::ERR>(("Error: Failed to find version " + entryId +
+                         " in item updater versions map."
+                         " Unable to remove.")
+                            .c_str());
+    }
+    else
+    {
+        versions.erase(entryId);
+    }
+
+    // Removing entry in activations map
+    auto ita = activations.find(entryId);
+    if (ita == activations.end())
+    {
+        log<level::ERR>(("Error: Failed to find version " + entryId +
+                         " in item updater activations map."
+                         " Unable to remove.")
+                            .c_str());
+    }
+    else
+    {
+        removeAssociations(ita->second->path);
+        activations.erase(entryId);
+    }
+    return;
+}
+
+bool ItemUpdater::freeBiosSpace()
+{
+    using SVersion = server::Version;
+    using VersionPurpose = SVersion::VersionPurpose;
+
+    // For now assume static layout only has 1 active PNOR,
+    // so erase the active PNOR
+    for (const auto& iter : activations)
+    {
+        if (iter.second.get()->activation() ==
+            server::Activation::Activations::Active)
+        {
+            auto pVersionId = iter.second->versionId;
+            auto pPurpose = versions.find(pVersionId)->second->purpose();
+
+            if (pPurpose == VersionPurpose::Host)
+            {
+                biosErase(pVersionId);
+            }
+        }
+    }
+    // No active PNOR means PNOR is empty or corrupted
+    return true;
+}
+#endif
 
 void ItemUpdater::erase(std::string entryId)
 {

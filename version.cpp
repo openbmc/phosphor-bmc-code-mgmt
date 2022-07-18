@@ -28,7 +28,7 @@ using Argument = xyz::openbmc_project::Common::InvalidArgument;
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
 std::string Version::getValue(const std::string& manifestFilePath,
-                              std::string key)
+                            std::string key)
 {
     std::vector<std::string> values = getRepeatedValues(manifestFilePath, key);
     if (values.empty())
@@ -38,14 +38,14 @@ std::string Version::getValue(const std::string& manifestFilePath,
     if (values.size() > 1)
     {
         error("Multiple values found in MANIFEST file for key: {KEY}", "KEY",
-              key);
+            key);
     }
     return values.at(0);
 }
 
 std::vector<std::string>
     Version::getRepeatedValues(const std::string& manifestFilePath,
-                               std::string key)
+                            std::string key)
 {
     key = key + "=";
     auto keySize = key.length();
@@ -87,7 +87,7 @@ std::vector<std::string>
         if (!efile.eof())
         {
             error("Error occurred when reading MANIFEST file: {ERROR}", "KEY",
-                  key, "ERROR", e);
+                key, "ERROR", e);
         }
     }
 
@@ -109,7 +109,7 @@ std::string Version::getId(const std::string& version)
     {
         error("Version is empty.");
         elog<InvalidArgument>(Argument::ARGUMENT_NAME("Version"),
-                              Argument::ARGUMENT_VALUE(version.c_str()));
+                            Argument::ARGUMENT_VALUE(version.c_str()));
     }
 
     std::array<unsigned char, EVP_MAX_MD_SIZE> digest{};
@@ -122,8 +122,8 @@ std::string Version::getId(const std::string& version)
     // We are only using the first 8 characters.
     char mdString[9];
     snprintf(mdString, sizeof(mdString), "%02x%02x%02x%02x",
-             (unsigned int)digest[0], (unsigned int)digest[1],
-             (unsigned int)digest[2], (unsigned int)digest[3]);
+            (unsigned int)digest[0], (unsigned int)digest[1],
+            (unsigned int)digest[2], (unsigned int)digest[3]);
 
     return mdString;
 }
@@ -177,6 +177,31 @@ std::string Version::getBMCExtendedVersion(const std::string& releaseFilePath)
     }
 
     return extendedVersion;
+}
+
+std::string Version::getHostMachine(sdbusplus::bus::bus& bus)
+{
+    auto method = bus.new_method_call("xyz.openbmc_project.EntityManager",
+                                    "/xyz/openbmc_project/inventory/system/chassis/server",
+                                    "org.freedesktop.DBus.Properties", "Get");
+    method.append("xyz.openbmc_project.Inventory.Item", "PrettyName");
+
+    try
+    {
+        auto reply = bus.call(method);
+
+        std::variant<std::string> hostModel;
+        reply.read(hostModel);
+
+        return std::get<std::string>(hostModel);
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        log<level::ERR>("Error in getting HostMachine",
+                        entry("ERROR=%s", e.what()));
+    }
+
+    return std::string{};
 }
 
 std::string Version::getBMCVersion(const std::string& releaseFilePath)

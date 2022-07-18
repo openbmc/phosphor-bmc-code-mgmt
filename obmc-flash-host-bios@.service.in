@@ -4,4 +4,4 @@ Description=Flash Host Bios image %I to Host
 [Service]
 Type=oneshot
 RemainAfterExit=no
-ExecStart=echo Please add custom command for flashing image /tmp/image/%i
+ExecStart=obmc-flash-bios vrom ImageHost.pnor %i

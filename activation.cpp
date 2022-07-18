@@ -31,6 +31,7 @@ namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
+
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 

@@ -9,6 +9,46 @@
 namespace utils
 {
 
+enum {
+    FAMILY = 0,
+    YEAR,
+    MONTH,
+    DAY,
+    MAJOR,
+    MINOR,
+    PERSONALITY,
+    TOTAL
+};
+
+#define MAGIC_WORD        "startProperties"
+#define ROMFAMILY         "romFamily="
+#define ROMYEAR           "romYear="
+#define ROMMONTH          "romMonth="
+#define ROMDAY            "romDay="
+#define ROMMAJOR          "romMajor="
+#define ROMMINOR          "romMinor="
+#define ROMPERSONALITY    "personalities="
+
+#define PROPERTY_OFFSET   0x50000
+#define BUF_SIZE          0x1000      // 4K
+
+const std::map<int, std::string> _hostPropertyMap = {
+    {FAMILY,      ROMFAMILY},
+    {YEAR,        ROMYEAR},
+    {MONTH,       ROMMONTH},
+    {DAY,         ROMDAY},
+    {MAJOR,       ROMMAJOR},
+    {MINOR,       ROMMINOR},
+    {PERSONALITY, ROMPERSONALITY}
+};
+
+/**
+ * @brief Get Host FW version
+ *
+ * @return the FW version as a string
+ **/
+std::string getHostVersion();
+
 using PropertyValue = std::variant<std::string>;
 
 /**
@@ -17,7 +57,7 @@ using PropertyValue = std::variant<std::string>;
  * @return the bus service as a string
  **/
 std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
-                       const std::string& interface);
+                    const std::string& interface);
 
 /** @brief Get property(type: variant)
  *
@@ -32,7 +72,7 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
  */
 template <typename T>
 T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
-              const std::string& interface, const std::string& propertyName)
+            const std::string& interface, const std::string& propertyName)
 {
     std::variant<T> value{};
     auto service = getService(bus, objectPath, interface);
@@ -42,7 +82,7 @@ T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
     }
 
     auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
-                                      "org.freedesktop.DBus.Properties", "Get");
+                                    "org.freedesktop.DBus.Properties", "Get");
     method.append(interface, propertyName);
 
     auto reply = bus.call(method);
@@ -62,8 +102,8 @@ T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
  *  @throw sdbusplus::exception::exception when it fails
  */
 void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
-                 const std::string& interface, const std::string& propertyName,
-                 const PropertyValue& value);
+                const std::string& interface, const std::string& propertyName,
+                const PropertyValue& value);
 
 /**
  * @brief Merge more files
@@ -117,5 +157,15 @@ int execute(const char* path, Arg&&... args)
 
     return internal::executeCmd(path, argArray.data());
 }
+
+/**
+ * @brief Flash erase MTD device
+ *
+ * @param[in] mtdName - MTD device name
+ *
+ * @return Result
+**/
+int flashEraseMTD(const std::string& mtdName);
+
 
 } // namespace utils

@@ -39,7 +39,7 @@ class Delete;
  */
 class Delete : public DeleteInherit
 {
-  public:
+public:
     /** @brief Constructs Delete.
      *
      *  @param[in] bus    - The D-Bus bus object
@@ -56,7 +56,7 @@ class Delete : public DeleteInherit
     /** @brief delete the D-Bus object. */
     void delete_() override;
 
-  private:
+private:
     /** @brief Parent Object. */
     Version& parent;
 };
@@ -68,7 +68,7 @@ class Delete : public DeleteInherit
  */
 class Version : public VersionInherit
 {
-  public:
+public:
     /** @brief Constructs Version Software Manager
      *
      * @param[in] bus             - The D-Bus bus object
@@ -86,7 +86,7 @@ class Version : public VersionInherit
             const std::vector<std::string>& compatibleNames, eraseFunc callback,
             const std::string& id) :
         VersionInherit(bus, (objPath).c_str(),
-                       VersionInherit::action::defer_emit),
+                    VersionInherit::action::defer_emit),
         eraseCallback(callback), id(id), versionStr(versionString)
     {
         // Set properties.
@@ -161,9 +161,9 @@ class Version : public VersionInherit
     static std::string getBMCVersion(const std::string& releaseFilePath);
 
     /* @brief Check if this version is functional.
-     *
-     * @return - Returns the functional value.
-     */
+    *
+    * @return - Returns the functional value.
+    */
     bool isFunctional() const
     {
         return functional;
@@ -177,6 +177,15 @@ class Version : public VersionInherit
         functional = value;
     }
 
+    /**
+     * @brief Get host machine name string.
+     *
+     * @param[in] bus - The D-Bus bus object
+     *
+     * @return The host machine name string.
+    */
+    static std::string getHostMachine(sdbusplus::bus::bus& bus);
+
     /** @brief Persistent Delete D-Bus object */
     std::unique_ptr<Delete> deleteObject;
 
@@ -186,7 +195,7 @@ class Version : public VersionInherit
     /** @brief The version ID of the object */
     const std::string id;
 
-  private:
+private:
     /** @brief This Version's version string */
     const std::string versionStr;
 

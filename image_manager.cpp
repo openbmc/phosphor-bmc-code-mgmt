@@ -128,6 +128,7 @@ int Manager::processImage(const std::string& tarFilePath)
 
     // Get running machine name
     std::string currMachine = Version::getBMCMachine(OS_RELEASE_FILE);
+    std::string hostMachine = Version::getHostMachine(bus);
     if (currMachine.empty())
     {
         auto path = OS_RELEASE_FILE;
@@ -187,6 +188,40 @@ int Manager::processImage(const std::string& tarFilePath)
     // Get ExtendedVersion
     std::string extendedVersion =
         Version::getValue(manifestPath.string(), "ExtendedVersion");
+
+     // Check MachineName based on Purpose
+    switch (purpose)
+    {
+        case Version::VersionPurpose::BMC:
+        {
+           if (machineStr != currMachine)
+           {
+               log<level::ERR>("BMC upgrade: Machine name doesn't match",
+                               entry("BMC_MACHINE=%s", currMachine.c_str()),
+                               entry("NEW_MACHINE=%s", machineStr.c_str()));
+               return -1;
+           }
+        }
+        break;
+#ifdef HOST_BIOS_UPGRADE
+        case Version::VersionPurpose::Host:
+        {
+           if (machineStr != hostMachine)
+           {
+               log<level::ERR>("HOST upgrade: Machine name doesn't match",
+                               entry("HOST_MACHINE=%s", hostMachine.c_str()),
+                               entry("NEW_MACHINE=%s", machineStr.c_str()));
+               return -1;
+           }
+        }
+        break;
+#endif
+        /* TODO : Support More Type Image */
+        default:
+            log<level::ERR>("Error: Not support Purpose.");
+            return -1;
+
+    }
 
     // Get CompatibleNames
     std::vector<std::string> compatibleNames =

@@ -1,0 +1,43 @@
+!/bin/bash
+set -eo pipefail
+
+# Get the mtd device number (mtdX)
+findmtd() {
+  m="$(grep -xl "$1" /sys/class/mtd/*/name)"
+  m="${m%/name}"
+  m="${m##*/}"
+  echo "${m}"
+}
+
+mtd_write() {
+  flashmtd="$(findmtd "${reqmtd}")"
+  img="/tmp/images/${version}/${imgfile}"
+  flashcp -v ${img} /dev/${flashmtd}
+}
+
+case "$1" in
+  srom)
+    reqmtd="host-prime"
+    imgfile="$2"
+    version="$3"
+    mtd_write
+    reqmtd="host-second"
+    imgfile="$2"
+    version="$3"
+    mtd_write
+    ;;
+  vrom)
+    reqmtd="vrom-prime"
+    imgfile="$2"
+    version="$3"
+    mtd_write
+    reqmtd="vrom-second"
+    imgfile="$2"
+    version="$3"
+    mtd_write
+    ;;
+  *)
+    echo "Invalid argument"
+    exit 1
+    ;;
+esac

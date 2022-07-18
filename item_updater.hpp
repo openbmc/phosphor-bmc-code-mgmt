@@ -31,15 +31,63 @@ using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
 
+/*  What to do with this?!
+#ifdef HOST_BIOS_UPGRADE
+using GardResetInherit = sdbusplus::server::object::object<
+        sdbusplus::xyz::openbmc_project::Common::server::FactoryReset>;
+*/
+/*
+ * @class GardReset
+ *  @brief OpenBMC GARD factory reset implementation.
+ *  @details An implementation of xyz.openbmc_project.Common.FactoryReset under
+ *  /xyz/openbmc_project/software/gard.
+ *
+
+class GardReset : public GardResetInherit
+{
+    public:
+         * @brief Constructs GardReset.
+         *
+         * @param[in] bus    - The Dbus bus object
+         * @param[in] path   - The Dbus object path
+         *
+
+        GardReset(sdbusplus::bus::bus& bus, const std::string& path) :
+            GardResetInherit(bus, path.c_str(), true), bus(bus), path(path)
+        {
+            std::vector<std::string> interfaces({interface});
+            bus.emit_interfaces_added(path.c_str(), interfaces);
+        }
+
+        virtual ~GardReset()
+        {
+            std::vector<std::string> interfaces({interface});
+            bus.emit_interfaces_removed(path.c_str(), interfaces);
+        }
+
+    protected:
+        static constexpr auto interface = "xyz.openbmc_project.Common.FactoryReset";
+        sdbusplus::bus::bus& bus;
+        std::string path;
+
+         *
+         * @brief GARD factory reset - clears Hosy configuration.
+         *
+
+        virtual void reset();
+};
+#endif
+*/
+
 /** @class ItemUpdater
  *  @brief Manages the activation of the BMC version items.
  */
 class ItemUpdater : public ItemUpdaterInherit
 {
-  public:
+public:
     /*
-     * @brief Types of Activation status for image validation.
-     */
+    * @brief Types of Activation status for image validation.
+    */
     enum class ActivationStatus
     {
         ready,
@@ -53,21 +101,23 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     ItemUpdater(sdbusplus::bus::bus& bus, const std::string& path) :
         ItemUpdaterInherit(bus, path.c_str(),
-                           ItemUpdaterInherit::action::defer_emit),
+                        ItemUpdaterInherit::action::defer_emit),
         bus(bus), helper(bus),
         versionMatch(bus,
-                     MatchRules::interfacesAdded() +
-                         MatchRules::path("/xyz/openbmc_project/software"),
-                     std::bind(std::mem_fn(&ItemUpdater::createActivation),
-                               this, std::placeholders::_1))
+                    MatchRules::interfacesAdded() +
+                        MatchRules::path("/xyz/openbmc_project/software"),
+                    std::bind(std::mem_fn(&ItemUpdater::createActivation),
+                            this, std::placeholders::_1))
     {
         getRunningSlot();
         setBMCInventoryPath();
         processBMCImage();
-        restoreFieldModeStatus();
 #ifdef HOST_BIOS_UPGRADE
+        processBIOSImage();
+        //gardReset = std::make_unique<GardReset>(bus, "/xyz/openbmc_project/software/gard");
         createBIOSObject();
 #endif
+        restoreFieldModeStatus();
         emit_object_added();
     };
 
@@ -94,6 +144,32 @@ class ItemUpdater : public ItemUpdaterInherit
      * @brief Create and populate the active BMC Version.
      */
     void processBMCImage();
+
+#ifdef HOST_BIOS_UPGRADE
+    /**
+     *  @brief Create and populate the active BIOS Version.
+     */
+    void processBIOSImage();
+
+    /** @brief Brings the total number of active PNOR versions to
+     *         ACTIVE_PNOR_MAX_ALLOWED -1. This function is intended to be
+     *         run before activating a new PNOR version. If this function
+     *         needs to delete any PNOR version(s) it will delete the
+     *         version(s) with the highest priority, skipping the
+     *         functional PNOR version.
+     *
+     *  @return - Return if space is freed or not
+     */
+    bool freeBiosSpace();
+
+    /**
+     * @brief BIOS erase specified entry D-Bus object
+     *        if Action property is not set to Active
+     *
+     * @param[in] entryId - unique identifier of the entry
+     */
+    void biosErase(std::string entryId);
+#endif
 
     /**
      * @brief Erase specified entry D-Bus object
@@ -174,7 +250,7 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @breif The slot of running BMC image */
     uint32_t runningImageSlot = 0;
 
-  private:
+private:
     /** @brief Callback function for Software.Version match.
      *  @details Creates an Activation D-Bus object.
      *
@@ -252,6 +328,9 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void mirrorUbootToAlt();
 
+//#ifdef HOST_BIOS_UPGRADE
+//    std::unique_ptr<GardReset> gardReset;
+//#endif
     /** @brief Check the required image files
      *
      * @param[in] filePath - BMC tarball file path
@@ -275,7 +354,7 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Persistent Activation D-Bus object for BIOS */
     std::unique_ptr<Activation> biosActivation;
 
-  public:
+public:
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
 #endif

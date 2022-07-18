@@ -80,8 +80,8 @@ conf.set_quoted('MANIFEST_FILE_NAME', get_option('manifest-file-name'))
 conf.set_quoted('MEDIA_DIR', get_option('media-dir'))
 optional_array = get_option('optional-images')
 optional_images = ''
-foreach optiona_image : optional_array
-    optional_images = ' '.join([optional_images, optiona_image])
+foreach optional_image : optional_array
+    optional_images = ' '.join([optional_images, optional_image])
 endforeach
 conf.set_quoted('OPTIONAL_IMAGES', optional_images)
 conf.set_quoted('PUBLICKEY_FILE_NAME', get_option('publickey-file-name'))
@@ -112,6 +112,7 @@ sdbuspp_gen_meson_prog = find_program('sdbus++-gen-meson', native: true)
 
 pdi_dep = dependency('phosphor-dbus-interfaces')
 phosphor_logging_dep = dependency('phosphor-logging')
+cli11_dep = dependency('cli11')
 
 cereal_dep = dependency('cereal', required: false)
 has_cereal = cpp.has_header_symbol(
@@ -135,6 +136,7 @@ deps = [
     pdi_dep,
     phosphor_logging_dep,
     sdbusplus_dep,
+    cli11_dep,
 ]
 
 ssl = dependency('openssl')
@@ -144,6 +146,7 @@ systemd_system_unit_dir = systemd.get_variable(pkgconfig : 'systemdsystemunitdir
 
 unit_files = [
     'obmc-flash-bmc-setenv@.service.in',
+    'obmc-flash-host-bios@.service.in',
     'reboot-guard-disable.service.in',
     'reboot-guard-enable.service.in',
     'force-reboot.service.in',

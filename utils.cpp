@@ -145,7 +145,7 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
     catch (const sdbusplus::exception::exception& e)
     {
         error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
-            "ERROR", e, "PATH", path, "INTERFACE", interface);
+              "ERROR", e, "PATH", path, "INTERFACE", interface);
         return std::string{};
     }
     return response[0].first;
@@ -220,7 +220,7 @@ int executeCmd(const char* path, char** args)
         auto err = errno;
         auto command = buildCommandStr(path, args);
         error("Failed ({ERRNO}) to execute command: {COMMAND}", "ERRNO", err,
-                "COMMAND", command);
+              "COMMAND", command);
         return -1;
     }
     else if (pid > 0)
@@ -235,7 +235,7 @@ int executeCmd(const char* path, char** args)
         {
             auto command = buildCommandStr(path, args);
             error("Error ({STATUS}) occurred when executing command: {COMMAND}",
-                    "STATUS", status, "COMMAND", command);
+                  "STATUS", status, "COMMAND", command);
             return -1;
         }
     }

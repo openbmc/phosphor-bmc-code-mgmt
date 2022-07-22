@@ -141,7 +141,7 @@ bool powerOffSystem(sdbusplus::bus_t& bus)
         return (false);
     }
 
-    // Now just wait for power to turn off
+    // Now just wait for host and power to turn off
     // Worst case is a systemd service hangs in power off for 2 minutes so
     // take that and double it to avoid any timing issues. The user has
     // requested we switch to the other side, so a lengthy delay is warranted
@@ -151,6 +151,22 @@ bool powerOffSystem(sdbusplus::bus_t& bus)
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         try
         {
+            // First wait for host to be off
+            auto currentHostState = utils::getProperty<std::string>(
+                bus, "/xyz/openbmc_project/state/host0",
+                "xyz.openbmc_project.State.Host", "CurrentHostState");
+
+            if (currentHostState ==
+                "xyz.openbmc_project.State.Host.HostState.Off")
+            {
+                info("host is off");
+            }
+            else
+            {
+                continue;
+            }
+
+            // Then verify chassis power is off
             auto currentPwrState = utils::getProperty<std::string>(
                 bus, "/xyz/openbmc_project/state/chassis0",
                 "xyz.openbmc_project.State.Chassis", "CurrentPowerState");
@@ -160,6 +176,10 @@ bool powerOffSystem(sdbusplus::bus_t& bus)
             {
                 info("chassis power is off");
                 return (true);
+            }
+            else
+            {
+                continue;
             }
         }
         catch (const std::exception& e)

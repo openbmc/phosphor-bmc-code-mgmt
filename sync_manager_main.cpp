@@ -18,7 +18,7 @@ int main()
     sd_event* loop = nullptr;
     sd_event_default(&loop);
 
-    sdbusplus::server::manager::manager objManager(bus, SOFTWARE_OBJPATH);
+    sdbusplus::server::manager_t objManager(bus, SOFTWARE_OBJPATH);
 
     try
     {

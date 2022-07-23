@@ -9,7 +9,7 @@ namespace utils
 
 PHOSPHOR_LOG2_USING;
 
-std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
+std::string getService(sdbusplus::bus_t& bus, const std::string& path,
                        const std::string& interface)
 {
     auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
@@ -32,7 +32,7 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
             return std::string{};
         }
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
               "ERROR", e, "PATH", path, "INTERFACE", interface);
@@ -41,7 +41,7 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
     return response[0].first;
 }
 
-void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+void setProperty(sdbusplus::bus_t& bus, const std::string& objectPath,
                  const std::string& interface, const std::string& propertyName,
                  const PropertyValue& value)
 {

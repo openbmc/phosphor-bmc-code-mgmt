@@ -16,7 +16,7 @@ using PropertyValue = std::variant<std::string>;
  *
  * @return the bus service as a string
  **/
-std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
+std::string getService(sdbusplus::bus_t& bus, const std::string& path,
                        const std::string& interface);
 
 /** @brief Get property(type: variant)
@@ -28,10 +28,10 @@ std::string getService(sdbusplus::bus::bus& bus, const std::string& path,
  *
  *  @return The value of the property(type: variant)
  *
- *  @throw sdbusplus::exception::exception when it fails
+ *  @throw sdbusplus::exception_t when it fails
  */
 template <typename T>
-T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+T getProperty(sdbusplus::bus_t& bus, const std::string& objectPath,
               const std::string& interface, const std::string& propertyName)
 {
     std::variant<T> value{};
@@ -59,9 +59,9 @@ T getProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
  *  @param[in] propertyName     -   D-Bus property name
  *  @param[in] value            -   The value to be set
  *
- *  @throw sdbusplus::exception::exception when it fails
+ *  @throw sdbusplus::exception_t when it fails
  */
-void setProperty(sdbusplus::bus::bus& bus, const std::string& objectPath,
+void setProperty(sdbusplus::bus_t& bus, const std::string& objectPath,
                  const std::string& interface, const std::string& propertyName,
                  const PropertyValue& value);
 

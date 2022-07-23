@@ -29,15 +29,15 @@ namespace fs = std::filesystem;
 
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
-using ActivationInherit = sdbusplus::server::object::object<
+using ActivationInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Software::server::Activation,
     sdbusplus::xyz::openbmc_project::Association::server::Definitions>;
-using ActivationBlocksTransitionInherit = sdbusplus::server::object::object<
-    sdbusplus::xyz::openbmc_project::Software::server::
-        ActivationBlocksTransition>;
-using RedundancyPriorityInherit = sdbusplus::server::object::object<
+using ActivationBlocksTransitionInherit =
+    sdbusplus::server::object_t<sdbusplus::xyz::openbmc_project::Software::
+                                    server::ActivationBlocksTransition>;
+using RedundancyPriorityInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
-using ActivationProgressInherit = sdbusplus::server::object::object<
+using ActivationProgressInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
 
 constexpr auto applyTimeImmediate =
@@ -69,7 +69,7 @@ class RedundancyPriority : public RedundancyPriorityInherit
      *  @param[in] value  - The redundancyPriority value
      *  @param[in] freePriority  - Call freePriorioty, default to true
      */
-    RedundancyPriority(sdbusplus::bus::bus& bus, const std::string& path,
+    RedundancyPriority(sdbusplus::bus_t& bus, const std::string& path,
                        Activation& parent, uint8_t value,
                        bool freePriority = true) :
         RedundancyPriorityInherit(bus, path.c_str(),
@@ -127,8 +127,7 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
      *  @param[in] bus    - The Dbus bus object
      *  @param[in] path   - The Dbus object path
      */
-    ActivationBlocksTransition(sdbusplus::bus::bus& bus,
-                               const std::string& path) :
+    ActivationBlocksTransition(sdbusplus::bus_t& bus, const std::string& path) :
         ActivationBlocksTransitionInherit(bus, path.c_str(),
                                           action::emit_interface_added),
         bus(bus)
@@ -142,7 +141,7 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
     }
 
   private:
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 
     /** @brief Enables a Guard that blocks any BMC reboot commands */
     void enableRebootGuard();
@@ -159,7 +158,7 @@ class ActivationProgress : public ActivationProgressInherit
      * @param[in] bus    - The Dbus bus object
      * @param[in] path   - The Dbus object path
      */
-    ActivationProgress(sdbusplus::bus::bus& bus, const std::string& path) :
+    ActivationProgress(sdbusplus::bus_t& bus, const std::string& path) :
         ActivationProgressInherit(bus, path.c_str(),
                                   action::emit_interface_added)
     {
@@ -184,7 +183,7 @@ class Activation : public ActivationInherit, public Flash
      * @param[in] activationStatus - The status of Activation
      * @param[in] assocs - Association objects
      */
-    Activation(sdbusplus::bus::bus& bus, const std::string& path,
+    Activation(sdbusplus::bus_t& bus, const std::string& path,
                ItemUpdater& parent, std::string& versionId,
                sdbusplus::xyz::openbmc_project::Software::server::Activation::
                    Activations activationStatus,
@@ -245,11 +244,11 @@ class Activation : public ActivationInherit, public Flash
     void flashWriteHost();
 
     /** @brief Function that acts on Bios upgrade service file state changes */
-    void onStateChangesBios(sdbusplus::message::message&);
+    void onStateChangesBios(sdbusplus::message_t&);
 #endif
 
     /** @brief Overloaded function that acts on service file state changes */
-    void onStateChanges(sdbusplus::message::message&) override;
+    void onStateChanges(sdbusplus::message_t&) override;
 
     /** @brief Check if systemd state change is relevant to this object
      *
@@ -259,7 +258,7 @@ class Activation : public ActivationInherit, public Flash
      * @param[in]  msg       - Data associated with subscribed signal
      *
      */
-    void unitStateChange(sdbusplus::message::message& msg);
+    void unitStateChange(sdbusplus::message_t& msg);
 
     /**
      * @brief subscribe to the systemd signals
@@ -301,7 +300,7 @@ class Activation : public ActivationInherit, public Flash
     void rebootBmc();
 
     /** @brief Persistent sdbusplus DBus bus connection */
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 
     /** @brief Persistent DBus object path */
     std::string path;

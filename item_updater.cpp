@@ -38,7 +38,7 @@ using namespace phosphor::software::image;
 namespace fs = std::filesystem;
 using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
-void ItemUpdater::createActivation(sdbusplus::message::message& msg)
+void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 {
 
     using SVersion = server::Version;
@@ -636,7 +636,7 @@ void ItemUpdater::setBMCInventoryPath()
             bmcInventoryPath = result.front();
         }
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Error in mapper GetSubTreePath: {ERROR}", "ERROR", e);
         return;

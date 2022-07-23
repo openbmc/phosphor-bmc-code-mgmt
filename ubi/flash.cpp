@@ -28,7 +28,7 @@ void Activation::flashWrite()
     return;
 }
 
-void Activation::onStateChanges(sdbusplus::message::message& msg)
+void Activation::onStateChanges(sdbusplus::message_t& msg)
 {
     uint32_t newStateID{};
     sdbusplus::message::object_path newStateObjPath;

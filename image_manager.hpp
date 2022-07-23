@@ -26,7 +26,7 @@ class Manager
      *
      * @param[in] bus - The Dbus bus object
      */
-    explicit Manager(sdbusplus::bus::bus& bus) : bus(bus){};
+    explicit Manager(sdbusplus::bus_t& bus) : bus(bus){};
 
     /**
      * @brief Verify and untar the tarball. Verify the manifest file.
@@ -51,7 +51,7 @@ class Manager
     std::map<std::string, std::unique_ptr<Version>> versions;
 
     /** @brief Persistent sdbusplus DBus bus connection. */
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 
     /** @brief The random generator to get the version salt */
     std::mt19937 randomGen{static_cast<unsigned>(

@@ -20,7 +20,7 @@ namespace software
 namespace updater
 {
 
-using ItemUpdaterInherit = sdbusplus::server::object::object<
+using ItemUpdaterInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
     sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
     sdbusplus::xyz::openbmc_project::Association::server::Definitions,
@@ -51,7 +51,7 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in] bus    - The D-Bus bus object
      */
-    ItemUpdater(sdbusplus::bus::bus& bus, const std::string& path) :
+    ItemUpdater(sdbusplus::bus_t& bus, const std::string& path) :
         ItemUpdaterInherit(bus, path.c_str(),
                            ItemUpdaterInherit::action::defer_emit),
         bus(bus), helper(bus),
@@ -180,7 +180,7 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in]  msg       - Data associated with subscribed signal
      */
-    void createActivation(sdbusplus::message::message& msg);
+    void createActivation(sdbusplus::message_t& msg);
 
     /**
      * @brief Validates the presence of SquashFS image in the image dir.
@@ -225,7 +225,7 @@ class ItemUpdater : public ItemUpdaterInherit
     void createFunctionalAssociation(const std::string& path);
 
     /** @brief Persistent sdbusplus D-Bus bus connection. */
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 
     /** @brief The helper of image updater. */
     Helper helper;

@@ -57,8 +57,7 @@ void Activation::flashWrite()
     }
 }
 
-void Activation::onStateChanges(
-    [[maybe_unused]] sdbusplus::message::message& msg)
+void Activation::onStateChanges([[maybe_unused]] sdbusplus::message_t& msg)
 {
 #ifdef BMC_STATIC_DUAL_IMAGE
     uint32_t newStateID;

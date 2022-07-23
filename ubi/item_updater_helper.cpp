@@ -74,7 +74,7 @@ void Helper::updateUbootVersionId(const std::string& flashId)
     {
         bus.call_noreply(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Failed to update u-boot env variables: {FLASHID}", "FLASHID",
               flashId);
@@ -92,7 +92,7 @@ void Helper::mirrorAlt()
     {
         bus.call_noreply(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Failed to copy U-Boot to alternate chip: {ERROR}", "ERROR", e);
     }

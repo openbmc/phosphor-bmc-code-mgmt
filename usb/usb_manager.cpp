@@ -90,7 +90,7 @@ void USBManager::setRequestedActivation(const std::string& path)
     return;
 }
 
-void USBManager::updateActivation(sdbusplus::message::message& msg)
+void USBManager::updateActivation(sdbusplus::message_t& msg)
 {
     std::map<std::string, std::map<std::string, std::variant<std::string>>>
         interfaces;

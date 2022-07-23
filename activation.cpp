@@ -46,7 +46,7 @@ void Activation::subscribeToSystemdSignals()
     {
         this->bus.call_noreply(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         if (e.name() != nullptr &&
             strcmp("org.freedesktop.systemd1.AlreadySubscribed", e.name()) == 0)
@@ -72,7 +72,7 @@ void Activation::unsubscribeFromSystemdSignals()
     {
         this->bus.call_noreply(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Error unsubscribing from systemd signals: {ERROR}", "ERROR", e);
     }
@@ -246,7 +246,7 @@ void Activation::deleteImageManagerObject()
             {
                 bus.call_noreply(deleteMethod);
             }
-            catch (const sdbusplus::exception::exception& e)
+            catch (const sdbusplus::exception_t& e)
             {
                 error(
                     "Error deleting image ({PATH}) from image manager: {ERROR}",
@@ -255,7 +255,7 @@ void Activation::deleteImageManagerObject()
             }
         }
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Error in mapper method call for ({PATH}, {INTERFACE}: {ERROR}",
               "ERROR", e, "PATH", path, "INTERFACE", interface);
@@ -302,7 +302,7 @@ uint8_t RedundancyPriority::sdbusPriority(uint8_t value)
     return softwareServer::RedundancyPriority::priority(value);
 }
 
-void Activation::unitStateChange(sdbusplus::message::message& msg)
+void Activation::unitStateChange(sdbusplus::message_t& msg)
 {
     if (softwareServer::Activation::activation() !=
         softwareServer::Activation::Activations::Activating)
@@ -384,7 +384,7 @@ bool Activation::checkApplyTimeImmediate()
                 return true;
             }
         }
-        catch (const sdbusplus::exception::exception& e)
+        catch (const sdbusplus::exception_t& e)
         {
             error("Error in getting ApplyTime: {ERROR}", "ERROR", e);
         }
@@ -403,14 +403,14 @@ void Activation::flashWriteHost()
     {
         auto reply = bus.call(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         error("Error in trying to upgrade Host Bios: {ERROR}", "ERROR", e);
         report<InternalFailure>();
     }
 }
 
-void Activation::onStateChangesBios(sdbusplus::message::message& msg)
+void Activation::onStateChangesBios(sdbusplus::message_t& msg)
 {
     uint32_t newStateID{};
     sdbusplus::message::object_path newStateObjPath;
@@ -467,7 +467,7 @@ void Activation::rebootBmc()
     {
         auto reply = bus.call(method);
     }
-    catch (const sdbusplus::exception::exception& e)
+    catch (const sdbusplus::exception_t& e)
     {
         alert("Error in trying to reboot the BMC. The BMC needs to be manually "
               "rebooted to complete the image activation. {ERROR}",

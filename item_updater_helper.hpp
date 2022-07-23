@@ -24,7 +24,7 @@ class Helper
      *
      *  @param[in] bus - sdbusplus D-Bus bus connection
      */
-    explicit Helper(sdbusplus::bus::bus& bus) : bus(bus)
+    explicit Helper(sdbusplus::bus_t& bus) : bus(bus)
     {
         // Empty
     }
@@ -65,7 +65,7 @@ class Helper
 
   private:
     /** @brief Persistent sdbusplus D-Bus bus connection. */
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 };
 
 } // namespace updater

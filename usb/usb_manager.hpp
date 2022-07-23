@@ -24,7 +24,7 @@ class USBManager
     USBManager& operator=(const USBManager&) = delete;
     USBManager& operator=(USBManager&&) = default;
 
-    explicit USBManager(sdbusplus::bus::bus& bus, sdeventplus::Event& event,
+    explicit USBManager(sdbusplus::bus_t& bus, sdeventplus::Event& event,
                         const fs::path& devPath, const fs::path& usbPath) :
         bus(bus),
         event(event), devicePath(devPath), usbPath(usbPath),
@@ -56,7 +56,7 @@ class USBManager
      *
      * @param[in]  msg   - Data associated with subscribed signal
      */
-    void updateActivation(sdbusplus::message::message& msg);
+    void updateActivation(sdbusplus::message_t& msg);
 
     /** @brief Set Apply Time to OnReset.
      *
@@ -71,7 +71,7 @@ class USBManager
 
   private:
     /** @brief Persistent sdbusplus DBus bus connection. */
-    sdbusplus::bus::bus& bus;
+    sdbusplus::bus_t& bus;
 
     /** sd event handler. */
     sdeventplus::Event& event;

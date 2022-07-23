@@ -12,7 +12,7 @@
 
 PHOSPHOR_LOG2_USING;
 
-bool sideSwitchNeeded(sdbusplus::bus::bus& bus)
+bool sideSwitchNeeded(sdbusplus::bus_t& bus)
 {
 
     std::string fwRunningVersionPath;
@@ -124,7 +124,7 @@ bool sideSwitchNeeded(sdbusplus::bus::bus& bus)
     return (false);
 }
 
-bool powerOffSystem(sdbusplus::bus::bus& bus)
+bool powerOffSystem(sdbusplus::bus_t& bus)
 {
 
     try
@@ -172,7 +172,7 @@ bool powerOffSystem(sdbusplus::bus::bus& bus)
     return (false);
 }
 
-bool setAutoPowerRestart(sdbusplus::bus::bus& bus)
+bool setAutoPowerRestart(sdbusplus::bus_t& bus)
 {
     try
     {
@@ -196,7 +196,7 @@ bool setAutoPowerRestart(sdbusplus::bus::bus& bus)
     return (true);
 }
 
-bool rebootTheBmc(sdbusplus::bus::bus& bus)
+bool rebootTheBmc(sdbusplus::bus_t& bus)
 {
     try
     {

@@ -29,7 +29,7 @@ class Flash
     /**
      * @brief Takes action when the state of the activation service file changes
      */
-    virtual void onStateChanges(sdbusplus::message::message& msg) = 0;
+    virtual void onStateChanges(sdbusplus::message_t& msg) = 0;
 };
 
 } // namespace updater

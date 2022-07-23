@@ -13,7 +13,7 @@ namespace software
 namespace manager
 {
 
-using DownloadInherit = sdbusplus::server::object::object<
+using DownloadInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Common::server::TFTP>;
 
 /** @class Download
@@ -29,7 +29,7 @@ class Download : public DownloadInherit
      * @param[in] bus       - The Dbus bus object
      * @param[in] objPath   - The Dbus object path
      */
-    Download(sdbusplus::bus::bus& bus, const std::string& objPath) :
+    Download(sdbusplus::bus_t& bus, const std::string& objPath) :
         DownloadInherit(bus, (objPath).c_str()){};
 
     /**

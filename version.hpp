@@ -21,12 +21,12 @@ namespace manager
 
 typedef std::function<void(std::string)> eraseFunc;
 
-using VersionInherit = sdbusplus::server::object::object<
+using VersionInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Software::server::ExtendedVersion,
     sdbusplus::xyz::openbmc_project::Software::server::Version,
     sdbusplus::xyz::openbmc_project::Common::server::FilePath,
     sdbusplus::xyz::openbmc_project::Inventory::Decorator::server::Compatible>;
-using DeleteInherit = sdbusplus::server::object::object<
+using DeleteInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Object::server::Delete>;
 
 class Version;
@@ -46,7 +46,7 @@ class Delete : public DeleteInherit
      *  @param[in] path   - The D-Bus object path
      *  @param[in] parent - Parent object.
      */
-    Delete(sdbusplus::bus::bus& bus, const std::string& path, Version& parent) :
+    Delete(sdbusplus::bus_t& bus, const std::string& path, Version& parent) :
         DeleteInherit(bus, path.c_str(), action::emit_interface_added),
         parent(parent)
     {
@@ -80,7 +80,7 @@ class Version : public VersionInherit
      * @param[in] compatibleNames - The device compatibility names
      * @param[in] callback        - The eraseFunc callback
      */
-    Version(sdbusplus::bus::bus& bus, const std::string& objPath,
+    Version(sdbusplus::bus_t& bus, const std::string& objPath,
             const std::string& versionString, VersionPurpose versionPurpose,
             const std::string& extVersion, const std::string& filePath,
             const std::vector<std::string>& compatibleNames, eraseFunc callback,

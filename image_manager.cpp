@@ -59,7 +59,7 @@ struct RemovablePath
 namespace // anonymous
 {
 
-std::vector<std::string> getSoftwareObjects(sdbusplus::bus::bus& bus)
+std::vector<std::string> getSoftwareObjects(sdbusplus::bus_t& bus)
 {
     std::vector<std::string> paths;
     auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,

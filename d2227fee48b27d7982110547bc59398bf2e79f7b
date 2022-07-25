@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "119418dd_1034b38e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-07-25T03:16:45Z",
+      "side": 1,
+      "message": "Part of this commit does not look like generic but specific to HPE machine, is it?\nCould you split the HPE specific changes and submit the generic changes only?",
+      "revId": "d2227fee48b27d7982110547bc59398bf2e79f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

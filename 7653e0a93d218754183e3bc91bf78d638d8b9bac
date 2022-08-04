@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eee39fa_c71b38bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-08-04T15:03:11Z",
+      "side": 1,
+      "message": "Minor comment: There should be a blank line between the title and the description of the commit msg otherwise git sets the title to the full text including the description.",
+      "revId": "7653e0a93d218754183e3bc91bf78d638d8b9bac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf8975f_9eb43ea6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-08-04T15:03:11Z",
+      "side": 1,
+      "message": "Looks good, just need a blank line in the commit msg.",
+      "revId": "7653e0a93d218754183e3bc91bf78d638d8b9bac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

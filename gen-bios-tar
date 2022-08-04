@@ -167,5 +167,8 @@ if [[ "${do_sign}" == true ]]; then
   additional_files="*.sig"
 fi
 
-tar -czvf "$outfile" "$files_to_sign" "$additional_files"
+# shellcheck disable=SC2086
+# Do not quote the files variables since they list multiple files
+# and tar would assume to be a single file name within quotes
+tar -czvf $outfile $files_to_sign $additional_files
 echo "Bios image tarball is at $outfile"

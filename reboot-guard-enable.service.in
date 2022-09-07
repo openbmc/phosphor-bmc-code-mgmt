@@ -1,5 +1,6 @@
 [Unit]
 Description=Enable a guard that blocks BMC reboot
+Before=reboot-guard-disable.service
 
 [Service]
 Type=oneshot

@@ -34,6 +34,24 @@
       "parentUuid": "29d6fca9_2bdcaf53",
       "revId": "8d16554c89b1a0ccd0785e06d48114f635ca5c4f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c000a90_7780172c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-09-12T20:17:32Z",
+      "side": 1,
+      "message": "Thanks Adriana. This was def somewhat of a fly-by commit and this was about as much as I could commit to. Hope Lei is good with the issue. Could be a good story for a new joiner to dig into.",
+      "parentUuid": "30bf0991_be1f6492",
+      "revId": "8d16554c89b1a0ccd0785e06d48114f635ca5c4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

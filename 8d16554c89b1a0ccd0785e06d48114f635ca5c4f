@@ -16,6 +16,24 @@
       "message": "Is it better to refactor this, and use a service to tell if the bootguard is enabled or not, then the caller could just start the service to enable the bootguard, and stop the service to disable the boot guard.\n\nSimilar example:\n\n [Service]\n Type\u003doneshot\n RemainAfterExit\u003dyes\n ExecStart\u003d\u003cscript to enable boot guard\u003e\n ExecStop\u003d\u003cscript to disable boot guard\u003e",
       "revId": "8d16554c89b1a0ccd0785e06d48114f635ca5c4f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30bf0991_be1f6492",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-12T19:56:18Z",
+      "side": 1,
+      "message": "That\u0027s a good thought.\nI\u0027m ok with Andrew\u0027s change for now, and created this issue to look at refactoring the service: https://github.com/openbmc/phosphor-bmc-code-mgmt/issues/11\n\nThe reason is that it\u0027ll require extensive testing, and also Patrick brought up recently in discord the scenario that if the updater app crashes it leaves the reboot guard enabled, so we should look at automatically disabling the boot guard when the updater app starts/restarts. We\u0027d need to think how this could be done if we go with a single service.\n\nI documented that in the issue.",
+      "parentUuid": "29d6fca9_2bdcaf53",
+      "revId": "8d16554c89b1a0ccd0785e06d48114f635ca5c4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

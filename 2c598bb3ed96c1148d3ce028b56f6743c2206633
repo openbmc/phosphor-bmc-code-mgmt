@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993ea70d_9b31d218",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "Please add a \"Tested\" description to show how this commit is tested.",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691a82ab_5f775dba",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "`mode` now contains the return code and the string, possibly rename to something like `ret`?",
+      "range": {
+        "startLine": 564,
+        "startChar": 32,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "181abbc1_26cbc86d",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "Now since you could get the return code, possibly check the return code first and then get the result if it\u0027s 0.",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527d6004_8cc75859",
+        "filename": "utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "This cause the process to be terminated. Is it better to just log an error?",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6409b4da_fe0a9aad",
+        "filename": "utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "The `@return` shall be updated",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868d85b4_489eea56",
+        "filename": "utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-09-15T07:32:37Z",
+      "side": 1,
+      "message": "The `@return` shall be updated",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

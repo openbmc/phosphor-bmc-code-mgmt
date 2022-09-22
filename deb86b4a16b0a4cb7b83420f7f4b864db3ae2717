@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c245c1_fd4fe125",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Isaac is no longer working on the project, so refreshing this patch.",
+      "revId": "deb86b4a16b0a4cb7b83420f7f4b864db3ae2717",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

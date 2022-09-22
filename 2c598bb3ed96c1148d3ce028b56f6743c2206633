@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bceb2a_b5773e4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "993ea70d_9b31d218",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "691a82ab_5f775dba",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-15T07:32:37Z",
       "side": 1,
       "message": "`mode` now contains the return code and the string, possibly rename to something like `ret`?",
+      "range": {
+        "startLine": 564,
+        "startChar": 32,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3583cf11_f97a4078",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "691a82ab_5f775dba",
       "range": {
         "startLine": 564,
         "startChar": 32,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cab72db_0e1dd51c",
+        "filename": "item_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "181abbc1_26cbc86d",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "527d6004_8cc75859",
@@ -71,6 +131,24 @@
       "writtenOn": "2022-09-15T07:32:37Z",
       "side": 1,
       "message": "This cause the process to be terminated. Is it better to just log an error?",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e1525bf_506b120a",
+        "filename": "utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done. Yeah better to not terminate the process.",
+      "parentUuid": "527d6004_8cc75859",
       "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -92,6 +170,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ceba85_2d0410a1",
+        "filename": "utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6409b4da_fe0a9aad",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "868d85b4_489eea56",
@@ -105,6 +201,24 @@
       "writtenOn": "2022-09-15T07:32:37Z",
       "side": 1,
       "message": "The `@return` shall be updated",
+      "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ee9602b_fbfa8308",
+        "filename": "utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-09-22T21:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "868d85b4_489eea56",
       "revId": "2c598bb3ed96c1148d3ce028b56f6743c2206633",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -629,6 +629,33 @@ mmc_setprimary() {
   fw_setenv bootside "${flashid}"
 }
 
+mmc_mirroruboot() {
+  # Get current boot device; 0-primary_bootdev device; 1 - alt_bootdev
+  bootdev=`cat /sys/kernel/debug/aspeed/sbc/abr_image`
+  if [[ "${bootdev}" == "0" ]]; then
+    bootPartition="mmcblk0boot0"
+    alt_bootPartition="mmcblk0boot1"
+  else
+    bootPartition="mmcblk0boot1"
+    alt_bootPartition="mmcblk0boot0"
+  fi
+
+  devUBoot="/dev/${bootPartition}"
+  alt_devUBoot="/dev/${alt_bootPartition}"
+
+  checksum_UBoot="$(md5sum "${devUBoot}")"
+  checksum_UBoot="${checksum_UBoot% *}"
+  checksum_alt_UBoot="$(md5sum "${alt_devUBoot}")"
+  checksum_alt_UBoot="${checksum_alt% *}"
+
+  if [[ "${checksum_UBoot}" != "${checksum_alt_UBoot}" ]]; then
+    echo "Mirroring U-boot to alt chip"
+    echo 0 > "/sys/block/${alt_bootPartition}/force_ro"
+    dd if="${devUBoot}" of="${alt_devUBoot}"
+    echo 1 > "/sys/block/${alt_bootPartition}/force_ro"
+  fi
+}
+
 case "$1" in
   mtduboot)
     reqmtd="$2"
@@ -708,6 +735,9 @@ case "$1" in
   mmc-setprimary)
     flashid="$2"
     mmc_setprimary
+    ;;
+  mmc-mirroruboot)
+    mmc_mirroruboot
     ;;
   static-altfs)
     mount_static_alt "$2" "$3" "$4"

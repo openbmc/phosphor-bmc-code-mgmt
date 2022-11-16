@@ -200,6 +200,7 @@ elif get_option('bmc-layout').contains('mmc')
         'mmc/obmc-flash-mmc-remove@.service.in',
         'mmc/obmc-flash-mmc-setprimary@.service.in',
         'mmc/obmc-flash-mmc-umount.service.in',
+        'mmc/obmc-flash-mmc-mirroruboot.service.in',
     ]
 endif
 

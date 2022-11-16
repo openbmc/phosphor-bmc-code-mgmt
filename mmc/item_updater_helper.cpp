@@ -64,7 +64,11 @@ void Helper::updateUbootVersionId(const std::string& flashId)
 
 void Helper::mirrorAlt()
 {
-    // Empty
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto serviceFile = "obmc-flash-mmc-mirroruboot.service";
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
 }
 
 } // namespace updater

@@ -64,7 +64,16 @@ void Helper::updateUbootVersionId(const std::string& flashId)
 
 void Helper::mirrorAlt()
 {
-    // Empty
+    auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
+                                      SYSTEMD_INTERFACE, "StartUnit");
+    auto serviceFile = "obmc-flash-mmc-mirroruboot.service";
+    method.append(serviceFile, "replace");
+    bus.call_noreply(method);
+
+    // Wait a few seconds for the service file to finish, otherwise the BMC may
+    // start the update while the image is still being mirrored.
+    constexpr auto mirrorubootWait = std::chrono::seconds(3);
+    std::this_thread::sleep_for(mirrorubootWait);
 }
 
 } // namespace updater

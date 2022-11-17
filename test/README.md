@@ -6,7 +6,7 @@ Instructions on how to execute UTEST.
 - Run the following commands:
 
   ```
-  meson -Doe-sdk=enabled -Dtests=enabled build
+  meson -Dtests=enabled build
   ninja -C build test
   ```
 

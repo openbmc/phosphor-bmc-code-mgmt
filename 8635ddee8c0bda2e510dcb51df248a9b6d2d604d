@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1345e6db_76bf313f",
+        "filename": "mmc/item_updater_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-11-22T03:25:16Z",
+      "side": 1,
+      "message": "This blocks the whole service for 3 seconds, and how do you make sure 3s is enough for the u-boot mirror finishes?\n\nIt could be better to handle the finish in the match callback like other services do.",
+      "revId": "8635ddee8c0bda2e510dcb51df248a9b6d2d604d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

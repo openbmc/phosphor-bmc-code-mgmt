@@ -16,6 +16,24 @@
       "message": "This blocks the whole service for 3 seconds, and how do you make sure 3s is enough for the u-boot mirror finishes?\n\nIt could be better to handle the finish in the match callback like other services do.",
       "revId": "8635ddee8c0bda2e510dcb51df248a9b6d2d604d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4802db8_70ba15cb",
+        "filename": "mmc/item_updater_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-11-29T22:00:00Z",
+      "side": 1,
+      "message": "That\u0027s a good point. Since the concern is to prevent a code update if the mirroring is in progress, perhaps it\u0027d work to add a \"After\u003dobmc-flash-mmc-mirroruboot\" to the \"mmc/obmc-flash-mmc@.service.in\" service so that the mmc update waits for the mirror to complete. It\u0027ll need to be tested to verify that if the mirror service is started, and while it\u0027s running the obmc-flash-mmc service is started, that this service waits for the mirror to complete.",
+      "parentUuid": "1345e6db_76bf313f",
+      "revId": "8635ddee8c0bda2e510dcb51df248a9b6d2d604d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

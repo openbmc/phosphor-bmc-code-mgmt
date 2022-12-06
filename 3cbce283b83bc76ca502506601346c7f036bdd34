@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb866487_30d342d8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-06T22:11:09Z",
+      "side": 1,
+      "message": "Need to have the title in the same line or CI will fail.",
+      "revId": "3cbce283b83bc76ca502506601346c7f036bdd34",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a5443a_f623fdfd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-06T22:11:09Z",
+      "side": 1,
+      "message": "Can you add to the commit msg the reason for removing the reset of the Progress interface at the end of the update?",
+      "revId": "3cbce283b83bc76ca502506601346c7f036bdd34",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

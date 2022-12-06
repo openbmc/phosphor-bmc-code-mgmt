@@ -16,6 +16,24 @@
       "message": "if we use oneshot type and the service is taking too much time to complete, it can impact the booting time of the BMC\n \nin that case we can use \"simple\" type",
       "revId": "bc8adea41e56bdff2a6e6ab2b356d7c7262ec9da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "847affae_84177449",
+        "filename": "mmc/obmc-flash-mmc-mirroruboot.service.in",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-06T12:08:35Z",
+      "side": 1,
+      "message": "\u003e if we use oneshot type and the service is taking too much time to complete, it can impact the booting time of the BMC\n\u003e  \n\u003e in that case we can use \"simple\" type\n\nignore i could see that this service is invoked from another service during fwu",
+      "parentUuid": "f04fe244_f8160a6d",
+      "revId": "bc8adea41e56bdff2a6e6ab2b356d7c7262ec9da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

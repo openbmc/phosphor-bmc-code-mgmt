@@ -52,6 +52,24 @@
       "parentUuid": "b4802db8_70ba15cb",
       "revId": "8635ddee8c0bda2e510dcb51df248a9b6d2d604d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6619a3e_ce345bdd",
+        "filename": "mmc/item_updater_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-06T22:15:41Z",
+      "side": 1,
+      "message": "I can see how it\u0027d be difficult to start a new code update right when the the BMC reconnects after a reboot from a previous update and start the activation while the u-boot mirroring is still in progress. We don\u0027t have a sleep or any checks in the u-boot mirror service for ubi and no issues have been seen.",
+      "parentUuid": "c77c9ce7_2c8c114e",
+      "revId": "8635ddee8c0bda2e510dcb51df248a9b6d2d604d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -10,16 +10,16 @@ Packages the image and MANIFEST together in a tarball
 usage: gen-bios-tar [OPTION] <Bios FILE>...
 
 Options:
-   -o, --out <file>       Specify destination file. Defaults to
-                          `pwd`/obmc-bios.tar.gz if unspecified.
-   -s, --sign <path>      Sign the image. The optional path argument specifies
-                          the private key file. Defaults to the bash variable
-                          PRIVATE_KEY_PATH if available, or else uses the
-                          open-source private key in this script.
-   -m, --machine <name>   Optionally specify the target machine name of this
-                          image.
-   -v, --version <name>   Specify the version of bios image file
-   -h, --help             Display this help text and exit.
+-o, --out <file>       Specify destination file. Defaults to
+`pwd`/obmc-bios.tar.gz if unspecified.
+-s, --sign <path>      Sign the image. The optional path argument specifies
+the private key file. Defaults to the bash variable
+PRIVATE_KEY_PATH if available, or else uses the
+open-source private key in this script.
+-m, --machine <name>   Optionally specify the target machine name of this
+image.
+-v, --version <name>   Specify the version of bios image file
+-h, --help             Display this help text and exit.
 '
 
 #################################################################

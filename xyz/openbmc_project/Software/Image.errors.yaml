@@ -8,4 +8,3 @@
   description: An error occured processing the image.
 - name: BusyFailure
   description: The device is busy during the update.
-

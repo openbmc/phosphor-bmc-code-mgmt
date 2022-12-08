@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dce42a5a_05a74efa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-08T22:10:57Z",
+      "side": 1,
+      "message": "Could you add a bit more details :) ? I want to understand your use case.\nWhen you mention taskID, is that a Redfish property returned from bmcweb? Is the issue that the ProgressActivation is being queried, but then it does not exist once the update is complete? Should the value of Activation be queried first since the update is considered completed once it\u0027s not in Activating state anymore?",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cedfcd18_7782652c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-08T22:10:57Z",
+      "side": 1,
+      "message": "The task of updating the firmware is complete. The Activation property is set to Active first, therefore at this point the progress indicator is removed since there\u0027s no reason to have a Progress indicator for a firmware image that has finished updating.\nFor updates that reboot the BMC immediately the Progress indicator would not reappear on reboot, but we don\u0027t want the Progress indicator to linger for code updates that are performed with a Reboot option of On Reboot which delays the reboot to a later time.",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

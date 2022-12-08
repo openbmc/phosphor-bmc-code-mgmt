@@ -2,211 +2,211 @@
 set -eo pipefail
 
 # Get the root mtd device number (mtdX) from "/dev/ubiblockX_Y on /"
-findrootmtd() {
-  rootmatch=" on / "
-  m="$(mount | grep "${rootmatch}" | grep "ubiblock")"
-  m="${m##*ubiblock}"
-  m="${m%_*}"
-  if [ -z "${m}" ]; then
-    # default to bmc mtd (0)
-    m=0
-  fi
-  echo "mtd${m}"
+function findrootmtd() {
+    rootmatch=" on / "
+    m="$(mount | grep "${rootmatch}" | grep "ubiblock")"
+    m="${m##*ubiblock}"
+    m="${m%_*}"
+    if [ -z "${m}" ]; then
+        # default to bmc mtd (0)
+        m=0
+    fi
+    echo "mtd${m}"
 }
 
-findrootubi() {
-  rootmatch=" on / "
-  m="$(mount | grep "${rootmatch}")"
-  m="${m##*ubiblock}"
-  m="${m% on*}"
-  echo "ubi${m}"
+function findrootubi() {
+    rootmatch=" on / "
+    m="$(mount | grep "${rootmatch}")"
+    m="${m##*ubiblock}"
+    m="${m% on*}"
+    echo "ubi${m}"
 }
 
 # Get the mtd device number (mtdX)
-findmtd() {
-  m="$(grep -xl "$1" /sys/class/mtd/*/name)"
-  m="${m%/name}"
-  m="${m##*/}"
-  echo "${m}"
+function findmtd() {
+    m="$(grep -xl "$1" /sys/class/mtd/*/name)"
+    m="${m%/name}"
+    m="${m##*/}"
+    echo "${m}"
 }
 
 # Get the mtd device number only (return X of mtdX)
-findmtdnum() {
-  m="$(findmtd "$1")"
-  m="${m##mtd}"
-  echo "${m}"
+function findmtdnum() {
+    m="$(findmtd "$1")"
+    m="${m##mtd}"
+    echo "${m}"
 }
 
 # Get the ubi device number (ubiX_Y)
-findubi() {
-  u="$(grep -xl "$1" /sys/class/ubi/ubi?/subsystem/ubi*/name)"
-  u="${u%/name}"
-  u="${u##*/}"
-  echo "${u}"
+function findubi() {
+    u="$(grep -xl "$1" /sys/class/ubi/ubi?/subsystem/ubi*/name)"
+    u="${u%/name}"
+    u="${u##*/}"
+    echo "${u}"
 }
 
 # Get the ubi device number (ubiX_Y) on a specific mtd
-findubi_onmtd() {
-  u="$(grep -xl "$1" /sys/class/ubi/ubi"$2"/subsystem/ubi"$2"*/name)"
-  u="${u%/name}"
-  u="${u##*/}"
-  echo "${u}"
+function findubi_onmtd() {
+    u="$(grep -xl "$1" /sys/class/ubi/ubi"$2"/subsystem/ubi"$2"*/name)"
+    u="${u%/name}"
+    u="${u##*/}"
+    echo "${u}"
 }
 
 # Get all ubi device names on a specific mtd that match requested string
-findubiname_onmtd() {
-  u="$(grep -h "$1" /sys/class/ubi/ubi"$2"/subsystem/ubi"$2"*/name)"
-  u="${u%/name}"
-  u="${u##*/}"
-  echo "${u}"
+function findubiname_onmtd() {
+    u="$(grep -h "$1" /sys/class/ubi/ubi"$2"/subsystem/ubi"$2"*/name)"
+    u="${u%/name}"
+    u="${u##*/}"
+    echo "${u}"
 }
 
 # Get the name from the requested ubiX_Y volume
-findname() {
-  n="$(cat /sys/class/ubi/"$1"/name)"
-  echo "${n}"
+function findname() {
+    n="$(cat /sys/class/ubi/"$1"/name)"
+    echo "${n}"
 }
 
 # Set the version path property to the flash location where the image was
 # successfully flashed
-set_flashid() {
-  busctl set-property xyz.openbmc_project.Software.BMC.Updater \
-    "/xyz/openbmc_project/software/${version}" \
-    xyz.openbmc_project.Common.FilePath \
-    Path s "$1"
+function set_flashid() {
+    busctl set-property xyz.openbmc_project.Software.BMC.Updater \
+        "/xyz/openbmc_project/software/${version}" \
+        xyz.openbmc_project.Common.FilePath \
+        Path s "$1"
 }
 
 # Set the u-boot envs that perform a side switch on failure to boot
-set_wdt2bite() {
-  if ! fw_printenv wdt2bite 2>/dev/null; then
-    fw_setenv wdt2bite "mw.l 0x1e785024 0xa 1; mw.b 0x1e78502c 0xb3 1"
-    fw_setenv bootalt "run wdt2bite"
-    fw_setenv obmc_bootcmd "ubi part obmc-ubi; run do_rwreset; ubi read \
+function set_wdt2bite() {
+    if ! fw_printenv wdt2bite 2>/dev/null; then
+        fw_setenv wdt2bite "mw.l 0x1e785024 0xa 1; mw.b 0x1e78502c 0xb3 1"
+        fw_setenv bootalt "run wdt2bite"
+        fw_setenv obmc_bootcmd "ubi part obmc-ubi; run do_rwreset; ubi read \
 \${loadaddr} \${kernelname}; bootm \${loadaddr} || run bootalt"
-  fi
+    fi
 }
 
 # Make space on flash before creating new volumes. This can be enhanced
 # determine current flash usage. For now only keep a "keepmax" number of them
-ubi_remove_volumes()
+function ubi_remove_volumes()
 {
-  rootubi="$(findrootubi)"
-  rootname="$(findname "${rootubi}")"
-  rootversion="${rootname##*-}"
-  rootkernel="kernel-${rootversion}"
+    rootubi="$(findrootubi)"
+    rootname="$(findname "${rootubi}")"
+    rootversion="${rootname##*-}"
+    rootkernel="kernel-${rootversion}"
 
-  # Just keep max number of volumes before updating, don't delete the version
-  # the BMC is booted from, and when a version is identified to be deleted,
-  # delete both the rofs and kernel volumes for that version.
-  rmnames="$(findubiname_onmtd "${name%-*}-" "${ro}")"
-  mapfile -t array <<< "${rmnames}"
-  ubicount="${#array[@]}"
-  while [ "${ubicount}" -ge "${keepmax}" ]; do
-    # Loop through existing volumes and skip currently active ones
-    for (( index=0; index<${#array[@]}; index++ )); do
-      rmname="${array[${index}]}"
-      rmversion="${rmname##*-}"
-      [ "${rmversion}" == "${version}" ] && continue
-      rmubi="$(findubi_onmtd "rofs-${rmversion}" "${ro}")"
-      if [[ ( "${rmubi}" != "${rootubi}" ) &&
-            ( "${rmname}" != "${rootkernel}" ) ]]; then
-        ubi_remove "rofs-${rmversion}" "${ro}"
-        ubi_remove "kernel-${rmversion}" "${ro}"
-        # Remove priority value
-        fw_setenv "${rmversion}"
-        break
-      fi
+    # Just keep max number of volumes before updating, don't delete the version
+    # the BMC is booted from, and when a version is identified to be deleted,
+    # delete both the rofs and kernel volumes for that version.
+    rmnames="$(findubiname_onmtd "${name%-*}-" "${ro}")"
+    mapfile -t array <<< "${rmnames}"
+    ubicount="${#array[@]}"
+    while [ "${ubicount}" -ge "${keepmax}" ]; do
+        # Loop through existing volumes and skip currently active ones
+        for (( index=0; index<${#array[@]}; index++ )); do
+            rmname="${array[${index}]}"
+            rmversion="${rmname##*-}"
+            [ "${rmversion}" == "${version}" ] && continue
+            rmubi="$(findubi_onmtd "rofs-${rmversion}" "${ro}")"
+            if [[ "${rmubi}" != "${rootubi}" ]] && \
+                [[ "${rmname}" != "${rootkernel}" ]]; then
+                ubi_remove "rofs-${rmversion}" "${ro}"
+                ubi_remove "kernel-${rmversion}" "${ro}"
+                # Remove priority value
+                fw_setenv "${rmversion}"
+                break
+            fi
+        done
+        # Decrease count regardless to avoid an infinite loop
+        (( ubicount-- ))
     done
-    # Decrease count regardless to avoid an infinite loop
-    (( ubicount-- ))
-  done
 }
 
-ubi_rw() {
-  rwmtd="$(findmtd "${reqmtd}")"
-  rw="${rwmtd#mtd}"
-  ubidev="/dev/ubi${rw}"
+function ubi_rw() {
+    rwmtd="$(findmtd "${reqmtd}")"
+    rw="${rwmtd#mtd}"
+    ubidev="/dev/ubi${rw}"
 
-  # Update rwfs_size, check imgsize was specified, otherwise it'd clear the var
-  if [ -n "$imgsize" ]; then
-    rwsize="$(fw_printenv -n rwfs_size 2>/dev/null)" || true
-    if [[ "${imgsize}" != "${rwsize}" ]]; then
-      fw_setenv rwfs_size "${imgsize}"
+    # Update rwfs_size, check imgsize was specified, otherwise it'd clear the var
+    if [ -n "$imgsize" ]; then
+        rwsize="$(fw_printenv -n rwfs_size 2>/dev/null)" || true
+        if [[ "${imgsize}" != "${rwsize}" ]]; then
+            fw_setenv rwfs_size "${imgsize}"
+        fi
     fi
-  fi
 
-  vol="$(findubi "${name}")"
-  if [ -z "${vol}" ]; then
-    ubimkvol "${ubidev}" -N "${name}" -s "${imgsize}"
-  fi
-}
-
-ubi_ro() {
-  keepmax=2 # Default 2 volumes per mtd
-  romtd="$(findmtd "${reqmtd}")"
-  romtd2="$(findmtd "${reqmtd2}")"
-
-  if [ ! "${romtd}" == "${romtd2}" ]; then
-    # Request to use alternate mtd device, choose the non-root one
-    keepmax=1 # 1 volume on each of the requested mtds
-    rootmtd="$(findrootmtd)"
-    if [ "${rootmtd}" == "${romtd}" ]; then
-      romtd="${romtd2}"
-    fi
-  fi
-  ro="${romtd#mtd}"
-  ubidev="/dev/ubi${ro}"
-
-  ubi_remove_volumes
-
-  if [ -z "${imgfile}" ]; then
-    echo "Unable to create read-only volume. Image file not specified."
-    return 1
-  fi
-
-  # Create a ubi volume, dynamically sized to fit BMC image if size unspecified
-  img="/tmp/images/${version}/${imgfile}"
-  imgsize="$(stat -c '%s' "${img}")"
-
-  vol="$(findubi "${name}")"
-  if [ -n "${vol}" ]; then
-    # Allow a duplicate kernel volume on the alt mtd
-    if [[ "${name}" =~ "kernel" ]]; then
-      vol="$(findubi_onmtd "${name}" "${ro}")"
-    fi
-  fi
-  if [ -z "${vol}" ]; then
-    ubimkvol "${ubidev}" -N "${name}" -s "${imgsize}" --type=static
     vol="$(findubi "${name}")"
-  fi
+    if [ -z "${vol}" ]; then
+        ubimkvol "${ubidev}" -N "${name}" -s "${imgsize}"
+    fi
+}
 
-  set_flashid "${version}"
+function ubi_ro() {
+    keepmax=2 # Default 2 volumes per mtd
+    romtd="$(findmtd "${reqmtd}")"
+    romtd2="$(findmtd "${reqmtd2}")"
+
+    if [ ! "${romtd}" == "${romtd2}" ]; then
+        # Request to use alternate mtd device, choose the non-root one
+        keepmax=1 # 1 volume on each of the requested mtds
+        rootmtd="$(findrootmtd)"
+        if [ "${rootmtd}" == "${romtd}" ]; then
+            romtd="${romtd2}"
+        fi
+    fi
+    ro="${romtd#mtd}"
+    ubidev="/dev/ubi${ro}"
+
+    ubi_remove_volumes
+
+    if [ -z "${imgfile}" ]; then
+        echo "Unable to create read-only volume. Image file not specified."
+        return 1
+    fi
+
+    # Create a ubi volume, dynamically sized to fit BMC image if size unspecified
+    img="/tmp/images/${version}/${imgfile}"
+    imgsize="$(stat -c '%s' "${img}")"
+
+    vol="$(findubi "${name}")"
+    if [ -n "${vol}" ]; then
+        # Allow a duplicate kernel volume on the alt mtd
+        if [[ "${name}" =~ "kernel" ]]; then
+            vol="$(findubi_onmtd "${name}" "${ro}")"
+        fi
+    fi
+    if [ -z "${vol}" ]; then
+        ubimkvol "${ubidev}" -N "${name}" -s "${imgsize}" --type=static
+        vol="$(findubi "${name}")"
+    fi
+
+    set_flashid "${version}"
 }
 
 # Squashfs images need a ubi block
-ubi_block() {
-  vol="$(findubi "${name}")"
-  ubidevid="${vol#ubi}"
-  block="/dev/ubiblock${ubidevid}"
-  if [ ! -e "$block" ]; then
-    ubiblock --create "/dev/ubi${ubidevid}"
-  fi
+function ubi_block() {
+    vol="$(findubi "${name}")"
+    ubidevid="${vol#ubi}"
+    block="/dev/ubiblock${ubidevid}"
+    if [ ! -e "$block" ]; then
+        ubiblock --create "/dev/ubi${ubidevid}"
+    fi
 }
 
-ubi_updatevol() {
-  vol="$(findubi "${name}")"
-  ubidevid="${vol#ubi}"
-  img="/tmp/images/${version}/${imgfile}"
-  ubiupdatevol "/dev/ubi${ubidevid}" "${img}"
+function ubi_updatevol() {
+    vol="$(findubi "${name}")"
+    ubidevid="${vol#ubi}"
+    img="/tmp/images/${version}/${imgfile}"
+    ubiupdatevol "/dev/ubi${ubidevid}" "${img}"
 }
 
-ubi_remove() {
+function ubi_remove() {
     rmname="$1"
     rmmtd="$2"
     if [ -n "${rmmtd}" ]; then
-      vol="$(findubi_onmtd "${rmname}" "${rmmtd}")"
+        vol="$(findubi_onmtd "${rmname}" "${rmmtd}")"
     else
-      vol="$(findubi "${rmname}")"
+        vol="$(findubi "${rmname}")"
     fi
 
     if [ -n "$vol" ]; then
@@ -222,148 +222,148 @@ ubi_remove() {
     fi
 }
 
-ubi_cleanup() {
+function ubi_cleanup() {
     # When ubi_cleanup is run, it expects one or no active version.
     activeVersion=$(busctl --list --no-pager tree \
             xyz.openbmc_project.Software.BMC.Updater | \
-            grep /xyz/openbmc_project/software/ | tail -c 9)
+        grep /xyz/openbmc_project/software/ | tail -c 9)
 
     if [[ -z "$activeVersion" ]]; then
         vols=$(ubinfo -a | grep "rofs-" | cut -c 14-)
     else
         flashid=$(busctl get-property xyz.openbmc_project.Software.BMC.Updater \
-            "/xyz/openbmc_project/software/${activeVersion}" \
+                "/xyz/openbmc_project/software/${activeVersion}" \
             xyz.openbmc_project.Common.FilePath Path |  awk '{print $NF;}' | tr -d '"')
         vols=$(ubinfo -a | grep "rofs-" | \
-                grep -v "$flashid" | cut -c 14-) || true
+            grep -v "$flashid" | cut -c 14-) || true
     fi
 
     mapfile -t array <<< "${vols}"
     for (( index=0; index<${#array[@]}; index++ )); do
-         ubi_remove "${array[index]}"
+        ubi_remove "${array[index]}"
     done
 }
 
-mount_ubi_alt_rwfs() {
-  altNum="$(findmtdnum "alt-bmc")"
-  if [ -n "${altNum}" ]; then
-    altRwfs=$(ubinfo -a -d "${altNum}" | grep -w "rwfs") || true
-    if [ -n "${altRwfs}" ]; then
-      altVarMount="/media/alt/var"
-      mkdir -p "${altVarMount}"
-      if mount ubi"${altNum}":rwfs "${altVarMount}" -t ubifs -o defaults; then
-        mkdir -p "${altVarMount}"/persist/etc
-      fi
+function mount_ubi_alt_rwfs() {
+    altNum="$(findmtdnum "alt-bmc")"
+    if [ -n "${altNum}" ]; then
+        altRwfs=$(ubinfo -a -d "${altNum}" | grep -w "rwfs") || true
+        if [ -n "${altRwfs}" ]; then
+            altVarMount="/media/alt/var"
+            mkdir -p "${altVarMount}"
+            if mount ubi"${altNum}":rwfs "${altVarMount}" -t ubifs -o defaults; then
+                mkdir -p "${altVarMount}"/persist/etc
+            fi
+        fi
     fi
-  fi
 }
 
-remount_ubi() {
-  bmcmtd="$(findmtd "bmc")"
-  altbmcmtd="$(findmtd "alt-bmc")"
-  mtds="${bmcmtd: -1}","${altbmcmtd: -1}"
+function remount_ubi() {
+    bmcmtd="$(findmtd "bmc")"
+    altbmcmtd="$(findmtd "alt-bmc")"
+    mtds="${bmcmtd: -1}","${altbmcmtd: -1}"
 
-  rootubi="$(findrootubi)"
-  rootname="$(findname "${rootubi}")"
+    rootubi="$(findrootubi)"
+    rootname="$(findname "${rootubi}")"
 
-  IFS=',' read -r -a arrayMtds <<< "$mtds"
-  for mtd in "${arrayMtds[@]}"; do
-    # Get information on all ubi volumes
-    ubinfo=$(ubinfo -d "${mtd}")
-    presentVolumes=${ubinfo##*:}
-    IFS=', ' read -r -a array <<< "$presentVolumes"
-    for element in "${array[@]}"; do
-      elementProperties=$(ubinfo -d "$mtd" -n "$element")
-      # Get ubi volume name by getting rid of additional properties
-      name=${elementProperties#*Name:}
-      name="${name%Character*}"
-      name="$(echo -e "${name}" | tr -d '[:space:]')"
+    IFS=',' read -r -a arrayMtds <<< "$mtds"
+    for mtd in "${arrayMtds[@]}"; do
+        # Get information on all ubi volumes
+        ubinfo=$(ubinfo -d "${mtd}")
+        presentVolumes=${ubinfo##*:}
+        IFS=', ' read -r -a array <<< "$presentVolumes"
+        for element in "${array[@]}"; do
+            elementProperties=$(ubinfo -d "$mtd" -n "$element")
+            # Get ubi volume name by getting rid of additional properties
+            name=${elementProperties#*Name:}
+            name="${name%Character*}"
+            name="$(echo -e "${name}" | tr -d '[:space:]')"
 
-      if [[ ${name} == rofs-* ]]; then
-        if [[ "${name}" == "${rootname}" ]]; then
-          mountdir="/media/${name}-functional"
-        else
-          mountdir="/media/${name}"
-        fi
+            if [[ ${name} == rofs-* ]]; then
+                if [[ "${name}" == "${rootname}" ]]; then
+                    mountdir="/media/${name}-functional"
+                else
+                    mountdir="/media/${name}"
+                fi
 
-        if [ ! -d "${mountdir}" ]; then
-          mkdir -p "${mountdir}"
-          # U-Boot will create the ubiblock for the running version, but not
-          # for the version on the other chip
-          if [ ! -e "/dev/ubiblock${mtd}_${element}" ]; then
-            ubiblock --create "/dev/ubi${mtd}_${element}"
-          fi
-          mount -t squashfs -o ro "/dev/ubiblock${mtd}_${element}" "${mountdir}"
-        fi
-      fi
+                if [ ! -d "${mountdir}" ]; then
+                    mkdir -p "${mountdir}"
+                    # U-Boot will create the ubiblock for the running version, but not
+                    # for the version on the other chip
+                    if [ ! -e "/dev/ubiblock${mtd}_${element}" ]; then
+                        ubiblock --create "/dev/ubi${mtd}_${element}"
+                    fi
+                    mount -t squashfs -o ro "/dev/ubiblock${mtd}_${element}" "${mountdir}"
+                fi
+            fi
+        done
     done
-  done
 
-  set_wdt2bite
+    set_wdt2bite
 }
 
-mount_static_alt() {
-  typ=$1
-  altFs=$2
-  mountName=$3
-  altNum="$(findmtdnum "${altFs}")"
-  if [ -n "${altNum}" ]; then
-    altFsMount="/run/media/${mountName}"
-    mkdir -p "${altFsMount}"
-    altFsBlock="/dev/mtdblock${altNum}"
-    mount -t "${typ}" "${altFsBlock}" "${altFsMount}"
-  fi
+function mount_static_alt() {
+    typ=$1
+    altFs=$2
+    mountName=$3
+    altNum="$(findmtdnum "${altFs}")"
+    if [ -n "${altNum}" ]; then
+        altFsMount="/run/media/${mountName}"
+        mkdir -p "${altFsMount}"
+        altFsBlock="/dev/mtdblock${altNum}"
+        mount -t "${typ}" "${altFsBlock}" "${altFsMount}"
+    fi
 }
 
-umount_static_alt() {
-  altFs=$1
-  altFsMount="/run/media/${altFs}"
-  umount "${altFsMount}"
+function umount_static_alt() {
+    altFs=$1
+    altFsMount="/run/media/${altFs}"
+    umount "${altFsMount}"
 }
 
 # Read the current env variable and set it on the alternate boot env
-copy_env_var_to_alt() {
-  varName=$1
-  value="$(fw_printenv -n "${varName}")"
-  fw_setenv -c /etc/alt_fw_env.config "${varName}" "${value}"
+function copy_env_var_to_alt() {
+    varName=$1
+    value="$(fw_printenv -n "${varName}")"
+    fw_setenv -c /etc/alt_fw_env.config "${varName}" "${value}"
 }
 
 # When the alternate bmc chip boots, u-boot thinks its the primary mtdX.
 # Therefore need to swap the chip numbers when copying the ubiblock and root to
 # alternate bmc u-boot environment.
-copy_ubiblock_to_alt() {
-  value="$(fw_printenv -n ubiblock)"
-  bmcNum="$(findmtdnum "bmc")"
-  altNum="$(findmtdnum "alt-bmc")"
-  replaceAlt="${value/${altNum},/${bmcNum},}"
+function copy_ubiblock_to_alt() {
+    value="$(fw_printenv -n ubiblock)"
+    bmcNum="$(findmtdnum "bmc")"
+    altNum="$(findmtdnum "alt-bmc")"
+    replaceAlt="${value/${altNum},/${bmcNum},}"
 
-  if [[ "${value}" == "${replaceAlt}" ]]; then
-    replaceBmc="${value/${bmcNum},/${altNum},}"
-    value=${replaceBmc}
-  else
-    value=${replaceAlt}
-  fi
+    if [[ "${value}" == "${replaceAlt}" ]]; then
+        replaceBmc="${value/${bmcNum},/${altNum},}"
+        value=${replaceBmc}
+    else
+        value=${replaceAlt}
+    fi
 
-  fw_setenv -c /etc/alt_fw_env.config ubiblock "${value}"
+    fw_setenv -c /etc/alt_fw_env.config ubiblock "${value}"
 }
 
-copy_root_to_alt() {
-  value="$(fw_printenv -n root)"
-  bmcNum="$(findmtdnum "bmc")"
-  altNum="$(findmtdnum "alt-bmc")"
-  replaceAlt="${value/${altNum}_/${bmcNum}_}"
+function copy_root_to_alt() {
+    value="$(fw_printenv -n root)"
+    bmcNum="$(findmtdnum "bmc")"
+    altNum="$(findmtdnum "alt-bmc")"
+    replaceAlt="${value/${altNum}_/${bmcNum}_}"
 
-  if [[ "${value}" == "${replaceAlt}" ]]; then
-    replaceBmc="${value/${bmcNum}_/${altNum}_}"
-    value=${replaceBmc}
-  else
-    value=${replaceAlt}
-  fi
+    if [[ "${value}" == "${replaceAlt}" ]]; then
+        replaceBmc="${value/${bmcNum}_/${altNum}_}"
+        value=${replaceBmc}
+    else
+        value=${replaceAlt}
+    fi
 
-  fw_setenv -c /etc/alt_fw_env.config root "${value}"
+    fw_setenv -c /etc/alt_fw_env.config root "${value}"
 }
 
-ubi_setenv() {
+function ubi_setenv() {
     # The U-Boot environment maintains two banks of environment variables.
     # The banks need to be consistent with each other to ensure that these
     # variables can reliably be read from file. In order to guarantee that the
@@ -375,8 +375,8 @@ ubi_setenv() {
         # Write only if var is not set already to the requested value
         currentValue="$(fw_printenv -n "${varName}" 2>/dev/null)" || true
         if [[ "${currentValue}" != "${value}" ]]; then
-          fw_setenv "$varName" "$value"
-          fw_setenv "$varName" "$value"
+            fw_setenv "$varName" "$value"
+            fw_setenv "$varName" "$value"
         fi
     else
         fw_setenv "$variable"
@@ -384,339 +384,339 @@ ubi_setenv() {
     fi
 }
 
-mtd_write() {
-  flashmtd="$(findmtd "${reqmtd}")"
-  img="/tmp/images/${version}/${imgfile}"
-  flashcp -v "${img}" /dev/"${flashmtd}"
+function mtd_write() {
+    flashmtd="$(findmtd "${reqmtd}")"
+    img="/tmp/images/${version}/${imgfile}"
+    flashcp -v "${img}" /dev/"${flashmtd}"
 }
 
-backup_env_vars() {
-  copy_env_var_to_alt kernelname
-  copy_ubiblock_to_alt
-  copy_root_to_alt
+function backup_env_vars() {
+    copy_env_var_to_alt kernelname
+    copy_ubiblock_to_alt
+    copy_root_to_alt
 }
 
-update_env_vars() {
-  vol="$(findubi rofs-"${flashid}")"
-  if [ -z "${vol}" ]; then
-    return 1
-  fi
-  ubidevid="${vol#ubi}"
-  block="/dev/ubiblock${ubidevid}"
-  if [ ! -e "${block}" ]; then
-    return 1
-  fi
-  ubi_setenv "kernelname=kernel-${flashid}"
-  ubi_setenv "ubiblock=${ubidevid//_/,}"
-  ubi_setenv "root=${block}"
-}
-
-#TODO: Replace the implementation with systemd-inhibitors lock
-#      once systemd/systemd#949 is resolved
-rebootguardenable() {
-  dir="/run/systemd/system/"
-  file="reboot-guard.conf"
-  units=("reboot" "poweroff" "halt")
-
-  for unit in "${units[@]}"; do
-    mkdir -p ${dir}"${unit}".target.d
-    echo -e "[Unit]\nRefuseManualStart=yes" >> ${dir}"${unit}".target.d/${file}
-  done
+function update_env_vars() {
+    vol="$(findubi rofs-"${flashid}")"
+    if [ -z "${vol}" ]; then
+        return 1
+    fi
+    ubidevid="${vol#ubi}"
+    block="/dev/ubiblock${ubidevid}"
+    if [ ! -e "${block}" ]; then
+        return 1
+    fi
+    ubi_setenv "kernelname=kernel-${flashid}"
+    ubi_setenv "ubiblock=${ubidevid//_/,}"
+    ubi_setenv "root=${block}"
 }
 
 #TODO: Replace the implementation with systemd-inhibitors lock
 #      once systemd/systemd#949 is resolved
-rebootguarddisable() {
-  dir="/run/systemd/system/"
-  file="reboot-guard.conf"
-  units=("reboot" "poweroff" "halt")
+function rebootguardenable() {
+    dir="/run/systemd/system/"
+    file="reboot-guard.conf"
+    units=("reboot" "poweroff" "halt")
 
-  for unit in "${units[@]}"; do
-    rm -rf ${dir}"${unit}".target.d/${file}
-  done
+    for unit in "${units[@]}"; do
+        mkdir -p ${dir}"${unit}".target.d
+        echo -e "[Unit]\nRefuseManualStart=yes" >> ${dir}"${unit}".target.d/${file}
+    done
+}
+
+#TODO: Replace the implementation with systemd-inhibitors lock
+#      once systemd/systemd#949 is resolved
+function rebootguarddisable() {
+    dir="/run/systemd/system/"
+    file="reboot-guard.conf"
+    units=("reboot" "poweroff" "halt")
+
+    for unit in "${units[@]}"; do
+        rm -rf ${dir}"${unit}".target.d/${file}
+    done
 }
 
 # Create a copy in the alt mtd
-create_vol_in_alt() {
-  alt="alt-bmc"
-  altmtd="$(findmtd "${alt}")"
-  if [ -n "${altmtd}" ]; then
-    reqmtd="${alt}"
-    reqmtd2="${alt}"
-    ubi_ro
-    ubi_updatevol
-  fi
+function create_vol_in_alt() {
+    alt="alt-bmc"
+    altmtd="$(findmtd "${alt}")"
+    if [ -n "${altmtd}" ]; then
+        reqmtd="${alt}"
+        reqmtd2="${alt}"
+        ubi_ro
+        ubi_updatevol
+    fi
 }
 
 # Copy contents of one MTD device to another
-mtd_copy() {
-  in=$1
-  out=$2
+function mtd_copy() {
+    in=$1
+    out=$2
 
-  # Must erase MTD first to prevent corruption
-  flash_eraseall "${out}"
-  dd if="${in}" of="${out}"
+    # Must erase MTD first to prevent corruption
+    flash_eraseall "${out}"
+    dd if="${in}" of="${out}"
 }
 
-mirroruboot() {
-  bmc="$(findmtd "u-boot")"
-  bmcdev="/dev/${bmc}"
-  alt="$(findmtd "alt-u-boot")"
-  altdev="/dev/${alt}"
+function mirroruboot() {
+    bmc="$(findmtd "u-boot")"
+    bmcdev="/dev/${bmc}"
+    alt="$(findmtd "alt-u-boot")"
+    altdev="/dev/${alt}"
 
-  checksum_bmc="$(md5sum "${bmcdev}")"
-  checksum_bmc="${checksum_bmc% *}"
-  checksum_alt="$(md5sum "${altdev}")"
-  checksum_alt="${checksum_alt% *}"
+    checksum_bmc="$(md5sum "${bmcdev}")"
+    checksum_bmc="${checksum_bmc% *}"
+    checksum_alt="$(md5sum "${altdev}")"
+    checksum_alt="${checksum_alt% *}"
 
-  if [[ "${checksum_bmc}" != "${checksum_alt}" ]]; then
-    bmcenv="$(findmtd "u-boot-env")"
-    bmcenvdev="/dev/${bmcenv}"
-    altenv="$(findmtd "alt-u-boot-env")"
-    altenvdev="/dev/${altenv}"
+    if [[ "${checksum_bmc}" != "${checksum_alt}" ]]; then
+        bmcenv="$(findmtd "u-boot-env")"
+        bmcenvdev="/dev/${bmcenv}"
+        altenv="$(findmtd "alt-u-boot-env")"
+        altenvdev="/dev/${altenv}"
 
-    echo "Mirroring U-boot to alt chip"
-    mtd_copy "${bmcdev}" "${altdev}"
-    mtd_copy "${bmcenvdev}" "${altenvdev}"
+        echo "Mirroring U-boot to alt chip"
+        mtd_copy "${bmcdev}" "${altdev}"
+        mtd_copy "${bmcenvdev}" "${altenvdev}"
 
-    copy_ubiblock_to_alt
-    copy_root_to_alt
-  fi
+        copy_ubiblock_to_alt
+        copy_root_to_alt
+    fi
 }
 
 # Compare the device where u-boot resides with an image file. Specify the full
 # path to the device and image file to use for the compare. Print a value of
 # "0" if identical, "1" otherwise.
-cmp_uboot() {
-  device="$1"
-  image="$2"
+function cmp_uboot() {
+    device="$1"
+    image="$2"
 
-  # Since the image file can be smaller than the device, copy the device to a
-  # tmp file and write the image file on top, then compare the sum of each.
-  # Use cat / redirection since busybox does not have the conv=notrunc option.
-  tmpFile="$(mktemp /tmp/ubootdev.XXXXXX)"
-  dd if="${device}" of="${tmpFile}"
-  devSum="$(sha256sum "${tmpFile}")"
-  cat < "${image}" 1<> "${tmpFile}"
-  imgSum="$(sha256sum "${tmpFile}")"
-  rm -f "${tmpFile}"
+    # Since the image file can be smaller than the device, copy the device to a
+    # tmp file and write the image file on top, then compare the sum of each.
+    # Use cat / redirection since busybox does not have the conv=notrunc option.
+    tmpFile="$(mktemp /tmp/ubootdev.XXXXXX)"
+    dd if="${device}" of="${tmpFile}"
+    devSum="$(sha256sum "${tmpFile}")"
+    cat < "${image}" 1<> "${tmpFile}"
+    imgSum="$(sha256sum "${tmpFile}")"
+    rm -f "${tmpFile}"
 
-  if [ "${imgSum}" == "${devSum}" ]; then
-    echo "0";
-  else
-    echo "1";
-  fi
+    if [ "${imgSum}" == "${devSum}" ]; then
+        echo "0";
+    else
+        echo "1";
+    fi
 }
 
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the running partition.
-mmc_get_primary_label() {
-  # Get root device /dev/mmcblkpX
-  rootmatch=" on / "
-  root="$(mount | grep "${rootmatch}")"
-  # shellcheck disable=SC2295
-  root="${root%${rootmatch}*}"
+function mmc_get_primary_label() {
+    # Get root device /dev/mmcblkpX
+    rootmatch=" on / "
+    root="$(mount | grep "${rootmatch}")"
+    # shellcheck disable=SC2295
+    root="${root%${rootmatch}*}"
 
-  # Find the device label
-  if [[ $(readlink -f /dev/disk/by-partlabel/rofs-a) == "${root}" ]]; then
-    echo "a"
-  elif [[ $(readlink -f /dev/disk/by-partlabel/rofs-b) == "${root}" ]]; then
-    echo "b"
-  else
-    echo ""
-  fi
+    # Find the device label
+    if [[ $(readlink -f /dev/disk/by-partlabel/rofs-a) == "${root}" ]]; then
+        echo "a"
+    elif [[ $(readlink -f /dev/disk/by-partlabel/rofs-b) == "${root}" ]]; then
+        echo "b"
+    else
+        echo ""
+    fi
 }
 
 # The eMMC partition labels for the kernel and rootfs are boot-a/b and rofs-a/b.
 # Return the label (a or b) for the non-running partition.
-mmc_get_secondary_label() {
-  root="$(mmc_get_primary_label)"
-  if [[ "${root}" == "a" ]]; then
-    echo "b"
-  elif [[ "${root}" == "b" ]]; then
-    echo "a"
-  else
-    echo ""
-  fi
-}
-
-mmc_mount() {
-  primaryId="$(mmc_get_primary_label)"
-  secondaryId="$(mmc_get_secondary_label)"
-
-  primaryDir="${mediaDir}/rofs-${primaryId}-functional"
-  secondaryDir="${mediaDir}/rofs-${secondaryId}"
-
-  mkdir -p "${primaryDir}"
-  mkdir -p "${secondaryDir}"
-
-  mount PARTLABEL=rofs-"${primaryId}" "${primaryDir}" -t ext4 -o ro || rmdir "${primaryDir}"
-  mount PARTLABEL=rofs-"${secondaryId}" "${secondaryDir}" -t ext4 -o ro || rmdir "${secondaryDir}"
-}
-
-mmc_update() {
-  # Update u-boot if needed
-  bootPartition="mmcblk0boot0"
-  devUBoot="/dev/${bootPartition}"
-  imgUBoot="${imgpath}/${version}/image-u-boot"
-  if [ "$(cmp_uboot "${devUBoot}" "${imgUBoot}")" != "0" ]; then
-    echo 0 > "/sys/block/${bootPartition}/force_ro"
-    dd if="${imgUBoot}" of="${devUBoot}"
-    echo 1 > "/sys/block/${bootPartition}/force_ro"
-  fi
-
-  # Update the secondary (non-running) boot and rofs partitions.
-  label="$(mmc_get_secondary_label)"
-
-  # Update the boot and rootfs partitions, restore their labels after the update
-  # by getting the partition number mmcblk0pX from their label.
-  zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
-  number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
-  number="${number##*mmcblk0p}"
-  sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
-
-  zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
-  number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
-  number="${number##*mmcblk0p}"
-  sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
-
-  # Run this after sgdisk for labels to take effect.
-  partprobe
-
-  # Update hostfw
-  if [ -f "${imgpath}"/"${version}"/image-hostfw ]; then
-    # Remove patches
-    patchdir="/usr/local/share/hostfw/alternate"
-    if [ -d "${patchdir}" ]; then
-      rm -rf "${patchdir:?}"/*
+function mmc_get_secondary_label() {
+    root="$(mmc_get_primary_label)"
+    if [[ "${root}" == "a" ]]; then
+        echo "b"
+    elif [[ "${root}" == "b" ]]; then
+        echo "a"
+    else
+        echo ""
     fi
-    hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
-    cp "${imgpath}"/"${version}"/image-hostfw "${hostfwdir}"/hostfw-"${label}"
-    mkdir -p "${hostfwdir}"/alternate
-    mount "${hostfwdir}"/hostfw-"${label}" "${hostfwdir}"/alternate -o ro
-  fi
-
-  set_flashid "${label}"
 }
 
-mmc_remove() {
-  # Render the filesystem unbootable by wiping out the first 1MB, this
-  # invalidates the filesystem header.
-  # Check if the requested id is the one the BMC is running from since dd
-  # can still write and corrupt the running partition.
-  primaryid="$(mmc_get_primary_label)"
-  if [[ "${flashid}" == "${primaryid}" ]]; then
-    return 1
-  fi
-  dd if=/dev/zero of=/dev/disk/by-partlabel/boot-"${flashid}" count=2048
-  dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-"${flashid}" count=2048
+function mmc_mount() {
+    primaryId="$(mmc_get_primary_label)"
+    secondaryId="$(mmc_get_secondary_label)"
 
-  hostfw_alt="hostfw/alternate"
-  if grep -q "${hostfw_alt}" /proc/mounts; then
-    hostfw_alt=$(grep "${hostfw_alt}" /proc/mounts | cut -d " " -f 2)
-    umount "${hostfw_alt}"
-  fi
-  hostfw_base="hostfw "
-  if grep -q "${hostfw_base}" /proc/mounts; then
-    hostfw_base=$(grep "${hostfw_base}" /proc/mounts | cut -d " " -f 2)
-    rm -f "${hostfw_base}/hostfw-${flashid}"
-  fi
+    primaryDir="${mediaDir}/rofs-${primaryId}-functional"
+    secondaryDir="${mediaDir}/rofs-${secondaryId}"
+
+    mkdir -p "${primaryDir}"
+    mkdir -p "${secondaryDir}"
+
+    mount PARTLABEL=rofs-"${primaryId}" "${primaryDir}" -t ext4 -o ro || rmdir "${primaryDir}"
+    mount PARTLABEL=rofs-"${secondaryId}" "${secondaryDir}" -t ext4 -o ro || rmdir "${secondaryDir}"
+}
+
+function mmc_update() {
+    # Update u-boot if needed
+    bootPartition="mmcblk0boot0"
+    devUBoot="/dev/${bootPartition}"
+    imgUBoot="${imgpath}/${version}/image-u-boot"
+    if [ "$(cmp_uboot "${devUBoot}" "${imgUBoot}")" != "0" ]; then
+        echo 0 > "/sys/block/${bootPartition}/force_ro"
+        dd if="${imgUBoot}" of="${devUBoot}"
+        echo 1 > "/sys/block/${bootPartition}/force_ro"
+    fi
+
+    # Update the secondary (non-running) boot and rofs partitions.
+    label="$(mmc_get_secondary_label)"
+
+    # Update the boot and rootfs partitions, restore their labels after the update
+    # by getting the partition number mmcblk0pX from their label.
+    zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
+    number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
+    number="${number##*mmcblk0p}"
+    sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
+
+    zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
+    number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
+    number="${number##*mmcblk0p}"
+    sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
+
+    # Run this after sgdisk for labels to take effect.
+    partprobe
+
+    # Update hostfw
+    if [ -f "${imgpath}"/"${version}"/image-hostfw ]; then
+        # Remove patches
+        patchdir="/usr/local/share/hostfw/alternate"
+        if [ -d "${patchdir}" ]; then
+            rm -rf "${patchdir:?}"/*
+        fi
+        hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
+        cp "${imgpath}"/"${version}"/image-hostfw "${hostfwdir}"/hostfw-"${label}"
+        mkdir -p "${hostfwdir}"/alternate
+        mount "${hostfwdir}"/hostfw-"${label}" "${hostfwdir}"/alternate -o ro
+    fi
+
+    set_flashid "${label}"
+}
+
+function mmc_remove() {
+    # Render the filesystem unbootable by wiping out the first 1MB, this
+    # invalidates the filesystem header.
+    # Check if the requested id is the one the BMC is running from since dd
+    # can still write and corrupt the running partition.
+    primaryid="$(mmc_get_primary_label)"
+    if [[ "${flashid}" == "${primaryid}" ]]; then
+        return 1
+    fi
+    dd if=/dev/zero of=/dev/disk/by-partlabel/boot-"${flashid}" count=2048
+    dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-"${flashid}" count=2048
+
+    hostfw_alt="hostfw/alternate"
+    if grep -q "${hostfw_alt}" /proc/mounts; then
+        hostfw_alt=$(grep "${hostfw_alt}" /proc/mounts | cut -d " " -f 2)
+        umount "${hostfw_alt}"
+    fi
+    hostfw_base="hostfw "
+    if grep -q "${hostfw_base}" /proc/mounts; then
+        hostfw_base=$(grep "${hostfw_base}" /proc/mounts | cut -d " " -f 2)
+        rm -f "${hostfw_base}/hostfw-${flashid}"
+    fi
 }
 
 # Set the requested version as primary for the BMC to boot from upon reboot.
-mmc_setprimary() {
-  # Point root to the flashid of the requested BMC rootfs.
-  fw_setenv bootside "${flashid}"
+function mmc_setprimary() {
+    # Point root to the flashid of the requested BMC rootfs.
+    fw_setenv bootside "${flashid}"
 }
 
 case "$1" in
-  mtduboot)
-    reqmtd="$2"
-    version="$3"
-    imgfile="image-u-boot"
-    mtd_write
-    ;;
-  ubirw)
-    reqmtd="$2"
-    name="$3"
-    imgsize="$4"
-    ubi_rw
-    ;;
-  ubiro)
-    reqmtd="$(echo "$2" | cut -d "+" -f 1)"
-    reqmtd2="$(echo "$2" | cut -d "+" -f 2)"
-    name="$3"
-    version="$4"
-    imgfile="image-rofs"
-    ubi_ro
-    ubi_updatevol
-    ubi_block
-    ;;
-  ubikernel)
-    reqmtd="$(echo "$2" | cut -d "+" -f 1)"
-    reqmtd2="$(echo "$2" | cut -d "+" -f 2)"
-    name="$3"
-    version="$4"
-    imgfile="image-kernel"
-    ubi_ro
-    ubi_updatevol
-    create_vol_in_alt
-    ;;
-  ubiremove)
-    name="$2"
-    ubi_remove "${name}"
-    ;;
-  ubicleanup)
-    ubi_cleanup
-    ;;
-  ubisetenv)
-    ubi_setenv "$2"
-    ;;
-  ubiremount)
-    remount_ubi
-    mount_ubi_alt_rwfs
-    ;;
-  createenvbackup)
-    backup_env_vars
-    ;;
-  updateubootvars)
-    flashid="$2"
-    update_env_vars
-    ;;
-  rebootguardenable)
-    rebootguardenable
-    ;;
-  rebootguarddisable)
-    rebootguarddisable
-    ;;
-  mirroruboot)
-    mirroruboot
-    ;;
-  mmc)
-    version="$2"
-    imgpath="$3"
-    mmc_update
-    ;;
-  mmc-mount)
-    mediaDir="$2"
-    mmc_mount
-    ;;
-  mmc-remove)
-    flashid="$2"
-    mmc_remove
-    ;;
-  mmc-setprimary)
-    flashid="$2"
-    mmc_setprimary
-    ;;
-  static-altfs)
-    mount_static_alt "$2" "$3" "$4"
-    ;;
-  umount-static-altfs)
-    umount_static_alt "$2"
-    ;;
-  *)
-    echo "Invalid argument"
-    exit 1
-    ;;
+    mtduboot)
+        reqmtd="$2"
+        version="$3"
+        imgfile="image-u-boot"
+        mtd_write
+        ;;
+    ubirw)
+        reqmtd="$2"
+        name="$3"
+        imgsize="$4"
+        ubi_rw
+        ;;
+    ubiro)
+        reqmtd="$(echo "$2" | cut -d "+" -f 1)"
+        reqmtd2="$(echo "$2" | cut -d "+" -f 2)"
+        name="$3"
+        version="$4"
+        imgfile="image-rofs"
+        ubi_ro
+        ubi_updatevol
+        ubi_block
+        ;;
+    ubikernel)
+        reqmtd="$(echo "$2" | cut -d "+" -f 1)"
+        reqmtd2="$(echo "$2" | cut -d "+" -f 2)"
+        name="$3"
+        version="$4"
+        imgfile="image-kernel"
+        ubi_ro
+        ubi_updatevol
+        create_vol_in_alt
+        ;;
+    ubiremove)
+        name="$2"
+        ubi_remove "${name}"
+        ;;
+    ubicleanup)
+        ubi_cleanup
+        ;;
+    ubisetenv)
+        ubi_setenv "$2"
+        ;;
+    ubiremount)
+        remount_ubi
+        mount_ubi_alt_rwfs
+        ;;
+    createenvbackup)
+        backup_env_vars
+        ;;
+    updateubootvars)
+        flashid="$2"
+        update_env_vars
+        ;;
+    rebootguardenable)
+        rebootguardenable
+        ;;
+    rebootguarddisable)
+        rebootguarddisable
+        ;;
+    mirroruboot)
+        mirroruboot
+        ;;
+    mmc)
+        version="$2"
+        imgpath="$3"
+        mmc_update
+        ;;
+    mmc-mount)
+        mediaDir="$2"
+        mmc_mount
+        ;;
+    mmc-remove)
+        flashid="$2"
+        mmc_remove
+        ;;
+    mmc-setprimary)
+        flashid="$2"
+        mmc_setprimary
+        ;;
+    static-altfs)
+        mount_static_alt "$2" "$3" "$4"
+        ;;
+    umount-static-altfs)
+        umount_static_alt "$2"
+        ;;
+    *)
+        echo "Invalid argument"
+        exit 1
+        ;;
 esac

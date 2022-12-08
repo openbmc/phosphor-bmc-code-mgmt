@@ -1,7 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
-help=$'Generate Tarball with Bios image and MANIFEST Script
+help=$(cat <<EOF
+Generate Tarball with Bios image and MANIFEST Script
 
 Generates a Bios image tarball from given file as input.
 Creates a MANIFEST for image verification and recreation
@@ -11,7 +12,7 @@ usage: gen-bios-tar [OPTION] <Bios FILE>...
 
 Options:
    -o, --out <file>       Specify destination file. Defaults to
-                          `pwd`/obmc-bios.tar.gz if unspecified.
+                          $(pwd)/obmc-bios.tar.gz if unspecified.
    -s, --sign <path>      Sign the image. The optional path argument specifies
                           the private key file. Defaults to the bash variable
                           PRIVATE_KEY_PATH if available, or else uses the
@@ -20,7 +21,8 @@ Options:
                           image.
    -v, --version <name>   Specify the version of bios image file
    -h, --help             Display this help text and exit.
-'
+EOF
+)
 
 #################################################################
 # It's the OpenBMC "public" private key (currently under

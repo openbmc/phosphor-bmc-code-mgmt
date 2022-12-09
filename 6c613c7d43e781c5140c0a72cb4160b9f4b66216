@@ -39,6 +39,30 @@
       },
       "revId": "6c613c7d43e781c5140c0a72cb4160b9f4b66216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea35a187_bbeb8455",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-12-09T22:30:54Z",
+      "side": 1,
+      "message": "Done. Tested on witherspoon (ubi).",
+      "parentUuid": "5831cde7_393bb1b6",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 58
+      },
+      "revId": "6c613c7d43e781c5140c0a72cb4160b9f4b66216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

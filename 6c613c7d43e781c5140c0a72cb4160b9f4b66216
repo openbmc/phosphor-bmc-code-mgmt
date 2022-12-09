@@ -16,6 +16,29 @@
       "message": "Hopefully beautysh does not change the logic at all.",
       "revId": "6c613c7d43e781c5140c0a72cb4160b9f4b66216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5831cde7_393bb1b6",
+        "filename": "obmc-flash-bmc",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-09T13:36:51Z",
+      "side": 1,
+      "message": "This is the only non-whitespace (or insertion of the \u0027function\u0027 keyword) change.  Feel free to review further.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 58
+      },
+      "revId": "6c613c7d43e781c5140c0a72cb4160b9f4b66216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

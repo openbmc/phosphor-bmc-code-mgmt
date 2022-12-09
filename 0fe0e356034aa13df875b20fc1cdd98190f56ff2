@@ -1,0 +1,8 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: George Liu <liuxiwei@inspur.com>
+Code-Review+2: Lei YU <yulei.sh@bytedance.com>
+Submitted-by: Patrick Williams <patrick@stwcx.xyz>
+Submitted-at: Fri, 09 Dec 2022 13:31:17 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/59309
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

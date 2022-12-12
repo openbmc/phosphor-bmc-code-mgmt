@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4f847c4_c494e12f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-12T13:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb866487_30d342d8",
+      "revId": "3cbce283b83bc76ca502506601346c7f036bdd34",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2a5443a_f623fdfd",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-06T22:11:09Z",
       "side": 1,
       "message": "Can you add to the commit msg the reason for removing the reset of the Progress interface at the end of the update?",
+      "revId": "3cbce283b83bc76ca502506601346c7f036bdd34",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3352468_a8de08c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-12T13:50:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2a5443a_f623fdfd",
       "revId": "3cbce283b83bc76ca502506601346c7f036bdd34",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

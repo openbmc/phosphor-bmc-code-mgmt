@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ff4328e_1bf87c8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-12T13:50:03Z",
+      "side": 1,
+      "message": "TaskID is used by SMM runtime update service for updating firmware update status and percentage completion. The issue seems to be that ActivationProgress is reset when Firmware update is still in progress in MMBI. Yes, we could check the value of activation if it is Active now, then activationProgress could be reset(as Update should be complete now).",
+      "parentUuid": "dce42a5a_05a74efa",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cedfcd18_7782652c",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-08T22:10:57Z",
       "side": 1,
       "message": "The task of updating the firmware is complete. The Activation property is set to Active first, therefore at this point the progress indicator is removed since there\u0027s no reason to have a Progress indicator for a firmware image that has finished updating.\nFor updates that reboot the BMC immediately the Progress indicator would not reappear on reboot, but we don\u0027t want the Progress indicator to linger for code updates that are performed with a Reboot option of On Reboot which delays the reboot to a later time.",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61956ede_cf07cf3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-12T13:50:03Z",
+      "side": 1,
+      "message": "This reset of ActivationProgress was happening before Firmware update is started in the MMBI-seamless, that is why its causing the issue.",
+      "parentUuid": "cedfcd18_7782652c",
       "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

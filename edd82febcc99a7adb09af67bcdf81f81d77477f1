@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40b286f6_294bb3fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-13T05:31:31Z",
+      "side": 1,
+      "message": "Yes the TaskID is from the bmcweb  and used by other modules as well. Also, there are other task states \"Failed\" and especially \"Ready\" which are not being checked here before removal of the interface ActivationProgress.",
+      "parentUuid": "7ff4328e_1bf87c8a",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cedfcd18_7782652c",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "This reset of ActivationProgress was happening before Firmware update is started in the MMBI-seamless, that is why its causing the issue.",
       "parentUuid": "cedfcd18_7782652c",
+      "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "808cf7fa_e0a0d2a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-13T05:31:31Z",
+      "side": 1,
+      "message": "We need to make sure that BMC firmware update task is completed before we remove the interfaces like ActivationProgress(relates to percentage completion of task) or Activation(relates to task state) etc. used by DBus.",
+      "parentUuid": "61956ede_cf07cf3e",
       "revId": "edd82febcc99a7adb09af67bcdf81f81d77477f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -171,7 +171,6 @@ auto Activation::activation(Activations value) -> Activations
     else
     {
         activationBlocksTransition.reset(nullptr);
-        activationProgress.reset(nullptr);
     }
     return softwareServer::Activation::activation(value);
 }

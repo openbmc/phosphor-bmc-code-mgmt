@@ -22,6 +22,30 @@
       },
       "revId": "780c930e242eb1e5c69dfcd69c96c9e6ca0b54cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11104153_9d607501",
+        "filename": "activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001642
+      },
+      "writtenOn": "2022-12-19T07:38:53Z",
+      "side": 0,
+      "message": "This piece was not executed in our use-case of Firmware update.",
+      "parentUuid": "45f6983e_6965a7bb",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 38
+      },
+      "revId": "780c930e242eb1e5c69dfcd69c96c9e6ca0b54cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

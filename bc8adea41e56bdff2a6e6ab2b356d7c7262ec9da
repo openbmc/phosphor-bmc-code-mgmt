@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a0b5a4_13a1b9c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-01-04T21:02:01Z",
+      "side": 1,
+      "message": "Can a rebase be done? There were some formatting changes done project-wise that\u0027s causing the merge conflict.",
+      "revId": "bc8adea41e56bdff2a6e6ab2b356d7c7262ec9da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f04fe244_f8160a6d",

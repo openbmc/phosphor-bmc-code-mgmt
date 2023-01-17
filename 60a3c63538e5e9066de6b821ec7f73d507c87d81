@@ -16,6 +16,23 @@
       "message": "There are discussions in Discord about making phosphor-logging to be dbus-activated instead, marking this as WIP.",
       "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2f732a_07ab8f59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-01-17T21:51:12Z",
+      "side": 1,
+      "message": "Andrew mentioned this is correct even if phosphor-logging is made to be dbus-activated.",
+      "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c774b3da_a2b8dda2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-01-18T16:56:34Z",
+      "side": 1,
+      "message": "Per systemd unit docs, should be ok if it fails:\n\nWants\u003d\n\nUnits listed in this option will be started if the configuring unit is. However, if the listed units fail to start or cannot be added to the transaction, this has no impact on the validity of the transaction as a whole, and this unit will still be started. This is the recommended way to hook the start-up of one unit to the start-up of another unit.",
+      "parentUuid": "7b845f2f_8d3f37cb",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e067498d_eacccc9e",

@@ -104,6 +104,24 @@
       "message": "Andrew mentioned this is correct even if phosphor-logging is made to be dbus-activated.",
       "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ceaa46_038a9163",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-19T05:03:38Z",
+      "side": 1,
+      "message": "\u003e Andrew mentioned this is correct even if phosphor-logging is made to be dbus-activated.\n\nMore details would be nice.  Not sure why it is necessary if we do dbus-activation properly.",
+      "parentUuid": "1a2f732a_07ab8f59",
+      "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

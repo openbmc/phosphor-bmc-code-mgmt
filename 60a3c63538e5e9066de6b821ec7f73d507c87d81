@@ -122,6 +122,23 @@
       "parentUuid": "1a2f732a_07ab8f59",
       "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c51f2227_ca82e92e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-01-20T17:41:40Z",
+      "side": 1,
+      "message": "ok, per discussion in discord on this, we no longer need this commit.\n\n- https://gerrit.openbmc.org/c/openbmc/docs/+/60386 is an update to document the design around when dbus activated services are required\n\n- https://gerrit.openbmc.org/c/openbmc/phosphor-logging/+/60403 was added to make phosphor-logging dbus activated",
+      "revId": "60a3c63538e5e9066de6b821ec7f73d507c87d81",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -9,6 +9,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
+#include <system_error>
 
 namespace
 {
@@ -52,8 +53,9 @@ void Activation::flashWrite()
 
     for (const auto& bmcImage : parent.imageUpdateList)
     {
+        std::error_code ec;
         fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
-                      fs::copy_options::overwrite_existing);
+                      fs::copy_options::overwrite_existing, ec);
     }
 }
 

@@ -19,6 +19,7 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <system_error>
 
 namespace phosphor
 {
@@ -194,7 +195,8 @@ void ItemUpdater::processBMCImage()
 
     // Read os-release from folders under /media/ to get
     // BMC Software Versions.
-    for (const auto& iter : fs::directory_iterator(MEDIA_DIR))
+    std::error_code ec;
+    for (const auto& iter : fs::directory_iterator(MEDIA_DIR, ec))
     {
         auto activationState = server::Activation::Activations::Active;
         static const auto BMC_RO_PREFIX_LEN = strlen(BMC_ROFS_PREFIX);
@@ -206,7 +208,7 @@ void ItemUpdater::processBMCImage()
             // Get the version to calculate the id
             fs::path releaseFile(OS_RELEASE_FILE);
             auto osRelease = iter.path() / releaseFile.relative_path();
-            if (!fs::is_regular_file(osRelease))
+            if (!fs::is_regular_file(osRelease, ec))
             {
 #ifdef BMC_STATIC_DUAL_IMAGE
                 // For dual image, it is possible that the secondary image is

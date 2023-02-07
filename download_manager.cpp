@@ -15,6 +15,7 @@
 #include <filesystem>
 #include <iostream>
 #include <string>
+#include <system_error>
 
 namespace phosphor
 {
@@ -60,8 +61,10 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
          "SERVERADDRESS", serverAddress);
 
     // Check if IMAGE DIR exists
+
     fs::path imgDirPath(IMG_UPLOAD_DIR);
-    if (!fs::is_directory(imgDirPath))
+    std::error_code ec;
+    if (!fs::is_directory(imgDirPath, ec))
     {
         error("Image Dir {PATH} does not exist", "PATH", imgDirPath);
         elog<InternalFailure>();

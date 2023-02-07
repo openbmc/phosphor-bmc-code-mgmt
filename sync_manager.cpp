@@ -9,6 +9,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
+#include <system_error>
 
 namespace phosphor
 {
@@ -34,18 +35,19 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
         // so need to differentiate between the different file events.
         if (mask & IN_CLOSE_WRITE)
         {
-            if (!(fs::exists(dst)))
+            std::error_code ec;
+            if (!(fs::exists(dst, ec)))
             {
-                if (fs::is_directory(entryPath))
+                if (fs::is_directory(entryPath, ec))
                 {
                     // Source is a directory, create it at the destination.
-                    fs::create_directories(dst);
+                    fs::create_directories(dst, ec);
                 }
                 else
                 {
                     // Source is a file, create the directory where this file
                     // resides at the destination.
-                    fs::create_directories(dst.parent_path());
+                    fs::create_directories(dst.parent_path(), ec);
                 }
             }
 

@@ -22,6 +22,7 @@
 #include <filesystem>
 #include <random>
 #include <string>
+#include <system_error>
 
 namespace phosphor
 {
@@ -76,9 +77,11 @@ std::vector<std::string> getSoftwareObjects(sdbusplus::bus_t& bus)
 
 int Manager::processImage(const std::string& tarFilePath)
 {
-    if (!fs::is_regular_file(tarFilePath))
+    std::error_code ec;
+    if (!fs::is_regular_file(tarFilePath, ec))
     {
-        error("Tarball {PATH} does not exist", "PATH", tarFilePath);
+        error("Tarball {PATH} does not exist: {ERROR_MSG}", "PATH", tarFilePath,
+              "ERROR_MSG", ec.message());
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -109,9 +112,10 @@ int Manager::processImage(const std::string& tarFilePath)
     }
 
     // Verify the manifest file
-    if (!fs::is_regular_file(manifestPath))
+    if (!fs::is_regular_file(manifestPath, ec))
     {
-        error("No manifest file {PATH}", "PATH", tarFilePath);
+        error("No manifest file {PATH}: {ERROR_MSG}", "PATH", tarFilePath,
+              "ERROR_MSG", ec.message());
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -210,7 +214,7 @@ int Manager::processImage(const std::string& tarFilePath)
     if (versions.find(id) == versions.end() && it == allSoftwareObjs.end())
     {
         // Rename the temp dir to image dir
-        fs::rename(tmpDirPath, imageDirPath);
+        fs::rename(tmpDirPath, imageDirPath, ec);
         // Clear the path, so it does not attemp to remove a non-existing path
         tmpDirToRemove.path.clear();
 
@@ -242,9 +246,10 @@ void Manager::erase(std::string entryId)
 
     // Delete image dir
     fs::path imageDirPath = (*(it->second)).path();
-    if (fs::exists(imageDirPath))
+    std::error_code ec;
+    if (fs::exists(imageDirPath, ec))
     {
-        fs::remove_all(imageDirPath);
+        fs::remove_all(imageDirPath, ec);
     }
     this->versions.erase(entryId);
 }

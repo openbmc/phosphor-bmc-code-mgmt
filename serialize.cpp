@@ -8,6 +8,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <system_error>
 
 namespace phosphor
 {
@@ -24,16 +25,17 @@ const std::string purposeName = "purpose";
 
 void storePriority(const std::string& flashId, uint8_t priority)
 {
+    std::error_code ec;
     auto path = fs::path(PERSIST_DIR) / flashId;
-    if (!fs::is_directory(path))
+    if (!fs::is_directory(path, ec))
     {
-        if (fs::exists(path))
+        if (fs::exists(path, ec))
         {
             // Delete if it's a non-directory file
             warning("Removing non-directory file: {PATH}", "PATH", path);
-            fs::remove_all(path);
+            fs::remove_all(path, ec);
         }
-        fs::create_directories(path);
+        fs::create_directories(path, ec);
     }
     path = path / priorityName;
 
@@ -44,16 +46,17 @@ void storePriority(const std::string& flashId, uint8_t priority)
 
 void storePurpose(const std::string& flashId, VersionPurpose purpose)
 {
+    std::error_code ec;
     auto path = fs::path(PERSIST_DIR) / flashId;
-    if (!fs::is_directory(path))
+    if (!fs::is_directory(path, ec))
     {
-        if (fs::exists(path))
+        if (fs::exists(path, ec))
         {
             // Delete if it's a non-directory file
             warning("Removing non-directory file: {PATH}", "PATH", path);
-            fs::remove_all(path);
+            fs::remove_all(path, ec);
         }
-        fs::create_directories(path);
+        fs::create_directories(path, ec);
     }
     path = path / purposeName;
 
@@ -64,8 +67,9 @@ void storePurpose(const std::string& flashId, VersionPurpose purpose)
 
 bool restorePriority(const std::string& flashId, uint8_t& priority)
 {
+    std::error_code ec;
     auto path = fs::path(PERSIST_DIR) / flashId / priorityName;
-    if (fs::exists(path))
+    if (fs::exists(path, ec))
     {
         std::ifstream is(path.c_str(), std::ios::in);
         try
@@ -76,7 +80,7 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
         }
         catch (const cereal::Exception& e)
         {
-            fs::remove_all(path);
+            fs::remove_all(path, ec);
         }
     }
 
@@ -124,8 +128,9 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
 
 bool restorePurpose(const std::string& flashId, VersionPurpose& purpose)
 {
+    std::error_code ec;
     auto path = fs::path(PERSIST_DIR) / flashId / purposeName;
-    if (fs::exists(path))
+    if (fs::exists(path, ec))
     {
         std::ifstream is(path.c_str(), std::ios::in);
         try
@@ -136,7 +141,7 @@ bool restorePurpose(const std::string& flashId, VersionPurpose& purpose)
         }
         catch (const cereal::Exception& e)
         {
-            fs::remove_all(path);
+            fs::remove_all(path, ec);
         }
     }
 
@@ -145,10 +150,11 @@ bool restorePurpose(const std::string& flashId, VersionPurpose& purpose)
 
 void removePersistDataDirectory(const std::string& flashId)
 {
+    std::error_code ec;
     auto path = fs::path(PERSIST_DIR) / flashId;
-    if (fs::exists(path))
+    if (fs::exists(path, ec))
     {
-        fs::remove_all(path);
+        fs::remove_all(path, ec);
     }
 }
 

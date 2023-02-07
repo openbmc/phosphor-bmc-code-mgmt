@@ -14,6 +14,7 @@
 #include <filesystem>
 #include <stdexcept>
 #include <string>
+#include <system_error>
 
 namespace phosphor
 {
@@ -30,10 +31,11 @@ Watch::Watch(sd_event* loop, std::function<int(std::string&)> imageCallback) :
     imageCallback(imageCallback)
 {
     // Check if IMAGE DIR exists.
+    std::error_code ec;
     fs::path imgDirPath(IMG_UPLOAD_DIR);
-    if (!fs::is_directory(imgDirPath))
+    if (!fs::is_directory(imgDirPath, ec))
     {
-        fs::create_directories(imgDirPath);
+        fs::create_directories(imgDirPath, ec);
     }
 
     fd = inotify_init1(IN_NONBLOCK);

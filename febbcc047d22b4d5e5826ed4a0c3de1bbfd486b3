@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c76ce7_e605da89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-02-07T20:40:23Z",
+      "side": 1,
+      "message": "can you add \"error_code\" at the end of the sentence, since just filesystem is generic:\nFix the core dump by using filesystem error_code",
+      "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "414b51da_d0930e0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-02-07T20:40:23Z",
+      "side": 1,
+      "message": "Let\u0027s add a reference to the issue by adding this line to the commit message:\nFixes: openbmc/phosphor-bmc-code-mgmt#12",
+      "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

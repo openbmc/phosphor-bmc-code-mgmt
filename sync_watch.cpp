@@ -9,6 +9,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <system_error>
 
 namespace phosphor
 {
@@ -53,8 +54,9 @@ SyncWatch::SyncWatch(sd_event& loop,
         return;
     }
 
+    std::error_code ec;
     auto syncfile = fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME;
-    if (fs::exists(syncfile))
+    if (fs::exists(syncfile, ec))
     {
         std::string line;
         std::ifstream file(syncfile.c_str());
@@ -98,7 +100,8 @@ int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
         // Watch was removed, re-add it if file still exists.
         if (event->mask & IN_IGNORED)
         {
-            if (fs::exists(syncWatch->fileMap[event->wd]))
+            std::error_code ec;
+            if (fs::exists(syncWatch->fileMap[event->wd], ec))
             {
                 syncWatch->addInotifyWatch(syncWatch->fileMap[event->wd]);
             }

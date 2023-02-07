@@ -33,6 +33,23 @@
       "message": "Let\u0027s add a reference to the issue by adding this line to the commit message:\nFixes: openbmc/phosphor-bmc-code-mgmt#12",
       "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1774fb_db7f1dc2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-07T20:48:43Z",
+      "side": 1,
+      "message": "Would prefer to see an actual test of this but this is fine with me",
+      "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

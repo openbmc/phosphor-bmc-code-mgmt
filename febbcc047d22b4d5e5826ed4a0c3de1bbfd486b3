@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "305c2374_466ac76e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-02-08T01:14:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c76ce7_e605da89",
+      "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "414b51da_d0930e0a",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-07T20:40:23Z",
       "side": 1,
       "message": "Let\u0027s add a reference to the issue by adding this line to the commit message:\nFixes: openbmc/phosphor-bmc-code-mgmt#12",
+      "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c0a858_32362aac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-02-08T01:14:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "414b51da_d0930e0a",
       "revId": "febbcc047d22b4d5e5826ed4a0c3de1bbfd486b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

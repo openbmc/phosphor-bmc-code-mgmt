@@ -2,8 +2,6 @@
 Description=Check if flash side switch is needed
 Wants=obmc-host-start-pre@0.target
 Before=obmc-host-start-pre@0.target
-Wants=obmc-mapper.target
-After=obmc-mapper.target
 Wants=xyz.openbmc_project.Software.BMC.Updater.service
 After=xyz.openbmc_project.Software.BMC.Updater.service
 Wants=xyz.openbmc_project.State.BMC.service

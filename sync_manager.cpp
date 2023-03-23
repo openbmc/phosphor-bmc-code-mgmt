@@ -51,8 +51,9 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
                 }
             }
 
-            execl("/usr/bin/rsync", "rsync", "-a", entryPath.c_str(),
+            execl("/usr/bin/rsync", "rsync", "-aI", entryPath.c_str(),
                   dst.c_str(), nullptr);
+
             // execl only returns on fail
             error("Error ({ERRNO}) occurred during the rsync call on {PATH}",
                   "ERRNO", errno, "PATH", entryPath);

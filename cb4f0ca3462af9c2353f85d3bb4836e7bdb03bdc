@@ -1,0 +1,8 @@
+Code-Review+2: Lei YU <mine260309@gmail.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Adriana Kobylak <anoo@linux.ibm.com>
+Submitted-by: Jian Zhang <zhangjian.3032@bytedance.com>
+Submitted-at: Fri, 24 Mar 2023 04:56:06 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/61889
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

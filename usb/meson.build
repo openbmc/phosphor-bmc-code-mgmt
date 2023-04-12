@@ -27,10 +27,10 @@ executable(
 )
 
 systemd_system_unit_dir = dependency('systemd').get_variable(
-    pkgconfig: 'systemdsystemunitdir',
+    'systemdsystemunitdir',
     pkgconfig_define: ['prefix', get_option('prefix')])
 udev_dir = dependency('udev').get_variable(
-    pkgconfig: 'udev_dir',
+    'udev_dir',
     pkgconfig_define: ['prefix', get_option('prefix')])
 
 install_data(

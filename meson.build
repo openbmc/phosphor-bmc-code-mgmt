@@ -5,7 +5,7 @@ project('phosphor-bmc-code-mgmt', 'cpp',
         'warning_level=3',
         'werror=true'
     ],
-    meson_version: '>= 0.57.0',
+    meson_version: '>= 0.58.0',
     license: 'Apache-2.0',
     version: '1.0')
 
@@ -140,7 +140,7 @@ deps = [
 ssl = dependency('openssl')
 
 systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_variable(pkgconfig : 'systemdsystemunitdir')
+systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
 unit_files = [
     'obmc-flash-bmc-setenv@.service.in',

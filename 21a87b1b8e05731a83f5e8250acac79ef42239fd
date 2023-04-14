@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9955e9c_2cc81433",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-04-14T21:22:01Z",
+      "side": 1,
+      "message": "If the \u0027verify_signature\u0027 PACKAGECONFIG option is not enabled:\n\n- config.h without this change:\n#undef WANT_SIGNATURE_FULL_VERIFY\n#define WANT_SIGNATURE_VERIFY\n\n- config.h with this change:\n#undef WANT_SIGNATURE_FULL_VERIFY\n#undef WANT_SIGNATURE_VERIFY",
+      "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

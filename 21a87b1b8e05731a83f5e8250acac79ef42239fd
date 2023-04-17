@@ -121,6 +121,24 @@
       "parentUuid": "1ddcca9b_c1ab0593",
       "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9a4a20d_7bec6ae0",
+        "filename": "meson_options.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-04-17T19:04:01Z",
+      "side": 1,
+      "message": "Sure, it\u0027s probably been long enough and we can converge back into a single option. You can name it back to the original verify-signature and drop the \u0027full\u0027 one like you mentioned. Also delete all instances of WANT_SIGNATURE_FULL_VERIFY so that by default the \u0027full\u0027 signature check is executed by default when the verify-signature option is enabled.",
+      "parentUuid": "db1cef68_b0960421",
+      "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

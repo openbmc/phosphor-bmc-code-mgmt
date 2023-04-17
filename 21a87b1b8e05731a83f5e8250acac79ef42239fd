@@ -69,6 +69,23 @@
       "parentUuid": "40ae8767_a7b7492c",
       "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c8d0883_d71e3c7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-04-17T11:44:59Z",
+      "side": 1,
+      "message": "\u003e and there is no way to disable it via recipe PACKAGECONFIG.\n\nSo fix the recipe to support this?  It is just as trivial. \n\nGenerally we want all options enabled by default in repositories so that their code gets tested in CI.  If we turn off options we don’t catch issues with that code until it gets into the Yocto-based build.",
+      "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

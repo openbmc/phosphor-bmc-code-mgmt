@@ -34,6 +34,23 @@
       "parentUuid": "e9955e9c_2cc81433",
       "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ae8767_a7b7492c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-04-17T06:20:25Z",
+      "side": 1,
+      "message": "This change the \"default\" behavior of the recipe to not verify the tarball at all.\nI guess it would impact the existing builds.\n@Konstantin Could send a mail to the mailing list about this change?",
+      "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -157,6 +157,24 @@
       "parentUuid": "a9a4a20d_7bec6ae0",
       "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec82a85e_b826cd4a",
+        "filename": "meson_options.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-04-17T23:05:16Z",
+      "side": 1,
+      "message": "I propose we disable with a TODO to remove in 6 months. I don\u0027t know of anyone using it but I think this is the safest choice. \n\nE.g. # Option will be removed 4Q 2023\n\nWe do this in bmcweb e.g. https://github.com/openbmc/bmcweb/blob/master/meson_options.txt#L223",
+      "parentUuid": "89fe7dcc_3b111ead",
+      "revId": "21a87b1b8e05731a83f5e8250acac79ef42239fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

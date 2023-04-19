@@ -67,10 +67,7 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())
-conf.set('WANT_SIGNATURE_VERIFY', \
-    get_option('verify-signature').enabled() or \
-    get_option('verify-full-signature').enabled())
-conf.set('WANT_SIGNATURE_FULL_VERIFY', get_option('verify-full-signature').enabled())
+conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))

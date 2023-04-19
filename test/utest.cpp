@@ -255,7 +255,7 @@ class SignatureTest : public testing::Test
         command(opensslCmd + pkeyFile + " -out " + pubkeyFile + ".sig " +
                 pubkeyFile);
 
-#ifdef WANT_SIGNATURE_FULL_VERIFY
+#ifdef WANT_SIGNATURE_VERIFY
         std::string fullFile = extractPath.string() + "/" + "image-full";
         command("cat " + kernelFile + ".sig " + rofsFile + ".sig " + rwfsFile +
                 ".sig " + ubootFile + ".sig " + manifestFile + ".sig " +
@@ -318,7 +318,7 @@ TEST_F(SignatureTest, TestNoConfigFileInSystem)
     EXPECT_FALSE(signature->verify());
 }
 
-#ifdef WANT_SIGNATURE_FULL_VERIFY
+#ifdef WANT_SIGNATURE_VERIFY
 /** @brief Test for failure scenario without full verification */
 TEST_F(SignatureTest, TestNoFullSignature)
 {

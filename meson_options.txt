@@ -17,14 +17,8 @@ option('sync-bmc-files', type: 'feature', value: 'enabled',
 
 option('tests', type: 'feature', description: 'Build tests')
 
-# This option is considered legacy, therefore there is no PACKAGECONFIG feature for disabling it in the recipe.
-# Functionality of this option is superseded by the 'verify-full-signature' option.
-# Option will be removed 4Q 2023
-option('verify-signature', type: 'feature', value: 'disabled',
-    description: 'LEGACY: Use verify-full-signature instead. Enable image signature validation.')
-
-option('verify-full-signature', type: 'feature', value: 'enabled',
-    description: 'Enable image full signature validation.')
+option('verify-signature', type: 'feature', value: 'enabled',
+    description: 'Enable image signature validation.')
 
 option(
     'usb-code-update', type: 'feature', value: 'enabled',

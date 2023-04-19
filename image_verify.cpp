@@ -100,7 +100,7 @@ inline KeyHashPathPair Signature::getKeyHashFileNames(const Key_t& key) const
 bool Signature::verifyFullImage()
 {
     bool ret = true;
-#ifdef WANT_SIGNATURE_FULL_VERIFY
+#ifdef WANT_SIGNATURE_VERIFY
     // Only verify full image for BMC
     if (purpose != VersionPurpose::BMC)
     {

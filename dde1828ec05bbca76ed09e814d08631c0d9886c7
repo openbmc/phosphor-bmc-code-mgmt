@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa6a5b18_c78f7dff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-04-19T20:52:58Z",
+      "side": 1,
+      "message": "Thanks for also pushing the removal commit to be merged in 4Q.\n\nThis addresses Lei\u0027s comments too sent in the mailing list: \"I would prefer to remove the `verify-signature` as it\u0027s deprecated for\na long time.\"",
+      "revId": "dde1828ec05bbca76ed09e814d08631c0d9886c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

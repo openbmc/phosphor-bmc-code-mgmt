@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c842712_0bc062ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2023-04-20T07:31:30Z",
+      "side": 1,
+      "message": "This change is expected to be merged along with the patchset that corrects the recipe:\n\n62713: [Do not merge until 4Q 2023] phosphor-bmc-code-mgmt: Update \u0027verify-signature\u0027 configuration | https://gerrit.openbmc.org/c/openbmc/openbmc/+/62713",
+      "revId": "6ffa6dfea323f0233bb6dbda43ea6ccc9a465eea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

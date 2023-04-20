@@ -16,6 +16,24 @@
       "message": "Thanks for also pushing the removal commit to be merged in 4Q.\n\nThis addresses Lei\u0027s comments too sent in the mailing list: \"I would prefer to remove the `verify-signature` as it\u0027s deprecated for\na long time.\"",
       "revId": "dde1828ec05bbca76ed09e814d08631c0d9886c7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4fedcf_b9f7ffa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2023-04-20T07:30:18Z",
+      "side": 1,
+      "message": "No problem!\nWhile I\u0027m here I\u0027ve created a commit for a recipe change. Just in case here are both of the discussed commits:\n62713: [Do not merge until 4Q 2023] phosphor-bmc-code-mgmt: Update \u0027verify-signature\u0027 configuration | https://gerrit.openbmc.org/c/openbmc/openbmc/+/62713\n62692: [Do not merge until 4Q 2023] meson: Drop legacy \u0027verify-signature\u0027 option | https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/62692",
+      "parentUuid": "fa6a5b18_c78f7dff",
+      "revId": "dde1828ec05bbca76ed09e814d08631c0d9886c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -16,6 +16,24 @@
       "message": "What is the impact of the systemd change? Does it mean we can not install a service that wanted/required by a templated service?",
       "revId": "36630965d3ee1173c62e17063491774fe436e4a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a24b74_6c675e84",
+        "filename": "side-switch/phosphor-bmc-side-switch.service",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-05-10T13:23:22Z",
+      "side": 1,
+      "message": "Yeah, if your service is wanted/required by a templated target then you have to do it via the recipe, like in https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/state/phosphor-state-manager-systemd-links.inc",
+      "parentUuid": "39e54d9a_04edddca",
+      "revId": "36630965d3ee1173c62e17063491774fe436e4a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

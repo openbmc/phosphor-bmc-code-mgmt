@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e54d9a_04edddca",
+        "filename": "side-switch/phosphor-bmc-side-switch.service",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-05-10T02:22:45Z",
+      "side": 1,
+      "message": "What is the impact of the systemd change? Does it mean we can not install a service that wanted/required by a templated service?",
+      "revId": "36630965d3ee1173c62e17063491774fe436e4a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

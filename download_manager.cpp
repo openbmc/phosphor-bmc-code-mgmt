@@ -112,7 +112,6 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
         }
         else if (WEXITSTATUS(status) != 0)
         {
-
             error("Failed ({STATUS}) to launch tftp", "STATUS", status);
         }
     }

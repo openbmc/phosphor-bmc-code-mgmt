@@ -41,7 +41,6 @@ using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
 void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 {
-
     using SVersion = server::Version;
     using VersionPurpose = SVersion::VersionPurpose;
     using VersionClass = phosphor::software::manager::Version;
@@ -381,8 +380,8 @@ void ItemUpdater::processBMCImage()
             {
                 fs::create_directories(versionFileDir);
             }
-            auto versionFilePath =
-                BMC_ROFS_PREFIX + id + functionalSuffix + OS_RELEASE_FILE;
+            auto versionFilePath = BMC_ROFS_PREFIX + id + functionalSuffix +
+                                   OS_RELEASE_FILE;
             fs::create_directory_symlink(OS_RELEASE_FILE, versionFilePath);
             ItemUpdater::processBMCImage();
         }
@@ -526,8 +525,8 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
     cmpPriority cmpPriorityFunc =
         [](std::pair<std::string, uint8_t> priority1,
            std::pair<std::string, uint8_t> priority2) {
-            return priority1.second <= priority2.second;
-        };
+        return priority1.second <= priority2.second;
+    };
 
     // Sort versions by ascending priority
     std::set<std::pair<std::string, uint8_t>, cmpPriority> prioritySet(
@@ -609,8 +608,8 @@ void ItemUpdater::restoreFieldModeStatus()
     // The fieldmode u-boot environment variable may not exist since it is not
     // part of the default environment, run fw_printenv with 2>&1 to ignore the
     // error message in the journal "Error: "fieldmode" not defined"
-    std::pair<int, std::string> ret =
-        utils::execute("/sbin/fw_printenv", "-n", "fieldmode", "2>&1");
+    std::pair<int, std::string> ret = utils::execute("/sbin/fw_printenv", "-n",
+                                                     "fieldmode", "2>&1");
 
     if (ret.first != 0)
     {

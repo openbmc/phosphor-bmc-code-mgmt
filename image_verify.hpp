@@ -52,8 +52,7 @@ struct CustomFd
      *
      *  @param[in] fd - File descriptor
      */
-    explicit CustomFd(int fd) : fd(fd)
-    {}
+    explicit CustomFd(int fd) : fd(fd) {}
 
     ~CustomFd()
     {
@@ -98,8 +97,7 @@ struct CustomMap
      *  @param[in]  addr - Starting address of the map
      *  @param[in]  length - length of the map
      */
-    CustomMap(void* addr, size_t length) : addr(addr), length(length)
-    {}
+    CustomMap(void* addr, size_t length) : addr(addr), length(length) {}
 
     ~CustomMap()
     {

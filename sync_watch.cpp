@@ -22,8 +22,8 @@ PHOSPHOR_LOG2_USING;
 
 void SyncWatch::addInotifyWatch(const fs::path& path)
 {
-    auto wd =
-        inotify_add_watch(inotifyFd, path.c_str(), IN_CLOSE_WRITE | IN_DELETE);
+    auto wd = inotify_add_watch(inotifyFd, path.c_str(),
+                                IN_CLOSE_WRITE | IN_DELETE);
     if (-1 == wd)
     {
         error("inotify_add_watch on {PATH} failed: {ERRNO}", "ERRNO", errno,
@@ -114,8 +114,8 @@ int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
         }
 
         // fileMap<wd, path>
-        auto rc =
-            syncWatch->syncCallback(event->mask, syncWatch->fileMap[event->wd]);
+        auto rc = syncWatch->syncCallback(event->mask,
+                                          syncWatch->fileMap[event->wd]);
         if (rc)
         {
             return rc;

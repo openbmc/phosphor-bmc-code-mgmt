@@ -200,8 +200,8 @@ bool Signature::verify()
                 sigFile += SIGNATURE_FILE_EXT;
 
                 // Verify the signature.
-                optionalImagesValid =
-                    verifyFile(file, sigFile, publicKeyFile, hashType);
+                optionalImagesValid = verifyFile(file, sigFile, publicKeyFile,
+                                                 hashType);
                 if (!optionalImagesValid)
                 {
                     error("Image file Signature Validation failed on {IMAGE}",
@@ -301,7 +301,6 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
                            const fs::path& publicKey,
                            const std::string& hashFunc)
 {
-
     // Check existence of the files in the system.
     std::error_code ec;
     if (!(fs::exists(file, ec) && fs::exists(sigFile, ec)))
@@ -402,7 +401,6 @@ inline EVP_PKEY_Ptr Signature::createPublicRSA(const fs::path& publicKey)
 
 CustomMap Signature::mapFile(const fs::path& path, size_t size)
 {
-
     CustomFd fd(open(path.c_str(), O_RDONLY));
 
     return CustomMap(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd(), 0),

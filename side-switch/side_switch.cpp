@@ -14,7 +14,6 @@ PHOSPHOR_LOG2_USING;
 
 bool sideSwitchNeeded(sdbusplus::bus_t& bus)
 {
-
     std::string fwRunningVersionPath;
     uint8_t fwRunningPriority = 0;
 
@@ -126,7 +125,6 @@ bool sideSwitchNeeded(sdbusplus::bus_t& bus)
 
 bool powerOffSystem(sdbusplus::bus_t& bus)
 {
-
     try
     {
         utils::PropertyValue chassOff =

@@ -7,6 +7,7 @@ Type=oneshot
 RemainAfterExit=no
 ExecStart=/usr/bin/obmc-flash-bmc mmc-mount @MEDIA_DIR@
 ExecStart=/bin/mkdir -p @MEDIA_DIR@/hostfw
+ExecStart=-/sbin/fsck.ext4 -p /dev/disk/by-partlabel/hostfw
 ExecStart=-/bin/mount PARTLABEL=hostfw @MEDIA_DIR@/hostfw -t ext4
 
 [Install]

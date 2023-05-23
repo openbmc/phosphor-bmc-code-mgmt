@@ -547,6 +547,13 @@ function mmc_mount() {
     primaryDir="${mediaDir}/rofs-${primaryId}-functional"
     secondaryDir="${mediaDir}/rofs-${secondaryId}"
 
+    # Check the alternate version, remove it if it's corrupted. This can occur
+    # when the BMC is rebooted in the middle of a code update for example.
+    if ! fsck.ext4 -p "/dev/disk/by-partlabel/rofs-${secondaryId}"; then
+        flashid="${secondaryId}"
+        mmc_remove
+    fi
+
     mkdir -p "${primaryDir}"
     mkdir -p "${secondaryDir}"
 

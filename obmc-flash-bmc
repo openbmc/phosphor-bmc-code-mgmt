@@ -590,14 +590,21 @@ function mmc_update() {
     # Run this after sgdisk for labels to take effect.
     partprobe
 
-    # Update hostfw
+    # Update hostfw. The remove function doesn't touch the hostfw image, so
+    # need to unmount and delete it prior to updating it.
     if [ -f "${imgpath}"/"${version}"/image-hostfw ]; then
         # Remove patches
-        patchdir="/usr/local/share/hostfw/alternate"
+        hostfw_alt="hostfw/alternate"
+        patchdir="/usr/local/share/${hostfw_alt}"
         if [ -d "${patchdir}" ]; then
             rm -rf "${patchdir:?}"/*
         fi
+        if grep -q "${hostfw_alt}" /proc/mounts; then
+            hostfw_alt=$(grep "${hostfw_alt}" /proc/mounts | cut -d " " -f 2)
+            umount "${hostfw_alt}"
+        fi
         hostfwdir=$(grep "hostfw " /proc/mounts | cut -d " " -f 2)
+        rm -f "${hostfwdir}/hostfw-${flashid}"
         cp "${imgpath}"/"${version}"/image-hostfw "${hostfwdir}"/hostfw-"${label}"
         mkdir -p "${hostfwdir}"/alternate
         mount "${hostfwdir}"/hostfw-"${label}" "${hostfwdir}"/alternate -o ro
@@ -617,17 +624,6 @@ function mmc_remove() {
     fi
     dd if=/dev/zero of=/dev/disk/by-partlabel/boot-"${flashid}" count=2048
     dd if=/dev/zero of=/dev/disk/by-partlabel/rofs-"${flashid}" count=2048
-
-    hostfw_alt="hostfw/alternate"
-    if grep -q "${hostfw_alt}" /proc/mounts; then
-        hostfw_alt=$(grep "${hostfw_alt}" /proc/mounts | cut -d " " -f 2)
-        umount "${hostfw_alt}"
-    fi
-    hostfw_base="hostfw "
-    if grep -q "${hostfw_base}" /proc/mounts; then
-        hostfw_base=$(grep "${hostfw_base}" /proc/mounts | cut -d " " -f 2)
-        rm -f "${hostfw_base}/hostfw-${flashid}"
-    fi
 }
 
 # Set the requested version as primary for the BMC to boot from upon reboot.

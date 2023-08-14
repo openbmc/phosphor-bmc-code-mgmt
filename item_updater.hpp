@@ -68,6 +68,9 @@ class ItemUpdater : public ItemUpdaterInherit
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
 #endif
+#ifdef FAN_CONF_VERSION
+        createFanConfigObject();
+#endif
         emit_object_added();
     };
 
@@ -278,6 +281,19 @@ class ItemUpdater : public ItemUpdaterInherit
   public:
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
+#endif
+
+#ifdef FAN_CONF_VERSION
+    /** @brief Create the Fan Configuration object without knowing the version.
+     *
+     *  The object is created only to provide the DBus access so that an
+     *  external service could set the correct Fan Configuration version.
+     */
+    void createFanConfigObject();
+
+  public:
+    /** @brief Persistent Version D-Bus object for Fan Configuration */
+    std::unique_ptr<VersionClass> fanConfigVersion;
 #endif
 
     /** @brief Get the slot number of running image */

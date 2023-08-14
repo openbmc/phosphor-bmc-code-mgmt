@@ -71,6 +71,7 @@ conf.set('WANT_SIGNATURE_VERIFY', \
     get_option('verify-signature').enabled() or \
     get_option('verify-full-signature').enabled())
 conf.set('WANT_SIGNATURE_FULL_VERIFY', get_option('verify-full-signature').enabled())
+conf.set('FAN_CONF_VERSION', get_option('fan-configuration-versioning').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -102,6 +103,10 @@ if get_option('bmc-static-dual-image').enabled()
   conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
 else
   conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
+endif
+
+if get_option('fan-configuration-versioning').enabled()
+    conf.set_quoted('FAN_CONF_OBJPATH', get_option('fan-conf-object-path'))
 endif
 
 configure_file(output: 'config.h', configuration: conf)

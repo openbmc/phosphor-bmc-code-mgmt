@@ -36,6 +36,11 @@ option(
     description: 'Automatic flash side switch on boot',
 )
 
+option(
+    'fan-configuration-versioning', type: 'feature', value: 'disabled',
+    description: 'Support to display fan configuration version.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed', type: 'integer',
@@ -134,4 +139,10 @@ option(
     'alt-rwfs-dir', type: 'string',
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
+)
+
+option(
+    'fan-conf-object-path', type: 'string',
+    value: '/xyz/openbmc_project/software/fan_configuration',
+    description: 'The Fan Configuration DBus object path.',
 )

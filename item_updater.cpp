@@ -879,6 +879,33 @@ void ItemUpdater::createBIOSObject()
 }
 #endif
 
+#ifdef FAN_CONF_VERSION
+void ItemUpdater::createFanConfigObject()
+{
+    std::string path = FAN_CONF_OBJPATH;
+    // Get version id from last item in the path
+    auto pos = path.rfind("/");
+    if (pos == std::string::npos)
+    {
+        error("No version id found in object path {PATH}", "PATH", path);
+        return;
+    }
+
+    auto versionId = path.substr(pos + 1);
+    auto version = "null";
+    auto dummyErase = [](std::string /*entryId*/) {
+        // Do nothing;
+    };
+    fanConfigVersion = std::make_unique<VersionClass>(
+        bus, path, version, VersionPurpose::Host, "", "",
+        std::vector<std::string>(),
+        std::bind(dummyErase, std::placeholders::_1), "");
+    fanConfigVersion->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(
+            bus, path, *fanConfigVersion);
+}
+#endif
+
 void ItemUpdater::getRunningSlot()
 {
     // Check /run/media/slot to get the slot number

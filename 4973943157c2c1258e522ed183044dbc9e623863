@@ -22,6 +22,30 @@
       },
       "revId": "4973943157c2c1258e522ed183044dbc9e623863",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cbc8965_49ea0705",
+        "filename": "download_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-15T02:06:02Z",
+      "side": 1,
+      "message": "This commit is from 2017. I don’t think it is useful to start a discussion on it.",
+      "parentUuid": "94361452_cefff50b",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 35
+      },
+      "revId": "4973943157c2c1258e522ed183044dbc9e623863",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

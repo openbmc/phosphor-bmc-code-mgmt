@@ -14,7 +14,7 @@ namespace updater
 {
 
 using VersionPurpose =
-    sdbusplus::xyz::openbmc_project::Software::server::Version::VersionPurpose;
+    sdbusplus::server::xyz::openbmc_project::software::Version::VersionPurpose;
 
 /** @brief Serialization function - stores priority information to file
  *  @param[in] flashId - The flash id of the version for which to store

@@ -10,7 +10,7 @@ namespace software
 namespace updater
 {
 
-namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
+namespace softwareServer = sdbusplus::server::xyz::openbmc_project::software;
 
 void Activation::flashWrite()
 {

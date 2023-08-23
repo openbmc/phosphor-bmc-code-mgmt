@@ -22,12 +22,12 @@ namespace manager
 typedef std::function<void(std::string)> eraseFunc;
 
 using VersionInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Software::server::ExtendedVersion,
-    sdbusplus::xyz::openbmc_project::Software::server::Version,
-    sdbusplus::xyz::openbmc_project::Common::server::FilePath,
-    sdbusplus::xyz::openbmc_project::Inventory::Decorator::server::Compatible>;
+    sdbusplus::server::xyz::openbmc_project::software::ExtendedVersion,
+    sdbusplus::server::xyz::openbmc_project::software::Version,
+    sdbusplus::server::xyz::openbmc_project::common::FilePath,
+    sdbusplus::server::xyz::openbmc_project::inventory::decorator::Compatible>;
 using DeleteInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Object::server::Delete>;
+    sdbusplus::server::xyz::openbmc_project::object::Delete>;
 
 class Version;
 class Delete;

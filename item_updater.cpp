@@ -29,8 +29,8 @@ namespace updater
 {
 
 // When you see server:: you know we're referencing our base class
-namespace server = sdbusplus::xyz::openbmc_project::Software::server;
-namespace control = sdbusplus::xyz::openbmc_project::Control::server;
+namespace server = sdbusplus::server::xyz::openbmc_project::software;
+namespace control = sdbusplus::server::xyz::openbmc_project::control;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;

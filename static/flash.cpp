@@ -80,9 +80,8 @@ void Activation::onStateChanges([[maybe_unused]] sdbusplus::message_t& msg)
     }
     else
     {
-        namespace softwareServer =
-            sdbusplus::xyz::openbmc_project::Software::server;
-        Activation::activation(softwareServer::Activation::Activations::Failed);
+        Activation::activation(sdbusplus::server::xyz::openbmc_project::
+                                   software::Activation::Activations::Failed);
     }
 #endif
 }

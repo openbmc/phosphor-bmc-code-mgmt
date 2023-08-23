@@ -21,10 +21,10 @@ namespace updater
 {
 
 using ItemUpdaterInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Common::server::FactoryReset,
-    sdbusplus::xyz::openbmc_project::Control::server::FieldMode,
-    sdbusplus::xyz::openbmc_project::Association::server::Definitions,
-    sdbusplus::xyz::openbmc_project::Collection::server::DeleteAll>;
+    sdbusplus::server::xyz::openbmc_project::common::FactoryReset,
+    sdbusplus::server::xyz::openbmc_project::control::FieldMode,
+    sdbusplus::server::xyz::openbmc_project::association::Definitions,
+    sdbusplus::server::xyz::openbmc_project::collection::DeleteAll>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;

@@ -30,15 +30,15 @@ namespace fs = std::filesystem;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
 using ActivationInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Software::server::Activation,
-    sdbusplus::xyz::openbmc_project::Association::server::Definitions>;
+    sdbusplus::server::xyz::openbmc_project::software::Activation,
+    sdbusplus::server::xyz::openbmc_project::association::Definitions>;
 using ActivationBlocksTransitionInherit =
     sdbusplus::server::object_t<sdbusplus::xyz::openbmc_project::Software::
                                     server::ActivationBlocksTransition>;
 using RedundancyPriorityInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Software::server::RedundancyPriority>;
+    sdbusplus::server::xyz::openbmc_project::software::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Software::server::ActivationProgress>;
+    sdbusplus::server::xyz::openbmc_project::software::ActivationProgress>;
 
 constexpr auto applyTimeImmediate =
     "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
@@ -185,7 +185,7 @@ class Activation : public ActivationInherit, public Flash
      */
     Activation(sdbusplus::bus_t& bus, const std::string& path,
                ItemUpdater& parent, std::string& versionId,
-               sdbusplus::xyz::openbmc_project::Software::server::Activation::
+               sdbusplus::server::xyz::openbmc_project::software::Activation::
                    Activations activationStatus,
                AssociationList& assocs) :
         ActivationInherit(bus, path.c_str(),

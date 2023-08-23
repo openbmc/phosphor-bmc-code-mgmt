@@ -14,7 +14,7 @@ namespace manager
 {
 
 using DownloadInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Common::server::TFTP>;
+    sdbusplus::server::xyz::openbmc_project::common::TFTP>;
 
 /** @class Download
  *  @brief OpenBMC download software management implementation.

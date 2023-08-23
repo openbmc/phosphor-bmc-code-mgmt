@@ -27,7 +27,7 @@ namespace software
 namespace updater
 {
 
-namespace softwareServer = sdbusplus::xyz::openbmc_project::Software::server;
+namespace softwareServer = sdbusplus::server::xyz::openbmc_project::software;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
@@ -35,7 +35,7 @@ using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 #ifdef WANT_SIGNATURE_VERIFY
-namespace control = sdbusplus::xyz::openbmc_project::Control::server;
+namespace control = sdbusplus::server::xyz::openbmc_project::control;
 #endif
 
 void Activation::subscribeToSystemdSignals()

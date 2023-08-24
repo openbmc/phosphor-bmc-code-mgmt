@@ -16,6 +16,24 @@
       "message": "sign-off?",
       "revId": "8576fae386f0df5b634d571f1f1eb3fbc0aac920",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f981c75_02338136",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-24T17:21:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "027aff61_7f4dac3f",
+      "revId": "8576fae386f0df5b634d571f1f1eb3fbc0aac920",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

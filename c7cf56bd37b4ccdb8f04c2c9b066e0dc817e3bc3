@@ -16,6 +16,24 @@
       "message": "Please update the bitbake recipe as well",
       "revId": "c7cf56bd37b4ccdb8f04c2c9b066e0dc817e3bc3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee288157_04a26748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2023-09-06T07:40:49Z",
+      "side": 1,
+      "message": "62713: phosphor-bmc-code-mgmt: Update \u0027verify-signature\u0027 configuration | https://gerrit.openbmc.org/c/openbmc/openbmc/+/62713",
+      "parentUuid": "75592155_753c7892",
+      "revId": "c7cf56bd37b4ccdb8f04c2c9b066e0dc817e3bc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

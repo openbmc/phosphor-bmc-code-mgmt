@@ -94,6 +94,8 @@ conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
 
 if get_option('host-bios-upgrade').enabled()
     conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
+    conf.set_quoted('SMBIOS_MDR_BIOS_OBJPATH',
+                    get_option('smbios-mdrv2-bios-obj-path'))
 endif
 
 if get_option('bmc-static-dual-image').enabled()
@@ -164,7 +166,8 @@ image_updater_sources = files(
     'serialize.cpp',
     'version.cpp',
     'utils.cpp',
-    'msl_verify.cpp'
+    'msl_verify.cpp',
+    'property_watch.cpp'
 )
 
 if get_option('bmc-layout').contains('static')

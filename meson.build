@@ -164,7 +164,8 @@ image_updater_sources = files(
     'serialize.cpp',
     'version.cpp',
     'utils.cpp',
-    'msl_verify.cpp'
+    'msl_verify.cpp',
+    'property_watch.cpp'
 )
 
 if get_option('bmc-layout').contains('static')

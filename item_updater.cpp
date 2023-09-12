@@ -846,6 +846,28 @@ bool ItemUpdater::checkImage(const std::string& filePath,
 }
 
 #ifdef HOST_BIOS_UPGRADE
+std::string getBIOSVersion(sdbusplus::bus_t& bus)
+{
+    std::string version = "null";
+    constexpr auto biosObject =
+        "/xyz/openbmc_project/inventory/system/chassis/motherboard/bios";
+    constexpr auto biosInterface =
+        "xyz.openbmc_project.Inventory.Decorator.Revision";
+    constexpr auto property =
+        "Version";
+    try
+    {
+        version = utils::getProperty<std::string>(bus, biosObject,
+                                                  biosInterface, property);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to get BIOS version: {ERROR}", "ERROR", e);
+        version = "null";
+    }
+    return version;
+}
+
 void ItemUpdater::createBIOSObject()
 {
     std::string path = BIOS_OBJPATH;
@@ -861,7 +883,7 @@ void ItemUpdater::createBIOSObject()
     createFunctionalAssociation(path);
 
     auto versionId = path.substr(pos + 1);
-    auto version = "null";
+    auto version = getBIOSVersion(bus);
     AssociationList assocs = {};
     biosActivation = std::make_unique<Activation>(
         bus, path, *this, versionId, server::Activation::Activations::Active,

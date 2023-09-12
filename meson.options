@@ -135,3 +135,9 @@ option(
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
 )
+
+option(
+    'smbios-mdrv2-bios-obj-path', type: 'string',
+    value: '/xyz/openbmc_project/inventory/system/chassis/motherboard/bios',
+    description: 'smbios-mdrv2 bios object path.',
+)

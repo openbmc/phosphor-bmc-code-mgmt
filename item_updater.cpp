@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "item_updater.hpp"
+#include "property_watch.hpp"
 
 #include "images.hpp"
 #include "serialize.hpp"
@@ -846,6 +847,30 @@ bool ItemUpdater::checkImage(const std::string& filePath,
 }
 
 #ifdef HOST_BIOS_UPGRADE
+std::string restoreBIOSVersion()
+{
+    std::string version = "null";
+    DbusEnvironment dbusEnvironment;
+    constexpr auto biosService =
+        "xyz.openbmc_project.Smbios.MDR_V2";
+    constexpr auto biosInterface =
+        "xyz.openbmc_project.Inventory.Decorator.Revision";
+    constexpr auto property =
+        "Version";
+    try
+    {
+        PropertyValue value =
+            dbusEnvironment.getProperty(biosService, SMBIOS_MDR_BIOS_OBJPATH,
+                                        biosInterface, property);
+        version = *(std::get_if<std::string>(&value));
+    }
+    catch (const std::exception& e)
+    {
+        warning("Failed to parse BIOS version: {ERROR}", "ERROR", e);
+    }
+    return version;
+}
+
 void ItemUpdater::createBIOSObject()
 {
     std::string path = BIOS_OBJPATH;
@@ -861,7 +886,7 @@ void ItemUpdater::createBIOSObject()
     createFunctionalAssociation(path);
 
     auto versionId = path.substr(pos + 1);
-    auto version = "null";
+    auto version = restoreBIOSVersion();
     AssociationList assocs = {};
     biosActivation = std::make_unique<Activation>(
         bus, path, *this, versionId, server::Activation::Activations::Active,

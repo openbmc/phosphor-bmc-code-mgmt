@@ -231,8 +231,7 @@ if get_option('sync-bmc-files').enabled()
     )
 endif
 
-if (get_option('verify-signature').enabled() or \
-    get_option('verify-full-signature').enabled())
+if (get_option('verify-signature').enabled())
     image_updater_sources += files(
         'utils.cpp',
         'image_verify.cpp',

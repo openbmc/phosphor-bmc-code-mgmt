@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e6f6f3_c635055a",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-09-19T05:43:00Z",
+      "side": 1,
+      "message": "This is not documented dbus object and it\u0027s not clear when and how the “Revision\" interface is created and the property is set.\n\nCould you elaborate?\n\nInstead of setting the \"Revision\" interface somewhere else, why not let that app/service set software-manager\u0027s BIOS version directly?",
+      "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

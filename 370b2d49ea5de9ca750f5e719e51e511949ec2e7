@@ -34,6 +34,24 @@
       "parentUuid": "98e6f6f3_c635055a",
       "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde8ec73_3d1b7bb4",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-10-07T06:48:52Z",
+      "side": 1,
+      "message": "This assumes software-manager should depend on the smbios-mdr service.\nI do not think it\u0027s a good idea to have such dependency.\n\nCould you consider making other service (e.g. smbios-mdr, or maybe phosphor-dbus-monitor) to set the property of software-manager\u0027s BIOS version object?",
+      "parentUuid": "47d0c173_f92204d8",
+      "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

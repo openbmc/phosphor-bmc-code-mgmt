@@ -52,6 +52,24 @@
       "parentUuid": "47d0c173_f92204d8",
       "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625aeccc_ad078610",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1001598
+      },
+      "writtenOn": "2023-10-13T06:44:09Z",
+      "side": 1,
+      "message": "Smbios-mdr sets the property at https://github.com/openbmc/smbios-mdr/blob/e05a542324fcac40c9ff100287302ee92ed03621/src/system.cpp#L152\n\nBut ItemUpdater will get \"null\" if it is restarted for some reason.\n\nMay I ask what the reason is to set the property by smbios-mdr, not to get the property by ItemUpdater instead?",
+      "parentUuid": "fde8ec73_3d1b7bb4",
+      "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

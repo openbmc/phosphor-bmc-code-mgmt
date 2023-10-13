@@ -70,6 +70,24 @@
       "parentUuid": "fde8ec73_3d1b7bb4",
       "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c5ce15_1eae2e87",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-10-13T16:55:21Z",
+      "side": 1,
+      "message": "\u003e Smbios-mdr sets the property at https://github.com/openbmc/smbios-mdr/blob/e05a542324fcac40c9ff100287302ee92ed03621/src/system.cpp#L152\n\nThat\u0027s good.\n\n\u003e But ItemUpdater will get \"null\" if it is restarted for some reason.\n\nThis is another issue to resolve. Maybe you can serialize the BIOS version, or you could use some post-init script to fetch and update the BIOS version in the software-manager service.\n\nBy using `/xyz/openbmc_project/inventory/system/chassis/motherboard/bios` in this patch, it\u0027s actually use the \"serialized\" one as well, is it?\n\n\u003e May I ask what the reason is to set the property by smbios-mdr, not to get the property by ItemUpdater instead?\n\nBe noted that smbios-mdr is not widely used and some x86 systems do not use this repo as well. So we can not assume it\u0027s generic in OpenBMC. software-manager is kind of generic here.\nThat\u0027s why I suggest setting the property by smbios-mdr.",
+      "parentUuid": "625aeccc_ad078610",
+      "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

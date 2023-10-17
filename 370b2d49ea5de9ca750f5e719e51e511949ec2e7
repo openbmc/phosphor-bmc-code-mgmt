@@ -88,6 +88,24 @@
       "parentUuid": "625aeccc_ad078610",
       "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4edf1c1_731bbc66",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1001598
+      },
+      "writtenOn": "2023-10-17T07:06:48Z",
+      "side": 1,
+      "message": "OK, Thanks for replies and suggestions.",
+      "parentUuid": "64c5ce15_1eae2e87",
+      "revId": "370b2d49ea5de9ca750f5e719e51e511949ec2e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

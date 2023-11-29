@@ -66,8 +66,8 @@ conf.set('UBIFS_LAYOUT', get_option('bmc-layout').contains('ubi'))
 conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 
 # Configurable features
-conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())
-conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
+conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').allowed())
+conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').allowed())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -89,12 +89,12 @@ conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
 conf.set_quoted('BMC_MSL', get_option('bmc-msl'))
 conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
 
-if get_option('host-bios-upgrade').enabled()
+if get_option('host-bios-upgrade').allowed()
     conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
 endif
 
-if get_option('bmc-static-dual-image').enabled()
-  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').enabled())
+if get_option('bmc-static-dual-image').allowed()
+  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').allowed())
   conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
   conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
 else
@@ -199,11 +199,11 @@ elif get_option('bmc-layout').contains('mmc')
     ]
 endif
 
-if get_option('host-bios-upgrade').enabled()
+if get_option('host-bios-upgrade').allowed()
     unit_files += 'obmc-flash-host-bios@.service.in'
 endif
 
-if get_option('bmc-static-dual-image').enabled()
+if get_option('bmc-static-dual-image').allowed()
     unit_files += [
         'static/obmc-flash-bmc-alt@.service.in',
         'static/obmc-flash-bmc-static-mount-alt.service.in',
@@ -211,7 +211,7 @@ if get_option('bmc-static-dual-image').enabled()
     ]
 endif
 
-if get_option('sync-bmc-files').enabled()
+if get_option('sync-bmc-files').allowed()
     executable(
         'phosphor-sync-software-manager',
         'sync_manager.cpp',
@@ -231,7 +231,7 @@ if get_option('sync-bmc-files').enabled()
     )
 endif
 
-if (get_option('verify-signature').enabled())
+if (get_option('verify-signature').allowed())
     image_updater_sources += files(
         'utils.cpp',
         'image_verify.cpp',
@@ -314,10 +314,10 @@ if not build_tests.disabled()
 )
 endif
 
-if get_option('usb-code-update').enabled()
+if get_option('usb-code-update').allowed()
     subdir('usb')
 endif
 
-if get_option('side-switch-on-boot').enabled()
+if get_option('side-switch-on-boot').allowed()
     subdir('side-switch')
 endif

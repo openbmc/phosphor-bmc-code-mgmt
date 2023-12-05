@@ -16,6 +16,24 @@
       "message": "The doc does not specify if errno will be set or not. How do we know if error is set correctly or not?\nTo improve this log, I guess you could check if ec contains a error and print it if it does.",
       "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee71b709_44c646fb",
+        "filename": "download_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-12-05T10:08:23Z",
+      "side": 1,
+      "message": "\u003e The doc does not specify if errno will be set or not. How do we know if error is set correctly or not?\n\nActually, errno equal to 0 is successful, otherwise the error information can be obtained according to the description of the document.\n\n\u003e To improve this log, I guess you could check if ec contains a error and print it if it does.\n\nI\u0027ve thought about this but I\u0027m not sure if it\u0027s worth it for us.\n\n```\nif (ec.value())\n{\n  error(\"Image Dir {PATH} does not exist: {ERROR_MSG}\", \"PATH\",\n              imgDirPath, \"ERROR_MSG\", ec.message());\n}\nelse\n{\n  error(\"Image Dir {PATH} does not exist\", \"PATH\", imgDirPath);\n}\n```",
+      "parentUuid": "7a20defd_5aa6cf01",
+      "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

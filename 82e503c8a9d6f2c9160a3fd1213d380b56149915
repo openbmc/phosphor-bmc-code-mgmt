@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a20defd_5aa6cf01",
+        "filename": "download_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-12-05T09:17:09Z",
+      "side": 1,
+      "message": "The doc does not specify if errno will be set or not. How do we know if error is set correctly or not?\nTo improve this log, I guess you could check if ec contains a error and print it if it does.",
+      "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -305,8 +305,11 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     std::error_code ec;
     if (!(fs::exists(file, ec) && fs::exists(sigFile, ec)))
     {
-        error("Failed to find the Data or signature file {PATH}: {ERROR_MSG}",
-              "PATH", file, "ERROR_MSG", ec.message());
+        error("Failed to find the Data or signature file {PATH}", "PATH", file);
+        if (ec)
+        {
+            error("Error message: {ERROR_MSG}", "ERROR_MSG", ec.message());
+        }
         elog<InternalFailure>();
     }
 

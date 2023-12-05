@@ -212,11 +212,11 @@ void ItemUpdater::processBMCImage()
 #ifdef BMC_STATIC_DUAL_IMAGE
                 // For dual image, it is possible that the secondary image is
                 // empty or contains invalid data, ignore such case.
-                info("Unable to find osRelease: {PATH}: {ERROR_MSG}", "PATH",
-                     osRelease, "ERROR_MSG", ec.message());
+                info("Unable to find osRelease: {PATH}: {ERRNO}", "PATH",
+                     osRelease, "ERRNO", errno);
 #else
-                error("Failed to read osRelease: {PATH}: {ERROR_MSG}", "PATH",
-                      osRelease, "ERROR_MSG", ec.message());
+                error("Failed to read osRelease: {PATH}: {ERRNO}", "PATH",
+                      osRelease, "ERRNO", errno);
 
                 // Try to get the version id from the mount directory name and
                 // call to delete it as this version may be corrupted. Dynamic

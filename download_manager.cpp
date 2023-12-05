@@ -65,8 +65,8 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
     std::error_code ec;
     if (!fs::is_directory(imgDirPath, ec))
     {
-        error("Image Dir {PATH} does not exist: {ERROR_MSG}", "PATH",
-              imgDirPath, "ERROR_MSG", ec.message());
+        error("Image Dir {PATH} does not exist: {ERRNO}", "PATH", imgDirPath,
+              "ERRNO", errno);
         elog<InternalFailure>();
         return;
     }

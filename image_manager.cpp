@@ -79,8 +79,8 @@ int Manager::processImage(const std::string& tarFilePath)
     std::error_code ec;
     if (!fs::is_regular_file(tarFilePath, ec))
     {
-        error("Tarball {PATH} does not exist: {ERROR_MSG}", "PATH", tarFilePath,
-              "ERROR_MSG", ec.message());
+        error("Tarball {PATH} does not exist: {ERRNO}", "PATH", tarFilePath,
+              "ERRNO", errno);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }
@@ -113,8 +113,8 @@ int Manager::processImage(const std::string& tarFilePath)
     // Verify the manifest file
     if (!fs::is_regular_file(manifestPath, ec))
     {
-        error("No manifest file {PATH}: {ERROR_MSG}", "PATH", tarFilePath,
-              "ERROR_MSG", ec.message());
+        error("No manifest file {PATH}: {ERRNO}", "PATH", tarFilePath, "ERRNO",
+              errno);
         report<ManifestFileFailure>(ManifestFail::PATH(tarFilePath.c_str()));
         return -1;
     }

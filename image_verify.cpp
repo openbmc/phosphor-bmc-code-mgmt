@@ -61,8 +61,8 @@ AvailableKeyTypes Signature::getAvailableKeyTypesFromSystem() const
     std::error_code ec;
     if (!fs::is_directory(signedConfPath, ec))
     {
-        error("Signed configuration path not found in the system: {ERROR_MSG}",
-              "ERROR_MSG", ec.message());
+        error("Signed configuration path not found in the system: {ERRNO}",
+              "ERRNO", errno);
         elog<InternalFailure>();
     }
 
@@ -305,8 +305,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     std::error_code ec;
     if (!(fs::exists(file, ec) && fs::exists(sigFile, ec)))
     {
-        error("Failed to find the Data or signature file {PATH}: {ERROR_MSG}",
-              "PATH", file, "ERROR_MSG", ec.message());
+        error("Failed to find the Data or signature file {PATH}: {ERRNO}",
+              "PATH", file, "ERRNO", errno);
         elog<InternalFailure>();
     }
 

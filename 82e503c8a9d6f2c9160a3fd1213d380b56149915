@@ -34,6 +34,24 @@
       "parentUuid": "7a20defd_5aa6cf01",
       "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b43d74_07d8cebc",
+        "filename": "download_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-12-07T20:40:29Z",
+      "side": 1,
+      "message": "You can just check \"if ec()\", example: https://github.com/openbmc/bmcweb/blob/998e0cbdc5092bdaa783d11c2760bf62084403ce/include/ibm/management_console_rest.hpp#L144\n\nAlthough I\u0027m curious how do you get the file doesn\u0027t exist error with an error value of 0. Doing a quick test:\n```\n    fs::path imgDirPath(\"/imaginary/\");\n    std::error_code ec;\n    if (!fs::is_directory(imgDirPath, ec))\n    {\n        std::cout \u003c\u003c \"error: \" \u003c\u003c ec.message() \u003c\u003c std::endl;\n        std::cout \u003c\u003c \"value: \" \u003c\u003c ec.value() \u003c\u003c std::endl;\n    }\n```\nOutput:\n```\nerror: No such file or directory\nvalue: 2\n```",
+      "parentUuid": "ee71b709_44c646fb",
+      "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -52,6 +52,24 @@
       "parentUuid": "ee71b709_44c646fb",
       "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9404cabf_3cb25bed",
+        "filename": "download_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-12-12T00:00:54Z",
+      "side": 1,
+      "message": "Thanks @Lei and @Adriana\nUpdated.",
+      "parentUuid": "a5b43d74_07d8cebc",
+      "revId": "82e503c8a9d6f2c9160a3fd1213d380b56149915",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

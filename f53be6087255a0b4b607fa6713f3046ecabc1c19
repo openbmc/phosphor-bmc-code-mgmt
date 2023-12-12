@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66705a08_0066bb62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-12-12T05:41:40Z",
+      "side": 1,
+      "message": "Thanks @arj\nUpdated",
+      "parentUuid": "d574a63d_e0b1f94b",
+      "revId": "f53be6087255a0b4b607fa6713f3046ecabc1c19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5439f58a_b4f805cf",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-12T02:17:10Z",
       "side": 1,
       "message": "Nitpick: change \"error\" to \"Error\"",
+      "revId": "f53be6087255a0b4b607fa6713f3046ecabc1c19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db03b8d4_73faff09",
+        "filename": "image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2023-12-12T05:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5439f58a_b4f805cf",
       "revId": "f53be6087255a0b4b607fa6713f3046ecabc1c19",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d574a63d_e0b1f94b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-12T02:12:32Z",
+      "side": 1,
+      "message": "Why sites.uclouvain.be? I\u0027ve never heard of that site and it\u0027s not clear why we should trust it to be canonical. This, on the other-hand is the actual implementation:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/errno-base.h?h\u003dv6.6\n\nPOSIX specifies errno constants here:\n\nhttps://pubs.opengroup.org/onlinepubs/9699919799/basedefs/errno.h.html#tag_13_10 (via https://pubs.opengroup.org/onlinepubs/9699919799/)",
+      "revId": "f53be6087255a0b4b607fa6713f3046ecabc1c19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

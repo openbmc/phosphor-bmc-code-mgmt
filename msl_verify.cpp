@@ -85,10 +85,10 @@ bool minimum_ship_level::verify(const std::string& versionManifest)
     if (rc < 0)
     {
         using namespace phosphor::logging;
-        using IncompatibleErr = sdbusplus::xyz::openbmc_project::Software::
-            Version::Error::Incompatible;
+        using IncompatibleErr = sdbusplus::error::xyz::openbmc_project::
+            software::version::Incompatible;
         using Incompatible =
-            xyz::openbmc_project::Software::Version::Incompatible;
+            xyz::openbmc_project::software::version::Incompatible;
         std::string purpose =
             "xyz.openbmc_project.Software.Version.VersionPurpose.BMC";
 

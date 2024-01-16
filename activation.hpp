@@ -33,8 +33,8 @@ using ActivationInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::Activation,
     sdbusplus::server::xyz::openbmc_project::association::Definitions>;
 using ActivationBlocksTransitionInherit =
-    sdbusplus::server::object_t<sdbusplus::xyz::openbmc_project::Software::
-                                    server::ActivationBlocksTransition>;
+    sdbusplus::server::object_t<sdbusplus::server::xyz::openbmc_project::
+                                    software::ActivationBlocksTransition>;
 using RedundancyPriorityInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object_t<

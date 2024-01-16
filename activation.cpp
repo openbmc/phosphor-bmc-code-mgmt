@@ -32,7 +32,7 @@ namespace softwareServer = sdbusplus::server::xyz::openbmc_project::software;
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using InternalFailure =
-    sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    sdbusplus::error::xyz::openbmc_project::common::InternalFailure;
 
 #ifdef WANT_SIGNATURE_VERIFY
 namespace control = sdbusplus::server::xyz::openbmc_project::control;
@@ -94,8 +94,8 @@ auto Activation::activation(Activations value) -> Activations
         fs::path uploadDir(IMG_UPLOAD_DIR);
         if (!verifySignature(uploadDir / versionId, SIGNED_IMAGE_CONF_PATH))
         {
-            using InvalidSignatureErr = sdbusplus::xyz::openbmc_project::
-                Software::Version::Error::InvalidSignature;
+            using InvalidSignatureErr = sdbusplus::error::xyz::openbmc_project::
+                software::version::InvalidSignature;
             report<InvalidSignatureErr>();
             // Stop the activation process, if fieldMode is enabled.
             if (parent.control::FieldMode::fieldModeEnabled())

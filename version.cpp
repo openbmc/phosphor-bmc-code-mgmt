@@ -24,8 +24,8 @@ namespace manager
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using Argument = xyz::openbmc_project::Common::InvalidArgument;
-using namespace sdbusplus::xyz::openbmc_project::Common::Error;
+using Argument = xyz::openbmc_project::common::InvalidArgument;
+using namespace sdbusplus::error::xyz::openbmc_project::common;
 
 std::string Version::getValue(const std::string& manifestFilePath,
                               std::string key)

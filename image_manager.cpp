@@ -33,12 +33,12 @@ namespace manager
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
-namespace Software = phosphor::logging::xyz::openbmc_project::Software;
-using ManifestFail = Software::Image::ManifestFileFailure;
-using UnTarFail = Software::Image::UnTarFailure;
-using InternalFail = Software::Image::InternalFailure;
-using ImageFail = Software::Image::ImageFailure;
+using namespace sdbusplus::error::xyz::openbmc_project::software::image;
+namespace Software = phosphor::logging::xyz::openbmc_project::software;
+using ManifestFail = Software::image::ManifestFileFailure;
+using UnTarFail = Software::image::UnTarFailure;
+using InternalFail = Software::image::InternalFailure;
+using ImageFail = Software::image::ImageFailure;
 namespace fs = std::filesystem;
 
 struct RemovablePath

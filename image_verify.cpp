@@ -31,7 +31,7 @@ PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
 using namespace phosphor::software::manager;
 using InternalFailure =
-    sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    sdbusplus::error::xyz::openbmc_project::common::InternalFailure;
 
 constexpr auto keyTypeTag = "KeyType";
 constexpr auto hashFunctionTag = "HashType";

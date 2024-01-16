@@ -34,10 +34,10 @@ namespace control = sdbusplus::server::xyz::openbmc_project::control;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
+using namespace sdbusplus::error::xyz::openbmc_project::software::image;
 using namespace phosphor::software::image;
 namespace fs = std::filesystem;
-using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
+using NotAllowed = sdbusplus::error::xyz::openbmc_project::common::NotAllowed;
 
 void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 {
@@ -596,7 +596,7 @@ bool ItemUpdater::fieldModeEnabled(bool value)
     }
     else if (!value && control::FieldMode::fieldModeEnabled())
     {
-        elog<NotAllowed>(xyz::openbmc_project::Common::NotAllowed::REASON(
+        elog<NotAllowed>(xyz::openbmc_project::common::NotAllowed::REASON(
             "FieldMode is not allowed to be cleared"));
     }
 

@@ -57,6 +57,12 @@ conf.set_quoted('UPDATEABLE_REV_ASSOCIATION', 'software_version')
 conf.set_quoted('BMC_ROFS_PREFIX', get_option('media-dir') + '/rofs-')
 # The name of the BMC table of contents file
 conf.set_quoted('OS_RELEASE_FILE', '/etc/os-release')
+# The name of the Sequencer0 table of contents file
+conf.set_quoted('SEQUENCER0_RELEASE_FILE', get_option('sequencer0-version-file-path'))
+if get_option('dual-sequencer').enabled()
+    # The name of the Sequencer1 table of contents file
+    conf.set_quoted('SEQUENCER1_RELEASE_FILE', get_option('sequencer1-version-file-path'))
+endif
 # The dir where activation data is stored in files
 conf.set_quoted('PERSIST_DIR', '/var/lib/phosphor-bmc-code-mgmt/')
 
@@ -91,6 +97,9 @@ conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
 
 if get_option('host-bios-upgrade').allowed()
     conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
+endif
+if get_option('dual-sequencer').enabled()
+    conf.set('DUAL_SEQUENCER', get_option('dual-sequencer').enabled())
 endif
 
 if get_option('bmc-static-dual-image').allowed()

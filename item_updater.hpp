@@ -65,6 +65,10 @@ class ItemUpdater : public ItemUpdaterInherit
         setBMCInventoryPath();
         processBMCImage();
         restoreFieldModeStatus();
+        createSequencerObject(SEQUENCER0_RELEASE_FILE, seq0Activations, seq0Version);
+#ifdef DUAL_SEQUENCER
+       createSequencerObject(SEQUENCER1_RELEASE_FILE, seq1Activations, seq1Version);
+#endif
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
 #endif
@@ -279,7 +283,16 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
 #endif
-
+/** @brief Create the Sequencer object */
+    void createSequencerObject(const std::string& sequencerPath,
+                               std::unique_ptr<Activation>& seqActivations,
+                               std::unique_ptr<VersionClass>& seqVersion);
+    std::unique_ptr<Activation> seq0Activations;
+    std::unique_ptr<VersionClass> seq0Version;
+#ifdef DUAL_SEQUENCER
+    std::unique_ptr<Activation> seq1Activations;
+    std::unique_ptr<VersionClass> seq1Version;
+#endif
     /** @brief Get the slot number of running image */
     void getRunningSlot();
 };

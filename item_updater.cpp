@@ -879,6 +879,48 @@ void ItemUpdater::createBIOSObject()
 }
 #endif
 
+void ItemUpdater::createSequencerObject(const std::string& sequencerPath,
+                                        std::unique_ptr<Activation>& seqActivations,
+                                        std::unique_ptr<VersionClass>& seqVersion)
+{
+    // Get version id from last item in the path
+    auto pos = sequencerPath.rfind("/");
+    if (pos == std::string::npos)
+    {
+        error("No version id found in object path {PATH}", "PATH", sequencerPath);
+        return;
+    }
+
+    auto versionName = sequencerPath.substr(pos + 1);
+    size_t index = versionName.find('.');
+    std::string versionId = versionName.substr(0, index);
+
+    auto version = VersionClass::getSequencerVersion(sequencerPath);
+    if (version.empty())
+    {
+        error("Failed to read version from {VERSION_ID}: {PATH}", "PATH", sequencerPath, "VERSION_ID", versionId);
+        return;
+    }
+    auto objpath = fs::path(SOFTWARE_OBJPATH) / versionId;
+    AssociationList assocs = {};
+    createActiveAssociation(objpath);
+    createFunctionalAssociation(objpath);
+
+    seqActivations = std::make_unique<Activation>(
+        bus, objpath, *this, versionId, server::Activation::Activations::Active,
+        assocs);
+    auto dummyErase = [](std::string /*entryId*/) {
+        // Do nothing;
+    };
+    seqVersion = std::make_unique<VersionClass>(
+        bus, objpath, version, VersionPurpose::Other, "", "",
+        std::vector<std::string>(),
+        std::bind(dummyErase, std::placeholders::_1), "");
+    seqVersion->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, objpath,
+                                                              *seqVersion);
+}
+
 void ItemUpdater::getRunningSlot()
 {
     // Check /run/media/slot to get the slot number

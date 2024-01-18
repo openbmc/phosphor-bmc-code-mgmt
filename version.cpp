@@ -224,6 +224,23 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     return version;
 }
 
+std::string Version::getSequencerVersion(const std::string& releaseFilePath)
+{
+    std::string version{};
+    std::ifstream efile;
+    efile.open(releaseFilePath);
+
+    getline(efile, version);
+    efile.close();
+
+    if (version.empty())
+    {
+        error("Sequencer current version is empty");
+    }
+
+    return version;
+}
+
 void Delete::delete_()
 {
     if (parent.eraseCallback)

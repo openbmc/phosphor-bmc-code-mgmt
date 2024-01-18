@@ -117,6 +117,8 @@ option(
 
 option('bmc-static-dual-image', type: 'feature', value: 'enabled',
     description: 'Enable the dual image support for static layout.')
+option('dual-sequencer', type: 'feature', value: 'disabled',
+    description: 'Enable dual sequencers support.')
 
 option(
     'alt-rofs-dir', type: 'string',
@@ -128,4 +130,16 @@ option(
     'alt-rwfs-dir', type: 'string',
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
+)
+
+option(
+    'sequencer0-version-file-path', type: 'string',
+    value: '/run/sequencer0.version',
+    description: 'The file path of sequencer0 version.',
+)
+
+option(
+    'sequencer1-version-file-path', type: 'string',
+    value: '/run/sequencer1.version',
+    description: 'The file path of sequencer1 version.',
 )

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f929aa_fe8cdf09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-01-25T19:15:25Z",
+      "side": 1,
+      "message": "Could you provide more information about the sequencer? I don\u0027t see bmcweb implementing the FirmwareInventory/sequencer0 path. Also how is the /run/sequencer0.version file being created on the BMC?",
+      "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

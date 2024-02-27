@@ -57,6 +57,12 @@ conf.set_quoted('UPDATEABLE_REV_ASSOCIATION', 'software_version')
 conf.set_quoted('BMC_ROFS_PREFIX', get_option('media-dir') + '/rofs-')
 # The name of the BMC table of contents file
 conf.set_quoted('OS_RELEASE_FILE', '/etc/os-release')
+# The name of the CPLD0 table of contents file
+conf.set_quoted('CPLD0_RELEASE_FILE', get_option('cpld0-version-file-path'))
+if get_option('dual-cpld').enabled()
+    # The name of the CPLD1 table of contents file
+    conf.set_quoted('CPLD1_RELEASE_FILE', get_option('cpld1-version-file-path'))
+endif
 # The dir where activation data is stored in files
 conf.set_quoted('PERSIST_DIR', '/var/lib/phosphor-bmc-code-mgmt/')
 
@@ -66,8 +72,8 @@ conf.set('UBIFS_LAYOUT', get_option('bmc-layout').contains('ubi'))
 conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 
 # Configurable features
-conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').allowed())
-conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').allowed())
+conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').enabled())
+conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').enabled())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -89,12 +95,16 @@ conf.set_quoted('SYNC_LIST_FILE_NAME', get_option('sync-list-file-name'))
 conf.set_quoted('BMC_MSL', get_option('bmc-msl'))
 conf.set_quoted('REGEX_BMC_MSL', get_option('regex-bmc-msl'))
 
-if get_option('host-bios-upgrade').allowed()
+if get_option('host-bios-upgrade').enabled()
     conf.set_quoted('BIOS_OBJPATH', get_option('bios-object-path'))
 endif
 
-if get_option('bmc-static-dual-image').allowed()
-  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').allowed())
+if get_option('dual-cpld').enabled()
+  conf.set('DUAL_CPLD', get_option('dual-cpld').enabled())
+endif
+
+if get_option('bmc-static-dual-image').enabled()
+  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').enabled())
   conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
   conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
 else
@@ -199,11 +209,11 @@ elif get_option('bmc-layout').contains('mmc')
     ]
 endif
 
-if get_option('host-bios-upgrade').allowed()
+if get_option('host-bios-upgrade').enabled()
     unit_files += 'obmc-flash-host-bios@.service.in'
 endif
 
-if get_option('bmc-static-dual-image').allowed()
+if get_option('bmc-static-dual-image').enabled()
     unit_files += [
         'static/obmc-flash-bmc-alt@.service.in',
         'static/obmc-flash-bmc-static-mount-alt.service.in',
@@ -211,7 +221,7 @@ if get_option('bmc-static-dual-image').allowed()
     ]
 endif
 
-if get_option('sync-bmc-files').allowed()
+if get_option('sync-bmc-files').enabled()
     executable(
         'phosphor-sync-software-manager',
         'sync_manager.cpp',
@@ -231,7 +241,7 @@ if get_option('sync-bmc-files').allowed()
     )
 endif
 
-if (get_option('verify-signature').allowed())
+if (get_option('verify-signature').enabled())
     image_updater_sources += files(
         'utils.cpp',
         'image_verify.cpp',
@@ -314,10 +324,10 @@ if not build_tests.disabled()
 )
 endif
 
-if get_option('usb-code-update').allowed()
+if get_option('usb-code-update').enabled()
     subdir('usb')
 endif
 
-if get_option('side-switch-on-boot').allowed()
+if get_option('side-switch-on-boot').enabled()
     subdir('side-switch')
 endif

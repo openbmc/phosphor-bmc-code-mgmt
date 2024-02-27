@@ -34,10 +34,10 @@ namespace control = sdbusplus::server::xyz::openbmc_project::control;
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using namespace sdbusplus::error::xyz::openbmc_project::software::image;
+using namespace sdbusplus::xyz::openbmc_project::Software::Image::Error;
 using namespace phosphor::software::image;
 namespace fs = std::filesystem;
-using NotAllowed = sdbusplus::error::xyz::openbmc_project::common::NotAllowed;
+using NotAllowed = sdbusplus::xyz::openbmc_project::Common::Error::NotAllowed;
 
 void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 {
@@ -596,7 +596,7 @@ bool ItemUpdater::fieldModeEnabled(bool value)
     }
     else if (!value && control::FieldMode::fieldModeEnabled())
     {
-        elog<NotAllowed>(xyz::openbmc_project::common::NotAllowed::REASON(
+        elog<NotAllowed>(xyz::openbmc_project::Common::NotAllowed::REASON(
             "FieldMode is not allowed to be cleared"));
     }
 
@@ -878,6 +878,49 @@ void ItemUpdater::createBIOSObject()
                                                               *biosVersion);
 }
 #endif
+
+void ItemUpdater::createCPLDObject(const std::string& cpldPath,
+                                   std::unique_ptr<Activation>& cpldActivations,
+                                   std::unique_ptr<VersionClass>& cpldVersion)
+{
+    // Get version id from last item in the path
+    auto pos = cpldPath.rfind("/");
+    if (pos == std::string::npos)
+    {
+        error("No version id found in object path {PATH}", "PATH", cpldPath);
+        return;
+    }
+
+    auto versionName = cpldPath.substr(pos + 1);
+    size_t index = versionName.find('.');
+    std::string versionId = versionName.substr(0, index);
+
+    auto version = VersionClass::getCPLDVersion(cpldPath);
+    if (version.empty())
+    {
+        error("Failed to read version from {VERSION_ID}: {PATH}", "PATH",
+              cpldPath, "VERSION_ID", versionId);
+        return;
+    }
+    auto objpath = fs::path(SOFTWARE_OBJPATH) / versionId;
+    AssociationList assocs = {};
+    createActiveAssociation(objpath);
+    createFunctionalAssociation(objpath);
+
+    cpldActivations = std::make_unique<Activation>(
+        bus, objpath, *this, versionId, server::Activation::Activations::Active,
+        assocs);
+    auto dummyErase = [](std::string /*entryId*/) {
+        // Do nothing;
+    };
+    cpldVersion = std::make_unique<VersionClass>(
+        bus, objpath, version, VersionPurpose::BMC, "", "",
+        std::vector<std::string>(),
+        std::bind(dummyErase, std::placeholders::_1), "");
+    cpldVersion->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, objpath,
+                                                              *cpldVersion);
+}
 
 void ItemUpdater::getRunningSlot()
 {

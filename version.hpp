@@ -160,6 +160,16 @@ class Version : public VersionInherit
      */
     static std::string getBMCVersion(const std::string& releaseFilePath);
 
+    /**
+     * @brief Get the CPLD version string.
+     *
+     * @param[in] releaseFilePath - The path to the file which contains
+     *                              the release version string.
+     *
+     * @return The version string.
+     */
+    static std::string getCPLDVersion(const std::string& releaseFilePath);
+
     /* @brief Check if this version is functional.
      *
      * @return - Returns the functional value.

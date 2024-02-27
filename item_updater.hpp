@@ -65,6 +65,10 @@ class ItemUpdater : public ItemUpdaterInherit
         setBMCInventoryPath();
         processBMCImage();
         restoreFieldModeStatus();
+        createCPLDObject(CPLD0_RELEASE_FILE, cpld0Activations, cpld0Version);
+#ifdef DUAL_CPLD
+        createCPLDObject(CPLD1_RELEASE_FILE, cpld1Activations, cpld1Version);
+#endif
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
 #endif
@@ -278,6 +282,16 @@ class ItemUpdater : public ItemUpdaterInherit
   public:
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
+#endif
+    /** @brief Create the CPLD object */
+    void createCPLDObject(const std::string& cpldPath,
+                          std::unique_ptr<Activation>& cpldActivations,
+                          std::unique_ptr<VersionClass>& cpldVersion);
+    std::unique_ptr<Activation> cpld0Activations;
+    std::unique_ptr<VersionClass> cpld0Version;
+#ifdef DUAL_CPLD
+    std::unique_ptr<Activation> cpld1Activations;
+    std::unique_ptr<VersionClass> cpld1Version;
 #endif
 
     /** @brief Get the slot number of running image */

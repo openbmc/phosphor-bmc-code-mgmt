@@ -24,8 +24,8 @@ namespace manager
 
 PHOSPHOR_LOG2_USING;
 using namespace phosphor::logging;
-using Argument = xyz::openbmc_project::common::InvalidArgument;
-using namespace sdbusplus::error::xyz::openbmc_project::common;
+using Argument = xyz::openbmc_project::Common::InvalidArgument;
+using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
 std::string Version::getValue(const std::string& manifestFilePath,
                               std::string key)
@@ -219,6 +219,23 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
     {
         error("BMC current version is empty");
         elog<InternalFailure>();
+    }
+
+    return version;
+}
+
+std::string Version::getCPLDVersion(const std::string& releaseFilePath)
+{
+    std::string version{};
+    std::ifstream efile;
+    efile.open(releaseFilePath);
+
+    getline(efile, version);
+    efile.close();
+
+    if (version.empty())
+    {
+        error("CPLD current version is empty");
     }
 
     return version;

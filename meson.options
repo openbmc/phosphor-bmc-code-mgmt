@@ -118,6 +118,9 @@ option(
 option('bmc-static-dual-image', type: 'feature', value: 'enabled',
     description: 'Enable the dual image support for static layout.')
 
+option('dual-cpld', type: 'feature', value: 'disabled',
+    description: 'Enable dual cplds support.')
+
 option(
     'alt-rofs-dir', type: 'string',
     value: '/run/media/rofs-alt',
@@ -128,4 +131,16 @@ option(
     'alt-rwfs-dir', type: 'string',
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
+)
+
+option(
+    'cpld0-version-file-path', type: 'string',
+    value: '/run/cpld0.version',
+    description: 'The file path of cpld0 version.',
+)
+
+option(
+    'cpld1-version-file-path', type: 'string',
+    value: '/run/cpld1.version',
+    description: 'The file path of cpld1 version.',
 )

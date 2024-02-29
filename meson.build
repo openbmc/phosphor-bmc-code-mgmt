@@ -68,6 +68,7 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').allowed())
 conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').allowed())
+conf.set('START_UPDATE_DBUS_INTEFACE', get_option('start-update-dbus-interface').allowed())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -254,12 +255,28 @@ executable(
     install: true
 )
 
+software_manager_common_sources = files()
+
+if get_option('start-update-dbus-interface').allowed()
+    executable(
+        'phosphor-software-manager',
+        'software_manager.cpp',
+        software_manager_common_sources,
+        dependencies: [deps, ssl],
+        install: true
+    )
+    unit_files += [
+        'xyz.openbmc_project.Software.Manager.service.in'
+    ]
+endif
+
 executable(
     'phosphor-version-software-manager',
     'image_manager.cpp',
     'image_manager_main.cpp',
     'version.cpp',
     'watch.cpp',
+    software_manager_common_sources,
     dependencies: [deps, ssl],
     install: true
 )

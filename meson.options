@@ -25,6 +25,11 @@ option(
     description: 'Firmware update via USB.',
 )
 
+option('new-code-update', type: 'feature', value: 'enabled',
+    description: 'New Code update design -
+    https://github.com/openbmc/docs/blob/master/designs/code-update.md.',
+)
+
 option(
     'side-switch-on-boot', type: 'feature', value: 'enabled',
     description: 'Automatic flash side switch on boot',

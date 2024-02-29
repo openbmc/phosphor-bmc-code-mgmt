@@ -68,6 +68,7 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').allowed())
 conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').allowed())
+conf.set('NEW_CODE_UPDATE', get_option('new-code-update').allowed())
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -254,12 +255,24 @@ executable(
     install: true
 )
 
+image_manager_sources = files()
+
+if get_option('new-code-update').allowed()
+    image_manager_sources += files(
+       'image_manager_main_new.cpp'
+    )
+else
+    image_manager_sources += files(
+        'image_manager.cpp',
+        'image_manager_main.cpp',
+        'version.cpp',
+        'watch.cpp'
+    )
+endif
+
 executable(
     'phosphor-version-software-manager',
-    'image_manager.cpp',
-    'image_manager_main.cpp',
-    'version.cpp',
-    'watch.cpp',
+    image_manager_sources,
     dependencies: [deps, ssl],
     install: true
 )

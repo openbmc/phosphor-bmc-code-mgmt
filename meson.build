@@ -256,12 +256,28 @@ executable(
     install: true
 )
 
+software_manager_common_sources = files()
+
+if get_option('software-update-dbus-interface').allowed()
+    executable(
+        'phosphor-software-manager',
+        'software_manager.cpp',
+        software_manager_common_sources,
+        dependencies: [deps, ssl],
+        install: true
+    )
+    unit_files += [
+        'xyz.openbmc_project.Software.Manager.service.in'
+    ]
+endif
+
 executable(
     'phosphor-version-software-manager',
     'image_manager.cpp',
     'image_manager_main.cpp',
     'version.cpp',
     'watch.cpp',
+    software_manager_common_sources,
     dependencies: [deps, ssl],
     install: true
 )

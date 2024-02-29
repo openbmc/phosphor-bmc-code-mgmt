@@ -25,6 +25,10 @@ option(
     description: 'Firmware update via USB.',
 )
 
+option('start-update-dbus-interface', type: 'feature', value: 'enabled',
+    description: 'New design using start update D-Bus interface - https://github.com/openbmc/docs/blob/master/designs/code-update.md.',
+)
+
 option(
     'side-switch-on-boot', type: 'feature', value: 'enabled',
     description: 'Automatic flash side switch on boot',

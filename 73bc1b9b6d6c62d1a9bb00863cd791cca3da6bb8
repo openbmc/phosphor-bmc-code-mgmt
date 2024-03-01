@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55880bce_e58d66a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2024-03-01T02:30:27Z",
+      "side": 1,
+      "message": "I would expect some related changes in meson.build as well to use the new option.",
+      "revId": "73bc1b9b6d6c62d1a9bb00863cd791cca3da6bb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

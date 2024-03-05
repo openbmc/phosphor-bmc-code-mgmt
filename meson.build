@@ -259,7 +259,9 @@ image_manager_sources = files()
 
 if get_option('new-code-update').allowed()
     image_manager_sources += files(
-       'image_manager_main_new.cpp'
+       'image_manager_main_new.cpp',
+        'image_manager.cpp',
+        'version.cpp'
     )
 else
     image_manager_sources += files(
@@ -311,6 +313,25 @@ endforeach
 build_tests = get_option('tests')
 if not build_tests.disabled()
     gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
+    gmock = dependency('gmock', disabler: true, required: build_tests)
+    if not gtest.found() or not gmock.found()
+        gtest_proj = import('cmake').subproject('googletest', required: false)
+        if gtest_proj.found()
+            gtest = declare_dependency(
+                dependencies: [
+                    dependency('threads'),
+                    gtest_proj.dependency('gtest'),
+                    gtest_proj.dependency('gtest_main'),
+                ]
+            )
+            gmock = gtest_proj.dependency('gmock')
+        else
+            assert(
+                not get_option('tests').enabled(),
+                'Googletest is required if tests are enabled'
+            )
+        endif
+    endif
     include_srcs = declare_dependency(sources: [
         'utils.cpp',
         'image_verify.cpp',
@@ -324,7 +345,23 @@ if not build_tests.disabled()
             './test/utest.cpp',
             dependencies: [deps, gtest, include_srcs, ssl]
         )
-)
+    )
+
+    if get_option('new-code-update').allowed()
+        install_data(sources : 'test/image.tar.gz', install_dir : '/tmp/image.tar.gz')
+
+        update_srcs = declare_dependency(sources: [
+            'image_manager.cpp']
+        )
+        test('test_update_interface',
+            executable(
+                'test_update_interface',
+                './test/test_update_interface.cpp',
+                dependencies: [deps, gtest, gmock, include_srcs, update_srcs, ssl]
+            )
+        )
+
+    endif
 endif
 
 if get_option('usb-code-update').allowed()

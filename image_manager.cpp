@@ -1,9 +1,6 @@
-#include "config.h"
-
 #include "image_manager.hpp"
 
 #include "version.hpp"
-#include "watch.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,11 +21,7 @@
 #include <string>
 #include <system_error>
 
-namespace phosphor
-{
-namespace software
-{
-namespace manager
+namespace phosphor::software::manager
 {
 
 PHOSPHOR_LOG2_USING;
@@ -74,7 +67,80 @@ std::vector<std::string> getSoftwareObjects(sdbusplus::bus_t& bus)
 
 } // namespace
 
+#ifdef NEW_CODE_UPDATE
+
+void Manager::createBMCVersion()
+{
+    auto versionStr = Version::getBMCVersion(OS_RELEASE_FILE);
+    if (versionStr.empty())
+    {
+        throw std::runtime_error("Unable to read version from os-release");
+    }
+    auto salt = std::to_string(randomGen());
+    auto id = Version::getId(versionStr + salt);
+    auto objPath = std::string{SOFTWARE_OBJPATH} + "/bmc/" + id;
+    std::vector<std::string> compatibleNames = {};
+
+    // Create Version object
+    auto version = std::make_unique<Version>(
+        bus, objPath, versionStr, Version::VersionPurpose::BMC, std::string(""),
+        std::string(""), compatibleNames,
+        std::bind(&Manager::erase, this, std::placeholders::_1), id);
+    versions.insert(std::make_pair(id, std::move(version)));
+}
+
+sdbusplus::message::object_path
+    Manager::startUpdate(sdbusplus::message::unix_fd imageFd,
+                         UpdateIntf::ApplyTimes applyTime,
+                         [[maybe_unused]] bool forceUpdate)
+{
+    if (updateInProgress)
+    {
+        // Update is in progress, reject new updates and set error code to
+        // xyz.openbmc_project.Common.Error.Unavailable
+    }
+
+    auto imagePath =
+        fs::read_symlink(fs::path("/proc/self/fd") / std::to_string(imageFd));
+    std::string objectPath;
+    if (processImageInternal(imagePath.generic_string(), objectPath) != 0)
+    {
+        // Error processing image, set error code to
+        // xyz.openbmc_project.Software.Update.Error.InvalidImage
+        return sdbusplus::message::object_path("");
+    }
+
+    if (forceUpdate)
+    {
+        // Skip the validation checks for now.
+    }
+
+    if (applyTime == UpdateIntf::ApplyTimes::OnReset &&
+        applyTime != UpdateIntf::ApplyTimes::OnApplyStagedImage)
+    {
+        updateInProgress = true;
+    }
+
+    return sdbusplus::message::object_path(objectPath);
+}
+
+void Manager::applyStagedImage()
+{
+    return;
+}
+
+#else
+
 int Manager::processImage(const std::string& tarFilePath)
+{
+    std::string objectPath;
+    return processImageInternal(tarFilePath, objectPath);
+}
+
+#endif // !NEW_CODE_UPDATE
+
+int Manager::processImageInternal(const std::string& tarFilePath,
+                                  std::string& objPath)
 {
     std::error_code ec;
     if (!fs::is_regular_file(tarFilePath, ec))
@@ -202,7 +268,7 @@ int Manager::processImage(const std::string& tarFilePath)
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
 
-    auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
+    objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
     // This service only manages the uploaded versions, and there could be
     // active versions on D-Bus that is not managed by this service.
@@ -305,6 +371,4 @@ int Manager::unTar(const std::string& tarFilePath,
     return 0;
 }
 
-} // namespace manager
-} // namespace software
-} // namespace phosphor
+} // namespace phosphor::software::manager

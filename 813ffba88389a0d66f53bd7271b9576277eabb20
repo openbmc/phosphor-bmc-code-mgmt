@@ -33,6 +33,24 @@
       "message": "I don\u0027t think this should be an either-or for the time being.  We should start with a separate daemon because otherwise we\u0027re going to end up with a case where the old code isn\u0027t compiled in CI and we don\u0027t catch failures until we get to the Yocto side of the process.",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9b4dd6_92f256b4",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-03-12T00:34:21Z",
+      "side": 1,
+      "message": "I have modified this patch and removed the meson option all together. The interface change is not that complex that we have to preserve two flows in parallel and we can make the change in the base code itself. Soon, i would raise the patch prototyping this and will see what\u0027s the feedback.",
+      "parentUuid": "1fbab9dc_0fa34db3",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

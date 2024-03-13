@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0f95ce_3eee5418",
+        "filename": "meson.options",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001598
+      },
+      "writtenOn": "2024-03-13T03:03:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54d6de07_363449f9",
+      "revId": "e25d8ffcd8476635b9c051066fc57845e6683fed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f244504b_90de512a",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-12T08:40:45Z",
       "side": 1,
       "message": "Why can\u0027t we get this from D-Bus?",
+      "revId": "e25d8ffcd8476635b9c051066fc57845e6683fed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dd9cd7b_11f79161",
+        "filename": "version.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1001598
+      },
+      "writtenOn": "2024-03-13T03:03:09Z",
+      "side": 1,
+      "message": "This commit is similar to PR68924: [item-updater: Implement sequencer version](https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/68924).\nWe get CPLD version from CPLD through script and store it in /run/cpldx.version. /run/cpldx.version is required for getting cpld version from D-Bus.",
+      "parentUuid": "f244504b_90de512a",
       "revId": "e25d8ffcd8476635b9c051066fc57845e6683fed",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

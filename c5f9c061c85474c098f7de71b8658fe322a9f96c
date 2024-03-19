@@ -34,6 +34,23 @@
       "parentUuid": "88f929aa_fe8cdf09",
       "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a996f8_a15ef8d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-03-19T15:59:04Z",
+      "side": 1,
+      "message": "It is advised that the app interested in the version creates the d-bus object, since the bmc-code-mgmt app manages the actual writing of the images. These are other proposals where it was mentioned to have the interested app to create the version objects:\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/66558\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/65670",
+      "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

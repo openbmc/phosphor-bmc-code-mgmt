@@ -51,6 +51,24 @@
       "message": "It is advised that the app interested in the version creates the d-bus object, since the bmc-code-mgmt app manages the actual writing of the images. These are other proposals where it was mentioned to have the interested app to create the version objects:\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/66558\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/65670",
       "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b37fe03_b3efd392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001311
+      },
+      "writtenOn": "2024-03-22T07:39:35Z",
+      "side": 1,
+      "message": "Thank you for your suggestion. I will try to create a dbus object to store the sequencer version.",
+      "parentUuid": "a0a996f8_a15ef8d3",
+      "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

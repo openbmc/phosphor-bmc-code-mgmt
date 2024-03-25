@@ -104,6 +104,24 @@
       "parentUuid": "8fa5a03c_1e10245b",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f67624b_d4e2c6a4",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2024-03-25T16:57:38Z",
+      "side": 1,
+      "message": "This is different than what we have done in bmcweb.\n \nMy main concern here is consistency across the repos. \nA 2nd concern is companies knowing how to disable this.\nA 3rd concern is since most layers use the default, non production-ready features will be enabled.\n\nOnly later, after a feature is \"ready for production\" in bmcweb, have we enabled it by default.  https://github.com/openbmc/bmcweb/commit/8615915cc51a468c1c0b6eabb684616d0f2abe0f\n\nFrom a tested in CI, it makes sense our default policy should enabled.\n\nHow should companies/layers know to disable new options? Options like this might not be production-ready. Should options that are more company—or architecture-specific also be enabled by default?\n\nIn bmcweb, should features like aggregation, experimental-redfish-multi-computer-system, and experimental-http2 be enabled by default?\nhttps://github.com/openbmc/bmcweb/blob/master/meson_options.txt#L284\n\nThose options are still under development, they aren\u0027t a full fledged feature. aggregation I might support enabling by default. \n\nWhat about more company or architecture-specific like ibm-management-console, redfish-dump, and crashdump?\n\ncrashdump calls com.intel.crashdump so I would say no, same with ibm-management-console. \n\nredfish-dump uses phosphor-debug-collector so I would support that being enabled by default.",
+      "parentUuid": "aee87a15_8d75fd90",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

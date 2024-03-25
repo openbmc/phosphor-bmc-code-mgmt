@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "316f6d82_6e0ec80d",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": ".... this is a comment, but doesn\u0027t do what it says it does.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdd9b6fd_e5e8e8fa",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "why read /proc ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 35,
+        "endLine": 104,
+        "endChar": 48
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c28be16e_a38e67ca",
+        "filename": "image_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "generic_string?  don\u0027t we just want string()?  (i\u0027ll be honest, I don\u0027t know the difference).",
+      "range": {
+        "startLine": 106,
+        "startChar": 39,
+        "endLine": 106,
+        "endChar": 53
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85fe7ce5_16bbc9ea",
+        "filename": "image_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "This ifdef is really worrisome.\n\n1. It duplicates quite a bit of code between branches.\n2. Inside the ifdef, there isn\u0027t balanced braces.\n3. 1 and 2 make it very difficult to read and understand the difference.\n\n\nCould we instead do something like\n\n    explicit Manager(sdbusplus::bus_t\u0026 bus) :\n        ...\n    {\n        if constexpr(new_thing){\n            createBMCVersion();\n        } else {\n            // Do nothing\n        }\n    }\n    \n    \nThat way it\u0027s very clear what happens in each path.",
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3719229_2f921cc2",
+        "filename": "image_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "This is taking a pointer reference to an intermediate rvalue.  I would expect at a minimum that this would show up in ASAN as a failure.\n\n\nIn addition, ideally new code should be using sdbusplus::message::object_path if it can.",
+      "range": {
+        "startLine": 39,
+        "startChar": 66,
+        "endLine": 39,
+        "endChar": 73
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381aec1d_92d712ae",
+        "filename": "image_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "You don\u0027t need to ifdef new methods added.  Just make sure the old code paths don\u0027t call them.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 64
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe0ae0d_33a31079",
+        "filename": "image_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "default init your variables please so it\u0027s explicit.",
+      "range": {
+        "startLine": 114,
+        "startChar": 9,
+        "endLine": 114,
+        "endChar": 25
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "936d6c9e_af17d77f",
+        "filename": "image_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "Please follow the initialization style already present in this interface.  (ie, move the std::string to the front).",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 34
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3d5d52_885551ab",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "THese two look duplicated between the branches?",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 264,
+        "endChar": 21
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5faecda_5e86fcff",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "I thought the \"not found\" branching logic wasn\u0027t required anymore on modern meson?",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 13
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdbce3eb_aaeda062",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "????????  We shouldn\u0027t be installing test files on the bmc.  I suspect you need to encode a header file with configure_file, that gives a pointer to a test data directory within the build.",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 86
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33348bd2_72270e69",
+        "filename": "test/test_update_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:49:52Z",
+      "side": 1,
+      "message": "I appreciate that you\u0027re trying to test.  These mock DBus interfaces have been widely contested;  We should ask ourselves if we want to propagate their usage in the project further.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 65
+      },
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

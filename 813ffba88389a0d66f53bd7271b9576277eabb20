@@ -122,6 +122,24 @@
       "parentUuid": "aee87a15_8d75fd90",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d7b3a2_84eb1b7a",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-25T17:24:40Z",
+      "side": 1,
+      "message": "\u003e This is different than what we have done in bmcweb.\n\nHonestly, bmcweb is the \"weird one\" in this context.  Almost every other repository we have taken the opposite stance.  Anytime I come across one doing it backwards, I usually try to fix it (which usually happens when I fix something and then only realize that the \"OEM\" side is broken due to a Yocto config in meta-ibm/meta-openpower).\n\n\u003e A 2nd concern is companies knowing how to disable this.\n\nThis is on the person owning the meson.option and the maintainer to ensure that there is a PACKAGECONFIG added for it at the same time and disabled by default.\n\n\u003e A 3rd concern is since most layers use the default, non production-ready features will be enabled.\n\nSee my response to 2nd concern.  It is the same answer.\n\n\u003e From a tested in CI, it makes sense our default policy should enabled.\n\nNo.  Tested in CI should be the maximal amount of code tested.  Otherwise you end up with (and we\u0027ve had this exact problem) code that is only even compiled by Yocto-integration-time and is broken.  I kept having this problem with PLDM specifically in the recent past.\n\n\u003e In bmcweb, should features like aggregation, experimental-redfish-multi-computer-system, and experimental-http2 be enabled by default?\n\nI\u0027m not going to discuss bmcweb policy in a change in a different repository.  We can discuss this elsewhere.\n\n\u003e What about more company or architecture-specific like ibm-management-console, redfish-dump, and crashdump?\n\nThere are examples of exactly this in many other repositories.  In CI for the repository we enable all OEM paths; in meta-phosphor we disable them.  See phosphor-dbus-interfaces, pldm, etc.",
+      "parentUuid": "7f67624b_d4e2c6a4",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

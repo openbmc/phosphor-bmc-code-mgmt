@@ -250,6 +250,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4c2a34f_aa13398b",
+        "filename": "test/image.tar.gz",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-25T20:51:21Z",
+      "side": 1,
+      "message": "Is it possible to just generate this file on the fly in the tests?  Checking in binaries generally isn\u0027t a great idea, and based on the size I assume this is just a tarball compressed small file?",
+      "revId": "006475e2e7d255dab0c34f955f54e11124d86703",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33348bd2_72270e69",
         "filename": "test/test_update_interface.cpp",
         "patchSetId": 1

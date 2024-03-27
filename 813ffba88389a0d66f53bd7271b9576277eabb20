@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a70f815_69a6b1b5",
+        "filename": "image_manager_main_new.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-27T18:57:47Z",
+      "side": 1,
+      "message": "\"just\".  I think the motivation here was that there actually are a good amount of changes since the effectively image-manager goes away and trying to do all this in a single daemon would require a messy `#ifdef CONFIG` tree.\n\nIsn\u0027t it cleaner to have a new daemon, trying to refactor and/or reuse pieces of code as much as possible?  We can likely run both daemons at the same time, so you have the old code working until we fully switch over and then remove the old daemon?\n\nI wouldn\u0027t call this file/daemon \"new\" though.  That\u0027s just asking for it to still be listed as \"new\" 2-6 years from now.",
+      "parentUuid": "0a30c471_1fc6265f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f6afe03_09e46574",
         "filename": "meson.build",
         "patchSetId": 3
@@ -77,6 +101,30 @@
       "writtenOn": "2024-03-25T20:31:31Z",
       "side": 1,
       "message": "can we get a better name than \"NEW\". In a few months it won\u0027t be \"new\" so lets be descriptive of what\u0027s it\u0027s doing.",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149c6b13_7023a3b7",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-27T18:57:47Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "2f6afe03_09e46574",
       "range": {
         "startLine": 71,
         "startChar": 10,
@@ -243,6 +291,24 @@
       "side": 1,
       "message": "\u003e This is different than what we have done in bmcweb.\n\nI think you two will actually agree, but there\u0027s a nuance to what Gunnar said that I don\u0027t think comes though in the text unless you understand bmcweb.  In bmcweb:\n1. All code is compiled in all modes.  Unit tests are run for code that isn\u0027t neccesarily enabled the build.\n2. Only the user-facing BEHAVIOR is changed (usually through a minor constexpr if so we\u0027re testing the negative paths syntax as well) if the option is enabled.\n\nThat way we get CI coverage, everyone is running all the unit tests, but we can keep reasonable defaults at the same time.  In this patchset, I think we can get the same behavior by:\n- keep the existing app (don\u0027t invent a new main()).\n- Where it makes sense in the existing app, put\n\n```\nif constexpr(do_new_thing){\n    new_thing();\n} else {\n    old_thing();\n}\n```\n\nI thought we were keeping the old behavior temporarily, so maybe the old_thing() needs to go in an unconditional bracket, but you get the point.  We\u0027re not selectively compiling code, we\u0027re selectively enabling branches until the existing uses of the old interfaces are brought up to date.\n\n\u003e In bmcweb, should features like aggregation, experimental-redfish-multi-computer-system, and experimental-http2 be enabled by default?\n\nNote, that in bmcweb, http2 is COMPILED and TESTED regardless of if the option is enabled.  This technically meets Patricks ask that we test as much as possible, and Gunnars ask that we don\u0027t functionally break things in existing systems (both of which I think are reasonable and accomplishable in one patchset).\n\nhttps://github.com/openbmc/bmcweb/blob/d0eb0e7303744d03aaa6f994bbbcdd6dc92bab13/http/http_connection.hpp#L193\n\n\n\n\u003e A 2nd concern is companies knowing how to disable this.\n\nThis isn\u0027t going to be something we support for more than the O(months) it takes to get the new code in place, and my assumption was that we wouldn\u0027t need an option at all, we just expose the new interface, move things over, then delete the old interface.  Companies are free to manage their rebase however they like, but we\u0027re not going to maintain 2 firmware update DBus APIs just because people don\u0027t want to change their downstream patches.  The intent is that this new design is better for everything.  If there\u0027s functional problems with what\u0027s been proposed, NOW is the time to voice them, not after we get a bunch of patches in.\n\n\n\u003e A 3rd concern is since most layers use the default, non production-ready features will be enabled.\n\nI think the concern here is really, \"this patchset as written breaks working platforms\".  That needs fixed in this series.  Maybe that\u0027s the intent of this patch, but that wasn\u0027t captured in the one sentence commit message.  In terms of \"production readiness\" that\u0027s not really something openbmc has a definition of, so holding this patchset to some arbitrary guidelines seems ill advised.  Lets make sure this patch series is as functionally correct as we can make it before it merges, and when/if there are regression bugs, they should be minor and we can ask Jagpal to fix them.",
       "parentUuid": "24d7b3a2_84eb1b7a",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35e50ca7_1971cf81",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-27T18:57:47Z",
+      "side": 1,
+      "message": "\u003e Only the user-facing BEHAVIOR is changed (usually through a minor constexpr if so we\u0027re testing the negative paths syntax as well) if the option is enabled.\n\nI\u0027m not sure constexpr-enable works the way you are intending.  You can create non-compiling code in the false-branch of a constexpr and the compiler won\u0027t even care.  This is the \"modern\" SFINAE approach.\n\nI highly suspect someone can add non-compiling code and you won\u0027t even know until someone turns on the feature.",
+      "parentUuid": "939b6630_b13b3baa",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

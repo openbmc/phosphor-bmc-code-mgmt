@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "503c2091_8c0aed5b",
+        "filename": "image_manager_main_new.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-27T19:12:10Z",
+      "side": 1,
+      "message": "\u003e \"just\".  I think the motivation here was that there actually are a good amount of changes since the effectively image-manager goes away and trying to do all this in a single daemon would require a messy `#ifdef CONFIG` tree.\n\nThat needs captured in the commit message, but even with that, I still don\u0027t think a completely different app is warranted.  if you want to immediately make main call a different code path, that\u0027s a lot easier to do, and doesn\u0027t involve having to clean up the \"old app\" later.\n\n\u003e \n\u003e Isn\u0027t it cleaner to have a new daemon, trying to refactor and/or reuse pieces of code as much as possible?  We can likely run both daemons at the same time, so you have the old code working until we fully switch over and then remove the old daemon?\n\nI don\u0027t really think so, as it implies that we\u0027re not going to reuse code as much as possible.  As a trivial example, main() is identical between the implementations.  presumably signal handling, dbus connection startup, and other things will be identical between the implementations.\n\nWith all that said, i\u0027m not the maintainer here, so I\u0027ll defer to whatever they want.\n\n\u003e \n\u003e I wouldn\u0027t call this file/daemon \"new\" though.  That\u0027s just asking for it to still be listed as \"new\" 2-6 years from now.",
+      "parentUuid": "2a70f815_69a6b1b5",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f6afe03_09e46574",
         "filename": "meson.build",
         "patchSetId": 3
@@ -309,6 +333,24 @@
       "side": 1,
       "message": "\u003e Only the user-facing BEHAVIOR is changed (usually through a minor constexpr if so we\u0027re testing the negative paths syntax as well) if the option is enabled.\n\nI\u0027m not sure constexpr-enable works the way you are intending.  You can create non-compiling code in the false-branch of a constexpr and the compiler won\u0027t even care.  This is the \"modern\" SFINAE approach.\n\nI highly suspect someone can add non-compiling code and you won\u0027t even know until someone turns on the feature.",
       "parentUuid": "939b6630_b13b3baa",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c8beab1_2c87b58c",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-27T19:12:10Z",
+      "side": 1,
+      "message": "\u003e \u003e Only the user-facing BEHAVIOR is changed (usually through a minor constexpr if so we\u0027re testing the negative paths syntax as well) if the option is enabled.\n\u003e \n\u003e I\u0027m not sure constexpr-enable works the way you are intending.  You can create non-compiling code in the false-branch of a constexpr and the compiler won\u0027t even care.  This is the \"modern\" SFINAE approach.\n\nYes, in the actual if constexpr branch, you can create code that doesn\u0027t compile (although it does need to pass syntax).  But if you\u0027re immediately calling two functions that are both compiled in all cases, the likelihood that you break the code in a way that isn\u0027t trivial to fix is greatly reduced.\n\n\u003e \n\u003e I highly suspect someone can add non-compiling code and you won\u0027t even know until someone turns on the feature.\n\nyes, it\u0027s not perfect, we can come up with examples of how it could be broken, but in practice, it tends to not happen, because old_thing() is just a method call.\n\nCertainly it\u0027s a lot more error-proof than what\u0027s proposed in this patchset, where the new application isn\u0027t even built if the option is enabled.",
+      "parentUuid": "35e50ca7_1971cf81",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

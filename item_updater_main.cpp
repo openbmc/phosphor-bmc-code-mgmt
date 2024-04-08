@@ -15,16 +15,17 @@ boost::asio::io_context& getIOContext()
 
 int main()
 {
-    sdbusplus::asio::connection bus(getIOContext());
+    sdbusplus::async::context ctx;
 
     // Add sdbusplus ObjectManager.
-    sdbusplus::server::manager_t objManager(bus, SOFTWARE_OBJPATH);
+    sdbusplus::server::manager_t objManager(ctx, SOFTWARE_OBJPATH);
 
-    phosphor::software::updater::ItemUpdater updater(bus, SOFTWARE_OBJPATH);
+    phosphor::software::updater::ItemUpdater updater(ctx, SOFTWARE_OBJPATH,
+                                                     false);
 
-    bus.request_name(BUSNAME_UPDATER);
+    ctx.request_name(BUSNAME_UPDATER);
 
-    getIOContext().run();
+    ctx.run();
 
     return 0;
 }

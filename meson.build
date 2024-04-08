@@ -249,19 +249,14 @@ executable(
 )
 
 software_common_sources = files(
-    'software_utils.cpp'
-)
-
-executable(
-    'phosphor-image-updater',
-    image_updater_sources,
-    software_common_sources,
-    'item_updater_main.cpp',
-    dependencies: [deps, ssl, boost_dep],
-    install: true
+    'software_utils.cpp',
 )
 
 if get_option('software-update-dbus-interface').allowed()
+    image_updater_sources += files(
+        'update_manager.cpp'
+    )
+
     executable(
         'phosphor-software-manager',
         'software_manager.cpp',
@@ -274,6 +269,15 @@ if get_option('software-update-dbus-interface').allowed()
         'xyz.openbmc_project.Software.Manager.service.in'
     ]
 endif
+
+executable(
+    'phosphor-image-updater',
+    image_updater_sources,
+    software_common_sources,
+    'item_updater_main.cpp',
+    dependencies: [deps, ssl, boost_dep],
+    install: true
+)
 
 executable(
     'phosphor-version-software-manager',

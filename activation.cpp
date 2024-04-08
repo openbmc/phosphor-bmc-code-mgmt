@@ -196,8 +196,11 @@ void Activation::onFlashWriteSuccess()
             std::make_unique<RedundancyPriority>(bus, path, *this, 0);
     }
 
-    // Remove version object from image manager
-    Activation::deleteImageManagerObject();
+    if (!parent.useUpdateDBusInterface)
+    {
+        // Remove version object from image manager
+        Activation::deleteImageManagerObject();
+    }
 
     // Create active association
     parent.createActiveAssociation(path);
@@ -215,6 +218,9 @@ void Activation::onFlashWriteSuccess()
     {
         info("BMC image ready; need reboot to get activated.");
     }
+
+    // Create Update Object for this version.
+    parent.createUpdateObject(versionId, path);
 
     activation(softwareServer::Activation::Activations::Active);
 }

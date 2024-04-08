@@ -87,6 +87,24 @@
       "parentUuid": "2b37fe03_b3efd392",
       "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d3b9a56_d2235306",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-04-08T19:41:17Z",
+      "side": 1,
+      "message": "Correct, we\u0027d want the app that would consume the information to create the d-bus object.",
+      "parentUuid": "16e1dfba_22153195",
+      "revId": "c5f9c061c85474c098f7de71b8658fe322a9f96c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

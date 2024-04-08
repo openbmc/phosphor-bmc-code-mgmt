@@ -3,6 +3,7 @@
 #include "activation.hpp"
 #include "item_updater_helper.hpp"
 #include "msl_verify.hpp"
+#include "update_manager.hpp"
 #include "version.hpp"
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
@@ -37,6 +38,7 @@ namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
+using UpdateManager = phosphor::software::update::Manager;
 
 /** @class MinimumVersion
  *  @brief OpenBMC MinimumVersion implementation.
@@ -171,6 +173,13 @@ class ItemUpdater : public ItemUpdaterInherit
                                 ActivationIntf::Activations status);
 
     /**
+     * @brief Create the Update object
+     * @param[in] id - The unique identifier for the update.
+     * @param[in] path - The object path for the update object.
+     */
+    void createUpdateObject(const std::string& id, const std::string& path);
+
+    /**
      * @brief Erase specified entry D-Bus object
      *        if Action property is not set to Active
      *
@@ -299,6 +308,9 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     void createFunctionalAssociation(const std::string& path);
 
+    /** @brief D-Bus context */
+    sdbusplus::async::context& ctx;
+
     /** @brief Persistent sdbusplus D-Bus bus connection. */
     sdbusplus::bus_t& bus;
 
@@ -340,6 +352,12 @@ class ItemUpdater : public ItemUpdaterInherit
 
     /** @brief Persistent MinimumVersion D-Bus object */
     std::unique_ptr<MinimumVersion> minimumVersionObject;
+
+    /** @brief Flag to indicate if the update interface is used or not */
+    bool useUpdateDBusInterface;
+
+    /** @brief Persistent map of Update D-Bus objects and their SwIds */
+    std::map<std::string, std::unique_ptr<UpdateManager>> updateManagers;
 
 #ifdef HOST_BIOS_UPGRADE
     /** @brief Create the BIOS object without knowing the version.

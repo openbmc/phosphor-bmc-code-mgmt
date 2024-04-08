@@ -6,6 +6,7 @@
 #include "version.hpp"
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
+#include <sdbusplus/async.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
@@ -22,6 +23,8 @@ namespace software
 namespace updater
 {
 
+using ActivationIntf =
+    sdbusplus::xyz::openbmc_project::Software::server::Activation;
 using ItemUpdaterInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::common::FactoryReset,
     sdbusplus::server::xyz::openbmc_project::control::FieldMode,
@@ -73,16 +76,21 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in] bus    - The D-Bus bus object
      */
-    ItemUpdater(sdbusplus::bus_t& bus, const std::string& path) :
-        ItemUpdaterInherit(bus, path.c_str(),
+    ItemUpdater(sdbusplus::async::context& ctx, const std::string& path,
+                bool useUpdateDBusInterface = true) :
+        ItemUpdaterInherit(ctx.get_bus(), path.c_str(),
                            ItemUpdaterInherit::action::defer_emit),
-        bus(bus), helper(bus),
-        versionMatch(bus,
-                     MatchRules::interfacesAdded() +
-                         MatchRules::path("/xyz/openbmc_project/software"),
-                     std::bind(std::mem_fn(&ItemUpdater::createActivation),
-                               this, std::placeholders::_1))
+        bus(ctx.get_bus()), helper(bus)
     {
+        if (!useUpdateDBusInterface)
+        {
+            versionMatch = std::make_unique<sdbusplus::bus::match_t>(
+                bus,
+                MatchRules::interfacesAdded() +
+                    MatchRules::path("/xyz/openbmc_project/software"),
+                std::bind(std::mem_fn(&ItemUpdater::createActivation), this,
+                          std::placeholders::_1));
+        }
         getRunningSlot();
         setBMCInventoryPath();
         processBMCImage();
@@ -116,6 +124,50 @@ class ItemUpdater : public ItemUpdaterInherit
      * @brief Create and populate the active BMC Version.
      */
     void processBMCImage();
+
+    /**
+     * @brief Verifies the image at filepath and creates the version and
+     * activation object. In case activation object already exists for the
+     * specified id, update the activation status based on image verification.
+     * @param[in] id - The unique identifier for the update.
+     * @param[in] path - The object path for the relevant objects.
+     * @param[in] version - The version of the image.
+     * @param[in] purpose - The purpose of the image.
+     * @param[in] extendedVersion The extended version of the image.
+     * @param[in] filePath - The file path where the image is located.
+     * @param[in] compatibleNames - The compatible name for the image.
+     * @param[out] Activations - Whether the image is ready to activate or not.
+     */
+    ActivationIntf::Activations verifyAndCreateObjects(
+        std::string& id, std::string& path, std::string& version,
+        VersionClass::VersionPurpose purpose, std::string& extendedVersion,
+        std ::string& filePath, std::vector<std::string>& compatibleNames);
+
+    /**
+     * @brief Creates the activation object
+     * @param[in] id - The unique identifier for the update.
+     * @param[in] path - The object path for the activation object.
+     * @param[in] applyTime - The apply time for the image
+     */
+    void createActivationWithApplyTime(
+        std::string& id, std::string& path,
+        ApplyTimeIntf::RequestedApplyTimes applyTime);
+
+    /**
+     * @brief Request the activation for the specified update.
+     * @param[in] id - The unique identifier for the update.
+     * @param[out] bool - status for the action.
+     */
+    bool requestActivation(std::string& id);
+
+    /**
+     * @brief Change the activation status for the specified update.
+     * @param[in] id - The unique identifier for the update.
+     * @param[in] status - The activation status to set.
+     * @param[out] bool - status for the action.
+     */
+    bool updateActivationStatus(std::string& id,
+                                ActivationIntf::Activations status);
 
     /**
      * @brief Erase specified entry D-Bus object
@@ -257,7 +309,7 @@ class ItemUpdater : public ItemUpdaterInherit
     std::map<std::string, std::unique_ptr<Activation>> activations;
 
     /** @brief sdbusplus signal match for Software.Version */
-    sdbusplus::bus::match_t versionMatch;
+    std::unique_ptr<sdbusplus::bus::match_t> versionMatch;
 
     /** @brief This entry's associations */
     AssociationList assocs = {};

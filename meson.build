@@ -156,7 +156,6 @@ image_updater_sources = files(
     'activation.cpp',
     'images.cpp',
     'item_updater.cpp',
-    'item_updater_main.cpp',
     'serialize.cpp',
     'version.cpp',
     'utils.cpp',
@@ -248,20 +247,25 @@ executable(
     install: true
 )
 
+software_common_sources = files(
+    'software_utils.cpp'
+)
+
 executable(
     'phosphor-image-updater',
     image_updater_sources,
+    software_common_sources,
+    'item_updater_main.cpp',
     dependencies: [deps, ssl],
     install: true
 )
-
-software_manager_common_sources = files()
 
 if get_option('start-update-dbus-interface').allowed()
     executable(
         'phosphor-software-manager',
         'software_manager.cpp',
-        software_manager_common_sources,
+        image_updater_sources,
+        software_common_sources,
         dependencies: [deps, ssl],
         install: true
     )
@@ -276,7 +280,7 @@ executable(
     'image_manager_main.cpp',
     'version.cpp',
     'watch.cpp',
-    software_manager_common_sources,
+    software_common_sources,
     dependencies: [deps, ssl],
     install: true
 )

@@ -357,6 +357,11 @@ void ActivationBlocksTransition::disableRebootGuard()
 
 bool Activation::checkApplyTimeImmediate()
 {
+    if (applyTime)
+    {
+        return (applyTime->requestedApplyTime() ==
+                ApplyTimeIntf::RequestedApplyTimes::Immediate);
+    }
     auto service = utils::getService(bus, applyTimeObjPath, applyTimeIntf);
     if (service.empty())
     {

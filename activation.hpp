@@ -11,6 +11,7 @@
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
+#include <xyz/openbmc_project/Software/ApplyTime/common.hpp>
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include <filesystem>
@@ -39,6 +40,8 @@ using RedundancyPriorityInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::ActivationProgress>;
+using ApplyTimeIntf =
+    sdbusplus::common::xyz::openbmc_project::software::ApplyTime;
 
 constexpr auto applyTimeImmediate =
     "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate";
@@ -164,6 +167,24 @@ class ActivationProgress : public ActivationProgressInherit
     {
         progress(0);
     }
+};
+
+class ApplyTime : public ApplyTimeIntf
+{
+  public:
+    /** @brief Constructs ApplyTime.
+     *
+     * @param[in] applyTime - The update apply time.
+     */
+    ApplyTime(RequestedApplyTimes applyTime) : applyTime(applyTime) {}
+
+    RequestedApplyTimes requestedApplyTime() const
+    {
+        return applyTime;
+    }
+
+  private:
+    RequestedApplyTimes applyTime;
 };
 
 /** @class Activation
@@ -319,6 +340,9 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Persistent ActivationProgress dbus object */
     std::unique_ptr<ActivationProgress> activationProgress;
+
+    /** @brief Apply time object */
+    std::unique_ptr<ApplyTime> applyTime;
 
     /** @brief Used to subscribe to dbus systemd signals **/
     sdbusplus::bus::match_t systemdSignals;

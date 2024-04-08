@@ -20,7 +20,8 @@ int main()
     // Add sdbusplus ObjectManager.
     sdbusplus::server::manager_t objManager(bus, SOFTWARE_OBJPATH);
 
-    phosphor::software::updater::ItemUpdater updater(bus, SOFTWARE_OBJPATH);
+    phosphor::software::updater::ItemUpdater updater(bus, SOFTWARE_OBJPATH,
+                                                     false);
 
     bus.request_name(BUSNAME_UPDATER);
 

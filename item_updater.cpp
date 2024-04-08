@@ -43,7 +43,6 @@ void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 {
     using SVersion = server::Version;
     using VersionPurpose = SVersion::VersionPurpose;
-    using VersionClass = phosphor::software::manager::Version;
 
     sdbusplus::message::object_path objPath;
     auto purpose = VersionPurpose::Unknown;
@@ -133,41 +132,103 @@ void ItemUpdater::createActivation(sdbusplus::message_t& msg)
 
     if (activations.find(versionId) == activations.end())
     {
-        // Determine the Activation state by processing the given image dir.
-        auto activationState = server::Activation::Activations::Invalid;
-        ItemUpdater::ActivationStatus result;
-        if (purpose == VersionPurpose::BMC || purpose == VersionPurpose::System)
-            result = ItemUpdater::validateSquashFSImage(filePath);
-        else
-            result = ItemUpdater::ActivationStatus::ready;
-
-        AssociationList associations = {};
-
-        if (result == ItemUpdater::ActivationStatus::ready)
-        {
-            activationState = server::Activation::Activations::Ready;
-            // Create an association to the BMC inventory item
-            associations.emplace_back(
-                std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
-                                ACTIVATION_REV_ASSOCIATION, bmcInventoryPath));
-        }
-
-        auto versionPtr = std::make_unique<VersionClass>(
-            bus, path, version, purpose, extendedVersion, filePath,
-            compatibleNames,
-            std::bind(&ItemUpdater::erase, this, std::placeholders::_1),
-            versionId);
-        versionPtr->deleteObject =
-            std::make_unique<phosphor::software::manager::Delete>(bus, path,
-                                                                  *versionPtr);
-        versions.insert(std::make_pair(versionId, std::move(versionPtr)));
-
-        activations.insert(std::make_pair(
-            versionId,
-            std::make_unique<Activation>(bus, path, *this, versionId,
-                                         activationState, associations)));
+        verifyAndCreateObjects(versionId, path, version, purpose,
+                               extendedVersion, filePath, compatibleNames);
     }
     return;
+}
+
+void ItemUpdater::createActivationWithApplyTime(
+    std::string& id, std::string& path,
+    ApplyTimeIntf::RequestedApplyTimes applyTime)
+{
+    info("Creating Activation object for id: {ID}", "ID", id);
+    AssociationList associations = {};
+    // Create an association to the BMC inventory item
+    associations.emplace_back(std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
+                                              ACTIVATION_REV_ASSOCIATION,
+                                              bmcInventoryPath));
+    activations.insert(std::make_pair(
+        id, std::make_unique<Activation>(
+                bus, path, *this, id, server::Activation::Activations::NotReady,
+                associations)));
+    activations[id]->applyTime = std::make_unique<ApplyTime>(applyTime);
+}
+
+ActivationIntf::Activations ItemUpdater::verifyAndCreateObjects(
+    std::string& id, std::string& path, std::string& version,
+    VersionClass::VersionPurpose purpose, std::string& extendedVersion,
+    std ::string& filePath, std::vector<std::string>& compatibleNames)
+{
+    // Determine the Activation state by processing the given image dir.
+    auto activationState = server::Activation::Activations::Invalid;
+    ItemUpdater::ActivationStatus result;
+    if (purpose == VersionPurpose::BMC || purpose == VersionPurpose::System)
+    {
+        result = ItemUpdater::validateSquashFSImage(filePath);
+    }
+    else
+    {
+        result = ItemUpdater::ActivationStatus::ready;
+    }
+
+    AssociationList associations = {};
+
+    if (result == ItemUpdater::ActivationStatus::ready)
+    {
+        activationState = server::Activation::Activations::Ready;
+        // Create an association to the BMC inventory item
+        associations.emplace_back(std::make_tuple(ACTIVATION_FWD_ASSOCIATION,
+                                                  ACTIVATION_REV_ASSOCIATION,
+                                                  bmcInventoryPath));
+    }
+
+    auto versionPtr = std::make_unique<VersionClass>(
+        bus, path, version, purpose, extendedVersion, filePath, compatibleNames,
+        std::bind(&ItemUpdater::erase, this, std::placeholders::_1), id);
+    versionPtr->deleteObject =
+        std::make_unique<phosphor::software::manager::Delete>(bus, path,
+                                                              *versionPtr);
+    versions.insert(std::make_pair(id, std::move(versionPtr)));
+
+    auto activation = activations.find(id);
+    if (activation == activations.end())
+    {
+        activations.insert(std::make_pair(
+            id, std::make_unique<Activation>(bus, path, *this, id,
+                                             activationState, associations)));
+    }
+    else
+    {
+        activation->second->activation(activationState);
+    }
+    return activationState;
+}
+
+bool ItemUpdater::requestActivation(std::string& id)
+{
+    auto activation = activations.find(id);
+    if (activation == activations.end())
+    {
+        error("Activation object not found for id: {ID}", "ID", id);
+        return false;
+    }
+    activation->second->requestedActivation(
+        server::Activation::RequestedActivations::Active);
+    return true;
+}
+
+bool ItemUpdater::updateActivationStatus(std::string& id,
+                                         ActivationIntf::Activations status)
+{
+    auto activation = activations.find(id);
+    if (activation == activations.end())
+    {
+        error("Activation object not found for id: {ID}", "ID", id);
+        return false;
+    }
+    activation->second->activation(status);
+    return true;
 }
 
 void ItemUpdater::processBMCImage()

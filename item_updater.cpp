@@ -231,6 +231,18 @@ bool ItemUpdater::updateActivationStatus(std::string& id,
     return true;
 }
 
+void ItemUpdater::createUpdateObject(const std::string& id,
+                                     const std::string& path)
+{
+    if (updateManagers.find(id) != updateManagers.end())
+    {
+        error("UpdateManager object already exists for id: {ID}", "ID", id);
+        return;
+    }
+    updateManagers.insert(
+        std::make_pair(id, std::make_unique<UpdateManager>(ctx, path, *this)));
+}
+
 void ItemUpdater::processBMCImage()
 {
     using VersionClass = phosphor::software::manager::Version;
@@ -391,6 +403,12 @@ void ItemUpdater::processBMCImage()
                 id, std::make_unique<Activation>(
                         bus, path, *this, id, activationState, associations)));
 
+            // Create Update object for this version.
+            if (useUpdateDBusInterface)
+            {
+                createUpdateObject(id, path);
+            }
+
 #ifdef BMC_STATIC_DUAL_IMAGE
             uint8_t priority;
             if ((functional && (runningImageSlot == 0)) ||
@@ -515,6 +533,13 @@ void ItemUpdater::erase(std::string entryId)
 
         // Removing entry in versions map
         this->versions.erase(entryId);
+    }
+
+    // Removing entry in updateManagers map
+    auto updateManagerIt = updateManagers.find(entryId);
+    if (updateManagerIt != updateManagers.end())
+    {
+        updateManagers.erase(entryId);
     }
 
     return;
@@ -945,6 +970,11 @@ void ItemUpdater::createBIOSObject()
     biosVersion->deleteObject =
         std::make_unique<phosphor::software::manager::Delete>(bus, path,
                                                               *biosVersion);
+
+    if (useUpdateDBusInterface)
+    {
+        createUpdateObject(versionId, path);
+    }
 }
 #endif
 

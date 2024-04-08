@@ -1,17 +1,11 @@
 #include "config.h"
 
 #include "item_updater.hpp"
+#include "software_utils.hpp"
 
-#include <boost/asio/io_context.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server/manager.hpp>
-
-boost::asio::io_context& getIOContext()
-{
-    static boost::asio::io_context io;
-    return io;
-}
 
 int main()
 {

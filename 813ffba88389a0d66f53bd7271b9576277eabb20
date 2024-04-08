@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cf35f872_68b4c6f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-04-08T07:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "648905ed_1cb6a2d4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0e4e8639_40a8c14b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -112,6 +136,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "313e81d9_67dd789f",
+        "filename": "image_manager_main_new.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-04-08T07:18:13Z",
+      "side": 1,
+      "message": "There was a discussion with the maintainers on the workflow for making this change and they were fine with adding new files as it involved significant changes. At the same time, i have also refactored out the code so it can be reused in both old and new daemons. Both the daemons and flow will co-exist at runtime until the old flow is deprecated and removed after fully testing the new one.",
+      "parentUuid": "503c2091_8c0aed5b",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f6afe03_09e46574",
@@ -149,6 +197,30 @@
       "side": 1,
       "message": "👍",
       "parentUuid": "2f6afe03_09e46574",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "119b0209_b0ef7d1b",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-04-08T07:18:13Z",
+      "side": 1,
+      "message": "Sure, changed to \"start-update-dbus-interface\".",
+      "parentUuid": "149c6b13_7023a3b7",
       "range": {
         "startLine": 71,
         "startChar": 10,
@@ -226,6 +298,24 @@
       "side": 1,
       "message": "+1, I don\u0027t see the change.",
       "parentUuid": "fb15c5d7_4a6608ee",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89eec053_0b53bf8a",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-04-08T07:18:13Z",
+      "side": 1,
+      "message": "Please refer to the patch stack.",
+      "parentUuid": "5bd89b07_84a11929",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -351,6 +441,24 @@
       "side": 1,
       "message": "\u003e \u003e Only the user-facing BEHAVIOR is changed (usually through a minor constexpr if so we\u0027re testing the negative paths syntax as well) if the option is enabled.\n\u003e \n\u003e I\u0027m not sure constexpr-enable works the way you are intending.  You can create non-compiling code in the false-branch of a constexpr and the compiler won\u0027t even care.  This is the \"modern\" SFINAE approach.\n\nYes, in the actual if constexpr branch, you can create code that doesn\u0027t compile (although it does need to pass syntax).  But if you\u0027re immediately calling two functions that are both compiled in all cases, the likelihood that you break the code in a way that isn\u0027t trivial to fix is greatly reduced.\n\n\u003e \n\u003e I highly suspect someone can add non-compiling code and you won\u0027t even know until someone turns on the feature.\n\nyes, it\u0027s not perfect, we can come up with examples of how it could be broken, but in practice, it tends to not happen, because old_thing() is just a method call.\n\nCertainly it\u0027s a lot more error-proof than what\u0027s proposed in this patchset, where the new application isn\u0027t even built if the option is enabled.",
       "parentUuid": "35e50ca7_1971cf81",
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0546d87a_326b5a57",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-04-08T07:18:13Z",
+      "side": 1,
+      "message": "Please refer to the latest patch. Both new and old daemons will be built and co-exist at runtime.",
+      "parentUuid": "8c8beab1_2c87b58c",
       "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

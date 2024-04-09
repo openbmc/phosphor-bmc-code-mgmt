@@ -38,4 +38,14 @@ void parse(const std::string& versionStr, Version& version);
  */
 int compare(const Version& a, const Version& b);
 
+/** @brief Check if the minimum ship level option is enabled
+ *  @return true if enabled, false otherwise
+ */
+bool enabled();
+
+/** @brief Get the minimum version
+ *  @return[out] msl - Minimum version string
+ */
+std::string getMinimumVersion();
+
 } // namespace minimum_ship_level

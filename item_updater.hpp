@@ -2,6 +2,7 @@
 
 #include "activation.hpp"
 #include "item_updater_helper.hpp"
+#include "msl_verify.hpp"
 #include "version.hpp"
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
@@ -9,6 +10,7 @@
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
 #include <xyz/openbmc_project/Control/FieldMode/server.hpp>
+#include <xyz/openbmc_project/Software/MinimumVersion/server.hpp>
 
 #include <string>
 #include <vector>
@@ -25,11 +27,31 @@ using ItemUpdaterInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::control::FieldMode,
     sdbusplus::server::xyz::openbmc_project::association::Definitions,
     sdbusplus::server::xyz::openbmc_project::collection::DeleteAll>;
+using MinimumVersionInherit = sdbusplus::server::object_t<
+    sdbusplus::server::xyz::openbmc_project::software::MinimumVersion>;
 
 namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
+
+/** @class MinimumVersion
+ *  @brief OpenBMC MinimumVersion implementation.
+ *  @details A concrete implementation for
+ *  xyz.openbmc_project.Software.MinimumVersion DBus API.
+ */
+class MinimumVersion : public MinimumVersionInherit
+{
+  public:
+    /** @brief Constructs MinimumVersion
+     *
+     * @param[in] bus - The D-Bus bus object
+     * @param[in] path - The D-bus object path
+     */
+    MinimumVersion(sdbusplus::bus_t& bus, const std::string& path) :
+        MinimumVersionInherit(bus, path.c_str(), action::emit_interface_added)
+    {}
+};
 
 /** @class ItemUpdater
  *  @brief Manages the activation of the BMC version items.
@@ -68,6 +90,14 @@ class ItemUpdater : public ItemUpdaterInherit
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
 #endif
+
+        if (minimum_ship_level::enabled())
+        {
+            minimumVersionObject = std::make_unique<MinimumVersion>(bus, path);
+            minimumVersionObject->minimumVersion(
+                minimum_ship_level::getMinimumVersion());
+        }
+
         emit_object_added();
     };
 
@@ -262,6 +292,9 @@ class ItemUpdater : public ItemUpdaterInherit
      */
     bool checkImage(const std::string& filePath,
                     const std::vector<std::string>& imageList);
+
+    /** @brief Persistent MinimumVersion D-Bus object */
+    std::unique_ptr<MinimumVersion> minimumVersionObject;
 
 #ifdef HOST_BIOS_UPGRADE
     /** @brief Create the BIOS object without knowing the version.

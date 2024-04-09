@@ -59,9 +59,7 @@ void minimum_ship_level::parse(const std::string& inpVersion,
 bool minimum_ship_level::verify(const std::string& versionManifest)
 {
     //  If there is no msl or mslRegex return upgrade is needed.
-    std::string msl{BMC_MSL};
-    std::string mslRegex{REGEX_BMC_MSL};
-    if (msl.empty() || mslRegex.empty())
+    if (!enabled())
     {
         return true;
     }
@@ -69,6 +67,7 @@ bool minimum_ship_level::verify(const std::string& versionManifest)
     // Define mslVersion variable and populate in Version format
     // {major,minor,rev} using parse function.
 
+    std::string msl = getMinimumVersion();
     Version mslVersion = {0, 0, 0};
     parse(msl, mslVersion);
 
@@ -103,4 +102,20 @@ bool minimum_ship_level::verify(const std::string& versionManifest)
     }
 
     return true;
+}
+
+bool minimum_ship_level::enabled()
+{
+    std::string msl = getMinimumVersion();
+    std::string mslRegex{REGEX_BMC_MSL};
+    if (!msl.empty() && !mslRegex.empty())
+    {
+        return true;
+    }
+    return false;
+}
+
+std::string minimum_ship_level::getMinimumVersion()
+{
+    return BMC_MSL;
 }

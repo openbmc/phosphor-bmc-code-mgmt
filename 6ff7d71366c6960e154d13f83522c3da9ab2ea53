@@ -16,6 +16,23 @@
       "message": "Addressed the comments. Please review.",
       "revId": "6ff7d71366c6960e154d13f83522c3da9ab2ea53",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f265ac99_7f289dd2",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-04-18T19:07:10Z",
+      "side": 1,
+      "message": "Let\u0027s remove this variable until it\u0027s actually used.",
+      "revId": "6ff7d71366c6960e154d13f83522c3da9ab2ea53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

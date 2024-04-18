@@ -162,6 +162,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f178421f_bdff449b",
+        "filename": "image_manager_main_new.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-04-18T19:07:10Z",
+      "side": 1,
+      "message": "I\u0027m ok starting up with a new app and see where that takes us even if it duplicates logic initially, since like Patrick mentioned, we\u0027re attempting to combine the \u0027image manager\u0027 and the \u0027updater\u0027 app into a single binary (\u0027software manager\u0027 seems to be the proposed name).\n\nPlease describe in to the commit msg like Ed mentioned the addition of the new app and the motivations behind it (converging 2 apps into 1 app) and the desire to run both new and old temporarily.",
+      "parentUuid": "313e81d9_67dd789f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f6afe03_09e46574",
         "filename": "meson.build",
         "patchSetId": 3
@@ -221,6 +245,30 @@
       "side": 1,
       "message": "Sure, changed to \"start-update-dbus-interface\".",
       "parentUuid": "149c6b13_7023a3b7",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b6dbf2_a90d9341",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-04-18T19:07:10Z",
+      "side": 1,
+      "message": "Do you mind changing it to \u0027software-update-dbus-interface\u0027? Reason is that the new interface is Software.Update,  StartUpdate is just a method, there could be more methods and properties added later to the new interface.",
+      "parentUuid": "119b0209_b0ef7d1b",
       "range": {
         "startLine": 71,
         "startChar": 10,

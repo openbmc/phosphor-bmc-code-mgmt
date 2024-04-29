@@ -26,8 +26,7 @@ class USBManager
 
     explicit USBManager(sdbusplus::bus_t& bus, sdeventplus::Event& event,
                         const fs::path& devPath, const fs::path& usbPath) :
-        bus(bus),
-        event(event), devicePath(devPath), usbPath(usbPath),
+        bus(bus), event(event), devicePath(devPath), usbPath(usbPath),
         isUSBCodeUpdate(false),
         fwUpdateMatcher(bus,
                         MatchRules::interfacesAdded() +

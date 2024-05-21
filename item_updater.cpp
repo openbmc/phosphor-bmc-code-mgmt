@@ -859,6 +859,7 @@ void ItemUpdater::createBIOSObject()
 
     createActiveAssociation(path);
     createFunctionalAssociation(path);
+    createUpdateableAssociation(path);
 
     auto versionId = path.substr(pos + 1);
     auto version = "null";

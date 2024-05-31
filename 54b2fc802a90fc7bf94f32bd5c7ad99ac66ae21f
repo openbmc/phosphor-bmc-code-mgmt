@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76a9d64_6909fa23",
+        "filename": "item_updater.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-31T11:44:46Z",
+      "side": 1,
+      "message": "Can you use sdbusplus::object_path instead of a string?",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 38
+      },
+      "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f27cd7f_f006135e",
+        "filename": "item_updater_main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-31T11:44:46Z",
+      "side": 1,
+      "message": "I\u0027m a bit perplexed here.  We moved half of the code to an `if(...)` condition but now we always pass `false`.  Why even have the code?\n\nAs far as I can tell, this is the only time that an `ItemUpdater` is created, right?",
+      "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

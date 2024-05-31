@@ -33,6 +33,41 @@
       "message": "This is a real D-Bus interface, but it\u0027s missing the dbus object path.\nI suspect this won\u0027t work as your expected.\n\nPossibly you want to inherit this interface in ActivationInherit, so that the Activation object really implements the `ApplyTime` interface.",
       "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a88e596_7ca386b6",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-31T11:40:41Z",
+      "side": 1,
+      "message": "You might also need to adjust the constructor parameters on `ApplyTimeIntf` so that it does not emit \"object added\" and \"object removed\" signals.",
+      "parentUuid": "563e72bd_87faa007",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b25ba2_7bb87c6c",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-31T11:40:41Z",
+      "side": 1,
+      "message": "Why does this end up being a `unique_ptr`?  Isn\u0027t it something we always need?  It doesn\u0027t look like there is any code path where it is ever added...  I\u0027m surprised ApplyTime wasn\u0027t just added to ActivationInherit.",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

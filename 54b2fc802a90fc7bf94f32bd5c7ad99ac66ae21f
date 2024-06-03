@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "836baa3b_92d630bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T23:52:30Z",
+      "side": 1,
+      "message": "Addressed and replied to your comments. Thanks",
+      "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f76a9d64_6909fa23",
@@ -24,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f09d76_4a373fdc",
+        "filename": "item_updater.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T23:52:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f76a9d64_6909fa23",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 38
+      },
+      "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f27cd7f_f006135e",
@@ -37,6 +78,24 @@
       "writtenOn": "2024-05-31T11:44:46Z",
       "side": 1,
       "message": "I\u0027m a bit perplexed here.  We moved half of the code to an `if(...)` condition but now we always pass `false`.  Why even have the code?\n\nAs far as I can tell, this is the only time that an `ItemUpdater` is created, right?",
+      "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9480962_e385949a",
+        "filename": "item_updater_main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T23:52:30Z",
+      "side": 1,
+      "message": "All the patches before the last patch are preparing the existing code so it can be used both in the old daemon and new one. I have mentioned this in the patch description.",
+      "parentUuid": "4f27cd7f_f006135e",
       "revId": "54b2fc802a90fc7bf94f32bd5c7ad99ac66ae21f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

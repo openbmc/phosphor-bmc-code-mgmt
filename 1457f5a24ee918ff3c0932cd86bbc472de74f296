@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4072396a_7c9091f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T18:42:48Z",
+      "side": 1,
+      "message": "Thanks for review. Replied to your comments.",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "563e72bd_87faa007",
@@ -55,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e63bfa3b_e498b3f4",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T18:42:48Z",
+      "side": 1,
+      "message": "The ApplyTime interface is not hosted by CodeUpdater Daemons at the moment. Its with the phosphor-settingsd. So, i suggest its better to keep that flow as such. Also, the ApplyTime interface would only be applicable for unstructured http Push updates (where ApplyTime and Image Push comes as 2 different HTTP requests) which are deprecated in favor of Multipart HTTP push updates. So, intent is to support Unstructured HTTP push updates only for BMC for backwards compatibility and rest all should use Multipart HTTP Push based updates as recommended by Redfish. I have already created a patch for this on BMCWeb side - https://gerrit.openbmc.org/c/openbmc/bmcweb/+/71743. Once we have a single code updater daemon within phophor-bmc-code-mgmt we don\u0027t have to make that daemon to explicitly check for this property as it will come as part of startUpdate D-Bus interface.",
+      "parentUuid": "0a88e596_7ca386b6",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4b25ba2_7bb87c6c",
         "filename": "activation.hpp",
         "patchSetId": 3
@@ -66,6 +101,24 @@
       "writtenOn": "2024-05-31T11:40:41Z",
       "side": 1,
       "message": "Why does this end up being a `unique_ptr`?  Isn\u0027t it something we always need?  It doesn\u0027t look like there is any code path where it is ever added...  I\u0027m surprised ApplyTime wasn\u0027t just added to ActivationInherit.",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e08ea04_6447c418",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T18:42:48Z",
+      "side": 1,
+      "message": "FYI: The intent of this patch is to refactor out code so it can be used for new new daemon. I have mentioned that as part of patch description. Also, this is more of a stop gap solution until we converge back to a single daemon in which case this property will come from BMCWeb itself as mentioned in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/70665/comment/563e72bd_87faa007/",
+      "parentUuid": "e4b25ba2_7bb87c6c",
       "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

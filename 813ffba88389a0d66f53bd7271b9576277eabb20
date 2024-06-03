@@ -184,6 +184,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad3898d_c5add6a6",
+        "filename": "image_manager_main_new.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T23:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f178421f_bdff449b",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f6afe03_09e46574",
@@ -269,6 +293,30 @@
       "side": 1,
       "message": "Do you mind changing it to \u0027software-update-dbus-interface\u0027? Reason is that the new interface is Software.Update,  StartUpdate is just a method, there could be more methods and properties added later to the new interface.",
       "parentUuid": "119b0209_b0ef7d1b",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "813ffba88389a0d66f53bd7271b9576277eabb20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "894f6361_c021c50a",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-03T23:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23b6dbf2_a90d9341",
       "range": {
         "startLine": 71,
         "startChar": 10,

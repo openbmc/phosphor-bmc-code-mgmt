@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2346cbb_12a5c24d",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "Same as below.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08a9c7d_25af17bf",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "image.int() maybe?\n\nor image.fd?\n\nstatic cast is an odd choice here (I\u0027m a little surprised it works).",
+      "range": {
+        "startLine": 39,
+        "startChar": 41,
+        "endLine": 39,
+        "endChar": 57
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189f2c7c_435aa039",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "This copy looks unnecessary?",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20681af6_453f2370",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "This is going to be an expensive operation.  Given that this is a single thread reactor now, you probably want to do this on its own thread?  Or make a coroutine friendly version that does this incrementally?\n\nAs written, the daemon will not respond to dbus calls while it\u0027s untarring, which is bad, because it causes problems in the Redfish task service implementation.",
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41223797_9d066502",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "As implemented, any return path you take above here now gets \"stuck\" in the updating state.  For something thats supposed to be highly reliable (like a firmware update) that\u0027s bad.\n\nIs there a reason we\u0027re explicitly limiting ourselves to one update?  I don\u0027t see any shared resources here, so supporting multiple updates at a time seems like it keeps the code simpler, and reduces the chance we deadlock.",
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90046d3d_6407f621",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "This is a very large method, can it be broken down at all?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 1
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bfe9cf1_12aa1370",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "In this implementation, does this matter?",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 24
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fb5b10f_065716be",
+        "filename": "software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-04T01:07:59Z",
+      "side": 1,
+      "message": "Using namespace is called out in cppcoreguidelines as something not to do.",
+      "range": {
+        "startLine": 192,
+        "startChar": 1,
+        "endLine": 192,
+        "endChar": 15
+      },
+      "revId": "c4f1eb070444d571ea454f6e1209dc42c86f2575",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

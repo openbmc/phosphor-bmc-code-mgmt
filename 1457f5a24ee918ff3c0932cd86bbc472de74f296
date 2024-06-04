@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6322a0a1_f99df43f",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2024-06-04T02:01:32Z",
+      "side": 1,
+      "message": "Checking the following commit that uses the \"apply time\", it looks like you only want to \"store\" the apply time here, and not to create a DBus interface.\nIf it\u0027s true, then you do not need to create the interface here, only add a `RequestedApplyTimes` in the activation class should be enough.",
+      "parentUuid": "e63bfa3b_e498b3f4",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4b25ba2_7bb87c6c",
         "filename": "activation.hpp",
         "patchSetId": 3

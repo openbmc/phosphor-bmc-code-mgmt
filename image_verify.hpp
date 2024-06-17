@@ -213,10 +213,10 @@ class Signature
     /** @brief Path of public key and hash function files */
     fs::path signedConfPath;
 
-    /** @brief key type defined in mainfest file */
+    /** @brief key type defined in manifest file */
     Key_t keyType;
 
-    /** @brief Hash type defined in mainfest file */
+    /** @brief Hash type defined in manifest file */
     Hash_t hashType;
 
     /** @brief The image purpose */
@@ -230,7 +230,7 @@ class Signature
      * @param[out] fileFound - Indicate if the file to verify is found or not
      *
      * @return true if all image files are found in BMC tarball and
-     * Verify Sucess false if one of image files is missing
+     * Verify Success false if one of image files is missing
      */
     bool checkAndVerifyImage(const std::string& filePath,
                              const std::string& publicKeyPath,

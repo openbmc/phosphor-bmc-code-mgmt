@@ -226,7 +226,7 @@ bool Signature::verify()
         // Either BMC images or optional images shall be valid
         assert(valid || optionalImagesValid);
 
-        debug("Successfully completed Signature vaildation.");
+        debug("Successfully completed Signature validation.");
         return true;
     }
     catch (const InternalFailure& e)

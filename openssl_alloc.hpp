@@ -1,7 +1,7 @@
 #pragma once
 
 // With OpenSSL 1.1.0, some functions were deprecated. Need to abstract them
-// to make the code backward compatible with older OpenSSL veresions.
+// to make the code backward compatible with older OpenSSL versions.
 // Reference: https://wiki.openssl.org/index.php/OpenSSL_1.1.0_Changes
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 

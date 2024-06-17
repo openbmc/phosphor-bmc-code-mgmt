@@ -201,7 +201,7 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief Vector of needed BMC images in the tarball*/
     std::vector<std::string> imageUpdateList;
 
-    /** @breif The slot of running BMC image */
+    /** @brief The slot of running BMC image */
     uint32_t runningImageSlot = 0;
 
   private:

@@ -214,7 +214,7 @@ int Manager::processImage(const std::string& tarFilePath)
     {
         // Rename the temp dir to image dir
         fs::rename(tmpDirPath, imageDirPath, ec);
-        // Clear the path, so it does not attemp to remove a non-existing path
+        // Clear the path, so it does not attempt to remove a non-existing path
         tmpDirToRemove.path.clear();
 
         // Create Version object

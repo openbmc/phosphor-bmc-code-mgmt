@@ -143,7 +143,8 @@ TEST_F(VersionTest, TestGetId)
     char mdString[EVP_MAX_MD_SIZE * 2 + 1];
     for (decltype(digest_count) i = 0; i < digest_count; i++)
     {
-        snprintf(&mdString[i * 2], 3, "%02x", (unsigned int)digest[i]);
+        snprintf(&mdString[static_cast<size_t>(i) * 2], 3, "%02x",
+                 (unsigned int)digest[i]);
     }
     std::string hexId = std::string(mdString);
     hexId = hexId.substr(0, 8);

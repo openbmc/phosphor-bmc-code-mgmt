@@ -22,7 +22,7 @@ class USBManager
     USBManager(const USBManager&) = delete;
     USBManager(USBManager&&) = default;
     USBManager& operator=(const USBManager&) = delete;
-    USBManager& operator=(USBManager&&) = default;
+    USBManager& operator=(USBManager&&) = delete;
 
     explicit USBManager(sdbusplus::bus_t& bus, sdeventplus::Event& event,
                         const fs::path& devPath, const fs::path& usbPath) :

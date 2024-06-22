@@ -18,7 +18,7 @@ class Helper
     Helper(const Helper&) = delete;
     Helper& operator=(const Helper&) = delete;
     Helper(Helper&&) = default;
-    Helper& operator=(Helper&&) = default;
+    Helper& operator=(Helper&&) = delete;
 
     /** @brief Constructor
      *

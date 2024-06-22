@@ -18,6 +18,12 @@ namespace updater
 class Flash
 {
   public:
+    Flash() = default;
+    Flash(const Flash&) = delete;
+    Flash& operator=(const Flash&) = delete;
+    Flash(Flash&&) = default;
+    Flash& operator=(Flash&&) = delete;
+
     /* Destructor */
     virtual ~Flash() = default;
 

@@ -140,6 +140,13 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
         disableRebootGuard();
     }
 
+    ActivationBlocksTransition(const ActivationBlocksTransition&) = delete;
+    ActivationBlocksTransition&
+        operator=(const ActivationBlocksTransition&) = delete;
+    ActivationBlocksTransition(ActivationBlocksTransition&&) = delete;
+    ActivationBlocksTransition&
+        operator=(ActivationBlocksTransition&&) = delete;
+
   private:
     sdbusplus::bus_t& bus;
 

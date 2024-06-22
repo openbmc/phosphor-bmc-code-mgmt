@@ -54,6 +54,11 @@ struct RemovablePath
             fs::remove_all(path, ec);
         }
     }
+
+    RemovablePath(const RemovablePath& other) = delete;
+    RemovablePath& operator=(const RemovablePath& other) = delete;
+    RemovablePath(RemovablePath&&) = delete;
+    RemovablePath& operator=(RemovablePath&&) = delete;
 };
 
 namespace // anonymous

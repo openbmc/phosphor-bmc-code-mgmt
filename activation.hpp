@@ -135,7 +135,7 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
         enableRebootGuard();
     }
 
-    ~ActivationBlocksTransition()
+    ~ActivationBlocksTransition() override
     {
         disableRebootGuard();
     }

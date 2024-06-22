@@ -22,7 +22,7 @@ using namespace phosphor::software::image;
 class VersionTest : public testing::Test
 {
   protected:
-    virtual void SetUp()
+    void SetUp() override
     {
         char versionDir[] = "./versionXXXXXX";
         _directory = mkdtemp(versionDir);
@@ -33,7 +33,7 @@ class VersionTest : public testing::Test
         }
     }
 
-    virtual void TearDown()
+    void TearDown() override
     {
         fs::remove_all(_directory);
     }
@@ -181,7 +181,7 @@ class SignatureTest : public testing::Test
             std::cout << "COMMAND Error: " << val << std::endl;
         }
     }
-    virtual void SetUp()
+    void SetUp() override
     {
         // Create test base directory.
         fs::create_directories(testPath);
@@ -267,7 +267,7 @@ class SignatureTest : public testing::Test
 
         signature = std::make_unique<Signature>(extractPath, signedConfPath);
     }
-    virtual void TearDown()
+    void TearDown() override
     {
         command("rm -rf " + std::string(testPath));
     }
@@ -377,7 +377,7 @@ class FileTest : public testing::Test
         }
     }
 
-    virtual void SetUp()
+    void SetUp() override
     {
         // Create test base directory.
         tmpDir = fs::temp_directory_path() / "testFileXXXXXX";
@@ -395,7 +395,7 @@ class FileTest : public testing::Test
         srcFiles.push_back(file2);
     }
 
-    virtual void TearDown()
+    void TearDown() override
     {
         fs::remove_all(tmpDir);
     }

@@ -36,7 +36,7 @@ class SyncWatch
     SyncWatch(const SyncWatch&) = delete;
     SyncWatch& operator=(const SyncWatch&) = delete;
     SyncWatch(SyncWatch&&) = default;
-    SyncWatch& operator=(SyncWatch&&) = default;
+    SyncWatch& operator=(SyncWatch&&) = delete;
 
     /** @brief dtor - remove inotify watch and close fd's
      */

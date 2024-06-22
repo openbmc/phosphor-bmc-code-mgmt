@@ -206,7 +206,14 @@ cppcoreguidelines-pro-type-cstyle-cast,
 cppcoreguidelines-pro-type-static-cast-downcast,
 cppcoreguidelines-pro-type-union-access,
 cppcoreguidelines-slicing,
-cppcoreguidelines-special-member-functions'
+cppcoreguidelines-special-member-functions,
+misc-misplaced-const,
+misc-redundant-expression,
+misc-static-assert,
+misc-throw-by-value-catch-by-reference,
+misc-unconventional-assign-operator,
+misc-uniqueptr-reset-release,
+misc-unused-using-decls'
 
 WarningsAsErrors: '*'
 HeaderFilterRegex: '.*'

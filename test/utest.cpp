@@ -352,11 +352,17 @@ TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
 class FileTest : public testing::Test
 {
   protected:
-    std::string readFile(fs::path path)
+    std::string readFile(std::filesystem::path path)
     {
-        std::ifstream f(path, std::ios::in);
-        const auto sz = fs::file_size(path);
-        std::string result(sz, '\0');
+        std::ifstream f(path, std::ios::in | std::ios::binary);
+        if (!f.is_open())
+        {
+            throw "Failed to open file";
+        }
+
+        auto sz =
+            static_cast<std::streamsize>(std::filesystem::file_size(path));
+        std::string result(static_cast<size_t>(sz), '\0');
         f.read(result.data(), sz);
 
         return result;

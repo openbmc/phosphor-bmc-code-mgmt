@@ -114,7 +114,7 @@ int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
         }
 
         // fileMap<wd, path>
-        auto rc = syncWatch->syncCallback(event->mask,
+        auto rc = syncWatch->syncCallback(static_cast<int>(event->mask),
                                           syncWatch->fileMap[event->wd]);
         if (rc)
         {

@@ -136,7 +136,7 @@ class ItemUpdater : public ItemUpdaterInherit
     /**
      * @brief Deletes all versions except for the current one
      */
-    void deleteAll();
+    void deleteAll() override;
 
     /** @brief Creates an active association to the
      *  newly active software image

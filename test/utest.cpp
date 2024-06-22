@@ -19,6 +19,8 @@
 using namespace phosphor::software::manager;
 using namespace phosphor::software::image;
 
+namespace fs = std::filesystem;
+
 class VersionTest : public testing::Test
 {
   protected:
@@ -355,8 +357,14 @@ class FileTest : public testing::Test
     std::string readFile(fs::path path)
     {
         std::ifstream f(path, std::ios::in);
-        const auto sz = fs::file_size(path);
-        std::string result(sz, '\0');
+        if (!f.is_open())
+        {
+            throw "Failed to open file";
+        }
+
+        auto sz =
+            static_cast<std::streamsize>(fs::file_size(path));
+        std::string result(static_cast<size_t>(sz), '\0');
         f.read(result.data(), sz);
 
         return result;

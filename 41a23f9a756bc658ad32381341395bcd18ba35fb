@@ -16,6 +16,24 @@
       "message": "Should this be done in a coroutine context?",
       "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db02579_da2052ea",
+        "filename": "software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-24T17:25:04Z",
+      "side": 1,
+      "message": "Is there a reason u want to do this in a coroutine context?\n\nPS: The last patch in stack will add SoftwareManager implementation which will register the server object with the D-Bus to asynchronously handle requests.",
+      "parentUuid": "e5c350b9_d2ee5515",
+      "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

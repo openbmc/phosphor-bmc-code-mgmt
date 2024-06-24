@@ -407,10 +407,15 @@ class FileTest : public testing::Test
 TEST_F(FileTest, TestMergeFiles)
 {
     std::string retFile = tmpDir + "/retFile";
+    std::stringstream ss;
+    ss << "cat";
     for (const auto& file : srcFiles)
     {
-        command("cat " + file + " >> " + retFile);
+        ss << " " << file;
     }
+    ss << " >> " << retFile;
+    std::string catCommand = ss.str();
+    command(catCommand);
 
     std::string dstFile = tmpDir + "/dstFile";
     utils::mergeFiles(srcFiles, dstFile);

@@ -352,7 +352,7 @@ TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
 class FileTest : public testing::Test
 {
   protected:
-    std::string readFile(std::filesystem::path path)
+    std::string readFile(const std::filesystem::path& path)
     {
         std::ifstream f(path, std::ios::in | std::ios::binary);
         if (!f.is_open())

@@ -182,15 +182,16 @@ class Signature
      * @param[in]  - Hash function name
      * @return true if signature verification was successful, false if not
      */
-    bool verifyFile(const fs::path& file, const fs::path& signature,
-                    const fs::path& publicKey, const std::string& hashFunc);
+    static bool verifyFile(const fs::path& file, const fs::path& signature,
+                           const fs::path& publicKey,
+                           const std::string& hashFunc);
 
     /**
      * @brief Create RSA object from the public key
      * @param[in]  - publickey
      * @param[out] - RSA Object.
      */
-    inline EVP_PKEY_Ptr createPublicRSA(const fs::path& publicKey);
+    static inline EVP_PKEY_Ptr createPublicRSA(const fs::path& publicKey);
 
     /**
      * @brief Memory map the  file
@@ -198,7 +199,7 @@ class Signature
      * @param[in]  - file size
      * @param[out] - Custom Mmap address
      */
-    CustomMap mapFile(const fs::path& path, size_t size);
+    static CustomMap mapFile(const fs::path& path, size_t size);
 
     /**
      * @brief Verify the full file signature using public key and hash function

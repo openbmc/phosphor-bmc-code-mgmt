@@ -173,7 +173,7 @@ class SignatureTest : public testing::Test
     static constexpr auto testPath = "/tmp/_testSig";
 
   protected:
-    void command(const std::string& cmd)
+    static void command(const std::string& cmd)
     {
         auto val = std::system(cmd.c_str());
         if (val)
@@ -352,7 +352,7 @@ TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
 class FileTest : public testing::Test
 {
   protected:
-    std::string readFile(const std::filesystem::path& path)
+    static std::string readFile(const std::filesystem::path& path)
     {
         std::ifstream f(path, std::ios::in | std::ios::binary);
         if (!f.is_open())
@@ -368,7 +368,7 @@ class FileTest : public testing::Test
         return result;
     }
 
-    void command(const std::string& cmd)
+    static void command(const std::string& cmd)
     {
         auto val = std::system(cmd.c_str());
         if (val)

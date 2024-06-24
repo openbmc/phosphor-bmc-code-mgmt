@@ -240,7 +240,7 @@ int Manager::processImage(const std::string& tarFilePath)
     return 0;
 }
 
-void Manager::erase(std::string entryId)
+void Manager::erase(const std::string& entryId)
 {
     auto it = versions.find(entryId);
     if (it == versions.end())

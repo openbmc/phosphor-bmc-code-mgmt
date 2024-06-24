@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5f97b7_42986870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-24T19:16:49Z",
+      "side": 1,
+      "message": "bmcweb commit in progress: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/72224",
+      "revId": "ae65abf646652fe9434d77d2b135426037e59b4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

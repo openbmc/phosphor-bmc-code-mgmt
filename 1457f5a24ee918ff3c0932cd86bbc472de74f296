@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c011e443_871df9e7",
+        "filename": "activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-24T18:38:08Z",
+      "side": 1,
+      "message": "Sure, i have changed the code to a unique_pointer for RequestedApplyTimes.\nThe intent to create a unique pointer so i can differentiate between X vs Y flow in checkApplyTimeImmediate API. ApplyTime just has 2 values Immediate vs OnReset, if i just use as a param in Activation i cannot differentiate whether its X vs Y flow.\n\nPS: Using unique_pointer is a stop gap solution for 2 deamons, once we converge to single daemon the ApplyTime will come from StartUpdate interface only and then we can drop the unique_pointer and maintain this as a RequestedApplyTime param in Activation interface.",
+      "parentUuid": "6322a0a1_f99df43f",
+      "revId": "1457f5a24ee918ff3c0932cd86bbc472de74f296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4b25ba2_7bb87c6c",
         "filename": "activation.hpp",
         "patchSetId": 3

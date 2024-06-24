@@ -32,7 +32,7 @@ class Sync
      * @param[in] entryPath - The file or directory to process.
      * @param[out] result - 0 if successful.
      */
-    int processEntry(int mask, const fs::path& entryPath);
+    static int processEntry(int mask, const fs::path& entryPath);
 };
 
 } // namespace manager

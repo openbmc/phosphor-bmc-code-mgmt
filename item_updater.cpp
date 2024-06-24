@@ -278,11 +278,19 @@ void ItemUpdater::processBMCImage()
 
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
-            // Create functional association if this is the functional
-            // version
+            // Create functional association and minimum ship level instance if
+            // this is the functional version
             if (functional)
             {
                 createFunctionalAssociation(path);
+
+                if (minimum_ship_level::enabled())
+                {
+                    minimumVersionObject =
+                        std::make_unique<MinimumVersion>(bus, path);
+                    minimumVersionObject->minimumVersion(
+                        minimum_ship_level::getMinimumVersion());
+                }
             }
 
             AssociationList associations = {};

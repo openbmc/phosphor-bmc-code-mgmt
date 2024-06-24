@@ -90,14 +90,6 @@ class ItemUpdater : public ItemUpdaterInherit
 #ifdef HOST_BIOS_UPGRADE
         createBIOSObject();
 #endif
-
-        if (minimum_ship_level::enabled())
-        {
-            minimumVersionObject = std::make_unique<MinimumVersion>(bus, path);
-            minimumVersionObject->minimumVersion(
-                minimum_ship_level::getMinimumVersion());
-        }
-
         emit_object_added();
     };
 

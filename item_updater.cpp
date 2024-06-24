@@ -122,7 +122,7 @@ void ItemUpdater::createActivation(sdbusplus::message_t& msg)
     }
 
     // Version id is the last item in the path
-    auto pos = path.rfind("/");
+    auto pos = path.rfind('/');
     if (pos == std::string::npos)
     {
         error("No version id found in object path: {PATH}", "PATH", path);
@@ -850,7 +850,7 @@ void ItemUpdater::createBIOSObject()
 {
     std::string path = BIOS_OBJPATH;
     // Get version id from last item in the path
-    auto pos = path.rfind("/");
+    auto pos = path.rfind('/');
     if (pos == std::string::npos)
     {
         error("No version id found in object path {PATH}", "PATH", path);

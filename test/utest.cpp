@@ -175,7 +175,7 @@ class SignatureTest : public testing::Test
     static constexpr auto testPath = "/tmp/_testSig";
 
   protected:
-    void command(const std::string& cmd)
+    static void command(const std::string& cmd)
     {
         auto val = std::system(cmd.c_str());
         if (val)
@@ -354,7 +354,11 @@ TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
 class FileTest : public testing::Test
 {
   protected:
+<<<<<<< HEAD
     std::string readFile(const fs::path& path)
+=======
+    static std::string readFile(const fs::path path)
+>>>>>>> 6789728 (clang-tidy: Enable readability-convert-member-functions-to-static)
     {
         std::ifstream f(path, std::ios::in);
         if (!f.is_open())
@@ -370,7 +374,7 @@ class FileTest : public testing::Test
         return result;
     }
 
-    void command(const std::string& cmd)
+    static void command(const std::string& cmd)
     {
         auto val = std::system(cmd.c_str());
         if (val)

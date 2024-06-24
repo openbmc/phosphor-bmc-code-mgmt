@@ -275,7 +275,7 @@ class ItemUpdater : public ItemUpdaterInherit
      *
      * @param[in]  versionId - The version id.
      */
-    void removeReadOnlyPartition(std::string versionId);
+    void removeReadOnlyPartition(const std::string& versionId);
 
     /** @brief Copies U-Boot from the currently booted BMC chip to the
      *  alternate chip.

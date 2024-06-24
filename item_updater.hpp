@@ -290,8 +290,8 @@ class ItemUpdater : public ItemUpdaterInherit
      *                      true if all image files are found in BMC tarball
      *                      false if one of image files is missing
      */
-    bool checkImage(const std::string& filePath,
-                    const std::vector<std::string>& imageList);
+    static bool checkImage(const std::string& filePath,
+                           const std::vector<std::string>& imageList);
 
     /** @brief Persistent MinimumVersion D-Bus object */
     std::unique_ptr<MinimumVersion> minimumVersionObject;

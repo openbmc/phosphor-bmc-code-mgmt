@@ -351,7 +351,8 @@ class Activation : public ActivationInherit, public Flash
      *
      * @return true if verification successful and false otherwise
      */
-    bool verifySignature(const fs::path& imageDir, const fs::path& confDir);
+    static bool verifySignature(const fs::path& imageDir,
+                                const fs::path& confDir);
 
     /** @brief Called when image verification fails. */
     void onVerifyFailed();

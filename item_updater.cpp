@@ -560,7 +560,7 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
 
 void ItemUpdater::reset()
 {
-    helper.factoryReset();
+    phosphor::software::updater::Helper::factoryReset();
 
     info("BMC factory reset will take effect upon reboot.");
 }

@@ -22,12 +22,10 @@ int main()
 
     try
     {
-        phosphor::software::manager::Sync syncManager;
-
         using namespace phosphor::software::manager;
-        phosphor::software::manager::SyncWatch watch(
-            *loop, std::bind(std::mem_fn(&Sync::processEntry), &syncManager,
-                             std::placeholders::_1, std::placeholders::_2));
+        auto syncCallback = std::bind(
+            &Sync::processEntry, std::placeholders::_1, std::placeholders::_2);
+        phosphor::software::manager::SyncWatch watch(*loop, syncCallback);
         bus.attach_event(loop, SD_EVENT_PRIORITY_NORMAL);
         sd_event_loop(loop);
     }

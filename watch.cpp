@@ -28,7 +28,7 @@ using namespace std::string_literals;
 namespace fs = std::filesystem;
 
 Watch::Watch(sd_event* loop, std::function<int(std::string&)> imageCallback) :
-    imageCallback(imageCallback)
+    imageCallback(std::move(imageCallback))
 {
     // Check if IMAGE DIR exists.
     std::error_code ec;

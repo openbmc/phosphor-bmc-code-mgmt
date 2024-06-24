@@ -43,7 +43,7 @@ class Manager
      *
      * @param[in] entryId - unique identifier of the entry
      */
-    void erase(std::string entryId);
+    void erase(const std::string& entryId);
 
   private:
     /** @brief Persistent map of Version dbus objects and their

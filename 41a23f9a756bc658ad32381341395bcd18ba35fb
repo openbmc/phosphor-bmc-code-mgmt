@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49b87a39_bb445978",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-24T19:15:12Z",
+      "side": 1,
+      "message": "Could we just modify the service file xyz.openbmc_project.Software.Manager.service.in to not run the new app or to not restart always?",
+      "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5c350b9_d2ee5515",
         "filename": "software_manager.cpp",
         "patchSetId": 1

@@ -409,7 +409,7 @@ class FileTest : public testing::Test
 TEST_F(FileTest, TestMergeFiles)
 {
     std::string retFile = tmpDir + "/retFile";
-    for (auto file : srcFiles)
+    for (const auto& file : srcFiles)
     {
         command("cat " + file + " >> " + retFile);
     }

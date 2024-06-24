@@ -523,8 +523,8 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
                                std::pair<std::string, uint8_t>)>
         cmpPriority;
     cmpPriority cmpPriorityFunc =
-        [](std::pair<std::string, uint8_t> priority1,
-           std::pair<std::string, uint8_t> priority2) {
+        [](const std::pair<std::string, uint8_t>& priority1,
+           const std::pair<std::string, uint8_t>& priority2) {
         return priority1.second <= priority2.second;
     };
 
@@ -563,7 +563,7 @@ void ItemUpdater::reset()
     info("BMC factory reset will take effect upon reboot.");
 }
 
-void ItemUpdater::removeReadOnlyPartition(std::string versionId)
+void ItemUpdater::removeReadOnlyPartition(const std::string& versionId)
 {
     auto flashId = versions.find(versionId)->second->path();
     helper.removeVersion(flashId);
@@ -867,7 +867,7 @@ void ItemUpdater::createBIOSObject()
     biosActivation = std::make_unique<Activation>(
         bus, path, *this, versionId, server::Activation::Activations::Active,
         assocs);
-    auto dummyErase = [](std::string /*entryId*/) {
+    auto dummyErase = [](const std::string& /*entryId*/) {
         // Do nothing;
     };
     biosVersion = std::make_unique<VersionClass>(

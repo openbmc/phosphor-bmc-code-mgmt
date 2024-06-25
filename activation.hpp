@@ -251,11 +251,11 @@ class Activation : public ActivationInherit, public Flash
     void flashWriteHost();
 
     /** @brief Function that acts on Bios upgrade service file state changes */
-    void onStateChangesBios(sdbusplus::message_t&);
+    void onStateChangesBios(sdbusplus::message_t& /*msg*/);
 #endif
 
     /** @brief Overloaded function that acts on service file state changes */
-    void onStateChanges(sdbusplus::message_t&) override;
+    void onStateChanges(sdbusplus::message_t& /*msg*/) override;
 
     /** @brief Check if systemd state change is relevant to this object
      *

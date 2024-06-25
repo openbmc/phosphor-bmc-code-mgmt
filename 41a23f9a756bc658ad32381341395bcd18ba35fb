@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "586df21d_82e3490d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-06-25T01:01:24Z",
+      "side": 1,
+      "message": "My understanding was that we want the new service to run by default. About disabling the restart, i am not sure if it will fix the CIT failure because first invocation of daemon will still fail.",
+      "parentUuid": "49b87a39_bb445978",
+      "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5c350b9_d2ee5515",
         "filename": "software_manager.cpp",
         "patchSetId": 1

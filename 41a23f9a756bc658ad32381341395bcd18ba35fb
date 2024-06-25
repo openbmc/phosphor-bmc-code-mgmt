@@ -69,6 +69,24 @@
       "parentUuid": "e5c350b9_d2ee5515",
       "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3918849f_3a83c83d",
+        "filename": "software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2024-06-25T03:57:18Z",
+      "side": 1,
+      "message": "This `sdbusplus::async` is new to me and I was referring the example code in sdbusplus repo, which uses a coroutine to do this.\nSee https://github.com/openbmc/sdbusplus/blob/master/example/calculator-aserver.cpp#L52-L55\n\nI am not sure if it\u0027s neccessary or not, that why I asked the above question.",
+      "parentUuid": "5db02579_da2052ea",
+      "revId": "41a23f9a756bc658ad32381341395bcd18ba35fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

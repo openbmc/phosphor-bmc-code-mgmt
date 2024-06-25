@@ -17,19 +17,31 @@ int minimum_ship_level::compare(const Version& versionToCompare,
                                 const Version& mslVersion)
 {
     if (versionToCompare.major > mslVersion.major)
+    {
         return (1);
+    }
     if (versionToCompare.major < mslVersion.major)
+    {
         return (-1);
+    }
 
     if (versionToCompare.minor > mslVersion.minor)
+    {
         return (1);
+    }
     if (versionToCompare.minor < mslVersion.minor)
+    {
         return (-1);
+    }
 
     if (versionToCompare.rev > mslVersion.rev)
+    {
         return (1);
+    }
     if (versionToCompare.rev < mslVersion.rev)
+    {
         return (-1);
+    }
 
     // Both string are equal and there is no need to make an upgrade return 0.
     return 0;

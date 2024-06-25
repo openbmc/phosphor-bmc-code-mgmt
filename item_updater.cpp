@@ -137,10 +137,13 @@ void ItemUpdater::createActivation(sdbusplus::message_t& msg)
         auto activationState = server::Activation::Activations::Invalid;
         ItemUpdater::ActivationStatus result;
         if (purpose == VersionPurpose::BMC || purpose == VersionPurpose::System)
+        {
             result = ItemUpdater::validateSquashFSImage(filePath);
+        }
         else
+        {
             result = ItemUpdater::ActivationStatus::ready;
-
+        }
         AssociationList associations = {};
 
         if (result == ItemUpdater::ActivationStatus::ready)

@@ -685,7 +685,7 @@ void ItemUpdater::removeAssociations(const std::string& path)
 {
     for (auto iter = assocs.begin(); iter != assocs.end();)
     {
-        if ((std::get<2>(*iter)).compare(path) == 0)
+        if (std::get<2>(*iter) == path)
         {
             iter = assocs.erase(iter);
             associations(assocs);

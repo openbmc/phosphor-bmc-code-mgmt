@@ -147,7 +147,7 @@ bool Signature::verify()
         bool valid;
         // Verify the MANIFEST and publickey file using available
         // public keys and hash on the system.
-        if (false == systemLevelVerify())
+        if (!systemLevelVerify())
         {
             error("System level Signature Validation failed");
             return false;
@@ -211,7 +211,7 @@ bool Signature::verify()
             }
         }
 
-        if (verifyFullImage() == false)
+        if (!verifyFullImage())
         {
             error("Image full file Signature Validation failed");
             return false;
@@ -436,7 +436,7 @@ bool Signature::checkAndVerifyImage(const std::string& filePath,
 
         // Verify the signature.
         valid = verifyFile(file, sigFile, publicKeyPath, hashType);
-        if (valid == false)
+        if (!valid)
         {
             error("Image file Signature Validation failed on {PATH}", "PATH",
                   bmcImage);

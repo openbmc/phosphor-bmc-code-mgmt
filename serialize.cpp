@@ -86,7 +86,8 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
 
     // Find the mtd device "u-boot-env" to retrieve the environment variables
     std::ifstream mtdDevices("/proc/mtd");
-    std::string device, devicePath;
+    std::string device;
+    std::string devicePath;
 
     try
     {

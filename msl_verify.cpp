@@ -120,11 +120,7 @@ bool minimum_ship_level::enabled()
 {
     std::string msl = getMinimumVersion();
     std::string mslRegex{REGEX_BMC_MSL};
-    if (!msl.empty() && !mslRegex.empty())
-    {
-        return true;
-    }
-    return false;
+    return !msl.empty() && !mslRegex.empty();
 }
 
 std::string minimum_ship_level::getMinimumVersion()

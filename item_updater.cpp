@@ -517,7 +517,7 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
         if (intf.second->redundancyPriority)
         {
             priorityMap.insert(std::make_pair(
-                intf.first, intf.second->redundancyPriority.get()->priority()));
+                intf.first, intf.second->redundancyPriority->priority()));
         }
     }
 
@@ -546,8 +546,7 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
         {
             ++freePriorityValue;
             auto it = activations.find(element.first);
-            it->second->redundancyPriority.get()->sdbusPriority(
-                freePriorityValue);
+            it->second->redundancyPriority->sdbusPriority(freePriorityValue);
         }
     }
 
@@ -703,7 +702,7 @@ bool ItemUpdater::isLowestPriority(uint8_t value)
     {
         if (intf.second->redundancyPriority)
         {
-            if (intf.second->redundancyPriority.get()->priority() < value)
+            if (intf.second->redundancyPriority->priority() < value)
             {
                 return false;
             }
@@ -725,20 +724,20 @@ void ItemUpdater::updateUbootEnvVars(const std::string& versionId)
 
 void ItemUpdater::resetUbootEnvVars()
 {
-    decltype(activations.begin()->second->redundancyPriority.get()->priority())
+    decltype(activations.begin()->second->redundancyPriority->priority())
         lowestPriority = std::numeric_limits<uint8_t>::max();
     decltype(activations.begin()->second->versionId) lowestPriorityVersion;
     for (const auto& intf : activations)
     {
-        if (!intf.second->redundancyPriority.get())
+        if (!intf.second->redundancyPriority)
         {
             // Skip this version if the redundancyPriority is not initialized.
             continue;
         }
 
-        if (intf.second->redundancyPriority.get()->priority() <= lowestPriority)
+        if (intf.second->redundancyPriority->priority() <= lowestPriority)
         {
-            lowestPriority = intf.second->redundancyPriority.get()->priority();
+            lowestPriority = intf.second->redundancyPriority->priority();
             lowestPriorityVersion = intf.second->versionId;
         }
     }
@@ -755,7 +754,7 @@ void ItemUpdater::freeSpace([[maybe_unused]] const Activation& caller)
     for (const auto& iter : activations)
     {
         if (iter.second->redundancyPriority &&
-            iter.second->redundancyPriority.get()->priority() == 0)
+            iter.second->redundancyPriority->priority() == 0)
         {
             versionIDtoErase = iter.second->versionId;
             break;

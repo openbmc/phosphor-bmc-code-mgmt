@@ -206,7 +206,7 @@ void Activation::onFlashWriteSuccess()
     // can be re-programmed.
     parent.createUpdateableAssociation(path);
 
-    if (Activation::checkApplyTimeImmediate() == true)
+    if (Activation::checkApplyTimeImmediate())
     {
         info("Image Active and ApplyTime is immediate; rebooting BMC.");
         Activation::rebootBmc();

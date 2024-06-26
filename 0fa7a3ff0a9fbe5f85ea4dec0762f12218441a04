@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28eab000_d06cc338",
+        "filename": ".clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2024-06-26T18:17:31Z",
+      "side": 1,
+      "message": "Looks like same list from bmcweb \nhttps://github.com/openbmc/bmcweb/blob/master/.clang-tidy#L84",
+      "revId": "0fa7a3ff0a9fbe5f85ea4dec0762f12218441a04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

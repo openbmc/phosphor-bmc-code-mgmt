@@ -44,7 +44,7 @@ bool sideSwitchNeeded(sdbusplus::bus_t& bus)
     try
     {
         fwRunningPriority = utils::getProperty<uint8_t>(
-            bus, fwRunningVersionPath.c_str(),
+            bus, fwRunningVersionPath,
             "xyz.openbmc_project.Software.RedundancyPriority", "Priority");
         info("Running firmware version priority is {FW_PRIORITY}",
              "FW_PRIORITY", fwRunningPriority);
@@ -100,8 +100,8 @@ bool sideSwitchNeeded(sdbusplus::bus_t& bus)
         try
         {
             uint8_t thisPathPri = utils::getProperty<uint8_t>(
-                bus, fwPath.c_str(),
-                "xyz.openbmc_project.Software.RedundancyPriority", "Priority");
+                bus, fwPath, "xyz.openbmc_project.Software.RedundancyPriority",
+                "Priority");
 
             if (thisPathPri < fwRunningPriority)
             {

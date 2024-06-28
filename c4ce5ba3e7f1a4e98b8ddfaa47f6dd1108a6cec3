@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb57dc6_b1e90b10",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-28T19:30:35Z",
+      "side": 1,
+      "message": "Why modify this line? There are multiple calls to \u0027helper\u0027 throughout the file.",
+      "revId": "c4ce5ba3e7f1a4e98b8ddfaa47f6dd1108a6cec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

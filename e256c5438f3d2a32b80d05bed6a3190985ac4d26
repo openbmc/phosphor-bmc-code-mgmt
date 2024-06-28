@@ -46,6 +46,30 @@
       },
       "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f75af0_5f7070ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-28T21:43:22Z",
+      "side": 1,
+      "message": "What about a bool variable inside the Activation class like \u0027checkApplyTimeSetting\u0027 initialized to false.\nThen the \u0027ItemUpdater::createActivation()\u0027 function sets it to true after creating the Activation object. This function will become the old API and will be bypassed by the new implementation (per commit 70666).\nThe checkApplyTimeImmediate() can check this variable, if false then it returns.\n\nSimilar to what it\u0027s being proposed here, the difference is that it\u0027d be a simpler object (bool) since there\u0027s no need of defining the applytime interface, and we\u0027re not polluting the new code with logic that will need to be removed to determine if the old behavior should be used, we\u0027re letting the old code that watches for interfaces added to communicate that we\u0027re running the old API.",
+      "parentUuid": "d99f5fe7_f3fd92bf",
+      "range": {
+        "startLine": 10,
+        "startChar": 25,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

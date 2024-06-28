@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b463e7eb_7dc0b71c",
+        "filename": "test/utest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-28T19:05:53Z",
+      "side": 1,
+      "message": "Do you mind adding the \u0027fs\u0027 namespace at the top?:\nnamespace fs \u003d std::filesystem;\n\nIn that way it\u0027s obvious what \u0027fs\u0027 stands for instead of inheriting from a separate header file (image_verify.hpp) and we continue to use \u0027fs::\u0027 throughout the file to keep it consistent instead of having a mixture of fs:: and filesystem::.",
+      "revId": "4945fe9f56e269a3965010eb66bead1867b7bd37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a11e5f7_f5fec1dd",
+        "filename": "test/utest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-06-28T19:05:53Z",
+      "side": 1,
+      "message": "What is the reason for adding the binary type with this commit?",
+      "revId": "4945fe9f56e269a3965010eb66bead1867b7bd37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

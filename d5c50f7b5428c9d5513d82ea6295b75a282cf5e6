@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0e74ca_e74d6011",
+        "filename": "software_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-07-01T17:49:36Z",
+      "side": 1,
+      "message": "I\u0027d like to see startUpdate() handle the requested ApplyTime, that\u0027s why it was added as a parameter to the method. There\u0027s a suggestion on patch 70665 to signal the activation to bypass the checkApplyTimeImmediate() call if it\u0027s the new API, so now it\u0027s up to this new API to handle (via a new method?) the request ApplyTime value without needing it to save it in a unique_ptr and relying on the old code to do handle it. The old checkApplyTimeImmediate() will be deprecated eventually anyways because we want to handle more than 2 ApplyTime values eventually.",
+      "revId": "d5c50f7b5428c9d5513d82ea6295b75a282cf5e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c801aee4_b7411d0a",
+        "filename": "software_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-07-01T17:49:36Z",
+      "side": 1,
+      "message": "requestActivation() returns a bool but the return value is not checked here?",
+      "revId": "d5c50f7b5428c9d5513d82ea6295b75a282cf5e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

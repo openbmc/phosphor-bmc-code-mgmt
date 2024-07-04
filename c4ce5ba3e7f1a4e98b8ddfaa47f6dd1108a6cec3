@@ -16,6 +16,24 @@
       "message": "Why modify this line? There are multiple calls to \u0027helper\u0027 throughout the file.",
       "revId": "c4ce5ba3e7f1a4e98b8ddfaa47f6dd1108a6cec3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93b3e8d_305e6232",
+        "filename": "item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000938
+      },
+      "writtenOn": "2024-07-04T09:17:44Z",
+      "side": 1,
+      "message": "the factoryReset() function is made static and static methods are associated with the class itself rather than with instances of the class. They are accessed using the class name.",
+      "parentUuid": "fdb57dc6_b1e90b10",
+      "revId": "c4ce5ba3e7f1a4e98b8ddfaa47f6dd1108a6cec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

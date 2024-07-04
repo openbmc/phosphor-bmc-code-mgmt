@@ -15,7 +15,9 @@ int main()
     sdbusplus::server::manager_t manager{ctx, path.c_str()};
     constexpr auto serviceName = "xyz.openbmc_project.Software.Manager";
 
-    ctx.spawn([](sdbusplus::async::context& ctx) -> sdbusplus::async::task<> {
+    // NOLINTNEXTLINE(readability-static-accessed-through-instance)
+    ctx.spawn([serviceName](
+                  sdbusplus::async::context& ctx) -> sdbusplus::async::task<> {
         ctx.request_name(serviceName);
         co_return;
     }(ctx));

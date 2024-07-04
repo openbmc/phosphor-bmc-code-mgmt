@@ -16,6 +16,24 @@
       "message": "Not sure this really more readable. :/",
       "revId": "d0c00c65a819a01ea593f3e762be1b45d9e08aff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a77d53d_3b1cd23a",
+        "filename": "msl_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000938
+      },
+      "writtenOn": "2024-07-04T09:19:12Z",
+      "side": 1,
+      "message": "Can you please suggest any other way?",
+      "parentUuid": "f64f81f3_5ca008ef",
+      "revId": "d0c00c65a819a01ea593f3e762be1b45d9e08aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

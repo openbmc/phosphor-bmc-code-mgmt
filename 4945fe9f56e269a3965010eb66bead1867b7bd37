@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ea79f33_57346179",
+        "filename": "test/utest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000938
+      },
+      "writtenOn": "2024-07-04T09:17:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b463e7eb_7dc0b71c",
+      "revId": "4945fe9f56e269a3965010eb66bead1867b7bd37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a11e5f7_f5fec1dd",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-06-28T19:05:53Z",
       "side": 1,
       "message": "What is the reason for adding the binary type with this commit?",
+      "revId": "4945fe9f56e269a3965010eb66bead1867b7bd37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6cbe51_400769e3",
+        "filename": "test/utest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000938
+      },
+      "writtenOn": "2024-07-04T09:17:15Z",
+      "side": 1,
+      "message": "Acknowledged, I added it to be in binary mode when we open a file. But I checked in earlier code it was the default mode in which the file was opened. Changed it back.",
+      "parentUuid": "7a11e5f7_f5fec1dd",
       "revId": "4945fe9f56e269a3965010eb66bead1867b7bd37",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

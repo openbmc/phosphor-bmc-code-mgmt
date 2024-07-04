@@ -34,6 +34,24 @@
       "parentUuid": "f64f81f3_5ca008ef",
       "revId": "d0c00c65a819a01ea593f3e762be1b45d9e08aff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "288b8883_e533c92d",
+        "filename": "msl_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2024-07-04T15:01:01Z",
+      "side": 1,
+      "message": "Overall, I am okay with this clang-tidy option. \nIn this case, I think this isn\u0027t as readable. \nI don\u0027t have a suggestion that would make this more readable and make clang-tidy happy.",
+      "parentUuid": "6a77d53d_3b1cd23a",
+      "revId": "d0c00c65a819a01ea593f3e762be1b45d9e08aff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

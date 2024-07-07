@@ -94,6 +94,30 @@
       },
       "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8047b9c2_001e7f71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-07-07T01:56:29Z",
+      "side": 1,
+      "message": "Jagpal clarified in 70668 that we still need to know the ApplyTime as part of the Activation, so what about we use the inherit as others suggested, then initialize it as Immediate as the default (since the openbmc clients like the gui and usb code update use that value so that seems the preferred option). Then we use the `useUpdateDBusInterface` being introduced with 70666 to decide if the checkApplyTimeImmediate() should read the settings (old) or use the value that was initialized in the constructor, which the new manager can set to whatever value was passed via Start Update. We can access the item updater via `parent`.",
+      "parentUuid": "a01a8c26_0e3fef59",
+      "range": {
+        "startLine": 10,
+        "startChar": 25,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

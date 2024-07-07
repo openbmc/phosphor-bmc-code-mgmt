@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b158caa8_5fe28c48",
+        "filename": "software_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-07-07T01:57:20Z",
+      "side": 1,
+      "message": "You\u0027re right, I\u0027ve added a comment to 70665 to pass the value from Start Update when we create the Activation object.",
+      "parentUuid": "f1df12d0_9d1981a0",
+      "revId": "d5c50f7b5428c9d5513d82ea6295b75a282cf5e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c801aee4_b7411d0a",
         "filename": "software_manager.cpp",
         "patchSetId": 10

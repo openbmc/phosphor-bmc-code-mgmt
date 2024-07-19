@@ -118,6 +118,30 @@
       },
       "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "925579ac_9d0b74d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-07-19T20:39:05Z",
+      "side": 1,
+      "message": "Adriana, \n1. I wasn\u0027t aware of  phosphor-usb-code-update until you mentioned it. I see it gets triggered via matcher for InterfaceAdded on /xyz/openbmc_project/software, who it will create this interface? I am trying to understand this flow as i see someone will insert a USB but then who will create this interface to start the flow?\n2. Also, phosphor-usb-code-update would need to be updated to use startUpdate D-Bus flow as my understanding from code inspection seems like it triggers it copies the image file from USB to /tmp/images dir?\n3. My understanding is that the activation.cpp which i am changing here only gets used in the phosphor-image-updater which in future will receive ApplyTime value from StartUpdate API, rather than reading it from settingsd (xyz.openbmc_project.Settings). So, if we need to change phosphor-usb-code-update as per Step#2, then phosphor-usb-code-update will directly send ApplyTime as OnReset as pert of request.\n4. Since, all apps will be sending instantaneous value for ApplyTime as part of StartUpdate, i don\u0027t think we need to expose ApplyTime as a D-Bus property anymore and perform an inheritance for this D-Bus interface. Since, we have kept the DefaultApplyTime as Immediate in BMCWeb, i think its better that i can change https://grok.openbmc.org/xref/openbmc/bmcweb/redfish-core/lib/update_service.hpp?r\u003d62598e31\u0026fi\u003dsoftwareInterfaceAdded#759 to by default return immediate for StartUpdate use case,",
+      "parentUuid": "8047b9c2_001e7f71",
+      "range": {
+        "startLine": 10,
+        "startChar": 25,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "e256c5438f3d2a32b80d05bed6a3190985ac4d26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

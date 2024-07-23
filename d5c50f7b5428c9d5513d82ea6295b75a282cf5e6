@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb963a4c_13ed36b8",
+        "filename": "software_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-07-23T21:06:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b158caa8_5fe28c48",
+      "revId": "d5c50f7b5428c9d5513d82ea6295b75a282cf5e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c801aee4_b7411d0a",

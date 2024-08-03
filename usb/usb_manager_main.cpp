@@ -7,11 +7,6 @@
 int main(int argc, char** argv)
 {
     namespace fs = std::filesystem;
-    // Dbus constructs
-    auto bus = sdbusplus::bus::new_default();
-
-    // Get a default event loop
-    auto event = sdeventplus::Event::get_default();
 
     std::string deviceName{};
 
@@ -29,11 +24,28 @@ int main(int argc, char** argv)
 
     fs::path devicePath = fs::path{"/dev"} / deviceName;
     fs::path usbPath = fs::path{"/run/media/usb"} / deviceName;
+
+#ifdef START_UPDATE_DBUS_INTEFACE
+
+    sdbusplus::async::context ctx;
+    phosphor::usb::USBManager manager(ctx, devicePath, usbPath);
+    ctx.run();
+
+#else
+
+    // Dbus constructs
+    auto bus = sdbusplus::bus::new_default();
+
+    // Get a default event loop
+    auto event = sdeventplus::Event::get_default();
+
     phosphor::usb::USBManager manager(bus, event, devicePath, usbPath);
 
     // Attach the bus to sd_event to service user requests
     bus.attach_event(event.get(), SD_EVENT_PRIORITY_NORMAL);
     event.loop();
+
+#endif // START_UPDATE_DBUS_INTEFACE
 
     return 0;
 }

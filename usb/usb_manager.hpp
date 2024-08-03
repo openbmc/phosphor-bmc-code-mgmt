@@ -3,6 +3,7 @@
 #include "utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
+#include <sdbusplus/async.hpp>
 #include <sdeventplus/event.hpp>
 
 #include <filesystem>
@@ -24,16 +25,40 @@ class USBManager
     USBManager& operator=(const USBManager&) = delete;
     USBManager& operator=(USBManager&&) = delete;
 
+#ifdef START_UPDATE_DBUS_INTEFACE
+
+    explicit USBManager(sdbusplus::async::context& ctx, const fs::path& devPath,
+                        const fs::path& usbPath) :
+        ctx(ctx),
+        devicePath(devPath), usbPath(usbPath)
+    {
+        ctx.spawn(run());
+    }
+
+    /** @brief Run the USBManager */
+    auto run() -> sdbusplus::async::task<void>;
+
+  private:
+    /** @brief D-Bus context. */
+    sdbusplus::async::context& ctx;
+
+    /** @brief Starts the firmware update.
+     *  @param[in]  fd  - The file descriptor of the image to update.
+     *  @return Success or Fail
+     */
+    auto startUpdate(int fd) -> sdbusplus::async::task<bool>;
+
+#else
     explicit USBManager(sdbusplus::bus_t& bus, sdeventplus::Event& event,
                         const fs::path& devPath, const fs::path& usbPath) :
         bus(bus),
-        event(event), devicePath(devPath), usbPath(usbPath),
-        isUSBCodeUpdate(false),
+        event(event), isUSBCodeUpdate(false),
         fwUpdateMatcher(bus,
                         MatchRules::interfacesAdded() +
                             MatchRules::path("/xyz/openbmc_project/software"),
                         std::bind(std::mem_fn(&USBManager::updateActivation),
-                                  this, std::placeholders::_1))
+                                  this, std::placeholders::_1)),
+        devicePath(devPath), usbPath(usbPath)
     {
         if (!run())
         {
@@ -52,6 +77,19 @@ class USBManager
      */
     bool run();
 
+  private:
+    /** @brief Persistent sdbusplus DBus bus connection. */
+    sdbusplus::bus_t& bus;
+
+    /** sd event handler. */
+    sdeventplus::Event& event;
+
+    /** Indicates whether USB codeupdate is going on. */
+    bool isUSBCodeUpdate;
+
+    /** sdbusplus signal match for new image. */
+    sdbusplus::bus::match_t fwUpdateMatcher;
+
     /** @brief Creates an Activation D-Bus object.
      *
      * @param[in]  msg   - Data associated with subscribed signal
@@ -69,12 +107,14 @@ class USBManager
      */
     void setRequestedActivation(const std::string& path);
 
-  private:
-    /** @brief Persistent sdbusplus DBus bus connection. */
-    sdbusplus::bus_t& bus;
+#endif /* START_UPDATE_DBUS_INTEFACE */
 
-    /** sd event handler. */
-    sdeventplus::Event& event;
+    /** @brief Find the first file with a .tar extension according to the USB
+     *         file path and copy to IMG_UPLOAD_DIR
+     *
+     *  @return Success or Fail
+     */
+    bool copyImage();
 
     /** The USB device path. */
     const fs::path& devicePath;
@@ -82,11 +122,8 @@ class USBManager
     /** The USB mount path. */
     const fs::path& usbPath;
 
-    /** Indicates whether USB codeupdate is going on. */
-    bool isUSBCodeUpdate;
-
-    /** sdbusplus signal match for new image. */
-    sdbusplus::bus::match_t fwUpdateMatcher;
+    /** The destination path for copied over image file */
+    fs::path imageDstPath;
 };
 
 } // namespace usb

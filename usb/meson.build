@@ -18,6 +18,7 @@ executable(
     include_directories: ['..'],
     dependencies: [
         CLI11_dep,
+        pdi_dep,
         phosphor_logging_dep,
         sdbusplus_dep,
         sdeventplus_dep,

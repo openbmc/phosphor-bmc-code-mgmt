@@ -6,10 +6,8 @@ Instructions on how to execute UTEST.
 
   Run the following commands:
 
-  ```
-  meson -Dtests=enabled build
-  ninja -C build test
-  ```
+  1. meson -Dtests=enabled build
+  2. ninja -C build test
 
 - WHEN RUNNING UTEST remember to take advantage of the gtest capabilities.
   "./build/test/utest --help"

@@ -16,6 +16,24 @@
       "message": "nitpick: Remove the \"x\" permission of the file.",
       "revId": "0f3b10642cf2254908b3ee7ef69e27ea9db92589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66aa48c8_5f811d70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2024-08-06T05:46:53Z",
+      "side": 1,
+      "message": "Updated: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/73454",
+      "parentUuid": "76e7697a_ab8bb2ff",
+      "revId": "0f3b10642cf2254908b3ee7ef69e27ea9db92589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []

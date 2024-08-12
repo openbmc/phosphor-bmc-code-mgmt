@@ -376,10 +376,6 @@ void ItemUpdater::processBMCImage()
                 createActiveAssociation(path);
             }
 
-            // All updateable firmware components must expose the updateable
-            // association.
-            createUpdateableAssociation(path);
-
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, flashId,
@@ -403,12 +399,6 @@ void ItemUpdater::processBMCImage()
                 id, std::make_unique<Activation>(
                         bus, path, *this, id, activationState, associations)));
 
-            // Create Update object for this version.
-            if (useUpdateDBusInterface)
-            {
-                createUpdateObject(id, path);
-            }
-
 #ifdef BMC_STATIC_DUAL_IMAGE
             uint8_t priority;
             if ((functional && (runningImageSlot == 0)) ||
@@ -419,12 +409,30 @@ void ItemUpdater::processBMCImage()
             else
             {
                 priority = 1;
+
+                // Create Update object for this version.
+                if (useUpdateDBusInterface)
+                {
+                    createUpdateObject(id, path);
+                }
+                // All updateable firmware components must expose the updateable
+                // association.
+                createUpdateableAssociation(path);
             }
             activations.find(id)->second->redundancyPriority =
                 std::make_unique<RedundancyPriority>(
                     bus, path, *(activations.find(id)->second), priority,
                     false);
 #else
+            // Create Update object for this version.
+            if (useUpdateDBusInterface)
+            {
+                createUpdateObject(id, path);
+            }
+            // All updateable firmware components must expose the updateable
+            // association.
+            createUpdateableAssociation(path);
+
             // If Active, create RedundancyPriority instance for this
             // version.
             if (activationState == server::Activation::Activations::Active)

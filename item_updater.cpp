@@ -376,10 +376,6 @@ void ItemUpdater::processBMCImage()
                 createActiveAssociation(path);
             }
 
-            // All updateable firmware components must expose the updateable
-            // association.
-            createUpdateableAssociation(path);
-
             // Create Version instance for this version.
             auto versionPtr = std::make_unique<VersionClass>(
                 bus, path, version, purpose, extendedVersion, flashId,
@@ -402,12 +398,6 @@ void ItemUpdater::processBMCImage()
             activations.insert(std::make_pair(
                 id, std::make_unique<Activation>(
                         bus, path, *this, id, activationState, associations)));
-
-            // Create Update object for this version.
-            if (useUpdateDBusInterface)
-            {
-                createUpdateObject(id, path);
-            }
 
 #ifdef BMC_STATIC_DUAL_IMAGE
             uint8_t priority;
@@ -449,6 +439,21 @@ void ItemUpdater::processBMCImage()
                         false);
             }
 #endif
+        }
+    }
+
+    for (const auto& version : versions)
+    {
+        if ((versions.size() == 1) || (!version.second->isFunctional()))
+        {
+            // This is the only BMC version or the non-functional BMC version
+            // (in a system with more than one flash), hence create Update
+            // object and Updateable association for this version
+            if (useUpdateDBusInterface)
+            {
+                createUpdateObject(version.first, version.second->objPath);
+            }
+            createUpdateableAssociation(version.second->objPath);
         }
     }
 

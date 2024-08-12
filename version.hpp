@@ -87,7 +87,8 @@ class Version : public VersionInherit
             const std::string& id) :
         VersionInherit(bus, (objPath).c_str(),
                        VersionInherit::action::defer_emit),
-        eraseCallback(std::move(callback)), id(id), versionStr(versionString)
+        eraseCallback(std::move(callback)), id(id), objPath(objPath),
+        versionStr(versionString)
     {
         // Set properties.
         extendedVersion(extVersion);
@@ -185,6 +186,9 @@ class Version : public VersionInherit
 
     /** @brief The version ID of the object */
     const std::string id;
+
+    /** @brief The path of the object */
+    std::string objPath;
 
   private:
     /** @brief This Version's version string */

@@ -74,11 +74,20 @@ class ItemUpdater : public ItemUpdaterInherit
         active
     };
 
+    /** @brief Types of Updater. */
+    enum class UpdaterType
+    {
+        BMC,
+        BIOS,
+        ALL
+    };
+
     /** @brief Constructs ItemUpdater
      *
      * @param[in] bus    - The D-Bus bus object
      */
     ItemUpdater(sdbusplus::async::context& ctx, const std::string& path,
+                UpdaterType type = UpdaterType::ALL,
                 bool useUpdateDBusInterface = true) :
         ItemUpdaterInherit(ctx.get_bus(), path.c_str(),
                            ItemUpdaterInherit::action::defer_emit),
@@ -96,11 +105,17 @@ class ItemUpdater : public ItemUpdaterInherit
         }
         getRunningSlot();
         setBMCInventoryPath();
-        processBMCImage();
-        restoreFieldModeStatus();
+        if (type == UpdaterType::BMC || type == UpdaterType::ALL)
+        {
+            processBMCImage();
+        }
+        else if (type == UpdaterType::BIOS || type == UpdaterType::ALL)
+        {
 #ifdef HOST_BIOS_UPGRADE
-        createBIOSObject();
+            createBIOSObject();
 #endif
+        }
+        restoreFieldModeStatus();
         emit_object_added();
     };
 

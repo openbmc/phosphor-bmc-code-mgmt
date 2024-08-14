@@ -9,6 +9,7 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
+#include <xyz/openbmc_project/Software/Image/error.hpp>
 
 #include <filesystem>
 
@@ -19,9 +20,16 @@ namespace phosphor::software::update
 
 namespace fs = std::filesystem;
 namespace softwareUtils = phosphor::software::utils;
+namespace SoftwareLogging = phosphor::logging::xyz::openbmc_project::software;
+namespace SoftwareErrors =
+    sdbusplus::error::xyz::openbmc_project::software::image;
 using namespace phosphor::logging;
 using Version = phosphor::software::manager::Version;
 using ActivationIntf = phosphor::software::updater::Activation;
+using ManifestFail = SoftwareLogging::image::ManifestFileFailure;
+using UnTarFail = SoftwareLogging::image::UnTarFailure;
+using InternalFail = SoftwareLogging::image::InternalFailure;
+using ImageFail = SoftwareLogging::image::ImageFailure;
 
 void Manager::processImageFailed(sdbusplus::message::unix_fd image,
                                  std::string& id)
@@ -47,6 +55,7 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     {
         error("Error ({ERRNO}) occurred during mkdtemp", "ERRNO", errno);
         processImageFailed(image, id);
+        report<SoftwareErrors::InternalFailure>(InternalFail::FAIL("mkdtemp"));
         co_return;
     }
 
@@ -59,6 +68,8 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     {
         error("Error occurred during untar");
         processImageFailed(image, id);
+        report<SoftwareErrors::UnTarFailure>(
+            UnTarFail::PATH(tmpDirPath.c_str()));
         co_return;
     }
 
@@ -71,6 +82,8 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     {
         error("Unable to read version from manifest file");
         processImageFailed(image, id);
+        report<SoftwareErrors::ManifestFileFailure>(
+            ManifestFail::PATH(manifestPath.string().c_str()));
         co_return;
     }
 
@@ -82,6 +95,9 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
         error("Failed to read machine name from osRelease: {PATH}", "PATH",
               path);
         processImageFailed(image, id);
+        report<SoftwareErrors::ImageFailure>(
+            ImageFail::FAIL("Failed to read machine name"),
+            ImageFail::PATH(path));
         co_return;
     }
 
@@ -96,12 +112,18 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
                 "BMC upgrade: Machine name doesn't match: {CURRENT_MACHINE} vs {NEW_MACHINE}",
                 "CURRENT_MACHINE", currMachine, "NEW_MACHINE", machineStr);
             processImageFailed(image, id);
+            report<SoftwareErrors::ImageFailure>(
+                ImageFail::FAIL("Machine name does not match"),
+                ImageFail::PATH(manifestPath.string().c_str()));
             co_return;
         }
     }
     else
     {
         warning("No machine name in Manifest file");
+        report<SoftwareErrors::ImageFailure>(
+            ImageFail::FAIL("MANIFEST is missing machine name"),
+            ImageFail::PATH(manifestPath.string().c_str()));
     }
 
     // Get purpose
@@ -110,6 +132,8 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     {
         error("Unable to read purpose from manifest file");
         processImageFailed(image, id);
+        report<SoftwareErrors::ManifestFileFailure>(
+            ManifestFail::PATH(manifestPath.string().c_str()));
         co_return;
     }
     auto convertedPurpose =
@@ -147,6 +171,9 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     {
         error("Software image is invalid");
         processImageFailed(image, id);
+        report<SoftwareErrors::ImageFailure>(
+            ImageFail::FAIL("Image is invalid"),
+            ImageFail::PATH(filePath.c_str()));
         co_return;
     }
     if (applyTime == ApplyTimeIntf::RequestedApplyTimes::Immediate ||

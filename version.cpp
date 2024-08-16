@@ -43,9 +43,8 @@ std::string Version::getValue(const std::string& manifestFilePath,
     return values.at(0);
 }
 
-std::vector<std::string>
-    Version::getRepeatedValues(const std::string& manifestFilePath,
-                               std::string key)
+std::vector<std::string> Version::getRepeatedValues(
+    const std::string& manifestFilePath, std::string key)
 {
     key = key + "=";
     auto keySize = key.length();
@@ -208,8 +207,8 @@ std::string Version::getBMCVersion(const std::string& releaseFilePath)
             //    is 0 for the unquoted case, so substr() is called with a len
             //    parameter of npos (-1) which according to the documentation
             //    indicates to use all characters until the end of the string.
-            version = versionValue.substr(pos,
-                                          versionValue.find_last_of('"') - pos);
+            version =
+                versionValue.substr(pos, versionValue.find_last_of('"') - pos);
             break;
         }
     }

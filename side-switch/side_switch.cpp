@@ -66,10 +66,10 @@ bool sideSwitchNeeded(sdbusplus::bus_t& bus)
     std::vector<std::string> allSoftwarePaths;
     try
     {
-        auto method = bus.new_method_call("xyz.openbmc_project.ObjectMapper",
-                                          "/xyz/openbmc_project/object_mapper",
-                                          "xyz.openbmc_project.ObjectMapper",
-                                          "GetSubTreePaths");
+        auto method = bus.new_method_call(
+            "xyz.openbmc_project.ObjectMapper",
+            "/xyz/openbmc_project/object_mapper",
+            "xyz.openbmc_project.ObjectMapper", "GetSubTreePaths");
         method.append("/xyz/openbmc_project/software");
         method.append(0); // Depth 0 to search all
         method.append(

@@ -66,8 +66,8 @@ void Helper::updateUbootVersionId(const std::string& flashId)
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
-    auto updateEnvVarsFile = "obmc-flash-bmc-updateubootvars@" + flashId +
-                             ".service";
+    auto updateEnvVarsFile =
+        "obmc-flash-bmc-updateubootvars@" + flashId + ".service";
     method.append(updateEnvVarsFile, "replace");
 
     try

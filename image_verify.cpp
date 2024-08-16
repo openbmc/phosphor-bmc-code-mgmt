@@ -38,8 +38,7 @@ constexpr auto hashFunctionTag = "HashType";
 
 Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
-    imageDirPath(imageDirPath),
-    signedConfPath(signedConfPath)
+    imageDirPath(imageDirPath), signedConfPath(signedConfPath)
 {
     fs::path file(imageDirPath / MANIFEST_FILE_NAME);
 
@@ -200,8 +199,8 @@ bool Signature::verify()
                 sigFile += SIGNATURE_FILE_EXT;
 
                 // Verify the signature.
-                optionalImagesValid = verifyFile(file, sigFile, publicKeyFile,
-                                                 hashType);
+                optionalImagesValid =
+                    verifyFile(file, sigFile, publicKeyFile, hashType);
                 if (!optionalImagesValid)
                 {
                     error("Image file Signature Validation failed on {IMAGE}",
@@ -410,10 +409,9 @@ CustomMap Signature::mapFile(const fs::path& path, size_t size)
                      size);
 }
 
-bool Signature::checkAndVerifyImage(const std::string& filePath,
-                                    const std::string& publicKeyPath,
-                                    const std::vector<std::string>& imageList,
-                                    bool& fileFound)
+bool Signature::checkAndVerifyImage(
+    const std::string& filePath, const std::string& publicKeyPath,
+    const std::vector<std::string>& imageList, bool& fileFound)
 {
     bool valid = true;
 

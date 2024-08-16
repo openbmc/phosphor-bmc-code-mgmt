@@ -30,7 +30,7 @@ class Download : public DownloadInherit
      * @param[in] objPath   - The Dbus object path
      */
     Download(sdbusplus::bus_t& bus, const std::string& objPath) :
-        DownloadInherit(bus, (objPath).c_str()){};
+        DownloadInherit(bus, (objPath).c_str()) {};
 
     /**
      * @brief Download the specified image via TFTP

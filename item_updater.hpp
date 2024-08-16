@@ -260,7 +260,7 @@ class ItemUpdater : public ItemUpdaterInherit
     sdbusplus::bus::match_t versionMatch;
 
     /** @brief This entry's associations */
-    AssociationList assocs = {};
+    AssociationList assocs;
 
     /** @brief Clears read only partition for
      * given Activation D-Bus object.

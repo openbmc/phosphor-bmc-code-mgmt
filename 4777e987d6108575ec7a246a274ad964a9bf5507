@@ -16,6 +16,24 @@
       "message": "Hmm CI is failing, it\u0027s doing some strange formatting to empty associations list:\n\ndiff --git a/item_updater.hpp b/item_updater.hpp\nindex f850492..d795058 100644\n--- a/item_updater.hpp\n+++ b/item_updater.hpp\n@@ -260,14 +260,13 @@ class ItemUpdater : public ItemUpdaterInherit\n     sdbusplus::bus::match_t versionMatch;\n \n     /** @brief This entry\u0027s associations */\n-    AssociationList assocs \u003d {};\n-\n-    /** @brief Clears read only partition for\n-     * given Activation D-Bus object.\n-     *\n-     * @param[in]  versionId - The version id.\n-     */\n-    void removeReadOnlyPartition(const std::string\u0026 versionId);\n+    AssociationList assocsf Clears read only partition for\n+                            * given Activation D-Bus object.\n+                            *\n+                            * @param[in]  versionId - The version id.\n+                            */\n+        void\n+        removeReadOnlyPartition(const std::string\u0026 versionId);",
       "revId": "4777e987d6108575ec7a246a274ad964a9bf5507",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b65207c_343caa11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-19T19:36:53Z",
+      "side": 1,
+      "message": "That diff is from the clang-tidy fixup (which we\u0027ve seen bad results from that on other diffs also).  I tried to fix up the underlying complaint.",
+      "parentUuid": "7cf19d1a_a8beedaf",
+      "revId": "4777e987d6108575ec7a246a274ad964a9bf5507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

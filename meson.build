@@ -160,7 +160,8 @@ image_updater_sources = files(
     'serialize.cpp',
     'version.cpp',
     'utils.cpp',
-    'msl_verify.cpp'
+    'msl_verify.cpp',
+    'update_manager.cpp'
 )
 
 if get_option('bmc-layout').contains('static')
@@ -253,10 +254,6 @@ software_common_sources = files(
 )
 
 if get_option('software-update-dbus-interface').allowed()
-    image_updater_sources += files(
-        'update_manager.cpp'
-    )
-
     executable(
         'phosphor-software-manager',
         'software_manager.cpp',

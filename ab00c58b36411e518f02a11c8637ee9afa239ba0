@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c69c2f4_e88d489f",
+        "filename": "item_updater.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-09-05T20:45:20Z",
+      "side": 1,
+      "message": "Talked with Jagpal a bit on this because we\u0027re going to need a different approach since currently we don\u0027t have a variable that defines if a configuration supports dual versions or not. The STATIC_DUAL_IMAGE is one, but also MMC and UBI. Instead of having to manually add ifdef checks for all existing ones and new ones to come, let\u0027s try to do this programatically.\n\nAn option could be to add some logic at the end of the \"for\" loop that starts on line 271. After the loop, the versions map would had been populated. We can then iterate over the map as follows:\n\n```\nfor (const auto\u0026 versionIt : versions)\n{\n    if ((versions.size() \u003d\u003d 1) ||\n        (versions.size() \u003e 1) \u0026\u0026 (!versionIt.second-\u003eisFunctional())\n    {\n        if (versionIt.second-\u003epurpose() !\u003d VersionPurpose::BMC)\n        {\n           continue;\n        }\n        // This is the only BMC version, or the non-functional version\n        // in a system with more than one version, create Update object\n        // via \"createUpdateObject()\" and updateable association via\n        // \"createUpdateableAssociation\", version id can be accessed via\n        // versionIt.first, path can be accessed via versionIt.second-\u003epath().\n    }\n}\n```",
+      "revId": "ab00c58b36411e518f02a11c8637ee9afa239ba0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

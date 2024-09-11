@@ -201,7 +201,7 @@ sdbusplus::message::object_path
     }
     updateInProgress = true;
 
-    auto id = Version::getId(std::to_string(randomGen()));
+    auto id = BMCPathPrefix + Version::getId(std::to_string(randomGen()));
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;
 
     // Create Activation Object

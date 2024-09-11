@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 
+static constexpr std::string BMCPathPrefix = "bmc_";
+
 namespace phosphor
 {
 namespace software

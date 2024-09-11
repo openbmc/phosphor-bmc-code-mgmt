@@ -346,6 +346,11 @@ void ItemUpdater::processBMCImage()
             std::string extendedVersion =
                 VersionClass::getBMCExtendedVersion(osRelease);
 
+            if (useUpdateDBusInterface)
+            {
+                id.insert(0, BMCPathPrefix);
+            }
+
             auto path = fs::path(SOFTWARE_OBJPATH) / id;
 
             // Create functional association and minimum ship level instance if

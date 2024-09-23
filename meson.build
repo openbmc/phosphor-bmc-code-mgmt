@@ -111,6 +111,7 @@ sdbuspp_gen_meson_prog = find_program('sdbus++-gen-meson', native: true)
 
 pdi_dep = dependency('phosphor-dbus-interfaces')
 phosphor_logging_dep = dependency('phosphor-logging')
+libpldm_dep = dependency('libpldm')
 
 cereal_dep = dependency('cereal', required: false)
 has_cereal = cpp.has_header_symbol(
@@ -344,3 +345,5 @@ endif
 if get_option('side-switch-on-boot').allowed()
     subdir('side-switch')
 endif
+
+subdir('fw-update')

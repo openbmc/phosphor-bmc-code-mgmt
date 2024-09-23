@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf728542_5607c20b",
+        "filename": "item_updater.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-09-23T19:42:09Z",
+      "side": 1,
+      "message": "If type is \"ALL\", this bios line won\u0027t execute because of the \"else\". If we want \"ALL\" to create both the BMC and the BIOS object then the word \"else\" needs to be removed.",
+      "revId": "d895416dd836a911da8085afef5c298447818c83",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

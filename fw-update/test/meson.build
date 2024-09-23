@@ -1,0 +1,2 @@
+subdir('component')
+subdir('common')

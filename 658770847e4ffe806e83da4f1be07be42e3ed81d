@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8286bb7a_dd00eb1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-09-23T19:32:14Z",
+      "side": 1,
+      "message": "Some apps get the version id by parsing the FirmwareInventory path such as bmcweb:\nhttps://github.com/openbmc/bmcweb/blob/a14c9113226dcae33a36eb4e50abbcc28be998ae/redfish-core/lib/managers.hpp#L1803\n\nThis change would probably break them. Could there be other way to differentiating the different types of fw? Is this change driven just to make it easier for users to determine what fw types are installed?",
+      "revId": "658770847e4ffe806e83da4f1be07be42e3ed81d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

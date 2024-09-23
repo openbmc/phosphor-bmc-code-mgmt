@@ -1,11 +1,8 @@
-subdir('pldm')
-subdir('nopdevice')
-subdir('device')
-subdir('software')
 
 testcases = [
-  'test_device_config',
-  'test_software_update',
+  'test_software',
+  'test_software_association',
+  'test_software_version',
 ]
 
 foreach t : testcases
@@ -16,19 +13,20 @@ foreach t : testcases
       f'@t@.cpp',
       include_directories: [
         common_include,
+        '../device/',
       ],
       dependencies: [
         libpldm_dep,
         sdbusplus_dep,
         phosphor_logging_dep,
-        gtest_main,
+        gtest,
       ],
       link_with: [
         libpldmutil,
-        libpldmcreatepkg,
         libfwupdate,
         libnopdevice,
       ]
     )
   )
 endforeach
+

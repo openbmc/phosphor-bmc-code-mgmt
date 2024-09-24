@@ -16,6 +16,24 @@
       "message": "If type is \"ALL\", this bios line won\u0027t execute because of the \"else\". If we want \"ALL\" to create both the BMC and the BIOS object then the word \"else\" needs to be removed.",
       "revId": "d895416dd836a911da8085afef5c298447818c83",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52d7f57_fe1b0cd0",
+        "filename": "item_updater.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-24T01:53:56Z",
+      "side": 1,
+      "message": "Done. Thanks for pointing this out.",
+      "parentUuid": "bf728542_5607c20b",
+      "revId": "d895416dd836a911da8085afef5c298447818c83",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

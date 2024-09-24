@@ -16,6 +16,24 @@
       "message": "Some apps get the version id by parsing the FirmwareInventory path such as bmcweb:\nhttps://github.com/openbmc/bmcweb/blob/a14c9113226dcae33a36eb4e50abbcc28be998ae/redfish-core/lib/managers.hpp#L1803\n\nThis change would probably break them. Could there be other way to differentiating the different types of fw? Is this change driven just to make it easier for users to determine what fw types are installed?",
       "revId": "658770847e4ffe806e83da4f1be07be42e3ed81d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c37aa985_fdf8a33c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-24T01:46:20Z",
+      "side": 1,
+      "message": "As per redfish spec this is referring to the SoftwareInventory resource, which is also going to reflect bmc_. In the implementation you pointed out in BMCWeb above, we are trying to get the last section of the TargetURI which would be bmc_\u003cuniqueId\u003e, so its suppose to work. Please let me know if this resolves your question.\n\nhttps://redfish.dmtf.org/schemas/v1/Manager.v1_19_2.json\n\n```\n               \"ActiveSoftwareImage\": {\n                    \"$ref\": \"http://redfish.dmtf.org/schemas/v1/SoftwareInventory.json#/definitions/SoftwareInventory\",\n                    \"description\": \"The link to the software inventory resource that represents the active firmware image for this manager.\",\n                    \"longDescription\": \"This property shall contain a link to a resource of type `SoftwareInventory` that represents the active firmware image for this manager.\",\n                    \"readonly\": false,\n                    \"versionAdded\": \"v1_6_0\"\n                },\n                \n```\n\nI see \"xyz.openbmc_project.Software.BMC.Updater\" being hardcoded at 2 places in the API you mentioned. That is something we would need to change to reflect the new update service.",
+      "parentUuid": "8286bb7a_dd00eb1e",
+      "revId": "658770847e4ffe806e83da4f1be07be42e3ed81d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

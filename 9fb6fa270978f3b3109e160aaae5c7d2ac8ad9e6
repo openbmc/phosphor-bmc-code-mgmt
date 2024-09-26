@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "811fe873_331bd6e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-26T16:55:16Z",
+      "side": 1,
+      "message": "More pieces that can go in common layer -\n- EM interface for device and package configs and related classes.\n- PLDM package verification and related classes.",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0036fdd5_ac49062f",
         "filename": "fw-update/common/code_updater.hpp",
         "patchSetId": 2

@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4a9b4b6_a13d487e",
+        "filename": "fw-update/common/code_updater.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "no, we can merge the 2 classes 👍",
+      "parentUuid": "0036fdd5_ac49062f",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ef50af0_c5f4803c",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-09-26T16:53:17Z",
       "side": 1,
       "message": "Whats the purpose of this arg?",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "249d3f50_68763231",
+        "filename": "fw-update/common/code_updater.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "dry run - this enables us to do testing of the update flow without actually writing to the device. It is useful for debug purposes and can be disabled by default.",
+      "parentUuid": "8ef50af0_c5f4803c",
       "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c6bf997_e329f95e",
+        "filename": "fw-update/component/voltage-regulator/i2c.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "yes, this was simply code copied from the meta openbmc to make the VR stuff compile. When i rewrite it in terms of LF openbmc i2c code i can put it into common. I\u0027ll resolve when i moved it.",
+      "parentUuid": "eed693ea_30a92eb1",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8d10767_c1e77072",
         "filename": "fw-update/component/voltage-regulator/kv.hpp",
         "patchSetId": 2
@@ -82,6 +136,24 @@
       "writtenOn": "2024-09-26T16:53:17Z",
       "side": 1,
       "message": "I think this is some sort of persistent key value store, i don\u0027t think we need this?",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b744fe5d_07d8fbaf",
+        "filename": "fw-update/component/voltage-regulator/kv.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "we don\u0027t need it, this was just copied from meta openbmc to make the vr code compile. I\u0027ll resolve when i removed it.",
+      "parentUuid": "d8d10767_c1e77072",
       "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -103,6 +175,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df0bedbe_298ea48d",
+        "filename": "fw-update/component/voltage-regulator/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "done 👍",
+      "parentUuid": "ca0081d6_8ba8534c",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da043eca_747b5370",
@@ -116,6 +206,24 @@
       "writtenOn": "2024-09-26T16:53:17Z",
       "side": 1,
       "message": "I dont think we need any of the read APIs?",
+      "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d0d09f_9b2611b5",
+        "filename": "fw-update/component/voltage-regulator/vr.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-27T14:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da043eca_747b5370",
       "revId": "9fb6fa270978f3b3109e160aaae5c7d2ac8ad9e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

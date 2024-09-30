@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186a1815_01e77c20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2024-09-30T16:42:18Z",
+      "side": 1,
+      "message": "Please elaborate on the commit message. Also, add the tested part.",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d41d036_aae19e10",
+        "filename": "item_updater.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2024-09-30T16:42:18Z",
+      "side": 1,
+      "message": "Nit: Alignment issue on this line.",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ebaa4a_12cdadc1",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2024-09-30T16:42:18Z",
+      "side": 1,
+      "message": "where is bmcItemUpdater getting used?",
+      "range": {
+        "startLine": 20,
+        "startChar": 20,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac2ce47_e9cff670",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2024-09-30T16:42:18Z",
+      "side": 1,
+      "message": "where is biosItemUpdater getting used?",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

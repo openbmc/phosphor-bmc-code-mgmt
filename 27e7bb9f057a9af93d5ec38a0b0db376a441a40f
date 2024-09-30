@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2237f10_06164f84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-30T17:04:13Z",
+      "side": 1,
+      "message": "still working on the common code.\n\nWith this revision, i added the \u0027Device\u0027 class which can be extended by the device specific update daemons.\n\nWhile the \u0027FWManager\u0027 class represents an updater daemon for the class of devices,\nthe \u0027Device\u0027 class represents a single physical device.\n\nSo it can own a mutex for updating the device and also any device specific \nproperties.\n\n\nThe \u0027Software\u0027 class still represents the set of dbus interfaces to be maintained for a software version running on the device or being applied to the device.",
+      "revId": "27e7bb9f057a9af93d5ec38a0b0db376a441a40f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1312cffd_5f1efe43",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-10-04T19:12:30Z",
+      "side": 1,
+      "message": "Getting the following error:\n```\nOct 04 18:24:16 p10bmc phosphor-usb-code-update[960]: Exception occurred for GetAssociatedSubTreePaths for /xyz/openbmc_project/software/bmc/functional: method: org.freedesktop.DBus.Error.InvalidArgs: Invalid arguments \u0027ssias\u0027 to call xyz.openbmc_project.ObjectMapper.GetAssociatedSubTreePaths(), expecting \u0027ooias\u0027.\nOct 04 18:24:16 p10bmc phosphor-usb-code-update[960]: Failed to find associated functional path\n```\n\nI tried changing the variables to an object_path:\n```\n| -    constexpr auto associatedPath \u003d\n| -        \"/xyz/openbmc_project/software/bmc/functional\";\n| -    constexpr auto subTree \u003d \"/xyz/openbmc_project/software\";\n| +    sdbusplus::message::object_path associatedPath(\n| +        \"/xyz/openbmc_project/software/bmc/functional\");\n| +    sdbusplus::message::object_path subTree(\"/xyz/openbmc_project/software\");\n```\n\nBut strangely still get the same error.",
+      "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

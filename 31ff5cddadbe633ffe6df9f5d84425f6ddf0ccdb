@@ -37,6 +37,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15254b07_bb1a0058",
+        "filename": "item_updater.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2024-10-10T13:24:13Z",
+      "side": 1,
+      "message": "clang-format in CI should fail if there was an alignment issue",
+      "parentUuid": "4d41d036_aae19e10",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62fe421f_3caba327",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2024-10-10T13:24:13Z",
+      "side": 1,
+      "message": "include string",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7ebaa4a_12cdadc1",
         "filename": "software_manager.cpp",
         "patchSetId": 9

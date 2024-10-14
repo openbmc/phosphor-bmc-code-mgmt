@@ -108,6 +108,29 @@
       "message": "where is biosItemUpdater getting used?",
       "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f53ba6_de04af6c",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-10-14T03:57:15Z",
+      "side": 1,
+      "message": "biosItemUpdater is required only for #ifdef HOST_BIOS_UPGRADE is true right?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 50
+      },
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

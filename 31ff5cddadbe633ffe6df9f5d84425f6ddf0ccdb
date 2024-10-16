@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b48c7842_6beb1486",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "186a1815_01e77c20",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d41d036_aae19e10",
@@ -53,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db100f9_1eaeb59a",
+        "filename": "item_updater.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "Yes, diff has been verified with clang-format.",
+      "parentUuid": "15254b07_bb1a0058",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62fe421f_3caba327",
@@ -70,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1295cde_7ddf6d49",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62fe421f_3caba327",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7ebaa4a_12cdadc1",
@@ -83,6 +137,30 @@
       "writtenOn": "2024-09-30T16:42:18Z",
       "side": 1,
       "message": "where is bmcItemUpdater getting used?",
+      "range": {
+        "startLine": 20,
+        "startChar": 20,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a64cf8_0dbdd0e9",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "These are singleton objects which holds the reference to versions and update interface instances. Please refer to ItemUpdater.hpp.",
+      "parentUuid": "a7ebaa4a_12cdadc1",
       "range": {
         "startLine": 20,
         "startChar": 20,
@@ -123,6 +201,48 @@
       "writtenOn": "2024-10-14T03:57:15Z",
       "side": 1,
       "message": "biosItemUpdater is required only for #ifdef HOST_BIOS_UPGRADE is true right?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 50
+      },
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "015aa6e5_1ee1a889",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "These are singleton objects which holds the reference to versions and updateinterface instances. Please refer to ItemUpdater.hpp.",
+      "parentUuid": "cac2ce47_e9cff670",
+      "revId": "31ff5cddadbe633ffe6df9f5d84425f6ddf0ccdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c837188a_652ed70e",
+        "filename": "software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-16T07:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10f53ba6_de04af6c",
       "range": {
         "startLine": 22,
         "startChar": 4,

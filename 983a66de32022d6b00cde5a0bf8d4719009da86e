@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ca35b6_379abccf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-10-21T07:13:08Z",
+      "side": 1,
+      "message": "Two smaller nits.",
+      "revId": "983a66de32022d6b00cde5a0bf8d4719009da86e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c3851f_e7f74f19",
+        "filename": "fw-update/component/bios-spi/my_sw_update.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-10-21T07:13:08Z",
+      "side": 1,
+      "message": "Some on thing here, other naming may be more accurately.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 1
+      },
+      "revId": "983a66de32022d6b00cde5a0bf8d4719009da86e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02b0e96_916d1fdd",
+        "filename": "fw-update/component/bios-spi/my_sw_update.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-10-21T07:13:08Z",
+      "side": 1,
+      "message": "\"my_sw_update\" may not be the ideal name for the class or the file.\n\nSuggestions: \n- \"bios_fw_update_process\"\n- \"bios_fw_process\"\n\nThis may indicate a more accurately what the class is about. \nOther suggestions welcome as well.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 2
+      },
+      "revId": "983a66de32022d6b00cde5a0bf8d4719009da86e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

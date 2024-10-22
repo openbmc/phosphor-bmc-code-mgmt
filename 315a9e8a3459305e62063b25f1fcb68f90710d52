@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f243489c_c6866e78",
+        "filename": "fw-update/component/vr-i2c/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-22T09:07:08Z",
+      "side": 1,
+      "message": "Should we add a small example of a json object for how the configuration would look like in entity-manager?",
+      "revId": "315a9e8a3459305e62063b25f1fcb68f90710d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3365105_a8ba3fa6",
+        "filename": "fw-update/component/vr-i2c/i2c_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-22T09:07:08Z",
+      "side": 1,
+      "message": "Can we rename it to ```i2c_vr_device.cpp```\nor similar.\n\ni2c_device is too generic.",
+      "revId": "315a9e8a3459305e62063b25f1fcb68f90710d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb446fb_edf60d79",
+        "filename": "fw-update/component/vr-i2c/i2c_device_code_updater.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-22T09:07:08Z",
+      "side": 1,
+      "message": "are bus and address not integer values on dbus?",
+      "revId": "315a9e8a3459305e62063b25f1fcb68f90710d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8cd727_92e8c1ca",
+        "filename": "fw-update/component/vr-i2c/vr_fw.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-22T09:07:08Z",
+      "side": 1,
+      "message": "parend -\u003e parent",
+      "revId": "315a9e8a3459305e62063b25f1fcb68f90710d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3af097_b0fb5423",
+        "filename": "fw-update/component/vr-i2c/vr_fw_update.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-22T09:07:08Z",
+      "side": 1,
+      "message": "Can we make it a shared pointer?",
+      "revId": "315a9e8a3459305e62063b25f1fcb68f90710d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

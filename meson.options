@@ -50,6 +50,13 @@ option(
 )
 
 option(
+    'i2cvr-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable update of i2c voltage regulators',
+)
+
+option(
     'side-switch-on-boot',
     type: 'feature',
     value: 'enabled',

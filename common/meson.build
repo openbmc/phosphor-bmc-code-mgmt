@@ -9,6 +9,7 @@ software_common_lib = static_library(
     'src/software.cpp',
     'src/software_update.cpp',
     'src/host_power.cpp',
-    include_directories: ['.', 'include/', common_include],
+    'i2c/i2c.cpp',
+    include_directories: ['.', 'include/', 'include/i2c/', common_include],
     dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep],
 )

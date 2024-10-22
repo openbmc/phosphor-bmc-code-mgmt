@@ -76,7 +76,13 @@ if common_build
   subdir('common')
 endif
 
+if get_option('i2cvr').enabled()
+  subdir('vr-i2c')
+endif
+
 if build_tests.allowed()
   subdir('test')
+  gmock = dependency('gmock', disabler: true, required: false)
+  gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
 endif
 

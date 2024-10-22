@@ -76,6 +76,10 @@ if common_build
   subdir('common')
 endif
 
+if get_option('I2CVR-software-update').enabled()
+  subdir('i2c-vr')
+endif
+
 if build_tests.allowed()
   subdir('test')
 endif

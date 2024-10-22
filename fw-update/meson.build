@@ -27,5 +27,7 @@ common_deps = [
 common_include = include_directories('../')
 
 subdir('component/bios-spi')
+subdir('component/vr-i2c')
+
 subdir('test')
 

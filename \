@@ -77,7 +77,7 @@ libgpiod = dependency(
 subdir('common')
 
 if get_option('i2cvr').enabled()
-  subdir('vr-i2c')
+  subdir('i2c-vr')
 endif
 
 if not build_tests.disabled()

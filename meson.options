@@ -29,6 +29,10 @@ option('software-update-dbus-interface', type: 'feature', value: 'enabled',
     description: 'Implementation using software update D-Bus interface - https://github.com/openbmc/docs/blob/master/designs/code-update.md.',
 )
 
+option('i2cvr', type: 'feature', value: 'enabled',
+  description: 'Enable update of i2c voltage regulators',
+)
+
 option(
     'side-switch-on-boot', type: 'feature', value: 'enabled',
     description: 'Automatic flash side switch on boot',

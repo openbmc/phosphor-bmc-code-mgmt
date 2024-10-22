@@ -12,5 +12,7 @@ libgpiod = dependency(
 subdir('tool')
 subdir('component/bios-spi')
 subdir('component/pldm-update-pkg-tool')
+subdir('component/vr-i2c')
+
 subdir('test')
 

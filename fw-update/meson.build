@@ -18,3 +18,5 @@ if not build_tests.disabled()
   subdir('test')
 endif
 
+subdir('component/vr-i2c')
+

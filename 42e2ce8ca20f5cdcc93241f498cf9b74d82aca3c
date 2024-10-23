@@ -34,6 +34,24 @@
       "parentUuid": "1312cffd_5f1efe43",
       "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a7464b_c393ac1a",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2024-10-23T19:39:12Z",
+      "side": 1,
+      "message": "Got the busctl command working with \"xyz.openbmc_project.Software.Activation\":\n\n```\nroot@p10bmc:~# dbus-send --system --print-reply \\\n--dest\u003dxyz.openbmc_project.ObjectMapper \\\n/xyz/openbmc_project/object_mapper \\\nxyz.openbmc_project.ObjectMapper.GetAssociatedSubTree \\\nobjpath:\"/xyz/openbmc_project/software/bmc/functional\" \\\nobjpath:\"/xyz/openbmc_project/software\" int32:0 array:string:\"xyz.openbmc_project.Software.Activation\"\n```\n\nIt returns:\n```\nmethod return time\u003d1729710057.213083 sender\u003d:1.33 -\u003e destination\u003d:1.599 serial\u003d6315 reply_serial\u003d2\n   array [\n      dict entry(\n         string \"/xyz/openbmc_project/software/e44bebbd\"\n         array [\n            dict entry(\n               string \"xyz.openbmc_project.Software.Manager\"\n               array [\n                  string \"org.freedesktop.DBus.Introspectable\"\n                  string \"org.freedesktop.DBus.Peer\"\n                  string \"org.freedesktop.DBus.Properties\"\n                  string \"xyz.openbmc_project.Association.Definitions\"\n                  string \"xyz.openbmc_project.Common.FilePath\"\n                  string \"xyz.openbmc_project.Inventory.Decorator.Compatible\"\n                  string \"xyz.openbmc_project.Software.Activation\"\n                  string \"xyz.openbmc_project.Software.ExtendedVersion\"\n                  string \"xyz.openbmc_project.Software.RedundancyPriority\"\n                  string \"xyz.openbmc_project.Software.Version\"\n               ]\n            )\n         ]\n      )\n   ]\n```\n\nLooking at bmcweb, they use a get property to get the functional association, it seems that\u0027d be simpler than querying for the whole subtree:\n\n```\nroot@p10bmc:~# busctl get-property xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/software/bmc/functional xyz.openbmc_project.Association endpoints\nas 1 \"/xyz/openbmc_project/software/e44bebbd\"\n```\n\nbmcweb makes the get property call here: https://github.com/openbmc/bmcweb/blob/d8f8a7d77e0fc3aabcf86eed1eb4ed57dfc241d3/redfish-core/include/utils/sw_utils.hpp#L96\n\nCould you replace the subtree call with a `utils::getProperty` call? This usb file already uses this API for some other property value.",
+      "parentUuid": "f8676377_3a599f27",
+      "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

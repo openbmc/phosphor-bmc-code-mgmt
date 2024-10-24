@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635c100e_ea3c3090",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-24T13:45:27Z",
+      "side": 1,
+      "message": "the starts_with is only needed here when accessing nested objects in the\nEM exposes record. If we only need bus, addr, and so on then this is not needed.",
+      "revId": "97e36bbecccc57990a2d288cde24de6079741804",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

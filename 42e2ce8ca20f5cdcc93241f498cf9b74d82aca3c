@@ -52,6 +52,24 @@
       "parentUuid": "f8676377_3a599f27",
       "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2611e862_8e8d745c",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T17:15:35Z",
+      "side": 1,
+      "message": "Is there any specific reason we should swap out with utils::getProperty?\nAre you running into some issue with get_associated_sub_tree_paths? \nI see utils::getProperty again does a reverse lookup from bus to first figure out the service name and then makes a calls for getProperty. If there is no strong reasoning for change, then isn\u0027t current flow better since it involves a single DBus call? Please let me know.",
+      "parentUuid": "83a7464b_c393ac1a",
+      "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

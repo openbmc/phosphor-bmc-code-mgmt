@@ -20,4 +20,5 @@ endif
 
 subdir('component/vr-i2c')
 subdir('component/interfaces/i2c')
+subdir('component/regulators')
 

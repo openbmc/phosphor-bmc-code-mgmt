@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d1b031_83b9c39b",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "If it\u0027s not required to power cycle the host, why are we doing that here?",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005e1d36_94f9dd7d",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "missing call to the actual update function. I assume this will be in one of the later patches i didn\u0027t look at yet.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88cd8889_4898f453",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "The signature of this function has changed. \u0027deviceSpecificUpdateFunction\u0027 now receives a pointer and size of the raw component image. Sorry about that :(",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb4feca_c78b6862",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "the second comment is not needed since we have this function now in FWManager class.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0395038_270a6e95",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "we can drop this function here",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f96ec3f_b5e8c6d4",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "Believe to have removed this function, so it\u0027s no longer needed to implement this in the device specific code updaters.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2609e1ed_e714a54a",
+        "filename": "fw-update/component/vr-i2c/main.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "since there is no logging in this file, no need to include phosphor-logging.\n\nSame for some of the other includes.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c821249_ef73b9fa",
+        "filename": "fw-update/component/vr-i2c/meson.build",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "there is some pink block in the gerrit view, is there trailing spaces?",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a07facb4_4c9cd79f",
+        "filename": "fw-update/component/vr-i2c/meson.build",
+        "patchSetId": 18
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "i dropped the \u0027common_src\u0027 variable, so we can remove it here.\nNow we can pull in the common code via \u0027link_with\u0027 as done in bios/spi device code updater.\n\nThis avoids having to compile the common code again for each device specific daemon.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d096987_5126b2bd",
+        "filename": "fw-update/component/vr-i2c/vr_fw.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "for the debug statement we can add the swid and/or object path.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cea005_01693285",
+        "filename": "fw-update/component/vr-i2c/vr_fw_update.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "we can return an allowed apply time of \u0027instant\u0027 for now which is a valid value.\nOtherwise there is no allowed apply time which prevents any update (from the perspective of the design).\n\nAlso, is this function duplicated below?",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e75b5b40_fddaa49a",
+        "filename": "fw-update/component/vr-i2c/vr_fw_update.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-05T09:26:17Z",
+      "side": 1,
+      "message": "no logging in this file, so no need to include phosphor-logging.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

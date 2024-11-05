@@ -79,5 +79,7 @@ subdir('common')
 
 if not build_tests.disabled()
   subdir('test')
+  gmock = dependency('gmock', disabler: true, required: false)
+  gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
 endif
 

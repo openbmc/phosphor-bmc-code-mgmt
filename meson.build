@@ -322,6 +322,7 @@ endforeach
 build_tests = get_option('tests')
 if not build_tests.disabled()
     gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
+    gmock = dependency('gmock', disabler: true, required: false)
     include_srcs = declare_dependency(sources: [
         'utils.cpp',
         'image_verify.cpp',

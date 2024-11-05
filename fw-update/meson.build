@@ -23,3 +23,6 @@ endif
 if not build_tests.disabled()
   subdir('test')
 endif
+
+subdir('component/regulators')
+

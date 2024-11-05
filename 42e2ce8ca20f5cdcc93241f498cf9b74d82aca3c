@@ -70,6 +70,24 @@
       "parentUuid": "83a7464b_c393ac1a",
       "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f2aed4_84c84b15",
+        "filename": "usb/usb_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-05T00:52:54Z",
+      "side": 1,
+      "message": "Done, used utils::getProperty.",
+      "parentUuid": "2611e862_8e8d745c",
+      "revId": "42e2ce8ca20f5cdcc93241f498cf9b74d82aca3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

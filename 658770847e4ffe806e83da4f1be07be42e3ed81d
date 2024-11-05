@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3ce7157_f1cd7ab5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2024-11-05T02:23:52Z",
+      "side": 1,
+      "message": "+1, why is this needed? A client quering /redfish/v1/UpdateService/FirmwareInventory/3c956be0 will know if it\u0027s related to BMC or not by `RelatedItem`",
+      "parentUuid": "794f517d_9a7e84a9",
+      "revId": "658770847e4ffe806e83da4f1be07be42e3ed81d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8286bb7a_dd00eb1e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2

@@ -5,6 +5,8 @@ i2c_vr_src = files(
 
 i2c_vr_include = include_directories('.')
 
+subdir('regulators')
+
 executable(
     'phosphor-fw-update-vr',
     'main.cpp',
@@ -12,6 +14,7 @@ executable(
     include_directories: [
       common_include,
       i2c_vr_include,
+      vr_dev_include,
     ],
     dependencies: [
       sdbusplus_dep,

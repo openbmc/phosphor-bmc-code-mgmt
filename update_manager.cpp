@@ -40,6 +40,17 @@ void Manager::processImageFailed(sdbusplus::message::unix_fd image,
                                        ActivationIntf::Activations::Invalid);
 }
 
+bool verifyImagePurpose(Version::VersionPurpose purpose,
+                        ItemUpdaterIntf::UpdaterType type)
+{
+    if (purpose == Version::VersionPurpose::Host)
+    {
+        return (type == ItemUpdaterIntf::UpdaterType::BIOS ||
+                type == ItemUpdaterIntf::UpdaterType::ALL);
+    }
+    return true;
+}
+
 // NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto Manager::processImage(sdbusplus::message::unix_fd image,
                            ApplyTimeIntf::RequestedApplyTimes applyTime,
@@ -146,6 +157,16 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
             "PURPOSE", purposeString);
     }
     auto purpose = convertedPurpose.value_or(Version::VersionPurpose::Unknown);
+
+    if (!verifyImagePurpose(purpose, itemUpdater.type))
+    {
+        error("Purpose ({PURPOSE}) is not supported", "PURPOSE", purpose);
+        processImageFailed(image, id);
+        report<SoftwareErrors::ImageFailure>(
+            ImageFail::FAIL("Purpose is not supported"),
+            ImageFail::PATH(manifestPath.string().c_str()));
+        co_return;
+    }
 
     // Get ExtendedVersion
     std::string extendedVersion =

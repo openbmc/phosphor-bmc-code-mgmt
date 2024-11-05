@@ -91,7 +91,7 @@ class ItemUpdater : public ItemUpdaterInherit
                 bool useUpdateDBusInterface = true) :
         ItemUpdaterInherit(ctx.get_bus(), path.c_str(),
                            ItemUpdaterInherit::action::defer_emit),
-        useUpdateDBusInterface(useUpdateDBusInterface), ctx(ctx),
+        type(type), useUpdateDBusInterface(useUpdateDBusInterface), ctx(ctx),
         bus(ctx.get_bus()), helper(bus)
     {
         if (!useUpdateDBusInterface)
@@ -272,6 +272,9 @@ class ItemUpdater : public ItemUpdaterInherit
 
     /** @brief The slot of running BMC image */
     uint32_t runningImageSlot = 0;
+
+    /** @brief The type of updater. */
+    UpdaterType type;
 
     /** @brief Flag to indicate if the update interface is used or not */
     bool useUpdateDBusInterface;

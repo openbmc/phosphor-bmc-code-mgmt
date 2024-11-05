@@ -13,6 +13,7 @@ subdir('component/bios-spi')
 subdir('component/pldm-update-pkg-tool')
 subdir('component/vr-i2c')
 subdir('component/interfaces/i2c')
+subdir('component/regulators')
 
 subdir('test')
 

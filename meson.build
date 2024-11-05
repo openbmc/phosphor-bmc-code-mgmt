@@ -76,6 +76,25 @@ libgpiod = dependency(
 subdir('common')
 
 if not build_tests.disabled()
+<<<<<<< HEAD
   subdir('test')
+=======
+    gmock = dependency('gmock', disabler: true, required: false)
+    gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
+    include_srcs = declare_dependency(sources: [
+        'utils.cpp',
+        'image_verify.cpp',
+        'images.cpp',
+        'version.cpp']
+    )
+
+    test('utest',
+        executable(
+            'utest',
+            './test/utest.cpp',
+            dependencies: [deps, gtest, include_srcs, ssl]
+        )
+)
+>>>>>>> 6ec6949 (Add I2C hardware interface)
 endif
 

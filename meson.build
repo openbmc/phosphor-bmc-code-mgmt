@@ -324,6 +324,7 @@ endforeach
 # need to define and build the tests from here
 build_tests = get_option('tests')
 if not build_tests.disabled()
+    gmock = dependency('gmock', disabler: true, required: false)
     gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
     include_srcs = declare_dependency(sources: [
         'utils.cpp',

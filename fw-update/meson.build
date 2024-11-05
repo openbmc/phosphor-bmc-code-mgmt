@@ -19,4 +19,5 @@ if not build_tests.disabled()
 endif
 
 subdir('component/vr-i2c')
+subdir('component/interfaces/i2c')
 

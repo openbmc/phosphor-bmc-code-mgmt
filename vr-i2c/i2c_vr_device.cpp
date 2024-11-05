@@ -1,7 +1,8 @@
 #include "i2c_vr_device.hpp"
 
-#include "fw-update/common/include/device.hpp"
-#include "fw-update/common/include/software_manager.hpp"
+#include "common/include/device.hpp"
+#include "common/include/software_manager.hpp"
+#include "regulators/vr.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
@@ -13,9 +14,8 @@ I2CVRDevice::I2CVRDevice(sdbusplus::async::context& ctx, bool dryRun,
                          SoftwareManager* parent) :
     Device(ctx, dryRun, config, parent), busNo(bus), address(addr),
     vrTypeStr(vrChipName)
+
 {
-    // Placeholder code to be adapted in change-75656
-    // Create I2CInterface with bus and address
     // Call VoltageRegulator constructor with vrChipName (change-75656).
     lg2::debug(
         "initialized I2C device(on I2C bus: {BUS} with address: {ADDR} instance on dbus",
@@ -36,6 +36,7 @@ sdbusplus::async::task<bool> I2CVRDevice::deviceSpecificUpdateFunction(
     std::unique_ptr<SoftwareActivationProgress>& activationProgress)
 // NOLINTEND
 {
+    std::unique_ptr<VR::VoltageRegulator> inf = VR::create(vrTypeStr, busNo, address);
     // Update loop, contition is size of image and reduced by size written to
     // chip.
     if (dryRun)
@@ -54,6 +55,21 @@ sdbusplus::async::task<bool> I2CVRDevice::deviceSpecificUpdateFunction(
     {
         (void)image;
         (void)image_size;
+<<<<<<< Updated upstream
+        if (inf->vr_fw_update(image,image_size) < 0)
+=======
+        char ver_str[80];
+        if (inf->get_fw_version(ver_str) < 0)
+        {
+            co_return false;
+        }
+
+        if (inf->vr_fw_update(image,image_size, false) < 0)
+>>>>>>> Stashed changes
+        {
+            lg2::error("update failed");
+            co_return false;
+        }
     }
 
     lg2::info("Update of VR done. Exiting...");

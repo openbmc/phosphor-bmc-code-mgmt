@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2efef4a_a9bacaef",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7d1b031_83b9c39b",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "005e1d36_94f9dd7d",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a73e4c_c7219852",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88cd8889_4898f453",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cb4feca_c78b6862",
@@ -65,6 +101,24 @@
       "writtenOn": "2024-11-05T09:26:17Z",
       "side": 1,
       "message": "the second comment is not needed since we have this function now in FWManager class.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e06f5f7_f8841686",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cb4feca_c78b6862",
       "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "778ca142_5d51449a",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0395038_270a6e95",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f96ec3f_b5e8c6d4",
@@ -99,6 +171,24 @@
       "writtenOn": "2024-11-05T09:26:17Z",
       "side": 1,
       "message": "Believe to have removed this function, so it\u0027s no longer needed to implement this in the device specific code updaters.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922ff947_00a81eed",
+        "filename": "fw-update/component/vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f96ec3f_b5e8c6d4",
       "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +210,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "483c40e1_073c1f57",
+        "filename": "fw-update/component/vr-i2c/main.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2609e1ed_e714a54a",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c821249_ef73b9fa",
@@ -133,6 +241,24 @@
       "writtenOn": "2024-11-05T09:26:17Z",
       "side": 1,
       "message": "there is some pink block in the gerrit view, is there trailing spaces?",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a306b1a3_9dc52686",
+        "filename": "fw-update/component/vr-i2c/meson.build",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c821249_ef73b9fa",
       "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +280,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "124b3bf7_acee8117",
+        "filename": "fw-update/component/vr-i2c/meson.build",
+        "patchSetId": 18
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07facb4_4c9cd79f",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d096987_5126b2bd",
@@ -167,6 +311,24 @@
       "writtenOn": "2024-11-05T09:26:17Z",
       "side": 1,
       "message": "for the debug statement we can add the swid and/or object path.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14d10a8f_4ca71a0a",
+        "filename": "fw-update/component/vr-i2c/vr_fw.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d096987_5126b2bd",
       "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +350,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b328a86c_1962d56a",
+        "filename": "fw-update/component/vr-i2c/vr_fw_update.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cea005_01693285",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e75b5b40_fddaa49a",
@@ -201,6 +381,24 @@
       "writtenOn": "2024-11-05T09:26:17Z",
       "side": 1,
       "message": "no logging in this file, so no need to include phosphor-logging.",
+      "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc2b23b0_9b7a2850",
+        "filename": "fw-update/component/vr-i2c/vr_fw_update.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-11-06T12:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e75b5b40_fddaa49a",
       "revId": "19a01240986dd99aee43ff71e6e00b7de3f10b5e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

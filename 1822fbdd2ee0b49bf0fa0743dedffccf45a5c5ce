@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9b32b4_a100cfdd",
+        "filename": "fw-update/common/create_package/create_pldm_fw_package.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Why are you placing create PLDM package APIs in the common layer, ideally they should be available in a tools dir? The common layer should only have the logic to parse the package because thats what is needed on the device.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25fe2ed4_ea824917",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Update/aserver.hpp?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a63097_15996030",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Why there is a normal and async version of the startUpdate?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9631e3d0_9024f8c4",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Why is everything public in this class?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57ba5f1_3cc03683",
+        "filename": "fw-update/common/software-activation.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Same comment as SoftwareVersion.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acaf0a94_f075183f",
+        "filename": "fw-update/common/software-activation.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Also, rather than creating individual objects, do you think it will be better to create composite server object if they are going to be used at the same place?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "244917cd_8e9b273f",
+        "filename": "fw-update/common/software-activation.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Same comment as SoftwareVersion.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d05f86b_62607e8c",
+        "filename": "fw-update/common/software-association-definitions.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Again, please move this constructor to .hpp file.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817614d3_85216ec6",
+        "filename": "fw-update/common/software-association-definitions.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "As per my understanding you just need one instance of server manager somewhere at the root of the objectPath and not on every instance of every interface.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c5ac1ae_4cec9b72",
+        "filename": "fw-update/common/software-version.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Why do we need a cpp file? If u r just defining the constructor, better to do it in header?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e52172_1fd1efbe",
+        "filename": "fw-update/common/software-version.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Can you please use aserver.hpp for Update interface?\n\nAlso, i don\u0027t see any use of Update interface in this file, then why is being included?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e29b9f15_6aef56e0",
+        "filename": "fw-update/common/software-version.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Any specific reason you have kept this manager instance here?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba351ad8_8bc8834d",
+        "filename": "fw-update/common/software.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Is this TODO still valid?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967e07fe_1f2357fd",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Update/aserver.hpp?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44ca5763_11f40917",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Isn\u0027t one suppose to call emit_added, only if the emit has been deferred, i don\u0027t see that?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fa6116_b83da298",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "You just need one instance of manager.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c566c2_7767436b",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-11T06:55:03Z",
+      "side": 1,
+      "message": "Why shared?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

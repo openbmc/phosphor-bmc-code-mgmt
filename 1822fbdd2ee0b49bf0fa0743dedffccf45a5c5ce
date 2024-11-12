@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ebc7793_8d265b53",
+        "filename": "fw-update/common/create_package/create_pldm_fw_package.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "It is also needed for unit testing the package parsing code and for the tool to create a minimal pldm package for testing. We can put it in a tools directory to separate it from the common code for the code updaters.\n\nKeeping this comment open since i\u0027m planning to address this in a future revision.",
+      "parentUuid": "fa9b32b4_a100cfdd",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25fe2ed4_ea824917",
         "filename": "fw-update/common/device.hpp",
         "patchSetId": 41
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Update/aserver.hpp?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab1ce4f_4f8332c5",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fe2ed4_ea824917",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e38b3e_929c0cd5",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "startUpdate is implemented in device.cpp and is called to start the async update.\nThe async update is implemented by each code updater.\n\n\u0027startUpdate\u0027 is marked final for this reason, since the code updaters should not override it.",
+      "parentUuid": "e4a63097_15996030",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9631e3d0_9024f8c4",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Why is everything public in this class?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41e91f3_9ec2ca5f",
+        "filename": "fw-update/common/device.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "sorry about that. Updated it to have public, protected and private members.",
+      "parentUuid": "9631e3d0_9024f8c4",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e976d06b_c948d9a6",
+        "filename": "fw-update/common/software-activation.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b57ba5f1_3cc03683",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acaf0a94_f075183f",
@@ -103,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a38d2d48_1cf8ad1c",
+        "filename": "fw-update/common/software-activation.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "I prefer to have more objects with fewer methods each. Inheriting from all these dbus interfaces means there is many methods on the object.\n\nHaving more smaller classes helps also when passing them by reference. It is clear that the function receiving that reference is only updating e.g. the ActivationProgress interface.\n\nAgree that it\u0027s a lot of classes though.",
+      "parentUuid": "acaf0a94_f075183f",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "244917cd_8e9b273f",
@@ -116,6 +224,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Same comment as SoftwareVersion.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b93171_8868a236",
+        "filename": "fw-update/common/software-activation.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "244917cd_8e9b273f",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f069f586_87dde35b",
+        "filename": "fw-update/common/software-association-definitions.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "why? I always thought we use .cpp for implementation and .hpp for declarations.\n\nIf we have implementations in header files, they may be compiled multiple times and then need to be deduplicated, right?",
+      "parentUuid": "1d05f86b_62607e8c",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817614d3_85216ec6",
         "filename": "fw-update/common/software-association-definitions.hpp",
         "patchSetId": 41
@@ -150,6 +294,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "As per my understanding you just need one instance of server manager somewhere at the root of the objectPath and not on every instance of every interface.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea5de00_6973017d",
+        "filename": "fw-update/common/software-association-definitions.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "ok, removed it here.",
+      "parentUuid": "817614d3_85216ec6",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "325415d2_042890f1",
+        "filename": "fw-update/common/software-version.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "I try to do implementations in .cpp files. Otherwise it gets confusing at link time and there can be duplicates which then have to be deduplicated. It\u0027s only 15 lines.",
+      "parentUuid": "8c5ac1ae_4cec9b72",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84e52172_1fd1efbe",
@@ -188,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab6f89e5_b9f87a59",
+        "filename": "fw-update/common/software-version.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "yes, it\u0027s unused. Removed it.",
+      "parentUuid": "84e52172_1fd1efbe",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e29b9f15_6aef56e0",
@@ -201,6 +399,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Any specific reason you have kept this manager instance here?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6853180_408fe0d9",
+        "filename": "fw-update/common/software-version.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "No reason. Removed it.",
+      "parentUuid": "e29b9f15_6aef56e0",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -224,6 +440,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fb1d920_32dbe926",
+        "filename": "fw-update/common/software.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "should be done with latest revision. I\u0027m associating to the configuration item as discussed. Keeping this as TODO since as per the design we associate to the inventory item.",
+      "parentUuid": "ba351ad8_8bc8834d",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "967e07fe_1f2357fd",
         "filename": "fw-update/common/software.hpp",
         "patchSetId": 41
@@ -235,6 +469,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Update/aserver.hpp?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0241b7c8_245f4b91",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "removed all the ```.../server.hpp``` references.\n\nThe software update interface is currently not in the class Software, but\nin the component folders. Since they may not implement this interface depending on if the software is able to be updated.",
+      "parentUuid": "967e07fe_1f2357fd",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -258,6 +510,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28a8c06c_83c6f77b",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "Commented it out here, if it\u0027s not needed i can remove that in the next revision. \nYes it should not be needed. I tested without it.",
+      "parentUuid": "44ca5763_11f40917",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1fa6116_b83da298",
         "filename": "fw-update/common/software.hpp",
         "patchSetId": 41
@@ -269,6 +539,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "You just need one instance of manager.",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d6fc317_d27723f2",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "good to know 👍\nI added that instance on fw_manager.hpp, since that will only exist once in the process.",
+      "parentUuid": "d1fa6116_b83da298",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -286,6 +574,24 @@
       "writtenOn": "2024-11-11T06:55:03Z",
       "side": 1,
       "message": "Why shared?",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d868b35_2db8297e",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-12T17:22:11Z",
+      "side": 1,
+      "message": "These interfaces are both temporarily exposed, as per the design.\n\nI can also make them std::optional, would you prefer the std::optional?",
+      "parentUuid": "27c566c2_7767436b",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

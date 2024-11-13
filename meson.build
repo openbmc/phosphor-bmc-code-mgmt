@@ -148,10 +148,8 @@ unit_files = [
     'reboot-guard-enable.service.in',
     'force-reboot.service.in',
     'usr-local.mount.in',
-    'xyz.openbmc_project.Software.BMC.Updater.service.in',
     'xyz.openbmc_project.Software.Download.service.in',
-    'xyz.openbmc_project.Software.Sync.service.in',
-    'xyz.openbmc_project.Software.Version.service.in'
+    'xyz.openbmc_project.Software.Sync.service.in'
 ]
 
 image_updater_sources = files(

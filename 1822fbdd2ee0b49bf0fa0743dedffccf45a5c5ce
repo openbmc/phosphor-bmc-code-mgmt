@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7ec87d9_5232fa33",
+        "filename": "fw-update/common/create_package/create_pldm_fw_package.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-14T17:55:55Z",
+      "side": 1,
+      "message": "moved the code to \u0027tool\u0027 directory.",
+      "parentUuid": "0ebc7793_8d265b53",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25fe2ed4_ea824917",
@@ -281,6 +299,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f09f757_328fa880",
+        "filename": "fw-update/common/software-association-definitions.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-14T17:55:55Z",
+      "side": 1,
+      "message": "made the Software class inherit from the association definitions, so this file is now gone.",
+      "parentUuid": "f069f586_87dde35b",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817614d3_85216ec6",
@@ -458,6 +494,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74c255d2_23b058fe",
+        "filename": "fw-update/common/software.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-14T17:55:55Z",
+      "side": 1,
+      "message": "Should we change the design on this? Otherwise, how can i get the path to the inventory item, given the configuration and configuration object path?",
+      "parentUuid": "5fb1d920_32dbe926",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "967e07fe_1f2357fd",
         "filename": "fw-update/common/software.hpp",
         "patchSetId": 41
@@ -522,6 +576,24 @@
       "side": 1,
       "message": "Commented it out here, if it\u0027s not needed i can remove that in the next revision. \nYes it should not be needed. I tested without it.",
       "parentUuid": "44ca5763_11f40917",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2889184_e8e50c6d",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-14T17:55:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a8c06c_83c6f77b",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -592,6 +664,24 @@
       "side": 1,
       "message": "These interfaces are both temporarily exposed, as per the design.\n\nI can also make them std::optional, would you prefer the std::optional?",
       "parentUuid": "27c566c2_7767436b",
+      "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea65af77_cb6cee12",
+        "filename": "fw-update/common/software.hpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-14T17:55:55Z",
+      "side": 1,
+      "message": "switched to using std::unique_ptr.",
+      "parentUuid": "8d868b35_2db8297e",
       "revId": "1822fbdd2ee0b49bf0fa0743dedffccf45a5c5ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

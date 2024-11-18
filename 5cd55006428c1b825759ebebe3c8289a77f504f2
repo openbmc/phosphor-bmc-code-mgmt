@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e738bf4_d5074c45",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "Let\u0027s say its the image file descriptor (not just PLDM) as in future we can/may have more image formats.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426ab018_7df201dd",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "Let\u0027s rename this to SoftwareManager and the file accordingly since we are using the keyword software everywhere.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f18e4ae8_c44e08af",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "We normally don\u0027t pass the debug flag this way. You can keep the logs at debug level and change the log level to debug to get those messages.\n\nLet\u0027s drop this from the interface.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d55e22a5_a4036975",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "Why do we need this? The caller has itself passed the context in constructor, so they should have it?",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6018976d_ffa07953",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "I don\u0027t think we can keep these APIs in the common code, but we need some generic configuration class from which device specific one\u0027s can inherit. The base class can have common parameters like type, IANA, compatible and so on.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9710b8ea_9d5b037d",
+        "filename": "fw-update/common/include/software-update.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "Can you please rename the file to software_update.hpp as in other files.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "157549fe_e1b6ec9b",
+        "filename": "fw-update/common/src/software-update.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T22:49:26Z",
+      "side": 1,
+      "message": "Can you please rename the file to software_update.cpp as in other files.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

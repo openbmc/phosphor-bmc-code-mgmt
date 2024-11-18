@@ -16,6 +16,24 @@
       "message": "This change would break the current default. I don\u0027t think having the `Wants` in this service file was ever needed because all the code update services start by default. What about if we just add all the old and new services with `After` and remove the `Wants`:\n```\nAfter\u003dxyz.openbmc_project.Software.Version.service\nAfter\u003dxyz.openbmc_project.Software.BMC.Updater.service\nAfter\u003dxyz.openbmc_project.Software.Manager.service\n```\nThat way we can support the old and the new for now (systemd figures out which services are running and schedules them in order of Before/After).",
       "revId": "9726bd161794db4825edad3f5ab3362e3db362e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b648500_97b5f53f",
+        "filename": "usb/services/usb-code-update@.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-18T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5d6640b_2b410cd3",
+      "revId": "9726bd161794db4825edad3f5ab3362e3db362e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

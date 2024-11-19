@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82e4bb08_6ee1dbff",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T11:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "426ab018_7df201dd",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f18e4ae8_c44e08af",
@@ -72,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2fcc9a0_bc38f988",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T11:11:48Z",
+      "side": 1,
+      "message": "We are using this currently in SPIDevice Code Updater to decide if we want to delete the component image.\n\nWith this flag the code updater can run in debug mode and behave differently to make it easier to debug. One example of this is to leave behind any components extracted from the pldm package, so people can verify that the component was extracted correctly.\n\nIf it were only about printing debug logs then we could drop it.\n\nBut i want to give the code updater the chance to behave differently when in debug mode.",
+      "parentUuid": "f18e4ae8_c44e08af",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d55e22a5_a4036975",
         "filename": "fw-update/common/include/fw_manager.hpp",
         "patchSetId": 43
@@ -83,6 +119,24 @@
       "writtenOn": "2024-11-18T22:49:26Z",
       "side": 1,
       "message": "Why do we need this? The caller has itself passed the context in constructor, so they should have it?",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6fc738_cb63529f",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T11:11:48Z",
+      "side": 1,
+      "message": "Yes, we don\u0027t need it. Removed the \u0027getIOContext()\u0027.",
+      "parentUuid": "d55e22a5_a4036975",
       "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -121,6 +175,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fc49441_deb897a4",
+        "filename": "fw-update/common/include/software-update.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T11:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9710b8ea_9d5b037d",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "157549fe_e1b6ec9b",
@@ -134,6 +206,24 @@
       "writtenOn": "2024-11-18T22:49:26Z",
       "side": 1,
       "message": "Can you please rename the file to software_update.cpp as in other files.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f34bc6_81b46acf",
+        "filename": "fw-update/common/src/software-update.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T11:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157549fe_e1b6ec9b",
       "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

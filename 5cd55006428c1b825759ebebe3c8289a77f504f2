@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9fc4d9_491df8b9",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-19T09:33:10Z",
+      "side": 1,
+      "message": "The documentation for the function is for the current state of the function.\n\nIf we pass anything else than a pldm package this function will fail.\nSo the documentation reflects that, i do not see the problem.",
+      "parentUuid": "1e738bf4_d5074c45",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "426ab018_7df201dd",

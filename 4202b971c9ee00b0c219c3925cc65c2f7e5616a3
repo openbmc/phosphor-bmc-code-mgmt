@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b604b7ad_3fb4173b",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Lets call this inventoryObjectPath.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70e0de2f_aab126ad",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "lets change this varname to ctx instead.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e1cc52_3e08062a",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Can you please delete this if not used.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f885ae_d68552c7",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Probably call this setupBusName.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a80df0_6f956cb6",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Can we make any of these args private?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fd6fc7_23c0ae2f",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Can we make this private instead?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c060a2a_2bcad7da",
+        "filename": "fw-update/common/include/software_update.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "pass the supported apply time as in arg and use it in get property.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91471550_96e7ae8c",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Set the status as notready from here itself.\nLets define a imageverify API and call it from here.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35696876_c9bcceb6",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Move code from this API to software_update.cpp::startUpdate.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7917519f_9187e7cb",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "this should check if the applyTime is a valid one or not and then use it further, but don\u0027t reset the deviceApplyTime.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19731e01_7226277a",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "delete this.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d3de9a_989d06b0",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Lets get rid off this wait.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cce272d_31850e94",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Bring in the applytime check into this API.\n\nreplace this one with ctx.spawn(device-\u003estartUpdateAsync());",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7552243_2a1923ac",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Don\u0027t implement get for now.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3239ba_d197a3b9",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-19T18:27:46Z",
+      "side": 1,
+      "message": "Use the value from passed in arg.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -258,6 +258,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a75924ab_4889e621",
+        "filename": "fw-update/component/bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-20T23:07:30Z",
+      "side": 1,
+      "message": "Can there be more than one GPIO that needs to be toggled? I am trying to understand if thats a valid use case to support?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df699849_9dfae20b",
         "filename": "fw-update/component/bios-spi/spi_device_code_updater.cpp",
         "patchSetId": 44

@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70dcc6d1_d636c296",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "it\u0027s the dbus object path where we found the configuration interface.\nSo i want \u0027config\u0027 or \u0027configuration\u0027 to be a part of the variable name.",
+      "parentUuid": "b604b7ad_3fb4173b",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70e0de2f_aab126ad",
         "filename": "fw-update/common/include/device.hpp",
         "patchSetId": 44
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "lets change this varname to ctx instead.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0dfb517_89a38b21",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70e0de2f_aab126ad",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cc4a4d8_7930579a",
+        "filename": "fw-update/common/include/device.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "yes. deleted\n```std::string oldSwId;```",
+      "parentUuid": "06e1cc52_3e08062a",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f885ae_d68552c7",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a0b2e4_73bc732c",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4f885ae_d68552c7",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3a80df0_6f956cb6",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "Can we make any of these args private?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb441f5d_7c598b91",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "- removed \u0027debug\u0027\n- moved \u0027dryRun\u0027 to be a protected member",
+      "parentUuid": "b3a80df0_6f956cb6",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -105,6 +195,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26ab0dc5_0fac0842",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "i would like to avoid making\n```const std::string configType;```\nprivate because ```Device::getEMConfigType``` needs it which is in turn then\nneeded by ```Software``` class to create the software id as per the design and also\nthe other document\n```\nwhere , \u003cSwId\u003e \u003d HardwareInfo_ComponentType_[ComponentInstance]_UniqueId\n```\n\nSo we could make a getter for it but it\u0027s const anyways so it cannot be changed.\nSo the getter would be bloat.\n\nI do not want to directly pass the configuration type string to ```Software::getRandomSoftwareId(Device\u0026 parent)```\nbecause strings can easily get mixed up.\n\nThe way the signature works currently makes it clear we are creating a software id \nfor the device that is passed.",
+      "parentUuid": "d8fd6fc7_23c0ae2f",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c060a2a_2bcad7da",
         "filename": "fw-update/common/include/software_update.hpp",
         "patchSetId": 44
@@ -116,6 +224,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "pass the supported apply time as in arg and use it in get property.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f281eea_1072771f",
+        "filename": "fw-update/common/include/software_update.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done. Also made the set_property a nop as discussed.",
+      "parentUuid": "7c060a2a_2bcad7da",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -137,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e6e4b3_67cdbb6b",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Set the status as notready from here itself: Done",
+      "parentUuid": "91471550_96e7ae8c",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35696876_c9bcceb6",
@@ -150,6 +294,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "Move code from this API to software_update.cpp::startUpdate.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79963600_547df446",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "got rid of Device::startUpdate, and moved some of that code to software_update.cpp.",
+      "parentUuid": "35696876_c9bcceb6",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "611e0304_be651dc5",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7917519f_9187e7cb",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19731e01_7226277a",
@@ -184,6 +364,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "delete this.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a3bae7_0bbd4bed",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "oldSwId is deleted.",
+      "parentUuid": "19731e01_7226277a",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +403,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "258d6d3f_55e2561f",
+        "filename": "fw-update/common/src/device.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45d3de9a_989d06b0",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cce272d_31850e94",
@@ -218,6 +434,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "Bring in the applytime check into this API.\n\nreplace this one with ctx.spawn(device-\u003estartUpdateAsync());",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2157e88_acc09059",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cce272d_31850e94",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -239,6 +473,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "101c3f05_3ccc1b98",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7552243_2a1923ac",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c3239ba_d197a3b9",
@@ -252,6 +504,24 @@
       "writtenOn": "2024-11-19T18:27:46Z",
       "side": 1,
       "message": "Use the value from passed in arg.",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a6bbd3_09f3804e",
+        "filename": "fw-update/common/src/software_update.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3239ba_d197a3b9",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -273,6 +543,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab04a48_48c9ccd5",
+        "filename": "fw-update/component/bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Yes, i do have 1 board that requires 2 gpios. The example configuration is in README.md",
+      "parentUuid": "a75924ab_4889e621",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df699849_9dfae20b",
@@ -286,6 +574,24 @@
       "writtenOn": "2024-11-20T23:06:14Z",
       "side": 1,
       "message": "Why do you need to store what tool is being used to flash in the EM - Are you planning to support multiple types of tool for same type of firmware update, if yes, whats the advantage of that? I think these details should be internal to the daemon?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa073abf_8730a608",
+        "filename": "fw-update/component/bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "\u003e  I think these details should be internal to the daemon?\n\nYes, internal logic/library call is preferred to using any external tool.\n\n\u003e  Are you planning to support multiple types of tool for same type of firmware update, if yes, whats the advantage of that?\n\nI prefer to have only one way to do something.\n\nFor intel systems, firmware can have a intel flash descriptor which describes which sections of the chip needs which component image.\n\nCurrently our code does not support this, so i have to go via flashrom.\n\nThere is also libflashrom but i did not investigate this yet. Maybe that can help us to not run any tool directly.",
+      "parentUuid": "df699849_9dfae20b",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

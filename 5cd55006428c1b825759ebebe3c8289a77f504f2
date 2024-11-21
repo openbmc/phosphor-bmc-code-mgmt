@@ -106,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f675e3e1_8b8862a3",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "ok, managed to drop \u0027bool debug\u0027 from the common code.\n\nIt was only used in the spi device code updater, so i moved it there.",
+      "parentUuid": "a2fcc9a0_bc38f988",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d55e22a5_a4036975",
@@ -154,6 +172,24 @@
       "writtenOn": "2024-11-18T22:49:26Z",
       "side": 1,
       "message": "I don\u0027t think we can keep these APIs in the common code, but we need some generic configuration class from which device specific one\u0027s can inherit. The base class can have common parameters like type, IANA, compatible and so on.",
+      "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8000bd44_6f57f28c",
+        "filename": "fw-update/common/include/fw_manager.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-21T13:16:47Z",
+      "side": 1,
+      "message": "Yes, we can have a \u0027DeviceConfig\u0027 class and then accept that in the constructor of the device.\n\nIt will be easier to introduce new configuration parameters since it will not have to go through each code updater.",
+      "parentUuid": "6018976d_ffa07953",
       "revId": "5cd55006428c1b825759ebebe3c8289a77f504f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

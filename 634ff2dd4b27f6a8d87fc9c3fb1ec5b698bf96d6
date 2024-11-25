@@ -33,6 +33,23 @@
       "message": "Where would the code to interface with EM reside? Wouldn\u0027t that be part of common code?",
       "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf4f1a8_2f26a9ac",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 45
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T02:04:52Z",
+      "side": 1,
+      "message": "Lets pass the inventoryObjectPath instead here. The device specific code needs to figure out the path to the inventory item and pass that in here, so the common code can create the required associations (if passed in path is valid).\n\nAlready asked you to drop the config associations here https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/afad460c_ffede51f/.",
+      "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

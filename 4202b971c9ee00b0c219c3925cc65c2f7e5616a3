@@ -247,6 +247,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace8ff60_e188a79d",
+        "filename": "fw-update/common/include/software_manager.hpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T19:03:50Z",
+      "side": 1,
+      "message": "done, made it private 👍",
+      "parentUuid": "32c1b163_1b7e43e5",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c060a2a_2bcad7da",
@@ -474,6 +492,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99096a79_9c4bf6e1",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T19:03:50Z",
+      "side": 1,
+      "message": "closing this since it looks like a duplicate of \nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/4cf4f1a8_2f26a9ac/\n\nwhere we are also discussing the inventory/configuration association.",
+      "parentUuid": "afad460c_ffede51f",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56690c6b_9d5f8e3b",
@@ -487,6 +523,24 @@
       "writtenOn": "2024-11-25T01:28:51Z",
       "side": 1,
       "message": "Why is the version unknown here? Shouldn\u0027t software class take version as input?",
+      "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5fc3c9_50366d87",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 44
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T19:03:50Z",
+      "side": 1,
+      "message": "Fixed this. For now the software version is coming from the pldm package when the update is done.",
+      "parentUuid": "56690c6b_9d5f8e3b",
       "revId": "4202b971c9ee00b0c219c3925cc65c2f7e5616a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

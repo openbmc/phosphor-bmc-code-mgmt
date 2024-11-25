@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79527436_af8d0472",
+        "filename": "fw-update/common/src/device_config.cpp",
+        "patchSetId": 45
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T19:03:50Z",
+      "side": 1,
+      "message": "It\u0027s in SoftwareManager, it has \n```\nSoftwareManager::getInitialConfiguration()\n```\nand then calls a component specific implementation to decide further.\n\nSo the user code can decide if the device should really be created or not.\n\nThe common configuration options \u0027DeviceConfig\u0027 are passed to the user code so it does not need to be parsed there.\n\nThe point of this is to allow for any custom logic in the user code\nwhich is getInitialConfigurationSingleDevice.",
+      "parentUuid": "f58d8083_46084cc7",
+      "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cf4f1a8_2f26a9ac",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-11-25T02:04:52Z",
       "side": 1,
       "message": "Lets pass the inventoryObjectPath instead here. The device specific code needs to figure out the path to the inventory item and pass that in here, so the common code can create the required associations (if passed in path is valid).\n\nAlready asked you to drop the config associations here https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/afad460c_ffede51f/.",
+      "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b33fb3_101ef3ff",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 45
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T19:03:50Z",
+      "side": 1,
+      "message": "Can you give an example of how the device specific code can do this?\n\nFrom what i remember we are currently associating to the configuration since finding the inventory item is not straightforward.\n\nWhat is device-specific about finding the inventory item, why would it not be in the common code?\n\nFor the example of the SPI device code updater, how would we find the inventory item?",
+      "parentUuid": "4cf4f1a8_2f26a9ac",
       "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

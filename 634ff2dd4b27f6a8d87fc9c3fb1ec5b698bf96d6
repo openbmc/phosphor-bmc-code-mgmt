@@ -16,6 +16,23 @@
       "message": "Can you please break up this patch into multiple patches. Probably -\n1. Common Code, no-op/dummy updater, required test.\n2. Bios Code with test(if any).\n3. Different patches for tools.",
       "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58d8083_46084cc7",
+        "filename": "fw-update/common/src/device_config.cpp",
+        "patchSetId": 45
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T01:40:11Z",
+      "side": 1,
+      "message": "Where would the code to interface with EM reside? Wouldn\u0027t that be part of common code?",
+      "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -95,6 +95,8 @@ class Software : private SoftwareActivation
     std::unique_ptr<SoftwareActivationProgress> softwareActivationProgress =
         nullptr;
 
+    static long int getRandomId();
+
   protected:
     // @returns        a random software id (swid) for that device
     static std::string getRandomSoftwareId(device::Device& parent);

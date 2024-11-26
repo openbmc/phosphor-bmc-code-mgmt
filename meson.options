@@ -56,6 +56,13 @@ option(
     description: 'Automatic flash side switch on boot',
 )
 
+option(
+    'bios-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable BIOS/Host firmware update',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

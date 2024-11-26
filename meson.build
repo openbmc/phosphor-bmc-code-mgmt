@@ -79,6 +79,25 @@ if build_tests.allowed()
   )
 
   subdir('common')
+
+  if get_option('code-updater-spi-device').enabled()
+    subdir('bios-spi')
+  endif
+
   subdir('test')
+else
+  if get_option('code-updater-spi-device').enabled()
+
+    subdir('common')
+
+    libgpiod = dependency(
+      'libgpiodcxx',
+      default_options: ['bindings=cxx'],
+      version: '>=1.1.2'
+    )
+
+    subdir('bios-spi')
+  endif
+
 endif
 

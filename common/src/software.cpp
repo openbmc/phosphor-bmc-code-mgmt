@@ -55,7 +55,7 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
           "OBJPATH", objPath);
 };
 
-static long int getRandomId()
+long int Software::getRandomId()
 {
     struct timespec ts;
     clock_gettime(CLOCK_REALTIME, &ts);

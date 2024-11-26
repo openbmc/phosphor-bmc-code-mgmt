@@ -71,5 +71,7 @@ endif
 common_include = include_directories('.')
 
 if build_tests.allowed()
+  subdir('common')
   subdir('test')
 endif
+

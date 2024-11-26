@@ -10,6 +10,7 @@ libgpiod = dependency(
 )
 
 subdir('tool')
+subdir('component/pldm-update-pkg-tool')
 
 if not build_tests.disabled()
   subdir('test')

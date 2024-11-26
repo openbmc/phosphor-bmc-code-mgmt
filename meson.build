@@ -76,6 +76,7 @@ libgpiod = dependency(
 subdir('common')
 subdir('tool')
 subdir('component/pldm-update-pkg-tool')
+subdir('component/bios-spi')
 
 if not build_tests.disabled()
   subdir('test')

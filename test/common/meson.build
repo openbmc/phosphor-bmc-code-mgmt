@@ -1,1 +1,2 @@
 subdir('exampledevice')
+subdir('pldm')

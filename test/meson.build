@@ -8,3 +8,4 @@ gtest_main = dependency(
 
 subdir('common')
 subdir('component/bios-spi')
+subdir('pldm-update-pkg-tool')

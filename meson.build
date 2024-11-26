@@ -66,6 +66,9 @@ libpldm_dep = dependency('libpldm')
 
 common_include = include_directories('.')
 
+subdir('common')
+
 if not build_tests.disabled()
   subdir('test')
 endif
+

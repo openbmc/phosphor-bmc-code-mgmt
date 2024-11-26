@@ -1,0 +1,18 @@
+[Unit]
+Description=Host FW Code Update Daemon
+After=xyz.openbmc_project.Software.Manager.service
+Wants=xyz.openbmc_project.State.BMC.service
+After=xyz.openbmc_project.State.BMC.service
+Wants=xyz.openbmc_project.State.Chassis@0.service
+After=xyz.openbmc_project.State.Chassis@0.service
+Wants=xyz.openbmc_project.Settings.service
+After=xyz.openbmc_project.Settings.service
+
+[Service]
+Restart=yes
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/phosphor-bios-software-update
+
+[Install]
+WantedBy=multi-user.target

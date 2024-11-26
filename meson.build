@@ -344,3 +344,5 @@ endif
 if get_option('side-switch-on-boot').allowed()
     subdir('side-switch')
 endif
+
+subdir('fw-update')

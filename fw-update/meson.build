@@ -4,6 +4,7 @@ common_include = include_directories('.', '../')
 
 subdir('common')
 subdir('tool')
+subdir('component/pldm-update-pkg-tool')
 
 libgpiod = dependency(
   'libgpiodcxx',

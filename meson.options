@@ -175,3 +175,8 @@ option(
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
 )
+
+option(
+    'code-updater-spi-device', type: 'feature', value: 'enabled',
+    description: 'enable update of spi device / host fw',
+)

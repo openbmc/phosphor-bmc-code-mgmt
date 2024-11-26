@@ -74,6 +74,9 @@ libgpiod = dependency(
 
 
 subdir('common')
+if get_option('code-updater-spi-device').enabled()
+  subdir('bios-spi')
+endif
 
 if not build_tests.disabled()
   subdir('test')

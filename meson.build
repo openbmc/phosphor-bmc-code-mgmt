@@ -66,7 +66,7 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
-common_build = build_tests.allowed()
+common_build = build_tests.allowed() or get_option('code-updater-spi-device').enabled()
 
 if common_build
   libpldm_dep = dependency('libpldm')
@@ -80,7 +80,10 @@ if common_build
   subdir('common')
 endif
 
+if get_option('code-updater-spi-device').enabled()
+  subdir('bios-spi')
+endif
+
 if build_tests.allowed()
   subdir('test')
 endif
-

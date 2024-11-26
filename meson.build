@@ -61,3 +61,9 @@ systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
 subdir('bmc')
+
+libpldm_dep = dependency('libpldm')
+
+common_include = include_directories('.', '../')
+
+subdir('tool')

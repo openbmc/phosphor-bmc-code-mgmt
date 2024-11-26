@@ -74,6 +74,7 @@ libgpiod = dependency(
 
 
 subdir('common')
+subdir('component/bios-spi')
 
 if not build_tests.disabled()
   subdir('test')

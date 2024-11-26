@@ -61,3 +61,4 @@ systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
 subdir('bmc')
+subdir('fw-update')

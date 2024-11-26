@@ -7,3 +7,4 @@ gtest_main = dependency(
 )
 
 subdir('common')
+subdir('bios-spi')

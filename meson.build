@@ -61,3 +61,11 @@ systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
 subdir('bmc')
+
+libpldm_dep = dependency('libpldm')
+
+common_include = include_directories('.')
+
+if not build_tests.disabled()
+  subdir('test')
+endif

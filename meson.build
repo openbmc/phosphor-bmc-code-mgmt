@@ -68,15 +68,24 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
-common_build = build_tests.allowed()
+common_build = build_tests.allowed() or get_option('bios-software-update').enabled()
 
 if common_build
     libpldm_dep = dependency('libpldm')
 
+    libgpiod = dependency(
+        'libgpiodcxx',
+        default_options: ['bindings=cxx'],
+        version: '>=1.1.2',
+    )
+
     subdir('common')
+endif
+
+if get_option('bios-software-update').enabled()
+    subdir('bios-spi')
 endif
 
 if build_tests.allowed()
     subdir('test')
 endif
-

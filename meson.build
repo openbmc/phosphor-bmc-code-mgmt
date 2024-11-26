@@ -60,4 +60,14 @@ ssl = dependency('openssl')
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
+build_tests = get_option('tests')
+
 subdir('bmc')
+
+libpldm_dep = dependency('libpldm')
+
+common_include = include_directories('.')
+
+if not build_tests.disabled()
+  subdir('test')
+endif

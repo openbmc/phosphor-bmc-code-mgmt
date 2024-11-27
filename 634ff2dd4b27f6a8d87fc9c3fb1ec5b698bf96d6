@@ -122,6 +122,24 @@
       "parentUuid": "b7b33fb3_101ef3ff",
       "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56e12119_29373ff8",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 45
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-27T14:50:17Z",
+      "side": 1,
+      "message": "Done, added a unit test also to test that this association is present and demonstrate how to do this with the NopDevice class.",
+      "parentUuid": "da295d94_7617daaf",
+      "revId": "634ff2dd4b27f6a8d87fc9c3fb1ec5b698bf96d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

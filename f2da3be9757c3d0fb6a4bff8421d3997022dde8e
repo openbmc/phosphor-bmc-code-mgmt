@@ -16,6 +16,24 @@
       "message": "we should set the activation progress interface here, for demonstration",
       "revId": "f2da3be9757c3d0fb6a4bff8421d3997022dde8e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f492a0c_5ace6b7f",
+        "filename": "fw-update/test/common/nopdevice/nopdevice.cpp",
+        "patchSetId": 53
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-27T14:50:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a592d056_bc8f7102",
+      "revId": "f2da3be9757c3d0fb6a4bff8421d3997022dde8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

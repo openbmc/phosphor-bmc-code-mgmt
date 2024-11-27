@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591fd681_e9cffa7f",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-27T20:08:59Z",
+      "side": 1,
+      "message": "Please use the documented associations from \n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#association\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml#L47\n\nActivation in Progress : activating association.\nSW Running: running association.\n\nPlease let me know if you have any questions.",
+      "revId": "fe65f0507f742b797dab596536655c7164b8625b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

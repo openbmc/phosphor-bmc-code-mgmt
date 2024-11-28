@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "840f6909_8bdf85f1",
+        "filename": "fw-update/common/include/software.hpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-28T16:41:35Z",
+      "side": 1,
+      "message": "It is tempting...\n\nThere may be devices who do not need this \u0027ActivationBlocksTransition\u0027 interface. Those devices can make a state transition independent of any firmware update.\nFor example devices with A/B schema.\n\nSo i would like to avoid coupling the two in the common code.\nCurrently they are still coupled but there could be a different requirement in the future.\n\nAlso, it is easier for me to see that the code in device.cpp follows the design, when the\n`setActivationBlocksTransition` is done as a separate function.\nOne can go step by step through the design and have roughly a 1:1 mapping between\nstatements in the functions in device.cpp and the steps outlined in the design.\n\nKeeping this comment as unresolved here if you want to discuss further.",
+      "parentUuid": "e6561c98_490e11b1",
+      "revId": "fe65f0507f742b797dab596536655c7164b8625b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "591fd681_e9cffa7f",
         "filename": "fw-update/common/src/software.cpp",
         "patchSetId": 54

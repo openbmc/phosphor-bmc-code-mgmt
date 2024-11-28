@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee9a2e0d_aaf3462f",
+        "filename": "fw-update/common/include/software.hpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-28T16:26:36Z",
+      "side": 1,
+      "message": "\u003e Software Activation is the first interface you create as part of StartUpdate in a sync order. at that time you don\u0027t know the version yet, as image hasn\u0027t been parsed yet, so you cannot create the Version and other interfaces.\n\nYes, the activation interface on the object path is probably needed for the bmcweb, and we should not create the other interfaces without having the property values.\n\n\u003e So, i would suggest to create a composite for Version and associations only\n\nFor now i\u0027m representing it as unique_ptr on the software object, so we do not have to create another object here for these dbus interfaces.\nWhen \u0027Software\u0027 class is initialized, these can be nullptr, and then later be\npopulated when the information is available.\n\nThe latest patchset should set the activation status synchronously during the dbus call.",
+      "parentUuid": "74ba8d23_787ea59d",
+      "revId": "fe65f0507f742b797dab596536655c7164b8625b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6561c98_490e11b1",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-11-27T20:08:59Z",
       "side": 1,
       "message": "Please use the documented associations from \n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#association\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml#L47\n\nActivation in Progress : activating association.\nSW Running: running association.\n\nPlease let me know if you have any questions.",
+      "revId": "fe65f0507f742b797dab596536655c7164b8625b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ff869c6_011f430d",
+        "filename": "fw-update/common/src/software.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-28T16:26:36Z",
+      "side": 1,
+      "message": "sorry, i did not read through that section in the document.\nThe mermaid diagram already made so much sense that i though i would get by with just looking at that.\n\nThe newest revision should match what you wrote in that paragraph about the 2 different associations. Also got a better understanding now of what the alternative flow at the end of the diagram is used for.\n\nSo we either set the running or the activating association, but not both at the same time. Depending on if the apply time is immediate.",
+      "parentUuid": "591fd681_e9cffa7f",
       "revId": "fe65f0507f742b797dab596536655c7164b8625b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef8219c4_bbdb20ca",
+        "filename": "fw-update/common/src/software_manager.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-29T09:32:47Z",
+      "side": 1,
+      "message": "Feedback from Chris,\n\nhere we need to check for multiple different configuration types.\nFor example here https://github.com/openbmc/entity-manager/blob/14debea1086b867d718a9cdfca0d9f52b6bd8bce/configurations/harma_mb_vr_infineon.json#L1098\n\nThe voltage regulators have \"Type\": \"XDPE152C4\"\nbut other voltage regulators will have other \"Type\" field.\n\nSince the voltage regulator code updater should cover all of these,\n\n\u0027getConfigurationInterface()\u0027 needs to change to something like\n\u0027getConfigurationInterfaces()\u0027 and return a std::set of configuration interfaces.\n\nAnd since that\u0027s implemented in common code, we need to change\nthis-\u003econfigType\n\nto be \n\nthis-\u003econfigTypes and it should be std::set.\n\nThis is only one alternative to do it but the current code does not work for supporting multiple EM config \u0027Type\u0027  without the common prefix.",
+      "revId": "43c4e10da424311367914ed82d1e47839b1056d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

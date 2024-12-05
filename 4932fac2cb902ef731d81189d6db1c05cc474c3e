@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb38df44_fbef5165",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2024-12-05T06:35:16Z",
+      "side": 1,
+      "message": "Creating PLDM package is usually built on desktops/server class systems and not on BMC. In Nvidia we are using the upstream python tool for package building and works fine.\n\nhttps://github.com/openbmc/pldm/blob/master/tools/fw-update/pldm_fwup_pkg_creator.py",
+      "revId": "4932fac2cb902ef731d81189d6db1c05cc474c3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

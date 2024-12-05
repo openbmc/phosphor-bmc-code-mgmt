@@ -16,6 +16,24 @@
       "message": "Creating PLDM package is usually built on desktops/server class systems and not on BMC. In Nvidia we are using the upstream python tool for package building and works fine.\n\nhttps://github.com/openbmc/pldm/blob/master/tools/fw-update/pldm_fwup_pkg_creator.py",
       "revId": "4932fac2cb902ef731d81189d6db1c05cc474c3e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "530da199_3f6914da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-12-05T10:06:24Z",
+      "side": 1,
+      "message": "Yes, you are 100% right.\n\nBut i need something that can be used in integration tests to check that the package is parsed correctly and the complete flow is working.\n\nAnd i cannot pull in the pldm repository as a dependency here.\n\nThere is also the alternative which is to hardcode the pldm package\nfor each and every integration test.\n\nBut that does not scale well and lots of effort.\n\nThere was discussion to have PackageParser and maybe PackageBuilder (i did not discuss that yet) be part of libpldm as optional C++ bindings.\n\nWhich would make it more ergonomic to create and parse pldm fw packages.\n\n\nThanks for your input and taking a look at my patch 👍",
+      "parentUuid": "eb38df44_fbef5165",
+      "revId": "4932fac2cb902ef731d81189d6db1c05cc474c3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

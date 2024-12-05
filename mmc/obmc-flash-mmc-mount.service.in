@@ -1,6 +1,7 @@
 [Unit]
 Description=Mount BMC rofs volumes after a reboot
 Before=xyz.openbmc_project.Software.BMC.Updater.service
+Before=xyz.openbmc_project.Software.Manager.service
 
 [Service]
 Type=oneshot
@@ -12,3 +13,4 @@ ExecStart=-/bin/mount PARTLABEL=hostfw @MEDIA_DIR@/hostfw -t ext4
 
 [Install]
 WantedBy=xyz.openbmc_project.Software.BMC.Updater.service
+WantedBy=xyz.openbmc_project.Software.Manager.service

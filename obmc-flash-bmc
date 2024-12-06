@@ -70,6 +70,10 @@ function findname() {
 # Set the version path property to the flash location where the image was
 # successfully flashed
 function set_flashid() {
+    busctl set-property xyz.openbmc_project.Software.Manager \
+        "/xyz/openbmc_project/software/${version}" \
+        xyz.openbmc_project.Common.FilePath \
+        Path s "$1" ||
     busctl set-property xyz.openbmc_project.Software.BMC.Updater \
         "/xyz/openbmc_project/software/${version}" \
         xyz.openbmc_project.Common.FilePath \
@@ -225,12 +229,21 @@ function ubi_remove() {
 function ubi_cleanup() {
     # When ubi_cleanup is run, it expects one or no active version.
     activeVersion=$(busctl --list --no-pager tree \
-            xyz.openbmc_project.Software.BMC.Updater | \
+            xyz.openbmc_project.Software.Manager | \
         grep /xyz/openbmc_project/software/ | tail -c 9)
+
+    if [[ -z "$activeVersion" ]]; then
+        activeVersion=$(busctl --list --no-pager tree \
+                xyz.openbmc_project.Software.BMC.Updater | \
+            grep /xyz/openbmc_project/software/ | tail -c 9)
+    fi
 
     if [[ -z "$activeVersion" ]]; then
         vols=$(ubinfo -a | grep "rofs-" | cut -c 14-)
     else
+        flashid=$(busctl get-property xyz.openbmc_project.Software.Manager \
+                "/xyz/openbmc_project/software/${activeVersion}" \
+            xyz.openbmc_project.Common.FilePath Path |  awk '{print $NF;}' | tr -d '"') ||
         flashid=$(busctl get-property xyz.openbmc_project.Software.BMC.Updater \
                 "/xyz/openbmc_project/software/${activeVersion}" \
             xyz.openbmc_project.Common.FilePath Path |  awk '{print $NF;}' | tr -d '"')

@@ -36,7 +36,7 @@ void SyncWatch::addInotifyWatch(const fs::path& path)
 
 SyncWatch::SyncWatch(sd_event& loop,
                      std::function<int(int, fs::path&)> syncCallback) :
-    inotifyFd(-1), syncCallback(std::move(syncCallback)), loop(loop)
+    inotifyFd(-1), syncCallback(std::move(syncCallback))
 {
     auto fd = inotify_init1(IN_NONBLOCK);
     if (-1 == fd)

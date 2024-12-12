@@ -68,9 +68,6 @@ class SyncWatch
 
     /** @brief The callback function for processing the inotify event */
     std::function<int(int, fs::path&)> syncCallback;
-
-    /** @brief Persistent sd_event loop */
-    sd_event& loop;
 };
 
 } // namespace manager

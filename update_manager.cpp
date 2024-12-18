@@ -54,8 +54,8 @@ bool verifyImagePurpose(Version::VersionPurpose purpose,
 // NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto Manager::processImage(sdbusplus::message::unix_fd image,
                            ApplyTimeIntf::RequestedApplyTimes applyTime,
-                           std::string id,
-                           std::string objPath) -> sdbusplus::async::task<>
+                           std::string id, std::string objPath)
+    -> sdbusplus::async::task<>
 {
     debug("Processing image {FD}", "FD", image.fd);
     fs::path tmpDirPath(std::string{IMG_UPLOAD_DIR});

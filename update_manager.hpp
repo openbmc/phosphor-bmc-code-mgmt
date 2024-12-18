@@ -55,8 +55,8 @@ class Manager : public UpdateIntf
     /* @brief Process the image supplied via image fd */
     auto processImage(sdbusplus::message::unix_fd image,
                       ApplyTimeIntf::RequestedApplyTimes applyTime,
-                      std::string id,
-                      std::string objPath) -> sdbusplus::async::task<>;
+                      std::string id, std::string objPath)
+        -> sdbusplus::async::task<>;
 
     /* @brief The handler for the image processing failure  */
     void processImageFailed(sdbusplus::message::unix_fd image, std::string& id);

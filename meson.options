@@ -43,6 +43,13 @@ option(
 )
 
 option(
+    'eepromdevice-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable EEPROM device update support.',
+)
+
+option(
     'software-update-dbus-interface',
     type: 'feature',
     value: 'enabled',

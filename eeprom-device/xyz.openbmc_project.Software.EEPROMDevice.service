@@ -1,0 +1,11 @@
+[Unit]
+Description=EEPROM Device Code Update Daemon
+
+[Service]
+Restart=yes
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/phosphor-eepromdevice-software-update
+
+[Install]
+WantedBy=multi-user.target

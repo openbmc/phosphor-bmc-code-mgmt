@@ -1,0 +1,15 @@
+[Unit]
+Description=EEPROM Device Code Update Daemon
+Wants=xyz.openbmc_project.State.Chassis@0.service
+After=xyz.openbmc_project.State.Chassis@0.service
+Requires=xyz.openbmc_project.EntityManager.service
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=yes
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/phosphor-eepromdevice-software-update
+
+[Install]
+WantedBy=multi-user.target

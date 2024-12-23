@@ -68,7 +68,7 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
-common_build = build_tests.allowed() or get_option('bios-software-update').enabled()
+common_build = build_tests.allowed() or get_option('bios-software-update').enabled() or get_option('eepromdevice-software-update').enabled()
 
 if common_build
     libpldm_dep = dependency('libpldm')
@@ -84,6 +84,10 @@ endif
 
 if get_option('bios-software-update').enabled()
     subdir('bios')
+endif
+
+if get_option('eepromdevice-software-update').enabled()
+    subdir('eeprom-device')
 endif
 
 if build_tests.allowed()

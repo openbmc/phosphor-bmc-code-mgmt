@@ -1,0 +1,11 @@
+[Unit]
+Description=Phosphor Firmware Update EEPROM Device
+
+[Service]
+ExecStart=/usr/bin/phosphor-fw-update-eeprom-device
+Restart=always
+Type=dbus
+BusName={BUSNAME}
+
+[Install]
+WantedBy=multi-user.target

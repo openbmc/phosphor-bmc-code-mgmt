@@ -13,6 +13,7 @@ libgpiod = dependency(
 )
 
 subdir('component/bios-spi')
+subdir('component/eeprom')
 
 if not build_tests.disabled()
   subdir('test')

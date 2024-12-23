@@ -25,6 +25,10 @@ option(
     description: 'Firmware update via USB.',
 )
 
+option('eepromdevice-code-update', type: 'feature', value: 'enabled',
+    description: 'Enable EEPROM device update support.',
+)
+
 option('software-update-dbus-interface', type: 'feature', value: 'enabled',
     description: 'Implementation using software update D-Bus interface - https://github.com/openbmc/docs/blob/master/designs/code-update.md.',
 )

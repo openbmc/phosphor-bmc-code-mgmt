@@ -13,6 +13,7 @@ libgpiod = dependency(
 )
 
 subdir('component/bios-spi')
+subdir('component/eeprom')
 
 
 if get_option('i2cvr').enabled()

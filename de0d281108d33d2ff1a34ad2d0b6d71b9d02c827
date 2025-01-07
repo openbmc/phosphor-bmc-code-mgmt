@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15fa7f4b_45d44fc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-07T19:04:08Z",
+      "side": 1,
+      "message": "@Kevin.Tung@quantatw.com Can you please include the link to the EM schema definition for retimer in the comment description?\n\n\"The behavior and configuration of this updater are managed via EM,\nenabling flexibility and adaptability across different hardware setups.\"",
+      "revId": "de0d281108d33d2ff1a34ad2d0b6d71b9d02c827",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

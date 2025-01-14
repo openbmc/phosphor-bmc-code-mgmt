@@ -64,14 +64,23 @@ build_tests = get_option('tests')
 
 subdir('bmc')
 
-if build_tests.allowed()
-  libpldm_dep = dependency('libpldm')
-endif
-
 common_include = include_directories('.')
 
-if build_tests.allowed()
+common_build = build_tests.allowed()
+
+if common_build
+  libpldm_dep = dependency('libpldm')
+
+  libgpiod = dependency(
+    'libgpiodcxx',
+    default_options: ['bindings=cxx'],
+    version: '>=1.1.2'
+  )
+
   subdir('common')
+endif
+
+if build_tests.allowed()
   subdir('test')
 endif
 

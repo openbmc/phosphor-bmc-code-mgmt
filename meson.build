@@ -66,14 +66,17 @@ build_tests = get_option('tests')
 
 subdir('bmc')
 
-if build_tests.allowed()
-    libpldm_dep = dependency('libpldm')
-endif
-
 common_include = include_directories('.')
 
+common_build = build_tests.allowed()
+
+if common_build
+  libpldm_dep = dependency('libpldm')
+
+  subdir('common')
+endif
+
 if build_tests.allowed()
-    subdir('common')
-    subdir('test')
+  subdir('test')
 endif
 

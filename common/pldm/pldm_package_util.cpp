@@ -17,6 +17,9 @@
 
 #include <cassert>
 #include <cstring>
+#include <functional>
+
+PHOSPHOR_LOG2_USING;
 
 using namespace pldm::fw_update;
 
@@ -33,19 +36,19 @@ std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf, size_t size)
         pkgData.push_back(buf[i]);
     }
 
-    lg2::debug("parsing package header");
+    debug("parsing package header");
 
     std::unique_ptr<PackageParser> packageParser =
         pldm::fw_update::parsePackageHeader(pkgData);
 
     if (packageParser == nullptr)
     {
-        lg2::error("could not parse package header");
+        error("could not parse package header");
         return packageParser;
     }
 
-    lg2::debug("parsing package, pkg header size: {N}", "N",
-               packageParser->pkgHeaderSize);
+    debug("parsing package, pkg header size: {N}", "N",
+          packageParser->pkgHeaderSize);
 
     std::vector<uint8_t> pkgHeaderOnly;
     pkgHeaderOnly.insert(
@@ -57,24 +60,23 @@ std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf, size_t size)
     return packageParser;
 }
 
-int readImagePackage(FILE* file, uint8_t* package_data,
-                     const size_t package_size)
+int readImagePackage(FILE* file, uint8_t* packageData, const size_t packageSize)
 {
-    if (file == NULL || package_data == NULL)
+    if (file == NULL || packageData == NULL)
     {
         return 1;
     }
 
-    if (package_size == 0)
+    if (packageSize == 0)
     {
-        lg2::error("Package size is 0");
+        error("Package size is 0");
         return 1;
     }
 
-    lg2::debug("reading {NBYTES} bytes from file", "NBYTES", package_size);
+    debug("reading {NBYTES} bytes from file", "NBYTES", packageSize);
 
     // Read the package into memory
-    if (fread(package_data, 1, package_size, file) != package_size)
+    if (fread(packageData, 1, packageSize, file) != packageSize)
     {
         perror("Failed to read package data");
         fclose(file);
@@ -84,32 +86,42 @@ int readImagePackage(FILE* file, uint8_t* package_data,
     return 0;
 }
 
-void* mmapImagePackage(sdbusplus::message::unix_fd image, size_t* size_out)
+std::unique_ptr<void, std::function<void(void*)>> mmapImagePackage(
+    sdbusplus::message::unix_fd image, size_t* sizeOut)
 {
-    lg2::debug("open fd {FD}", "FD", int(image));
+    debug("open fd {FD}", "FD", int(image));
 
     off_t size = lseek(image.fd, 0, SEEK_END);
 
     if (size < 0)
     {
-        lg2::error("failed to determine file size");
+        error("failed to determine file size");
         perror("error:");
-        return NULL;
+        return nullptr;
     }
 
-    *size_out = size;
+    *sizeOut = size;
 
-    lg2::debug("file size: {SIZE}", "SIZE", (uint64_t)size);
+    debug("file size: {SIZE}", "SIZE", (uint64_t)size);
 
     void* data = mmap(nullptr, size, PROT_READ, MAP_SHARED, image.fd, 0);
 
     if (data == MAP_FAILED)
     {
-        lg2::error("could not mmap the image");
-        return NULL;
+        error("could not mmap the image");
+        return nullptr;
     }
 
-    return data;
+    using mmapUniquePtr = std::unique_ptr<void, std::function<void(void*)>>;
+
+    mmapUniquePtr dataUnique(data, [size](void* arg) {
+        if (munmap(arg, size) != 0)
+        {
+            error("Failed to un map the PLDM package");
+        }
+    });
+
+    return dataUnique;
 }
 
 bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
@@ -130,8 +142,7 @@ bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
 
     if (!std::holds_alternative<VendorDefinedDescriptorInfo>(v))
     {
-        lg2::debug(
-            "descriptor does not have the vendor defined descriptor info");
+        debug("descriptor does not have the vendor defined descriptor info");
         return false;
     }
 
@@ -154,7 +165,7 @@ bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
 
     if (!desc.contains(0x1))
     {
-        lg2::error("did not find iana enterprise id");
+        error("did not find iana enterprise id");
         return false;
     }
 
@@ -162,7 +173,7 @@ bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
 
     if (!std::holds_alternative<DescriptorData>(viana))
     {
-        lg2::error("did not find iana enterprise id");
+        error("did not find iana enterprise id");
         return false;
     }
 
@@ -170,7 +181,7 @@ bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
 
     if (dd.size() != 4)
     {
-        lg2::error("descriptor data wrong size ( != 4) for vendor iana");
+        error("descriptor data wrong size ( != 4) for vendor iana");
         return false;
     }
 
@@ -204,7 +215,8 @@ ssize_t findMatchingDeviceDescriptorIndex(
 int extractMatchingComponentImage(
     const std::shared_ptr<PackageParser>& packageParser,
     const std::string& compatible, uint32_t vendorIANA,
-    uint32_t* component_offset_out, size_t* component_size_out)
+    uint32_t* componentOffsetOut, size_t* componentSizeOut,
+    std::string& componentVersionOut)
 {
     const FirmwareDeviceIDRecords& fwDeviceIdRecords =
         packageParser->getFwDeviceIDRecords();
@@ -215,7 +227,7 @@ int extractMatchingComponentImage(
 
     if (deviceDescriptorIndex < 0)
     {
-        lg2::error(
+        error(
             "did not find a matching device descriptor for {IANA}, {COMPATIBLE}",
             "IANA", lg2::hex, vendorIANA, "COMPATIBLE", compatible);
         return EXIT_FAILURE;
@@ -230,7 +242,7 @@ int extractMatchingComponentImage(
 
     if (ac.empty())
     {
-        lg2::error("did not find an applicable component image for the device");
+        error("did not find an applicable component image for the device");
         return EXIT_FAILURE;
     }
 
@@ -241,7 +253,7 @@ int extractMatchingComponentImage(
 
     if (component >= cs.size())
     {
-        lg2::error("applicable component out of bounds");
+        error("applicable component out of bounds");
         return EXIT_FAILURE;
     }
 
@@ -250,8 +262,9 @@ int extractMatchingComponentImage(
     CompLocationOffset off = std::get<5>(c);
     CompSize size = std::get<6>(c);
 
-    *component_offset_out = off;
-    *component_size_out = size;
+    *componentOffsetOut = off;
+    *componentSizeOut = size;
+    componentVersionOut = std::get<7>(c);
 
     return EXIT_SUCCESS;
 }

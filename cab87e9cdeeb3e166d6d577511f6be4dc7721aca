@@ -16,6 +16,24 @@
       "message": "There has been questions in the past in Discord about renaming the repo to something like \u0027software-manager\u0027 to match the recipe name. Maybe the topic will reappear as new apps start to be added.",
       "revId": "cab87e9cdeeb3e166d6d577511f6be4dc7721aca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "032eab63_08d3c851",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-14T00:11:26Z",
+      "side": 1,
+      "message": "Sure, probably we can rename the repo as that seems like the right direction.",
+      "parentUuid": "85d3c6f2_4b37c187",
+      "revId": "cab87e9cdeeb3e166d6d577511f6be4dc7721aca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -204,7 +204,8 @@ ssize_t findMatchingDeviceDescriptorIndex(
 int extractMatchingComponentImage(
     const std::shared_ptr<PackageParser>& packageParser,
     const std::string& compatible, uint32_t vendorIANA,
-    uint32_t* component_offset_out, size_t* component_size_out)
+    uint32_t* component_offset_out, size_t* component_size_out,
+    std::string& component_version_out)
 {
     const FirmwareDeviceIDRecords& fwDeviceIdRecords =
         packageParser->getFwDeviceIDRecords();
@@ -252,6 +253,7 @@ int extractMatchingComponentImage(
 
     *component_offset_out = off;
     *component_size_out = size;
+    component_version_out = std::get<7>(c);
 
     return EXIT_SUCCESS;
 }

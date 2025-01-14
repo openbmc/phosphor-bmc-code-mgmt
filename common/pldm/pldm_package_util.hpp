@@ -33,10 +33,12 @@ void* mmapImagePackage(sdbusplus::message::unix_fd image, size_t* size_out);
 // @param vendorIANA             vendor iana of device
 // @param component_offset_out   function returns offset of component image
 // @param component_size_out     function returns size of component image
+// @param component_version_out  function returns version of component image
 // @returns                      0 on success
 int extractMatchingComponentImage(
     const std::shared_ptr<PackageParser>& packageParser,
     const std::string& compatible, uint32_t vendorIANA,
-    uint32_t* component_offset_out, size_t* size_out);
+    uint32_t* component_offset_out, size_t* size_out,
+    std::string& component_version_out);
 
 } // namespace pldm_package_util

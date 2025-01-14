@@ -19,24 +19,26 @@ std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf,
 
 // reads into a buffer, from file
 // @param file            the file to read from
-// @param package_data    the pre-allocated buffer for the package data
-// @param package_size    how many bytes to read from the file
-int readImagePackage(FILE* file, uint8_t* package_data, size_t package_size);
+// @param packageData     the pre-allocated buffer for the package data
+// @param packageSize     how many bytes to read from the file
+int readImagePackage(FILE* file, uint8_t* packageData, size_t packageSize);
 
 // @param image        file descriptor to the package
-// @param size_out     function will write the size of the package here
+// @param sizeOut      function will write the size of the package here
 // @returns            a pointer to the mmapped pldm package
-void* mmapImagePackage(sdbusplus::message::unix_fd image, size_t* size_out);
+void* mmapImagePackage(sdbusplus::message::unix_fd image, size_t* sizeOut);
 
 // @param packageParser          PackageParser instance
 // @param compatible             'compatible' string of device
 // @param vendorIANA             vendor iana of device
-// @param component_offset_out   function returns offset of component image
-// @param component_size_out     function returns size of component image
+// @param componentOffsetOut     function returns offset of component image
+// @param componentSizeOut       function returns size of component image
+// @param componentVersionOut    function returns version of component image
 // @returns                      0 on success
 int extractMatchingComponentImage(
     const std::shared_ptr<PackageParser>& packageParser,
     const std::string& compatible, uint32_t vendorIANA,
-    uint32_t* component_offset_out, size_t* size_out);
+    uint32_t* componentOffsetOut, size_t* componentSizeOut,
+    std::string& componentVersionOut);
 
 } // namespace pldm_package_util

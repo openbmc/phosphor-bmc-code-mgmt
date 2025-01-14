@@ -12,11 +12,22 @@
 namespace phosphor::software::example_device
 {
 
+class ExampleDevice;
+
 class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
 {
   public:
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* busName,
+                       const char* swVersion);
+
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* busName);
+
     ExampleCodeUpdater(sdbusplus::async::context& ctx,
                        long uniqueSuffix = getRandomId());
+
+    const char* busName = nullptr;
+
+    std::unique_ptr<ExampleDevice>& getDevice();
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
                                             const std::string& path,

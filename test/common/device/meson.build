@@ -1,8 +1,10 @@
-subdir('exampledevice')
-subdir('device')
-subdir('software')
 
-testcases = ['test_software_config', 'test_software_update']
+testcases = [
+    'test_device_specific_update_function',
+    'test_device_start_update_async_immediate_success',
+    'test_device_start_update_async_onreset_success',
+    'test_device_start_update_async_invalid_fd',
+]
 
 foreach t : testcases
     test(
@@ -15,7 +17,7 @@ foreach t : testcases
                 libpldm_dep,
                 sdbusplus_dep,
                 phosphor_logging_dep,
-                gtest_main,
+                gtest,
             ],
             link_with: [
                 libpldmutil,
@@ -26,3 +28,4 @@ foreach t : testcases
         ),
     )
 endforeach
+

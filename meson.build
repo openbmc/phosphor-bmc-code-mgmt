@@ -71,6 +71,13 @@ endif
 common_include = include_directories('.')
 
 if build_tests.allowed()
+
+  libgpiod = dependency(
+    'libgpiodcxx',
+    default_options: ['bindings=cxx'],
+    version: '>=1.1.2'
+  )
+
   subdir('common')
   subdir('test')
 endif

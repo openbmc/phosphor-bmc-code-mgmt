@@ -66,6 +66,13 @@ libpldm_dep = dependency('libpldm')
 
 common_include = include_directories('.')
 
+libgpiod = dependency(
+  'libgpiodcxx',
+  default_options: ['bindings=cxx'],
+  version: '>=1.1.2'
+)
+
+
 subdir('common')
 
 if not build_tests.disabled()

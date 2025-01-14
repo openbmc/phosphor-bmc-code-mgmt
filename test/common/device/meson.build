@@ -1,11 +1,6 @@
 
 testcases = [
-    'software',
-    'software_config',
-    'software_update',
-    'software_association',
-    'software_version',
-    'software_get_random_softwareid',
+    'device',
 ]
 
 foreach t : testcases
@@ -14,7 +9,7 @@ foreach t : testcases
         executable(
             t,
             f'@t@.cpp',
-            include_directories: [common_include, '../device/'],
+            include_directories: [common_include],
             dependencies: [
                 libpldm_dep,
                 sdbusplus_dep,

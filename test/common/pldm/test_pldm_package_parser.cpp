@@ -65,10 +65,10 @@ std::string getCompatibleFromPLDMPackage(
     return "";
 }
 
-std::shared_ptr<PackageParser>
-    createPackageCommon(uint8_t* component_image, size_t component_image_size,
-                        const std::optional<uint32_t>& optVendorIANA,
-                        const std::optional<std::string>& optCompatible)
+std::shared_ptr<PackageParser> createPackageCommon(
+    uint8_t* component_image, size_t component_image_size,
+    const std::optional<uint32_t>& optVendorIANA,
+    const std::optional<std::string>& optCompatible)
 {
     size_t size_out = 0;
     std::unique_ptr<uint8_t[]> buf =

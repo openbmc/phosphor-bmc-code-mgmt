@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c49a98_186b2074",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-14T13:41:48Z",
+      "side": 1,
+      "message": "Hi Kevin, just wanted to let you know that my base patch has run into a merge conflict since the toplevel meson.build was changed in cab87e9cdeeb3e166d6d577511f6be4dc7721aca\n\nI have resolved the conflict, so you can now rebase if you want 👍",
+      "revId": "ff5ef892c0db7550238d64e309b805888239ded7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

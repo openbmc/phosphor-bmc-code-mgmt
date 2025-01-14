@@ -16,6 +16,24 @@
       "message": "This is all unit test code to create a dummy package with bunch of hardcoded package values. This isn\u0027t a tool to generate a package with input args passed in. Please move this inside the test code and update the description and other comments accordingly.",
       "revId": "60641b827abfb78596fc111ee8c0df31ca8257d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf99477_7ef68d94",
+        "filename": "fw-update/tool/create_package/component_image_info_area.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-14T14:28:07Z",
+      "side": 1,
+      "message": "The component image is passed in as an argument.\n\nYes, some of the package values are hardcoded. Not all of them. It is a simplified library to test the flow. \n\nIt is used in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/76100\nas a tool for developers.\n\nIt is not a \u0027dummy package\u0027. The package can contain a component which is not limited. There is currently one component which can be passed in.\n\nI would like to use more of libpldm to \u0027properly\u0027 create the package using the encoding functions, but i\u0027m afraid the \u0027encode_*\u0027 functions are not completely there yet.\n\nhttps://github.com/openbmc/libpldm/blob/main/include/libpldm/firmware_update.h\n\nSo for now the package is generated in this way, which i hope to improve.\n\nMaybe this patch can sit between the \u0027fw-update: common code\u0027 and \u0027fw-update: tests for common code\u0027 patches.\n\nThat way it will not be blocking the review and merge of the common code.",
+      "parentUuid": "823ae0a5_03df3c9f",
+      "revId": "60641b827abfb78596fc111ee8c0df31ca8257d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

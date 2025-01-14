@@ -34,6 +34,24 @@
       "parentUuid": "823ae0a5_03df3c9f",
       "revId": "60641b827abfb78596fc111ee8c0df31ca8257d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de762dbc_609977e5",
+        "filename": "fw-update/tool/create_package/component_image_info_area.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-14T15:41:55Z",
+      "side": 1,
+      "message": "nvm, just saw that the package creation library is used by the tests for the package parser. \n\nSo i can only re-order it before the \u0027fw update: pldm package parser tests\u0027,\nor would need to hardcode the pldm packages used for these tests.",
+      "parentUuid": "fcf99477_7ef68d94",
+      "revId": "60641b827abfb78596fc111ee8c0df31ca8257d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

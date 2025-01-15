@@ -16,6 +16,24 @@
       "message": "In the latest code in repo, i have moved the existing code in bmc directory. As per our earlier discussion, please skip the fw-update directory and pull your code one level up.",
       "revId": "29b41486c501763bf1e0939501beb4404841222e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671b11d6_3440e35b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-15T10:49:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d3d859_7b646ecc",
+      "revId": "29b41486c501763bf1e0939501beb4404841222e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

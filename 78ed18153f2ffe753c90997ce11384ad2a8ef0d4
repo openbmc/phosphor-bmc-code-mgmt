@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4826ab_2766f354",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-01-17T06:39:02Z",
+      "side": 1,
+      "message": "the first renders a URL with a stray `[` at the beginning\nplease remove the bracket before boostorg",
+      "revId": "78ed18153f2ffe753c90997ce11384ad2a8ef0d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Can you please add a comment somewhere in your description mentioning that this will be replaced by C++ bindings you are working on in libpldm. Include the gerrit#.",
       "revId": "fd2842966c9f4f1acc83bf147a49069070ba44cc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c238d9f_c8dc97ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-17T14:33:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25b06de4_323d820f",
+      "revId": "fd2842966c9f4f1acc83bf147a49069070ba44cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

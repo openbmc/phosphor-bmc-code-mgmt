@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63521039_97d9a1dc",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-01-17T07:09:41Z",
+      "side": 1,
+      "message": "The boost in openbmc-build-scripts is 1.86.0 and points to the link on github.com/boostorg/\nThe openbmc tree uses 1.86.0 as well, so possibly change the version as well?",
+      "revId": "7d99e3788e784a501634d4ce46ef33588c7c4dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -8,6 +8,14 @@ SYNCLIST=/etc/synclist
 DEST_DIR=/run/media/rwfs-alt/cow
 
 while read -r l; do
-    echo rsync -a -R "${l}" "${DEST_DIR}"
-    rsync -a -R "${l}" "${DEST_DIR}"
+
+    # if the sync entry is not present in the source, remove it from the destination
+    if [ -n "${l}" ] && [ ! -e "${l}" ] && [ -e "${DEST_DIR}/${l}" ]; then
+        echo "Removing ${DEST_DIR}/${l}"
+        rm -rf "${DEST_DIR:?}/${l:?}"
+        continue
+    fi
+
+    echo rsync -a -R --delete "${l}" "${DEST_DIR}"
+    rsync -a -R --delete "${l}" "${DEST_DIR}"
 done < ${SYNCLIST}

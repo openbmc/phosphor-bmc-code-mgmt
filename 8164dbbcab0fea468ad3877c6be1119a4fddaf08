@@ -16,6 +16,142 @@
       "message": "Please update the description mentioning this is a library to create test PLDM fw package.",
       "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc61f594_59262271",
+        "filename": "meson.build",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "FYI: Currently, build_tests is defined in bmc/meson.build\nDo u need to define build_tests locally or does it work as such?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c083d827_5dd7e6eb",
+        "filename": "test/create_package/component_image_info_area.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "Using * and not \u0026, any specific reason? Please keep it consistent through out code at other places as well.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea92c2a2_ead4f149",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "I might be wrong, but i don\u0027t see you are using any APIs from this header? Is that code actually needed?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb954fb_338b98d6",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "Why do you need this shared ptr? The caller already knows the size, so allocate a uninue_ptr there and pass to this func. It will automatically go out of scope when caller returns, no need to do this allocation here.\n\nIf possible do some error handling for allocation failure.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6837920c_5a66f9c9",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "Which example?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de43949_4e8cf7c0",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "You can return std::optional\u003cstd::string\u003e for better error handling.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80aa72cd_f555b049",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "Log an error here?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af93b5be_b4f24844",
+        "filename": "test/create_package/firmware_device_id_area.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T02:20:41Z",
+      "side": 1,
+      "message": "Please define the local helpers as static for clarity.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

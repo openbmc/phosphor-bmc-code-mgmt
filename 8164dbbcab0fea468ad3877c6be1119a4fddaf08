@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19484297_2fbd9f4a",
+        "filename": "meson.build",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "From my experience, the meson variable definition is visible as soon as it is defined. \nSince ```subdir(\u0027bmc\u0027)``` has already completed.\n\nI checked the meson docs but their explanation of variables does not include any information about their visibility to other meson files.\nhttps://mesonbuild.com/Syntax.html",
+      "parentUuid": "dc61f594_59262271",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c083d827_5dd7e6eb",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff4d1cd6_25732d7e",
+        "filename": "test/create_package/component_image_info_area.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "C habits. \n\n```int\u0026``` has the benefit that it is not nullable.\nThe downside is that at the call site, there is no indication that we are passing a reference. It looks like we are passing a value.\n\nAdjusted it here.",
+      "parentUuid": "c083d827_5dd7e6eb",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea92c2a2_ead4f149",
@@ -65,6 +101,24 @@
       "writtenOn": "2025-01-23T02:20:41Z",
       "side": 1,
       "message": "I might be wrong, but i don\u0027t see you are using any APIs from this header? Is that code actually needed?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "263a738c_b042568c",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "I am using the header.\n\n```\n76   create_pldm_firmware_device_identification_area_v1_0_0(...)\n```",
+      "parentUuid": "ea92c2a2_ead4f149",
       "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce1bf996_41936d27",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "Yes, made it unique_ptr.\n\nThe caller should not need to know the size. The size\n```\n512 + component_image_size\n```\nis actually oversize and not spot-on. To calculate the size precisely ahead of time would require going through every function in a dry-run to calculate the size of each section. Since this is just test code and will not run often, just over-estimate the size.\n\nLet me know if this needs to be spot on, we can calculate it but it will be extra code to do that.\n\n\n\u003e If possible do some error handling for allocation failure.\n\nWhy would we handle the allocation failure in a test case?\n\nI assume it will throw std::bad_alloc, which is then not handled an crashes the program, resulting in test failure.",
+      "parentUuid": "eeb954fb_338b98d6",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6837920c_5a66f9c9",
         "filename": "test/create_package/create_pldm_fw_package.cpp",
         "patchSetId": 8
@@ -99,6 +171,24 @@
       "writtenOn": "2025-01-23T02:20:41Z",
       "side": 1,
       "message": "Which example?",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "652f7e89_234d6cf2",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "removed that.",
+      "parentUuid": "6837920c_5a66f9c9",
       "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +210,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c675ca5f_b33092f4",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5de43949_4e8cf7c0",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80aa72cd_f555b049",
@@ -137,6 +245,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97434eb7_02e2a49f",
+        "filename": "test/create_package/create_pldm_fw_package.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80aa72cd_f555b049",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af93b5be_b4f24844",
@@ -150,6 +276,24 @@
       "writtenOn": "2025-01-23T02:20:41Z",
       "side": 1,
       "message": "Please define the local helpers as static for clarity.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc00c693_a4698fec",
+        "filename": "test/create_package/firmware_device_id_area.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-23T14:14:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af93b5be_b4f24844",
       "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

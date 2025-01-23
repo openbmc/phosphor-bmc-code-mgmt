@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e237aa_5708073f",
+        "filename": "meson.build",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T18:20:24Z",
+      "side": 1,
+      "message": "Can you move the build_tests in this file and make sure the test still compiles in BMC dir.",
+      "revId": "778149f9ff03d5e287438bef43026487abfe17b1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

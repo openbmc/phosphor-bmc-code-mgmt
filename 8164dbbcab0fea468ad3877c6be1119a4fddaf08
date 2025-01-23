@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3632e24c_e244b4c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-23T01:53:20Z",
+      "side": 1,
+      "message": "Please update the description mentioning this is a library to create test PLDM fw package.",
+      "revId": "8164dbbcab0fea468ad3877c6be1119a4fddaf08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

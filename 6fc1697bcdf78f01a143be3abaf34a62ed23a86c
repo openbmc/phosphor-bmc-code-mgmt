@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "333b4995_420c8eb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Added something about the intent.\n\n\u003e My understanding was you wanted C++ bindings rather than directly using C code from libpldm,\n\nMy concern is about the abstraction level. I do not want to have 100 lines of boilerplate pldm package parsing code in the code updater logic.\n\nI don\u0027t care so much about if it\u0027s in C++ or C. Just went with the C++ code because that was already there.",
+      "parentUuid": "419ebe9f_6a2bbd2f",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c82e929b_63d2a90d",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-01-24T06:24:53Z",
       "side": 1,
       "message": "Is that i just see it or you actually have 2 new lines at EOF? I see it in some other files too. Can you please fix it if its there.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c71bcefd_29aa75e3",
+        "filename": "common/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c82e929b_63d2a90d",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -70,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02cdb5b1_21a6883b",
+        "filename": "common/pldm/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f55e44f_9a81c511",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34511853_9db47eec",
@@ -83,6 +137,24 @@
       "writtenOn": "2025-01-24T06:51:19Z",
       "side": 1,
       "message": "You have install as true, i am wondering if this will break anything in openbmc/openbmc repo. I might be wrong but can you try a full build with just this patch and see if you build passes. If it does, then its fine.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bfe14a0_4b81d2f0",
+        "filename": "common/pldm/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "changed it to not be installed. It does not need to be installed as it\u0027s a static library.",
+      "parentUuid": "34511853_9db47eec",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -104,6 +176,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2754989_79f5446b",
+        "filename": "common/pldm/package_parser.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ec84211_4c690cf6",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "774eacb3_c45748bb",
@@ -117,6 +207,24 @@
       "writtenOn": "2025-01-24T06:39:23Z",
       "side": 1,
       "message": "Lets rename this file to pldm_package_util.cpp",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30359e64_0b3a0732",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774eacb3_c45748bb",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -138,6 +246,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55704e72_0a9bb54d",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1ee0c69_ca2fd31c",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87f1a5e5_599fb2a9",
@@ -151,6 +277,24 @@
       "writtenOn": "2025-01-24T06:39:23Z",
       "side": 1,
       "message": "Do u need pldmutil::? You are already in namespace.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "361300d4_e7bb328b",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f1a5e5_599fb2a9",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +316,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee880c1c_814148ea",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd7c2eb9_a7cfcc23",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d224e32_bd5c876a",
@@ -185,6 +347,24 @@
       "writtenOn": "2025-01-24T06:39:23Z",
       "side": 1,
       "message": "Lets rename this file to pldm_package_util.hpp",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c45c93d_286522fc",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d224e32_bd5c876a",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -206,6 +386,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d3c462c_901e53ac",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "removed it, will re-introduce perhaps in another patch if it\u0027s still needed there.",
+      "parentUuid": "e46d3d8b_723f455a",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a8920b4_09c059bd",
@@ -223,6 +421,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1720135e_114c3625",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a8920b4_09c059bd",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cfdfe0c_f55a6aa6",
@@ -236,6 +452,24 @@
       "writtenOn": "2025-01-24T06:24:53Z",
       "side": 1,
       "message": "Can you please check if you use these 3 definitions, otherwise drop them from you patch.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aad23007_67fa6704",
+        "filename": "common/pldm/types.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-24T15:33:21Z",
+      "side": 1,
+      "message": "Yes. \"Availability\" and \"UUID\" were unused.",
+      "parentUuid": "4cfdfe0c_f55a6aa6",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

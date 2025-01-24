@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f55e44f_9a81c511",
+        "filename": "common/pldm/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Rather than calling the library libpldmutil, lets call it either libpldmpackageutil or something to do with package as thats the functionality which this lib provides.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ec84211_4c690cf6",
         "filename": "common/pldm/package_parser.hpp",
         "patchSetId": 11
@@ -48,6 +65,125 @@
       "writtenOn": "2025-01-24T06:24:53Z",
       "side": 1,
       "message": "Lets call API as parsePackageHeader to keep it consistent with other APIs and class nomenclature in file.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774eacb3_c45748bb",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Lets rename this file to pldm_package_util.cpp",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1ee0c69_ca2fd31c",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Do u need pldmutil::? You are already in namespace.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f1a5e5_599fb2a9",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Do u need pldmutil::? You are already in namespace.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7c2eb9_a7cfcc23",
+        "filename": "common/pldm/pldm_util.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Do u need pldmutil::? You are already in namespace. Please fix at other places too.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d224e32_bd5c876a",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Lets rename this file to pldm_package_util.hpp",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e46d3d8b_723f455a",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Do u need filesize API?",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8920b4_09c059bd",
+        "filename": "common/pldm/pldm_util.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:39:23Z",
+      "side": 1,
+      "message": "Namespaces should be lower_snake_case.\n\npldm_package_util",
       "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

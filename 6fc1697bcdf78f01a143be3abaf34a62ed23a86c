@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "419ebe9f_6a2bbd2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:41:03Z",
+      "side": 1,
+      "message": "I just saw the APIs return a shared_ptr for PackageParser, so i am fine with my second question.\n\nCan you please add the intent to the PR description for adding this patch",
+      "parentUuid": "a1accdc1_a5570d01",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c82e929b_63d2a90d",
         "filename": "common/meson.build",
         "patchSetId": 11

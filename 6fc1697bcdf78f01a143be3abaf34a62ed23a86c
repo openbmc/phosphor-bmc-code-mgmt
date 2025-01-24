@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1accdc1_a5570d01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:24:53Z",
+      "side": 1,
+      "message": "Can you please add the intent in the PR description on why you need this patch. \nMy understanding was you wanted C++ bindings rather than directly using C code from libpldm, i might be wrong but as i see pldm_util.hpp seems to be the main entry point and those are all generic C APIs, then why do we need this patch?",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c82e929b_63d2a90d",
+        "filename": "common/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:24:53Z",
+      "side": 1,
+      "message": "Is that i just see it or you actually have 2 new lines at EOF? I see it in some other files too. Can you please fix it if its there.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec84211_4c690cf6",
+        "filename": "common/pldm/package_parser.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:24:53Z",
+      "side": 1,
+      "message": "Lets call API as parsePackageHeader to keep it consistent with other APIs and class nomenclature in file.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cfdfe0c_f55a6aa6",
+        "filename": "common/pldm/types.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T06:24:53Z",
+      "side": 1,
+      "message": "Can you please check if you use these 3 definitions, otherwise drop them from you patch.",
+      "revId": "6fc1697bcdf78f01a143be3abaf34a62ed23a86c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

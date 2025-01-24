@@ -34,6 +34,23 @@
       "parentUuid": "9ff7f7fa_4657a66a",
       "revId": "4a053c8e069133436d490aaff12471ee6c9d0677",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1419cb_c114565e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-24T12:39:42Z",
+      "side": 1,
+      "message": "With the direction to move the package parsing logic to libpldm, phosphor-bmc-code-mgmt should only have changes to consume those APIs. So, unit testing of the APIs should move to the libpldm repo.\n\nSo phosphor-bmc-code-mgmt may not need this patch.",
+      "revId": "4a053c8e069133436d490aaff12471ee6c9d0677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

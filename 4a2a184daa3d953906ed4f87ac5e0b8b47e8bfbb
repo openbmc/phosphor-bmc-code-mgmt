@@ -16,6 +16,24 @@
       "message": "@alexander.hansen@9elements.com Are you using all the APIs in this file?",
       "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0e7c015_a02f2e03",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:21:38Z",
+      "side": 1,
+      "message": "yes, they are all called somewhere, i checked out the last patch and grep for them.\n\n\u003e parsePLDMFWUPPackageComplete\n\nis the main use-case but\n\n\u003e extractMatchingComponentImage\n\nis also needed to extract the component from that later on.\n\n\u003e readPLDMPackage\n\nis used to read a pldm package from file \n\nand \n\n\u003e mmap_pldm_package\n\nis used to mmap the pldm package from the file descriptor received in the dbus call.",
+      "parentUuid": "221d33d2_3134a7b4",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

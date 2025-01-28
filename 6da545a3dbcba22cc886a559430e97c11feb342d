@@ -16,6 +16,24 @@
       "message": "The CI does funny stuff. Cant tell, if runs properly or not.",
       "revId": "6da545a3dbcba22cc886a559430e97c11feb342d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a94b51f3_658e3f95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 71
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-01-28T08:35:52Z",
+      "side": 1,
+      "message": "My bad. CI runs fine.....",
+      "parentUuid": "5d346dc0_200191cd",
+      "revId": "6da545a3dbcba22cc886a559430e97c11feb342d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

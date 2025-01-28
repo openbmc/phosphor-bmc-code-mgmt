@@ -87,6 +87,24 @@
       "parentUuid": "0ad44001_d2373e92",
       "revId": "4a053c8e069133436d490aaff12471ee6c9d0677",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff9c3a50_7430fa41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-28T02:09:17Z",
+      "side": 1,
+      "message": "@rushtotom@gmail.com Sure i will review them. I have already mentioned above that we intent to use the APIs from libpldm, when they become ready. In the interim we will keep some logic locally in phosphor-bmc-code-mgmt and drop it in future and move to libpldm API when it gets merged.",
+      "parentUuid": "768e2e5f_866e9781",
+      "revId": "4a053c8e069133436d490aaff12471ee6c9d0677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "660baaa4_56dd1daf",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-28T02:48:58Z",
+      "side": 1,
+      "message": "What is the purpose of this API? It doesn\u0027t seem to be verifying against anything but just doing parsing and printing the values? If so, better drop this and let the extraction API fail with proper error handling.",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "221d33d2_3134a7b4",
         "filename": "common/pldm/pldm_package_util.hpp",
         "patchSetId": 12
@@ -32,6 +49,58 @@
       "side": 1,
       "message": "yes, they are all called somewhere, i checked out the last patch and grep for them.\n\n\u003e parsePLDMFWUPPackageComplete\n\nis the main use-case but\n\n\u003e extractMatchingComponentImage\n\nis also needed to extract the component from that later on.\n\n\u003e readPLDMPackage\n\nis used to read a pldm package from file \n\nand \n\n\u003e mmap_pldm_package\n\nis used to mmap the pldm package from the file descriptor received in the dbus call.",
       "parentUuid": "221d33d2_3134a7b4",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2d1405c_3e63e4f3",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-28T02:48:58Z",
+      "side": 1,
+      "message": "I see following APIs are just generic handlers and nothing to do with PLDM, so please drop word PLDM from there and call it something generic as in future the PLDM image parsing logic will come from libpldm -\n\nreadPLDMPackage - readImagePackage\nmmap_pldm_package - mmapImagePackage\n\n\nSo, you would be left with just 2 -\nparsePLDMFWUPPackageComplete \nextractMatchingComponentImage\n\nwhere extractMatchingComponentImage will again be high level API to iterate the retrieved data by parsePLDM API.",
+      "parentUuid": "b0e7c015_a02f2e03",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b34956_a7794681",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-28T02:48:58Z",
+      "side": 1,
+      "message": "Rename to parsePLDMPackage",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a221372_295ff1b6",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-28T02:48:58Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Is this one needed? If not, please drop it.",
       "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

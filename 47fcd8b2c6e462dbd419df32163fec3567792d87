@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c8dac76_3c386ce4",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T16:45:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f957e06b_d92d1703",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b43ad2ca_127fdbda",
@@ -54,6 +78,24 @@
       "writtenOn": "2025-01-29T16:42:09Z",
       "side": 1,
       "message": "I guess this one should be allowed also.",
+      "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c66a754_17814b61",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T16:45:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b43ad2ca_127fdbda",
       "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

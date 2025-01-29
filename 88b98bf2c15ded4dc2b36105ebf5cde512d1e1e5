@@ -16,6 +16,24 @@
       "message": "Aren\u0027t you going to use libpldm APIs in your PLDM parsing logic? If yes, then its good to define this dependency without test check as this is just defining the dependency and not using it. That way, in future patches both test and common code can use it.",
       "revId": "88b98bf2c15ded4dc2b36105ebf5cde512d1e1e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "991ab18e_7ef30629",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-29T20:02:34Z",
+      "side": 1,
+      "message": "Based on the discord discussion we can follow this route for now. But i think in future we might end up having too many OR in this if condition based on updater so at that time it might be a good option to define this dependency as default as it would only be disabled for BMC code updater. We can revisit this in future.",
+      "parentUuid": "b94ee727_d074fb58",
+      "revId": "88b98bf2c15ded4dc2b36105ebf5cde512d1e1e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

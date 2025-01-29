@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "885ecf75_172eaf95",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T11:17:54Z",
+      "side": 1,
+      "message": "dropped it.",
+      "parentUuid": "660baaa4_56dd1daf",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "221d33d2_3134a7b4",
@@ -71,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edd0404_3b94958b",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T11:17:54Z",
+      "side": 1,
+      "message": "makes sense 👍. renamed the functions.",
+      "parentUuid": "e2d1405c_3e63e4f3",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4b34956_a7794681",
@@ -88,6 +124,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "923fff46_15741afc",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T11:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b34956_a7794681",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a221372_295ff1b6",
@@ -101,6 +155,24 @@
       "writtenOn": "2025-01-28T02:48:58Z",
       "side": 1,
       "message": "@alexander.hansen@9elements.com Is this one needed? If not, please drop it.",
+      "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b36fa566_20880ee8",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T11:17:54Z",
+      "side": 1,
+      "message": "dropped it.",
+      "parentUuid": "2a221372_295ff1b6",
       "revId": "4a2a184daa3d953906ed4f87ac5e0b8b47e8bfbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

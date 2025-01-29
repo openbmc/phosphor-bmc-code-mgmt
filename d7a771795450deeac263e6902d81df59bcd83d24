@@ -16,6 +16,24 @@
       "message": "Please use gtest and use required setup and cleanup routines. Once you have such a flow i am definite fold almost all of this code into a single file with bunch of tests for different properties.",
       "revId": "d7a771795450deeac263e6902d81df59bcd83d24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d48a780_7068a39f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T13:48:58Z",
+      "side": 1,
+      "message": "changed it to use gtest and moved the tests into a single file.\n\nAdded some function to abstract the common part of creating the pldm package.",
+      "parentUuid": "a911363d_09df1d2e",
+      "revId": "d7a771795450deeac263e6902d81df59bcd83d24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

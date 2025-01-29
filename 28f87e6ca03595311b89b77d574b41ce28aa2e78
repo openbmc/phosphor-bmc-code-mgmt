@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e22c6d_eac0f0d0",
+        "filename": "test/common/test_device_config.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T13:03:16Z",
+      "side": 1,
+      "message": "In this case, \"comexamplesamplecorp\" has no dots (invalid compatible string) and DeviceConfig constructor should throw an exception.\n\nThrowing the exception is the expected behavior.\nSo the test case completes successfully.\n\nIf the constructor did not throw, we would run into\n```\nASSERT_FALSE(true)\n```\nwhich would fail the testcase.",
+      "parentUuid": "ba882a9a_a3ff6f07",
+      "revId": "28f87e6ca03595311b89b77d574b41ce28aa2e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a755ad9_c80e3b0a",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "377916d3_0e303784",
+        "filename": "test/common/test_device_config.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T13:03:16Z",
+      "side": 1,
+      "message": "Throwing the exception is the expected behavior.",
+      "parentUuid": "0a755ad9_c80e3b0a",
+      "revId": "28f87e6ca03595311b89b77d574b41ce28aa2e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f1f55cf_e0f4bee9",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-01-28T18:27:37Z",
       "side": 1,
       "message": "This should be in the catch clause in case the DeviceConfig constructor call throws an exception, which is what you are trying to test.",
+      "revId": "28f87e6ca03595311b89b77d574b41ce28aa2e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22b372b5_ac8a0b22",
+        "filename": "test/common/test_device_config.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-29T13:03:16Z",
+      "side": 1,
+      "message": "Throwing the exception is the expected behavior.",
+      "parentUuid": "4f1f55cf_e0f4bee9",
       "revId": "28f87e6ca03595311b89b77d574b41ce28aa2e78",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

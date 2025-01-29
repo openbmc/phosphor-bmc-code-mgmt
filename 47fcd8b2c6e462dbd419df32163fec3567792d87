@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32818d35_27957bd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-29T16:42:09Z",
+      "side": 1,
+      "message": "nits here.  I thought I fixed those with 83d7d406f7cf6a0b74040cf3dec3d4cf7026ef09 but I guess I only fixed the \u0027enabled\u0027 side.",
+      "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f957e06b_d92d1703",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-29T16:42:09Z",
+      "side": 1,
+      "message": "`if build_tests.allowed()`",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b43ad2ca_127fdbda",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-29T16:42:09Z",
+      "side": 1,
+      "message": "I guess this one should be allowed also.",
+      "revId": "47fcd8b2c6e462dbd419df32163fec3567792d87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

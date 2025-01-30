@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff4ebfcb_ceda739b",
+        "filename": "common/pldm/meson.build",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-30T23:38:09Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Agreed to take care of this in the common code diff. Hence marking as resolved on this patch.",
+      "parentUuid": "b47f9078_38bfdd64",
+      "revId": "f6098bc0d25f47d336927feab3f4b9a9f15c02d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66834a80_f7bed55a",

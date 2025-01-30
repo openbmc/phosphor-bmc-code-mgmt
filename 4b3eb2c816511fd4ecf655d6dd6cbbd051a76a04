@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ea3eaf3_6e7a2e7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 73
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-30T14:04:32Z",
+      "side": 1,
+      "message": "Let\u0027s not do that. This patch is already at +1244 lines.\n\nIf you think the complete test patch is not ready, we can split it up so\nthe common code can be merged alongside some amount of tests, but those tests should be in a separate patch.\n\nIs that ok for you?\n\nOtherwise we can split up the common code and try to have tests for a subset of that but that would be some amount of work to split it.",
+      "parentUuid": "c7f91617_5d680497",
+      "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4cbc464b_8c7e01bd",
         "filename": "common/include/device.hpp",
         "patchSetId": 73

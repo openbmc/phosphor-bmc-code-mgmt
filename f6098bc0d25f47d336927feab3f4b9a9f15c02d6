@@ -16,6 +16,23 @@
       "message": "I think we need some meson option to safeguard this compilation since you added a conditional inclusion of libpldm_dep.\n\nLet\u0027s say the meson option is software-common-code and enabled by default.\n\nWe can define a build flag, lets say\n\nbuild_common_code \u003d (get_option(\u0027software-common-code\u0027).allowed() or get_option(\u0027Updater-X\u0027).allowed() or ...)\n\n\nif (build_common_code)\n// Build the common code\nendif\n\nThe common code will not build from openbmc/openbmc when no package-config (for updater using common code) is enabled.\n\nAlso, the conditional inclusion of libpldm will also need a \"or\" of this build flag.\n \nThis is a suggestion so you would need to try and we can refine on the nomenclature.",
       "revId": "f6098bc0d25f47d336927feab3f4b9a9f15c02d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "860932ea_de28bd66",
+        "filename": "meson.build",
+        "patchSetId": 13
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-30T02:22:21Z",
+      "side": 1,
+      "message": "The conditional inclusion of common code should start from here.",
+      "revId": "f6098bc0d25f47d336927feab3f4b9a9f15c02d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

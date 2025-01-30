@@ -16,6 +16,24 @@
       "message": "Can you please bring the nop",
       "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f91617_5d680497",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 73
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-30T02:54:11Z",
+      "side": 1,
+      "message": "Sorry pressed the enter too soon.\n\nCan you please bring the nopdevice from test code to this patch. We should have some unit testing for this patch as part of Tested section in description since it\u0027s the main change set.\n\nAlso let\u0027s rename nopdevice to something more relevant for example, ExampleUpdater or DummyUpdater or something like that.",
+      "parentUuid": "6406e30f_f9e54b3c",
+      "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

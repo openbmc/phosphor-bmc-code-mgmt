@@ -34,6 +34,23 @@
       "parentUuid": "6406e30f_f9e54b3c",
       "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cbc464b_8c7e01bd",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 73
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-30T03:00:11Z",
+      "side": 1,
+      "message": "Please define one using for ActivationInterface and use ActivationInterface::Activations::\u003cState\u003e, it will be easier to understand where the values are coming from in code browsing. Will also save you extra lines here.",
+      "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -34,6 +34,23 @@
       "parentUuid": "5d346dc0_200191cd",
       "revId": "6da545a3dbcba22cc886a559430e97c11feb342d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db7bdee9_cba5fe4d",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 71
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-30T02:50:45Z",
+      "side": 1,
+      "message": "Please remove the prefix design:, its implicit that the implementation is based on design, we don\u0027t need to add this prefix.\n\nBased on my reading of code, they seemed more like TODO for you in the early development.",
+      "revId": "6da545a3dbcba22cc886a559430e97c11feb342d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

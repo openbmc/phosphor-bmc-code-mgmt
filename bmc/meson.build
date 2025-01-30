@@ -260,7 +260,7 @@ endforeach
 
 # If test coverage of source files within the root directory are wanted,
 # need to define and build the tests from here
-if not build_tests.disabled()
+if build_tests.allowed()
     gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
     include_srcs = declare_dependency(sources: [
         'utils.cpp',

@@ -16,6 +16,193 @@
       "message": "I think we need some meson option to safeguard this compilation since you added a conditional inclusion of libpldm_dep.\n\nLet\u0027s say the meson option is software-common-code and enabled by default.\n\nWe can define a build flag, lets say\n\nbuild_common_code \u003d (get_option(\u0027software-common-code\u0027).allowed() or get_option(\u0027Updater-X\u0027).allowed() or ...)\n\nif (build_common_code)\n// Build the common code\nendif\n\nThe common code will not build from openbmc/openbmc when no package-config (for updater using common code) is enabled.\n\nAlso, the conditional inclusion of libpldm will also need a \"or\" of this build flag.\n\nThis is a suggestion so you would need to try and we can refine on the nomenclature.",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca04bbcb_d3ad500e",
+        "filename": "common/README.md",
+        "patchSetId": 76
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "\\# Common Firmware Library\n\nPlease write this Readme from intent of common layer since you are in common dir. For example, Explain the intent of common layer.\nAnd then explain how the common layer can be used in daemons, citing the NOP updater as an example.\n\nKeep the reference to design.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea0432ff_3b7312a2",
+        "filename": "common/README.md",
+        "patchSetId": 76
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "\"\n\\## PLDM Package Parser\n\nThe PackageParser in the pldm directory currently references a following revision from the openbmc/pldm repository -\n\n\u003cgithub reference\u003e\n\nHowever, this code will be deprecated and replaced with the package parsing APIs provided by libpldm once they become available.\n\nThe PackageParser has a maximum supported PLDM firmware package revision of 1.0.0.\n\"\n\nProbably word it something like above.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f07fbf6_69f9f13b",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "rename pp to packageParser",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9185e03_26adc45f",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Do you think it will be better to refer to schema here?\n\nhttps://github.com/openbmc/entity-manager/blob/master/schemas/firmware.json",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81221c8f_f53b7b6b",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "compatibleHardware",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "207705bf_e72bbb66",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Lets call this configName",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee7937b2_e5d5c778",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Do you actually see a need of configType anywhere in the code? My understanding is this refers to the EM configuration interface name and would be needed here.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d51e95cf_8373a7ab",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Do you use objPathConfig anywhere in your implementations?\n\nWe would need inventoryObjectPath for creating association but i don\u0027t see a use of configuration object path at the top of my head.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b05ac7f_e5366c98",
+        "filename": "common/meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Let\u0027s name this software_common_a or software_common_lib. dbus-sensors and few others follow this convention so lets use it.\n\nPlease change fwupdate to same.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea6b436_32ee237b",
+        "filename": "common/meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to install this as it would be statically complied with the binaries? Don\u0027t see that happening in other repos.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b618bff3_18f88d0f",
+        "filename": "meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T19:53:51Z",
+      "side": 1,
+      "message": "Please add this dependency inside the common build flag as mentioned in other comment.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

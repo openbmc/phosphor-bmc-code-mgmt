@@ -88,6 +88,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f118290e_79675d83",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T21:01:10Z",
+      "side": 1,
+      "message": "Please refer my comment here -\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/2743ca5c_c8adce04/",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b291bec_29d551d5",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T21:01:10Z",
+      "side": 1,
+      "message": "Do you think it will be better to make this a var with a default value rather than virtual function. Constructor can take in_arg?\nMy intent is to avoid a virtual function if not needed and only do it for actions rather than properties.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3db4e6dd_f091eae5",
         "filename": "common/include/device.hpp",
         "patchSetId": 76

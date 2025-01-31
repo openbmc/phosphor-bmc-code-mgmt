@@ -54,6 +54,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a694654_aaa76ac6",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "nit: Represents",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "195bb18e_8cafaba3",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "I am not sure what does this comment mean? Can you be more explicit?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db4e6dd_f091eae5",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "The caller itself passed the config so they should know this type.\nWhere are you using this API right now?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f07fbf6_69f9f13b",
         "filename": "common/include/device.hpp",
         "patchSetId": 76
@@ -65,6 +116,40 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "rename pp to packageParser",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf63277_ba91e88e",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "device software configuration.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b229cf74_38b54a3f",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "Lets call this SoftwareConfig instead as its the config for the software associated with the device not the device itself.",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -150,6 +235,23 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "Do you use objPathConfig anywhere in your implementations?\n\nWe would need inventoryObjectPath for creating association but i don\u0027t see a use of configuration object path at the top of my head.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2743ca5c_c8adce04",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-31T20:55:03Z",
+      "side": 1,
+      "message": "Let\u0027s extend this class to also define a function which can help to get the inventory item associated with this software config. For example https://grok.openbmc.org/xref/openbmc/dbus-sensors/src/Utils.cpp?r\u003d2e46696724a89cd355d290fb71a4b8c481012758#693.\n\nThe function should take subtreePath and interfaceName to look for in the parent tree and shall return the inventory item path.\n\nIn turn the Updater shall call this API and pass the inventory item as in_arg into Device constructor or you can also extend the config itself to add this arg, that way you shall also be able to drop this virtual function -\n\n    virtual sdbusplus::async::task\u003cstd::string\u003e\n        getInventoryItemObjectPath() \u003d 0;",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

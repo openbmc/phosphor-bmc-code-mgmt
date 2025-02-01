@@ -6,11 +6,7 @@ endif
 
 sdeventplus_dep = dependency('sdeventplus')
 
-source = [
-    'usb_manager_main.cpp',
-    'usb_manager.cpp',
-    '../utils.cpp',
-    ]
+source = ['usb_manager_main.cpp', 'usb_manager.cpp', '../utils.cpp']
 
 executable(
     'phosphor-usb-code-update',
@@ -24,22 +20,21 @@ executable(
         sdeventplus_dep,
     ],
     install: true,
-    install_dir: get_option('bindir')
+    install_dir: get_option('bindir'),
 )
 
 systemd_system_unit_dir = dependency('systemd').get_variable(
     'systemdsystemunitdir',
-    pkgconfig_define: ['prefix', get_option('prefix')])
+    pkgconfig_define: ['prefix', get_option('prefix')],
+)
 udev_dir = dependency('udev').get_variable(
     'udev_dir',
-    pkgconfig_define: ['prefix', get_option('prefix')])
+    pkgconfig_define: ['prefix', get_option('prefix')],
+)
 
 install_data(
     'services/usb-code-update@.service',
-    install_dir: systemd_system_unit_dir
+    install_dir: systemd_system_unit_dir,
 )
 
-install_data(
-    '70-bmc-usb.rules',
-    install_dir: udev_dir / 'rules.d'
-)
+install_data('70-bmc-usb.rules', install_dir: udev_dir / 'rules.d')

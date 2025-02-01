@@ -1,13 +1,16 @@
-project('phosphor-bmc-code-mgmt', 'cpp',
+project(
+    'phosphor-bmc-code-mgmt',
+    'cpp',
     default_options: [
         'buildtype=debugoptimized',
         'cpp_std=c++23',
         'warning_level=3',
-        'werror=true'
+        'werror=true',
     ],
     meson_version: '>=1.1.1',
     license: 'Apache-2.0',
-    version: '1.0')
+    version: '1.0',
+)
 
 add_project_arguments(
     '-DBOOST_SYSTEM_NO_DEPRECATED',
@@ -36,24 +39,23 @@ has_cereal = cpp.has_header_symbol(
     'cereal/cereal.hpp',
     'cereal::specialize',
     dependencies: cereal_dep,
-    required: false)
+    required: false,
+)
 if not has_cereal
     cereal_opts = import('cmake').subproject_options()
-    cereal_opts.add_cmake_defines({'BUILD_TESTS': 'OFF', 'SKIP_PERFORMANCE_COMPARISON': 'ON'})
+    cereal_opts.add_cmake_defines(
+        {'BUILD_TESTS': 'OFF', 'SKIP_PERFORMANCE_COMPARISON': 'ON'},
+    )
     cereal_proj = import('cmake').subproject(
         'cereal',
         options: cereal_opts,
-        required: false)
+        required: false,
+    )
     assert(cereal_proj.found(), 'cereal is required')
     cereal_dep = cereal_proj.dependency('cereal')
 endif
 
-deps = [
-    cereal_dep,
-    pdi_dep,
-    phosphor_logging_dep,
-    sdbusplus_dep,
-]
+deps = [cereal_dep, pdi_dep, phosphor_logging_dep, sdbusplus_dep]
 
 ssl = dependency('openssl')
 
@@ -65,11 +67,11 @@ build_tests = get_option('tests')
 subdir('bmc')
 
 if build_tests.allowed()
-  libpldm_dep = dependency('libpldm')
+    libpldm_dep = dependency('libpldm')
 endif
 
 common_include = include_directories('.')
 
 if build_tests.allowed()
-  subdir('test')
+    subdir('test')
 endif

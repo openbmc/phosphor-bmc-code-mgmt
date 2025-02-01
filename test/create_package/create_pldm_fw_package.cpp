@@ -119,8 +119,8 @@ static void create_pldm_package_file(std::ofstream& of,
     of.write(reinterpret_cast<char*>(b), (long)size);
 }
 
-std::optional<std::string>
-    create_pldm_package(uint8_t* component_image, size_t component_image_size)
+std::optional<std::string> create_pldm_package(uint8_t* component_image,
+                                               size_t component_image_size)
 {
     std::random_device rd;
     std::mt19937 gen(rd());

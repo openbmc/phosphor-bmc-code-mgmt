@@ -182,8 +182,8 @@ class PackageParserV1 final : public PackageParser
  *  @return On success return the PackageParser for the header format version
  *          on failure return nullptr
  */
-std::unique_ptr<PackageParser>
-    parsePackageHeader(std::vector<uint8_t>& pkgHdrInfo);
+std::unique_ptr<PackageParser> parsePackageHeader(
+    std::vector<uint8_t>& pkgHdrInfo);
 
 } // namespace fw_update
 

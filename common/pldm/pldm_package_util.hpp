@@ -14,8 +14,8 @@ namespace pldm_package_util
 // @param buf           pointer to the pldm package
 // @param size          size of 'buf'
 // @returns             PackageParser instance
-std::shared_ptr<PackageParser>
-    parsePLDMPackage(const uint8_t* buf, size_t size);
+std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf,
+                                                size_t size);
 
 // reads into a buffer, from file
 // @param file            the file to read from

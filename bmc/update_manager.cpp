@@ -208,9 +208,9 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     co_return;
 }
 
-sdbusplus::message::object_path
-    Manager::startUpdate(sdbusplus::message::unix_fd image,
-                         ApplyTimeIntf::RequestedApplyTimes applyTime)
+sdbusplus::message::object_path Manager::startUpdate(
+    sdbusplus::message::unix_fd image,
+    ApplyTimeIntf::RequestedApplyTimes applyTime)
 {
     info("Starting update for image {FD}", "FD", static_cast<int>(image));
     using sdbusplus::xyz::openbmc_project::Common::Error::Unavailable;

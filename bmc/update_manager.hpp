@@ -48,9 +48,9 @@ class Manager : public UpdateIntf
     /** @brief Implementation for StartUpdate
      *  Start a firware update to be performed asynchronously.
      */
-    sdbusplus::message::object_path
-        startUpdate(sdbusplus::message::unix_fd image,
-                    ApplyTimeIntf::RequestedApplyTimes applyTime) override;
+    sdbusplus::message::object_path startUpdate(
+        sdbusplus::message::unix_fd image,
+        ApplyTimeIntf::RequestedApplyTimes applyTime) override;
 
     /* @brief Process the image supplied via image fd */
     auto processImage(sdbusplus::message::unix_fd image,

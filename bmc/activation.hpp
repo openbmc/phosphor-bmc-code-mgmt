@@ -144,11 +144,11 @@ class ActivationBlocksTransition : public ActivationBlocksTransitionInherit
     }
 
     ActivationBlocksTransition(const ActivationBlocksTransition&) = delete;
-    ActivationBlocksTransition&
-        operator=(const ActivationBlocksTransition&) = delete;
+    ActivationBlocksTransition& operator=(const ActivationBlocksTransition&) =
+        delete;
     ActivationBlocksTransition(ActivationBlocksTransition&&) = delete;
-    ActivationBlocksTransition&
-        operator=(ActivationBlocksTransition&&) = delete;
+    ActivationBlocksTransition& operator=(ActivationBlocksTransition&&) =
+        delete;
 
   private:
     sdbusplus::bus_t& bus;
@@ -234,8 +234,8 @@ class Activation : public ActivationInherit, public Flash
      *
      * @return Success or exception thrown
      */
-    RequestedActivations
-        requestedActivation(RequestedActivations value) override;
+    RequestedActivations requestedActivation(
+        RequestedActivations value) override;
 
     /** @brief Overloaded write flash function */
     void flashWrite() override;

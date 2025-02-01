@@ -88,6 +88,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "744b89bc_502d10c5",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Let\u0027s call this updateDevice.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed7cab3_2677027d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Let\u0027s drop \"std::unique_ptr\u003cSoftwareActivationProgress\u003e\u0026 activationProgress\" from this API signature and define another API \"setUpdateProgress()\" which gets called by updateDevice() to update the activation progress.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f118290e_79675d83",
         "filename": "common/include/device.hpp",
         "patchSetId": 76
@@ -116,6 +150,23 @@
       "writtenOn": "2025-01-31T21:01:10Z",
       "side": 1,
       "message": "Do you think it will be better to make this a var with a default value rather than virtual function. Constructor can take in_arg?\nMy intent is to avoid a virtual function if not needed and only do it for actions rather than properties.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a66f8a6_e5d36965",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be private as SoftwareUpdate is defined as a friend of this class.",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -292,6 +343,363 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15f94a39_8359ac12",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Can you please update this wording to reflect the intent rather than or in addition to what you are doing. I read it multiple times but still i couldn\u0027t figure out what it means.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bb73aa_451f064c",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "I have provided you the comment in Device class. You don\u0027t need to expose this interface and can handle this by providing an updateProgress API.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79d15e7_bad00344",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "I see you are inheriting only Activation, is the comment old?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2980ff7d_65c30286",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Please keep comments consistent with first char as capital across all places.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a5aff7_55ab4aa8",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Whats the use case for 2 constructors?\n\nPlease define one constructor Software(sdbusplus::async::context\u0026 ctx, Device\u0026 parent)\n\nAnd let\u0027s define a create API, lets call it createSoftware(), all other APIs to generate software_id should be called internally in createSoftware.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26de830_ddf20406",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Not needed, handle the software_id generation internally.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f01e7ece_5d588232",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Our -\u003e The",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae58841_30e6e850",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "I suppose u can use SoftwareActivation::Activations?\n\nAlso, Patrick has suggested me in past not to use common interface directly, so lets use the definition from line#31.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee6625c_3917898e",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "\"Add / remove the\"\nWhat\u0027s this comment about?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a70c7d88_f93c3d4f",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Whats opt prefix here?\n\nAlso, why are you exposing a var rather than an API setActivationProgress? Please define an API for this interface just as you did for others.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a5d6d65_3be07fb8",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Should become private now.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710f0304_eea0c036",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Should become private now.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab68273_9c945d3a",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Why are defining a private constructor?\n\nPlease define one constructor overall and then define an API like createSoftware as private function. That way its easier to understand whats the external interface.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adff013e_7203d2cb",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Remove it and define as static in .cpp file.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e1ca37_b2e691e6",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Looks like opt means optional here. Based on your inferring everything is optional and you have marked every interface with opt which makes the prefix itself not necessary. I would suggest to drop it as the comments provide good detail.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4621f55_3ae81965",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "This should be private as u r calling it in software_manager.cpp",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a523d5d_dbf0cecd",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Drop this virtual function and pass the EM configuration interface name list (fully qualified interface names) to the getConfiguration API as in_arg.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbac581_50c31cc8",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Why do you have configuration API for MuxGpios in common class?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de80bb9_1146e878",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Drop this virtual function and pass the EM configuration interface name list (fully qualified interface names) to the getConfiguration API as in_arg.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "554a94e5_572cd7fa",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "This has to be protected (not private) for child class to override.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c0ec6a7_b2d167d0",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Why are u re-declaring these 3 functions? They declaration should already be part of inherited class (auto gen PDI code).",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b05ac7f_e5366c98",
         "filename": "common/meson.build",
         "patchSetId": 76
@@ -320,6 +728,210 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "I don\u0027t think we need to install this as it would be statically complied with the binaries? Don\u0027t see that happening in other repos.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7585e7be_8ea05249",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Have you verified if this move takes care of all the DBus interfaces at that objectPath as well? For example Version interface.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f093fa0b_5753b44b",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Rather than exposing an object like this. Please provide an API in device class with name updateProgress or like and internally handle the Dbus object.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fdb612c_75994ce8",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Please check the state of success and eventually make the activation here.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ed40f69_06433ccb",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "What does this comment mean?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c269aae2_9a9047fa",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Comment not useful, please drop it. Same at other places where you see comments which are implicit its better to drop them.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217f912c_a71f27c7",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Let\u0027s keep this only configName + randomId() as configName from EM can be set accordingly to the required value.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a53256_9c940586",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "This doesn\u0027t have to be class member function. Please define this as static and you can drop it from private list in the class definition.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce23f110_ebd76000",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Is \"this-\u003e\" needed? Same at other places.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "511f3676_385c3790",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Please dine objectPath as a private var, instead of computing it every time.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44ebc7e_47b8864c",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "I think we need to change this API to something better such as initializeDevices(), so it can do this iteration logic and get all Device configuration of this type. Let\u0027s discussion on this in person as i also don\u0027t see any caller of this API in SPI code updater.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d810bf8_7e2bd49e",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "Log line not useful, please drop this.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1944039_1535960c",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-01T09:48:46Z",
+      "side": 1,
+      "message": "This log line doesn\u0027t look useful, if you need it better combine in next log line.",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

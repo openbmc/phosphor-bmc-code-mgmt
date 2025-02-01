@@ -570,8 +570,8 @@ void ItemUpdater::deleteAll()
     helper.cleanup();
 }
 
-ItemUpdater::ActivationStatus
-    ItemUpdater::validateSquashFSImage(const std::string& filePath)
+ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
+    const std::string& filePath)
 {
     bool valid = true;
 

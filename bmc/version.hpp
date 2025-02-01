@@ -113,8 +113,8 @@ class Version : public VersionInherit
      *
      * @return The values of the repeated key.
      **/
-    static std::vector<std::string>
-        getRepeatedValues(const std::string& manifestFilePath, std::string key);
+    static std::vector<std::string> getRepeatedValues(
+        const std::string& manifestFilePath, std::string key);
 
     /**
      * @brief Calculate the version id from the version string.
@@ -148,8 +148,8 @@ class Version : public VersionInherit
      *
      * @return The extended version string.
      */
-    static std::string
-        getBMCExtendedVersion(const std::string& releaseFilePath);
+    static std::string getBMCExtendedVersion(
+        const std::string& releaseFilePath);
 
     /**
      * @brief Get the active BMC version string.

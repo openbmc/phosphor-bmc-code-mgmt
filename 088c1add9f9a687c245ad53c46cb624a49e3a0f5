@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd73964_25cf5203",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 76
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Did not manage to resolve all comments today.\n\nWill try to fix the rest tomorrow.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca04bbcb_d3ad500e",
@@ -31,6 +48,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "\\# Common Firmware Library\n\nPlease write this Readme from intent of common layer since you are in common dir. For example, Explain the intent of common layer.\nAnd then explain how the common layer can be used in daemons, citing the NOP updater as an example.\n\nKeep the reference to design.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c867bef7_2e11d944",
+        "filename": "common/README.md",
+        "patchSetId": 76
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca04bbcb_d3ad500e",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +87,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7255b264_3a166006",
+        "filename": "common/README.md",
+        "patchSetId": 76
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea0432ff_3b7312a2",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a694654_aaa76ac6",
@@ -65,6 +118,24 @@
       "writtenOn": "2025-01-31T20:55:03Z",
       "side": 1,
       "message": "nit: Represents",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8fc5573_f5537049",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "removed the comment",
+      "parentUuid": "6a694654_aaa76ac6",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +157,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "486bf37e_15e620df",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "removed the comment to avoid any ambiguity.",
+      "parentUuid": "195bb18e_8cafaba3",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "744b89bc_502d10c5",
@@ -99,6 +188,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Let\u0027s call this updateDevice.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed71f5e4_a0e102b8",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744b89bc_502d10c5",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +263,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94e395e3_d3064200",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "My preference is to avoid any state if possible.\n\nSo i would rather have a function to produce a property when it is needed than to have a property on the class.\n\nThe reason for me is that the function is easier to test separately.\n\n\nAlso, i find it easier for implementing a code updater when i only have to override a few functions depending on the device.\n\nWhen we go into the direction of making optional arguments to the constructor, that may not scale so well. For example, when there are 2 int arguments with default value, the compiler will not be able to know which of those was supplied.",
+      "parentUuid": "0b291bec_29d551d5",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a66f8a6_e5d36965",
         "filename": "common/include/device.hpp",
         "patchSetId": 76
@@ -167,6 +292,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Shouldn\u0027t this be private as SoftwareUpdate is defined as a friend of this class.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfa93db_6a727e8d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "starting an update is one of the big features of the \u0027Device\u0027 class.\n\nOne of the reasons i had for making it public is that it would be easy to test.\n\n```\ntest/common/device/test_device_start_update_async_invalid_fd.cpp\n54:    co_await device-\u003estartUpdateAsync(image, applyTimeImmediate,\n\ntest/common/device/test_device_start_update_async_success.cpp\n80:    co_await device-\u003estartUpdateAsync(image2, applyTimeImmediate,\n\n```\n\nIf we make it private, we may have to do some tricks\n(or friend and create a test class), which i wanted to avoid.",
+      "parentUuid": "1a66f8a6_e5d36965",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +331,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9cb7100_ea2e0a26",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "It\u0027s used in common/src/software.cpp,\n```\nstd::string Software::getRandomSoftwareId(Device\u0026 parent)\n```\n\nThe type is used to construct the software id.",
+      "parentUuid": "3db4e6dd_f091eae5",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f07fbf6_69f9f13b",
@@ -205,6 +366,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "500f89d6_1dfcd6c5",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f07fbf6_69f9f13b",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcf63277_ba91e88e",
@@ -218,6 +397,24 @@
       "writtenOn": "2025-01-31T20:55:03Z",
       "side": 1,
       "message": "device software configuration.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "974458f3_8efe2dd4",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcf63277_ba91e88e",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -273,6 +470,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa18258d_16e99caa",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81221c8f_f53b7b6b",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "207705bf_e72bbb66",
@@ -286,6 +501,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "Lets call this configName",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0a1958_8376a3d7",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "207705bf_e72bbb66",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -307,6 +540,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9926170_062b38cb",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "According to the comment, the class represents the configuration obtained from dbus.\n\nThe config \u0027Type\u0027 is used for example to construct software id.",
+      "parentUuid": "ee7937b2_e5d5c778",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d51e95cf_8373a7ab",
@@ -320,6 +571,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "Do you use objPathConfig anywhere in your implementations?\n\nWe would need inventoryObjectPath for creating association but i don\u0027t see a use of configuration object path at the top of my head.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83a8e68_2c0534de",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Yes, not needed. Dropped it.",
+      "parentUuid": "d51e95cf_8373a7ab",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -360,6 +629,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9faf16b1_58191d68",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/sdbusplus/+/77440\n\nI need the class to initialize a member variable of ```\nsdbusplus::aserver::xyz::openbmc_project::software::\n        ActivationProgress\u003cSoftware\u003e```\n\notherwise i will receive clang-tidy errors.",
+      "parentUuid": "15f94a39_8359ac12",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4bb73aa_451f064c",
         "filename": "common/include/software.hpp",
         "patchSetId": 76
@@ -371,6 +658,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "I have provided you the comment in Device class. You don\u0027t need to expose this interface and can handle this by providing an updateProgress API.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d521c6a_96f0a4c6",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/sdbusplus/+/77440\n\nThe property would otherwise be uninitialized.\nDue to the access restriction we have to inherit from the class to initialized this property.\n\nPlease review the linked patch, it is not for merge, but i would like a comment if i am right about this or not.",
+      "parentUuid": "a4bb73aa_451f064c",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -392,6 +697,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba6b5f1c_6789f49a",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Yes, deleted the outdated comment.",
+      "parentUuid": "b79d15e7_bad00344",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2980ff7d_65c30286",
@@ -405,6 +728,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Please keep comments consistent with first char as capital across all places.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8910aec_e006276c",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2980ff7d_65c30286",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -460,6 +801,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ed7940_8bd19697",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01e7ece_5d588232",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ae58841_30e6e850",
@@ -490,6 +849,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "\"Add / remove the\"\nWhat\u0027s this comment about?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ec4cf69_2e69da8a",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "It is to explain that this method is responsible to add or remove the dbus interface for activation blocks transition.\n\nLet me know if the comment should be removed.",
+      "parentUuid": "7ee6625c_3917898e",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -528,6 +905,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15892153_00c0eabe",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Made it protected, so that we are still able to test this function.",
+      "parentUuid": "1a5d6d65_3be07fb8",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "710f0304_eea0c036",
@@ -541,6 +936,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Should become private now.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "881ab026_f939f6a9",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "710f0304_eea0c036",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -562,6 +975,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37904d67_0d1a42df",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Agree. Deleted this, there is only the public constructor now.",
+      "parentUuid": "9ab68273_9c945d3a",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adff013e_7203d2cb",
@@ -579,6 +1010,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ae787c_c4647358",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adff013e_7203d2cb",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0e1ca37_b2e691e6",
@@ -592,6 +1041,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Looks like opt means optional here. Based on your inferring everything is optional and you have marked every interface with opt which makes the prefix itself not necessary. I would suggest to drop it as the comments provide good detail.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a60e9b_9f68f891",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Every non-optional dbus interface, we inherit from it (only SoftwareActivation currently).\n\nIf we access the members like \u0027optActivationBlocksTransition\u0027 in some function. it is clear that the member is optional\nand may have to be checked.\n\nIf i would follow your suggestion to drop \u0027opt\u0027 prefix, that would not be obvious anymore.\n\nWhen reading code that uses \u0027activationBlocksTransition\u0027 variable, it may be then confusing to people why it is checked for nullptr.\n\n\nLet me know if you have a strong preference.",
+      "parentUuid": "c0e1ca37_b2e691e6",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -615,6 +1082,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ec174f3_69e207e2",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "I would like to have this public to be able to use it in tests.\n\nThe flow is to get configuration, then setup the bus name.\n\nCurrently using it in some tests to avoid fetching the configuration,\nsince that requires the object mapper, which is not available when running unit tests locally.\n\n```\ntest/common/software/test_software_association.cpp\n24:    std::string service \u003d nopcu.setupBusName();\n78:    std::string service \u003d nopcu.setupBusName();\n132:    std::string service \u003d nopcu.setupBusName();\n```\n\nLet me know if there is another solution.",
+      "parentUuid": "d4621f55_3ae81965",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a523d5d_dbf0cecd",
         "filename": "common/include/software_manager.hpp",
         "patchSetId": 76
@@ -626,6 +1111,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Drop this virtual function and pass the EM configuration interface name list (fully qualified interface names) to the getConfiguration API as in_arg.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "044403d7_d473bb0b",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a523d5d_dbf0cecd",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -647,6 +1150,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e27e914_dd9f2db4",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Removed it.\n\nThe gpio mux feature is very much common but the configuration is not,\nit depends on the EM schema.",
+      "parentUuid": "6dbac581_50c31cc8",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0de80bb9_1146e878",
@@ -660,6 +1181,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Drop this virtual function and pass the EM configuration interface name list (fully qualified interface names) to the getConfiguration API as in_arg.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "655ed3dc_5952e2a4",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0de80bb9_1146e878",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -681,6 +1220,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e417708a_db9925b7",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "554a94e5_572cd7fa",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c0ec6a7_b2d167d0",
@@ -694,6 +1251,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Why are u re-declaring these 3 functions? They declaration should already be part of inherited class (auto gen PDI code).",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda14895_0bfde654",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "we override those functions in \n```\ncommon/src/software_update.cpp\n```\n\nand since these are in class \"SoftwareUpdate::\", they have to be pre-declared,\notherwise there is no declaration.",
+      "parentUuid": "5c0ec6a7_b2d167d0",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -715,6 +1290,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0598bd_f546a2b4",
+        "filename": "common/meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b05ac7f_e5366c98",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cea6b436_32ee237b",
@@ -728,6 +1321,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "I don\u0027t think we need to install this as it would be statically complied with the binaries? Don\u0027t see that happening in other repos.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91e0b16e_9d919708",
+        "filename": "common/meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cea6b436_32ee237b",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -783,6 +1394,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3195cdf8_37724030",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fdb612c_75994ce8",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ed40f69_06433ccb",
@@ -796,6 +1425,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "What does this comment mean?",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e474f53d_647bdb34",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/sdbusplus/+/77440\n\nThe property would otherwise be uninitialized.\nDue to the access restriction we have to inherit from the class to initialized this property.\n\nPlease review the linked patch, it is not for merge, but i would like a comment if i am right about this or not.\n\nYou may remove the initialization of ```progress_``` and it should give the same error as in the linked patch.",
+      "parentUuid": "3ed40f69_06433ccb",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -851,6 +1498,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6ee28e7_ea39d9fc",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50a53256_9c940586",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce23f110_ebd76000",
@@ -868,6 +1533,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16a02beb_0d9ba748",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Simply matter of preference.\n\nExplicitly stating that we are calling a method on the instance.\nOtherwise it could also be a static method that we are calling.\n\nThis gives the reader some extra information, that the object path in \u0027path\u0027\nvariable is specific to the software instance.\n\nSo it is clear where the interface will be created.\n\nIf you have a strong preference to avoid \u0027this\u0027 keyword then i can remove it,\nbut \u0027this\u0027 helps me for example to see which functions can be static and which ones cannot (since they access member function/variable).",
+      "parentUuid": "ce23f110_ebd76000",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "511f3676_385c3790",
@@ -881,6 +1564,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Please dine objectPath as a private var, instead of computing it every time.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7859a43d_2569f8e9",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "It is computed only a few times. \nThere is no loop or such where it is computed.\n\nSince the object path can be computed with software id, \nwe would be duplicating the information when creating the extra class member.\n\nI agree that the extra member might make it more efficient, but\nlets not optimize the implementation just yet.",
+      "parentUuid": "511f3676_385c3790",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -919,6 +1620,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3933b296_d96a72e2",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d810bf8_7e2bd49e",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1944039_1535960c",
@@ -936,6 +1655,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d402bfa1_63249c0f",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1944039_1535960c",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b618bff3_18f88d0f",
@@ -949,6 +1686,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "Please add this dependency inside the common build flag as mentioned in other comment.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fbe3d71_aa3513fb",
+        "filename": "meson.build",
+        "patchSetId": 76
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-03T18:01:52Z",
+      "side": 1,
+      "message": "Added the \u0027common_build\u0027 meson variable for this purpose.",
+      "parentUuid": "b618bff3_18f88d0f",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -3,133 +3,175 @@
 # - static: NOR flash configured with fixed-sized MTD partitions.
 # - ubi: NOR flash device configured with UBI volumes.
 # - mmc: eMMC flash device configured with ext4 filesystems.
-option('bmc-layout', type: 'combo',
+option(
+    'bmc-layout',
+    type: 'combo',
     choices: ['static', 'ubi', 'mmc'],
     value: 'static',
-    description: 'The BMC layout type.')
+    description: 'The BMC layout type.',
+)
 
 # Features
-option('host-bios-upgrade', type: 'feature', value: 'enabled',
-    description: 'Enable host bios upgrade support.')
+option(
+    'host-bios-upgrade',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable host bios upgrade support.',
+)
 
-option('sync-bmc-files', type: 'feature', value: 'enabled',
-    description: 'Enable sync of filesystem files.')
+option(
+    'sync-bmc-files',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable sync of filesystem files.',
+)
 
 option('tests', type: 'feature', description: 'Build tests')
 
-option('verify-signature', type: 'feature', value: 'enabled',
-    description: 'Enable image signature validation.')
+option(
+    'verify-signature',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable image signature validation.',
+)
 
 option(
-    'usb-code-update', type: 'feature', value: 'enabled',
+    'usb-code-update',
+    type: 'feature',
+    value: 'enabled',
     description: 'Firmware update via USB.',
 )
 
-option('software-update-dbus-interface', type: 'feature', value: 'enabled',
+option(
+    'software-update-dbus-interface',
+    type: 'feature',
+    value: 'enabled',
     description: 'Implementation using software update D-Bus interface - https://github.com/openbmc/docs/blob/master/designs/code-update.md.',
 )
 
 option(
-    'side-switch-on-boot', type: 'feature', value: 'enabled',
+    'side-switch-on-boot',
+    type: 'feature',
+    value: 'enabled',
     description: 'Automatic flash side switch on boot',
 )
 
 # Variables
 option(
-    'active-bmc-max-allowed', type: 'integer',
+    'active-bmc-max-allowed',
+    type: 'integer',
     value: 1,
     description: 'The maximum allowed active BMC versions.',
 )
 
 option(
-    'hash-file-name', type: 'string',
+    'hash-file-name',
+    type: 'string',
     value: 'hashfunc',
     description: 'The name of the hash file.',
 )
 
 option(
-    'img-upload-dir', type: 'string',
+    'img-upload-dir',
+    type: 'string',
     value: '/tmp/images',
     description: 'Directory where downloaded software images are placed.',
 )
 
 option(
-    'manifest-file-name', type: 'string',
+    'manifest-file-name',
+    type: 'string',
     value: 'MANIFEST',
     description: 'The name of the MANIFEST file.',
 )
 
 option(
-    'media-dir', type: 'string',
+    'media-dir',
+    type: 'string',
     value: '/run/media',
     description: 'The base dir where all read-only partitions are mounted.',
 )
 
 option(
-    'optional-images', type: 'array',
+    'optional-images',
+    type: 'array',
     value: [],
     description: 'A list of additional image files in the BMC tarball.',
 )
 
 option(
-    'publickey-file-name', type: 'string',
+    'publickey-file-name',
+    type: 'string',
     value: 'publickey',
     description: 'The name of the public key file.',
 )
 
 option(
-    'signature-file-ext', type: 'string',
+    'signature-file-ext',
+    type: 'string',
     value: '.sig',
     description: 'The extension of the Signature file.',
 )
 
 option(
-    'signed-image-conf-path', type: 'string',
+    'signed-image-conf-path',
+    type: 'string',
     value: '/etc/activationdata/',
     description: 'Path of public key and hash function files.',
 )
 
 option(
-    'sync-list-dir-path', type: 'string',
+    'sync-list-dir-path',
+    type: 'string',
     value: '/etc/',
     description: 'The path to the sync list file directory.',
 )
 
 option(
-    'sync-list-file-name', type: 'string',
+    'sync-list-file-name',
+    type: 'string',
     value: 'synclist',
     description: 'The name of the sync list file.',
 )
 
 option(
-    'bmc-msl', type: 'string',
+    'bmc-msl',
+    type: 'string',
     value: '',
     description: 'The BMC minimum ship level.',
 )
 
 option(
-    'regex-bmc-msl', type: 'string',
+    'regex-bmc-msl',
+    type: 'string',
     value: '',
     description: 'The Regular expression to parse the MSL.',
 )
 
 option(
-    'bios-object-path', type: 'string',
+    'bios-object-path',
+    type: 'string',
     value: '/xyz/openbmc_project/software/bios_active',
     description: 'The BIOS DBus object path.',
 )
 
-option('bmc-static-dual-image', type: 'feature', value: 'enabled',
-    description: 'Enable the dual image support for static layout.')
+option(
+    'bmc-static-dual-image',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable the dual image support for static layout.',
+)
 
 option(
-    'alt-rofs-dir', type: 'string',
+    'alt-rofs-dir',
+    type: 'string',
     value: '/run/media/rofs-alt',
     description: 'The base dir where all read-only partitions are mounted.',
 )
 
 option(
-    'alt-rwfs-dir', type: 'string',
+    'alt-rwfs-dir',
+    type: 'string',
     value: '/run/media/rwfs-alt/cow',
     description: 'The dir for alt-rwfs partition.',
 )

@@ -1,7 +1,10 @@
 conf = configuration_data()
 
 # DBus information
-conf.set_quoted('BMC_INVENTORY_INTERFACE', 'xyz.openbmc_project.Inventory.Item.Bmc')
+conf.set_quoted(
+    'BMC_INVENTORY_INTERFACE',
+    'xyz.openbmc_project.Inventory.Item.Bmc',
+)
 conf.set_quoted('BUSNAME_UPDATER', 'xyz.openbmc_project.Software.BMC.Updater')
 conf.set_quoted('DOWNLOAD_BUSNAME', 'xyz.openbmc_project.Software.Download')
 conf.set_quoted('FILEPATH_IFACE', 'xyz.openbmc_project.Common.FilePath')
@@ -15,8 +18,14 @@ conf.set_quoted('SYSTEMD_PATH', '/org/freedesktop/systemd1')
 conf.set_quoted('SYSTEMD_INTERFACE', 'org.freedesktop.systemd1.Manager')
 conf.set_quoted('VERSION_BUSNAME', 'xyz.openbmc_project.Software.Version')
 conf.set_quoted('VERSION_IFACE', 'xyz.openbmc_project.Software.Version')
-conf.set_quoted('EXTENDED_VERSION_IFACE', 'xyz.openbmc_project.Software.ExtendedVersion')
-conf.set_quoted('COMPATIBLE_IFACE', 'xyz.openbmc_project.Inventory.Decorator.Compatible')
+conf.set_quoted(
+    'EXTENDED_VERSION_IFACE',
+    'xyz.openbmc_project.Software.ExtendedVersion',
+)
+conf.set_quoted(
+    'COMPATIBLE_IFACE',
+    'xyz.openbmc_project.Inventory.Decorator.Compatible',
+)
 
 # Names of the forward and reverse associations
 conf.set_quoted('ACTIVATION_FWD_ASSOCIATION', 'inventory')
@@ -44,7 +53,10 @@ conf.set('MMC_LAYOUT', get_option('bmc-layout').contains('mmc'))
 # Configurable features
 conf.set('HOST_BIOS_UPGRADE', get_option('host-bios-upgrade').allowed())
 conf.set('WANT_SIGNATURE_VERIFY', get_option('verify-signature').allowed())
-conf.set('START_UPDATE_DBUS_INTEFACE', get_option('software-update-dbus-interface').allowed())
+conf.set(
+    'START_UPDATE_DBUS_INTEFACE',
+    get_option('software-update-dbus-interface').allowed(),
+)
 
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
@@ -71,11 +83,14 @@ if get_option('host-bios-upgrade').allowed()
 endif
 
 if get_option('bmc-static-dual-image').allowed()
-  conf.set('BMC_STATIC_DUAL_IMAGE', get_option('bmc-static-dual-image').allowed())
-  conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
-  conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
+    conf.set(
+        'BMC_STATIC_DUAL_IMAGE',
+        get_option('bmc-static-dual-image').allowed(),
+    )
+    conf.set_quoted('ALT_ROFS_DIR', get_option('alt-rofs-dir'))
+    conf.set_quoted('ALT_RWFS', get_option('alt-rwfs-dir'))
 else
-  conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
+    conf.set_quoted('ALT_RWFS', '/media/alt/var/persist')
 endif
 
 configure_file(output: 'config.h', configuration: conf)
@@ -87,29 +102,21 @@ unit_files = [
     'force-reboot.service.in',
     'usr-local.mount.in',
     'xyz.openbmc_project.Software.Download.service.in',
-    'xyz.openbmc_project.Software.Sync.service.in'
+    'xyz.openbmc_project.Software.Sync.service.in',
 ]
 
-image_updater_sources = files(
-    'activation.cpp',
-    'images.cpp',
-    'item_updater.cpp',
-    'serialize.cpp',
-    'version.cpp',
-    'utils.cpp',
-    'msl_verify.cpp',
-    'update_manager.cpp'
-)
+image_updater_sources = files('activation.cpp', 'images.cpp', 'item_updater.cpp', 'msl_verify.cpp', 'serialize.cpp', 'update_manager.cpp'
+, 'utils.cpp', 'version.cpp')
 
 if get_option('bmc-layout').contains('static')
     image_updater_sources += files(
         'static/flash.cpp',
-        'static/item_updater_helper.cpp'
+        'static/item_updater_helper.cpp',
     )
 elif get_option('bmc-layout').contains('ubi')
     image_updater_sources += files(
         'ubi/flash.cpp',
-        'ubi/item_updater_helper.cpp'
+        'ubi/item_updater_helper.cpp',
     )
 
     unit_files += [
@@ -120,12 +127,12 @@ elif get_option('bmc-layout').contains('ubi')
         'ubi/obmc-flash-bmc-ubiro-remove@.service.in',
         'ubi/obmc-flash-bmc-ubirw.service.in',
         'ubi/obmc-flash-bmc-ubirw-remove.service.in',
-        'ubi/obmc-flash-bmc-updateubootvars@.service.in'
+        'ubi/obmc-flash-bmc-updateubootvars@.service.in',
     ]
 elif get_option('bmc-layout').contains('mmc')
     image_updater_sources += files(
         'mmc/flash.cpp',
-        'mmc/item_updater_helper.cpp'
+        'mmc/item_updater_helper.cpp',
     )
 
     unit_files += [
@@ -157,25 +164,21 @@ if get_option('sync-bmc-files').allowed()
         'sync_manager_main.cpp',
         'sync_watch.cpp',
         dependencies: deps,
-        install: true
+        install: true,
     )
 
-    install_data('synclist',
-        install_dir:  get_option('sysconfdir')
-    )
+    install_data('synclist', install_dir: get_option('sysconfdir'))
 
-    install_data('sync-once.sh',
+    install_data(
+        'sync-once.sh',
         install_mode: 'rwxr-xr-x',
-        install_dir: get_option('bindir')
+        install_dir: get_option('bindir'),
     )
 endif
 
 if (get_option('verify-signature').allowed())
-    image_updater_sources += files(
-        'utils.cpp',
-        'image_verify.cpp',
-        'openssl_alloc.cpp'
-    )
+    image_updater_sources += files('image_verify.cpp', 'openssl_alloc.cpp'
+    , 'utils.cpp')
 endif
 
 executable(
@@ -183,12 +186,10 @@ executable(
     'download_manager.cpp',
     'download_manager_main.cpp',
     dependencies: deps,
-    install: true
+    install: true,
 )
 
-software_common_sources = files(
-    'software_utils.cpp',
-)
+software_common_sources = files('software_utils.cpp')
 
 if get_option('software-update-dbus-interface').allowed()
     executable(
@@ -197,16 +198,14 @@ if get_option('software-update-dbus-interface').allowed()
         image_updater_sources,
         software_common_sources,
         dependencies: [deps, ssl],
-        install: true
+        install: true,
     )
-    unit_files += [
-        'xyz.openbmc_project.Software.Manager.service.in'
-    ]
+    unit_files += ['xyz.openbmc_project.Software.Manager.service.in']
 else
-   unit_files += [
+    unit_files += [
         'xyz.openbmc_project.Software.BMC.Updater.service.in',
-        'xyz.openbmc_project.Software.Version.service.in'
-   ]
+        'xyz.openbmc_project.Software.Version.service.in',
+    ]
 endif
 
 executable(
@@ -215,7 +214,7 @@ executable(
     software_common_sources,
     'item_updater_main.cpp',
     dependencies: [deps, ssl, boost_dep],
-    install: true
+    install: true,
 )
 
 executable(
@@ -226,27 +225,28 @@ executable(
     'watch.cpp',
     software_common_sources,
     dependencies: [deps, ssl],
-    install: true
+    install: true,
 )
 
-install_data('obmc-flash-bmc',
+install_data(
+    'obmc-flash-bmc',
     install_mode: 'rwxr-xr-x',
-    install_dir: get_option('bindir')
+    install_dir: get_option('bindir'),
 )
 
-install_data('detect-slot-aspeed',
+install_data(
+    'detect-slot-aspeed',
     install_mode: 'rwxr-xr-x',
-    install_dir: get_option('bindir')
+    install_dir: get_option('bindir'),
 )
 
-install_data('reset-cs0-aspeed',
+install_data(
+    'reset-cs0-aspeed',
     install_mode: 'rwxr-xr-x',
-    install_dir: get_option('bindir')
+    install_dir: get_option('bindir'),
 )
 
-install_data('software.conf',
-    install_dir: '/usr/lib/tmpfiles.d/'
-)
+install_data('software.conf', install_dir: '/usr/lib/tmpfiles.d/')
 
 foreach u : unit_files
     configure_file(
@@ -261,21 +261,24 @@ endforeach
 # If test coverage of source files within the root directory are wanted,
 # need to define and build the tests from here
 if not build_tests.disabled()
-    gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
-    include_srcs = declare_dependency(sources: [
-        'utils.cpp',
-        'image_verify.cpp',
-        'images.cpp',
-        'version.cpp']
+    gtest = dependency(
+        'gtest',
+        main: true,
+        disabler: true,
+        required: build_tests,
+    )
+    include_srcs = declare_dependency(
+        sources: ['utils.cpp', 'image_verify.cpp', 'images.cpp', 'version.cpp'],
     )
 
-    test('utest',
+    test(
+        'utest',
         executable(
             'utest',
             './test/utest.cpp',
-            dependencies: [deps, gtest, include_srcs, ssl]
-        )
-)
+            dependencies: [deps, gtest, include_srcs, ssl],
+        ),
+    )
 endif
 
 if get_option('usb-code-update').allowed()

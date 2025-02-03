@@ -10,8 +10,6 @@
 #include <tuple>
 #include <vector>
 
-// NOLINTBEGIN
-
 namespace pldm
 {
 
@@ -155,7 +153,7 @@ class PackageParserV1 final : public PackageParser
     PackageParserV1(PackageParserV1&&) = default;
     PackageParserV1& operator=(const PackageParserV1&) = delete;
     PackageParserV1& operator=(PackageParserV1&&) = delete;
-    ~PackageParserV1() = default;
+    ~PackageParserV1() override = default;
 
     /** @brief Constructor
      *
@@ -172,7 +170,7 @@ class PackageParserV1 final : public PackageParser
         PackageParser(pkgHeaderSize, pkgVersion, componentBitmapBitLength)
     {}
 
-    virtual void parse(const std::vector<uint8_t>& pkgHdr, uintmax_t pkgSize);
+    void parse(const std::vector<uint8_t>& pkgHdr, uintmax_t pkgSize) override;
 };
 
 /** @brief Parse the package header information
@@ -188,5 +186,3 @@ std::unique_ptr<PackageParser>
 } // namespace fw_update
 
 } // namespace pldm
-
-// NOLINTEND

@@ -10,8 +10,6 @@
 #include <variant>
 #include <vector>
 
-// NOLINTBEGIN
-
 namespace pldm
 {
 
@@ -88,5 +86,3 @@ enum class ComponentImageInfoPos : size_t
 } // namespace fw_update
 
 } // namespace pldm
-
-// NOLINTEND

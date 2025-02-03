@@ -8,8 +8,6 @@
 
 #include <memory>
 
-// NOLINTBEGIN
-
 using namespace std;
 
 PHOSPHOR_LOG2_USING;
@@ -347,5 +345,3 @@ std::unique_ptr<PackageParser> parsePackageHeader(std::vector<uint8_t>& pkgData)
 } // namespace fw_update
 
 } // namespace pldm
-
-// NOLINTEND

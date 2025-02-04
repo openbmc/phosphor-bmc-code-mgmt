@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "728c4f83_0dcdc96f",
+        "filename": "fw-update/common/include/software.hpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:15:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "840f6909_8bdf85f1",
+      "revId": "fe65f0507f742b797dab596536655c7164b8625b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "591fd681_e9cffa7f",

@@ -735,6 +735,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d329a5_ee7cf250",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T16:06:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9faf16b1_58191d68",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4bb73aa_451f064c",
@@ -1834,6 +1852,24 @@
       "side": 1,
       "message": "It is computed only a few times. \nThere is no loop or such where it is computed.\n\nSince the object path can be computed with software id, \nwe would be duplicating the information when creating the extra class member.\n\nI agree that the extra member might make it more efficient, but\nlets not optimize the implementation just yet.",
       "parentUuid": "511f3676_385c3790",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16fdc7f_029acca2",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T16:06:44Z",
+      "side": 1,
+      "message": "\u003e Please dine objectPath as a private var, instead of computing it every time.\n\nI don\u0027t think this would work as private var, since we need to access the object path in testcases, to trigger updates.",
+      "parentUuid": "7859a43d_2569f8e9",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2743aa84_aac2b895",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 73
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T16:06:44Z",
+      "side": 1,
+      "message": "\u003e Can you please bring the nopdevice from test code to this patch. We should have some unit testing for this patch as part of Tested section in description since it\u0027s the main change set.\n\nMoved the Nop device code updater to its own patch,\nright after common code. So if there is a need to have some example\nmerged with the common code, these 2 can be submitted together.\n\n\u003e Also let\u0027s rename nopdevice to something more relevant for example, ExampleUpdater or DummyUpdater or something like that.\n\nRenamed it to \"ExampleDevice\" / \"ExampleCodeUpdater\".",
+      "parentUuid": "3ea3eaf3_6e7a2e7b",
+      "revId": "4b3eb2c816511fd4ecf655d6dd6cbbd051a76a04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cbc464b_8c7e01bd",

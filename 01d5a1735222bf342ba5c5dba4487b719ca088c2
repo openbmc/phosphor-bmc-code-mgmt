@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f90597_6b2a06be",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "As we discussed, can you please make setProgress a function, so user can call it instead.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee6a404_f4167767",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "We will need another var for softwareUpdateXXX.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d44931c_efdd22ab",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "Please change this to initDevices().",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a3a2762_f57f74e7",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "Please change this to something like initSpecificDevice.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0ad53e_58a348ce",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "Please move this API to BIOS updater for now and later we can bring this back if any other updater needs it.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fab6ae5_15ba4a82",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-04T18:58:23Z",
+      "side": 1,
+      "message": "Please move this API to BIOS updater for now and later we can bring this back if any other updater needs it.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -9,6 +9,17 @@ from the classes found in the common folder.
 Device-specific class members can be added to implement the code update flow for
 different devices.
 
+## Example Code
+
+To understand the control flow, consider looking at 'ExampleDevice' and
+'ExampleCodeUpdater'.
+
+They implement a complete device-specific code updater, for the example device,
+which is a nonexistent device used only for examples and testing.
+
+It implements everything expected of a device-specific code updater and can be
+used as a starting point.
+
 ## PLDM Package Parser
 
 The PackageParser in the pldm directory currently references a following

@@ -9,6 +9,17 @@ from the classes found in the common folder.
 Device-specific class members can be added to implement the code update flow for
 different devices.
 
+## Example Code
+
+To understand the control flow, consider looking at 'ExampleDevice' and
+'ExampleCodeUpdater'.
+
+The ExampleCodeUpdater implements the classes from common firmware library and
+serves as a demonstration & testing tool.
+
+It implements everything expected of a device-specific code updater and can be
+used as a starting point.
+
 ## PLDM Package Parser
 
 The PackageParser in the pldm directory currently references a following

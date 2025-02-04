@@ -227,6 +227,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea67b6a_99a5143c",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "SoftwareActivationProgress is already a wrapper around the dbus interface.\nUpdated its inheritance to private so it only exposes \u0027setProgress\u0027 method now.\nThat should cover the use-case.",
+      "parentUuid": "6ed7cab3_2677027d",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f118290e_79675d83",
@@ -275,6 +293,24 @@
       "side": 1,
       "message": "My preference is to avoid any state if possible.\n\nSo i would rather have a function to produce a property when it is needed than to have a property on the class.\n\nThe reason for me is that the function is easier to test separately.\n\n\nAlso, i find it easier for implementing a code updater when i only have to override a few functions depending on the device.\n\nWhen we go into the direction of making optional arguments to the constructor, that may not scale so well. For example, when there are 2 int arguments with default value, the compiler will not be able to know which of those was supplied.",
       "parentUuid": "0b291bec_29d551d5",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eafbe4bc_6a63779a",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e395e3_d3064200",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -436,6 +472,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e684ca2d_60a9763e",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b229cf74_38b54a3f",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9185e03_26adc45f",
@@ -449,6 +503,24 @@
       "writtenOn": "2025-01-31T19:53:51Z",
       "side": 1,
       "message": "Do you think it will be better to refer to schema here?\n\nhttps://github.com/openbmc/entity-manager/blob/master/schemas/firmware.json",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd0ed483_baff1eb1",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9185e03_26adc45f",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -680,6 +752,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e64a3541_93106193",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "\u003e handle this by providing an updateProgress API.\n\nDone.",
+      "parentUuid": "9d521c6a_96f0a4c6",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b79d15e7_bad00344",
@@ -767,6 +857,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34f6e3df_0ab2fa7d",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "only using one public constructor now, made a private delegating constructor to handle the swid.",
+      "parentUuid": "d5a5aff7_55ab4aa8",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d26de830_ddf20406",
@@ -780,6 +888,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Not needed, handle the software_id generation internally.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b9613f_ae0df98f",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done, using a private constructor to delegate.",
+      "parentUuid": "d26de830_ddf20406",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -836,6 +962,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49e58296_7f10ee7e",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ae58841_30e6e850",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ee6625c_3917898e",
@@ -884,6 +1028,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Whats opt prefix here?\n\nAlso, why are you exposing a var rather than an API setActivationProgress? Please define an API for this interface just as you did for others.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f13100f5_6eb9d469",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "\u003e Whats opt prefix here?\n\nMeaning it can be nullptr (i do not normally expect unique_ptr to be nullptr when looking at code). Meant to increase readability.\n\n\u003e Please define an API for this interface just as you did for others.\n\nDone.",
+      "parentUuid": "a70c7d88_f93c3d4f",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1360,6 +1522,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26198930_762af539",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "I believe it does, as the \u0027Software\u0027 instance owns all its members.\nSo if it is destructed, so are all its members.",
+      "parentUuid": "7585e7be_8ea05249",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f093fa0b_5753b44b",
@@ -1373,6 +1553,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Rather than exposing an object like this. Please provide an API in device class with name updateProgress or like and internally handle the Dbus object.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "827e7e3e_4da9454d",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Yes. I already had a wrapper class for the activation progress, updated that to now have private inheritance and only expose \u0027setProgress\u0027 method to distingush it from \u0027progress\u0027 method on the base class.\n\nSo the progress is now abstracted and the user code does not have access to anything outside the \u0027setProgress\u0027 method.",
+      "parentUuid": "f093fa0b_5753b44b",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1464,6 +1662,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2367361d_620a20fd",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c269aae2_9a9047fa",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "217f912c_a71f27c7",
@@ -1477,6 +1693,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "Let\u0027s keep this only configName + randomId() as configName from EM can be set accordingly to the required value.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cf87051_b6463efe",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-04T14:13:11Z",
+      "side": 1,
+      "message": "Done. This will increase the chance of name collision though and drops any context as to the type of device (without looking at associations).",
+      "parentUuid": "217f912c_a71f27c7",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

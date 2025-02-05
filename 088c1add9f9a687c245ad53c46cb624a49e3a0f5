@@ -1314,6 +1314,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09890f3f_6c968087",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c5c3dea_680ac586",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a523d5d_dbf0cecd",
@@ -1699,6 +1717,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0785d455_baac280b",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "followed up on this with sdbusplus maintainers.",
+      "parentUuid": "e474f53d_647bdb34",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c269aae2_9a9047fa",
@@ -1909,6 +1945,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61f31fc_e5351c70",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff2f506d_bc94cc5f",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a44ebc7e_47b8864c",
@@ -1922,6 +1976,24 @@
       "writtenOn": "2025-02-01T09:48:46Z",
       "side": 1,
       "message": "I think we need to change this API to something better such as initializeDevices(), so it can do this iteration logic and get all Device configuration of this type. Let\u0027s discussion on this in person as i also don\u0027t see any caller of this API in SPI code updater.",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a7ae5f6_3c2ea805",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a44ebc7e_47b8864c",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

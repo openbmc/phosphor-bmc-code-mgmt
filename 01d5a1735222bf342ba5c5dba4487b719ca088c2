@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a8fb06c_61a12aef",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d44931c_efdd22ab",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a3a2762_f57f74e7",
@@ -65,6 +83,24 @@
       "writtenOn": "2025-02-04T18:58:23Z",
       "side": 1,
       "message": "Please change this to something like initSpecificDevice.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81cda71e_c24f9743",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a3a2762_f57f74e7",
       "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +122,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abc53ec8_c86fcb26",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0ad53e_58a348ce",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fab6ae5_15ba4a82",
@@ -99,6 +153,24 @@
       "writtenOn": "2025-02-04T18:58:23Z",
       "side": 1,
       "message": "Please move this API to BIOS updater for now and later we can bring this back if any other updater needs it.",
+      "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cea5dd8_a7a44396",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 79
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-05T16:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fab6ae5_15ba4a82",
       "revId": "01d5a1735222bf342ba5c5dba4487b719ca088c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

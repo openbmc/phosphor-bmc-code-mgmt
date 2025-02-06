@@ -280,6 +280,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98ab46de_8a04a661",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-06T11:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f118290e_79675d83",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b291bec_29d551d5",
@@ -696,6 +714,24 @@
       "writtenOn": "2025-01-31T20:55:03Z",
       "side": 1,
       "message": "Let\u0027s extend this class to also define a function which can help to get the inventory item associated with this software config. For example https://grok.openbmc.org/xref/openbmc/dbus-sensors/src/Utils.cpp?r\u003d2e46696724a89cd355d290fb71a4b8c481012758#693.\n\nThe function should take subtreePath and interfaceName to look for in the parent tree and shall return the inventory item path.\n\nIn turn the Updater shall call this API and pass the inventory item as in_arg into Device constructor or you can also extend the config itself to add this arg, that way you shall also be able to drop this virtual function -\n\n    virtual sdbusplus::async::task\u003cstd::string\u003e\n        getInventoryItemObjectPath() \u003d 0;",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31514767_3c01b922",
+        "filename": "common/include/device_config.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-06T11:25:02Z",
+      "side": 1,
+      "message": "Changed \u0027SoftwareConfig\u0027 to store the object path of our configuration.\n\n\u003e Let\u0027s extend this class to also define a function which can help to get the inventory item associated with this software config\n\nThe device can then call \u0027getInventoryItemObjectPath\u0027 on its SoftwareConfig\nwhich will then get the path of its inventory item via the object mapper.\n\nLet me know if you think the implementation is correct 👍",
+      "parentUuid": "2743ca5c_c8adce04",
       "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

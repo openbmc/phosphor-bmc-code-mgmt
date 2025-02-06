@@ -16,6 +16,24 @@
       "message": "Please add tests for busctl outputs for the tested section.",
       "revId": "eac799d4e877e1cc04eae7fd0e2bd4a8f60fa896",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "263fd00f_2951bd66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-06T17:04:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b7e9968_24aa9435",
+      "revId": "eac799d4e877e1cc04eae7fd0e2bd4a8f60fa896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

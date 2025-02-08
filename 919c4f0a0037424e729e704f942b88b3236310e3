@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cf3eeeb_1f222bce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "We are already in code-mgmt repo so using \"fw update\" seems redundant. Would suggest to use the wording on main line to reflect intent of patch.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8b0565b_6655663b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -31,6 +48,210 @@
       "writtenOn": "2025-02-07T23:43:09Z",
       "side": 1,
       "message": "Why not ready?",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69912211_1535a335",
+        "filename": "common/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Better to simplify this wording as it can serve purpose of line 17-20 -\n\nThe ExampleCodeUpdater implements the classes from common firmware library and \nserves as a demonstration \u0026 testing tool.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a95e9f18_ad1f38a1",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Not needed, drop this as mentioned below.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa26f187_824b8a8d",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Please keep only one constructor and let it call the SoftwareManager in its arg. Also getRandomId() not needed as its just the serviceNameSuffix.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6093530d_2db80028",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "This is just your serviceNameSuffix, please use \"ExampleUpdater\" for this.\n\nIn case you want userInput for serviceNameSuffix, define constructor to have a default for serviceNameSuffix.\n\n```\nExampleCodeUpdater(sdbusplus::async::context\u0026 ctx, const std::string serviceNameSuffix \u003d \"ExampleUpdater\");\n```",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427d578c_1d79f2b2",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Please remove NOLINTBEGIN and add specific checks if clang is getting confused with async::task\u003c\u003e",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e318c30_5a3f7898",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "const std::string exampleCompatibleHardware \u003d \"com.example.CompatibleDevice\";",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ad4523_8c252afa",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Please avoid 2 constructors as you can just do without them.\n\n1. Define a constant config as an arg in class.\n2. Define constructor as follows -\n```\nExampleDevice(sdbusplus::async::context\u0026 ctx, SoftwareManager* parent, const SoftwareConfig config \u003d defautConfig);\n```                  \nThat way default will be used in case ExampleDevice() call doesn\u0027t pass in the config, otherwise it will use the passed in.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dadb033e_9b4203d7",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "lets rename - updater(ctx)",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123268d0_800dbc5b",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Why do you need an extra var for pointer. You can pass and use the reference directly as well.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd2d3cc_9a217ae0",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Let\u0027s call the file - example_updater_main.cpp",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0781a050_02cc39be",
+        "filename": "test/common/exampledevice/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Isn\u0027t the default install false?\n\n`By default Meson will not install anything. Build targets can be installed by tagging them as installable in the definition.`\nhttps://mesonbuild.com/Installing.html",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec735b0_f71fe06c",
+        "filename": "test/common/exampledevice/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T00:45:37Z",
+      "side": 1,
+      "message": "Install seems default false as mentioned above. Can you please fix it at other places in code as well?",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -105,6 +105,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cc3db01_8b9d19dc",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "You can keep this around until the sdbusplus change to fix initializing the class vars in PDI is in place.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9092702_7837d364",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "This is a one time information we need to get and anyone can reuse it, so its better to keep the API private and just expose the `const sdbusplus::message::object_path inventoryObjectPath` as a public var. You can call getInventoryItemObjectPath in constructor and populate this var.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924e749b_86754b9b",
         "filename": "common/include/software_manager.hpp",
         "patchSetId": 82
@@ -133,6 +167,346 @@
       "writtenOn": "2025-02-08T01:00:59Z",
       "side": 1,
       "message": "Better o drop dryRun arg now as i don\u0027t see any use of it in software_manager.cpp",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b7dc240_cb59eea7",
+        "filename": "common/meson.build",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Install is false by default https://mesonbuild.com/Installing.html.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476955b5_2560188d",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "initialize local var to 0.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da287542_301eac89",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "I don\u0027t see any error handling by updating the activationStatus in case of failure scenarios, neither here nor in the caller (SoftwareUpdate::method_call), please make sure its handled accordingly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bd16c1_cc7cc091",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "I don\u0027t see any error handling by updating the activationStatus in case of failure scenarios, neither here nor in the caller (SoftwareUpdate::method_call), please make sure its handled accordingly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eebcf3c5_e4fbfe29",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "this-\u003esoftwareUpdate \u003d nullptr;\n\nIn case Immediate is triggered after another update for onReset.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7392c5d1_ef9dc11e",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "I don\u0027t see any error handling by updating the activationStatus in case of failure scenarios, neither here nor in the caller (SoftwareUpdate::method_call), please make sure its handled accordingly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c967922d_dc850e89",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "\"Default implementation for device reset\"",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da8e99d_70eb40d1",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Please define single constructor as \n\nSoftware::Software(sdbusplus::async::context\u0026 ctx, Device\u0026 parent, const std::string swId \u003d getRandomSoftwareId(parent))\n\nwhere swId will take a default arg if not passed in.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81371995_cb06d179",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "You just constructed it here from getObjPathFromSwid() using \"/xyz/openbmc_project/software/\" as static prefix. This check is a no-op as its always going to fail. Let\u0027s remove this.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2176202a_4f718e2d",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Lets rename this to createObjectPathWithSwid().",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fc32af_5bbabf20",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "rename nameEM -\u003e configName or better use it directly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39edfcb8_0e3be335",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Rename to createInventoryAssociations()",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a64a2a56_4077a6c3",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "You are not updating the endpoint. \n\nAlso, i have suggested to call getInventoryItemObjectPath(ctx) in config constructor and expose a public var, so you can directly use it here, rather than calling this for every update.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30bfff3_0effd555",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "fail on error?",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f950e0_29c47b7f",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Please drop these vars. Its a known fact that associations have forward and reverse and one can refer to the association definition for more details. You can directly use the static strings while defining association tuple and avoid 6 extra lines.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a00cdc_e9b0bf61",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "these are required vars and not optional, please remove opt prefix from them.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827d8d4d_a2f2fd7c",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Please keep a state if an update is already in progress and reject any further requests for this component until the last update has finished. For example,\n\n 1. Define updateInProgress as class var in SoftwareUpdate. \n 2. Check var at beginning of this API and \"return sdbusplus::message::object_path();\" in case of failure.\n 3. Set updateInProgress \u003d true after above check.\n 4. Clear the state by setting \"updateInProgress \u003d false\" after startUpdateAsync() returns in the lambda.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598cef09_96fa76aa",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "return sdbusplus::message::object_path();\n\nIn case of failure.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe10781_e16aa723",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Lets call \nsoftwareUpdateExternal -\u003e softwareInstance\n\nNot sure what does softwareUpdateExternal mean. You are passing the arg to softwareUpdateAsync, naming it softwareInstance means the update is for passed in softwareIntance.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb03580_cbe7808c",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "No need to define this API. The property is read only in PDI.",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

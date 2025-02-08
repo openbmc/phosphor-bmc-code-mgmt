@@ -1299,6 +1299,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab67712f_3c2bdcdc",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T03:32:32Z",
+      "side": 1,
+      "message": "Using unique_ptr indicates that the variable may go out of scope, and therefore requires null checks before dereferencing. Even if you use the opt prefix to suggest optionality, the fact that it\u0027s a unique_ptr already implies this possibility. Therefore, it\u0027s more concise to omit the opt prefix in this case.",
+      "parentUuid": "d5a60e9b_9f68f891",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4621f55_3ae81965",
         "filename": "common/include/software_manager.hpp",
         "patchSetId": 76

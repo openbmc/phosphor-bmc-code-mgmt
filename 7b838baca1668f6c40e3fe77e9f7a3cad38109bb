@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a80fcda_26fc5a2f",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "Let\u0027s drop dryRun as i don\u0027t see any use of it in Device.cpp",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29c48fca_5f031a0d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "Drop progress arg in comment and update the comments to reflect new API signature.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe36689_92ee09fb",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "setUpdateProgress()\n\nLet\u0027s update the comments to use consistent naming.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526399e6_5a2c8ba6",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "Why do you still have this. Please move this as constructor arg.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35933006_b8ff021d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "nit: Its good to include small description of the function with @brief if you plan to keep the params. Not a blocker though.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ea679d_8a459b6b",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "I had suggested to make these protected and handle it in your test accordingly. Isn\u0027t that possible?",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924e749b_86754b9b",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "Let\u0027s call this serviceNameSuffix instead.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b0c4f54_9b810a3e",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-08T01:00:59Z",
+      "side": 1,
+      "message": "Better o drop dryRun arg now as i don\u0027t see any use of it in software_manager.cpp",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

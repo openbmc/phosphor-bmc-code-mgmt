@@ -16,6 +16,57 @@
       "message": "Please rebase this patch on the latest.",
       "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9839858_de047467",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T02:20:42Z",
+      "side": 1,
+      "message": "If you don\u0027t have dependency on any of i2c code from Christopher, better base your code on top of common code https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893.",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d85fa9_58e5df08",
+        "filename": "fw-update/component/eeprom/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T02:20:42Z",
+      "side": 1,
+      "message": "Better to name this EEPROMDevice Update. Please change to reflect the name at all places including the directory names.",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c487ad4_20c59e5a",
+        "filename": "fw-update/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T02:20:42Z",
+      "side": 1,
+      "message": "Add a meson option to enable build of this code updater. You can use the following name for now -\neepromdevice-code-update",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

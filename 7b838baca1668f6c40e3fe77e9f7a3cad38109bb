@@ -105,6 +105,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22753279_cc371bb1",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T05:36:32Z",
+      "side": 1,
+      "message": "Also who creates and sets the softwareCurrent (Especially Version interface) as i don\u0027t see any action happening in Device.cpp for it?",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3613fc9d_989a8e59",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T05:36:32Z",
+      "side": 1,
+      "message": "Please make this API to return sdbusplus::async::task\u003cbool\u003e\n\nwhere bool states if reset passed or failed.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cc3db01_8b9d19dc",
         "filename": "common/include/software.hpp",
         "patchSetId": 82
@@ -167,6 +201,23 @@
       "writtenOn": "2025-02-08T01:00:59Z",
       "side": 1,
       "message": "Better o drop dryRun arg now as i don\u0027t see any use of it in software_manager.cpp",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e797c424_7791ed57",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T05:36:32Z",
+      "side": 1,
+      "message": "This should be a map of EMConfigObjectPath to Device ptr, so this can be used later on for EM congig add, remove as well.",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -286,6 +337,23 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "\"Default implementation for device reset\"",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002de2eb_9df73338",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-09T05:36:32Z",
+      "side": 1,
+      "message": "Are you sure the package version depicts the software version? Because one single PLDM package can contain multiple component images. That doesn\u0027t seem to map to what you are doing here.",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

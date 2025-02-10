@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea7ebac2_9972ece4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "The existing Code updater daemons have to switch to this common code? I am trying to understand the direction.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a80fcda_26fc5a2f",
         "filename": "common/include/device.hpp",
         "patchSetId": 82
@@ -1187,6 +1204,23 @@
       "side": 1,
       "message": "Done. Removed it.",
       "parentUuid": "aeb03580_cbe7808c",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3bfd951_0c9a2866",
+        "filename": "subprojects/libgpiod.wrap",
+        "patchSetId": 82
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "What is the GPIO dependency for the common code?",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b4754a_a4ba787f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 83
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "Partially reviewed, posting comments so far.",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e1a1e2_a78ade26",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "Is there an assumption that all code updaters will implement PLDM packing? If not, PLDM portion can be separated out.",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc5d450a_9e2ca918",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "`softwareUpdate` -\u003e `pendingSoftwareVersion` is more apt",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d03849_d7bbf833",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "nit: D-Bus for consistency",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba671e1_9849c305",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "This is an example configuration, PLDM descriptors are not limited to this, for example UUID can be used. So this should be part of the inherited class.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 91
+      },
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e9865d1_db720366",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "dbusGetRequiredProperty/dbusGetProperty are helper functions which should be moved to another header, so that CodeUpdaters can consume it across.",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18de8d05_52cc64fb",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "doxygen styled documentation will make it easy to read code. https://www.doxygen.nl/manual/docblocks.html",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d28cf348_ce87bd44",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 83
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-10T18:18:21Z",
+      "side": 1,
+      "message": "Why is `Software` a public member?",
+      "revId": "292f244bc85a29f9a1f93c7cfd66e8e8c02121d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

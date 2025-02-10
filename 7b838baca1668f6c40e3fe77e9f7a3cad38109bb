@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68cc93d6_74f494d2",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a80fcda_26fc5a2f",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29c48fca_5f031a0d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-08T01:00:59Z",
       "side": 1,
       "message": "Drop progress arg in comment and update the comments to reflect new API signature.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b664c34_b5ad71ce",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29c48fca_5f031a0d",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0385e655_de19b570",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fe36689_92ee09fb",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "526399e6_5a2c8ba6",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3390f62f_b74d584c",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "526399e6_5a2c8ba6",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35933006_b8ff021d",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-02-08T01:00:59Z",
       "side": 1,
       "message": "nit: Its good to include small description of the function with @brief if you plan to keep the params. Not a blocker though.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "275146bc_36bae801",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35933006_b8ff021d",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +210,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c2c56a_b2b4a88f",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "```\n 98     virtual sdbusplus::async::task\u003c\u003e initSingleDevice(\n 99         const std::string\u0026 service, const std::string\u0026 path,\n100         SoftwareConfig\u0026 config) \u003d 0;\n```\n\nwhich is called by \"initDevices\".\n\nThe logic to create the device is internal, inside the initSingleDevice\nin the specific code updater.\n\nIt has to check the configuration and possibly probe the device, before creating it. Then possibly read the fw or fw version, later creating the \"softwareCurrent\".",
+      "parentUuid": "22753279_cc371bb1",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b452e8_c466ea3d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Made them protected now 👍 It will introduce some boilerplate later but it\u0027s fine.\nMakes sense to keep the public members to a minimum.",
+      "parentUuid": "62ea679d_8a459b6b",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3613fc9d_989a8e59",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-02-09T05:36:32Z",
       "side": 1,
       "message": "Please make this API to return sdbusplus::async::task\u003cbool\u003e\n\nwhere bool states if reset passed or failed.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d57cc73_7fd7b63c",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3613fc9d_989a8e59",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +300,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d6d7c9f_d83ac10b",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "ok, leaving this comment as unresolved then, so i can later find it easily 👍",
+      "parentUuid": "2cc3db01_8b9d19dc",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9092702_7837d364",
         "filename": "common/include/software_config.hpp",
         "patchSetId": 82
@@ -167,6 +329,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "This is a one time information we need to get and anyone can reuse it, so its better to keep the API private and just expose the `const sdbusplus::message::object_path inventoryObjectPath` as a public var. You can call getInventoryItemObjectPath in constructor and populate this var.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd32b658_8ee10390",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "\u003e You can call getInventoryItemObjectPath in constructor and populate this var.\n\nSince we rely on object mapper, it is a coroutine, and constructors cannot be coroutines.\n\nhttps://en.cppreference.com/w/cpp/language/coroutines\n(under Restrictions)\n\nI agree that it\u0027s a one time information and ideally we should call it only once.\n\nCurrently i\u0027m only seeing one use of this function, as of the common code patch,\nso we are fine for now in this regard.\n```\ncommon/src/software.cpp\n91:        co_await parent.config.getInventoryItemObjectPath(ctx);\n```\n\nLet me know if this is something important, in that case we could make a factory function to create the SoftwareConfig instance and that could be a coroutine.",
+      "parentUuid": "e9092702_7837d364",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +385,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f2e8df_de2ed75e",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b0c4f54_9b810a3e",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea9d8c78_b7b3451b",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "924e749b_86754b9b",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e797c424_7791ed57",
@@ -218,6 +434,24 @@
       "writtenOn": "2025-02-09T05:36:32Z",
       "side": 1,
       "message": "This should be a map of EMConfigObjectPath to Device ptr, so this can be used later on for EM congig add, remove as well.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4073f2fb_33abc379",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Sure. That will enable us to find the devices faster and ensure that there can only be one device for a given EM config object path.\n\nDone.",
+      "parentUuid": "e797c424_7791ed57",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -239,6 +473,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f5fcc10_3e997776",
+        "filename": "common/meson.build",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b7dc240_cb59eea7",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "476955b5_2560188d",
@@ -252,6 +504,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "initialize local var to 0.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64544023_32d6ff2c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "476955b5_2560188d",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -273,6 +543,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0257b6e8_628c4163",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Yes. updating the dbus interface now.",
+      "parentUuid": "da287542_301eac89",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1bd16c1_cc7cc091",
@@ -286,6 +574,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "I don\u0027t see any error handling by updating the activationStatus in case of failure scenarios, neither here nor in the caller (SoftwareUpdate::method_call), please make sure its handled accordingly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "743dee56_b2c2d57c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1bd16c1_cc7cc091",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -307,6 +613,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa8d482_f3d5596f",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "👍. Added this as a comment as well.",
+      "parentUuid": "eebcf3c5_e4fbfe29",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7392c5d1_ef9dc11e",
@@ -320,6 +644,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "I don\u0027t see any error handling by updating the activationStatus in case of failure scenarios, neither here nor in the caller (SoftwareUpdate::method_call), please make sure its handled accordingly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2336475f_4b9cf10e",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7392c5d1_ef9dc11e",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -341,6 +683,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca8290ed_d390895c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c967922d_dc850e89",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "002de2eb_9df73338",
@@ -354,6 +714,24 @@
       "writtenOn": "2025-02-09T05:36:32Z",
       "side": 1,
       "message": "Are you sure the package version depicts the software version? Because one single PLDM package can contain multiple component images. That doesn\u0027t seem to map to what you are doing here.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4bc881_10b7a07b",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Since we are currently only supporting a single component, i had thought it might match. \n\nAdjusted \"extractMatchingComponentImage\" to give us the component version of the matching component aswell and put that as the version.",
+      "parentUuid": "002de2eb_9df73338",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -375,6 +753,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad07ee1_2e50e5af",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "getRandomSoftwareId depends on the config name of \u0027parent\u0027 device.\n\n```\nconst std::string swId \u003d getRandomSoftwareId(parent)\n```\n\nThe suggestion does not work for me. Prepared some minimal example.\n\nThe documentation on default args\nhttps://en.cppreference.com/w/cpp/language/default_arguments\n\nstates\n\n```\nA default argument is evaluated each time the function is called with no argument \nfor the corresponding parameter. Function parameters are not allowed in default \narguments except if they are not evaluated. \n```",
+      "parentUuid": "6da8e99d_70eb40d1",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81371995_cb06d179",
@@ -388,6 +784,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "You just constructed it here from getObjPathFromSwid() using \"/xyz/openbmc_project/software/\" as static prefix. This check is a no-op as its always going to fail. Let\u0027s remove this.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d124b0b_0c2ce846",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81371995_cb06d179",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -409,6 +823,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80723208_4c3e226a",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2176202a_4f718e2d",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09fc32af_5bbabf20",
@@ -422,6 +854,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "rename nameEM -\u003e configName or better use it directly.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae7e392_24787689",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09fc32af_5bbabf20",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -443,6 +893,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a232b0_37515d8b",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39edfcb8_0e3be335",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a64a2a56_4077a6c3",
@@ -456,6 +924,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "You are not updating the endpoint. \n\nAlso, i have suggested to call getInventoryItemObjectPath(ctx) in config constructor and expose a public var, so you can directly use it here, rather than calling this for every update.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99689376_734c9722",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "oops, fixed that 😄\n\nYes, i commented why that is not possible, constructors cannot be coroutines.\nSo i cannot call the \u0027getInventoryItemObjectPath\u0027 in the constructor.",
+      "parentUuid": "a64a2a56_4077a6c3",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -477,6 +963,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2577425c_638483ed",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "right. co_return here.",
+      "parentUuid": "d30bfff3_0effd555",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4f950e0_29c47b7f",
@@ -490,6 +994,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "Please drop these vars. Its a known fact that associations have forward and reverse and one can refer to the association definition for more details. You can directly use the static strings while defining association tuple and avoid 6 extra lines.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d58bfc_75bc0d93",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4f950e0_29c47b7f",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -511,6 +1033,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4580e4be_58b001b8",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a00cdc_e9b0bf61",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827d8d4d_a2f2fd7c",
@@ -524,6 +1064,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "Please keep a state if an update is already in progress and reject any further requests for this component until the last update has finished. For example,\n\n 1. Define updateInProgress as class var in SoftwareUpdate. \n 2. Check var at beginning of this API and \"return sdbusplus::message::object_path();\" in case of failure.\n 3. Set updateInProgress \u003d true after above check.\n 4. Clear the state by setting \"updateInProgress \u003d false\" after startUpdateAsync() returns in the lambda.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e998316_f34536f5",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "okay, declared\n\n```\n+    inline static bool updateInProgress \u003d false;\n```\non class SoftwareUpdate and added the logic you described.\n\nWe can later move this member to \"class Device\", to permit multiple devices to be updated in parallel.",
+      "parentUuid": "827d8d4d_a2f2fd7c",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -545,6 +1103,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f23bac_bbcd5e8f",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598cef09_96fa76aa",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fe10781_e16aa723",
@@ -562,6 +1138,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "157e2a2a_10b7b90c",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fe10781_e16aa723",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeb03580_cbe7808c",
@@ -575,6 +1169,24 @@
       "writtenOn": "2025-02-08T03:32:32Z",
       "side": 1,
       "message": "No need to define this API. The property is read only in PDI.",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9d8e06_53ead56d",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 82
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-10T17:31:20Z",
+      "side": 1,
+      "message": "Done. Removed it.",
+      "parentUuid": "aeb03580_cbe7808c",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

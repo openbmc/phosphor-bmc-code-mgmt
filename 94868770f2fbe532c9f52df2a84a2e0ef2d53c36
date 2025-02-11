@@ -1,0 +1,232 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a77b5f_fb26d319",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "i would prefer errors-as-values.\n\nExceptions make it hard to do any local reasoning about a function.\n\nSo we can probably just delete \u0027class I2CExecption\u0027 entirely and\nreturn boolean, error enum or error string from functions which need to report an error.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 2
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f404d6_f08fd35e",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "since ```isOpen``` is a public function, ```checkIsOpen``` can probably be inlined into its callers. It\u0027s too simple to make it a separate function.",
+      "range": {
+        "startLine": 66,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 1
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c99a465_8e748b4c",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "let\u0027s get rid of ```closeWithoutException``` and inline the try-catch into whichever functions where it is called.",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1bdd1c_c1e09a7d",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "reference to other change can go away.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49dbe0ff_66d9c274",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "Same as below, these are used on line 67.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50180740_7d4d8590",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "both of these are used on line 67, so no need to do the ```(void)expr;``` thing.",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34fac89_79ca2e65",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "leftover git conflict markers, can be removed.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deedaa60_435ee0b9",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "since everything is in one commit now, this comment line can probably go away.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77715980_af2be65e",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "I got this as a comment on my patch, so i am just forwarding that feedback here:\n\nWe need to be specific when ignoring clang-tidy warnings.\nSo that it is obvious to readers of the code which problem exists, and if it is actually safe to ignore.\n\nFor all the sdbusplus::async::task, i use the following now:\n\n```\n// NOLINTBEGIN(readability-static-accessed-through-instance)\n... coroutine ...\n// NOLINTEND(readability-static-accessed-through-instance)\n```\n\nThe string in the parentheses is the specific clang-tidy warning that needs to be ignored.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f605a0a_b5f501bc",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "Recently changed the function signature on this one (need to also provide ctx now)\nand moved it to a different header.\n\nJust commenting this as a heads-up for next rebase.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bbbb445_fff031b1",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "let\u0027s use consistent include style for library and system dependencies.\n\nBelow, async.hpp has different include style (with angle brackets \"\u003c...\u003e\")",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7092fc4_39e2c9e1",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T15:13:23Z",
+      "side": 1,
+      "message": "there are no private members declared here, so\n```private:``` can go away.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

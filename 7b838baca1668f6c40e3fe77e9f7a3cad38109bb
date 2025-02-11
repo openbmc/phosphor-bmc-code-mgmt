@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79eec230_d719c40d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 82
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:10Z",
+      "side": 1,
+      "message": "I\u0027m specifically talking about the new daemons to be implemented in this repository, following the linked design.\n\nFor example, there are spi device code updater, vr code updater and eeprom device code updater in this relation chain which all depend on the common code.\n\nIf existing code in this repo will be refactored or not, i have no idea about that.\nI\u0027m not intending to pressure anyone into using this.",
+      "parentUuid": "ea7ebac2_9972ece4",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a80fcda_26fc5a2f",
@@ -1221,6 +1239,24 @@
       "writtenOn": "2025-02-10T18:18:21Z",
       "side": 1,
       "message": "What is the GPIO dependency for the common code?",
+      "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e0d08f_9a41d398",
+        "filename": "subprojects/libgpiod.wrap",
+        "patchSetId": 82
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:10Z",
+      "side": 1,
+      "message": "It is only needed for spi device cu later.\nMoved it to the patch for spi device code updater.",
+      "parentUuid": "f3bfd951_0c9a2866",
       "revId": "7b838baca1668f6c40e3fe77e9f7a3cad38109bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

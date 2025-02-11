@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dd695a1_b6c3f736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "I\u0027m using the prefix to help identify patches in the history which are for implementing the code update design.\n\nI would like to keep the prefix for now if that\u0027s ok.\n\nReworded this to \"fw update: implement example device\" to better reflect the intent.",
+      "parentUuid": "7cf3eeeb_1f222bce",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8b0565b_6655663b",
@@ -31,6 +49,42 @@
       "writtenOn": "2025-02-07T23:43:09Z",
       "side": 1,
       "message": "Better to show busctl introspect output to show the interfaces and their values",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adeb30b2_2a21fc5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b0565b_6655663b",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8b1e1f_79775351",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b0565b_6655663b",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "356091a4_7a381213",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Changed this to \"Active\".\n\nFrom my perspective it does not matter that much which activation status the example has but \"Active\" may look better.",
+      "parentUuid": "fb0115a2_ce772a86",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69912211_1535a335",
@@ -69,6 +141,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5e8559_f35c74f5",
+        "filename": "common/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69912211_1535a335",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a95e9f18_ad1f38a1",
@@ -82,6 +172,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "Not needed, drop this as mentioned below.",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72f27813_233317c9",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "replied below.",
+      "parentUuid": "a95e9f18_ad1f38a1",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -105,6 +213,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3c17487_22f3a7d3",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "The random suffix is good for running tests in parallel,\nwhen there are multiple example code updaters on dbus at the same time.\n\nOtherwise they will collide with their dbus name.\n\nThere is a comment in the .cpp file about the random suffix and why i need it.",
+      "parentUuid": "aa26f187_824b8a8d",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6093530d_2db80028",
         "filename": "test/common/exampledevice/example_device.cpp",
         "patchSetId": 6
@@ -116,6 +242,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "This is just your serviceNameSuffix, please use \"ExampleUpdater\" for this.\n\nIn case you want userInput for serviceNameSuffix, define constructor to have a default for serviceNameSuffix.\n\n```\nExampleCodeUpdater(sdbusplus::async::context\u0026 ctx, const std::string serviceNameSuffix \u003d \"ExampleUpdater\");\n```",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f065d3ff_9490f550",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Fixed. Both ExampleUpdater and ExampleDevice only have one constructor now.",
+      "parentUuid": "6093530d_2db80028",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -137,6 +281,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a437df6_071be07a",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Added the specific NOLINTBEGIN(readability-static-accessed-through-instance).\n\nThought i had done this before for all the patches but it must have slipped through.",
+      "parentUuid": "427d578c_1d79f2b2",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e318c30_5a3f7898",
@@ -150,6 +312,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "const std::string exampleCompatibleHardware \u003d \"com.example.CompatibleDevice\";",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "223fd07d_3a0df392",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e318c30_5a3f7898",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +351,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1914ef6b_cfe047c8",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84ad4523_8c252afa",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dadb033e_9b4203d7",
@@ -184,6 +382,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "lets rename - updater(ctx)",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d65078_3452a083",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dadb033e_9b4203d7",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +421,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "947b5003_2abf448b",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "123268d0_800dbc5b",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcd2d3cc_9a217ae0",
@@ -218,6 +452,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "Let\u0027s call the file - example_updater_main.cpp",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b8a1f83_eb08d543",
+        "filename": "test/common/exampledevice/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcd2d3cc_9a217ae0",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -239,6 +491,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f0e3301_4964d0ef",
+        "filename": "test/common/exampledevice/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "I had set it to false since i did not want to rely on the meson default, or people knowing the meson defaults.\n\nAdjusted it.",
+      "parentUuid": "0781a050_02cc39be",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ec735b0_f71fe06c",
@@ -252,6 +522,24 @@
       "writtenOn": "2025-02-08T00:45:37Z",
       "side": 1,
       "message": "Install seems default false as mentioned above. Can you please fix it at other places in code as well?",
+      "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9980528_5d4de0c4",
+        "filename": "test/common/exampledevice/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-11T13:58:22Z",
+      "side": 1,
+      "message": "Fixed it here.\n\nLet\u0027s focus review comments on the specific patch under review, otherwise it may be overwhelming for me. If that\u0027s ok for you.",
+      "parentUuid": "8ec735b0_f71fe06c",
       "revId": "919c4f0a0037424e729e704f942b88b3236310e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

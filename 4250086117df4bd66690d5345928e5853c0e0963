@@ -1,0 +1,786 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79811e5c_0e211bfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 84
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Thanks for addressing previous set of comments.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deae66c3_35bc3781",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "make return type as bool",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7552051f_ee3bd658",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets name this currentSoftware",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3d9abed_a44d7726",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets name this softwarePending instead because software holds other interfaces (Activation, Progress etc) as well, not just Version.\n\nsoftwarePending will bring it in sync with softwareCurrent in terms of nomenclature.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a66136_20fc36cd",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Keep member vars and member functions as a group, so either move swid to line 87 or vice-versa for better readability.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddeabd4b_d02eb26b",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "An association can either be running or activating, so i am thinking if just one bool arg makes sense? For example, isRunning, other one is reverse of that.\n\nWhat do you think?",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a25e18_6beff736",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets make parent var public instead like swid. getParentDevice() is not doing anything. You can call the public var parentDevice.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a50dfd_aeca7a3d",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets call this updateIntf instead of softwareUpdate for clarity and software prefix seems redundant as we are already in Software class.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4225aa_9cd66f0b",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "just version as we are already in Software class.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29de03ad_c6b28cb3",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Just associationDefinitions or associations as we are already in Software class so Software prefix seems redundant.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e624a1d_01b1d964",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "All fields are from EM config. I see some fields have this and some don\u0027t. So lets just drop it or add it everywhere it keep it consistent.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add26b71_76a464bb",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets call this initDevice instead, Single doesn\u0027t seem that useful.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1166405a_bf48a280",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Why you made this static? Any specific reason? We want each instance of SoftwareUpdate to have its own version of this var and not just one.\n\nLet\u0027s keep the comment open after you reply otherwise i would need to dig this out.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56c6c5f_7acd47f7",
+        "filename": "common/meson.build",
+        "patchSetId": 84
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Change fwupdate -\u003e software_common_lib",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbea16fa_42ea5afa",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Update comments as well to fix arg names to lowerCamelCase.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395558a1_c72694ba",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "All variables names should be lowerCamelCase not snake_case.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce320d2f_96a9fe8c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "rename softwareUpdateExternal to softwarePendingIn to reflect its the pending software instance which is an in arg to the API.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbefb3d4_0db052e9",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "\"memory mapped the pldm package successfully\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91638ab_14a398e9",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "rename pp -\u003e packageParser.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe0fb69_21e47faa",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Better to drop this as it doesn\u0027t seem that useful.\n\nBring the log \"new current sw version: {SWID}\", \"SWID\" at end of this if condition as thats this is the one updating the softwareCurrent.\n\nReword -\n\n\"Successfully updated to software version {SWID}\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf9a4129_4bb6a694",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Name change will make this much cleaner and easier to understand.\n\nsoftwarePending \u003d std::move(softwarePendingIn);",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f63e4a_0133559d",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "This should fail very early, check in constructor if allowedApplyTime is in supported implementation, if not throw an exception.\n\nSecond check you already have in UpdateInterface which checks if passed in is supported by this Updater or not. So ideally you would be covered at both places and this else check will become a no-op and would be fine to drop.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebb7f003_04283d72",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Move this inside applyTime \u003d\u003d immediate as mentioned in other comment above.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19db8da5_ba9313d3",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "\"Failed to update the software for {SWID}\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dde4b17b_fd3781ea",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Is this needed? it should go out of scope at end of function.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3f6ca41_53503f04",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "\"Failed to un map the PLDM package\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9547b1_dbb827e3",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "\"Failed to close file descriptor {FD}\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a78777b_07e5c714",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "bool Device::setUpdateProgress(uint8_t progress)\n{\n  if (!softwarePending || !softwarePending-\u003eactivationProgress)\n  {\n      return false;\n  }\n  \n  softwarePending-\u003eactivationProgress-\u003esetProgress(progress);\n  \n  return true;\n}",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce6ef43_5061ffd0",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Rename softwareUpdate -\u003e softwarePendingIn",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60dd920_023e7f7e",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Drop matching prefix from all of these vars. Its implicit from code what they symbolize.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe196dee_1345ad91",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "initialize to 0.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82ae7fe_f6cde203",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Initialize to 0.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47fc9e88_bdb931b4",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "I can think u can move this check down at line# 204 and handle pass, fail case as if else. I don\u0027t see any issue with deleting these interfaces before setting the Active state as they have done their job and their updates have been notified to the interested parties (BMCWeb).",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1695e0b_9addbc32",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets make parent as second arg - \n\nSoftware::Software(sdbusplus::async::context\u0026 ctx, Device\u0026 parent, const std::string\u0026 swid)\n\nSo, constructor signature are easier to understand what is different.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c70eb9_b7a867e2",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Define objectPath as a class public var;\n\nand in here.\n\nconstexpr auto basepath \u003d \"/xyz/openbmc_project/software/\";\nobjectPath \u003d sdbusplus::message::object_path(basepath + swid);\n\nUse the objectPath directly in this file.\n\nThat way you will drop both createObjectPathWithSwid and get getObjectPath().",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "727065e4_079ae95a",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "This should get deleted by above suggestion.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49b293c_0d471dca",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "This should be static API as well since u r passing in parent and not accessing any class var inside.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3732235f_f55a0fed",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Drop this and expose parentDevice as public.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d330e7cb_1b93d240",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "i don\u0027t think you need this-\u003e and at other places too.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad4f6ed_c4317263",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "directly use objectPath by defining it class variable.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31db9442_e5e0df69",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Please remove this-\u003e from all places.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67664f5_4dbb2aab",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Please use PHOSPHOR_LOG2_USING;\n\nThat way you can completely drop lg2:: prefix from everywhere in your logging APIs.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33af89e9_e5db64de",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Also need to report\u003cUnavailable\u003e(); to set the Dbus error for the BMCWeb\n\nFor example, \nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bmc/update_manager.cpp?r\u003deae5ec9e28d8e0586eae116802e1f0c173040df7#220",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bf54f5_6f1ebd52",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Also need to report\u003cUnavailable\u003e(); to set the Dbus error for the BMCWeb\n\nFor example,\nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bmc/update_manager.cpp?r\u003deae5ec9e28d8e0586eae116802e1f0c173040df7#220",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "152f732a_76a686ac",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "return empty objectPath.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2432e3_b4b691f3",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Suggested to drop getObjectPath() in another comment.\n\nso, here it will be just \n\nco_return softwareInstance.objectPath;\n\nat end.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

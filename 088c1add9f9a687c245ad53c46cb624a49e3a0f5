@@ -1949,6 +1949,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d62c3968_4f1e11b0",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:13:25Z",
+      "side": 1,
+      "message": "Lets drop this-\u003e. I see it at multiple places in this file and check if its in other files too.",
+      "parentUuid": "16a02beb_0d9ba748",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "511f3676_385c3790",
         "filename": "common/src/software.cpp",
         "patchSetId": 76

@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae918e3_3b68b94c",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "Rename to exampleInvObjPath",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "367bac6f_8c630932",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "better move this inside initDevice() \n(which i have asked to rename from initSingleDevice() in other patch)\n\nand call initDevice from cpp alongwith a comment that -\n\nIn Concrete updaters, the initDevices() function needs to be called, which in turn invokes the virtual initDevice() function implemented here. However, in ExampleUpdater, the initDevice() function is called directly because there is no example configuration from EM to consume, which would otherwise cause the initDevices() API to throw an error. Therefore, calling initDevice() directly in this case.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b393eb79_c61a3bc2",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "drop this-\u003e.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3843fb7f_2a1698f6",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "I see you have used [device] at multiple places in your messages, not sure what it means, so its better to use word Device or modify the message accordingly.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af36a46b_23982733",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "Better do it in a loop and add the reasoning like you have added now just once.\n\nfor (auto progress \u003d 0; progress \u003c\u003d100; progress +\u003d 20)\n{\n    setProgress(progress);\n}",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3264d3_f38ce6ab",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T03:45:20Z",
+      "side": 1,
+      "message": "Move the const not being used here to the cpp file close to exampleObjPath.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

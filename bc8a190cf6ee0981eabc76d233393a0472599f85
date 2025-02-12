@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d431290_8f2716e8",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae918e3_3b68b94c",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "367bac6f_8c630932",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-12T03:45:20Z",
       "side": 1,
       "message": "better move this inside initDevice() \n(which i have asked to rename from initSingleDevice() in other patch)\n\nand call initDevice from cpp alongwith a comment that -\n\nIn Concrete updaters, the initDevices() function needs to be called, which in turn invokes the virtual initDevice() function implemented here. However, in ExampleUpdater, the initDevice() function is called directly because there is no example configuration from EM to consume, which would otherwise cause the initDevices() API to throw an error. Therefore, calling initDevice() directly in this case.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "411ac76c_6d6370ce",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "Done. Agreed this simplifies the code as there are less extra functions which would not appear in other other code updaters.",
+      "parentUuid": "367bac6f_8c630932",
       "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "523642f5_63938c86",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b393eb79_c61a3bc2",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3843fb7f_2a1698f6",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-12T03:45:20Z",
       "side": 1,
       "message": "I see you have used [device] at multiple places in your messages, not sure what it means, so its better to use word Device or modify the message accordingly.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba461ba5_d4c85ea6",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3843fb7f_2a1698f6",
       "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b111cfd0_2bb490bc",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af36a46b_23982733",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da3264d3_f38ce6ab",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-12T03:45:20Z",
       "side": 1,
       "message": "Move the const not being used here to the cpp file close to exampleObjPath.",
+      "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c2d3023_64798649",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:56Z",
+      "side": 1,
+      "message": "yes it\u0027s unused. Deleted it.",
+      "parentUuid": "da3264d3_f38ce6ab",
       "revId": "bc8a190cf6ee0981eabc76d233393a0472599f85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

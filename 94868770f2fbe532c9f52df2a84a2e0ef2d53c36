@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f563109_7aeb1ef7",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5a77b5f_fb26d319",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 2
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64f404d6_f08fd35e",
@@ -70,6 +94,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "043dafbe_5561fe98",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c99a465_8e748b4c",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e1bdd1c_c1e09a7d",
@@ -83,6 +131,24 @@
       "writtenOn": "2025-02-11T15:13:23Z",
       "side": 1,
       "message": "reference to other change can go away.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a95d747_97f06e9d",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e1bdd1c_c1e09a7d",
       "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -144,6 +210,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4122d2_1f009d81",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d34fac89_79ca2e65",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deedaa60_435ee0b9",
@@ -161,6 +245,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8672596_77ee0114",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deedaa60_435ee0b9",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77715980_af2be65e",
@@ -174,6 +276,24 @@
       "writtenOn": "2025-02-11T15:13:23Z",
       "side": 1,
       "message": "I got this as a comment on my patch, so i am just forwarding that feedback here:\n\nWe need to be specific when ignoring clang-tidy warnings.\nSo that it is obvious to readers of the code which problem exists, and if it is actually safe to ignore.\n\nFor all the sdbusplus::async::task, i use the following now:\n\n```\n// NOLINTBEGIN(readability-static-accessed-through-instance)\n... coroutine ...\n// NOLINTEND(readability-static-accessed-through-instance)\n```\n\nThe string in the parentheses is the specific clang-tidy warning that needs to be ignored.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b04a970_fc787c01",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77715980_af2be65e",
       "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -225,6 +345,24 @@
       "writtenOn": "2025-02-11T15:13:23Z",
       "side": 1,
       "message": "there are no private members declared here, so\n```private:``` can go away.",
+      "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee88aa71_ac59036a",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 56
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T10:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7092fc4_39e2c9e1",
       "revId": "94868770f2fbe532c9f52df2a84a2e0ef2d53c36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a8de3e_dcf21584",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "If it only ever returns -1, it can be inlined into the caller.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c4da02_1b953827",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "let\u0027s get rid of the retry loop here and just try once.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d911db09_eec7e7d8",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "let\u0027s get rid of the retry loop here and just try once.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c319c1_e94cd400",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "We can probably get rid of ```enum class InitialState```.\n\nJust use a bool to decide if the file should be openend.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395a2ddb_aa564039",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "```bool isOpen()``` is just error handling for opening files, which can be inlined into its callers.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06dfed8c_d05a219c",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "NOLINTBEGIN(readability-static-accessed-through-instance)",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e8800ad_dbf6dd68",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "NOLINTBEGIN(readability-static-accessed-through-instance)",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee76046_187a00b1",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "Let\u0027s put the crc value here which was read from the voltage regulator.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33bf1ff_19262b47",
+        "filename": "vr-i2c/regulators/main.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "let\u0027s delete this line, it looks like leftovers from debugging\n```\n std::cout \u003c\u003c \"Parsing round: \" \u003c\u003c std::string(argv[i]) \u003c\u003c std::endl;\n```",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04745089_8e0866fd",
+        "filename": "vr-i2c/regulators/main.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "let\u0027s delete this line, it looks like leftovers from debugging",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec4582e_1a4da34d",
+        "filename": "vr-i2c/regulators/vr.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T18:22:16Z",
+      "side": 1,
+      "message": "let\u0027s print an error here or something like that since this VR is currently not supported.",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

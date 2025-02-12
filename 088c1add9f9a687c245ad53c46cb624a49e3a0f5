@@ -1965,6 +1965,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e31edb5f_c6e598e1",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d62c3968_4f1e11b0",
+      "revId": "088c1add9f9a687c245ad53c46cb624a49e3a0f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "511f3676_385c3790",

@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db93fb1_24b8595e",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deae66c3_35bc3781",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7552051f_ee3bd658",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Lets name this currentSoftware",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "305a365f_c2bec163",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7552051f_ee3bd658",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ded3eb0_831f3a81",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3d9abed_a44d7726",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75a66136_20fc36cd",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Keep member vars and member functions as a group, so either move swid to line 87 or vice-versa for better readability.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada83207_d0d2efbf",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75a66136_20fc36cd",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -103,6 +175,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c7cf417_c09584ae",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Currently there is no call site where both are true or both are false,\nso there are only 2 cases and we can use on boolean to represent it 👍.\n\nApplied your suggestion.",
+      "parentUuid": "ddeabd4b_d02eb26b",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62a25e18_6beff736",
@@ -116,6 +206,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Lets make parent var public instead like swid. getParentDevice() is not doing anything. You can call the public var parentDevice.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53084c13_33314e24",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62a25e18_6beff736",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -137,6 +245,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f8a44f_50237c6c",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a50dfd_aeca7a3d",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c4225aa_9cd66f0b",
@@ -150,6 +276,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "just version as we are already in Software class.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4253a6_f1439fb3",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c4225aa_9cd66f0b",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +315,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b0bf83_1bf47526",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29de03ad_c6b28cb3",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e624a1d_01b1d964",
@@ -188,6 +350,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c802e5_697f8925",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Added it for all the properties. Easier to understand where the properties are coming from.",
+      "parentUuid": "0e624a1d_01b1d964",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "add26b71_76a464bb",
@@ -201,6 +381,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Lets call this initDevice instead, Single doesn\u0027t seem that useful.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6a4180e_79a2370d",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "add26b71_76a464bb",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -224,6 +422,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25c06737_c1954b99",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "The update status is per-device, not per software or software update class instance.\n\nThere may be multiple software instances on dbus for a device, since we want to support the A/B scheme and such. One could argue that there is only one software instance that can be updated, but the property is conceptually part of the device.\n\nSince we currently do not support the concurrent update of multiple devices from a single pldm fw update package, making it a static variable should be fine for now.\n\nAnd if it\u0027s a static variable, it can be on any class, so i put it here since i remember you asking for it to be put here.\n\nI would prefer to keep it static for now and make it per-device in follow-up patches to support concurrently updating multiple devices.",
+      "parentUuid": "1166405a_bf48a280",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e56c6c5f_7acd47f7",
         "filename": "common/meson.build",
         "patchSetId": 84
@@ -235,6 +451,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Change fwupdate -\u003e software_common_lib",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a94e1546_ac2cc495",
+        "filename": "common/meson.build",
+        "patchSetId": 84
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56c6c5f_7acd47f7",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -256,6 +490,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9925d685_9d5c7718",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbea16fa_42ea5afa",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "395558a1_c72694ba",
@@ -269,6 +521,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "All variables names should be lowerCamelCase not snake_case.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56d7178_ff850974",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "395558a1_c72694ba",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -290,6 +560,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8003abb5_d4f6343e",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce320d2f_96a9fe8c",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbefb3d4_0db052e9",
@@ -303,6 +591,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "\"memory mapped the pldm package successfully\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d0b41a_4c7b4430",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbefb3d4_0db052e9",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -324,6 +630,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8620874_89b86e2f",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d91638ab_14a398e9",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afe0fb69_21e47faa",
@@ -337,6 +661,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Better to drop this as it doesn\u0027t seem that useful.\n\nBring the log \"new current sw version: {SWID}\", \"SWID\" at end of this if condition as thats this is the one updating the softwareCurrent.\n\nReword -\n\n\"Successfully updated to software version {SWID}\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a26a532_ef267dd8",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afe0fb69_21e47faa",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -358,6 +700,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfd0fac6_ca3c933c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf9a4129_4bb6a694",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32f63e4a_0133559d",
@@ -371,6 +731,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "This should fail very early, check in constructor if allowedApplyTime is in supported implementation, if not throw an exception.\n\nSecond check you already have in UpdateInterface which checks if passed in is supported by this Updater or not. So ideally you would be covered at both places and this else check will become a no-op and would be fine to drop.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe69ef1_b6f5355f",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Makes sense, no need to check twice. Dropped it.",
+      "parentUuid": "32f63e4a_0133559d",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -392,6 +770,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9949464a_89433101",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebb7f003_04283d72",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19db8da5_ba9313d3",
@@ -405,6 +801,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "\"Failed to update the software for {SWID}\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ab0afd_da5cc6fa",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19db8da5_ba9313d3",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -426,6 +840,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7c383e_ffa63f50",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "probably not needed, removed it.",
+      "parentUuid": "dde4b17b_fd3781ea",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3f6ca41_53503f04",
@@ -439,6 +871,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "\"Failed to un map the PLDM package\"",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e43f40bd_90c35040",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3f6ca41_53503f04",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -460,6 +910,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72138abd_a40c6145",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc9547b1_dbb827e3",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a78777b_07e5c714",
@@ -477,6 +945,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9df1a963_456c0bd4",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a78777b_07e5c714",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ce6ef43_5061ffd0",
@@ -490,6 +976,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Rename softwareUpdate -\u003e softwarePendingIn",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18f1cfb2_4058e443",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ce6ef43_5061ffd0",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -528,6 +1032,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23499d7b_b98f2214",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe196dee_1345ad91",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d9f0cb_ccc731cd",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b60dd920_023e7f7e",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a82ae7fe_f6cde203",
@@ -541,6 +1081,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Initialize to 0.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d24d2c9_92296fa1",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a82ae7fe_f6cde203",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -564,6 +1122,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caf6aae3_30b9c41c",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "I would like to proceed exactly as outlined in the design\n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md\n\nwhere the Activation status is set before deleting ActivationBlocksTransition and ActivationProgress interfaces.\n\nThis is so that people reading the code find it to be matching the design, at least for the original implementation.\n\nConceptually, if transition is blocked by activation, the activation must happen before the transition is unblocked.\n\nOtherwise we have a point in time where a transition can happen but the software is not yet active. \n\nThis could confuse other daemons which expect things to happen as outlined in the design.",
+      "parentUuid": "47fc9e88_bdb931b4",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1695e0b_9addbc32",
         "filename": "common/src/software.cpp",
         "patchSetId": 84
@@ -575,6 +1151,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Lets make parent as second arg - \n\nSoftware::Software(sdbusplus::async::context\u0026 ctx, Device\u0026 parent, const std::string\u0026 swid)\n\nSo, constructor signature are easier to understand what is different.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f91dbec9_5ca3d6c0",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1695e0b_9addbc32",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -596,6 +1190,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10fef6c7_3e66f153",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3c70eb9_b7a867e2",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "727065e4_079ae95a",
@@ -609,6 +1221,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "This should get deleted by above suggestion.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c45254_14a438eb",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "727065e4_079ae95a",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -630,6 +1260,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda1b083_578a7f94",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "parent.config is a protected member of \u0027class Device\u0027.\n\nSo since Software is friends with Device, we can access it.\nIf we make the function static in the translation unit, it will not be part of \u0027class Software\u0027 and not be able to access parent.config.\n\nSo this suggestion will not work.",
+      "parentUuid": "b49b293c_0d471dca",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3732235f_f55a0fed",
@@ -643,6 +1291,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Drop this and expose parentDevice as public.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13dc68a2_489e2690",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3732235f_f55a0fed",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -664,6 +1330,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaa3cb09_40b90ca7",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d330e7cb_1b93d240",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ad4f6ed_c4317263",
@@ -677,6 +1361,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "directly use objectPath by defining it class variable.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "939e8465_a1a6a601",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ad4f6ed_c4317263",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -698,6 +1400,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfca64ce_f583b073",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31db9442_e5e0df69",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b67664f5_4dbb2aab",
@@ -711,6 +1431,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Please use PHOSPHOR_LOG2_USING;\n\nThat way you can completely drop lg2:: prefix from everywhere in your logging APIs.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed2c469_b3c05858",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "done for common code, example code updater, and common code tests, aswell as spi device code updater.",
+      "parentUuid": "b67664f5_4dbb2aab",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -732,6 +1470,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "557ca2bc_8cdb65a1",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33af89e9_e5db64de",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6bf54f5_6f1ebd52",
@@ -745,6 +1501,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Also need to report\u003cUnavailable\u003e(); to set the Dbus error for the BMCWeb\n\nFor example,\nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bmc/update_manager.cpp?r\u003deae5ec9e28d8e0586eae116802e1f0c173040df7#220",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdf7bc3c_8d7139ca",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6bf54f5_6f1ebd52",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -766,6 +1540,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef52191_fc8f547e",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "152f732a_76a686ac",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e2432e3_b4b691f3",
@@ -779,6 +1571,24 @@
       "writtenOn": "2025-02-12T03:13:25Z",
       "side": 1,
       "message": "Suggested to drop getObjectPath() in another comment.\n\nso, here it will be just \n\nco_return softwareInstance.objectPath;\n\nat end.",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49e83f1_9e777931",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-12T16:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e2432e3_b4b691f3",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

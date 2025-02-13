@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97ccb56a_c8d7707e",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T20:06:57Z",
+      "side": 1,
+      "message": "When you extend the EM schema to add more descriptors, you would need to extend the common code to handle those. Right now IANA has been added as base use case, you can add UUID if you need it.\n\nPlease see if you have any other question, otherwise we will mark this as resolved.",
+      "parentUuid": "9ccd76d6_25b8e4a3",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b477fcb_0b8b2897",
         "filename": "common/src/device.cpp",
         "patchSetId": 86

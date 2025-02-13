@@ -135,6 +135,23 @@
       "message": "vrType should be of type ```enum VRType``` here.\n\nWe should not pass around the VR type as string internally, because that makes it unclear if the data has been validated or not, if it contains a valid VR type, ...\n\nIt can be parsed as string from configuration, but should be directly converted in that configuration parsing function, which is\n\n I2CVRDeviceCodeUpdater::getInitialConfigurationSingleDevice\n\nas of this revision.",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff56c57d_5d9d39de",
+        "filename": "vr-i2c/regulators/xdpe152xx.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T19:02:46Z",
+      "side": 1,
+      "message": "Change API interface to pass password.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

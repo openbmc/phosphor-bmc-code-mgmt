@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63d5aa1_37bbc3bf",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T18:36:35Z",
+      "side": 1,
+      "message": "namespace phosphor::software::example_device",
+      "revId": "66cca44268e0526afbcb9e1f846e300236556a6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1dfd00e2_6c3590fc",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:56:31Z",
+      "side": 1,
+      "message": "Please build this code using yocto in openbmc/openbmc to check any build issues.",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f285d44_ba9bb0b3",
         "filename": "common/include/device.hpp",
         "patchSetId": 85

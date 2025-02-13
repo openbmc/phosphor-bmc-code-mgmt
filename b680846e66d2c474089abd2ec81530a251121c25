@@ -88,6 +88,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cf338e0_9105558a",
+        "filename": "vr-i2c/main.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T18:52:07Z",
+      "side": 1,
+      "message": "Remove the manual handling of update and run this as service.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cd71baf_b873768d",
         "filename": "vr-i2c/regulators/vr.cpp",
         "patchSetId": 63

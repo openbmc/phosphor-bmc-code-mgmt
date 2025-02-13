@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3bcc590_a24ce5e6",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:54:51Z",
+      "side": 1,
+      "message": "softwareUpdate -\u003e softwarePendingIn",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d886d167_baf1cb07",
         "filename": "common/include/software.hpp",
         "patchSetId": 85

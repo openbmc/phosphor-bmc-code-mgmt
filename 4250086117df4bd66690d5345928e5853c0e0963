@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b74d6f3a_d5f39595",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:54:51Z",
+      "side": 1,
+      "message": "Sorry to ask again, but it looks like i did this comment and then commented for the softwarePending which made the names go out of sync. Can you please change this back to softwareCurrent. Again apologies for inconvenience.",
+      "parentUuid": "305a365f_c2bec163",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3d9abed_a44d7726",
         "filename": "common/include/device.hpp",
         "patchSetId": 84

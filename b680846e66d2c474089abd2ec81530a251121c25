@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e39bc80_749716d5",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:53:29Z",
+      "side": 1,
+      "message": "The function can probably be inlined into its callers, since the constructor is public.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d20f0d2d_99d2f023",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:53:29Z",
+      "side": 1,
+      "message": "Let\u0027s use ```return std::make_unique\u003cI2C\u003e(bus,addr)```.\n\nLet\u0027s not use ```new/delete``` at all in our code, since they have to be manually managed, creating the possibility for memory bugs.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd71baf_b873768d",
+        "filename": "vr-i2c/regulators/vr.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:53:29Z",
+      "side": 1,
+      "message": "vrType should be of type ```enum VRType``` here.\n\nWe should not pass around the VR type as string internally, because that makes it unclear if the data has been validated or not, if it contains a valid VR type, ...\n\nIt can be parsed as string from configuration, but should be directly converted in that configuration parsing function, which is\n\n I2CVRDeviceCodeUpdater::getInitialConfigurationSingleDevice\n\nas of this revision.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

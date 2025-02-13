@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e4d9bcb_20ce747b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 63
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T18:51:07Z",
+      "side": 1,
+      "message": "Move regulators/vr.hpp and regulators/vr.cpp to one level up to vr-i2c.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e39bc80_749716d5",

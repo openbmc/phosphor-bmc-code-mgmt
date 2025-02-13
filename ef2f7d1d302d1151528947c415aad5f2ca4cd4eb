@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9221797_b1986f63",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Update message to \"EERPOM device successfully updated\"",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad439e86_2b99ed6e",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Please fix TODOs.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5330ad8c_b7138d3f",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Please use PHOSPHOR_LOG2_USING; to avoid using lg2:: prefix.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f56854_9ff9e913",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "\"Unbinding EEPROM device {DEVICE}\"\n\nmessage level as debug",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dffed2a2_2bd69de8",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Please fix all log messages to remove [EERPOM] as prefix.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d4696ce_4cf89153",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "namespace phosphor::software::eeprom::config",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3980d44_64f891ff",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Probably you can maintain this as list/array of individual properties now locally in EEPROMDevice class (if you use the suggestion mentioned in EM patch).",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43789c2a_d5edee6e",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Do you need chipName if you already have the lineName?",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19cf1122_24192042",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "namespace phosphor::software::eeprom::device",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffe700c_ddb728d3",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "I think this has been dropped from common code, if yes, then better drop it here too.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036c8198_0e7f3ac6",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Rename busNum",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6ee059_6279ed84",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Lets use EERPOM in capitals everywhere.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe6ec9e_ea6f00db",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "namespace phosphor::software::eeprom",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f044da6_2a6a20f2",
+        "filename": "eeprom-device/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T09:26:30Z",
+      "side": 1,
+      "message": "Please drop manual, dryRun and image options as codeupdater should be a service running by default and servicing the incoming requests from BMCWeb.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

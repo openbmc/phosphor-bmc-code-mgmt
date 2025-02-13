@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd63a8c2_44032a93",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f579dbdb_90ee025c",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dfd00e2_6c3590fc",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-13T00:56:31Z",
       "side": 1,
       "message": "Please build this code using yocto in openbmc/openbmc to check any build issues.",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "508c5a27_a8d196e6",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "got rid of this file entirely.\n\nFetching configuration should ideally happen via the PDI generated bindings.\n\nReading the dbus property directly like it was done here is just a crutch until the generated bindings are available.\n\nSo i inlined the few call sites of this code and moved one of the templates into spi device code updater to take care of inlining that later.",
+      "parentUuid": "1dfd00e2_6c3590fc",
       "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a017f45_cef325c7",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f285d44_ba9bb0b3",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3bcc590_a24ce5e6",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-13T00:54:51Z",
       "side": 1,
       "message": "softwareUpdate -\u003e softwarePendingIn",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9189824f_05de29e0",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3bcc590_a24ce5e6",
       "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92aec3ec_f80f0efd",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d886d167_baf1cb07",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c702608e_d0479559",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-13T00:42:14Z",
       "side": 1,
       "message": "namespace phosphor::software::config",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a508750_2f775fb1",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c702608e_d0479559",
       "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "416682fb_9af038d6",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb21ec85_638d2714",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "736e0f39_7fc2205e",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-02-13T00:42:14Z",
       "side": 1,
       "message": "namespace phosphor::software::update",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29b2bb2_016a321b",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-13T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "736e0f39_7fc2205e",
       "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

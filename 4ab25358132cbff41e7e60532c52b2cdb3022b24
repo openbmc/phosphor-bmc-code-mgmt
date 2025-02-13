@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f579dbdb_90ee025c",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software::utils \n\nor \n\nnamespace phosphor::software::helpers",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f285d44_ba9bb0b3",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software::device",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d886d167_baf1cb07",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c702608e_d0479559",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software::config",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb21ec85_638d2714",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software::manager",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736e0f39_7fc2205e",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 85
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:42:14Z",
+      "side": 1,
+      "message": "namespace phosphor::software::update",
+      "revId": "4ab25358132cbff41e7e60532c52b2cdb3022b24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

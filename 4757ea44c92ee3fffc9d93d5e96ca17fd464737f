@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed969c89_4d54ab99",
+        "filename": "vr-i2c/regulators/config.hpp",
+        "patchSetId": 57
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-13T14:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2254535_a6c707dc",
+      "revId": "4757ea44c92ee3fffc9d93d5e96ca17fd464737f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2706155_bfefcdb7",
@@ -66,6 +84,24 @@
       "writtenOn": "2025-02-11T15:13:23Z",
       "side": 1,
       "message": "Having a public getter and setter is basically the same as having the variable be public, right?\n\nIf there is no extra logic in getter/setter, then they can probably go away.",
+      "revId": "4757ea44c92ee3fffc9d93d5e96ca17fd464737f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe1bf47_03de6fc5",
+        "filename": "vr-i2c/regulators/config.hpp",
+        "patchSetId": 57
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-13T14:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2706155_bfefcdb7",
       "revId": "4757ea44c92ee3fffc9d93d5e96ca17fd464737f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

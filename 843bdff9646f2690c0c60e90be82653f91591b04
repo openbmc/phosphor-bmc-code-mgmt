@@ -1,6 +1,91 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa65b7b_436aeb73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 86
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-02-13T19:11:46Z",
+      "side": 1,
+      "message": "Hey Alexander, I\u0027ve some comments on the patch, please take a look.",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b477fcb_0b8b2897",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-02-13T19:11:46Z",
+      "side": 1,
+      "message": "Shall we use unique pointer instead of raw pointer?",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb59c0fb_a9ce0970",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-02-13T19:11:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be logged as an error instead of info?",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c87c3b2_14444853",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-02-13T19:11:46Z",
+      "side": 1,
+      "message": "Please add an alias to improve readability.\n\n`using RequestedApplyTimes \u003d sdbusplus::common::xyz::openbmc_project::software::ApplyTime::RequestedApplyTimes;\n`\n\nWe can replace it with `RequestedApplyTimes applyTime`",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13306409_fd09b434",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-02-13T19:11:46Z",
+      "side": 1,
+      "message": "Can we explicitly initialize these variables? `std::string compatible{};`",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1800357f_babc4fc1",

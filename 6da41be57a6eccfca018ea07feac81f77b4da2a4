@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c11d36_88208e20",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-13T13:33:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a8de3e_dcf21584",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1c4da02_1b953827",

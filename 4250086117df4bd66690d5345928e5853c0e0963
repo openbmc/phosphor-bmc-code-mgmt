@@ -440,6 +440,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "070c8065_fddac50b",
+        "filename": "common/include/software_update.hpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:33:26Z",
+      "side": 1,
+      "message": "\u003e The update status is per-device, not per software or software update class instance.\n\nYes, i am aware of that but the UpdateInterface is already per device since its being created only for softwareCurrent (only for ApplyTime \u003d\u003d Immediate as expected). Thats why i mentioned its per UpdateInterface.\n\n\u003e \n\u003e There may be multiple software instances on dbus for a device, since we want to support the A/B scheme and such. One could argue that there is only one software instance that can be updated, but the property is conceptually part of the device.\n\u003e \n\u003e Since we currently do not support the concurrent update of multiple devices from a single pldm fw update package, making it a static variable should be fine for now.\n\nThere are usecases especially in EEPROMDeviceUpdater which can support multiple type of EEROM devices and update them in parallel. Making it static will break that.\n\n\u003e \n\u003e And if it\u0027s a static variable, it can be on any class, so i put it here since i remember you asking for it to be put here.\n\nProbably there is some misunderstanding i didn\u0027t ask for a static var but a class member variable.\n\n\u003e \n\u003e I would prefer to keep it static for now and make it per-device in follow-up patches to support concurrently updating multiple devices.\n\nAs i mentioned above we need to support the usecase where multiple devices exist in a daemon and its already handled via one UpdateInterface for a device. So, lets make this static var a class member variable instead to support that.",
+      "parentUuid": "25c06737_c1954b99",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e56c6c5f_7acd47f7",
         "filename": "common/meson.build",
         "patchSetId": 84
@@ -1134,6 +1152,24 @@
       "side": 1,
       "message": "I would like to proceed exactly as outlined in the design\n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md\n\nwhere the Activation status is set before deleting ActivationBlocksTransition and ActivationProgress interfaces.\n\nThis is so that people reading the code find it to be matching the design, at least for the original implementation.\n\nConceptually, if transition is blocked by activation, the activation must happen before the transition is unblocked.\n\nOtherwise we have a point in time where a transition can happen but the software is not yet active. \n\nThis could confuse other daemons which expect things to happen as outlined in the design.",
       "parentUuid": "47fc9e88_bdb931b4",
+      "revId": "4250086117df4bd66690d5345928e5853c0e0963",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a875fbcf_10289352",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 84
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-13T00:33:26Z",
+      "side": 1,
+      "message": "Sure, you can leave this as such for now.",
+      "parentUuid": "caf6aae3_30b9c41c",
       "revId": "4250086117df4bd66690d5345928e5853c0e0963",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -16,6 +16,74 @@
       "message": "Please add service file.",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe7d3766_25c75141",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:42:47Z",
+      "side": 1,
+      "message": "\"FirmwareInfo\" : { \"VendorIANA\": , \"Compatible\": }",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5def8c58_9ace6b81",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:42:47Z",
+      "side": 1,
+      "message": "Reword to -\nThe EEPROM device configuration can be found at the following D-Bus path, provided that the EEPROMDeviceFirmware is a expose record in the Harma_MB Entity Manager configuration:",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c78e0bbf_d6bbcf67",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:42:47Z",
+      "side": 1,
+      "message": "Reword to -\nThe D-Bus interface name for EEPROMDeviceFirmware configuration will be as follows:",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecec691_fec496c3",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:42:47Z",
+      "side": 1,
+      "message": "xyz.openbmc_project.Configuration.EEPROMDeviceFirmware",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

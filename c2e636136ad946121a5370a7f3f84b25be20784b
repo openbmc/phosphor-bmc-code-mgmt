@@ -84,6 +84,91 @@
       "message": "xyz.openbmc_project.Configuration.EEPROMDeviceFirmware",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "148e8e9c_501af5a8",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:52:33Z",
+      "side": 1,
+      "message": "Empty definition, better to do this in header?",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e114df5_ee846fb6",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:52:33Z",
+      "side": 1,
+      "message": "\"Failed to find required properties in the configuration\"",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58b0ad1_b110a504",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:52:33Z",
+      "side": 1,
+      "message": "Remove [config] from all logs and fix the log messages with first char of first word as Capital.",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db313bb5_3cea4aaa",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:52:33Z",
+      "side": 1,
+      "message": "rename eepromsw - software.",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e78552f_f6488638",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:52:33Z",
+      "side": 1,
+      "message": "You need to set the running version of the firmware. Please read this from device and set it here rather than setting \"unknown\".",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

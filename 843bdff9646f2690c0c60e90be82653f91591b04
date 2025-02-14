@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18620979_c7e5bebc",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T16:01:41Z",
+      "side": 1,
+      "message": "I had posted a similar comment, there is coupling in the code to the image package format and expected firmware info and software config to IANA, which in a way beats the purpose of *common* code. If a package format/software config has to be introduced, the current code would need refactor. I will leave it to maintainers discretion.\n\nSoftwareConfig class should not be tied to Vendor IANA, but should be able to inherit a combination of firmware information that may not have IANA. It could be PCIe Vendor ID for example.\n\nDevice class should be handling the component data in an abstract way instead of handling PLDM package in `continueUpdateWithMappedPackage`.",
+      "parentUuid": "3698a09d_3a74ed55",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b477fcb_0b8b2897",
         "filename": "common/src/device.cpp",
         "patchSetId": 86

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386d30c1_cf995edd",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 87
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:21:20Z",
+      "side": 1,
+      "message": "Make this private.",
+      "revId": "fcd30b45d638ab5d77534b948678556855f8d415",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99ff0ab_7c2c8dfa",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 87
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:21:20Z",
+      "side": 1,
+      "message": "Make this private.",
+      "revId": "fcd30b45d638ab5d77534b948678556855f8d415",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

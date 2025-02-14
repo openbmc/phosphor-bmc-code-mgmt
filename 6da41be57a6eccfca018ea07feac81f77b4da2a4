@@ -265,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1311eba0_b01e90b2",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 61
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Why CRC value? This should be the current running FW version of the VR. You need to read it from VR.",
+      "parentUuid": "7ee76046_187a00b1",
+      "revId": "6da41be57a6eccfca018ea07feac81f77b4da2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b33bf1ff_19262b47",
         "filename": "vr-i2c/regulators/main.cpp",
         "patchSetId": 61

@@ -479,6 +479,397 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae50c5f9_facad3c6",
+        "filename": "vr-i2c/README.md",
+        "patchSetId": 63
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "for the XDPE152C4 target",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "226e8ec5_dab467f7",
+        "filename": "vr-i2c/README.md",
+        "patchSetId": 63
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "these are in firmwareInfo object.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa26a41_14bdc618",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "You can keep this constructor in header only as its mostly empty. Better to drop the debugs also.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7bf816_7ee524ed",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Lets keep this comment open for discussion.\n\nWhere do you need this API?",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3c6bfc_3a3edf36",
+        "filename": "vr-i2c/i2c_vr_device.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Drop dry run code and add actual implementation for new updateDevice() virtual function.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e75ce755_19defb6f",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "namespace phosphor::software::vr_i2c::device",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca256fdb_469b07f3",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "dryRun dropped from common code.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e0d3af_ad533a35",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "renamed to updateDevice",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1abfc948_098aa8ec",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to busNum",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5fbbb4_74454cd7",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Better to name vrType as datatype is already string.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "869d4ada_2fad3b7b",
+        "filename": "vr-i2c/i2c_vr_device.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to vr or vrInterface",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129c289d_54277c44",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Please rebase your patch and update the APIs and constructors based on latest changes.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613e6f3a_349b6909",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to busNum",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "907a1d93_9569102a",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to address",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af505027_81b160a2",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to vrType",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066dae1f_9ab05a1f",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "\"Voltage regulator ...\"",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7c86cc_10cbf124",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename vrfw to software",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026af998_3064176e",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Would you be able to support Immediate in first phase? If not, then lets add support for OnReset only.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c920be4_46886cd6",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "this is a map now.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb53ac83_715a9cb9",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "I2CVRSoftwareManager",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c816532d_425a1569",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "drop dryRun",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488109d2_c9507218",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "dropped in common code and passed as arg to initDevices",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5776e011_499f6c69",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "renamed to initDevice",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0cf338e0_9105558a",
         "filename": "vr-i2c/main.cpp",
         "patchSetId": 63
@@ -490,6 +881,23 @@
       "writtenOn": "2025-02-13T18:52:07Z",
       "side": 1,
       "message": "Remove the manual handling of update and run this as service.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a761c934_e2b44f3a",
+        "filename": "vr-i2c/regulators/main.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "I dont think you need this main.cpp. This code should be part of i2c-vr daemon.",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -513,6 +921,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23322fad_334bd44b",
+        "filename": "vr-i2c/regulators/vr.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "All APIs should be lowerCamelCase",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c092ae_9904d6d2",
+        "filename": "vr-i2c/regulators/vr.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "How do you plan to expose this information?",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4aff89_8a8f847d",
+        "filename": "vr-i2c/regulators/xdpe152xx.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "remove commented code",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff56c57d_5d9d39de",
         "filename": "vr-i2c/regulators/xdpe152xx.cpp",
         "patchSetId": 63
@@ -524,6 +983,176 @@
       "writtenOn": "2025-02-13T19:02:46Z",
       "side": 1,
       "message": "Change API interface to pass password.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9492426_8608d145",
+        "filename": "vr-i2c/regulators/xdpe152xx.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "if condition not needed, returning ret as well, so just \"return ret\"",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92bb7a3e_19b86d53",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "lowerCamelCase productId",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65081738_096e6cfa",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "Please read the coding guidelines here https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#types and fix the type names accordingly.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ea88d5_01879c85",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "getDeviceId\n\nShould be private as internal function.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1106c5c_183605f0",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to lock(bool state) and should be private and let program call this.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd58361_f43ce086",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to sendCmd and make this private as well.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8f9763_bd64a5b0",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "getRemainingWrites and make other functions lowerCamelCase too.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa7b6e7_13cd8a86",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "getCRC\nShould be private as program calls this.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5edd3d3a_83d9d8ae",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "getConfigSize, getRemainingWrites should be private. program API should check remainingWrites and fail the program if none are left. Isn\u0027t that the whole purpose of getRemainingWrites?",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60708b6_3f880a3e",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T09:12:23Z",
+      "side": 1,
+      "message": "rename to i2cInterface",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

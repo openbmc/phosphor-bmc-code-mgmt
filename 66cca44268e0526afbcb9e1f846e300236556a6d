@@ -16,6 +16,24 @@
       "message": "namespace phosphor::software::example_device",
       "revId": "66cca44268e0526afbcb9e1f846e300236556a6d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0c54804_ca8237b1",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-14T11:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e63d5aa1_37bbc3bf",
+      "revId": "66cca44268e0526afbcb9e1f846e300236556a6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

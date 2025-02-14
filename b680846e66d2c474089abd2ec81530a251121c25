@@ -71,6 +71,125 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f52201b_712fadbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 63
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "rename vr-i2c dir to i2c-vr",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2666d4fc_1631e801",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "namespace phosphor::i2c",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b4fb047_a81fb912",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "int ret \u003d 0;",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43f59fc4_5b9a8732",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "You should return ret here as open for device still failed.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6ef212_c1428302",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "sendReceive",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca5d6e11_1cd13ba9",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Lets drop use of this-\u003e as its not required. Same at other places too.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa736024_d8dd02a6",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "rename to msgIdx",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e39bc80_749716d5",
         "filename": "interfaces/i2c/i2c.cpp",
         "patchSetId": 63
@@ -88,6 +207,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aee34ddb_246e6b30",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "This function is not required, refer to my comment in i2c.hpp",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d20f0d2d_99d2f023",
         "filename": "interfaces/i2c/i2c.cpp",
         "patchSetId": 63
@@ -99,6 +235,244 @@
       "writtenOn": "2025-02-13T14:53:29Z",
       "side": 1,
       "message": "Let\u0027s use ```return std::make_unique\u003cI2C\u003e(bus,addr)```.\n\nLet\u0027s not use ```new/delete``` at all in our code, since they have to be manually managed, creating the possibility for memory bugs.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4932c7_bdc4bb60",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "namespace phosphor::i2c",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e194750_fbc75736",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "lowerCamelCase for constants\n\ninvalidFd",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5814ca3a_f0e46e31",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "This looks like device node, so better to name this deviceNode.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc7f5d77_783ff307",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Variables names should be in lowerCamelCase.\n\ndeviceAddress.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88ea66fe_c8419740",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "I don\u0027t see this being used, drop it?",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07700b2b_d2ae4520",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Better to keep public at top (before private) for easy readability of publicly exposed members of class.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615d8e72_3822e738",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "lowerCamelCase\n\nsendReceive",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9edc2bac_4fe2a4b1",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Shouldn\u0027t close be called from destructor just like open, rather than close() as a public API.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d56fa18f_c632d2db",
+        "filename": "interfaces/i2c/i2c.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Why this function? Its just creating a unique_ptr, hence same can be done in a single line where this function is being called, as thats the normal pattern for creating instances of a class. I would suggest to do that and drop this function.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ba4ed8_43ea3652",
+        "filename": "interfaces/i2c/meson.build",
+        "patchSetId": 63
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "rename to i2c_lib",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7998d023_007566b9",
+        "filename": "interfaces/i2c/meson.build",
+        "patchSetId": 63
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "i2c_lib_inc",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6877833c_e825b7d4",
+        "filename": "interfaces/i2c/meson.build",
+        "patchSetId": 63
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "i2c_lib_dep",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e5c8625_bac70a97",
+        "filename": "meson.build",
+        "patchSetId": 63
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be in lower level meson.build files in test dir?",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0758a213_fef6a592",
+        "filename": "meson.options",
+        "patchSetId": 63
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T08:18:02Z",
+      "side": 1,
+      "message": "i2cVR-software-update",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

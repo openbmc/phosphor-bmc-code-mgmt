@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6331ffdc_f4f6b88a",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-14T19:18:11Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com I have given a comment to make the VendorIANA and compatible as private as i don\u0027t think they would we needed anywhere outside common code, mostly used for package validations internally. That way, later on, any changes to the packaging and firmwareInfo can be consumed internally in common code.\n\n@alexander.hansen@9elements.com For continueUpdateWithMappedPackage, can you call extractMatchingComponentImage in the callee and extract the required information(componentImage, Size, Version) in the callee and pass it to continueUpdateWithMappedPackage. I understand it would be ideal to define a better abstraction, but that way the scope of PLDM packaging will be left to just one function, and in subsequent patches a better abstraction can be devised.\n\nThis is not mandatory, but if you are concerned about the LOC in startUpdateAsync, consider defining an API such as getImageInfo() that can return the required info which can be further passed to continueUpdateWithMappedPackage().",
+      "parentUuid": "1cd99215_5218c590",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b477fcb_0b8b2897",
         "filename": "common/src/device.cpp",
         "patchSetId": 86

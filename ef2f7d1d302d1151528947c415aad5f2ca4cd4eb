@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cb3eaa8_519d6b60",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Should we add the driver path to EM?",
+      "parentUuid": "ad439e86_2b99ed6e",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5330ad8c_b7138d3f",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 6
@@ -48,6 +66,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Please use PHOSPHOR_LOG2_USING; to avoid using lg2:: prefix.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70ac29e8_f929a3d1",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5330ad8c_b7138d3f",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a6d050a_093e5a44",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f56854_9ff9e913",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dffed2a2_2bd69de8",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Please fix all log messages to remove [EERPOM] as prefix.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70924123_0fd05df7",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dffed2a2_2bd69de8",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -105,6 +177,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71ffc3a9_b323c3a0",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "The namespace phosphor::software::eeprom::config is no longer needed since MuxGpioConfig has been removed.",
+      "parentUuid": "4d4696ce_4cf89153",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3980d44_64f891ff",
         "filename": "eeprom-device/eeprom_device.hpp",
         "patchSetId": 6
@@ -116,6 +206,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Probably you can maintain this as list/array of individual properties now locally in EEPROMDevice class (if you use the suggestion mentioned in EM patch).",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b185c230_9a895ff2",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3980d44_64f891ff",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -133,6 +241,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Do you need chipName if you already have the lineName?",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99746dbe_2fd7a9fa",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "No need for chipName. Already removed it.",
+      "parentUuid": "43789c2a_d5edee6e",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +297,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c822621e_cf6d0db6",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ffe700c_ddb728d3",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "036c8198_0e7f3ac6",
@@ -188,6 +332,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f666956_cc419fa2",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "036c8198_0e7f3ac6",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf6ee059_6279ed84",
@@ -201,6 +363,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Lets use EERPOM in capitals everywhere.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13f725b_109bcbea",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf6ee059_6279ed84",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -235,6 +415,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "Please drop manual, dryRun and image options as codeupdater should be a service running by default and servicing the incoming requests from BMCWeb.",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b55f53e5_9e6b282f",
+        "filename": "eeprom-device/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f044da6_2a6a20f2",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

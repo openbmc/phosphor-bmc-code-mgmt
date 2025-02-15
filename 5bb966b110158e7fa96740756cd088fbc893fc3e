@@ -52,6 +52,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5ea22d6_6dd58408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9839858_de047467",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0099eee8_ad7b715c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd991ef_532f0be6",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d85fa9_58e5df08",
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f85196_f112884b",
+        "filename": "fw-update/component/eeprom/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98d85fa9_58e5df08",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c487ad4_20c59e5a",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-02-09T02:20:42Z",
       "side": 1,
       "message": "Add a meson option to enable build of this code updater. You can use the following name for now -\neepromdevice-code-update",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47079647_48104155",
+        "filename": "fw-update/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-15T00:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c487ad4_20c59e5a",
       "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f98e76d_4dbf7fb1",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-15T08:40:12Z",
+      "side": 1,
+      "message": "You are trying to bind to the EEPROM of type at24. I think we need a way to specify just at24 as thats the kernel driver you are using for bind and unbinding. I am thinking, probably adding a property ChipModel to the EM schema of type string? Here you can \"/sys/bus/i2c/drivers/\" + ChipModel to generate the final bind path.",
+      "parentUuid": "4cb3eaa8_519d6b60",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5330ad8c_b7138d3f",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 6

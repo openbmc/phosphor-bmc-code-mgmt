@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17d3c951_25c7425b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:17:11Z",
+      "side": 1,
+      "message": "@Kevin.Tung@quantatw.com Please start doing this testing and include requested output in Tested section. I am interested in seeing what shows in firmware inventory and if there are any issues, they can be fixed at the earliest.",
+      "parentUuid": "4d2dd8b2_d5c32f08",
+      "revId": "5bb966b110158e7fa96740756cd088fbc893fc3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fd991ef_532f0be6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4

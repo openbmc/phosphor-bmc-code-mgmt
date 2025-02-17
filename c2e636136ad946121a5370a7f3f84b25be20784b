@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43ba20c4_ce35fb2a",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:17:11Z",
+      "side": 1,
+      "message": "I have asked Alexander to make that change. It needs to be fixed in common code.",
+      "parentUuid": "5d074575_7a439379",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5def8c58_9ace6b81",
         "filename": "eeprom-device/README.md",
         "patchSetId": 7
@@ -347,6 +365,24 @@
       "side": 1,
       "message": "The target is an EEPROM device, but we cannot directly read the version from it, as the version information is not stored in a standardized format.",
       "parentUuid": "5e78552f_f6488638",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb6bee9a_d8431896",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:17:11Z",
+      "side": 1,
+      "message": "\u003e The target is an EEPROM device, but we cannot directly read the version from it, \n\n@Kevin.Tung@quantatw.com We need some way to read the version because it needs to be displayed in the firmware inventory.\n\n\n\u003e as the version information is not stored in a standardized format.\n\nDo you mean the version is not stored at a fixed offset on eeprom and size is arbitrary or something else? Because if its the earlier probably we can store that info in the EM configuration.",
+      "parentUuid": "fadb03b1_e7e9a864",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

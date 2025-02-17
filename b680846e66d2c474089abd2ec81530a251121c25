@@ -370,6 +370,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3774453a_3e9e1dde",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:30:26Z",
+      "side": 1,
+      "message": "n_msg to msgIdx or msgIndex.",
+      "parentUuid": "8ff4f432_912a26d8",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e39bc80_749716d5",
         "filename": "interfaces/i2c/i2c.cpp",
         "patchSetId": 63
@@ -1708,6 +1726,24 @@
       "side": 1,
       "message": "This is my test program i ran on the rasperry pi. I will keep it until I\u0027m done implementing xdpe1x2xx drivers.",
       "parentUuid": "a761c934_e2b44f3a",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0dd0e70_a9c9fc42",
+        "filename": "vr-i2c/regulators/main.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:30:26Z",
+      "side": 1,
+      "message": "Let\u0027s not include it in the patch for review if it won\u0027t be committed. Please drop it from the patch and keep it locally in your repo.",
+      "parentUuid": "5092b2e0_4c37e680",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

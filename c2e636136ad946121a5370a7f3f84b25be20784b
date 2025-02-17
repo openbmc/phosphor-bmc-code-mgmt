@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "634c1e97_c4b24192",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a34fb89_af589a34",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe7d3766_25c75141",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-14T19:42:47Z",
       "side": 1,
       "message": "\"FirmwareInfo\" : { \"VendorIANA\": , \"Compatible\": }",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d074575_7a439379",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Common code is needed to retrieve the VendorIANA and Compatible properties from xyz.openbmc_project.Configuration.\u003cconfigType\u003e.FirmwareInfo interface.\nCurrently, it assumes these properties are obtained from the xyz.openbmc_project.Configuration.\u003cconfigType\u003e interface.",
+      "parentUuid": "fe7d3766_25c75141",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ba3e3b_daa0bcc5",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5def8c58_9ace6b81",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c78e0bbf_d6bbcf67",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-14T19:42:47Z",
       "side": 1,
       "message": "Reword to -\nThe D-Bus interface name for EEPROMDeviceFirmware configuration will be as follows:",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db61224_084cbfe1",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c78e0bbf_d6bbcf67",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1035dc_3c16d739",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ecec691_fec496c3",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "148e8e9c_501af5a8",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-14T19:52:33Z",
       "side": 1,
       "message": "Empty definition, better to do this in header?",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caf1d37b_d479e1c7",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "148e8e9c_501af5a8",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d7abfd5_b4c5a57e",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e114df5_ee846fb6",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e58b0ad1_b110a504",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-02-14T19:52:33Z",
       "side": 1,
       "message": "Remove [config] from all logs and fix the log messages with first char of first word as Capital.",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e0ea30e_d03291ba",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e58b0ad1_b110a504",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c03ed6_88ac3220",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db313bb5_3cea4aaa",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e78552f_f6488638",
@@ -167,6 +329,24 @@
       "writtenOn": "2025-02-14T19:52:33Z",
       "side": 1,
       "message": "You need to set the running version of the firmware. Please read this from device and set it here rather than setting \"unknown\".",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadb03b1_e7e9a864",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "The target is an EEPROM device, but we cannot directly read the version from it, as the version information is not stored in a standardized format.",
+      "parentUuid": "5e78552f_f6488638",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6348f5e_650aa235",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9221797_b1986f63",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad439e86_2b99ed6e",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "You are trying to bind to the EEPROM of type at24. I think we need a way to specify just at24 as thats the kernel driver you are using for bind and unbinding. I am thinking, probably adding a property ChipModel to the EM schema of type string? Here you can \"/sys/bus/i2c/drivers/\" + ChipModel to generate the final bind path.",
       "parentUuid": "4cb3eaa8_519d6b60",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6344b6e6_eca770fc",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "OK, thanks for your suggestion.",
+      "parentUuid": "5f98e76d_4dbf7fb1",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -211,6 +247,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d52048d_c0cd9219",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71ffc3a9_b323c3a0",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3980d44_64f891ff",
@@ -281,6 +335,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b4fbaa0_ae97dbf0",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99746dbe_2fd7a9fa",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19cf1122_24192042",
@@ -294,6 +366,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "namespace phosphor::software::eeprom::device",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fcf5aa6_f59b153b",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19cf1122_24192042",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -416,6 +506,24 @@
       "writtenOn": "2025-02-13T09:26:30Z",
       "side": 1,
       "message": "namespace phosphor::software::eeprom",
+      "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d20a79_416fd404",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-17T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbe6ec9e_ea6f00db",
       "revId": "ef2f7d1d302d1151528947c415aad5f2ca4cd4eb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

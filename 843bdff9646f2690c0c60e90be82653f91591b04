@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97fa9231_21bea460",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-17T16:06:21Z",
+      "side": 1,
+      "message": "\u003e I have given a comment to make the VendorIANA and compatible as private as i don\u0027t think they would we needed anywhere outside common code, mostly used for package validations internally. That way, later on, any changes to the packaging and firmwareInfo can be consumed internally in common code.\n\nDone\n\n\u003e This is not mandatory, but if you are concerned about the LOC in startUpdateAsync, consider defining an API such as getImageInfo() that can return the required info which can be further passed to continueUpdateWithMappedPackage().\n\nDone",
+      "parentUuid": "6331ffdc_f4f6b88a",
+      "revId": "843bdff9646f2690c0c60e90be82653f91591b04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b477fcb_0b8b2897",
         "filename": "common/src/device.cpp",
         "patchSetId": 86

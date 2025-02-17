@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95851956_190cebb2",
+        "filename": "bios-spi/spi_device_code_updater.hpp",
+        "patchSetId": 51
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T18:53:24Z",
+      "side": 1,
+      "message": "This is BIOS, not SPIFlash. Please test this code by actually running the updater on device along with EM configuration and fix all such issues in the next patch.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

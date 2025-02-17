@@ -3,6 +3,91 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0932a7b_5b38022a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:46:11Z",
+      "side": 1,
+      "message": "Update test to query and include the output of this redfish node to display the version.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e1a2b3_5b6258db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:46:11Z",
+      "side": 1,
+      "message": "Which image you are using for testing because looks like you have legacy bios updater enabled?",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35e35cf_2926984d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:46:11Z",
+      "side": 1,
+      "message": "There is something wrong as you don\u0027t have any progress update changes here?",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488acbfa_847f19c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:46:11Z",
+      "side": 1,
+      "message": "Percent complete shouldn\u0027t be zero but 100 for a successful case.\n\nYou can refer to  Tested section in  https://gerrit.openbmc.org/c/openbmc/bmcweb/+/75800 for an expected set of messages in Task section.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e5b573b_3d533b81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:46:11Z",
+      "side": 1,
+      "message": "Update test to query and include the output of this redfish node to display the new updated version.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95851956_190cebb2",
         "filename": "bios-spi/spi_device_code_updater.hpp",
         "patchSetId": 51

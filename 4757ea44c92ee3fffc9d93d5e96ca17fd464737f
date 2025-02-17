@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12857364_13d6486f",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 57
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-17T15:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a4f2838_e1090e83",
+      "revId": "4757ea44c92ee3fffc9d93d5e96ca17fd464737f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2254535_a6c707dc",

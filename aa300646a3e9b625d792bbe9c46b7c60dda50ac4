@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ae2828_9a5fc746",
+        "filename": "test/common/exampledevice/example_updater_main.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T18:33:30Z",
+      "side": 1,
+      "message": "In a new patch move this comment to init() function above.",
+      "revId": "aa300646a3e9b625d792bbe9c46b7c60dda50ac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

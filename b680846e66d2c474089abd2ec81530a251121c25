@@ -247,6 +247,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db641eb1_a3e0f113",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-17T19:25:31Z",
+      "side": 1,
+      "message": "I would suggest following -\n\nret \u003d ioctl(fd, I2C_SLAVE_FORCE, device_address);\nif (ret \u003c 0)\n{\n   this-\u003eclose();\n   return ret;\n}\n\n\nYou are already in error path, so failing a close fd is also fine, as long as you return an error to the caller that the  full-open(open+ioctl) operation has failed.\n\nWith your current code it will return success in this error path as fd close will succeed most probably (as it was just opened).",
+      "parentUuid": "7114db16_960cafaf",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da6ef212_c1428302",
         "filename": "interfaces/i2c/i2c.cpp",
         "patchSetId": 63

@@ -1,4 +1,56 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6ce2e2_e0c7591d",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 88
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-18T11:17:36Z",
+      "side": 1,
+      "message": "nit - maybe apply common format on comments for public api, i.e consistent @brief and lower/uppercase",
+      "revId": "cc37235521b98887b31d07e8aedd0d86320eeb1d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf22151_a7738fbb",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 88
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-18T11:17:36Z",
+      "side": 1,
+      "message": "nit - not sure about introducing the lg2 namespace like this. Seems inconsistent with how we do it in general, since we normally don\u0027t do it at all.",
+      "revId": "cc37235521b98887b31d07e8aedd0d86320eeb1d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c7c7e83_20f92624",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 88
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-18T11:17:36Z",
+      "side": 1,
+      "message": "Can we pass the configurationInterfaces as constrains array to the get_sub_tree call?",
+      "revId": "cc37235521b98887b31d07e8aedd0d86320eeb1d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ],
   "submitRequirementResults": []
 }

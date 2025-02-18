@@ -89,7 +89,7 @@ sdbusplus::async::task<bool> ExampleDevice::updateDevice(
     // The percentage should be monotonic and increasing.
     for (auto progress = 0; progress <= 100; progress += 20)
     {
-        setUpdateProgress(90);
+        setUpdateProgress(progress);
     }
 
     co_return true;

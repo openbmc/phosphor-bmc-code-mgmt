@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7735539c_3a7d9cc4",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-18T07:54:03Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "43ba20c4_ce35fb2a",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5def8c58_9ace6b81",
         "filename": "eeprom-device/README.md",
         "patchSetId": 7
@@ -383,6 +401,24 @@
       "side": 1,
       "message": "\u003e The target is an EEPROM device, but we cannot directly read the version from it, \n\n@Kevin.Tung@quantatw.com We need some way to read the version because it needs to be displayed in the firmware inventory.\n\n\n\u003e as the version information is not stored in a standardized format.\n\nDo you mean the version is not stored at a fixed offset on eeprom and size is arbitrary or something else? Because if its the earlier probably we can store that info in the EM configuration.",
       "parentUuid": "fadb03b1_e7e9a864",
+      "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95cb3c3_e5052a71",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-18T07:54:03Z",
+      "side": 1,
+      "message": "Are you suggesting storing the version retrieval path in EM, such as /sys/kernel/debug/pt5161l/21-0024/fw_ver, so the updater can read the version from it?\n\nWe have several options for implementing version retrieval:\n1. Store the retrieval path in EM, enabling the updater to read the version directly. However, this approach may not be suitable for a FRU EEPROM.\n2. Read the version from a specific offset provided in EM, though it\u0027s unclear whether the Retimer version can be retrieved this way.\n3. Calculate the EEPROM checksum as a versioning method, but this may not be meaningful for a Retimer.\n4. Use a hybrid approach, combining methods 1 and 3. This involves storing a retrieval path in EM, such as \"/sys/kernel/debug/pt5161l/21-0024/fw_ver\" or \"/sys/bus/i2c/devices/4-0052/eeprom\". If the path points to an EEPROM, the checksum is used as the version; otherwise, the version is read directly from the retrieval path.\n\nI prefer the last method, as it is a hybrid approach and provides a more generic solution.",
+      "parentUuid": "eb6bee9a_d8431896",
       "revId": "c2e636136ad946121a5370a7f3f84b25be20784b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

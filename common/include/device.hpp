@@ -44,13 +44,9 @@ class Device
     //                             Should also return true if update was applied
     //                             successfully, but the host failed to power
     //                             on.
-    virtual sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
-                                                      size_t image_size) = 0;
-
-    // @brief               Set the ActivationProgress properties on dbus
-    // @param progress      progress value
-    // @returns             true on successful property update
-    bool setUpdateProgress(uint8_t progress) const;
+    virtual sdbusplus::async::task<bool> updateDevice(
+        const uint8_t* image, size_t image_size,
+        std::unique_ptr<SoftwareActivationProgress>& activationProgress) = 0;
 
     // @brief                      This coroutine is spawned to perform the
     // async update of the device.

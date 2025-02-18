@@ -72,7 +72,9 @@ ExampleDevice::ExampleDevice(sdbusplus::async::context& ctx,
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> ExampleDevice::updateDevice(
-    const uint8_t* /*unused*/, size_t compImageSize)
+    const uint8_t* /*unused*/, size_t compImageSize,
+    std::unique_ptr<phosphor::software::SoftwareActivationProgress>&
+        updateProgress)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("Called device specific update function with image size {SIZE}",
@@ -89,7 +91,7 @@ sdbusplus::async::task<bool> ExampleDevice::updateDevice(
     // The percentage should be monotonic and increasing.
     for (auto progress = 0; progress <= 100; progress += 20)
     {
-        setUpdateProgress(progress);
+        updateProgress->setUpdateProgress(progress);
     }
 
     co_return true;

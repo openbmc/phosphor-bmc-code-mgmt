@@ -29,7 +29,7 @@ SoftwareActivationProgress::SoftwareActivationProgress(
     progress_ = 0;
 }
 
-void SoftwareActivationProgress::setProgress(int progressArg)
+void SoftwareActivationProgress::setUpdateProgress(int progressArg)
 {
     progress(progressArg);
 }

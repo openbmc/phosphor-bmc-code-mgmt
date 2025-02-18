@@ -263,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69569e62_11b3f98e",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:00:06Z",
+      "side": 1,
+      "message": "Thanks. I was blind to that :)",
+      "parentUuid": "db641eb1_a3e0f113",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da6ef212_c1428302",
@@ -382,6 +400,24 @@
       "side": 1,
       "message": "n_msg to msgIdx or msgIndex.",
       "parentUuid": "8ff4f432_912a26d8",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f7c5d07_49fdec33",
+        "filename": "interfaces/i2c/i2c.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:00:06Z",
+      "side": 1,
+      "message": "I read the capital i as small L 😂 and my brain didnt brain correctly. Thank you",
+      "parentUuid": "3774453a_3e9e1dde",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1744,6 +1780,24 @@
       "side": 1,
       "message": "Let\u0027s not include it in the patch for review if it won\u0027t be committed. Please drop it from the patch and keep it locally in your repo.",
       "parentUuid": "5092b2e0_4c37e680",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e1122f_953f9090",
+        "filename": "vr-i2c/regulators/main.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0dd0e70_a9c9fc42",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

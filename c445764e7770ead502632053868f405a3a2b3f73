@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a04a7f_05f02563",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T19:11:47Z",
+      "side": 1,
+      "message": "Let\u0027s not fix this issue this way as it seems like some genuine problem with signals not being emitted. You are just changing the constructor to send the version as part of it which won\u0027t solve the actual version set signal emit issue. So, lets solve the actual problem.\n\nI would suggest to start by -\n1. Introspecting to find the ObjectManager instance. I see you are creating it on /. So, verify it.\n2. If you do see one, then maybe run dbus-monitor --system when that interface is being created so you can see what signals are actually emitted\n\n\nLooked at code and suggesting changes based on that -\n1. Also change ObjectManager to be at /xyz/openbmc_project/software as thats the parent path we are interested in.\n2. Change ctx.get_bus().request_name(serviceNameFull.c_str()); to ctx.request_name(...) instead.",
+      "revId": "c445764e7770ead502632053868f405a3a2b3f73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1034,6 +1034,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "817dfc75_27ee37bd",
+        "filename": "vr-i2c/README.md",
+        "patchSetId": 63
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae50c5f9_facad3c6",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "226e8ec5_dab467f7",
@@ -1047,6 +1065,24 @@
       "writtenOn": "2025-02-14T09:12:23Z",
       "side": 1,
       "message": "these are in firmwareInfo object.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a8b40d_f64d90d8",
+        "filename": "vr-i2c/README.md",
+        "patchSetId": 63
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "226e8ec5_dab467f7",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1383,6 +1419,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4cbd4bd_cb60ffad",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "129c289d_54277c44",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613e6f3a_349b6909",
@@ -1396,6 +1450,24 @@
       "writtenOn": "2025-02-14T09:12:23Z",
       "side": 1,
       "message": "rename to busNum",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecddf8f4_88a541f2",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "613e6f3a_349b6909",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1417,6 +1489,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94f2fbc_77a581bc",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "907a1d93_9569102a",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af505027_81b160a2",
@@ -1434,6 +1524,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb8a2a3_53b528ca",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af505027_81b160a2",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "066dae1f_9ab05a1f",
@@ -1447,6 +1555,24 @@
       "writtenOn": "2025-02-14T09:12:23Z",
       "side": 1,
       "message": "\"Voltage regulator ...\"",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b48b57_9189562e",
+        "filename": "vr-i2c/i2c_vr_device_code_updater.cpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "066dae1f_9ab05a1f",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1854,6 +1980,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8cff7ab_98a20782",
+        "filename": "vr-i2c/regulators/vr.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23322fad_334bd44b",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6c092ae_9904d6d2",
@@ -2042,6 +2186,24 @@
       "writtenOn": "2025-02-14T09:12:23Z",
       "side": 1,
       "message": "Please read the coding guidelines here https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#types and fix the type names accordingly.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3551aded_b3608c38",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-18T08:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65081738_096e6cfa",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

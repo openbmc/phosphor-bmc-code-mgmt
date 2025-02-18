@@ -142,18 +142,6 @@ sdbusplus::async::task<bool> Device::resetDevice()
     co_return true;
 }
 
-bool Device::setUpdateProgress(uint8_t progress) const
-{
-    if (!softwarePending || !softwarePending->softwareActivationProgress)
-    {
-        return false;
-    }
-
-    softwarePending->softwareActivationProgress->setProgress(progress);
-
-    return true;
-}
-
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     const uint8_t* matchingComponentImage, size_t componentImageSize,
@@ -176,7 +164,8 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
         ActivationInterface::Activations::Activating);
 
     bool success =
-        co_await updateDevice(matchingComponentImage, componentImageSize);
+        co_await updateDevice(matchingComponentImage, componentImageSize,
+                              softwarePendingIn->softwareActivationProgress);
 
     if (success)
     {

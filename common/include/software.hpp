@@ -30,7 +30,7 @@ class SoftwareActivationProgress :
     SoftwareActivationProgress(sdbusplus::async::context& ctx,
                                const char* objPath);
 
-    void setProgress(int progressArg);
+    void setUpdateProgress(int progressArg);
 };
 
 using SoftwareActivationBlocksTransition = sdbusplus::aserver::xyz::

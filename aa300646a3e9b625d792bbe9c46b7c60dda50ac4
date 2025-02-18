@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa84906_3ea8a564",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:42:18Z",
+      "side": 1,
+      "message": "done https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78287/1",
+      "parentUuid": "add93878_54e6920c",
+      "revId": "aa300646a3e9b625d792bbe9c46b7c60dda50ac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8ae2828_9a5fc746",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-02-17T18:33:30Z",
       "side": 1,
       "message": "In a new patch move this comment to init() function above.",
+      "revId": "aa300646a3e9b625d792bbe9c46b7c60dda50ac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d530f17_ddf600ee",
+        "filename": "test/common/exampledevice/example_updater_main.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:42:18Z",
+      "side": 1,
+      "message": "done https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78287/1",
+      "parentUuid": "b8ae2828_9a5fc746",
       "revId": "aa300646a3e9b625d792bbe9c46b7c60dda50ac4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

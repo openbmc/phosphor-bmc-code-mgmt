@@ -34,6 +34,15 @@ void SoftwareActivationProgress::setUpdateProgress(int progressArg)
     progress(progressArg);
 }
 
+SoftwareVersion::SoftwareVersion(sdbusplus::async::context& ctx,
+                                 const char* objPath,
+                                 const std::string& initialVersion) :
+    sdbusplus::aserver::xyz::openbmc_project::software::Version<Software>(
+        ctx, objPath)
+{
+    version_ = initialVersion;
+}
+
 Software::Software(sdbusplus::async::context& ctx, Device& parent) :
     Software(ctx, parent, getRandomSoftwareId(parent))
 {}
@@ -133,8 +142,8 @@ void Software::setVersion(const std::string& versionStr)
         return;
     }
 
-    version = std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
-    version->version(versionStr);
+    version = std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str(),
+                                                versionStr);
 }
 
 void Software::setActivationBlocksTransition(bool enabled)

@@ -33,11 +33,18 @@ class SoftwareActivationProgress :
     void setUpdateProgress(int progressArg);
 };
 
+class SoftwareVersion :
+    private sdbusplus::aserver::xyz::openbmc_project::software::Version<
+        Software>
+{
+  public:
+    SoftwareVersion(sdbusplus::async::context& ctx, const char* objPath,
+                    const std::string& initialVersion);
+};
+
 using SoftwareActivationBlocksTransition = sdbusplus::aserver::xyz::
     openbmc_project::software::ActivationBlocksTransition<Software>;
 
-using SoftwareVersion =
-    sdbusplus::aserver::xyz::openbmc_project::software::Version<Software>;
 using SoftwareActivation =
     sdbusplus::aserver::xyz::openbmc_project::software::Activation<Software>;
 using SoftwareAssociationDefinitions =

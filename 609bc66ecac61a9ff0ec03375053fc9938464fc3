@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da51eb36_88537f8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0932a7b_5b38022a",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90e1a2b3_5b6258db",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-17T19:46:11Z",
       "side": 1,
       "message": "Which image you are using for testing because looks like you have legacy bios updater enabled?",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "828c3131_9a047349",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "I\u0027m using the Tyan s5549 / s8030 image. Downstream. There is patches for at least the EM config for these boards but they are not getting reviewed.\n\nThe only changes to phosphor-software-manager were adding my patches and enabling spi device code updater.",
+      "parentUuid": "90e1a2b3_5b6258db",
       "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1c71d0_1314c6a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "Yes, and already have a potential fixup for that.\n\nThe ```Device::setUpdateProgress``` worked on ```Device::softwarePending```, but that is only set after ```Device::updateDevice```.\n\nThe fixup passes the wrapper for the activation progress directly into ```updateDevice```. I believe that\u0027s cleaner than creating yet another class member variable.",
+      "parentUuid": "e35e35cf_2926984d",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "488acbfa_847f19c1",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-17T19:46:11Z",
       "side": 1,
       "message": "Percent complete shouldn\u0027t be zero but 100 for a successful case.\n\nYou can refer to  Tested section in  https://gerrit.openbmc.org/c/openbmc/bmcweb/+/75800 for an expected set of messages in Task section.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c441943_51c9877b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "488acbfa_847f19c1",
       "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b96bb03b_ef776bc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "Have to investigate here. Somehow the object mapper and fw inventory are not picking up the new version.\n\nEven though the new version is the only version exposed on dbus, they still see the old version.",
+      "parentUuid": "3e5b573b_3d533b81",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95851956_190cebb2",
         "filename": "bios-spi/spi_device_code_updater.hpp",
         "patchSetId": 51
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-17T18:53:24Z",
       "side": 1,
       "message": "This is BIOS, not SPIFlash. Please test this code by actually running the updater on device along with EM configuration and fix all such issues in the next patch.",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bbafe58_b91ffaae",
+        "filename": "bios-spi/spi_device_code_updater.hpp",
+        "patchSetId": 51
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-18T14:44:48Z",
+      "side": 1,
+      "message": "Adjusted this to \"BIOS\" as in \nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75948\n\nand adjusted README.md aswell.",
+      "parentUuid": "95851956_190cebb2",
       "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

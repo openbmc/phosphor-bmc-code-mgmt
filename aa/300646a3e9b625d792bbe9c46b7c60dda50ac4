@@ -1,0 +1,10 @@
+Code-Review+1: Marvin Drees
+Code-Review+2: Jagpal S Gill <paligill@gmail.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Alexander <alexander.hansen@9elements.com>
+Submitted-at: Tue, 18 Feb 2025 10:13:01 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/77965
+Comments-Total: 53
+Comments-Unresolved: 2
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

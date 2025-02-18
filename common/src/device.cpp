@@ -96,36 +96,38 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
         co_return false;
     }
 
+    std::unique_ptr<Software> softwarePendingOld = std::move(softwarePending);
+
+    softwarePending = std::move(softwarePendingIn);
+    softwarePendingIn = nullptr;
+
     const bool success = co_await continueUpdateWithMappedPackage(
-        componentImage, componentImageSize, componentVersion, applyTime,
-        softwarePendingIn);
+        componentImage, componentImageSize, componentVersion, applyTime);
 
-    if (success)
+    if (!success)
     {
-        if (applyTime == RequestedApplyTimes::Immediate)
-        {
-            softwareCurrent = std::move(softwarePendingIn);
-
-            // In case an immediate update is triggered after an update for
-            // onReset.
-            softwarePending = nullptr;
-
-            debug("Successfully updated to software version {SWID}", "SWID",
-                  softwareCurrent->swid);
-        }
-        else if (applyTime == RequestedApplyTimes::OnReset)
-        {
-            softwarePending = std::move(softwarePendingIn);
-        }
-    }
-    else
-    {
-        softwarePendingIn->setActivation(ActivationFailed);
+        softwarePending->setActivation(ActivationFailed);
         error("Failed to update the software for {SWID}", "SWID",
+              softwareCurrent->swid);
+
+        softwarePending = std::move(softwarePendingOld);
+
+        co_return false;
+    }
+
+    if (applyTime == RequestedApplyTimes::Immediate)
+    {
+        softwareCurrent = std::move(softwarePending);
+
+        // In case an immediate update is triggered after an update for
+        // onReset.
+        softwarePending = nullptr;
+
+        debug("Successfully updated to software version {SWID}", "SWID",
               softwareCurrent->swid);
     }
 
-    co_return success;
+    co_return true;
 }
 
 std::string Device::getEMConfigType() const
@@ -157,22 +159,21 @@ bool Device::setUpdateProgress(uint8_t progress) const
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     const uint8_t* matchingComponentImage, size_t componentImageSize,
-    const std::string& componentVersion, RequestedApplyTimes applyTime,
-    const std::unique_ptr<Software>& softwarePendingIn)
+    const std::string& componentVersion, RequestedApplyTimes applyTime)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    softwarePendingIn->setActivation(ActivationInterface::Activations::Ready);
+    softwarePending->setActivation(ActivationInterface::Activations::Ready);
 
-    softwarePendingIn->setVersion(componentVersion);
+    softwarePending->setVersion(componentVersion);
 
-    std::string objPath = softwarePendingIn->objectPath;
+    std::string objPath = softwarePending->objectPath;
 
-    softwarePendingIn->softwareActivationProgress =
+    softwarePending->softwareActivationProgress =
         std::make_unique<SoftwareActivationProgress>(ctx, objPath.c_str());
 
-    softwarePendingIn->setActivationBlocksTransition(true);
+    softwarePending->setActivationBlocksTransition(true);
 
-    softwarePendingIn->setActivation(
+    softwarePending->setActivation(
         ActivationInterface::Activations::Activating);
 
     bool success =
@@ -180,13 +181,13 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 
     if (success)
     {
-        softwarePendingIn->setActivation(
+        softwarePending->setActivation(
             ActivationInterface::Activations::Active);
     }
 
-    softwarePendingIn->setActivationBlocksTransition(false);
+    softwarePending->setActivationBlocksTransition(false);
 
-    softwarePendingIn->softwareActivationProgress = nullptr;
+    softwarePending->softwareActivationProgress = nullptr;
 
     if (!success)
     {
@@ -200,13 +201,13 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     {
         co_await resetDevice();
 
-        co_await softwarePendingIn->createInventoryAssociations(true);
+        co_await softwarePending->createInventoryAssociations(true);
 
-        softwarePendingIn->enableUpdate(allowedApplyTimes);
+        softwarePending->enableUpdate(allowedApplyTimes);
     }
     else
     {
-        co_await softwarePendingIn->createInventoryAssociations(false);
+        co_await softwarePending->createInventoryAssociations(false);
     }
 
     co_return true;

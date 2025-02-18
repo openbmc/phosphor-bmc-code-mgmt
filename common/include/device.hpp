@@ -106,8 +106,7 @@ class Device
     // update function
     sdbusplus::async::task<bool> continueUpdateWithMappedPackage(
         const uint8_t* componentImage, size_t componentImageSize,
-        const std::string& componentVersion, RequestedApplyTimes applyTime,
-        const std::unique_ptr<Software>& softwarePendingIn);
+        const std::string& componentVersion, RequestedApplyTimes applyTime);
 
     // @brief     extracts the information we need from the pldm package
     // @returns   true on success

@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c65427_ebb0e96c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "Please update the log message to reflect the actual issue -\n\ncommon: activation progress not taking affect",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8efd7f5a_3bebb51d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "Update the log message to reflect the problem in detail and the solution with setting softwarePending appropriately.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b21e2b7_b2fdf0bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "Please test this change with SPI code updater and make sure the Tested section covers the output. Although this is common code but this problem was discovered by looking at the Redfish logs from SPI code updater, so its better to add some concrete testing in this section.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c21cdaa_4ed1f0d6",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "Set softwarePending to correct value as thats the purpose of this to track the pending software.\n\nsoftwarePending \u003d std::move(softwarePendingIn);\nsoftwarePendingIn \u003d nullptr;",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad0f84a8_7d5fe131",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "softwarePending.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8456634a_78839bf3",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "Drop this elseif block as you have already set the softwarePending.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c61ac88_51ce9bb6",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "change to softwarePending-\u003e...",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c7d8043_54ed7ae2",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T18:24:20Z",
+      "side": 1,
+      "message": "You don\u0027t need to pass this softwarePendingIn as you can directly use softwarePending.\n\nReplace all softwarePendingIn with softwarePending in this function.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

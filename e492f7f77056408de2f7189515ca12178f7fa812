@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b070700_751429cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2025-02-19T20:22:39Z",
+      "side": 1,
+      "message": "The code already handles deleting the destination files whenever the source files are deleted: https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/85aed223a200a7769a27a281662ce991db09420a/bmc/sync_manager.cpp#L64\n\n```\nexecl(\"/usr/bin/rsync\", \"rsync\", \"-a\", \"--delete\",\n```\n\nThe commit message says this change will handle the scenario when source files are deleted, but what\u0027s being proposed instead is doing a one-time blind delete of files in the destination directory that don\u0027t exist in the source directory before the sync manager starts up. This is not what we want.\n\nOne example could be that the current flash device ran out of space and it\u0027s non-responsive, so the customer performs a factory reset which wipes out all the data. Then with the existing code they can switch to the alternate flash and all their previous synced data would still be there as expected (the sync manager is a form of backup).\nWith this proposed change, we\u0027d delete all the data from the alternate flash when the BMC starts up just because it didn\u0027t exist in the current flash, which could be empty because of factory reset, or chip replacement, etc.",
+      "revId": "e492f7f77056408de2f7189515ca12178f7fa812",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

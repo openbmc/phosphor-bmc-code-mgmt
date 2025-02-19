@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "735ee982_47eec1b3",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 88
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-19T17:26:16Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "8b6ce2e2_e0c7591d",
+      "revId": "cc37235521b98887b31d07e8aedd0d86320eeb1d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bf22151_a7738fbb",
         "filename": "common/src/device.cpp",
         "patchSetId": 88

@@ -127,6 +127,8 @@ void Software::setVersion(const std::string& versionStr)
 {
     debug("{SWID}: set version {VERSION}", "SWID", swid, "VERSION", versionStr);
 
+    const bool emitSignal = !version;
+
     if (!version)
     {
         version =
@@ -134,6 +136,12 @@ void Software::setVersion(const std::string& versionStr)
     }
 
     version->version(versionStr);
+    version->purpose(SoftwareVersion::Version::VersionPurpose::Other);
+
+    if (emitSignal)
+    {
+        version->emit_added();
+    }
 }
 
 void Software::setActivationBlocksTransition(bool enabled)

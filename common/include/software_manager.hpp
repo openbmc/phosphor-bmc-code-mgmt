@@ -53,11 +53,6 @@ class SoftwareManager
     sdbusplus::async::context& ctx;
 
   private:
-    // request the bus name on dbus after all configuration has been parsed
-    // and the devices have been initialized
-    // @returns        the name on dbus
-    std::string setupBusName();
-
     // this is appended to the common prefix to construct the dbus name
     std::string serviceNameSuffix;
 

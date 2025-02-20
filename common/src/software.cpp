@@ -135,6 +135,7 @@ void Software::setVersion(const std::string& versionStr)
 
     version = std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
     version->version(versionStr);
+    version->emit_added();
 }
 
 void Software::setActivationBlocksTransition(bool enabled)

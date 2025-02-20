@@ -131,6 +131,7 @@ void Software::setVersion(const std::string& versionStr)
     {
         version =
             std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
+        version->emit_added();
     }
 
     version->version(versionStr);

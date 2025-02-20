@@ -34,6 +34,24 @@
       "parentUuid": "6b070700_751429cd",
       "revId": "e492f7f77056408de2f7189515ca12178f7fa812",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "751717d8_ca9f5976",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2025-02-20T17:28:37Z",
+      "side": 1,
+      "message": "I see your point, although I\u0027m still concerned that we\u0027d not support the case anymore that I pointed out about after a factory reset I do want to boot from the second image and have all the previous data present because the data is good and useful to get the system back to where it was before.\n\nIn the case you described, perhaps the settingsd code could generate an empty file or a file with some default value if none is present, that\u0027d cause the sync to trigger and overwrite the file in the alternate version.\n\nIf that\u0027s not viable, I guess we could go with your change, although I\u0027d like to see if Lei has any opinions since he may be using systems with the static layout to make sure we don\u0027t break other people\u0027s use cases.",
+      "parentUuid": "4bbe8341_7f3ca8f6",
+      "revId": "e492f7f77056408de2f7189515ca12178f7fa812",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

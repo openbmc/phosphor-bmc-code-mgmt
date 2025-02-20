@@ -8,6 +8,7 @@
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/aserver.hpp>
 #include <xyz/openbmc_project/Software/ActivationProgress/aserver.hpp>
 #include <xyz/openbmc_project/Software/Version/aserver.hpp>
+#include <xyz/openbmc_project/Software/Version/client.hpp>
 
 #include <string>
 
@@ -65,8 +66,14 @@ class Software : private SoftwareActivation
     void enableUpdate(const std::set<RequestedApplyTimes>& allowedApplyTimes);
 
     // This should populate 'softwareVersion'
-    // @param version      the version string
-    void setVersion(const std::string& versionStr);
+    // @param version         the version string
+    // @param versionPurpose  which kind of software
+    void setVersion(const std::string& versionStr,
+                    SoftwareVersion::VersionPurpose versionPurpose =
+                        SoftwareVersion::VersionPurpose::Unknown);
+
+    // Return the version purpose
+    SoftwareVersion::VersionPurpose getPurpose();
 
     // This should populate 'softwareAssociationDefinitions'
     // @param isRunning             if the software version is currently running

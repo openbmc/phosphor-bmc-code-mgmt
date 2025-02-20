@@ -164,7 +164,8 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 {
     softwarePending->setActivation(ActivationInterface::Activations::Ready);
 
-    softwarePending->setVersion(componentVersion);
+    softwarePending->setVersion(componentVersion,
+                                softwareCurrent->getPurpose());
 
     std::string objPath = softwarePending->objectPath;
 

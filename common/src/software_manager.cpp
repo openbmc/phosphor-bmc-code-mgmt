@@ -7,6 +7,7 @@
 #include <sdbusplus/bus.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
+#include <xyz/openbmc_project/Software/Version/client.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
 
 #include <cstdint>
@@ -17,21 +18,18 @@ using namespace phosphor::software::manager;
 
 SoftwareManager::SoftwareManager(sdbusplus::async::context& ctx,
                                  const std::string& serviceNameSuffix) :
-    ctx(ctx), serviceNameSuffix(serviceNameSuffix), manager(ctx, "/")
-{
-    debug("initialized SoftwareManager");
-}
-
-std::string SoftwareManager::setupBusName()
+    ctx(ctx), serviceNameSuffix(serviceNameSuffix),
+    manager(ctx, sdbusplus::client::xyz::openbmc_project::software::Version<>::
+                     namespace_path)
 {
     const std::string serviceNameFull =
         "xyz.openbmc_project.Software." + serviceNameSuffix;
 
     debug("requesting dbus name {BUSNAME}", "BUSNAME", serviceNameFull);
 
-    ctx.get_bus().request_name(serviceNameFull.c_str());
+    ctx.request_name(serviceNameFull.c_str());
 
-    return serviceNameFull;
+    debug("Initialized SoftwareManager");
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
@@ -133,6 +131,4 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
     }
 
     debug("[config] done with initial configuration");
-
-    setupBusName();
 }

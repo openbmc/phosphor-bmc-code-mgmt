@@ -123,9 +123,12 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
     co_return;
 }
 
-void Software::setVersion(const std::string& versionStr)
+void Software::setVersion(const std::string& versionStr,
+                          SoftwareVersion::VersionPurpose versionPurpose)
 {
     debug("{SWID}: set version {VERSION}", "SWID", swid, "VERSION", versionStr);
+
+    const bool emitSignal = !version;
 
     if (!version)
     {
@@ -134,6 +137,17 @@ void Software::setVersion(const std::string& versionStr)
     }
 
     version->version(versionStr);
+    version->purpose(versionPurpose);
+
+    if (emitSignal)
+    {
+        version->emit_added();
+    }
+}
+
+SoftwareVersion::VersionPurpose Software::getPurpose()
+{
+    return version->purpose();
 }
 
 void Software::setActivationBlocksTransition(bool enabled)

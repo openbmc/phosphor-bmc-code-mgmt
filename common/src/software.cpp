@@ -127,13 +127,12 @@ void Software::setVersion(const std::string& versionStr)
 {
     debug("{SWID}: set version {VERSION}", "SWID", swid, "VERSION", versionStr);
 
-    if (version)
+    if (!version)
     {
-        error("{SWID}: version was already set", "SWID", swid);
-        return;
+        version =
+            std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
     }
 
-    version = std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
     version->version(versionStr);
 }
 

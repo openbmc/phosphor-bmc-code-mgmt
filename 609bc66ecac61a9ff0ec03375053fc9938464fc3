@@ -176,6 +176,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ceffbf1_22cd7da4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T17:22:01Z",
+      "side": 1,
+      "message": "Done. Added a fixup patch to the chain which resolves the issue of dbus signal not being emitted for software version.",
+      "parentUuid": "b96bb03b_ef776bc7",
+      "revId": "609bc66ecac61a9ff0ec03375053fc9938464fc3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95851956_190cebb2",

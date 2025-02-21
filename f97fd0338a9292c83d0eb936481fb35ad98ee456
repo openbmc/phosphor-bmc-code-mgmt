@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c50952_4c7dc983",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25c65427_ebb0e96c",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8efd7f5a_3bebb51d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-18T18:24:20Z",
       "side": 1,
       "message": "Update the log message to reflect the problem in detail and the solution with setting softwarePending appropriately.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7631a3cb_403eab9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8efd7f5a_3bebb51d",
       "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f30d120f_463a1c5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b21e2b7_b2fdf0bf",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c21cdaa_4ed1f0d6",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-18T18:24:20Z",
       "side": 1,
       "message": "Set softwarePending to correct value as thats the purpose of this to track the pending software.\n\nsoftwarePending \u003d std::move(softwarePendingIn);\nsoftwarePendingIn \u003d nullptr;",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d512cf_53881de1",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c21cdaa_4ed1f0d6",
       "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adfc7a34_8e8124f0",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "did set the softwarePending after this, but before \u0027continueUpdateWithMappedPackage\u0027.",
+      "parentUuid": "ad0f84a8_7d5fe131",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8456634a_78839bf3",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-18T18:24:20Z",
       "side": 1,
       "message": "Drop this elseif block as you have already set the softwarePending.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ffe29d_c9b27dcf",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8456634a_78839bf3",
       "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ff267f_ce4562b5",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c61ac88_51ce9bb6",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c7d8043_54ed7ae2",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-02-18T18:24:20Z",
       "side": 1,
       "message": "You don\u0027t need to pass this softwarePendingIn as you can directly use softwarePending.\n\nReplace all softwarePendingIn with softwarePending in this function.",
+      "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d913de6f_a066b992",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c7d8043_54ed7ae2",
       "revId": "f97fd0338a9292c83d0eb936481fb35ad98ee456",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

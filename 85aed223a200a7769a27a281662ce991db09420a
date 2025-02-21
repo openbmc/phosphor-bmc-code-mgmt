@@ -16,6 +16,24 @@
       "message": "There is a genuine issue in the code as softwarePending is not being set correctly, we need to fix that issue rather than changing the API. Let\u0027s fix that.",
       "revId": "85aed223a200a7769a27a281662ce991db09420a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a32532_3d48f4c2",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-21T13:16:06Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a6a8ea55_7aa5d6d1",
+      "revId": "85aed223a200a7769a27a281662ce991db09420a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

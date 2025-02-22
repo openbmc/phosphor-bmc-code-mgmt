@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3195e976_49ae32fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 58
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:23:40Z",
+      "side": 1,
+      "message": "Add service file xyz.openbmc_project.Software.XXX.service",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb629d3_590006f0",
+        "filename": "bios-spi/meson.build",
+        "patchSetId": 58
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:23:40Z",
+      "side": 1,
+      "message": "rename to phosphor-XXX-software-update\n\nAlso keep XXX consistent in the code, i see bios_spi, spi_device, etc. Choose one and keep it consistent in all filenames, class names, var names etc.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47d6ca7_c9cd3ea6",
+        "filename": "meson.options",
+        "patchSetId": 58
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:23:40Z",
+      "side": 1,
+      "message": "Change meson option name to XXX-software-update for consistency with other updaters.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

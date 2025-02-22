@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f244cabc_ed7e72cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T02:54:33Z",
+      "side": 1,
+      "message": "Update commit message to describe the problem.",
+      "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6827b2_1820ff5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T02:54:33Z",
+      "side": 1,
+      "message": "Add commit message description to explain problem in detail and the applied solution along with the tested section with Redfish logs.",
+      "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

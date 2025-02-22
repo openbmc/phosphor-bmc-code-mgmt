@@ -37,6 +37,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "092b834d_06e9ac20",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:38:01Z",
+      "side": 1,
+      "message": "Change to reflect new schema properties.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e82264_02f32130",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:38:01Z",
+      "side": 1,
+      "message": "This is part of FirmwareInfo section.\n\n\"FirmwareInfo\" : {\n\"VendorIANA\": \"6653\",\n\"Compatible\": \"com.tyan.Hardware.S8030.SPI.Host\"\n},",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "accff1db_9f2e9339",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-22T03:38:01Z",
+      "side": 1,
+      "message": "Why second example? All properties are required as per schema.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfb629d3_590006f0",
         "filename": "bios-spi/meson.build",
         "patchSetId": 58

@@ -224,6 +224,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f734b78_121af527",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Why do u have this NOLINT for clang-analyzer-core.uninitialized.Branch, please check it might be a valid issue.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f26919ff_aabb5adb",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Bring writeSPIFlash API code here as this API is almost empty.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc242058_323a76dd",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58
@@ -235,6 +269,24 @@
       "writtenOn": "2025-02-23T05:37:49Z",
       "side": 1,
       "message": "Why do you need this API? There is so much of hardcoded opcodes in this code? Lets keep this open until we discuss about this.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb52f3f_0c79f33c",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Let\u0027s move ME specific support into a subsequent new patch since this is intel specific. In this patch, if EM config has ME enabled flag, then you can mark it not supported and exit. \nIn subsequent patch, you can support the ME enabled flag path and add these Intel specific APIs into the required places in update flow.",
+      "parentUuid": "fc242058_323a76dd",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -258,6 +310,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82004d36_f2605866",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Move to subsequent patch for Intel.",
+      "parentUuid": "a578b887_5b8a3d30",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0657ce4b_8cd4ac43",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58
@@ -269,6 +339,143 @@
       "writtenOn": "2025-02-23T05:37:49Z",
       "side": 1,
       "message": "Why hardcoded?",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49fb683b_9250c022",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Aren\u0027t you suppose to use spiControllerIndex and spiDeviceIndex to generate this?",
+      "parentUuid": "0657ce4b_8cd4ac43",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c86adab_7d5da357",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Change to debug and drop [SPI] from message.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b6f63e2_05bd326b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Change to debug.\n\nDrop [SPI] from message. Please change this in other messages too.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62af3a0_2eef69b6",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Not necessary, drop this message.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc33585f_aef1040d",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "rename to powerState and as mentioned in other comment, add the enum in HostClass for State and use that here rather than a bool var.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e878b4_134acd4b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Just use auto, not need to define on previous line. Your getHostPowerstate should do the required handling and return back appropriate values.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50058e6a_eec2e492",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Move ME logic to next patch.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c388fac_02ef8b0e",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Move writeSPIFlash code to UpdateDevice()\nRename this to writeSPIFlash as caller will turn the HostOff.",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -292,6 +499,193 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e4c04f3_b43f3dc3",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Define an API that will change the GPIO to what you want them and call it here.\n\nSame API should also take an arg to toggle the GPIOs back and should be called at the end.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79987c01_ca350f85",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "This whole code shall move to above API which would be renamed to writeSPIFlash",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a1ab80_6d2e16b4",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Move this whole condition inside bindSPIFlash() as thats the one which should do all this checking.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c9ee2c_9de0be0e",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "rename to writeSPIFlashWithFlashrom",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80142cc5_4b24ba5c",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Fix this TODO.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a18ac2ad_f33297d1",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Why does your dev has a fixed path?",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08caf04_6f1353ab",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Whats this other layout you are supporting? As i mentioned you need to define an enum for layout and make it explicit what this layout format is.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721f2678_95d5592a",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Drop this message after you have tested the flow, if you want it make it debug.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51ef78b_9c31068f",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "rename to writeSPIFlashDefault()",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b156e10_49b67656",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Why this hardcoded path? Have you tested this code at all?",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7de3d0_47eb77a5",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "debug level",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4296dec9_2db42149",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58
@@ -303,6 +697,23 @@
       "writtenOn": "2025-02-23T05:37:49Z",
       "side": 1,
       "message": "Lets create a class in common code with name HostPower and define these 2 APIs as class APIs and use it from there.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af8e9ce_e3db2b66",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T08:43:43Z",
+      "side": 1,
+      "message": "Define a enum for State and pass that value rather than passing bool var.",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

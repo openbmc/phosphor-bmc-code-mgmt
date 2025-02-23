@@ -37,6 +37,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf2c7d71_36f73862",
+        "filename": "bios-spi/NotifyWatch.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Rename to processVersionUpdate().",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c720e32_48c3b838",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Why are you mentioning this? How is it useful? Please add a tested example configuration only.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "092b834d_06e9ac20",
         "filename": "bios-spi/README.md",
         "patchSetId": 58
@@ -48,6 +82,23 @@
       "writtenOn": "2025-02-22T03:38:01Z",
       "side": 1,
       "message": "Change to reflect new schema properties.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8631482_b00e61b5",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Is this GPIOLineName or GPIOLineNumber? Let\u0027s make this explicit in property name. Because if its LineName then we don\u0027t need to specify the GPIOChipId, but if its number then we need to specify GPIOChipId/GPIOChipNum.\n\nFYI: The way you are specifying the value it seems to be a GpioLineName to me.",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +139,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fbee919_e83e9270",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Please list possible values of Layout and describe what does each mean. No need to define json again as you already showed above that its a field in EM configuration.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e361b947_408782d8",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 58
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Just mention these are possible values and what does each mean, no need to define json again.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfb629d3_590006f0",
         "filename": "bios-spi/meson.build",
         "patchSetId": 58
@@ -105,6 +190,431 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1e6a638_ef1636ae",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "No need of this log line.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14569a2f_834339be",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Change to \"SPI Device initialized successfully\". Add the device name to log line if possible.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc242058_323a76dd",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Why do you need this API? There is so much of hardcoded opcodes in this code? Lets keep this open until we discuss about this.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a578b887_5b8a3d30",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0657ce4b_8cd4ac43",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Why hardcoded?",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1094b9c_9c63a8a6",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "You are using a LineName below, then why do you need a chip, i think u can figure it out automatically. Refer to your gpio presence sensor code.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4296dec9_2db42149",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Lets create a class in common code with name HostPower and define these 2 APIs as class APIs and use it from there.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2ca912_cf1a20c9",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "\"Failed to get version with {ERROR}\"",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "525f5026_de6bcf11",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "define consexpr for Unknown and use at all places.\n\nAlso, use \"Unknown\".",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffdd9027_56ce7d3d",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Check if softwareCurrent is set as this is flow will start getting triggered one device is created but softwareCurrent might not be set yet.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e707faa0_f917356b",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Rename to getVersion()",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffab1876_fee43199",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Rename to processVersionUpdate(...)\n\nAt end of SPISoftwareManager::initDevice() you need to call ctx.spawn(spiDevice-\u003ereadNotifyAsync()) which schedule an async task to handle any updates to the biosVersionPath.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd1eb2f_20fb1f40",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Please add @description to keep it consistent with @param. Make this change at other places too in the header file.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b2c143_7fe6ae35",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Since, all properties are mandatory, lets get all of them and then just have one check for missing value with some error message.\n\nAlso, lets have just one debug log at end if you want to print values.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf1216d3_5b51b5de",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "You can directly assign config vectors to class var vectors since you already did the size check above. I don\u0027t think you need to have this iterative loop.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96234200_007c1186",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Don\u0027t need this log line.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6b25ec_e12df73c",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Merge into common check.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f4ca7ae_ca58e6b4",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Define a local enum for layout with values - Flat and IFD and set the values accordingly. In future if you have more layouts, bool value of layoutFlat won\u0027t scale.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d169c56f_cad7313b",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Define an enum for tool as well.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "984e21c1_c494c933",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Isn\u0027t this an error condition, if no tool is provided, what you will use for flashing? If there is something default, then set that here instead.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3623e8be_9a7d28c4",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Drop this as its not being used.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c444acd_3d2e37c2",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Rename bsws to software.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca797b9_0bc3c7f2",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Move this line after you set the softwareCurrent because before that the async flow will not be able to use softwareCurrent, so one you set it get the new value of version and set it in softwareCurrent.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7803a55f_d0a43357",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "You need to call ctx.spawn(spiDevice-\u003ereadNotifyAsync()) which schedule an async task to handle any updates to the biosVersionPath.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9914cf8_557ac3bd",
+        "filename": "bios-spi/spi_device_code_updater.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "If no one else uses this besides .cpp, then just move this to .cpp",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55ed9e33_a82e3bc5",
         "filename": "bios-spi/spi_device_code_updater.hpp",
         "patchSetId": 58
@@ -116,6 +626,23 @@
       "writtenOn": "2025-02-22T03:32:35Z",
       "side": 1,
       "message": "Rename class Name to XXXSoftwareManager to keep it consistent with common code.\n\nAlso, change fileName accordingly.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54a1a45f_7f9c3f51",
+        "filename": "bios-spi/spi_device_code_updater.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:37:49Z",
+      "side": 1,
+      "message": "Make this private, no one uses it outside.",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

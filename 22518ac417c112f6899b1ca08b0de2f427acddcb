@@ -394,6 +394,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38bf10fd_f8543844",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-23T05:44:00Z",
+      "side": 1,
+      "message": "I see you are already calling readNotifyAsync() in SPIDevice constructor, so you can ignore the second comment. Only rename the API as suggested. Thanks",
+      "parentUuid": "ffab1876_fee43199",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dd1eb2f_20fb1f40",
         "filename": "bios-spi/spi_device.hpp",
         "patchSetId": 58

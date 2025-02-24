@@ -24,17 +24,17 @@ using namespace phosphor::software;
 using namespace phosphor::software::manager;
 using namespace phosphor::software::host_power;
 
-SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
-                     uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                     bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                     const std::vector<uint64_t>& gpioValuesIn,
-                     SoftwareConfig& config, SoftwareManager* parent,
-                     enum FlashLayout layout, enum FlashTool tool,
-                     const std::string& versionDirPath) :
+SPIDevice::SPIDevice(
+    sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
+    uint64_t spiDeviceIndex, bool dryRun, bool hasME,
+    const std::vector<std::string>& gpioLinesIn,
+    const std::vector<uint64_t>& gpioValuesIn, SoftwareConfig& config,
+    SoftwareManager* parent, enum FlashLayout layout, enum FlashTool tool,
+    const std::string& versionDirPath) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     NotifyWatchIntf(ctx, versionDirPath), dryRun(dryRun),
-    gpioLines(gpioLinesIn),
+    hasManagementEngine(hasME), gpioLines(gpioLinesIn),
     gpioValues(gpioValuesIn.begin(), gpioValuesIn.end()),
     spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
     layout(layout), tool(tool)
@@ -87,7 +87,24 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
     }
     setUpdateProgress(10);
 
+    if (hasManagementEngine)
+    {
+        co_await setManagementEngineRecoveryMode();
+    }
+
+    setUpdateProgress(20);
+
     success = co_await writeSPIFlash(image, image_size);
+
+    if (success)
+    {
+        setUpdateProgress(70);
+    }
+
+    if (hasManagementEngine)
+    {
+        co_await resetManagementEngine();
+    }
 
     if (success)
     {
@@ -107,6 +124,58 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
     // SPI flash. Restoring powerstate can still fail.
     co_return success;
     // NOLINTEND(readability-static-accessed-through-instance)
+}
+
+constexpr const char* IPMB_SERVICE = "xyz.openbmc_project.Ipmi.Channel.Ipmb";
+constexpr const char* IPMB_PATH = "/xyz/openbmc_project/Ipmi/Channel/Ipmb";
+constexpr const char* IPMB_INTF = "org.openbmc.Ipmb";
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<> SPIDevice::setManagementEngineRecoveryMode()
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    info("[ME] setting Management Engine to recovery mode");
+    auto m = ctx.get_bus().new_method_call(IPMB_SERVICE, IPMB_PATH, IPMB_INTF,
+                                           "sendRequest");
+
+    // me address, 0x2e oen, 0x00 - lun, 0xdf - force recovery
+    uint8_t cmd_recover[] = {0x1, 0x2e, 0x0, 0xdf};
+    for (unsigned int i = 0; i < sizeof(cmd_recover); i++)
+    {
+        m.append(cmd_recover[i]);
+    }
+    std::vector<uint8_t> remainder = {0x04, 0x57, 0x01, 0x00, 0x01};
+    m.append(remainder);
+
+    m.call();
+
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(5));
+
+    co_return;
+}
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<> SPIDevice::resetManagementEngine()
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    info("[ME] resetting Management Engine");
+    auto m = ctx.get_bus().new_method_call(IPMB_SERVICE, IPMB_PATH, IPMB_INTF,
+                                           "sendRequest");
+
+    // me address, 0x6 App Fn, 0x00 - lun, 0x2 - cold reset
+    uint8_t cmd_recover[] = {0x1, 0x6, 0x0, 0x2};
+    for (unsigned int i = 0; i < sizeof(cmd_recover); i++)
+    {
+        m.append(cmd_recover[i]);
+    }
+    std::vector<uint8_t> remainder;
+    m.append(remainder);
+
+    m.call();
+
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(5));
+
+    co_return;
 }
 
 const std::string spiAspeedSMCPath = "/sys/bus/platform/drivers/spi-aspeed-smc";

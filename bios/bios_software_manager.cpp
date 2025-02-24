@@ -61,7 +61,11 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         values.push_back((polarity == "High") ? 1 : 0);
     }
 
-    if (!spiControllerIndex.has_value() || !spiDeviceIndex.has_value())
+    std::optional<bool> hasME = co_await dbusGetRequiredProperty<bool>(
+        ctx, service, path, configIface, "hasME");
+
+    if (!spiControllerIndex.has_value() || !spiDeviceIndex.has_value() ||
+        !hasME.value())
     {
         error("Error: Missing property");
         co_return false;
@@ -78,7 +82,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     {
         spiDevice = std::make_unique<SPIDevice>(
             ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-            names, values, config, this, layout, tool);
+            hasME.value(), names, values, config, this, layout, tool);
     }
     catch (std::exception& e)
     {

@@ -52,6 +52,24 @@
       "parentUuid": "a0332928_4bf555ed",
       "revId": "c445764e7770ead502632053868f405a3a2b3f73",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e4e4b0_eb1e11aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T13:49:31Z",
+      "side": 1,
+      "message": "That will emit \u0027property changed\u0027 signal, which is not what we need.\n\nThe object mapper does not react to that, it needs the \u0027interfaces added\u0027 signal.",
+      "parentUuid": "18510c8e_54c96fb9",
+      "revId": "c445764e7770ead502632053868f405a3a2b3f73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

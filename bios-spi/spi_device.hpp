@@ -30,7 +30,7 @@ class SPIDevice : public Device, public NotifyWatchIntf
   public:
     using Device::softwareCurrent;
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex, bool dryRun,
+              uint64_t spiDeviceIndex, bool dryRun, bool hasME,
               const std::vector<std::string>& gpioLines,
               const std::vector<uint8_t>& gpioValues, SoftwareConfig& config,
               SoftwareManager* parent, bool layoutFlat, bool toolFlashrom);
@@ -47,6 +47,11 @@ class SPIDevice : public Device, public NotifyWatchIntf
 
   private:
     bool dryRun;
+
+    // Management Engine specific members and functions
+    bool hasManagementEngine;
+    sdbusplus::async::task<> setManagementEngineRecoveryMode();
+    sdbusplus::async::task<> resetManagementEngine();
 
     std::vector<std::string> gpioLines;
     std::vector<uint8_t> gpioValues;

@@ -82,12 +82,6 @@ sdbusplus::async::task<bool> SPIDeviceCodeUpdater::initDevice(
         co_return false;
     }
 
-    if (hasME.value())
-    {
-        error("[config] configuration with ME is unsupported");
-        co_return false;
-    }
-
     debug("[config] spi device: {INDEX1}:{INDEX2}", "INDEX1",
           spiControllerIndex.value(), "INDEX2", spiDeviceIndex.value());
 
@@ -171,7 +165,8 @@ sdbusplus::async::task<bool> SPIDeviceCodeUpdater::initDevice(
 
     auto spiDevice = std::make_unique<SPIDevice>(
         ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-        gpioLines, gpioValues, config, this, layoutFlat, toolFlashrom);
+        hasME.value(), gpioLines, gpioValues, config, this, layoutFlat,
+        toolFlashrom);
 
     std::unique_ptr<Software> software =
         std::make_unique<Software>(ctx, *spiDevice);

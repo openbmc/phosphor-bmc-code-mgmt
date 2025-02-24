@@ -31,8 +31,9 @@ int main()
         SoftwareConfig config(objPath, vendorIANA, compatible, configTypeBIOS,
                               "HostSPI");
 
-        auto sd = std::make_unique<SPIDevice>(
-            ctx, 1, 0, true, gpioNames, gpioValues, config, cu, true, false);
+        auto sd =
+            std::make_unique<SPIDevice>(ctx, 1, 0, true, true, gpioNames,
+                                        gpioValues, config, cu, true, false);
 
         spidcu.devices.insert({objPath, std::move(sd)});
     }

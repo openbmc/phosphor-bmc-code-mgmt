@@ -88,12 +88,6 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         co_return false;
     }
 
-    if (hasME.value())
-    {
-        error("[config] configuration with ME is unsupported");
-        co_return false;
-    }
-
     if (configGPIONames.value().size() != configGPIOValues.value().size())
     {
         error(
@@ -141,8 +135,8 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
     auto spiDevice = std::make_unique<SPIDevice>(
         ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-        configGPIONames.value(), configGPIOValues.value(), config, this, layout,
-        tool);
+        hasME.value(), configGPIONames.value(), configGPIOValues.value(),
+        config, this, layout, tool);
 
     std::unique_ptr<Software> software =
         std::make_unique<Software>(ctx, *spiDevice);

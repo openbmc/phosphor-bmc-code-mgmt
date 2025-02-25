@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b30c4f85_def95c2e",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "probably call the update function here. Maybe something like\n\n```cpp\nvrInterface-\u003efwUpdate(image, image_size, false);\n```",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3584b43f_0291ad58",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "From my understanding \"Exiting...\" refers to to process termination.\n\nLet\u0027s simplify to \n```\ninfo(\"Update of VR \u0027{NAME}\u0027 done.\", \"NAME\", config.configName);\n```\n\nso the log has some info on which VR was actually updated.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "528ebc8f_4bdf8096",
+        "filename": "i2c-vr/i2cvr_device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "This include appears to be unused.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c286b35_b83d4018",
+        "filename": "i2c-vr/i2cvr_device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "This include appears to be unused.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1ec00d_4ca3b025",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "is \u0027version\u0027 unused variable?",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a619bdca_6978f9c1",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "since the return value of ```getCRC``` \n\nis only ever compared ```\u003c 0```, does it make sense to simplify the return type as bool? Or do you have any plans of implementing additional logic based on the returned value.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8330f68f_8454790b",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "```// @returns \u003c 0 on error``` (or similar)\n\nor simplify to return bool (but also make small comment about return value)",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f517b235_89627779",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "```// @returns \u003c 0 on error``` (or similar)\n\nor simplify to return bool  (but also make small comment about return value)",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2742171f_2c90680c",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "insert \n```\nPHOSPHOR_LOG2_USING;\n```\n\nnear the top of the file to avoid the ```lg2::``` prefix.\n\nI received this comment on my patches, so just forwarding it here.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f2aebd3_9fadf4cb",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "Since you always prefix\n```XDPE1X2XX``` before the log message,\n\nit may make sense to define some wrapper function\nto avoid duplicating this throughout the code.\n\nFor example,\n```\nvoid xdpe_error(std::string func, std::string msg)\n{\n    error(\"XDPE1X2XX::{FUNC}: {MSG}\", \"FUNC\", func, \"MSG\", msg);\n}\n```\n\nand then call as\n\n```\nxdpe_error(__func__, \"failed\");\n```\n\n(or similar)",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09deb63d_2df451f9",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "lg2::debug",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b2cdc2_bb298436",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "same here, since there is only 2 cases handled in the caller: {success,failure},\n\nthe return type can probably be simplified to bool.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9491a572_f59cc047",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T10:40:45Z",
+      "side": 1,
+      "message": "```reset()``` returns 1 on error,\nbut the other error paths in this function ```return -1```.\n\nLet\u0027s stick to one value for the error case.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

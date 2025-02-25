@@ -651,6 +651,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb206ba1_006dd234",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "This is the argument i have seen used to probe this driver.\nThat is why i initially wanted to go with it.\n\ni can try to look into the driver source/kernel docs to see if it can be probed with something else, or if we can generate this information somehow.",
+      "parentUuid": "49fb683b_9250c022",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c86adab_7d5da357",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58
@@ -911,6 +929,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8e7a79_2304617a",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1094b9c_9c63a8a6",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e4c04f3_b43f3dc3",
@@ -924,6 +960,24 @@
       "writtenOn": "2025-02-23T08:43:43Z",
       "side": 1,
       "message": "Define an API that will change the GPIO to what you want them and call it here.\n\nSame API should also take an arg to toggle the GPIOs back and should be called at the end.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f3e8be_e66fe844",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "created this function and called it requestMuxGPIOs.",
+      "parentUuid": "6e4c04f3_b43f3dc3",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1050,6 +1104,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc961ae_bc03946b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80142cc5_4b24ba5c",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a18ac2ad_f33297d1",
@@ -1067,6 +1139,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed71870_b36833ba",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "fixed that, introduced ```getMTDDevicePath``` to query the mtd device path based on spi controller id and device id.",
+      "parentUuid": "a18ac2ad_f33297d1",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b08caf04_6f1353ab",
@@ -1080,6 +1170,24 @@
       "writtenOn": "2025-02-23T08:43:43Z",
       "side": 1,
       "message": "Whats this other layout you are supporting? As i mentioned you need to define an enum for layout and make it explicit what this layout format is.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29346f72_15ccb66d",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "made it explicit now and handled the unsupported flash layout,\nso it is protected if there is any new layout introduced later on.",
+      "parentUuid": "b08caf04_6f1353ab",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1167,6 +1275,24 @@
       "writtenOn": "2025-02-23T08:43:43Z",
       "side": 1,
       "message": "Why this hardcoded path? Have you tested this code at all?",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3194a7e3_a5b52271",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Changed it to use a new function ```getMTDDevicePath()```\nwhich queries the mtd device path for the spi controller index and spi device index.",
+      "parentUuid": "4b156e10_49b67656",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1486,6 +1612,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "147c4f0e_8e6644a8",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dd1eb2f_20fb1f40",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47b2c143_7fe6ae35",
@@ -1503,6 +1647,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de972815_ac87e339",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47b2c143_7fe6ae35",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf1216d3_5b51b5de",
@@ -1516,6 +1678,24 @@
       "writtenOn": "2025-02-23T05:37:49Z",
       "side": 1,
       "message": "You can directly assign config vectors to class var vectors since you already did the size check above. I don\u0027t think you need to have this iterative loop.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bf2a214_91c91137",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf1216d3_5b51b5de",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1572,6 +1752,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "492f9afc_0e14fb5f",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f6b25ec_e12df73c",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f4ca7ae_ca58e6b4",
@@ -1589,6 +1787,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70964901_51d58f7f",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f4ca7ae_ca58e6b4",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d169c56f_cad7313b",
@@ -1602,6 +1818,24 @@
       "writtenOn": "2025-02-23T05:37:49Z",
       "side": 1,
       "message": "Define an enum for tool as well.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe1c127_14f363fd",
+        "filename": "bios-spi/spi_device_code_updater.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d169c56f_cad7313b",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1829,6 +2063,24 @@
       "writtenOn": "2025-02-22T03:32:35Z",
       "side": 1,
       "message": "Rename class Name to XXXSoftwareManager to keep it consistent with common code.\n\nAlso, change fileName accordingly.",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96a46113_b39a0542",
+        "filename": "bios-spi/spi_device_code_updater.hpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T13:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ed9e33_a82e3bc5",
       "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

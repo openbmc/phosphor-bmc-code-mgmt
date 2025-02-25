@@ -669,6 +669,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4ec58b5_9e184d67",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-25T14:37:48Z",
+      "side": 1,
+      "message": "ok, looked into https://github.com/torvalds/linux/blob/d082ecbc71e9e0bf49883ee4afd435a77a5101b6/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi#L88\n\nand apparently there is a mapping between spi controller index and\nthe memory mapped address of the spi peripheral (used to probe the driver).\n\nso ```spi1 is 0x1e630000, spi2 is 0x1e631000``` and so on.\n\nIt seems to be the same for aspeed 2600 aswell.\nhttps://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi\n\nSo we can hardcode that mapping and go from there.\n\nI explored ```/sys/firmware/devicetree/``` for a while to try and find a way to find the mapping at runtime but could not.",
+      "parentUuid": "fb206ba1_006dd234",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c86adab_7d5da357",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58

@@ -2033,6 +2033,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "339f639c_474e2400",
+        "filename": "vr-i2c/regulators/vr.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d15e218_68258e73",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af4aff89_8a8f847d",
@@ -2225,6 +2243,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a90ae6_e93413b0",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2ea88d5_01879c85",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1106c5c_183605f0",
@@ -2242,6 +2278,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "859670f7_a0a9b4a5",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1106c5c_183605f0",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dd58361_f43ce086",
@@ -2255,6 +2309,24 @@
       "writtenOn": "2025-02-14T09:12:23Z",
       "side": 1,
       "message": "rename to sendCmd and make this private as well.",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ca3634_5197a411",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dd58361_f43ce086",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -2311,6 +2383,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c098fc42_a6e0097d",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfa7b6e7_13cd8a86",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5edd3d3a_83d9d8ae",
@@ -2342,6 +2432,24 @@
       "side": 1,
       "message": "It is, but for testing purposes I leave it as is for now.",
       "parentUuid": "5edd3d3a_83d9d8ae",
+      "revId": "b680846e66d2c474089abd2ec81530a251121c25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6b0cc1_a773f83f",
+        "filename": "vr-i2c/regulators/xdpe152xx.hpp",
+        "patchSetId": 63
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-25T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a73b841_40a831ae",
       "revId": "b680846e66d2c474089abd2ec81530a251121c25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

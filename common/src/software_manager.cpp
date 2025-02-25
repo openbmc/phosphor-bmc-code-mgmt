@@ -43,8 +43,8 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
                       .service("xyz.openbmc_project.ObjectMapper")
                       .path("/xyz/openbmc_project/object_mapper");
 
-    auto res =
-        co_await client.get_sub_tree("/xyz/openbmc_project/inventory", 0, {});
+    auto res = co_await client.get_sub_tree("/xyz/openbmc_project/inventory", 0,
+                                            configurationInterfaces);
 
     for (auto& iface : configurationInterfaces)
     {

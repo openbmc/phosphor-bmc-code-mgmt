@@ -68,8 +68,11 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
+
 common_build = build_tests.allowed() or get_option('bios-software-update').enabled() or get_option(
     'i2cvr-software-update',
+).enabled() or get_option(
+    'cpld-software-update',
 ).enabled()
 
 if common_build
@@ -90,6 +93,10 @@ endif
 
 if get_option('i2cvr-software-update').enabled()
     subdir('i2c-vr')
+endif
+
+if get_option('cpld-software-update').enabled()
+    subdir('cpld')
 endif
 
 if build_tests.allowed()

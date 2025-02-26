@@ -74,6 +74,17 @@ sdbusplus::async::task<bool> I2C::sendReceive(
     co_return true;
 }
 
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<bool> I2C::sendReceive(
+    std::vector<uint8_t>& writeData, size_t readSize,
+    std::vector<uint8_t>& readData) const
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    readData.resize(readSize, 0);
+    co_return co_await sendReceive(writeData.data(), writeData.size(),
+                                   readData.data(), readSize);
+}
+
 int I2C::close() const
 {
     return ::close(fd);

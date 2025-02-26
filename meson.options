@@ -50,9 +50,16 @@ option(
 )
 
 option(
+    'cpld-software-update',
+    type: 'feature',
+    value: 'disabled',
+    description: 'Enable update of CPLD',
+)
+
+option(
     'side-switch-on-boot',
     type: 'feature',
-    value: 'enabled',
+    value: 'disabled',
     description: 'Automatic flash side switch on boot',
 )
 

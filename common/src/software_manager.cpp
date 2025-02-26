@@ -86,19 +86,21 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
             std::string emConfigType{};
             std::string emConfigName{};
 
+            const std::string ifaceFwInfoDef = interfaceFound + ".FirmwareInfo";
+
             try
             {
                 {
                     auto propVendorIANA =
                         co_await client.call<std::variant<uint64_t>>(
-                            ctx, "Get", interfaceFound, "VendorIANA");
+                            ctx, "Get", ifaceFwInfoDef, "VendorIANA");
 
                     vendorIANA = std::get<uint64_t>(propVendorIANA);
                 }
                 {
                     auto propCompatible =
                         co_await client.call<std::variant<std::string>>(
-                            ctx, "Get", interfaceFound, "Compatible");
+                            ctx, "Get", ifaceFwInfoDef, "CompatibleHardware");
 
                     compatible = std::get<std::string>(propCompatible);
                 }

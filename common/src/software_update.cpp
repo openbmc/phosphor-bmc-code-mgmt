@@ -30,9 +30,9 @@ SoftwareUpdate::SoftwareUpdate(
     software(software), allowedApplyTimes(allowedApplyTimes)
 {}
 
-auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
-                                 auto applyTime)
-    -> sdbusplus::async::task<start_update_t::return_type>
+auto SoftwareUpdate::method_call(
+    start_update_t /*unused*/, auto image,
+    auto applyTime) -> sdbusplus::async::task<start_update_t::return_type>
 {
     debug("Requesting Image update with {FD}", "FD", image.fd);
 

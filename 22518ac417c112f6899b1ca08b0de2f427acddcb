@@ -685,6 +685,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b42b26f_03a87645",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-26T17:10:08Z",
+      "side": 1,
+      "message": "changed this to assign ```spiDev``` in the constructor based on the spi controller index.",
+      "parentUuid": "f4ec58b5_9e184d67",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c86adab_7d5da357",

@@ -72,6 +72,8 @@ common_build = build_tests.allowed() or get_option('bios-software-update').allow
     'i2cvr-software-update',
 ).allowed() or get_option(
     'eepromdevice-software-update',
+).allowed() or get_option(
+    'cpld-software-update',
 ).allowed()
 
 if common_build
@@ -90,13 +92,20 @@ if get_option('bios-software-update').allowed()
     subdir('bios')
 endif
 
-if get_option('i2cvr-software-update').allowed()
+if get_option('i2cvr-software-update').allowed() or get_option('cpld-software-update').allowed()
     subdir('common/i2c/')
+endif
+
+if get_option('i2cvr-software-update').allowed()
     subdir('i2c-vr')
 endif
 
 if get_option('eepromdevice-software-update').allowed()
     subdir('eeprom-device')
+endif
+
+if get_option('cpld-software-update').allowed()
+    subdir('cpld')
 endif
 
 if build_tests.allowed()

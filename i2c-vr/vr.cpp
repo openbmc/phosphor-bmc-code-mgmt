@@ -25,7 +25,7 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
 
 bool stringToEnum(std::string& vrStr, VRType& vrType)
 {
-    std::map<std::string, enum VRType> VRTypeToString{
+    std::map<std::string, enum VRType> VRTypeToString {
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
     };
 

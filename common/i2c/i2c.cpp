@@ -37,41 +37,45 @@ sdbusplus::async::task<bool> I2C::sendReceive(
     uint8_t readSize) const
 // NOLINTEND(readability-static-accessed-through-instance)
 {
+    bool result = true;
+
     if (fd <= 0)
     {
-        co_return false;
+        result = false;
     }
-
-    struct i2c_msg msg[2];
-    struct i2c_rdwr_ioctl_data readWriteData;
-    int msgIndex = 0;
-
-    if (writeSize)
+    else
     {
-        msg[msgIndex].addr = deviceNode;
-        msg[msgIndex].flags = 0;
-        msg[msgIndex].len = writeSize;
-        msg[msgIndex].buf = writeData;
-        msgIndex++;
-    }
+        struct i2c_msg msg[2];
+        struct i2c_rdwr_ioctl_data readWriteData;
+        int msgIndex = 0;
 
-    if (readSize)
-    {
-        msg[msgIndex].addr = deviceNode;
-        msg[msgIndex].flags = I2C_M_RD;
-        msg[msgIndex].len = readSize;
-        msg[msgIndex].buf = readData;
-        msgIndex++;
-    }
+        if (writeSize)
+        {
+            msg[msgIndex].addr = deviceNode;
+            msg[msgIndex].flags = 0;
+            msg[msgIndex].len = writeSize;
+            msg[msgIndex].buf = writeData;
+            msgIndex++;
+        }
 
-    readWriteData.msgs = msg;
-    readWriteData.nmsgs = msgIndex;
+        if (readSize)
+        {
+            msg[msgIndex].addr = deviceNode;
+            msg[msgIndex].flags = I2C_M_RD;
+            msg[msgIndex].len = readSize;
+            msg[msgIndex].buf = readData;
+            msgIndex++;
+        }
 
-    if (ioctl(fd, I2C_RDWR, &readWriteData) < 0)
-    {
-        co_return false;
+        readWriteData.msgs = msg;
+        readWriteData.nmsgs = msgIndex;
+
+        if (ioctl(fd, I2C_RDWR, &readWriteData) < 0)
+        {
+            result = false;
+        }
     }
-    co_return true;
+    co_return result;
 }
 
 int I2C::close() const

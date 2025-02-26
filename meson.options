@@ -57,6 +57,13 @@ option(
 )
 
 option(
+    'cpld-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable update of CPLD',
+)
+
+option(
     'side-switch-on-boot',
     type: 'feature',
     value: 'enabled',

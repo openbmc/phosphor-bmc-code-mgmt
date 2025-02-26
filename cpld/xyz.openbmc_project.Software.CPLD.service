@@ -1,0 +1,14 @@
+[Unit]
+Description=CPLD Code Update Daemon
+After=xyz.openbmc_project.ObjectMapper
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=always
+Type=dbus
+BusName=xyz.openbmc_project.Software.CPLD
+RemainAfterExit=no
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-cpld-software-update
+
+[Install]
+WantedBy=multi-user.target

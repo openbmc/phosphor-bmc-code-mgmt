@@ -68,9 +68,13 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
+<<<<<<< PATCH SET (75bb15 fw-update: cpld code updater)
+common_build = build_tests.allowed() or get_option('cpld-software-update').enabled()
+=======
 common_build = build_tests.allowed() or get_option('bios-software-update').enabled() or get_option(
     'i2cvr-software-update',
 ).enabled()
+>>>>>>> BASE      (7e446a Add i2c voltage regulator updater)
 
 if common_build
     libpldm_dep = dependency('libpldm')
@@ -84,12 +88,17 @@ if common_build
     subdir('common')
 endif
 
+<<<<<<< PATCH SET (75bb15 fw-update: cpld code updater)
+if get_option('cpld-software-update').enabled()
+    subdir('cpld')
+=======
 if get_option('bios-software-update').enabled()
     subdir('bios')
 endif
 
 if get_option('i2cvr-software-update').enabled()
     subdir('i2c-vr')
+>>>>>>> BASE      (7e446a Add i2c voltage regulator updater)
 endif
 
 if build_tests.allowed()

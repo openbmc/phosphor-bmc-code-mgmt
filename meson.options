@@ -50,6 +50,9 @@ option(
 )
 
 option(
+<<<<<<< PATCH SET (75bb15 fw-update: cpld code updater)
+    'cpld-software-update',
+=======
     'i2cvr-software-update',
     type: 'feature',
     value: 'enabled',
@@ -58,8 +61,16 @@ option(
 
 option(
     'side-switch-on-boot',
+>>>>>>> BASE      (7e446a Add i2c voltage regulator updater)
     type: 'feature',
     value: 'enabled',
+    description: 'Enable update of CPLD',
+)
+
+option(
+    'side-switch-on-boot',
+    type: 'feature',
+    value: 'disabled',
     description: 'Automatic flash side switch on boot',
 )
 

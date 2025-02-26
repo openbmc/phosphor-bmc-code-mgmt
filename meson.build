@@ -68,10 +68,13 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
+
 common_build = build_tests.allowed() or get_option('bios-software-update').enabled() or get_option(
     'i2cvr-software-update',
 ).enabled() or get_option(
     'eepromdevice-software-update',
+).enabled() or get_option(
+    'cpld-software-update',
 ).enabled()
 
 if common_build
@@ -86,17 +89,28 @@ if common_build
     subdir('common')
 endif
 
+i2c_build = get_option('i2cvr-software-update').enabled() or get_option(
+    'cpld-software-update',
+).enabled()
+
+if i2c_build
+    subdir('common/i2c')
+endif
+
 if get_option('bios-software-update').enabled()
     subdir('bios')
 endif
 
 if get_option('i2cvr-software-update').enabled()
-    subdir('common/i2c/')
     subdir('i2c-vr')
 endif
 
 if get_option('eepromdevice-software-update').enabled()
     subdir('eeprom-device')
+endif
+
+if get_option('cpld-software-update').enabled()
+    subdir('cpld')
 endif
 
 if build_tests.allowed()

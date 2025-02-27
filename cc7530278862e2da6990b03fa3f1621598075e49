@@ -50,6 +50,24 @@
       "message": "@alexander.hansen@9elements.com  Call setupBusName() here in constructor instead of initDevices and see if it fixes your signal emit issue. Since D-bus registration will happen early, the signals might start flowing fine.",
       "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c60a1f_a92de837",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-27T13:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ca322bc_fdf44eaf",
+      "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

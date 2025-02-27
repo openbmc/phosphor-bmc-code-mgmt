@@ -71,12 +71,12 @@ common_include = include_directories('.')
 common_build = build_tests.allowed()
 
 if common_build
-  libpldm_dep = dependency('libpldm')
+    libpldm_dep = dependency('libpldm')
 
-  subdir('common')
+    subdir('common')
 endif
 
 if build_tests.allowed()
-  subdir('test')
+    subdir('test')
 endif
 

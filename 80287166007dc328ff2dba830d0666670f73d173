@@ -473,6 +473,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8258c795_3ee0538d",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:55:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77606218_a9d28521",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23a65194_0775e03c",
@@ -770,6 +788,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7689a7a_fd3cba41",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:55:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8330f68f_8454790b",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f517b235_89627779",
@@ -783,6 +819,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "```// @returns \u003c 0 on error``` (or similar)\n\nor simplify to return bool  (but also make small comment about return value)",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81780752_9f37cd12",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:55:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f517b235_89627779",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

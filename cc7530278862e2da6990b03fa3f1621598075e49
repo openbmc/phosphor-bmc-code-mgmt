@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "063d832c_529826cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-28T11:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f244cabc_ed7e72cd",
+      "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc6827b2_1820ff5d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-22T02:54:33Z",
       "side": 1,
       "message": "Add commit message description to explain problem in detail and the applied solution along with the tested section with Redfish logs.",
+      "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dfa12d9_7e49845e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-28T11:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc6827b2_1820ff5d",
       "revId": "cc7530278862e2da6990b03fa3f1621598075e49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

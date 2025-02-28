@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f062d6d_84ccd4f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 76
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed78b34_516fd64b",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b30c4f85_def95c2e",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "probably call the update function here. Maybe something like\n\n```cpp\nvrInterface-\u003efwUpdate(image, image_size, false);\n```",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3dc09f5_b5c066a5",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b30c4f85_def95c2e",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "166217a2_420477bb",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfa2ae38_2339225a",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3584b43f_0291ad58",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "From my understanding \"Exiting...\" refers to to process termination.\n\nLet\u0027s simplify to \n```\ninfo(\"Update of VR \u0027{NAME}\u0027 done.\", \"NAME\", config.configName);\n```\n\nso the log has some info on which VR was actually updated.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19574fdd_76bd7831",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3584b43f_0291ad58",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -103,6 +175,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30831e24_c59e40f9",
+        "filename": "i2c-vr/i2cvr_device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "528ebc8f_4bdf8096",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c286b35_b83d4018",
@@ -120,6 +210,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb9ffcb_ddc6f211",
+        "filename": "i2c-vr/i2cvr_device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c286b35_b83d4018",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a773aaf_92d71792",
@@ -133,6 +241,24 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "Don\u0027t directly use the namespace, but define -\n\nnamespace SoftwareIntf \u003d phosphor::software;\nnamespace ManagerIntf \u003d phosphor::software::manager;\nnamespace DeviceIntf \u003d ...\n\nAnd use these SoftwareIntf::xxxx in the code.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67fbbf0f_bd14556a",
+        "filename": "i2c-vr/i2cvr_device.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a773aaf_92d71792",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +297,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa2f82c_52768b53",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "493081f3_80403539",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db737aa1_cbf7b919",
@@ -184,6 +328,24 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "Check for Unknown type here and log appropriate error.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8d0e4b_e73ac1c0",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db737aa1_cbf7b919",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -223,6 +385,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91ea4ad4_4ff0f6ec",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec1ec00d_4ca3b025",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a619bdca_6978f9c1",
@@ -253,6 +433,42 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "Please define an API on device for `std::string getVersion()` which should internally get the CRC from VRInterface, lets avoid this multi level redirection.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944dc3c8_f1f84ef1",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af10a913_46a48387",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77606218_a9d28521",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "I could limit the return type to bool, but that feels like a violation of standard. \n\nReturn value checking of errors is a accepted standard pattern.",
+      "parentUuid": "a619bdca_6978f9c1",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -291,6 +507,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86df91aa_fba1e40d",
+        "filename": "i2c-vr/i2cvr_software_manager.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0886392_86257264",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f8e576_56c5fb09",
@@ -304,6 +538,24 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "These config list should include all the types defined in enum definition of Type property in EM schema. Have you tested this code end 2 end with schema? I don\u0027t see this defined there.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6d16d0d_b3dfa349",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23f8e576_56c5fb09",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -325,6 +577,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6561a69a_ca8bde21",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f325009_25da8ba3",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d478adb0_e0b3f111",
@@ -338,6 +608,24 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "The start API should be a member of I2CVRSoftwareManager instead and you can do a context spawn on that.\n\nSo, move this to I2CVRSoftwareManager.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be80e8b3_787f08e5",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d478adb0_e0b3f111",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -359,6 +647,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "457747e4_8181d6c8",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7c08eaa_1982239d",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f14557d_71d7fdac",
@@ -376,6 +682,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ed08cc4_fff0a656",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f14557d_71d7fdac",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29f6f94d_1b998b8f",
@@ -389,6 +713,24 @@
       "writtenOn": "2025-02-26T08:48:15Z",
       "side": 1,
       "message": "Please define Unknown for error checking and stringToEnum should return Uknown in case its not mappable.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6664c7ef_d7f26774",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Fixed the lookup function instead.",
+      "parentUuid": "29f6f94d_1b998b8f",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -444,6 +786,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40564424_f6817203",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2742171f_2c90680c",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f2aebd3_9fadf4cb",
@@ -461,6 +821,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50683af4_19f2358b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f2aebd3_9fadf4cb",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09deb63d_2df451f9",
@@ -474,6 +852,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "lg2::debug",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e34d58cc_d00cd621",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09deb63d_2df451f9",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -508,6 +904,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "```reset()``` returns 1 on error,\nbut the other error paths in this function ```return -1```.\n\nLet\u0027s stick to one value for the error case.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "209b9be0_10b0408b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9491a572_f59cc047",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -549,6 +963,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e2dd29c_d245f3b6",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "I can make it a #define, the enum isnt used anywhere.",
+      "parentUuid": "3214ab8b_2053bee4",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ae45afc_6829d164",
         "filename": "meson.options",
         "patchSetId": 76
@@ -578,6 +1010,24 @@
       "side": 1,
       "message": "Or i2c-vr-software-update is also fine.",
       "parentUuid": "4ae45afc_6829d164",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03855753_d4b4ce2e",
+        "filename": "meson.options",
+        "patchSetId": 76
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-02-28T10:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a256fb94_74fc9b29",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

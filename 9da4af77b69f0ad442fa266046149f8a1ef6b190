@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f6f66d_dcb58bfe",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Asked @alexander.hansen@9elements.com to extend Host_Power class to add this matcher https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/76101/comment/8fc0750d_c25df3a0/, so you can use that.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e12121a2_eeb276b5",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be \"on\"",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df4b37a_21772273",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Don\u0027t include full namespaces, but define and use -\n\nnamespace SoftwareIntf \u003d phosphor::software;\n\nDo same at other places.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604546f7_f9993c2b",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Lets use phosphor::software::eeprom as namespace only.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65f5279_abfb1d0e",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "I see you have written these APIs as in SPI Code Updater. Based on latest comments Alexander has updated that code. Please update all this code to reflect that as well.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2582481d_97906dc2",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Rename to EEPROMDeviceSoftwareManager",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84ee1ab_3821cd5a",
+        "filename": "eeprom-device/version-providers/pt5161l.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Rename dir version-providers to pt5161l",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e54f126_035148cc",
+        "filename": "eeprom-device/version-providers/pt5161l.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "This should come from a generic StateManager API like https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/76101/64/common/include/host_power.hpp.\n\n@alexander.hansen@9elements.com is already adding this to common. I am also going to ask him to add a matcher for State Change.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5882f134_3b2151fb",
+        "filename": "eeprom-device/version-providers/version_provider.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Move both .hpp and .cpp file to eeprom-device dir.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b3ccf1_7bbcb0dd",
+        "filename": "eeprom-device/version-providers/version_provider.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:30:56Z",
+      "side": 1,
+      "message": "Rename class to DeviceVersion",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

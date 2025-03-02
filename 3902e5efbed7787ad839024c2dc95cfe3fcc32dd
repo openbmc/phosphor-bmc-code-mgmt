@@ -16,6 +16,771 @@
       "message": "Rename bios-spi dir to bios.",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08ba6c5_8204c291",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "xyz.openbmc_project.Configuration.BIOS",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bc09c08_4eabe60c",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bf165cd_cfcd1342",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move this to intel patch.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f61f30_b2f36dc1",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move intel specific changes to intel patch.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca8c1d1_93c2bed1",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move to common code as @christopher.meis@9elements.com also uses this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ee4c61_bb608329",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "error()",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4486f4bb_c6f5e7e6",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Please remove [config] from all the messages and Fix the messages with first word as capital in sentence.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b58911dd_2d93b32c",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Please remove this info message.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f5c28f_ba4cd1ef",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Add a comment with details and reference to Device tree for the values.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "320c8a7b_b6b0614b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "For an invalid index this will crash, please do due handling by checking on spiControllerIndex by sizeof spiDevAddr and throwing an exception and handling it where the SPIDevice gets created.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce29afb_ff08e5fb",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "{NAME}\u0027 -\u003e {NAME}\n{CI} - {CONTROLLERINDEX}\n{DI} - {DEVICEINDEX}",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4292b154_6e76d5f0",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Remove this 20 and update progress at significant places in the flow.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4239990_dceba267",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Do a const int define for 2 with some appropriate name and use it. That way you can just drop the comment as it would become implicit.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eabdce6_82d8223e",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move this inside if(inverted) case and related fillup logic as well.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af160811_8685b5d1",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "rename to lineBulk",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e993ef5d_620192b7",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "rename to lineBulk",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ddeabd_f54257f3",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Why are u unbinding if bind fails. \n\nMove unbindSPIFlash() inside success case above.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e28fab9_fdd8f653",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this check? You are returning success outside condition as well? Is this suppose to be failure?",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2962019_42642384",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move this logic to getRandomId API. I think you are already generating randomId somewhere for objectPath, isn\u0027t it better to define it at one place, for example, SoftwareManager (as static API) and use it here as well?",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb8bcee_01e19032",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Update some progress here.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1dcd82_d20e4951",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "rename to devPath",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9e5814_b2fc1fec",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "no need to define const here as you are just using it in line below, just directly use devPath.value() there.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2969f55a_cec1fa87",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Move this else clause to intel patch.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10fac822_2fd1eb4b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Would this sync command block the FW request while its running? Can you please test this?",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57db15a2_5f2ff840",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Lets not dump this flashrom specific message. Return exitCode to caller and dump a more appropriate error message in caller with some args such as DeviceName etc.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14dd0a41_bd2703d6",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "rename to devPath",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c157b27b_9d39de49",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Same testing as above to see if this blocks the fw version get in meantime.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c17c05a_21ec6d72",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Fix this clang warning.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3393492c_d5a598ff",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Rename args as i mentioned in other comment above.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f46cdc2_f5c62c31",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "UpperCamelCase\n\nPlease read guidelines in https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#types and scrub the whole patch to make any changes.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb308c7_4c7b44bc",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "lowerCamelCase",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3ac0d47_f7308b6f",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Rename configFileName to versionFileName.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8527486e_721bd411",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "No param, remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f55bd9_06ab9c89",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "No param, remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "908fc51d_7b5fd5f9",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "No param, remove this.\n\nPlease scrub all comments to make sure they reflect the latest patch changes.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fd07ce6_cb467b57",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "You don\u0027t have dependency on Software.Manager, so remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ab668b_5155f12f",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Why do you need BMC state? Are you watching any signal from it?",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b5817e_b0e83227",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "You need\n\nRequires\u003dxyz.openbmc_project.EntityManager.service\nAfter\u003dxyz.openbmc_project.EntityManager.service",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e3dc8f2_b2f30803",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "You don\u0027t have dependency on settingd, so remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ace7213_1bbd67c7",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "You can follow some fixes i did in https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75617/50/src/NotifyWatch.hpp and bring them in.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de63940d_5954705f",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Rename processVersionUpdate to processUpdate to keep the class purpose generic.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43f1448d_2bf471df",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Let\u0027s directly use the enums from PDI rather than re-defining these.\n\nYou can define shorthand for the type with using clause here and then directly use them.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f9d43c6_9af625e8",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Let\u0027s directly use these enums with using in the .hpp file rather than defining a new enum.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fb54df_531a684e",
+        "filename": "meson.options",
+        "patchSetId": 64
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "Lets move this on line#58 at end of #Features.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4217d896_87687391",
+        "filename": "meson.options",
+        "patchSetId": 64
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T01:56:59Z",
+      "side": 1,
+      "message": "\"Enable BIOS/Host firmware update\"",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

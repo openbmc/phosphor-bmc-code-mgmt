@@ -1,0 +1,650 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0253f72_37620f44",
+        "filename": "common/meson.build",
+        "patchSetId": 78
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Lets move i2c.hpp to include/i2c/i2c.hpp",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83ff147_c92837f6",
+        "filename": "i2c-vr/README.md",
+        "patchSetId": 78
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "FirmwareInfo is missing.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2a35e0_d6396be7",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Lets keep this comment open, until the updateProgress is added.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42dbf3c2_47e58cf8",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "\"Successfully updated VR {NAME}\", \"NAME\"...",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf05d403_5f08d661",
+        "filename": "i2c-vr/meson.build",
+        "patchSetId": 78
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "phosphor-i2cvr-software-update",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4a381a_36e03107",
+        "filename": "i2c-vr/vr.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "As per new EM change the type is only \"XDPE1X2XXFirmware\", lets change this code accordingly.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5564947f_4af47c15",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Lets add this type in followup patch as support for ISL69260.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23ee99b_0c75d284",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Update comment to add force.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358c6d51_9d1be4a0",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Rename to updateFirmware and make this an async API which returns a task.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793b8baf_ccba3434",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Is \u003c 0 only an error, how about 0 or greater than 0, is it all success? If yes, then isn\u0027t it better to change the type to bool?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091a22ca_9a756c79",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Lets change return type to bool to show PASS/FAIL as CRC is already being returned by sum.\n\nRename sum to checksum.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9a6694_043bedbc",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Move in arg (str) as first arg and out arg (enum) as second arg as that seems better as per API name and generally accepted API signature.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d06d93e_e536c370",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Rename vrType to vrStr.\nRename type to vrType.\n\nChange in .cpp file as well.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7eb5ee_2c7c159a",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Lets add a virtual function `bool forceUpdateAllowed()` which the updater shall implement.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3eb523_6ad38895",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Please use this function, also don\u0027t log line#, func etc. Directly use lg2 and log relevant error message at the same place with appropriate information rather than line# and function name.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16eb6cff_65b9bacb",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "This should be called once in constructor and devId should be a class var. Isn\u0027t it? If yes, then lets change this code to follow C++ semantics.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d402b2_a54278d5",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "for example, \n\nerror(\"Failed to get device id with {ERROR}\", \"ERROR\", ret);\n\nPlease change at other places too.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42fc7db5_07c808ff",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "I don\u0027t see any caller of this function in this file?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe20296_7ac1dfce",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "what is 6? \nWhat is 0?\n\nPlease do appropriate #define for these explaining what they mean. Same in all other APIs.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948963d4_62a100a9",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Make this an async write operation and do async sleep here, rather than blocking the caller.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d19014_6e75bd3b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Should be an async task.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6091226_5a072c6b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Rename devid to devId",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e12daf8_9f346568",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Please have switch case for all types and return some error for default case.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0916d88e_26b7c0ec",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "What are these hex numbers? Lets do const defines for these hex to explain their purpose.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6672c22d_4e09b1a1",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Should be async sleep.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39838e77_acf6c90f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Defines the APIs as tasks and use async sleep where you are using usleep or sleep in code.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e47258b_678dc6b2",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Please do const defines for these.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e87ef88_fe48f5c9",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "By looking at this function, it seems better to break this up and expose specific APIs in vr.hpp as under -\n\n1. verifyFirmwareImage(image, imageSize); { Shall internally call parseImage() \u0026 checkImage() }\n\n2. updateFirmware(force);\n\n3. reset();  \u003c\u003c Depending upon applyTime we need to use this.\n\nAll APIs shall return async task.\n\n\nstruct xdpe1x2xxConfig cfg; \u003c\u003c This can be class var but you need to make sure it clean it up at end of updateFirmware().\n\nThat way state can be controlled more granularly from updateDevice() API.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91ba573_16641516",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Why do we need this sleep? How is this helping as its at the end of the function?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4212f0b_5740fa91",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Please move all the defines to .cpp file where they are getting used. Don\u0027t expose them in header if they are not used outside.\n\nAlso, lets do const defines instead of #define.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ddd5ae8_85f28ad5",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "You have this in vr.hpp as well, Why again?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5f5b39_3fc327a6",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "I don\u0027t see this enum being used anywhere?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4a5c1e_7d83087d",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Rename to ProductID",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "958e49f6_40ec83e7",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "This should be a static function only in .cpp. No need to declare here.\n\nAlso, please follow the lg2 guidelines for logs, i don\u0027t think you should be logging line and func info. Directly use lg2 API and log the relevant information.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259a7345_d97d13c9",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Please move the internal APIs as private. This is the final steps of review. We cannot keep it as open.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a547e1_48581336",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "rename to updateFirmware",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34d9434_904fb55d",
+        "filename": "i2c-vr/xyz.openbmc_project.Software.I2CVR.service",
+        "patchSetId": 78
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Why do u have this dependency on BMC Software Manager? Do you need anything from it?",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a337d060_f1c2f2a1",
+        "filename": "i2c-vr/xyz.openbmc_project.Software.I2CVR.service",
+        "patchSetId": 78
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "You are not getting anything from Settingsd, thwn why this dependency?\n\nPlease look at all the above dependencies and make sure you only add them if they are needed in some way.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

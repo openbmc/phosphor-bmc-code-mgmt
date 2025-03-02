@@ -1053,6 +1053,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78288b5a_71e50064",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T00:11:41Z",
+      "side": 1,
+      "message": "Enum is fine, looks like you are using PRODUCT_ID_XDPE19283 only, will give a comment in the API.\n\nPlease Move this to .cpp file",
+      "parentUuid": "1e2dd29c_d245f3b6",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ae45afc_6829d164",
         "filename": "meson.options",
         "patchSetId": 76

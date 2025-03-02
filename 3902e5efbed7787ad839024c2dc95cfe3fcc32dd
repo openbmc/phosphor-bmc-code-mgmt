@@ -770,6 +770,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fc0750d_c25df3a0",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T05:20:43Z",
+      "side": 1,
+      "message": "Lets extend this class to also register a matcher for signal changes for host state\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/77088/10/eeprom-device/eeprom_device.cpp\n\n    hostStateMatch \u003d std::make_unique\u003csdbusplus::bus::match_t\u003e(\n        ctx.get_bus(),\n        MatchRules::propertiesChanged(\"/xyz/openbmc_project/state/host0\",\n                                      \"xyz.openbmc_project.State.Host\"),\n        std::bind(std::mem_fn(\u0026EEPROMDevice::hostStateChangedUpdateVersion),\n                  this, std::placeholders::_1));",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f9d43c6_9af625e8",
         "filename": "common/src/host_power.cpp",
         "patchSetId": 64

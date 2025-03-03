@@ -211,6 +211,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec94964e_156ef92f",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:49:05Z",
+      "side": 1,
+      "message": "Moved this to it\u0027s own patch at the start of the series.\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78595/1",
+      "parentUuid": "eca8c1d1_93c2bed1",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6ee4c61_bb608329",

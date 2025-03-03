@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efa196cb_bae29c9b",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "cannot change it here as \u0027SPIFlash\u0027 is latest type in the EM schema patch\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75948\n\nIf there is a review of the EM schema, let\u0027s place that review comment on the respective patch. Otherwise people may be confused why there is a change without any comment.",
+      "parentUuid": "7e855c00_0a45df73",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0bc09c08_4eabe60c",
         "filename": "bios-spi/README.md",
         "patchSetId": 64
@@ -84,6 +102,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63e81bbe_a6be5963",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bc09c08_4eabe60c",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -105,6 +141,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d37629_b5db54c1",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bf165cd_cfcd1342",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0f61f30_b2f36dc1",
@@ -118,6 +172,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Move intel specific changes to intel patch.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d512527a_15218063",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f61f30_b2f36dc1",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c240aae_0ae8037b",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6ee4c61_bb608329",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4486f4bb_c6f5e7e6",
@@ -169,6 +259,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Please remove [config] from all the messages and Fix the messages with first word as capital in sentence.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8efc4e84_0f5aba1a",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4486f4bb_c6f5e7e6",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -190,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2d800c_c81f6d4a",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b58911dd_2d93b32c",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88f5c28f_ba4cd1ef",
@@ -203,6 +329,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Add a comment with details and reference to Device tree for the values.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed9d1257_1b09aa77",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88f5c28f_ba4cd1ef",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -224,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d4b526e_f7e7ec04",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "throwing the exception here and handling it in \u0027initDevice\u0027.",
+      "parentUuid": "320c8a7b_b6b0614b",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ce29afb_ff08e5fb",
@@ -237,6 +399,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "{NAME}\u0027 -\u003e {NAME}\n{CI} - {CONTROLLERINDEX}\n{DI} - {DEVICEINDEX}",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0245326_5e7d33c0",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ce29afb_ff08e5fb",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -258,6 +438,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26fbb729_6b4345e2",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4292b154_6e76d5f0",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4239990_dceba267",
@@ -271,6 +469,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Do a const int define for 2 with some appropriate name and use it. That way you can just drop the comment as it would become implicit.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3bc9934_133d523b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4239990_dceba267",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -292,6 +508,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e93fdc0_12e9f77f",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eabdce6_82d8223e",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af160811_8685b5d1",
@@ -305,6 +539,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "rename to lineBulk",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae3736a_a818d4dc",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af160811_8685b5d1",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -326,6 +578,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de80a0c4_cc27b320",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e993ef5d_620192b7",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84ddeabd_f54257f3",
@@ -343,6 +613,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3210c5b_760612bd",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84ddeabd_f54257f3",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e28fab9_fdd8f653",
@@ -356,6 +644,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "What\u0027s the purpose of this check? You are returning success outside condition as well? Is this suppose to be failure?",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2aff047_65b4c947",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "The write has succeeded already so the update was successful.\n\nThis check is to prevent\n```bulk-\u003erelease()```\nif requesting the gpios is unsuccessful.",
+      "parentUuid": "2e28fab9_fdd8f653",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -379,6 +685,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34542c89_5368b2f2",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "There is\n\n```static long int getRandomId()```\n\nwhich you explicitly requested to be a private API and static function, multiple times.\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/710f0304_eea0c036/\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/1a5d6d65_3be07fb8/",
+      "parentUuid": "e2962019_42642384",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deb8bcee_01e19032",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 64
@@ -390,6 +714,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Update some progress here.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38fb7070_5b4c992d",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deb8bcee_01e19032",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -411,6 +753,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33abd72d_77896e64",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e1dcd82_d20e4951",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b9e5814_b2fc1fec",
@@ -428,6 +788,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73efbacf_d7c67f7b",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b9e5814_b2fc1fec",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2969f55a_cec1fa87",
@@ -441,6 +819,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Move this else clause to intel patch.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9de6fcae_6582a32e",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2969f55a_cec1fa87",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -464,6 +860,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d2fb4cf_f7f443c1",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "It is a blocking call.\n\n\u003e Would this sync command block the FW request while its running? Can you please test this?\n\nWhat do you want to test specifically? What is \u0027FW request\u0027 ?\n\nDo you want to know if the daemon will still be responsive on dbus?\n\nThat would probably depend on how many threads are used to run the coroutines.\nI did not test anything like that since i had no use-case for interacting with the daemon while the update was in progress.\n\nWe could probably start the flashrom process here and just get its PID, then async sleep here for a while until it terminates.\n\nLet me know if that seems like the right approach",
+      "parentUuid": "10fac822_2fd1eb4b",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57db15a2_5f2ff840",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 64
@@ -475,6 +889,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Lets not dump this flashrom specific message. Return exitCode to caller and dump a more appropriate error message in caller with some args such as DeviceName etc.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f071cd22_a648a2d6",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "returning the exit code here now and writing error message in the caller with spi controller index and spi device index.",
+      "parentUuid": "57db15a2_5f2ff840",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -496,6 +928,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9082f683_da2050ca",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14dd0a41_bd2703d6",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c157b27b_9d39de49",
@@ -509,6 +959,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Same testing as above to see if this blocks the fw version get in meantime.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d189daa1_656d77ad",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Should we write it in increments then?",
+      "parentUuid": "c157b27b_9d39de49",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -547,6 +1015,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9165b37f_c00fc93e",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3393492c_d5a598ff",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f46cdc2_f5c62c31",
@@ -560,6 +1046,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "UpperCamelCase\n\nPlease read guidelines in https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#types and scrub the whole patch to make any changes.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5059dba_bbfce000",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "changed it here.",
+      "parentUuid": "0f46cdc2_f5c62c31",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -581,6 +1085,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5607a6_54ef1ef8",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bb308c7_4c7b44bc",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3ac0d47_f7308b6f",
@@ -594,6 +1116,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Rename configFileName to versionFileName.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "925025e3_dfc8aaa1",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3ac0d47_f7308b6f",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -615,6 +1155,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e4a4587_604f3592",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8527486e_721bd411",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f55bd9_06ab9c89",
@@ -628,6 +1186,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "No param, remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e58e30b_e2306d7c",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23f55bd9_06ab9c89",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -649,6 +1225,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8dbb595_1869453e",
+        "filename": "bios-spi/spi_device.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "908fc51d_7b5fd5f9",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fd07ce6_cb467b57",
@@ -662,6 +1256,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "You don\u0027t have dependency on Software.Manager, so remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "855dc4cc_d655c3b8",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fd07ce6_cb467b57",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -683,6 +1295,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c053b2_14df82d7",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "removed it.",
+      "parentUuid": "d0ab668b_5155f12f",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31b5817e_b0e83227",
@@ -700,6 +1330,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11e459bd_8a1af4ee",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31b5817e_b0e83227",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e3dc8f2_b2f30803",
@@ -713,6 +1361,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "You don\u0027t have dependency on settingd, so remove this.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68ac2034_d6c68184",
+        "filename": "bios-spi/xyz.openbmc_project.Software.BIOS.service",
+        "patchSetId": 64
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3dc8f2_b2f30803",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -736,6 +1402,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65fb59b1_f6884cc4",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Is there anything specific that needs to be done?\n\n\n\nIf this class is supposed to be some shared dependency, it should be packaged as such, and not copy-pasted around.",
+      "parentUuid": "3ace7213_1bbd67c7",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de63940d_5954705f",
         "filename": "common/include/NotifyWatch.hpp",
         "patchSetId": 64
@@ -747,6 +1431,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Rename processVersionUpdate to processUpdate to keep the class purpose generic.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac565e40_a14b1c15",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de63940d_5954705f",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -764,6 +1466,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Let\u0027s directly use the enums from PDI rather than re-defining these.\n\nYou can define shorthand for the type with using clause here and then directly use them.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e1bb31_e0b2bded",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43f1448d_2bf471df",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -820,6 +1540,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d3e8e9_171d3ae3",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "removed the new enum.",
+      "parentUuid": "9f9d43c6_9af625e8",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13fb54df_531a684e",
@@ -837,6 +1575,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1856c8fd_8688a0bb",
+        "filename": "meson.options",
+        "patchSetId": 64
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13fb54df_531a684e",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4217d896_87687391",
@@ -850,6 +1606,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "\"Enable BIOS/Host firmware update\"",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a61231_0b292a77",
+        "filename": "meson.options",
+        "patchSetId": 64
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-03T16:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4217d896_87687391",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1541,6 +1541,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8853a5a_09048e66",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-04T10:09:13Z",
+      "side": 1,
+      "message": "Nice to have an example!\n\nMoved the host power utility to its own patch.\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78622/1",
+      "parentUuid": "9ed42247_b3f1a5a2",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f9d43c6_9af625e8",

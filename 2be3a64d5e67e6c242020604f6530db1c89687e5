@@ -647,6 +647,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff78511d_e57362c6",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "I guess u meant sleep_for, made the change",
+      "parentUuid": "948963d4_62a100a9",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95d19014_6e75bd3b",
@@ -660,6 +678,24 @@
       "writtenOn": "2025-03-02T00:11:41Z",
       "side": 1,
       "message": "Should be an async task.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f76c3c6_de3f457f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95d19014_6e75bd3b",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -804,6 +840,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6698bd_b8eceb60",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6672c22d_4e09b1a1",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39838e77_acf6c90f",
@@ -817,6 +871,24 @@
       "writtenOn": "2025-03-02T00:11:41Z",
       "side": 1,
       "message": "Defines the APIs as tasks and use async sleep where you are using usleep or sleep in code.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17d7c26f_439f5c0a",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39838e77_acf6c90f",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -887,6 +959,24 @@
       "writtenOn": "2025-03-02T00:11:41Z",
       "side": 1,
       "message": "By looking at this function, it seems better to break this up and expose specific APIs in vr.hpp as under -\n\n1. verifyFirmwareImage(image, imageSize); { Shall internally call parseImage() \u0026 checkImage() }\n\n2. updateFirmware(force);\n\n3. reset();  \u003c\u003c Depending upon applyTime we need to use this.\n\nAll APIs shall return async task.\n\n\nstruct xdpe1x2xxConfig cfg; \u003c\u003c This can be class var but you need to make sure it clean it up at end of updateFirmware().\n\nThat way state can be controlled more granularly from updateDevice() API.",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41597193_75051029",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e87ef88_fe48f5c9",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

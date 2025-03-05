@@ -282,6 +282,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38eafcbd_5cebf922",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Alex made the effort already here:\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78595\n\nLeaving the comment open until his Change is merged and I can rebase",
+      "parentUuid": "124c9677_58f4ff53",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "493081f3_80403539",
         "filename": "i2c-vr/i2cvr_software_manager.cpp",
         "patchSetId": 76
@@ -959,6 +977,24 @@
       "writtenOn": "2025-02-25T10:40:45Z",
       "side": 1,
       "message": "same here, since there is only 2 cases handled in the caller: {success,failure},\n\nthe return type can probably be simplified to bool.",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc517122_f368216c",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62b2cdc2_bb298436",
       "revId": "80287166007dc328ff2dba830d0666670f73d173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

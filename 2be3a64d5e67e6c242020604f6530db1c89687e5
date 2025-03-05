@@ -981,6 +981,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d59bdb1c_72c5f9eb",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T12:29:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41597193_75051029",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c91ba573_16641516",

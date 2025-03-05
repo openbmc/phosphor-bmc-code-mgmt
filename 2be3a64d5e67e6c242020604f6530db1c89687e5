@@ -769,6 +769,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ccc334_19b3ed9a",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T11:56:17Z",
+      "side": 1,
+      "message": "Added a comment in the code where the magic values come from.",
+      "parentUuid": "2396af93_a2fba181",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6672c22d_4e09b1a1",
@@ -838,6 +856,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6c8c472_7e745400",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T11:56:17Z",
+      "side": 1,
+      "message": "Added a comment in the code where the magic values come from.",
+      "parentUuid": "150c8c82_421126d7",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e87ef88_fe48f5c9",
@@ -886,6 +922,24 @@
       "side": 1,
       "message": "IIUC the vr restarts and loads the newly applied FW. This delay ensures the next call to getCRC gives back the correct value.",
       "parentUuid": "c91ba573_16641516",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cd3f26_cd2cabef",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-05T11:56:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a023696b_921bad20",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

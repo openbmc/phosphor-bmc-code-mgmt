@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0997da8_747b747c",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd55576e_10791e48",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33824a79_7479798e",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-05T17:41:49Z",
       "side": 1,
       "message": "call can be inlined into the if stmt, so we do not need the extra assignment. Like\n```\nif (!(co_await ...)){\n    ...\n}\n```",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42b869fe_3e72bbc5",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33824a79_7479798e",
       "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42bbc072_49b96613",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd4fcd69_5efe9015",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a88c960_a16ac525",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-05T17:41:49Z",
       "side": 1,
       "message": "Why document the return type?\nThe return type is already part of the function signature.\n\nLet\u0027s document what the returned value, e.g. ```true``` means in this context.\nProbably means that the verification was successful.\n\nSame for the parameters.\n```\n@param image\n```\nis not too helpful to the reader, they already know there is such a param from the function signature.\n\nIf there is nothing useful to comment, we can probably leave out commenting on the parameter.",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591b65cb_d254a63e",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a88c960_a16ac525",
       "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "774046d8_1ee61f82",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d54082e_10b645ea",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "839039e3_c8718cf1",
@@ -103,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af50b573_80b3ac8e",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "839039e3_c8718cf1",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d66c292_2e78b66c",
@@ -116,6 +224,24 @@
       "writtenOn": "2025-03-05T17:41:49Z",
       "side": 1,
       "message": "which function are these comments for? There is no function.",
+      "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee8b7f5_f366d69f",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-06T07:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d66c292_2e78b66c",
       "revId": "3761b28df0f9c3d525b2878d499b3f42d6288517",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

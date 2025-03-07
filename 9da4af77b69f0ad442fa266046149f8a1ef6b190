@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b89aff5c_89772b8b",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2f6f66d_dcb58bfe",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e12121a2_eeb276b5",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 10
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-02T05:30:56Z",
       "side": 1,
       "message": "Shouldn\u0027t this be \"on\"",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9477338_30eae8a5",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Use the getRequiredHostStateToGetVersion() API to determine the expected host state, as different EEPROM devices may require specific states",
+      "parentUuid": "e12121a2_eeb276b5",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "561dd8a0_8af9b5af",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2df4b37a_21772273",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "604546f7_f9993c2b",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-02T05:30:56Z",
       "side": 1,
       "message": "Lets use phosphor::software::eeprom as namespace only.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "084d1ba9_c90fb868",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604546f7_f9993c2b",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82b2883d_a25168c2",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c65f5279_abfb1d0e",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2582481d_97906dc2",
@@ -103,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53eda550_58f6740f",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2582481d_97906dc2",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b84ee1ab_3821cd5a",
@@ -116,6 +224,24 @@
       "writtenOn": "2025-03-02T05:30:56Z",
       "side": 1,
       "message": "Rename dir version-providers to pt5161l",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3c4b5e2_45a7bd36",
+        "filename": "eeprom-device/version-providers/pt5161l.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b84ee1ab_3821cd5a",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc359b41_b8601897",
+        "filename": "eeprom-device/version-providers/pt5161l.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "The isHostOnRequiredToGetVersion() is to set if the host on state is required to get the version, move to use getRequiredHostStateToGetVersion() instead.",
+      "parentUuid": "0e54f126_035148cc",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5882f134_3b2151fb",
         "filename": "eeprom-device/version-providers/version_provider.hpp",
         "patchSetId": 10
@@ -150,6 +294,24 @@
       "writtenOn": "2025-03-02T05:30:56Z",
       "side": 1,
       "message": "Move both .hpp and .cpp file to eeprom-device dir.",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac6e835_ba36c1b2",
+        "filename": "eeprom-device/version-providers/version_provider.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5882f134_3b2151fb",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -167,6 +329,24 @@
       "writtenOn": "2025-03-02T05:30:56Z",
       "side": 1,
       "message": "Rename class to DeviceVersion",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcb9115_6eff2095",
+        "filename": "eeprom-device/version-providers/version_provider.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-03-07T09:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10b3ccf1_7bbcb0dd",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

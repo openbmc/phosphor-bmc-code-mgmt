@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0775d4d8_6a2a0a87",
+        "filename": "i2c-vr/README.md",
+        "patchSetId": 78
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-07T07:18:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f83ff147_c92837f6",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d2a35e0_d6396be7",
@@ -1332,6 +1350,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad77c19_0ad9df12",
+        "filename": "i2c-vr/xyz.openbmc_project.Software.I2CVR.service",
+        "patchSetId": 78
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-07T07:18:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9af8a091_e1d967ac",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a337d060_f1c2f2a1",
@@ -1363,6 +1399,24 @@
       "side": 1,
       "message": "Just copied as template for the initial commit.",
       "parentUuid": "a337d060_f1c2f2a1",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "641d8430_6413a79e",
+        "filename": "i2c-vr/xyz.openbmc_project.Software.I2CVR.service",
+        "patchSetId": 78
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-07T07:18:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32975d0_1e3b8836",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

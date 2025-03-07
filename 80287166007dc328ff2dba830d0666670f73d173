@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "510749fa_5fcec333",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 76
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-07T08:01:09Z",
+      "side": 1,
+      "message": "Since we hard coupled the updater code with the vr code, its not trivial to get it tested to generate the information.",
+      "parentUuid": "6df5c76c_64c7782b",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ed78b34_516fd64b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 76

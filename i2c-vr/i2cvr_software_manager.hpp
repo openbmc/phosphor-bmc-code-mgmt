@@ -8,7 +8,7 @@ namespace ManagerInf = phosphor::software::manager;
 namespace SDBusAsync = sdbusplus::async;
 
 const std::string configDBusName = "I2CVR";
-const std::vector<std::string> emConfigTypes = {"XDPE1X2XXFirmware"};
+const std::vector<std::string> emConfigTypes = {"XDPE1X2XXFirmware", "DummyDeviceFirmware"};
 
 class I2CVRSoftwareManager : public ManagerInf::SoftwareManager
 {

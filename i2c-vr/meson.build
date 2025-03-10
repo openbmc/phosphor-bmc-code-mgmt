@@ -6,6 +6,7 @@ i2cvr_src = files(
 
 regulators_src = files(
   'xdpe1x2xx/xdpe1x2xx.cpp',
+  'dummyDevice/dummyDevice.cpp',
 )
 
 i2cvr_include = include_directories('.')

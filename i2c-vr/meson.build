@@ -1,6 +1,6 @@
 i2cvr_src = files('i2cvr_device.cpp', 'i2cvr_software_manager.cpp', 'vr.cpp')
 
-regulators_src = files('xdpe1x2xx/xdpe1x2xx.cpp')
+regulators_src = files('xdpe1x2xx/xdpe1x2xx.cpp', 'dummyDevice/dummyDevice.cpp')
 
 i2cvr_include = include_directories('.')
 

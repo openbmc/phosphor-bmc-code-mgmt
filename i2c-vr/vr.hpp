@@ -12,6 +12,7 @@ namespace phosphor::software::VR
 enum class VRType
 {
     XDPE1X2XX,
+    DummyVR,
 };
 
 class VoltageRegulator

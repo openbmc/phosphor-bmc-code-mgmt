@@ -16,6 +16,24 @@
       "message": "We should probably have a unit test for this function since it is somewhat complicated.\n\nOtherwise people might unintentionally break it later on.\n\n\nLet\u0027s use gtest for this purpose, similar to how it\u0027s done in the other patches.",
       "revId": "81df5717938f2d093e0ca85c72fa310909dcaa73",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5b509d_54ee2424",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 73
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-11T15:49:35Z",
+      "side": 1,
+      "message": "Since the code has already been tested manually, and this change is already large enough. i will retract this comment.",
+      "parentUuid": "657dd378_ef2a7de9",
+      "revId": "81df5717938f2d093e0ca85c72fa310909dcaa73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

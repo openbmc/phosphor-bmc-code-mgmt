@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3d76fa_2d1fd3c3",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "As per Patrick direct usage of common namespace is not desirable, lets change this to client side namespace since that refers to the common namespace.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef8958b0_d2107d1e",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Don\u0027t include full namspaces, use a pattern like below you are using for RulesIntf.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e86149c3_b822bbb5",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Don\u0027t use common namespace but client side instead.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def4fb83_8b09ff49",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c173b1a1_235ed454",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Let\u0027s define constexpr for path and service since you are using them below as well and reuse the const defines.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c59d15_6f346d3c",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Where is the handler for this state change? The constructor should take an in_arg handler as well.\n\nIs there some way to test this matcher invocation, from what i see you haven\u0027t tested it since you don\u0027t have a handler?",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9719e82c_840835a0",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be `||` instead of `\u0026\u0026` ? How can state have 2 values at the same time?",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a80fba_4966f6a0",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Lets log an error message here mentioning invalid in state.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9381bb7f_05c7143e",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "use constexpr mentioned above.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a4ebce_bfe4a797",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Please avoid [PWR] from all over the code. I already commented in other PRs as well. This is not a standard practice for the messages.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b9f7aa_7c3aeeb4",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "Why this sleep? And how do you know this is good or sufficient enough number?\n\nAs an alternative solution \n1. Wouldn\u0027t it be better to move this sleep down at line 54 where you can add some retry logic, lets say 3 times for 10 secs to get the current_host_state() and compare it with expected. I know it wouldn\u0027t be ideal but it will be better than what is being used.\n2. As an ideal solution, it will be better to start relying on the PropertyChanged Signal above to trigger next set of actions after a transition has taken affect, isn\u0027t it?",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4fbf8fc_0e99453b",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:36:46Z",
+      "side": 1,
+      "message": "This should be error.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -475,6 +475,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b89f40c4_2f9cd521",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T04:03:05Z",
+      "side": 1,
+      "message": "\u003e Not sure how to match the comment to the code snipped. Also not sure which file you mean by \"updater\"? i2c_software_manager?\n\nSorry for misunderstanding, i am suggesting to add an API forceUpdateAllowed() to vr.hpp so each updater can implement it so show if they allow forceUpdate.",
+      "parentUuid": "07f7e34b_50f16fb3",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d3eb523_6ad38895",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 78
@@ -609,6 +627,24 @@
       "side": 1,
       "message": "Voltage regulators should be locked in production systems to protected against unauthorized writes of FW. This function is needed to unlock voltage regulators for updating of devices in production state.",
       "parentUuid": "42fc7db5_07c808ff",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e79cf4_f6a9b673",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T04:03:05Z",
+      "side": 1,
+      "message": "\u003e Voltage regulators should be locked in production systems to protected against unauthorized writes of FW. This function is needed to unlock voltage regulators for updating of devices in production state.\n\n1. I don\u0027t see you are calling it anywhere, why is that? Let\u0027s test the code as in production, we cannot add a unused API.\n2. Also, where would password be stored which is being passed to this API?",
+      "parentUuid": "e4e9e94d_2a5c5741",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

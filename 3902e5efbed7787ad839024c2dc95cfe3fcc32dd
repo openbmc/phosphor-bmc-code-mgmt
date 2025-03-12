@@ -721,6 +721,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b33fb89a_ef2c99c3",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:54:32Z",
+      "side": 1,
+      "message": "Yes, at that time we had no other user of that API, but now you are using it here with similar purpose, thats why i am trying to see if it can be made common instead.\nWhich class do you think should hold it? I think SoftwareManager seems better as thats a singleton?",
+      "parentUuid": "34542c89_5368b2f2",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deb8bcee_01e19032",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 64
@@ -896,6 +914,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a909c32_6354bc38",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:54:32Z",
+      "side": 1,
+      "message": "\u003e It is a blocking call.\n\u003e \n\u003e \u003e Would this sync command block the FW request while its running? Can you please test this?\n\u003e \n\u003e What do you want to test specifically? What is \u0027FW request\u0027 ?\n\u003e \n\u003e Do you want to know if the daemon will still be responsive on dbus?\n\u003e \n\u003e That would probably depend on how many threads are used to run the coroutines.\n\u003e I did not test anything like that since i had no use-case for interacting with the daemon while the update was in progress. \n\u003e \n\u003e We could probably start the flashrom process here and just get its PID, then async sleep here for a while until it terminates.\n\u003e \n\u003e Let me know if that seems like the right approach\n\n1. You can try a redfish fw inventory request for this version while an update is in progress. Please try that and see if it hangs. Basically the idea is that if anyone requests a version from this updater while an update is happening BMCWeb shouldn\u0027t get hang or timeout.\n2. Also, try a second redfish update while first is in progress. Ideally this should get rejected with ResourceBusy error handling in UpdateInterface.\n\nIf both 1 and 2 works, then we are fine.",
+      "parentUuid": "6d2fb4cf_f7f443c1",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57db15a2_5f2ff840",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 64
@@ -995,6 +1031,24 @@
       "side": 1,
       "message": "Should we write it in increments then?",
       "parentUuid": "c157b27b_9d39de49",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84cd895_982a87d8",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:54:32Z",
+      "side": 1,
+      "message": "\u003e Should we write it in increments then?\n\nI would prefer that, so that way you can also update the Progress in proper increments.",
+      "parentUuid": "d189daa1_656d77ad",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1432,6 +1486,24 @@
       "side": 1,
       "message": "Is there anything specific that needs to be done?\n\n\n\nIf this class is supposed to be some shared dependency, it should be packaged as such, and not copy-pasted around.",
       "parentUuid": "3ace7213_1bbd67c7",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "700883b1_4e829886",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:54:32Z",
+      "side": 1,
+      "message": "\u003e Is there anything specific that needs to be done?\n\u003e \n\nYou can refer to the latest patch and make those changes.\n\n\u003e \n\u003e \n\u003e If this class is supposed to be some shared dependency, it should be packaged as such, and not copy-pasted around.\n\nYou cannot make it shared dependency as my code is in dbus-sensors.",
+      "parentUuid": "65fb59b1_f6884cc4",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

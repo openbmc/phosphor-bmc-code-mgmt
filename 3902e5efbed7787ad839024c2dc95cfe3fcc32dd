@@ -737,6 +737,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "195869ee_d9b5bec0",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T17:28:47Z",
+      "side": 1,
+      "message": "changed it to use ```Software::getRandomId()``` and make that public.\n\n\u003e Which class do you think should hold it? I think SoftwareManager seems better as thats a singleton?\n\nThere is already a class which holds it, ```class Software```.\n\nI don\u0027t see any benefit in moving it.",
+      "parentUuid": "b33fb89a_ef2c99c3",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deb8bcee_01e19032",
@@ -930,6 +948,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db38e1fc_8f063667",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T17:28:47Z",
+      "side": 1,
+      "message": "Looked some more into\nhttps://en.cppreference.com/w/cpp/language/coroutines and did not find anything indicating they can suspend anywhere. I assume now they require\n\n- co_return\n- co_yield\n- co_await\n\nto suspend.\n\nI rewrote that call to flashrom into a fork() with pipes and sdbusplus::async::fdio to async await the completion of that process.\n\nLet me know if sdbusplus already supports awaiting the completion of some process, then we can avoid this additional function.",
+      "parentUuid": "7a909c32_6354bc38",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57db15a2_5f2ff840",
@@ -1053,6 +1089,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3a8e15_f4087a96",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T17:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84cd895_982a87d8",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c17c05a_21ec6d72",
@@ -1066,6 +1120,24 @@
       "writtenOn": "2025-03-02T01:56:59Z",
       "side": 1,
       "message": "Fix this clang warning.",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f3ee4b3_3cfdab58",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T17:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c17c05a_21ec6d72",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1504,6 +1576,24 @@
       "side": 1,
       "message": "\u003e Is there anything specific that needs to be done?\n\u003e \n\nYou can refer to the latest patch and make those changes.\n\n\u003e \n\u003e \n\u003e If this class is supposed to be some shared dependency, it should be packaged as such, and not copy-pasted around.\n\nYou cannot make it shared dependency as my code is in dbus-sensors.",
       "parentUuid": "65fb59b1_f6884cc4",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604da31e_a8e796bc",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 64
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T17:28:47Z",
+      "side": 1,
+      "message": "Done. Applied your revision from PS 50.",
+      "parentUuid": "700883b1_4e829886",
       "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

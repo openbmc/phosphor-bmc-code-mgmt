@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e68c5a_86eb1f2b",
+        "filename": "common/include/i2c/i2c.hpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-12T11:19:45Z",
+      "side": 1,
+      "message": "This was changed to node by request https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/75429/comment/5814ca3a_f0e46e31/",
+      "parentUuid": "27c80971_4d364d74",
+      "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd6d4bf3_b180f719",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-11T15:49:35Z",
       "side": 1,
       "message": "typo: should be ```invalidFd```.",
+      "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c607195c_c4f546cd",
+        "filename": "common/include/i2c/i2c.hpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-12T11:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd6d4bf3_b180f719",
       "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1014eb37_eb57633f",
+        "filename": "i2c-vr/vr.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-12T11:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "306fdf80_8bbdb652",
+      "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1c816d7_6281bacb",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-11T15:49:35Z",
       "side": 1,
       "message": "Should we depend on entity-manager here?\nBecause we need it to run to fetch our configuration.",
+      "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ad247f_d6ead48c",
+        "filename": "i2c-vr/xyz.openbmc_project.Software.I2CVR.service",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-12T11:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1c816d7_6281bacb",
       "revId": "30654f8f7bdd2bc5545888407788de4e8da98c84",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

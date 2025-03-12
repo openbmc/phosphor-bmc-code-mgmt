@@ -16,6 +16,24 @@
       "message": "The issue is not that we cannot use the generated bindings, its still possible to define the nested objects in PDI, but there will be some redundant definitions for nested objects (Singletons) which are being reused.\nSo, lets fix the description to reflect that - As part of Phase1 this generic Get API will be used and in later phase this will be moved to PDI bindings.",
       "revId": "e668fb4bf1f4da2e9a0e5beeb5e8f54deb9a2e28",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a26b3756_c717de0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "379c1e1d_5bd01121",
+      "revId": "e668fb4bf1f4da2e9a0e5beeb5e8f54deb9a2e28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

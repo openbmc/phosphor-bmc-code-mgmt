@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff09c5b_fd977179",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-12T03:38:07Z",
+      "side": 1,
+      "message": "Why is this change needed only for version interface? I am trying to understand how other interfaces such as Progress, Activation are working without this change?",
+      "revId": "f6b9ec0f6b9bde2b59b6a9dac814fa25c9a8ef84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

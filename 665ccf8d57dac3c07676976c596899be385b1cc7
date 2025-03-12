@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f278fbd_6313750f",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d3d76fa_2d1fd3c3",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef8958b0_d2107d1e",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "Don\u0027t include full namspaces, use a pattern like below you are using for RulesIntf.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81e02f65_1054a756",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Changed it to use\n```namespace phosphor::software::host_power { ... }```\nto wrap around all the definitions here.",
+      "parentUuid": "ef8958b0_d2107d1e",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6338706_7e15ab2e",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e86149c3_b822bbb5",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "def4fb83_8b09ff49",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6235c328_bb4ff35e",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def4fb83_8b09ff49",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2fd5412_379c11e3",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c173b1a1_235ed454",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80c59d15_6f346d3c",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "Where is the handler for this state change? The constructor should take an in_arg handler as well.\n\nIs there some way to test this matcher invocation, from what i see you haven\u0027t tested it since you don\u0027t have a handler?",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48debca_a1a69876",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "```hostStateChangedMatch```\nis public and you can call ```.next\u003c...\u003e()``` on it to async block on the signals.\n\n\u003e Is there some way to test this matcher invocation, from what i see you haven\u0027t tested it since you don\u0027t have a handler?\n\nI did not write a unit test for ```sdbusplus::async::match``` since i assume it\u0027s implementation should already be tested in ```sdbusplus```.\n\nI added this matcher since it was requested for eeprom device code updater if i remember correctly. I do not have a use-case for it currently in BIOS code updater.\n\nSo it has not been tested by me. If there are any problems with it we can go back to it, but from my understanding, if we construct it with correct interface and object path, it should just work.",
+      "parentUuid": "80c59d15_6f346d3c",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e3dccb0_8bcdc691",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "```\nstate !\u003d stateOn \u0026\u0026 state !\u003d stateOff\n\u003c\u003d\u003e\n! (state \u003d\u003d stateOn || state \u003d\u003d stateOff)\n```\n\nthe possible values of HostState are\n```\n      enum class HostState\n      {   \n          Off,\n          TransitioningToOff,\n          Standby,\n          Running,\n          TransitioningToRunning,\n          Quiesced,\n          DiagnosticMode,\n      };  \n```\n\nso with this statement i am trying to prevent a caller from passing anything besides on/off into this function.",
+      "parentUuid": "9719e82c_840835a0",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50a80fba_4966f6a0",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "Lets log an error message here mentioning invalid in state.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb5e202c_ab457e2c",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50a80fba_4966f6a0",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3753372_cdbfce17",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9381bb7f_05c7143e",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7a4ebce_bfe4a797",
@@ -167,6 +329,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "Please avoid [PWR] from all over the code. I already commented in other PRs as well. This is not a standard practice for the messages.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49c829fb_68574383",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7a4ebce_bfe4a797",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7efa14c7_bcdc5ef8",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "\u003e Why this sleep? \n\nAfter requesting the power state transition, we need to allow for some time for it to happen. Yes, the number is arbitrary, but we cannot wait forever. So we will need some timeout value.\n\n\u003e As an ideal solution, it will be better to start relying on the PropertyChanged Signal above to trigger next set of actions after a transition has taken affect, isn\u0027t it?\n\nYes, but then we would probably need to run a timer in parallel to it in case the value does not change.\n\nChoosing the option 1 for now, to query the host state in a loop.\nMade a loop with 10 iterations for 3 seconds each, so our maximum delay here will be 3 seconds and it will still have the maximum timeout of 30s as you suggested.\n\nIf that is too much for some use-cases, we can later switch to using PropertyChanged.",
+      "parentUuid": "e9b9f7aa_7c3aeeb4",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4fbf8fc_0e99453b",
@@ -201,6 +399,24 @@
       "writtenOn": "2025-03-12T03:36:46Z",
       "side": 1,
       "message": "This should be error.",
+      "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccb666bb_cb94c136",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-12T12:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4fbf8fc_0e99453b",
       "revId": "665ccf8d57dac3c07676976c596899be385b1cc7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

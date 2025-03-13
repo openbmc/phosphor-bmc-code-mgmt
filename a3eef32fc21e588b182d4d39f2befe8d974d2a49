@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a614abd_b32480b9",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb76d12f_47e5c613",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "986668df_bfcc0eee",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-13T01:14:28Z",
       "side": 1,
       "message": "rename to setState(..) as you are already in HostPower class.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23e5a85f_e1703283",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "986668df_bfcc0eee",
       "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0174f25_92167c90",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a6ade5d_1fbd4821",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "421534c6_05b0c68a",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-13T01:14:28Z",
       "side": 1,
       "message": "rename to getState(..) as you are already in HostPower class.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8531c6b_1a851047",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "421534c6_05b0c68a",
       "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdadc328_575f36a7",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3641e5a_eefab201",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcfd29d9_481f066d",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-03-13T01:14:28Z",
       "side": 1,
       "message": "Please drop this and use the StateIntf you defined at line#21.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecd2b448_b36d23f1",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcfd29d9_481f066d",
       "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f1e4f60_8d5925cb",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f957c68_a349ff6e",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f910add0_b7fd05dd",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-03-13T01:14:28Z",
       "side": 1,
       "message": "I don\u0027t like these random sleeps and would have preferred Option#2. But lets go with this for Phase1 and in next phase we shall change this to use PropertyChanged signals instead.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35dc6379_abe6ec83",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f910add0_b7fd05dd",
       "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "739e33b4_5f35c6f6",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Changed it to 4 since i validated a timeout for 10 seconds to work for my board.\nSo i would not want to go below that without another testing cycle.",
+      "parentUuid": "e180acc4_6ed833a9",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca13fbd4_de5c0407",
@@ -167,6 +329,24 @@
       "writtenOn": "2025-03-13T01:14:28Z",
       "side": 1,
       "message": "For 3 lets use the number which you have seen good enough in your testing. It might not apply to all but it would be a good start. Also, do a constexpr define for this and use it instead.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b74b64_a08a0267",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-13T09:58:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca13fbd4_de5c0407",
       "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

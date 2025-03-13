@@ -1,0 +1,9 @@
+Code-Review+1: Christopher Meis <christopher.meis@9elements.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Jagpal S Gill <paligill@gmail.com>
+Submitted-by: Jagpal S Gill <paligill@gmail.com>
+Submitted-at: Thu, 13 Mar 2025 00:24:38 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78595
+Comments-Total: 2
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

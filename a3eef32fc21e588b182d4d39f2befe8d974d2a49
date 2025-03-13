@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb76d12f_47e5c613",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "update the description as in arg is not bool anymore.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "986668df_bfcc0eee",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "rename to setState(..) as you are already in HostPower class.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6ade5d_1fbd4821",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "Update description to reflect the API return type.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421534c6_05b0c68a",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "rename to getState(..) as you are already in HostPower class.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3641e5a_eefab201",
+        "filename": "common/include/host_power.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "rename hostStateChangedMatch to stateChangedMatch as you are already in HostPower class.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcfd29d9_481f066d",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "Please drop this and use the StateIntf you defined at line#21.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f957c68_a349ff6e",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "nit: Make first letter of all log lines as capital.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f910add0_b7fd05dd",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "I don\u0027t like these random sleeps and would have preferred Option#2. But lets go with this for Phase1 and in next phase we shall change this to use PropertyChanged signals instead.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e180acc4_6ed833a9",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "Lets change 10 to 3 as 3 retries are good enough. Lets define a constexpr for what does 3 means and use it here.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca13fbd4_de5c0407",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-13T01:14:28Z",
+      "side": 1,
+      "message": "For 3 lets use the number which you have seen good enough in your testing. It might not apply to all but it would be a good start. Also, do a constexpr define for this and use it instead.",
+      "revId": "a3eef32fc21e588b182d4d39f2befe8d974d2a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

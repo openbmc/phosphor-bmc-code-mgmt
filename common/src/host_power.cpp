@@ -27,7 +27,10 @@ const auto transitionOff =
 namespace phosphor::software::host_power
 {
 
-constexpr const char* host0ObjectPath = "/xyz/openbmc_project/state/host0";
+const auto host0ObjectPath = sdbusplus::client::xyz::openbmc_project::state::
+                                 Host<>::namespace_path::value +
+                             std::string("/host0");
+
 constexpr const char* service = "xyz.openbmc_project.State.Host";
 
 HostPower::HostPower(sdbusplus::async::context& ctx) :

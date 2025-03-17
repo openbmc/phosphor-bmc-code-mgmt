@@ -16,6 +16,24 @@
       "message": "As a followup patch, can you use the path prefix from auto gen bindings https://grok.openbmc.org/xref/openbmc/phosphor-dbus-interfaces/yaml/xyz/openbmc_project/State/Host.interface.yaml?r\u003d57db6a13da68aadcd33d03777a8630cb6fd1c6e9#141.",
       "revId": "1e833b44adc839829187ed04db62dd995633fb68",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b9c8bc_a05d8da0",
+        "filename": "common/src/host_power.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-17T11:01:07Z",
+      "side": 1,
+      "message": "Created the follow-up patch 😊\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/78963/1",
+      "parentUuid": "dcdf5bba_e95addca",
+      "revId": "1e833b44adc839829187ed04db62dd995633fb68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []

@@ -34,11 +34,22 @@ class SoftwareActivationProgress :
     void setProgress(int progressArg);
 };
 
+// Need to declare this class to initialize the protected members of our base
+// class. This prevents "Conditional jump or move depends on uninitialised
+// value(s)" when properties are updated for the first time.
+class SoftwareVersion :
+    public sdbusplus::aserver::xyz::openbmc_project::software::Version<Software>
+{
+  public:
+    SoftwareVersion(sdbusplus::async::context& ctx, const char* objPath);
+};
+
 using SoftwareActivationBlocksTransition = sdbusplus::aserver::xyz::
     openbmc_project::software::ActivationBlocksTransition<Software>;
 
-using SoftwareVersion =
+using SoftwareVersionIntf =
     sdbusplus::aserver::xyz::openbmc_project::software::Version<Software>;
+
 using SoftwareActivation =
     sdbusplus::aserver::xyz::openbmc_project::software::Activation<Software>;
 using SoftwareAssociationDefinitions =
@@ -69,8 +80,8 @@ class Software : private SoftwareActivation
     // @param version         the version string
     // @param versionPurpose  which kind of software
     void setVersion(const std::string& versionStr,
-                    SoftwareVersion::VersionPurpose versionPurpose =
-                        SoftwareVersion::VersionPurpose::Unknown);
+                    SoftwareVersionIntf::VersionPurpose versionPurpose =
+                        SoftwareVersionIntf::VersionPurpose::Unknown);
 
     // Return the version purpose
     SoftwareVersion::VersionPurpose getPurpose();

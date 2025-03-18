@@ -34,6 +34,14 @@ void SoftwareActivationProgress::setProgress(int progressArg)
     progress(progressArg);
 }
 
+SoftwareVersion::SoftwareVersion(sdbusplus::async::context& ctx,
+                                 const char* objPath) :
+    SoftwareVersionIntf(ctx, objPath)
+{
+    version_ = "";
+    purpose_ = SoftwareVersionIntf::VersionPurpose::Other;
+}
+
 Software::Software(sdbusplus::async::context& ctx, Device& parent) :
     Software(ctx, parent, getRandomSoftwareId(parent))
 {}

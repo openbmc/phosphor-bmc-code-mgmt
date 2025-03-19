@@ -336,6 +336,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4552dd05_48685c9e",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-19T04:17:27Z",
+      "side": 1,
+      "message": "@christopher.meis@9elements.com Changed is merged, please rebase your patch.",
+      "parentUuid": "38eafcbd_5cebf922",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "493081f3_80403539",
         "filename": "i2c-vr/i2cvr_software_manager.cpp",
         "patchSetId": 76

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea450bd_68701309",
+        "filename": "i2c-vr/i2cvr_software_manager.hpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-19T08:36:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a769a66_f992a3f8",
+      "revId": "95f0a6e84c92061ba9df7e74e87335940edcb88a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4a83c9d_0bb22ab0",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-19T04:22:45Z",
       "side": 1,
       "message": "Better move the main function to i2c-vr/i2cvr_software_manager.cpp as its very small and doesn\u0027t seem reasonable to add a complete new file for it.",
+      "revId": "95f0a6e84c92061ba9df7e74e87335940edcb88a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc47be7_df97ff7b",
+        "filename": "i2c-vr/main.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-19T08:36:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4a83c9d_0bb22ab0",
       "revId": "95f0a6e84c92061ba9df7e74e87335940edcb88a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

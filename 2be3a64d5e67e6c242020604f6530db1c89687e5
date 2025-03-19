@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d8ff6b7_a39b8e0e",
+        "filename": "i2c-vr/i2cvr_device.cpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-19T08:36:25Z",
+      "side": 1,
+      "message": "I removed the comment and put some calls to the updateProgress function. Update binaries are very small, so weaving the updateProgress into each VR device specific update function seems overkill.\n\nIf you\u0027re ok with this, please close this comment.",
+      "parentUuid": "b564d696_5029788d",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42dbf3c2_47e58cf8",
         "filename": "i2c-vr/i2cvr_device.cpp",
         "patchSetId": 78
@@ -541,6 +559,24 @@
       "side": 1,
       "message": "\u003e Maybe I misunderstand a couple of things. The upstream code `https://github.com/facebook/openbmc/blob/11a69dfc825fb5dd37150f13813cb654627e06d9/common/recipes-lib/vr/files/xdpe152xx.c#L310` implements a force flag.\n\u003e \n\u003e This must be true in case the VR has three or less write cycles available. \n\nI don\u0027t think we should force it this way but rather it should be a user passed in option as i have covered in my next response.\n\n\u003e Until now we dont have a mechanism to pass a force boolean down the update. There needs to be a place to manually set it to true, so an update will be forced. \n\nThis will be done in the future, thats why i am suggesting you to add the backend infrastructure for that to first let the updater expose if it supports the force option or not.\n\nIn Dbus it will be added via https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/69992, but you don\u0027t have to wait for this API to merge and can go ahead and add the backend support to state that vr supports the forceUpdate via API i mentioned in my first comment.\n\n\u003e \n\u003e For now the code will no update the device in case three or less write cycles are left, because we cant pass the force anywhere into the updater.\n\u003e \n\u003e What i can do:\n\u003e - Change the interface and remove the force or\n\u003e - Leave the interface\n\u003e \n\u003e In both cases the updater wont update the device if three or less writes are left.\n\nFor now, you can pass the force as false and keep that as the default case until we plumb it through Dbus using the flag i mentioned above.",
       "parentUuid": "63f96c02_d86d4d6b",
+      "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9485793_0fef6e78",
+        "filename": "i2c-vr/vr.hpp",
+        "patchSetId": 78
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-19T08:36:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fa1f327_cd2e32bb",
       "revId": "2be3a64d5e67e6c242020604f6530db1c89687e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

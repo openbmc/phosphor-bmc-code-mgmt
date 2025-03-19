@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8411a547_1d39da0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-19T10:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d6bc5a4_5cb65948",
+      "revId": "4d67f1bb7103356e18a1b19dbb74045acc29531c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07cf8632_b2f33d1f",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-19T04:02:30Z",
       "side": 1,
       "message": "@alexander.hansen@9elements.com\nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/common/src/device.cpp?r\u003d5622ee92750f7f7af0d47314c1b679e975652022#167\n\nsoftwarePending-\u003esetVersion(componentVersion);\n\nI would suggest as under -\n\nsoftwarePending-\u003esetVersion(componentVersion, softwareCurrent-\u003egetPurpose());\n\nIntroduce an API getPurpose() to get the purpose of current software which was set by updater at the bootstrap time when creating softwareCurrent.",
+      "revId": "4d67f1bb7103356e18a1b19dbb74045acc29531c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d62ff91_a9b52b23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-19T10:29:01Z",
+      "side": 1,
+      "message": "Applied your suggestion 👍",
+      "parentUuid": "07cf8632_b2f33d1f",
       "revId": "4d67f1bb7103356e18a1b19dbb74045acc29531c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

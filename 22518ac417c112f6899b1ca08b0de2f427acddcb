@@ -493,6 +493,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "debadd88_82fe515d",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-19T15:10:19Z",
+      "side": 1,
+      "message": "The issue seems to be in stdexec code.\n```\n\u003e\u003e\u003e /usr/bin/clang-tidy --use-color -export-fixes /home/alexander/upstreaming/ci_test_area/phosphor-bmc-code-mgmt/build8ampglbv/meson-private/clang-tidy-fix/spi_device.cpp.ev3ncg2a.yaml -quiet -p /home/alexander/upstreaming/ci_test_area/phosphor-bmc-code-mgmt/build8ampglbv /home/alexander/upstreaming/ci_test_area/phosphor-bmc-code-mgmt/bios-spi/spi_device.cpp\n179001 warnings generated.\n358002 warnings generated.\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: error: Branch condition evaluates to a garbage value [clang-analyzer-core.uninitialized.Branch,-warnings-as-errors]\n  123 |         STDEXEC_ASSERT(__has_value);\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:501:9: note: expanded from macro \u0027STDEXEC_ASSERT\u0027\n  501 |         STDEXEC_ASSERT_FN(_XP);                                                \\\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:505:27: note: expanded from macro \u0027STDEXEC_ASSERT_FN\u0027\n  505 | #define STDEXEC_ASSERT_FN assert\n      |                           ^\n/usr/include/assert.h:103:7: note: expanded from macro \u0027assert\u0027\n  103 |      (static_cast \u003cbool\u003e (expr)                                         \\\n      |       ^\n../bios-spi/spi_device.cpp:72:27: note: Calling \u0027__promise::await_transform\u0027\n   72 |     auto prevPowerstate \u003d co_await HostPower::getState(ctx);\n      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/usr/local/include/sdbusplus/async/stdexec/task.hpp:433:44: note: Calling \u0027__optional::operator*\u0027\n  433 |                              get_scheduler(*__context_)),\n      |                                            ^~~~~~~~~~~\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: note: Branch condition evaluates to a garbage value\n  123 |         STDEXEC_ASSERT(__has_value);\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:501:9: note: expanded from macro \u0027STDEXEC_ASSERT\u0027\n  501 |         STDEXEC_ASSERT_FN(_XP);                                                \\\n      |         ^                 ~~~\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:505:27: note: expanded from macro \u0027STDEXEC_ASSERT_FN\u0027\n  505 | #define STDEXEC_ASSERT_FN assert\n      |                           ^\n/usr/include/assert.h:103:7: note: expanded from macro \u0027assert\u0027\n  103 |      (static_cast \u003cbool\u003e (expr)                                         \\\n      |       ^                   ~~~~\n```\n\nIt is not in the ```getState``` function or any of our other functions, but in stdexec itself. clang-tidy cannot convince itself that the ```bool __has_value``` in their handcrafted optional is initialized.",
+      "parentUuid": "ebaff9b7_c5945c54",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f26919ff_aabb5adb",
         "filename": "bios-spi/spi_device.cpp",
         "patchSetId": 58

@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da333fe3_1b3c1727",
+        "filename": "bios-spi/README.md",
+        "patchSetId": 64
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-19T15:10:19Z",
+      "side": 1,
+      "message": "Resolving this since i am just following the EM schema patch.",
+      "parentUuid": "efa196cb_bae29c9b",
+      "revId": "3902e5efbed7787ad839024c2dc95cfe3fcc32dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bc09c08_4eabe60c",

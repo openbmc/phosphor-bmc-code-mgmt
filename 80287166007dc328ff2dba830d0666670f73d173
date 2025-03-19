@@ -600,6 +600,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6af1af0a_6644060b",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-19T08:39:14Z",
+      "side": 1,
+      "message": "https://discord.com/channels/986224305987784725/1285297901429330011/1346290020738400388\n\nAs said here, the VR is either powered by VCC (host needs to be powered), or has independently by standby power. So I though `onReset` wasnt a viable update apply time.",
+      "parentUuid": "23a65194_0775e03c",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0886392_86257264",
         "filename": "i2c-vr/i2cvr_software_manager.hpp",
         "patchSetId": 76

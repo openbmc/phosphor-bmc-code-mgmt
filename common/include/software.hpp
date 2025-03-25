@@ -50,6 +50,8 @@ class Software : private SoftwareActivation
   public:
     Software(sdbusplus::async::context& ctx, device::Device& parent);
 
+    Software(sdbusplus::async::context& ctx, const std::string& swid);
+
     // Set the activation status of this software
     // @param activation         The activation status
     void setActivation(SoftwareActivation::Activations activation);
@@ -79,7 +81,7 @@ class Software : private SoftwareActivation
 
     // The device we are associated to, meaning this software is either running
     // on the device, or could potentially run on that device (update).
-    device::Device& parentDevice;
+    device::Device* parentDevice = nullptr;
 
     // The software id
     const std::string swid;

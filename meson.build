@@ -64,8 +64,6 @@ systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
 
 build_tests = get_option('tests')
 
-subdir('bmc')
-
 common_include = include_directories('.')
 
 common_build = build_tests.allowed()
@@ -80,3 +78,4 @@ if build_tests.allowed()
     subdir('test')
 endif
 
+subdir('bmc')

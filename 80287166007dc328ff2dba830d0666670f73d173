@@ -618,6 +618,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "960f0594_535c0665",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Just to be clear, the onReset means when the image will actual take affect. So, in case of onReset, we don\u0027t have to trigger the VR reset, but the external action from user, i.e., either host power off or standby power off should automatically trigger this.",
+      "parentUuid": "6af1af0a_6644060b",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0886392_86257264",
         "filename": "i2c-vr/i2cvr_software_manager.hpp",
         "patchSetId": 76

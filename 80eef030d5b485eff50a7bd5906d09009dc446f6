@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501e4219_ebed65c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 98
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "@christopher.meis@9elements.com I see there is lot of sync flow in your write operations. Please fix this and test the flow where a new update operation comes when an old update is already in progress and make sure the BMCWeb doesn\u0027t hang because the updater is busy with the old update in a tight loop. The updater should be able to respond that an update is in progress and fail the new operation while the old one is in progress.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fee0b963_559d6f79",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "This send receive needs to an async operation. Please refer to",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2272dceb_a70b78b2",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "This send receive needs to be an async operation, isn\u0027t it?",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04062c74_1b934a44",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "\"Failed to program the VR as {REMAININGWRITES} writes left with no force option\"...",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553ac866_e6e7320f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Please don\u0027t add references to external repos like this. Make sure your comment is descriptive enough to mention what you are trying to do or add references to device spec sheet available online from where these values are taken.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74022321_af52e63c",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Please don\u0027t add references to external repos, but actually mention what you are trying to do or add references to device spec sheet.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6f13e6_6e9bc322",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Please don\u0027t add references to external repos, but actually mention what you are trying to do or add references to device spec sheet.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d167e54_683b046f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Is this a false positive?",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e0d6c2_7c1f2f0e",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Your wrapper API is async but your program API is a sync API, why is that? Shouldn\u0027t this be async too?",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031fe6e7_c1e74afe",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "I don\u0027t think u r saving much by defining this as actual characters being printed are almost same and using SDBusXXX instead of SDBusPlusXXX creates confusion as i had to look up to see what you are referring to in SDBus, so lets directly use sdbusplus::async.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c4406b0_5cab1673",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Rename to MaxSectCnt to keep it consistent with next defintion.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea53efb_fbbf6255",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "Does this struct gets used outside this class, if not then let\u0027s move its definition (and all related definitions) inside the private section of the class.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7f69e9_f52db916",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:48:49Z",
+      "side": 1,
+      "message": "rename to i2cInterface",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

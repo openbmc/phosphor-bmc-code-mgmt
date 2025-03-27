@@ -34,6 +34,24 @@
       "parentUuid": "7ff09c5b_fd977179",
       "revId": "f6b9ec0f6b9bde2b59b6a9dac814fa25c9a8ef84",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64547fc_62b0a1ac",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-27T01:53:05Z",
+      "side": 1,
+      "message": "We can go with this change until the related change is made in sdbusplus. Once sdbusplus change lands please drop this fix.",
+      "parentUuid": "e072be28_bf87ad63",
+      "revId": "f6b9ec0f6b9bde2b59b6a9dac814fa25c9a8ef84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

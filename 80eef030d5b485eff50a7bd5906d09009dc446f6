@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84557c7_1fdec373",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 98
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "I made all required functions of return type sdbusplus::async::task\u003cbool\u003e",
+      "parentUuid": "501e4219_ebed65c2",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fee0b963_559d6f79",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "This send receive needs to an async operation. Please refer to",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d65adc_effd6b1a",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fee0b963_559d6f79",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92536fde_07d4bd23",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2272dceb_a70b78b2",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04062c74_1b934a44",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "\"Failed to program the VR as {REMAININGWRITES} writes left with no force option\"...",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8e50412_6fa537ed",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04062c74_1b934a44",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51b07bf8_b5a13d33",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "There is no documents available to me, neither public nor under NDA, hence I linked the external repo. I cant describe the process in detail, because I lack the required information to understand it myself properly. I soley relied on the code from the repo and made it work.",
+      "parentUuid": "553ac866_e6e7320f",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74022321_af52e63c",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 98
@@ -99,6 +189,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "Please don\u0027t add references to external repos, but actually mention what you are trying to do or add references to device spec sheet.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d21918_2807292a",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "see #276",
+      "parentUuid": "74022321_af52e63c",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -116,6 +224,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "Please don\u0027t add references to external repos, but actually mention what you are trying to do or add references to device spec sheet.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c20a709d_1b8c8b19",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "see #276",
+      "parentUuid": "8d6f13e6_6e9bc322",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfd98818_4af15966",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Yes, i think so.",
+      "parentUuid": "0d167e54_683b046f",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66e0d6c2_7c1f2f0e",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 98
@@ -150,6 +294,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "Your wrapper API is async but your program API is a sync API, why is that? Shouldn\u0027t this be async too?",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30254a78_d4aa047f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66e0d6c2_7c1f2f0e",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74d21538_5b04ee16",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "031fe6e7_c1e74afe",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c4406b0_5cab1673",
@@ -184,6 +364,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "Rename to MaxSectCnt to keep it consistent with next defintion.",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cf66f78_00dd0ca9",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4406b0_5cab1673",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +403,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7269c301_f32f1402",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ea53efb_fbbf6255",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df7f69e9_f52db916",
@@ -218,6 +434,24 @@
       "writtenOn": "2025-03-27T01:48:49Z",
       "side": 1,
       "message": "rename to i2cInterface",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e808d6ce_aeca3e1a",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df7f69e9_f52db916",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

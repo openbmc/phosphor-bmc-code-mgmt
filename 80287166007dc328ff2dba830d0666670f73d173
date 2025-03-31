@@ -634,6 +634,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66b17c3_3b6a6be9",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 76
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-03-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "960f0594_535c0665",
+      "revId": "80287166007dc328ff2dba830d0666670f73d173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0886392_86257264",

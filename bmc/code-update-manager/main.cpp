@@ -11,7 +11,6 @@ int main()
     {
         auto ctx = std::make_shared<sdbusplus::async::context>();
         phosphor::software::UpdateManager manager(*ctx);
-        // For now, just run the context, no real logic yet
         ctx->run();
     }
     catch (const std::exception& e)

@@ -288,3 +288,7 @@ endif
 if get_option('side-switch-on-boot').allowed()
     subdir('side-switch')
 endif
+
+if get_option('code-update-manager').allowed()
+    subdir('code-update-manager')
+endif

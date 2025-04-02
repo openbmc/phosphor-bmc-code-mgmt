@@ -38,10 +38,28 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent) :
     Software(ctx, parent, getRandomSoftwareId(parent))
 {}
 
+Software::Software(sdbusplus::async::context& ctxIn, const std::string& swId) :
+    SoftwareActivation(ctxIn, (baseObjPathSoftware + swId).c_str()),
+    objectPath{baseObjPathSoftware + swId}, swid(swId), ctx(ctxIn)
+{
+    // Basic initialization
+    activation_ = Activations::NotReady;
+    requested_activation_ = RequestedActivations::None;
+
+    // Optionally create ActivationProgress right away:
+    this->softwareActivationProgress =
+        std::make_unique<SoftwareActivationProgress>(ctxIn,
+                                                     objectPath.str.c_str());
+    this->softwareActivationProgress->setProgress(0);
+
+    debug("{SWID}: created no-device Software at path {OBJPATH}", "SWID", swId,
+          "OBJPATH", objectPath.str);
+}
+
 Software::Software(sdbusplus::async::context& ctx, Device& parent,
                    const std::string& swid) :
     SoftwareActivation(ctx, (baseObjPathSoftware + swid).c_str()),
-    objectPath(baseObjPathSoftware + swid), parentDevice(parent), swid(swid),
+    objectPath(baseObjPathSoftware + swid), parentDevice(&parent), swid(swid),
     ctx(ctx)
 {
     // initialize the members of our base class to prevent
@@ -79,7 +97,8 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
 
     try
     {
-        endpoint = co_await parentDevice.config.getInventoryItemObjectPath(ctx);
+        endpoint =
+            co_await parentDevice->config.getInventoryItemObjectPath(ctx);
     }
     catch (std::exception& e)
     {

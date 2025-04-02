@@ -36,16 +36,16 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 {
     debug("Requesting Image update with {FD}", "FD", image.fd);
 
-    Device& device = software.parentDevice;
+    auto device = software.parentDevice;
 
-    if (device.updateInProgress)
+    if (device->updateInProgress)
     {
         error("An update is already in progress, cannot update.");
         report<Unavailable>();
         co_return sdbusplus::message::object_path();
     }
 
-    device.updateInProgress = true;
+    device->updateInProgress = true;
 
     // check if the apply time is allowed by our device
     if (!allowedApplyTimes.contains(applyTime))
@@ -53,7 +53,7 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
         error(
             "the selected apply time {APPLYTIME} is not allowed by the device",
             "APPLYTIME", applyTime);
-        device.updateInProgress = false;
+        device->updateInProgress = false;
         report<Unavailable>();
         co_return sdbusplus::message::object_path();
     }
@@ -65,14 +65,14 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
     if (imageDup < 0)
     {
         error("ERROR calling dup on fd: {ERR}", "ERR", strerror(errno));
-        device.updateInProgress = false;
+        device->updateInProgress = false;
         co_return software.objectPath;
     }
 
     debug("starting async update with FD: {FD}\n", "FD", imageDup);
 
     std::unique_ptr<Software> softwareInstance =
-        std::make_unique<Software>(ctx, device);
+        std::make_unique<Software>(ctx, *device);
 
     softwareInstance->setActivation(ActivationInterface::Activations::NotReady);
 
@@ -87,7 +87,7 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
             device.updateInProgress = false;
             close(imageDup);
             co_return;
-        }(device, imageDup, applyTime, std::move(softwareInstance)));
+        }(*device, imageDup, applyTime, std::move(softwareInstance)));
     // NOLINTEND
 
     // We need the object path for the new software here.

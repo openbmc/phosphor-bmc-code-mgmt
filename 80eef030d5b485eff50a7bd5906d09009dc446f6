@@ -355,6 +355,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65b90993_1f634c6b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T09:11:27Z",
+      "side": 1,
+      "message": "https://clang.llvm.org/docs/analyzer/checkers.html#deadcode-deadstores\n\nLooks like its a valid one as start is being changed and then break from for and then start never gets used again, isn\u0027t it?",
+      "parentUuid": "cfd98818_4af15966",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66e0d6c2_7c1f2f0e",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 98

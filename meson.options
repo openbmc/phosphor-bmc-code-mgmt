@@ -57,6 +57,13 @@ option(
 )
 
 option(
+    'code-update-manager',
+    type: 'feature',
+    value: 'disabled',
+    description: 'Code update manager to orchestrate firmware update.',
+)
+
+option(
     'side-switch-on-boot',
     type: 'feature',
     value: 'enabled',

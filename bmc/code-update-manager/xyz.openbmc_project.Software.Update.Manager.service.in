@@ -1,0 +1,12 @@
+[Unit]
+Description=Code Update Manager
+After=xyz.openbmc_project.ObjectMapper.service
+
+[Service]
+Type=dbus
+ExecStart=/usr/bin/code-update-manager
+Restart=always
+BusName=xyz.openbmc_project.Software.Update.Manager
+
+[Install]
+WantedBy=multi-user.target

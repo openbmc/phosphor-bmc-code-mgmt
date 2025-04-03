@@ -1,6 +1,57 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d04666a_bb59ff45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-03T15:45:34Z",
+      "side": 1,
+      "message": "Why do we need this skeleton application? \nWhy doesn\u0027t the existing application work?",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24d062a_33e40dba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-03T15:45:34Z",
+      "side": 1,
+      "message": "please follow https://cbea.ms/git-commit/ and Wrap the body at 72 characters",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff1806ba_3532fe2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-03T15:45:34Z",
+      "side": 1,
+      "message": "Any testing?",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0a0a9b3a_25ab3b2a",
@@ -14,6 +65,23 @@
       "writtenOn": "2025-04-02T18:48:49Z",
       "side": 1,
       "message": "CI is failing because code-update-manager pdi is not yet merged https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17655ce9_80f975f2",
+        "filename": "bmc/code-update-manager/xyz.openbmc_project.Software.Update.Manager.service.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-03T15:45:34Z",
+      "side": 1,
+      "message": "Is this unique to NVIDIA?",
       "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

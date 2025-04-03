@@ -509,6 +509,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d81b082c_0450dc0c",
+        "filename": "bios-spi/spi_device.cpp",
+        "patchSetId": 58
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-03T21:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "debadd88_82fe515d",
+      "revId": "22518ac417c112f6899b1ca08b0de2f427acddcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f26919ff_aabb5adb",

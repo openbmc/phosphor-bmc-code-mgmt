@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7ddf693_15838317",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 112
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-03T20:53:01Z",
+      "side": 1,
+      "message": "@christopher.meis@9elements.com Can you please raise a gerrit PR for openbmc/openbmc to add a package config for this service in https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/flash/phosphor-software-manager_git.bb.",
+      "revId": "05e6dfddcec7bff7d2353adeb307579518d25c70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

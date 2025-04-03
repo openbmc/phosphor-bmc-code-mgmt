@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe4e33d9_b11e6492",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 98
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-03T05:21:26Z",
+      "side": 1,
+      "message": "I adapted the dummy code that it takes about 30 seconds to update.\n\nI pushed an update, so that an update will be in progress. When the update was in progress I (within the 30 known seconds) I pushed a new update and it resultet in an error (seen in the commit message, tested section 8.)",
+      "parentUuid": "275078b6_20163da2",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fee0b963_559d6f79",
         "filename": "common/i2c/i2c.cpp",
         "patchSetId": 98
@@ -250,6 +268,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "365054e7_77107869",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-03T05:21:26Z",
+      "side": 1,
+      "message": "No, these values are not in the data sheets of the VR.\n\nI removed the links to the external repo and will ask Peter Yin about these value.",
+      "parentUuid": "c0a51c6b_f253ca9a",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74022321_af52e63c",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 98
@@ -367,6 +403,24 @@
       "side": 1,
       "message": "https://clang.llvm.org/docs/analyzer/checkers.html#deadcode-deadstores\n\nLooks like its a valid one as start is being changed and then break from for and then start never gets used again, isn\u0027t it?",
       "parentUuid": "cfd98818_4af15966",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "246f6151_850084eb",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-03T05:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65b90993_1f634c6b",
       "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -16,6 +16,23 @@
       "message": "@alexander.hansen@9elements.com Can you please raise a gerrit PR for package config for openbmc/openbmc for this updater.",
       "revId": "5fcbcf70927ad33532771a986a34016555fcb844",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd2d3538_b8cd24b8",
+        "filename": "bios-spi/bios_software_manager.cpp",
+        "patchSetId": 74
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-04T03:34:35Z",
+      "side": 1,
+      "message": "Please update this logic to reflect the EM schema change.",
+      "revId": "5fcbcf70927ad33532771a986a34016555fcb844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

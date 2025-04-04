@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cd29dd6_65c63a1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 74
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-04T09:57:40Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/openbmc/+/79451\n👍",
+      "parentUuid": "92af1c2a_56765378",
+      "revId": "5fcbcf70927ad33532771a986a34016555fcb844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd2d3538_b8cd24b8",

@@ -89,7 +89,7 @@ std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
     b[componentLocationOffsetIndex + 3] = (i >> 24) & 0xff;
 
     // backfill PackageHeaderChecksum
-    const uint32_t crc = crc32(b, packageHeaderChecksumOffset);
+    const uint32_t crc = pldm_edac_crc32(b, packageHeaderChecksumOffset);
     memcpy(b + packageHeaderChecksumOffset, &crc, 4);
 
     // --- end of the package header ---

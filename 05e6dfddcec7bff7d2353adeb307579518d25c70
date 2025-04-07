@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bffa5c2_6bb5b5ec",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 112
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-07T09:00:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5945f4f_c3e5d739",
+      "revId": "05e6dfddcec7bff7d2353adeb307579518d25c70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b595bfc_fa1dcc66",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f50c3115_d51a2314",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 112
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-07T09:00:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b595bfc_fa1dcc66",
+      "revId": "05e6dfddcec7bff7d2353adeb307579518d25c70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20305ec2_42146993",
@@ -65,6 +101,24 @@
       "writtenOn": "2025-04-07T06:47:18Z",
       "side": 1,
       "message": "Move these definitions down in the for loop as they don\u0027t seem to be used anywhere else.",
+      "revId": "05e6dfddcec7bff7d2353adeb307579518d25c70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f18e191_619a5b85",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 112
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-07T09:00:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20305ec2_42146993",
       "revId": "05e6dfddcec7bff7d2353adeb307579518d25c70",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

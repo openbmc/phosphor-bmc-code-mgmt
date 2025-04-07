@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c7ef60_d62732e7",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-07T09:41:04Z",
+      "side": 1,
+      "message": "Can drop this function, it has been merged 😊\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/f2c95a08ad4340d8e8e7ccdb1af9f5a45d180530/common/include/dbus_helper.hpp",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c9be706_b9d23ff1",
+        "filename": "cpld/cpld_fw_handler.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-07T09:41:04Z",
+      "side": 1,
+      "message": "In some places you are using ```lg2::info``` and ```lg2::error```, but here using ```std::cerr```, i am wondering, why is it different 😊",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aff2e25_ca14b32b",
+        "filename": "cpld/lattice.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-07T09:41:04Z",
+      "side": 1,
+      "message": "nit: I would prefer to avoid any conditional compilation, as it\u0027s possible to bypass the typechecker in some build configurations.\n\nInstead we can branch on a constexpr 👍",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d23d43_94637f72",
+        "filename": "cpld/main.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-07T09:41:04Z",
+      "side": 1,
+      "message": "nit: Can you document which specific warning is ignored. Like\n```\n// NOLINTBEGIN(some-warning)\n```\n\nThat will help to see if it is something serious or harmless that is being ignored.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

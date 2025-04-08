@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2f774dd_bc485590",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 115
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-08T12:55:16Z",
+      "side": 1,
+      "message": "Still need to figure out what went wrong here.",
+      "parentUuid": "45adc351_920a10ae",
+      "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96d979ed_749ce3f5",
         "filename": "i2c-vr/meson.build",
         "patchSetId": 115
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-08T04:39:54Z",
       "side": 1,
       "message": "Why do you have boost_dep? Are you using anything from boost?",
+      "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3fb818a_2466b2cd",
+        "filename": "i2c-vr/meson.build",
+        "patchSetId": 115
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-08T12:55:16Z",
+      "side": 1,
+      "message": "Was a leftover. Thanks for the hint.",
+      "parentUuid": "96d979ed_749ce3f5",
       "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2025-04-08T05:17:19Z",
       "side": 1,
       "message": "Does this really have to be a unique_ptr. You are constructing this in class constructor definition so i think this can be a regular class var, isn\u0027t it?",
+      "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c875bc_88fdafd3",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 115
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-08T12:55:16Z",
+      "side": 1,
+      "message": "I must have a misunderstanding when to use unique_ptr.",
+      "parentUuid": "b56e2e34_684f9aef",
       "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

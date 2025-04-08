@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45adc351_920a10ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 115
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T04:39:54Z",
+      "side": 1,
+      "message": "@christopher.meis@9elements.com The Updateable should be marked as true at Update interface exists on the same path as Version Interface. Please fix this in a followup patch. This should show same as for bios unit-tests where it shows as true (https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/76101)",
+      "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d979ed_749ce3f5",
+        "filename": "i2c-vr/meson.build",
+        "patchSetId": 115
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T04:39:54Z",
+      "side": 1,
+      "message": "Why do you have boost_dep? Are you using anything from boost?",
+      "revId": "5407739b50153ff95ac74cf2a16e721dcbdffe75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

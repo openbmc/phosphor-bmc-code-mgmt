@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b358708_bdd72ab9",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Don\u0027t define the latticeUpdate directly here. Define an abstraction layer for CPLDs as done for VRs https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/75429/115/i2c-vr/vr.hpp and have Lattice inherit from CPLD class.\n\nAlso, it will be better to rename this class to CPLDDevice for consistency in nomenclature.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2acb3a5_3934c822",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Rename file to cpld_software_manager.cpp",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0c7ef60_d62732e7",
         "filename": "cpld/cpld_code_updater.cpp",
         "patchSetId": 23
@@ -20,6 +54,92 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14ed2d28_e8cb3f6e",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "e0c7ef60_d62732e7",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e4777b_69fbd652",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Please remove [config] prefix from all logs.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d297e0_e20112d1",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "\"Voltage regulator device type\" change to \"CPLD device type\"",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8313cc_95f2eb70",
+        "filename": "cpld/cpld_code_updater.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Rename file to cpld_software_manager.hpp",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15eeac7e_3e8154c4",
+        "filename": "cpld/cpld_code_updater.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Rename class to CPLDSoftwareManager",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c9be706_b9d23ff1",
         "filename": "cpld/cpld_fw_handler.cpp",
         "patchSetId": 23
@@ -31,6 +151,40 @@
       "writtenOn": "2025-04-07T09:41:04Z",
       "side": 1,
       "message": "In some places you are using ```lg2::info``` and ```lg2::error```, but here using ```std::cerr```, i am wondering, why is it different 😊",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6811fd8_edf8c763",
+        "filename": "cpld/cpld_fw_handler.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "I think lot of this code should get consumed in your CPLD class abstraction. Please follow https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/75429.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d35e4b8_52a98de1",
+        "filename": "cpld/cpld_fw_handler.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-08T05:19:36Z",
+      "side": 1,
+      "message": "Please use i2c.hpp from the common code as being used in VR updater https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/75429",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

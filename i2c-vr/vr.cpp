@@ -1,5 +1,6 @@
 #include "vr.hpp"
 
+#include "isl69269/isl69269.hpp"
 #include "xdpe1x2xx/xdpe1x2xx.hpp"
 
 #include <map>
@@ -17,6 +18,9 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
         case VRType::XDPE1X2XX:
             ret = std::make_unique<XDPE1X2XX>(ctx, bus, address);
             break;
+        case VRType::ISL69269:
+            ret = std::make_unique<ISL69269>(ctx, bus, address);
+            break;
         default:
             return NULL;
     }
@@ -27,6 +31,7 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
 {
     std::map<std::string, enum VRType> VRTypeToString{
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
+        {"ISL69269Firmware", VRType::ISL69269},
     };
 
     if (VRTypeToString.contains(vrStr))

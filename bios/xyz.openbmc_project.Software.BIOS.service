@@ -6,7 +6,7 @@ Requires=xyz.openbmc_project.EntityManager.service
 After=xyz.openbmc_project.EntityManager.service
 
 [Service]
-Restart=yes
+Restart=always
 Type=oneshot
 RemainAfterExit=no
 ExecStart=/usr/bin/phosphor-bios-software-update

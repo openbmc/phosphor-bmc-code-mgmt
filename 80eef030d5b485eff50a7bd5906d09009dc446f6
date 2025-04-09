@@ -302,6 +302,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea19ce08_4d82a505",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 98
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-09T11:37:21Z",
+      "side": 1,
+      "message": "According to programming guide, these data (0xfe 0xfe 0x00 0x00) is specific for reprogramming the entire configuration file. Putting it as an constexp or multiple\nwill not help in understanding it more. I updated the comment above the code, to clarify it more.",
+      "parentUuid": "365054e7_77107869",
+      "revId": "80eef030d5b485eff50a7bd5906d09009dc446f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74022321_af52e63c",

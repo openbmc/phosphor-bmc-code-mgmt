@@ -27,13 +27,25 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
 
-    std::optional<int64_t> spiControllerIndex =
+    std::optional<uint64_t> spiControllerIndex =
         co_await dbusGetRequiredProperty<uint64_t>(
             ctx, service, path, configIface, "SPIControllerIndex");
 
-    std::optional<int64_t> spiDeviceIndex =
+    if (!spiControllerIndex.has_value())
+    {
+        error("Error: Missing property: SPIControllerIndex");
+        co_return false;
+    }
+
+    std::optional<uint64_t> spiDeviceIndex =
         co_await dbusGetRequiredProperty<uint64_t>(
             ctx, service, path, configIface, "SPIDeviceIndex");
+
+    if (!spiDeviceIndex.has_value())
+    {
+        error("Error: Missing property: SPIDeviceIndex");
+        co_return false;
+    }
 
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 
@@ -59,12 +71,6 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
         names.push_back(name.value());
         values.push_back((polarity == "High") ? 1 : 0);
-    }
-
-    if (!spiControllerIndex.has_value() || !spiDeviceIndex.has_value())
-    {
-        error("Error: Missing property");
-        co_return false;
     }
 
     enum FlashLayout layout = flashLayoutFlat;

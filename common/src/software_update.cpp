@@ -28,7 +28,14 @@ SoftwareUpdate::SoftwareUpdate(
     sdbusplus::aserver::xyz::openbmc_project::software::Update<SoftwareUpdate>(
         ctx, path),
     software(software), allowedApplyTimes(allowedApplyTimes)
-{}
+{
+    emit_added();
+}
+
+SoftwareUpdate::~SoftwareUpdate()
+{
+    emit_removed();
+}
 
 auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
                                  auto applyTime)

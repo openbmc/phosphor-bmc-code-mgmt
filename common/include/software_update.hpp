@@ -19,9 +19,15 @@ class SoftwareUpdate :
         SoftwareUpdate>
 {
   public:
+    SoftwareUpdate(const SoftwareUpdate&) = delete;
+    SoftwareUpdate(SoftwareUpdate&&) = delete;
+    SoftwareUpdate& operator=(const SoftwareUpdate&) = delete;
+    SoftwareUpdate& operator=(SoftwareUpdate&&) = delete;
     SoftwareUpdate(sdbusplus::async::context& ctx, const char* path,
                    Software& software,
                    const std::set<RequestedApplyTimes>& allowedApplyTimes);
+
+    ~SoftwareUpdate();
 
     auto method_call(start_update_t su, auto image, auto applyTime)
         -> sdbusplus::async::task<start_update_t::return_type>;

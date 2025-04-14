@@ -34,6 +34,24 @@
       "parentUuid": "e055a576_ec1c1c90",
       "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e440a42_5ff62dc9",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-14T11:52:43Z",
+      "side": 1,
+      "message": "\u003e Yes it\u0027s better to add it there but that\u0027s not a 10 minute job.\n\u003e \n\nI am aware it will take more time than adding emit_added() in this code.\n\n\u003e \n\u003e This patch is a quick fix which helps the code work as intended.\n\nYes, i agree that this is a quick and easy fix.\n\n\u003e The way ```emit_added()``` works means its safe to call it multiple times. \n\u003e So when we call it from the generated code later, this call site should not cause a problem.\n\nYes, i agree that emit_added() can be called multiple times but this call will be useless when later on it will be called from generated code and then we need to come and reap all these un-necessary calls or they will be there forever. \nI had mentioned this to you earlier as well to add this as a work item https://discord.com/channels/986224305987784725/1285297901429330011/1357458420382433623 . Having said that we can definitely take this patch for short phase while your PDI change lands as we already discussed above it might take more time for the other change, but i want to see some traction on that work item rather than adding these calls every now and then.",
+      "parentUuid": "0a335da1_7cb4d48e",
+      "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

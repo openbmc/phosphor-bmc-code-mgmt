@@ -52,6 +52,24 @@
       "parentUuid": "0a335da1_7cb4d48e",
       "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6550433_4e884b36",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T11:58:33Z",
+      "side": 1,
+      "message": "\u003e or they will be there forever.\n\nThere is a a lot of useless code running all the time, but it should be harmless.\n\n\n\nI have added you for review on https://gerrit.openbmc.org/c/openbmc/sdbusplus/+/78790\n\nwhich is my proposed change. It needs further feedback and discussion.",
+      "parentUuid": "0e440a42_5ff62dc9",
+      "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

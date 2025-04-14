@@ -16,6 +16,24 @@
       "message": "@alexander.hansen@9elements.com Can you please work with Patrick to add these to the async PDI bindings. This is the second time we are adding this check, so its better if its added to PDI code generation itself.",
       "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a335da1_7cb4d48e",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T08:36:10Z",
+      "side": 1,
+      "message": "Yes it\u0027s better to add it there but that\u0027s not a 10 minute job.\n\n\nThis patch is a quick fix which helps the code work as intended.\nThe way ```emit_added()``` works means its safe to call it multiple times. \nSo when we call it from the generated code later, this call site should not cause a problem.",
+      "parentUuid": "e055a576_ec1c1c90",
+      "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

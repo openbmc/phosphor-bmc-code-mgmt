@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e055a576_ec1c1c90",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-14T07:33:54Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Can you please work with Patrick to add these to the async PDI bindings. This is the second time we are adding this check, so its better if its added to PDI code generation itself.",
+      "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

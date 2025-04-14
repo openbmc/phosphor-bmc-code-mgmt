@@ -16,6 +16,24 @@
       "message": "Why is this not being reviewed? It\u0027s an open change since February 24.",
       "revId": "47792ced2cb1195564e9d031eac03eae8cef37e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c79f19_9248313b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-14T11:38:45Z",
+      "side": 1,
+      "message": "1. Where is the EM side patch for this change? I am sure there is a pending conversation on that based on last comment from Ed.\n2. Is anyone waiting for this Intel specific change? I don\u0027t think so, hence its a lower priority change at the moment, unless i am incorrect and someone is looking for this change?\nIn general, we will definitely take this but once we have resolved other higher priority tasks at hand.",
+      "parentUuid": "e776fa92_bc0af203",
+      "revId": "47792ced2cb1195564e9d031eac03eae8cef37e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

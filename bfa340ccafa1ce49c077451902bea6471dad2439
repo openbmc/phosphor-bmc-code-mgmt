@@ -16,6 +16,23 @@
       "message": "Without this change is common code broken? Why this clang error didn\u0027t show when you enabled and committed the SPI code updater?",
       "revId": "bfa340ccafa1ce49c077451902bea6471dad2439",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e1a2bdb_be84c2d3",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-14T07:46:59Z",
+      "side": 1,
+      "message": "Why can\u0027t you use SoftwareVersion instead of defining a new using statement? It inherits from PDI class, it should have all the required attributes and types.",
+      "revId": "bfa340ccafa1ce49c077451902bea6471dad2439",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -18,6 +18,9 @@
 #include <string>
 #include <vector>
 
+// Forward declaration of test class
+class UpdateManagerTest;
+
 namespace phosphor
 {
 namespace software
@@ -55,6 +58,9 @@ class UpdateManager :
         UpdateManager>
 {
   public:
+    // Allow test class access to private members
+    friend class ::UpdateManagerTest;
+
     UpdateManager(const UpdateManager&) = delete;
     UpdateManager& operator=(const UpdateManager&) = delete;
     UpdateManager(UpdateManager&&) = delete;

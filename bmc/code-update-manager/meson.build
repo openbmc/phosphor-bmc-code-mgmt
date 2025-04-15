@@ -17,3 +17,7 @@ configure_file(
     install: true,
     install_dir: systemd_system_unit_dir,
 )
+
+if build_tests.allowed()
+    subdir('test')
+endif

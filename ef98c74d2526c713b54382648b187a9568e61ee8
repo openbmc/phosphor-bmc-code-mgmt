@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60a82481_74801de3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-04-15T12:04:10Z",
+      "side": 1,
+      "message": "which existing application are you talking about ?\nSharing the design doc for reference-  https://gerrit.openbmc.org/c/openbmc/docs/+/76645",
+      "parentUuid": "4d04666a_bb59ff45",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e24d062a_33e40dba",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -86,6 +104,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcbeb026_4261b548",
+        "filename": "bmc/code-update-manager/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-04-15T12:04:10Z",
+      "side": 1,
+      "message": "The code updater will orchaestrate both PLDM and Non PLDM updates.\nWe\u0027ll incrementally add patches for supporting Non-PLDM Update as well.",
+      "parentUuid": "07383db1_216ad9f5",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17655ce9_80f975f2",
@@ -103,6 +139,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c83859b_1351b11c",
+        "filename": "bmc/code-update-manager/xyz.openbmc_project.Software.Update.Manager.service.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-04-15T12:04:10Z",
+      "side": 1,
+      "message": "No it\u0027s not, I have updated the description.",
+      "parentUuid": "17655ce9_80f975f2",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25f04fd7_7f779223",
@@ -116,6 +170,24 @@
       "writtenOn": "2025-04-03T15:47:15Z",
       "side": 1,
       "message": "Should this have PLDM in the name?",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a1d75be_2fc8e655",
+        "filename": "meson.options",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-04-15T12:04:10Z",
+      "side": 1,
+      "message": "it\u0027s not specific to pldm.",
+      "parentUuid": "25f04fd7_7f779223",
       "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

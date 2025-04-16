@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6dc5d0c_09d35f7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2025-04-16T04:08:59Z",
+      "side": 1,
+      "message": "CI is failing because code-update-manager pdi is not yet merged https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

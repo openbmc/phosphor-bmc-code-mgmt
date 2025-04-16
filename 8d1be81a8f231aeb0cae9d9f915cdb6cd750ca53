@@ -16,6 +16,74 @@
       "message": "CI is failing because code-update-manager pdi is not yet merged https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905",
       "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f0b88e4_7ab8de86",
+        "filename": "bmc/code-update-manager/update_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2025-04-16T15:39:02Z",
+      "side": 1,
+      "message": "nit: This co_return statement isn\u0027t needed",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59005896_ab8d76c9",
+        "filename": "bmc/code-update-manager/update_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2025-04-16T15:39:02Z",
+      "side": 1,
+      "message": "nit: Move the statement (along with the one in the catch block) to after the try-catch block?",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "300d6fb8_614e4df3",
+        "filename": "bmc/code-update-manager/update_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2025-04-16T15:39:02Z",
+      "side": 1,
+      "message": "nit: The outer try-catch block looks unnecessary",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4774f4b6_70c40e96",
+        "filename": "bmc/code-update-manager/update_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2025-04-16T15:39:02Z",
+      "side": 1,
+      "message": "Should we consider setting Activation to failed since we were unable to trigger the PLDM update?",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c8470a1_400e164f",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "i think this is almost the same function as i have in ```bios/spi_device.cpp```.\n\nShould i extract that into ```common/gpio``` or we keep this function here and deduplicate later?",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214e5778_8cf56a70",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint16_t\u0026 bus``` or greater quantity. Some systems have many i2c busses.",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e352fc28_054c2d14",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```vector\u003cbool\u003e``` or vector of enum for polarity, there is only 2 values for the polarity.",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c4e7a2_9c22e683",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "i believe bus is not limited to 255, what do you think?\n\nOn line 39 bus is ```uint16_t``` which i think is better 👍",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25108f50_85cf5cee",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```vector\u003cbool\u003e``` or vector of enum. \nPolarity only has 2 values.",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d67ecf3_2e6499f1",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5aa3aa0_179bce7b",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```std::vector\u003cbool\u003e``` or similar for polarity. There are only 2 values.",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cb8859b_1d58e9c7",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c8ec2c_b2c6aa98",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f020b36_da2cb5ba",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403bc4bb_2b28c685",
+        "filename": "test/eeprom-device/test_eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T12:20:43Z",
+      "side": 1,
+      "message": "```uint32_t vendorIANA```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

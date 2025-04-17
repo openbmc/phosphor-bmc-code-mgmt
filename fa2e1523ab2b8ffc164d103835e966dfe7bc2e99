@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d8ffdc2_175baaa0",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "I believe we can extract this into common/gpio. However, when I duplicated the function from `bios/spi_device.cpp` for testing, the eeprom device updater crashed during a firmware update with the error: `line_bulk cannot hold GPIO lines from different chips.`. This occurred even though the lines were all from the same chip (gpiochip2 in the test case). I suspect the issue was due to the lines passed to line_bulk missing their association with the parent chip. To resolve this, I made some modifications to prevent the crash and added support for handling GPIOs across multiple chips.",
+      "parentUuid": "4c8470a1_400e164f",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "214e5778_8cf56a70",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-16T12:20:43Z",
       "side": 1,
       "message": "```uint16_t\u0026 bus``` or greater quantity. Some systems have many i2c busses.",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7d9165_3f231e00",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "214e5778_8cf56a70",
       "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f6cc578_9ecee980",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e352fc28_054c2d14",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20c4e7a2_9c22e683",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-04-16T12:20:43Z",
       "side": 1,
       "message": "i believe bus is not limited to 255, what do you think?\n\nOn line 39 bus is ```uint16_t``` which i think is better 👍",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc224dd_d1f647a7",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20c4e7a2_9c22e683",
       "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad59031c_a814c422",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25108f50_85cf5cee",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d67ecf3_2e6499f1",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-04-16T12:20:43Z",
       "side": 1,
       "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b78dbf27_917975e1",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d67ecf3_2e6499f1",
       "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dcab4cb_8608b1a5",
+        "filename": "eeprom-device/eeprom_device_code_updater.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5aa3aa0_179bce7b",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cb8859b_1d58e9c7",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-04-16T12:20:43Z",
       "side": 1,
       "message": "```uint16_t bus```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adc28fc5_b937032b",
+        "filename": "eeprom-device/eeprom_device_code_updater.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cb8859b_1d58e9c7",
       "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecd1dd0_0a9d0554",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3c8ec2c_b2c6aa98",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f020b36_da2cb5ba",
@@ -171,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b36f7f4_73c5e0cc",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f020b36_da2cb5ba",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "403bc4bb_2b28c685",
@@ -184,6 +364,24 @@
       "writtenOn": "2025-04-16T12:20:43Z",
       "side": 1,
       "message": "```uint32_t vendorIANA```",
+      "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "955af167_0cd98a61",
+        "filename": "test/eeprom-device/test_eeprom_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "403bc4bb_2b28c685",
       "revId": "fa2e1523ab2b8ffc164d103835e966dfe7bc2e99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,6 +1,91 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ddec74_3369b1af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-17T19:40:24Z",
+      "side": 1,
+      "message": "Lets reduce some chattiness in UT logs. Lets not display everything in the firmware inventory list and use {...} before and after \n\n    {\n    \"@odata.id\": \"/redfish/v1/UpdateService/FirmwareInventory/MB_Retimer_9355\"\n    },",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97e9cc1_abf941cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-17T19:40:24Z",
+      "side": 1,
+      "message": "Same comment as above to display only interesting Retimer FW entries to reduce UT chattiness.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f7680a_e7155950",
+        "filename": "eeprom-device/README.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-17T19:40:24Z",
+      "side": 1,
+      "message": "This should be com.meta.Hardware.Harma..... as per https://grok.openbmc.org/xref/openbmc/phosphor-dbus-interfaces/yaml/com/meta/Hardware/ .\n\nPlease add this compatible hardware entry to phosphor-dbus-interfaces as well by raising a PR there.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9a5b50_5b4acb1c",
+        "filename": "eeprom-device/main.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-17T19:40:24Z",
+      "side": 1,
+      "message": "change eepromdevicecu to eepromDeviceSoftwareManager",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249963f7_f6bd76fb",
+        "filename": "eeprom-device/main.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-17T19:40:24Z",
+      "side": 1,
+      "message": "Lets define a start function in SoftwareManager like https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/i2c-vr/i2cvr_software_manager.cpp?r\u003d7e446a407a579ec72f48009008ad2f83c01c2262#30 and also move the main function to SoftwareManager as its very minimal code and doesn\u0027t seem to need its own file (drop main.cpp).",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2ccb032c_edf2eba5",

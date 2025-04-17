@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ccb032c_edf2eba5",
+        "filename": "eeprom-device/meson.build",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T11:02:22Z",
+      "side": 1,
+      "message": "nit: ```eeprom_device_src``` and ```eeprom_device_version_src``` can probably be inlined since i cannot see any other use of the variable.",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 21
+      },
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

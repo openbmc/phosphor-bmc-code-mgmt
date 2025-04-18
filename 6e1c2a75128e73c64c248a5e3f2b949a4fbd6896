@@ -54,6 +54,295 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3dc1d43_444d6646",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "This is something for next iteration (subsequent patches) of code -\nLet\u0027s define a CRTP pattern GPIO class with this API so it can be used in other Updaters too such as BIOS updater https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bios/spi_device.cpp?r\u003df2c95a08ad4340d8e8e7ccdb1af9f5a45d180530#173 \n\n(CC @alexander.hansen@9elements.com )",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721166b4_2bed10da",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "This is something for next iteration (subsequent patches) of code -\nI see lot of similarities between this code and bios spi_device. So, in next iteration we should plan to harmonize spi_device and eeprom_device and create a class in common code such as mem_device so both the spi_device and eeprom_device can inherit from it. Most of the APIs such as Bound, unBound, IsBound, common write orchestrator can be part of mem_device class. The only function which seems specific to child class would be the write API.\n(CC @alexander.hansen@9elements.com )",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "070c13c8_90d8ebe6",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Let\u0027s make this function static by passing in chipModel. Also drop it from the class private declarations .hpp.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3c1fb7_4f33396a",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Let\u0027s make this function static by passing in bus and address. Also drop it from the class private declarations .hpp.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75967c83_7dee9031",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Let\u0027s make this function static by passing in bus and address. Also drop it from the class private declarations .hpp.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6023027_5873728a",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Please make this debug, no info logs as such.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef3809e_80d9cfe0",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Lets move this whole logic inside updateDevice as that function barely has anything.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66300d5a_0a83f644",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Let\u0027s rename this function writeEEPROM instead. Its implicit that device would be binded by the caller.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4541f9_85453604",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "You are writing one big file, wouldn\u0027t it block the updater in meantime? Have you tested a flow where an update is in progress and another update for the same device comes, did updater return an error saying an update is in progress?\n\nIf above testing fails, then i suppose it would be better to do something like https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bios/spi_device.cpp?r\u003df2c95a08ad4340d8e8e7ccdb1af9f5a45d180530#286 , would prefer a different thread rather than process.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80fdce52_29c50d2e",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Why do we need to check for hostPower being non-null here? It was initialized as part of constructor, so better to throw an exception there and handle it in caller rather than checking here.\n\nId u make hostPower a normal class var you won\u0027t need this check at all.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf5450e_8222934d",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Lets log an error for requiredHostState being invalid.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39b2ed9_ae932ac3",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "lets rename propVal to currentHostState instead.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc8f917_702cb421",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Please don\u0027t include the full namespaces like this but define and use namespaces https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/i2c-vr/i2cvr_device.hpp?r\u003d7e446a407a579ec72f48009008ad2f83c01c2262#8 .",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b738c22_5753918b",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Does this really needs to be unique_ptr, i suppose you can init it as part of constructor args and it can just be a normal member var?",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c48b16d7_02a32ace",
+        "filename": "eeprom-device/eeprom_device.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Lets rename this to processHostStateChange() instead",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231a13ec_f3e691db",
+        "filename": "eeprom-device/eeprom_device_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Please remove the prefix opt from all attributes as these are not optional properties. Better to rename to xxxvalue instead, for example, busValue.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23097d05_a6a74608",
+        "filename": "eeprom-device/eeprom_device_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Initialize the local vars.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ca773da_18b180a5",
         "filename": "eeprom-device/eeprom_device_software_manager.hpp",
         "patchSetId": 14
@@ -65,6 +354,40 @@
       "writtenOn": "2025-04-17T21:26:22Z",
       "side": 1,
       "message": "second args needs to be serviceNameSuffix, for example in this case `EERPOMDevice` and not `EEPROMDeviceFirmware`.\n\nPlease do busctl and make sure correct values show up there.",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541a934e_b5bf26a4",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Don\u0027t include namespace directly instead please define https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/i2c-vr/i2cvr_device.hpp?r\u003d7e446a407a579ec72f48009008ad2f83c01c2262#15 .",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "968c0c3a_07d583c2",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:31:38Z",
+      "side": 1,
+      "message": "Lets rename this to something like - \n\ngetHostStateToQueryVersion() or getHostStateToReadVersion()",
       "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -143,6 +143,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "677ed654_642c2e4e",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-18T09:38:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78083328_654d5de8",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2df4b37a_21772273",
@@ -349,6 +367,24 @@
       "side": 1,
       "message": "The isHostOnRequiredToGetVersion() is to set if the host on state is required to get the version, move to use getRequiredHostStateToGetVersion() instead.",
       "parentUuid": "0e54f126_035148cc",
+      "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecd0961e_5985bc3d",
+        "filename": "eeprom-device/version-providers/pt5161l.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-18T09:38:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc359b41_b8601897",
       "revId": "9da4af77b69f0ad442fa266046149f8a1ef6b190",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

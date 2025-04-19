@@ -8,6 +8,6 @@ After=xyz.openbmc_project.Software.Manager.service
 
 [Service]
 Restart=no
-ExecStart=/usr/bin/phosphor-usb-code-update --device %i
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-usb-code-update --device %i
 Type=simple
 RemainAfterExit=yes

@@ -201,6 +201,7 @@ if get_option('software-update-dbus-interface').allowed()
         software_common_sources,
         dependencies: [deps, ssl],
         install: true,
+        install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
     )
     unit_files += ['xyz.openbmc_project.Software.Manager.service.in']
 else

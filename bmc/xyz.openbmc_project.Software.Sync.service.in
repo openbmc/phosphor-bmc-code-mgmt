@@ -2,7 +2,7 @@
 Description=Phosphor Sync Manager that syncs files to the alternate BMC chip
 
 [Service]
-ExecStart=/usr/bin/phosphor-sync-software-manager
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-sync-software-manager
 Restart=always
 
 [Install]

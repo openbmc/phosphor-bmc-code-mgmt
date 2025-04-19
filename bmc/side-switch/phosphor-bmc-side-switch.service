@@ -16,7 +16,7 @@ ConditionPathExists=!/run/openbmc/host@0-on
 Restart=no
 Type=oneshot
 RemainAfterExit=no
-ExecStart=/usr/bin/phosphor-bmc-side-switch
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-bmc-side-switch
 
 [Install]
 #WantedBy=obmc-host-startmin@0.target

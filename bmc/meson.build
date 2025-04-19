@@ -218,6 +218,7 @@ executable(
     'item_updater_main.cpp',
     dependencies: [deps, ssl, boost_dep],
     install: true,
+    install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
 )
 
 executable(

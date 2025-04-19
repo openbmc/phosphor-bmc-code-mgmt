@@ -230,6 +230,7 @@ executable(
     software_common_sources,
     dependencies: [deps, ssl],
     install: true,
+    install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
 )
 
 install_data(

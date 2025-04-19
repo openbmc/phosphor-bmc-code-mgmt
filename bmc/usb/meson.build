@@ -20,7 +20,7 @@ executable(
         sdeventplus_dep,
     ],
     install: true,
-    install_dir: get_option('bindir'),
+    install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
 )
 
 systemd_system_unit_dir = dependency('systemd').get_variable(

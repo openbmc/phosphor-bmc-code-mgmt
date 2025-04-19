@@ -7,7 +7,7 @@ After=xyz.openbmc_project.EntityManager.service
 Restart=always
 Type=exec
 RemainAfterExit=no
-ExecStart=/usr/bin/phosphor-i2cvr-software-update
+ExecStart=/usr/libexec/phosphor-bmc-code-mgmt/phosphor-i2cvr-software-update
 
 [Install]
 WantedBy=multi-user.target

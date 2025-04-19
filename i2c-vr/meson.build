@@ -19,6 +19,7 @@ executable(
     ],
     link_with: [software_common_lib, libpldmutil],
     install: true,
+    install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
 )
 
 systemd_system_unit_dir = dependency('systemd').get_variable(

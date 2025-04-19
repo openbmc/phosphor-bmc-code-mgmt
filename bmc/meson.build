@@ -165,6 +165,7 @@ if get_option('sync-bmc-files').allowed()
         'sync_watch.cpp',
         dependencies: deps,
         install: true,
+        install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
     )
 
     install_data('synclist', install_dir: get_option('sysconfdir'))

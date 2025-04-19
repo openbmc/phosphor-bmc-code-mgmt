@@ -188,6 +188,7 @@ executable(
     'download_manager_main.cpp',
     dependencies: deps,
     install: true,
+    install_dir: get_option('libexecdir') / 'phosphor-bmc-code-mgmt',
 )
 
 software_common_sources = files('software_utils.cpp')

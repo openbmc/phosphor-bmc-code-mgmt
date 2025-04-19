@@ -2,7 +2,7 @@
 Description=Phosphor Download Manager
 
 [Service]
-ExecStart=/usr/bin/phosphor-download-manager
+ExecStart=/usr/libexec/phosphor-bmc-code-mgmt/phosphor-download-manager
 Restart=always
 Type=dbus
 BusName={BUSNAME}

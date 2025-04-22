@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f01a825b_4f042ab8",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-22T17:03:41Z",
+      "side": 1,
+      "message": "Let\u0027s come up with an option that describes this.. E.g. usb-code-update or bios-software-update \n\nAlso more of a description will help here",
+      "revId": "fe94b906ef55263d6559e4b5c7ce7d6b57e4343d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

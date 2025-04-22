@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd5c4b5b_e7f8f684",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-04-22T17:03:41Z",
+      "side": 1,
+      "message": "Please link the design doc and add more to the commit msg. :)\n\nThere is still a lot of discussion on that design doc, that needs to get sorted out first",
+      "parentUuid": "60a82481_74801de3",
+      "revId": "ef98c74d2526c713b54382648b187a9568e61ee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e24d062a_33e40dba",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1

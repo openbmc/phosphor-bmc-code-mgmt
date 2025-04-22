@@ -104,6 +104,24 @@
       "parentUuid": "41c39f47_49698756",
       "revId": "1d5f29e44d5d2ce06e86264014b863389e94d202",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97b047db_4461fd4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-22T07:21:58Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79823\n\nnow its there. Will add this as reference to the commit message with the next patchset.",
+      "parentUuid": "2e47910a_553530c6",
+      "revId": "1d5f29e44d5d2ce06e86264014b863389e94d202",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

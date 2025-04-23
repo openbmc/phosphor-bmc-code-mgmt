@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fbdb307_f9ae19e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T12:50:30Z",
+      "side": 1,
+      "message": "ping for review of this change, since there is little review progress on the sdbusplus change.",
+      "revId": "2fbe7a388b8aa5044e0310e8f1d2b2e3650be52f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -34,6 +34,24 @@
       "parentUuid": "e776fa92_bc0af203",
       "revId": "47792ced2cb1195564e9d031eac03eae8cef37e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "990ce8f6_dcaa2bc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T12:48:50Z",
+      "side": 1,
+      "message": "1. I don\u0027t think there is any project-wide requirement to have a change merged for the EM schema to merge a feature. EM is intended for the configuration use-case and may lag behind somewhat. There is always room to adjust the code if the config needs to look different from the EM side.\n\nI had initially dropped the ME support in the schema since there was too much discussion happening and no concrete ideas. I don\u0027t see the value to start so many new discussions if there is still 10+ patches waiting on feedback. So we can move forward with ME support and later figure out how to configure it.\n\n2. I need the change to support a use-case for a board i already tested (Tyan S5549). Do you think this board should not be supported by the OpenBMC project?.\nIf the change is not needed, why would i push this change?",
+      "parentUuid": "e4c79f19_9248313b",
+      "revId": "47792ced2cb1195564e9d031eac03eae8cef37e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -387,6 +387,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9b8b44d_24e1e3cc",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T08:42:13Z",
+      "side": 1,
+      "message": "Would async writing to a file be a responsibility of sdbusplus? Since it is providing the fdio abstraction already.\n\n@paligill@gmail.com Do you think it\u0027s worthwhile to implement that in sdbusplus?\n\n@Kevin.Tung@quantatw.com the ```asyncSystem``` may be moved to common code if you find a use for it.",
+      "parentUuid": "0bb4a726_4954dd49",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80fdce52_29c50d2e",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 14

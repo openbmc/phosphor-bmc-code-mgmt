@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca915d3b_079c0cc3",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T09:00:20Z",
+      "side": 1,
+      "message": "nit: Why are you passing by reference. Can you rewrite it as \n```\nstatic std::string getI2CDeviceId(const uint16_t bus, const uint8_t address)\n```",
+      "revId": "49c01b8fbecac6df64a6a334d6eb54d79b4c4103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e23287_ecffbbbf",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T09:00:20Z",
+      "side": 1,
+      "message": "nit: Same, can pass by value here.",
+      "revId": "49c01b8fbecac6df64a6a334d6eb54d79b4c4103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "728870a1_2ac06504",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T09:00:20Z",
+      "side": 1,
+      "message": "nit: The ```bus``` and ```address``` will not change, right? So they can be passed by value.",
+      "revId": "49c01b8fbecac6df64a6a334d6eb54d79b4c4103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "346af75b_df58daa7",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T09:00:20Z",
+      "side": 1,
+      "message": "nit: Can pass bus,address by value here.",
+      "revId": "49c01b8fbecac6df64a6a334d6eb54d79b4c4103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

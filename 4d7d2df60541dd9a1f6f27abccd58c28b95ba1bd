@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f218b23b_b72157f2",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```numRetries``` is unsigned quantity.\n```msec``` is unsigned quantity.",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "481f28fe_34dff32d",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```retries``` is unsigned",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2256cd67_cb945151",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "There is only 2 cases handled here, can use a bool for success / failure.",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b7773b_b9627c20",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "lg2::debug",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a4b617_f6da2a6c",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "lg2::error",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a9b77b_f1ab0ba1",
+        "filename": "cpld/lattice/cpld_fw_handler.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```uint16_t bus``` since a system can have more than 255 i2c busses",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b65dc8ec_179104d9",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```lg2::info```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7192ba60_aad350b6",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```lg2::error```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e9f54b_2f76d41e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```lg2::error```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "428de964_21a83af2",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "Let\u0027s not use the preprocessor and instead use\n```if constexpr (ENABLE_UPDATE_EBR_INIT)```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc0bfdf7_8fbd42dc",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```size_t b_idx```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbf229f_cc560e02",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-23T10:16:13Z",
+      "side": 1,
+      "message": "```uint16_t bus```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

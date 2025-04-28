@@ -423,6 +423,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f75babf0_e4196964",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:39:46Z",
+      "side": 1,
+      "message": "I don\u0027t see asyncSystem API doing anything related to coroutines sender receiver logic so i don\u0027t think its a candidate for sdbusplus APIs.\n\n@Kevin.Tung@quantatw.com Let\u0027s move this to common code as a followup patch. Please raise the gerrit patch in stack and share it here.",
+      "parentUuid": "4f7a6b19_094317e4",
+      "revId": "6e1c2a75128e73c64c248a5e3f2b949a4fbd6896",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80fdce52_29c50d2e",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 14

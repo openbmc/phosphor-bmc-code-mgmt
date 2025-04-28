@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb6b1049_3d4c0fe5",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-28T10:34:22Z",
+      "side": 1,
+      "message": "Removed it from the program function and use it in the updateFirmware function.",
+      "parentUuid": "119c0a94_b540164e",
+      "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34ddf337_38d8d152",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-04-28T09:33:58Z",
       "side": 1,
       "message": "nit:\n\n```\nif (!(co_await this-\u003egetProgStatus())) {\n    ...\n}\n```\n\nto avoid the local variable",
+      "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e949895_b4c15d6e",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-28T10:34:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34ddf337_38d8d152",
       "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "191e5e69_e7143cdb",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-28T10:34:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73ed2259_556bb1db",
+      "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e986edb3_41caf4c5",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-04-28T09:33:58Z",
       "side": 1,
       "message": "```uint8_t address```?",
+      "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70509904_e9b5e14b",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-04-28T10:34:22Z",
+      "side": 1,
+      "message": "Address (in certain cases), can be 10 bit.",
+      "parentUuid": "e986edb3_41caf4c5",
       "revId": "fc4fb7c68bb9a00aa489b2e01181be098943d266",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

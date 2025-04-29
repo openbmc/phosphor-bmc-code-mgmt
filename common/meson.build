@@ -12,4 +12,5 @@ software_common_lib = static_library(
     'i2c/i2c.cpp',
     include_directories: ['.', 'include/', 'include/i2c/', common_include],
     dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep],
+    link_args: '-li2c',
 )

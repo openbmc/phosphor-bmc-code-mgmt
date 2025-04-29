@@ -89,6 +89,7 @@ if get_option('bios-software-update').enabled()
 endif
 
 if get_option('i2cvr-software-update').enabled()
+    subdir('common/i2c/')
     subdir('i2c-vr')
 endif
 

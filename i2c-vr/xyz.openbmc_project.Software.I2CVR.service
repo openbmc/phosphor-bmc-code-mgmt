@@ -5,7 +5,8 @@ After=xyz.openbmc_project.EntityManager.service
 
 [Service]
 Restart=always
-Type=exec
+Type=dbus
+BusName=xyz.openbmc_project.Software.I2CVR
 RemainAfterExit=no
 ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-i2cvr-software-update
 

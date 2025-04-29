@@ -9,17 +9,19 @@ executable(
     'i2cvr_software_manager.cpp',
     i2cvr_src,
     regulators_src,
-    include_directories: [common_include, i2cvr_include],
+    include_directories: [common_include, i2cvr_include, libi2c_inc],
     dependencies: [
         sdbusplus_dep,
         phosphor_logging_dep,
         pdi_dep,
         boost_dep,
         libpldm_dep,
+        libi2c_dep,
     ],
-    link_with: [software_common_lib, libpldmutil],
+    link_with: [software_common_lib, libpldmutil, libi2c_dev],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
+    link_args: '-li2c',
 )
 
 systemd_system_unit_dir = dependency('systemd').get_variable(

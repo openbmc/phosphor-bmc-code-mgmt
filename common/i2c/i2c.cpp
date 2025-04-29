@@ -1,4 +1,4 @@
-#include "i2c.hpp"
+#include "include/i2c/i2c.hpp"
 
 #include <unistd.h>
 

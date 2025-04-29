@@ -7,7 +7,8 @@ After=xyz.openbmc_project.EntityManager.service
 
 [Service]
 Restart=always
-Type=oneshot
+Type=dbus
+BusName=xyz.openbmc_project.Software.BIOS
 RemainAfterExit=no
 ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-bios-software-update
 

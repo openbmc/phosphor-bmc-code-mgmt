@@ -134,6 +134,18 @@ class UpdateManager :
         UniqueFD fd, RequestedApplyTimes applyTime);
 
     /**
+     * @brief Verify the PLDM firmware update package payload checksum.
+     *
+     * This function verifies the payload checksum of a PLDM firmware update package
+     * by using the libpldm verify_pldm_firmware_update_package_payload_checksum function.
+     *
+     * @param[in] fd        The update image file descriptor (wrapped in UniqueFD)
+     *
+     * @return true if checksum verification succeeds, false otherwise
+     */
+    sdbusplus::async::task<bool> verifyPLDMPackageChecksum(UniqueFD fd);
+
+    /**
      * @brief Checks if the device is ready to be activated.
      *
      * Subscribes to progress signals, retrieves current activation status,

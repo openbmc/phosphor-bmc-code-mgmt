@@ -3,6 +3,9 @@
 #include "device.hpp"
 
 #include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
@@ -13,6 +16,8 @@
 #include <chrono>
 #include <cstring>
 #include <stdexcept>
+
+#include <libpldm/firmware_update.h>
 
 PHOSPHOR_LOG2_USING;
 
@@ -109,6 +114,14 @@ static sdbusplus::async::task<sdbusplus::message::object_path>
 {
     if (!fd.is_valid())
     {
+        co_return {};
+    }
+
+    // Verify the PLDM package checksum before proceeding
+    bool checksumValid = co_await verifyPLDMPackageChecksum(fd);
+    if (!checksumValid)
+    {
+        error("PLDM package checksum verification failed, aborting update");
         co_return {};
     }
 
@@ -353,6 +366,52 @@ static sdbusplus::async::task<void> UpdateManager::handlePLDMActivation(
     {
         error("Exception in handlePLDMActivation: {ERR}", "ERR", e.what());
     }
+}
+
+sdbusplus::async::task<bool> UpdateManager::verifyPLDMPackageChecksum(UniqueFD fd)
+{
+    if (!fd.is_valid())
+    {
+        error("Invalid file descriptor for PLDM package checksum verification");
+        co_return false;
+    }
+
+    // Get file size
+    struct stat fileStat;
+    if (fstat(fd.get(), &fileStat) != 0)
+    {
+        error("Failed to get file stats for PLDM package: {ERR}", "ERR",
+              strerror(errno));
+        co_return false;
+    }
+
+    // Map the file into memory
+    void* mappedData = mmap(nullptr, fileStat.st_size, PROT_READ, MAP_PRIVATE,
+                           fd.get(), 0);
+    if (mappedData == MAP_FAILED)
+    {
+        error("Failed to mmap PLDM package file: {ERR}", "ERR",
+              strerror(errno));
+        co_return false;
+    }
+
+    // Verify the payload checksum
+    info("Verifying PLDM firmware update package payload checksum...");
+    int result = verify_pldm_firmware_update_package_payload_checksum(
+        mappedData, fileStat.st_size);
+
+    // Unmap the file
+    munmap(mappedData, fileStat.st_size);
+
+    if (result != 0)
+    {
+        error("PLDM firmware update package payload checksum verification failed: {ERR}",
+              "ERR", result);
+        co_return false;
+    }
+
+    info("PLDM firmware update package payload checksum verification succeeded");
+    co_return true;
 }
 
 } // namespace software

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d921655_937dbe04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-30T06:35:17Z",
+      "side": 1,
+      "message": "@christopher.meis@9elements.com Any specific reason you are clubbing the i2c into common lib? I think its better to keep it separate otherwise this will compile for all updaters, even for one\u0027s which doesn\u0027t even use this code.",
+      "revId": "63657dd78d04b5b06a58792a15c2ba8b2a5f7252",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

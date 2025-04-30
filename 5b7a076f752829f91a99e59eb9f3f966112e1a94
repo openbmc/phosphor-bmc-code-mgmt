@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53339b43_a088f288",
+        "filename": "common/i2c/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-30T16:14:06Z",
+      "side": 1,
+      "message": "lets rename this libi2c_include to keep it consistent with others.",
+      "revId": "5b7a076f752829f91a99e59eb9f3f966112e1a94",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b69b6fbb_9fd669db",
+        "filename": "common/i2c/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-30T16:14:06Z",
+      "side": 1,
+      "message": "lets rename this i2c_dev_lib to keep it consistent with others.",
+      "revId": "5b7a076f752829f91a99e59eb9f3f966112e1a94",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

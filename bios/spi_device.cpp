@@ -4,6 +4,7 @@
 #include "common/include/device.hpp"
 #include "common/include/host_power.hpp"
 #include "common/include/software_manager.hpp"
+#include "common/include/utils.hpp"
 
 #include <gpiod.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -280,51 +281,6 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
     lineBulk->release();
 
     co_return success;
-}
-
-// NOLINTBEGIN(readability-static-accessed-through-instance)
-sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
-                                        const std::string& cmd)
-// NOLINTEND(readability-static-accessed-through-instance)
-{
-    int pipefd[2];
-    if (pipe(pipefd) == -1)
-    {
-        perror("pipe");
-        co_return -1;
-    }
-
-    pid_t pid = fork();
-    if (pid == -1)
-    {
-        perror("fork");
-        close(pipefd[0]);
-        close(pipefd[1]);
-        co_return -1;
-    }
-    else if (pid == 0)
-    {
-        close(pipefd[0]);
-        int exitCode = std::system(cmd.c_str());
-
-        ssize_t status = write(pipefd[1], &exitCode, sizeof(exitCode));
-        close(pipefd[1]);
-        exit((status == sizeof(exitCode)) ? 0 : 1);
-    }
-    else
-    {
-        close(pipefd[1]);
-
-        sdbusplus::async::fdio pipe_fdio(ctx, pipefd[0]);
-
-        co_await pipe_fdio.next();
-
-        int status;
-        waitpid(pid, &status, 0);
-        close(pipefd[0]);
-
-        co_return WEXITSTATUS(status);
-    }
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)

@@ -110,8 +110,8 @@ class SPIDevice : public Device, public NotifyWatchIntf
     // Intel Flash Descriptor
     // @param image           the component image
     // @param image_size      size of 'image'
-    // @returns               0 on success
-    sdbusplus::async::task<int> writeSPIFlashWithFlashrom(
+    // @returns               true on success
+    sdbusplus::async::task<bool> writeSPIFlashWithFlashrom(
         const uint8_t* image, size_t image_size) const;
 
     // @description preconditions:

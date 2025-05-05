@@ -4,6 +4,7 @@
 #include "common/include/device.hpp"
 #include "common/include/host_power.hpp"
 #include "common/include/software_manager.hpp"
+#include "common/include/utils.hpp"
 
 #include <gpiod.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -273,17 +274,15 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
         {
             if (tool == flashToolFlashrom)
             {
-                const int status =
-                    co_await SPIDevice::writeSPIFlashWithFlashrom(image,
-                                                                  image_size);
-                if (status != 0)
+                success = co_await SPIDevice::writeSPIFlashWithFlashrom(
+                    image, image_size);
+                if (!success)
                 {
                     error(
-                        "Error writing to SPI flash {CONTROLLERINDEX}:{DEVICEINDEX}, exit code {EXITCODE}",
+                        "Error writing to SPI flash {CONTROLLERINDEX}:{DEVICEINDEX}",
                         "CONTROLLERINDEX", spiControllerIndex, "DEVICEINDEX",
-                        spiDeviceIndex, "EXITCODE", status);
+                        spiDeviceIndex);
                 }
-                success = (status == 0);
             }
             else if (tool == flashToolFlashcp)
             {
@@ -318,50 +317,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
     co_return success;
 }
 
-sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
-                                        const std::string& cmd)
-{
-    int pipefd[2];
-    if (pipe(pipefd) == -1)
-    {
-        perror("pipe");
-        co_return -1;
-    }
-
-    pid_t pid = fork();
-    if (pid == -1)
-    {
-        perror("fork");
-        close(pipefd[0]);
-        close(pipefd[1]);
-        co_return -1;
-    }
-    else if (pid == 0)
-    {
-        close(pipefd[0]);
-        int exitCode = std::system(cmd.c_str());
-
-        ssize_t status = write(pipefd[1], &exitCode, sizeof(exitCode));
-        close(pipefd[1]);
-        exit((status == sizeof(exitCode)) ? 0 : 1);
-    }
-    else
-    {
-        close(pipefd[1]);
-
-        sdbusplus::async::fdio pipe_fdio(ctx, pipefd[0]);
-
-        co_await pipe_fdio.next();
-
-        int status;
-        waitpid(pid, &status, 0);
-        close(pipefd[0]);
-
-        co_return WEXITSTATUS(status);
-    }
-}
-
-sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
+sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     const uint8_t* image, size_t image_size) const
 {
     // randomize the name to enable parallel updates
@@ -424,11 +380,11 @@ sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
 
     debug("[flashrom] running {CMD}", "CMD", cmd);
 
-    const int exitCode = co_await asyncSystem(ctx, cmd);
+    auto success = co_await asyncSystem(ctx, cmd);
 
     std::filesystem::remove(path);
 
-    co_return exitCode;
+    co_return success;
 }
 
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
@@ -470,11 +426,11 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
 
     debug("running {CMD}", "CMD", cmd);
 
-    const int exitCode = co_await asyncSystem(ctx, cmd);
+    auto success = co_await asyncSystem(ctx, cmd);
 
     std::filesystem::remove(path);
 
-    co_return exitCode == 0;
+    co_return success;
 }
 
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(

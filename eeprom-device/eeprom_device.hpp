@@ -65,8 +65,8 @@ class EEPROMDevice : public Device
      * @param image_size    - Size of the data to write in bytes.
      * @return `true` on success, `false` otherwise.
      */
-    sdbusplus::async::task<int> writeEEPROM(const uint8_t* image,
-                                            size_t image_size) const;
+    sdbusplus::async::task<bool> writeEEPROM(const uint8_t* image,
+                                             size_t image_size) const;
     /**
      *  @brief Handle async host state change signal and updates the version.
      */

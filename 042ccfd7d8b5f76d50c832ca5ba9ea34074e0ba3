@@ -34,6 +34,24 @@
       "parentUuid": "3ca80f3c_2b09c8ad",
       "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714c6c44_5bfb75a8",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-06T13:27:50Z",
+      "side": 1,
+      "message": "Assume clang-tidy is not telling us the full story here.\n\nI tried initializing ```pipefd``` array too but same error.\nThe analysis from clang-tidy is not fully complete. It\u0027s unclear how control flow proceeds to the shown location.\n\nThe last thing clang-tidy shows is \n```\n\n../common/src/utils.cpp:25:10: note: Taking true branch\n   25 |     else if (pid \u003e 0)\n      |          ^\n```\n\nBut the error is printed above as\n\n```\n\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: error: Branch condition evaluates to a garbage value [clang-analyzer-core.uninitialized.Branch,-warnings-as-errors]\n  123 |         STDEXEC_ASSERT(__has_value);\n      |         ^\n```\n\nso it is unclear how control flow will go there.\n\n\nWhen removing the\n```\n //NOLINTBEGIN(....uninitialized...)\n```\nThe error printed by clang-tidy is more verbose.\n\n```\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: error: Branch condition evaluates to a garbage value [clang-analyzer-core.uninitialized.Branch,-warnings-as-errors]\n  123 |         STDEXEC_ASSERT(__has_value);\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:501:9: note: expanded from macro \u0027STDEXEC_ASSERT\u0027\n  501 |         STDEXEC_ASSERT_FN(_XP);                                                \\\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:505:27: note: expanded from macro \u0027STDEXEC_ASSERT_FN\u0027\n  505 | #define STDEXEC_ASSERT_FN assert\n      |                           ^\n/usr/include/assert.h:103:7: note: expanded from macro \u0027assert\u0027\n  103 |      (static_cast \u003cbool\u003e (expr)                                         \\\n      |       ^\n../common/src/utils.cpp:9:9: note: Assuming the condition is false\n    9 |     if (pipe(pipefd) \u003d\u003d -1)\n      |         ^~~~~~~~~~~~~~~~~~\n../common/src/utils.cpp:9:5: note: Taking false branch\n    9 |     if (pipe(pipefd) \u003d\u003d -1)\n      |     ^\n../common/src/utils.cpp:16:9: note: Assuming \u0027pid\u0027 is not equal to 0\n   16 |     if (pid \u003d\u003d 0)\n      |         ^~~~~~~~\n../common/src/utils.cpp:16:5: note: Taking false branch\n   16 |     if (pid \u003d\u003d 0)\n      |     ^\n../common/src/utils.cpp:25:14: note: Assuming the condition is false\n   25 |     else if (pid \u003d\u003d -1)\n      |              ^~~~~~~~~\n../common/src/utils.cpp:25:10: note: Taking false branch\n   25 |     else if (pid \u003d\u003d -1)\n      |          ^\n../common/src/utils.cpp:38:9: note: Calling \u0027__promise::await_transform\u0027\n   38 |         co_await pipe_fdio.next();\n      |         ^~~~~~~~~~~~~~~~~~~~~~~~~\n/usr/local/include/sdbusplus/async/stdexec/task.hpp:433:44: note: Calling \u0027__optional::operator*\u0027\n  433 |                              get_scheduler(*__context_)),\n      |                                            ^~~~~~~~~~~\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: note: Branch condition evaluates to a garbage value\n  123 |         STDEXEC_ASSERT(__has_value);\n      |         ^\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:501:9: note: expanded from macro \u0027STDEXEC_ASSERT\u0027\n  501 |         STDEXEC_ASSERT_FN(_XP);                                                \\\n      |         ^                 ~~~\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__config.hpp:505:27: note: expanded from macro \u0027STDEXEC_ASSERT_FN\u0027\n  505 | #define STDEXEC_ASSERT_FN assert\n      |                           ^\n/usr/include/assert.h:103:7: note: expanded from macro \u0027assert\u0027\n  103 |      (static_cast \u003cbool\u003e (expr)                                         \\\n      |       ^                   ~~~~\n```",
+      "parentUuid": "52e53458_958c5660",
+      "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

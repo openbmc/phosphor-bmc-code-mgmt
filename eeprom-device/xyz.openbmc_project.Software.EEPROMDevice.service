@@ -9,7 +9,7 @@ After=xyz.openbmc_project.EntityManager.service
 ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-eepromdevice-software-update
 Restart=always
 Type=dbus
-BusName=xyz.openbmc_project.Software.EERPOMDevice
+BusName=xyz.openbmc_project.Software.EEPROMDevice
 
 [Install]
 WantedBy=multi-user.target

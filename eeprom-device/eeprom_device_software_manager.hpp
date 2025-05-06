@@ -4,7 +4,7 @@
 
 namespace ManagerInf = phosphor::software::manager;
 
-const std::string configTypeEEPROMDevice = "EERPOMDevice";
+const std::string configTypeEEPROMDevice = "EEPROMDevice";
 
 class EEPROMDeviceSoftwareManager : public ManagerInf::SoftwareManager
 {

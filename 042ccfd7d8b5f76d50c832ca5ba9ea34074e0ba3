@@ -16,6 +16,24 @@
       "message": "wondering why we have the uninitialized branch here but not in the place the code was taken from. \n\n```pipe_fdio``` should be initialized by constructor and both ```ctx``` and ```pipefd[0]``` should also be initialized.",
       "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e53458_958c5660",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-05-06T11:02:05Z",
+      "side": 1,
+      "message": "Yes, I think both of them should be initialized, but even with `NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)`, clang-tidy still shows an error indicating they weren\u0027t in CI Test.\n\n```\n/usr/local/include/sdbusplus/async/stdexec/../stdexec/__detail/__optional.hpp:123:9: error: Branch condition evaluates to a garbage value [clang-analyzer-core.uninitialized.Branch,-warnings-as-errors]\n  123 |         STDEXEC_ASSERT(__has_value);\n```",
+      "parentUuid": "3ca80f3c_2b09c8ad",
+      "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

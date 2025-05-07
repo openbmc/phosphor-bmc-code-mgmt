@@ -24,6 +24,37 @@ using namespace phosphor::software;
 using namespace phosphor::software::manager;
 using namespace phosphor::software::host_power;
 
+static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
+{
+    const fs::path spi_path =
+        "/sys/class/spi_master/spi" + std::to_string(spiControllerIndex);
+
+    if (!fs::exists(spi_path))
+    {
+        error("SPI controller index not found at {PATH}", "PATH",
+              spi_path.string());
+        return std::nullopt;
+    }
+
+    fs::path target = fs::read_symlink(spi_path);
+
+    // The path looks like
+    // ../../devices/platform/ahb/1e630000.spi/spi_master/spi1 We want to
+    // extract e.g. '1e630000.spi'
+
+    for (const auto& part : target)
+    {
+        std::string part_str = part.string();
+        if (part_str.find(".spi") != std::string::npos)
+        {
+            debug("Found SPI Address {ADDR}", "ADDR", part_str);
+            return part_str;
+        }
+    }
+
+    return std::nullopt;
+}
+
 SPIDevice::SPIDevice(
     sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
     uint64_t spiDeviceIndex, bool dryRun, bool hasME,
@@ -42,18 +73,15 @@ SPIDevice::SPIDevice(
     // To probe the driver for our spi flash, we need the memory-mapped address
     // of the spi peripheral. These values are specific to aspeed BMC.
     // https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-    std::map<uint32_t, std::string> spiDevAddr = {
-        {0, "1e620000.spi"},
-        {1, "1e630000.spi"},
-        {2, "1e631000.spi"},
-    };
 
-    if (spiControllerIndex >= spiDevAddr.size())
+    auto optAddr = getSPIDevAddr(spiControllerIndex);
+
+    if (!optAddr.has_value())
     {
-        throw std::invalid_argument("SPI controller index out of bounds");
+        throw std::invalid_argument("SPI controller index not found");
     }
 
-    spiDev = spiDevAddr[spiControllerIndex];
+    spiDev = optAddr.value();
 
     ctx.spawn(readNotifyAsync());
 

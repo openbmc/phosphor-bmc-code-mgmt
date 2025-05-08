@@ -1,10 +1,12 @@
 #include "software_manager.hpp"
 
+#include <boost/container/flat_map.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/bus.hpp>
+#include <sdbusplus/bus/match.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 #include <xyz/openbmc_project/Software/Version/client.hpp>
@@ -37,6 +39,8 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
     const std::vector<std::string>& configurationInterfaces)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
+    co_await initConfigIntfMatches(configurationInterfaces);
+
     auto client = sdbusplus::client::xyz::openbmc_project::ObjectMapper<>(ctx)
                       .service("xyz.openbmc_project.ObjectMapper")
                       .path("/xyz/openbmc_project/object_mapper");
@@ -161,4 +165,138 @@ sdbusplus::async::task<void> SoftwareManager::handleConfigurationInterfaceFound(
     co_await initDevice(service, path, optConfig.value());
 
     co_return;
+}
+
+static constexpr auto serviceNameEM = "xyz.openbmc_project.EntityManager";
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<void> SoftwareManager::initConfigIntfMatches(
+    const std::vector<std::string>& configInterfaces)
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    if (configIntfAddedMatch != nullptr && configIntfRemovedMatch != nullptr)
+    {
+        error(
+            "map of configuration interface added/removed matches was already initialized");
+        co_return;
+    }
+
+    namespace RulesIntf = sdbusplus::bus::match::rules;
+
+    using AsyncMatch = sdbusplus::async::match;
+
+    debug("Adding interface added/removed matches");
+
+    auto matchRuleSender = RulesIntf::sender(serviceNameEM);
+
+    auto matchStrAdded = RulesIntf::interfacesAdded() + matchRuleSender;
+    auto matchStrRemoved = RulesIntf::interfacesRemoved() + matchRuleSender;
+
+    info("Register match: {STR}", "STR", matchStrAdded);
+    info("Register match: {STR}", "STR", matchStrRemoved);
+
+    configIntfAddedMatch = std::make_unique<AsyncMatch>(ctx, matchStrAdded);
+    configIntfRemovedMatch = std::make_unique<AsyncMatch>(ctx, matchStrRemoved);
+
+    ctx.spawn(awaitConfigIntfAddedMatch(configInterfaces));
+    ctx.spawn(awaitConfigIntfRemovedMatch(configInterfaces));
+
+    co_return;
+}
+
+using BasicVariantType =
+    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
+                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
+using BaseConfigMap = boost::container::flat_map<std::string, BasicVariantType>;
+using ConfigMap = boost::container::flat_map<std::string, BaseConfigMap>;
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<void> SoftwareManager::awaitConfigIntfAddedMatch(
+    std::vector<std::string> interfaces)
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    while (!ctx.stop_requested())
+    {
+        std::tuple<std::string, ConfigMap> nextResult("", {});
+        nextResult = co_await configIntfAddedMatch
+                         ->next<sdbusplus::message::object_path, ConfigMap>();
+
+        auto& [objPath, serviceIntfMap] = nextResult;
+
+        debug("detected interface added on {PATH}", "PATH", objPath);
+
+        for (auto& [service, intfs] : serviceIntfMap)
+        {
+            for (auto& configIntf : interfaces)
+            {
+                if (intfs.contains(configIntf))
+                {
+                    co_await handleConfigurationInterfaceFound(service, objPath,
+                                                               configIntf);
+                }
+            }
+        }
+    }
+}
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<void> SoftwareManager::awaitConfigIntfRemovedMatch(
+    std::vector<std::string> interfaces)
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    (void)interfaces;
+    while (!ctx.stop_requested())
+    {
+        auto nextResult = co_await configIntfRemovedMatch->next<
+            sdbusplus::message::object_path, std::vector<std::string>>();
+
+        auto [objPath, interfacesRemoved] = nextResult;
+
+        debug("detected interface removed on {PATH}", "PATH", objPath);
+
+        bool configIntfRemoved = false;
+        for (auto& intf : interfaces)
+        {
+            if (std::find(interfacesRemoved.begin(), interfacesRemoved.end(),
+                          intf) != interfacesRemoved.end())
+            {
+                configIntfRemoved = true;
+            }
+        }
+
+        if (!configIntfRemoved)
+        {
+            co_return;
+        }
+
+        sdbusplus::message::object_path deviceToRemove;
+
+        for (auto& [path, device] : devices)
+        {
+            if (device->config.objectPath != objPath)
+            {
+                continue;
+            }
+
+            // the device's config was found on this object path
+
+            if (device->updateInProgress)
+            {
+                // TODO: This code path needs to be cleaned up in the future to
+                // eventually remove the device.
+                debug(
+                    "removal of device at {PATH} ignored because of in-progress update",
+                    "PATH", path.str);
+                continue;
+            }
+
+            deviceToRemove = path;
+        }
+
+        if (!deviceToRemove.str.empty())
+        {
+            debug("removing device at {PATH}", "PATH", deviceToRemove.str);
+            devices.erase(deviceToRemove);
+        }
+    }
 }

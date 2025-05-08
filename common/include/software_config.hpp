@@ -27,6 +27,10 @@ class SoftwareConfig
                    const std::string& compatible, const std::string& configType,
                    const std::string& name);
 
+    static sdbusplus::async::task<std::optional<SoftwareConfig>> fetchFromDbus(
+        sdbusplus::async::context& ctx, const std::string& service,
+        const std::string& objectPath, const std::string& interfaceFound);
+
     // The dbus object path this configuration was fetched from
     const std::string objectPath;
 

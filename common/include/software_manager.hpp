@@ -53,6 +53,12 @@ class SoftwareManager
     sdbusplus::async::context& ctx;
 
   private:
+    static sdbusplus::async::task<std::optional<SoftwareConfig>>
+        fetchSoftwareConfig(sdbusplus::async::context& ctx,
+                            const std::string& service,
+                            const std::string& objectPath,
+                            const std::string& interfaceFound);
+
     // this is appended to the common prefix to construct the dbus name
     std::string serviceNameSuffix;
 

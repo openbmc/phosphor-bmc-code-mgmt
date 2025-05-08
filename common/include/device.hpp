@@ -117,6 +117,7 @@ class Device
 
     friend update::SoftwareUpdate;
     friend Software;
+    friend manager::SoftwareManager;
 };
 
 }; // namespace phosphor::software::device

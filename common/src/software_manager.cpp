@@ -129,22 +129,31 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
                 continue;
             }
 
-            debug(
-                "[config] found configuration interface at {SERVICE}, {OBJPATH}",
-                "SERVICE", service, "OBJPATH", path);
-
-            auto optConfig =
-                co_await getConfig(ctx, service, path, interfaceFound);
-            if (!optConfig.has_value())
-            {
-                error("Error fetching common configuration from {PATH}", "PATH",
-                      path);
-                continue;
-            }
-
-            co_await initDevice(service, path, optConfig.value());
+            co_await handleInterfaceAdded(service, path, interfaceFound);
         }
     }
 
     debug("Done with initial configuration");
+}
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
+    const std::string& service, const std::string& path,
+    const std::string& interface)
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",
+          service, "PATH", path);
+
+    auto optConfig = co_await getConfig(ctx, service, path, interface);
+
+    if (!optConfig.has_value())
+    {
+        error("Failed to get configuration from {PATH}", "PATH", path);
+        co_return;
+    }
+
+    co_await initDevice(service, path, optConfig.value());
+
+    co_return;
 }

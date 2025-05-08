@@ -68,11 +68,11 @@ subdir('bmc')
 
 common_include = include_directories('.')
 
-common_build = build_tests.allowed() or get_option('bios-software-update').enabled() or get_option(
+common_build = build_tests.allowed() or get_option('bios-software-update').allowed() or get_option(
     'i2cvr-software-update',
-).enabled() or get_option(
+).allowed() or get_option(
     'eepromdevice-software-update',
-).enabled()
+).allowed()
 
 if common_build
     libpldm_dep = dependency('libpldm')
@@ -86,16 +86,16 @@ if common_build
     subdir('common')
 endif
 
-if get_option('bios-software-update').enabled()
+if get_option('bios-software-update').allowed()
     subdir('bios')
 endif
 
-if get_option('i2cvr-software-update').enabled()
+if get_option('i2cvr-software-update').allowed()
     subdir('common/i2c/')
     subdir('i2c-vr')
 endif
 
-if get_option('eepromdevice-software-update').enabled()
+if get_option('eepromdevice-software-update').allowed()
     subdir('eeprom-device')
 endif
 

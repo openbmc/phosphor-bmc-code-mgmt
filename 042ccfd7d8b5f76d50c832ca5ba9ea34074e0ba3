@@ -52,6 +52,24 @@
       "parentUuid": "52e53458_958c5660",
       "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cdfc53f_83df41fa",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-05-08T06:51:34Z",
+      "side": 1,
+      "message": "Added if (!fdio) before calling fdio-\u003enext(), and the clang error was resolved.",
+      "parentUuid": "714c6c44_5bfb75a8",
+      "revId": "042ccfd7d8b5f76d50c832ca5ba9ea34074e0ba3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

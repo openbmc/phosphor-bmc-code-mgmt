@@ -3,6 +3,7 @@ libi2c_dev = static_library(
     'i2c_dev',
     'i2c.cpp',
     include_directories: libi2c_inc,
+    dependencies: [sdbusplus_dep],
     link_args: '-li2c',
 )
 libi2c_dep = declare_dependency(

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "device.hpp"
+#include "sdbusplus/async/match.hpp"
 
 #include <boost/asio/steady_timer.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -62,6 +63,18 @@ class SoftwareManager
     sdbusplus::async::task<void> handleConfigurationInterfaceFound(
         const std::string& service, const std::string& path,
         const std::string& interface);
+
+    sdbusplus::async::task<void> initConfigIntfMatches(
+        const std::vector<std::string>& configInterfaces);
+
+    sdbusplus::async::task<void> awaitConfigIntfAddedMatch(
+        std::vector<std::string> interfaces);
+    sdbusplus::async::task<void> awaitConfigIntfRemovedMatch(
+        std::vector<std::string> interfaces);
+
+    // DBus matches for interfaces added and interfaces removed
+    std::unique_ptr<sdbusplus::async::match> configIntfAddedMatch;
+    std::unique_ptr<sdbusplus::async::match> configIntfRemovedMatch;
 
     // this is appended to the common prefix to construct the dbus name
     std::string serviceNameSuffix;

@@ -75,58 +75,16 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
                 "[config] found configuration interface at {SERVICE}, {OBJPATH}",
                 "SERVICE", service, "OBJPATH", path);
 
-            auto client =
-                sdbusplus::async::proxy().service(service).path(path).interface(
-                    "org.freedesktop.DBus.Properties");
-
-            uint64_t vendorIANA = 0;
-            std::string compatible{};
-            std::string emConfigType{};
-            std::string emConfigName{};
-
-            const std::string ifaceFwInfoDef = interfaceFound + ".FirmwareInfo";
-
-            try
+            auto optConfig = co_await SoftwareConfig::fetchFromDbus(
+                ctx, service, path, interfaceFound);
+            if (!optConfig.has_value())
             {
-                {
-                    auto propVendorIANA =
-                        co_await client.call<std::variant<uint64_t>>(
-                            ctx, "Get", ifaceFwInfoDef, "VendorIANA");
-
-                    vendorIANA = std::get<uint64_t>(propVendorIANA);
-                }
-                {
-                    auto propCompatible =
-                        co_await client.call<std::variant<std::string>>(
-                            ctx, "Get", ifaceFwInfoDef, "CompatibleHardware");
-
-                    compatible = std::get<std::string>(propCompatible);
-                }
-                {
-                    auto propEMConfigType =
-                        co_await client.call<std::variant<std::string>>(
-                            ctx, "Get", interfaceFound, "Type");
-
-                    emConfigType = std::get<std::string>(propEMConfigType);
-                }
-                {
-                    auto propEMConfigName =
-                        co_await client.call<std::variant<std::string>>(
-                            ctx, "Get", interfaceFound, "Name");
-
-                    emConfigName = std::get<std::string>(propEMConfigName);
-                }
-            }
-            catch (std::exception& e)
-            {
-                error(e.what());
+                error("Error fetching common configuration from {PATH}", "PATH",
+                      path);
                 continue;
             }
 
-            SoftwareConfig config(path, vendorIANA, compatible, emConfigType,
-                                  emConfigName);
-
-            co_await initDevice(service, path, config);
+            co_await initDevice(service, path, optConfig.value());
         }
     }
 

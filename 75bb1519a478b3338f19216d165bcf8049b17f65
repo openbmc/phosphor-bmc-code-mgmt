@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba51f08_104ed194",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b358708_bdd72ab9",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2acb3a5_3934c822",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-08T05:19:36Z",
       "side": 1,
       "message": "Rename file to cpld_software_manager.cpp",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a83a8071_6e98c719",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2acb3a5_3934c822",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -70,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a365b26e_51608c7b",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14ed2d28_e8cb3f6e",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94e4777b_69fbd652",
@@ -83,6 +137,24 @@
       "writtenOn": "2025-04-08T05:19:36Z",
       "side": 1,
       "message": "Please remove [config] prefix from all logs.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "419f84cb_90653855",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e4777b_69fbd652",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -104,6 +176,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f1c1d6_2f97ab9c",
+        "filename": "cpld/cpld_code_updater.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27d297e0_e20112d1",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c8313cc_95f2eb70",
@@ -117,6 +207,24 @@
       "writtenOn": "2025-04-08T05:19:36Z",
       "side": 1,
       "message": "Rename file to cpld_software_manager.hpp",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7b39336_e90cd41c",
+        "filename": "cpld/cpld_code_updater.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c8313cc_95f2eb70",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -138,6 +246,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d43b26_545c3070",
+        "filename": "cpld/cpld_code_updater.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15eeac7e_3e8154c4",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c9be706_b9d23ff1",
@@ -151,6 +277,24 @@
       "writtenOn": "2025-04-07T09:41:04Z",
       "side": 1,
       "message": "In some places you are using ```lg2::info``` and ```lg2::error```, but here using ```std::cerr```, i am wondering, why is it different 😊",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "300fb4ab_18c502a3",
+        "filename": "cpld/cpld_fw_handler.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c9be706_b9d23ff1",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +316,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42cbb0a4_4bb1e855",
+        "filename": "cpld/cpld_fw_handler.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6811fd8_edf8c763",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d35e4b8_52a98de1",
@@ -185,6 +347,24 @@
       "writtenOn": "2025-04-08T05:19:36Z",
       "side": 1,
       "message": "Please use i2c.hpp from the common code as being used in VR updater https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/75429",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa194b09_ba7b4518",
+        "filename": "cpld/cpld_fw_handler.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d35e4b8_52a98de1",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -206,6 +386,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26df71c3_23cb70c8",
+        "filename": "cpld/lattice.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aff2e25_ca14b32b",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11d23d43_94637f72",
@@ -219,6 +417,24 @@
       "writtenOn": "2025-04-07T09:41:04Z",
       "side": 1,
       "message": "nit: Can you document which specific warning is ignored. Like\n```\n// NOLINTBEGIN(some-warning)\n```\n\nThat will help to see if it is something serious or harmless that is being ignored.",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc4214d2_9ac41776",
+        "filename": "cpld/main.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "11d23d43_94637f72",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

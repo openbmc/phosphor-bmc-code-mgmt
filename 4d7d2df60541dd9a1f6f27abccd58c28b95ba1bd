@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4552d928_d323984f",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e79daa3e_c9259e04",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "481f28fe_34dff32d",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "this will be replaced by common/i2c.",
       "parentUuid": "481f28fe_34dff32d",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee62ba7_bddfd59e",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "527e85bd_1125519d",
       "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -106,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a580b0_ac7e17b0",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1e55bff_031eef0b",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6b7773b_b9627c20",
@@ -137,6 +191,24 @@
       "side": 1,
       "message": "this will be replaced by common/i2c.",
       "parentUuid": "d6b7773b_b9627c20",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c6073d_79d77f65",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbaff45b_a79f439d",
       "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -176,6 +248,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ebce52_eee4c007",
+        "filename": "cpld/lattice/cpld_fw_handler.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e8f90e9_0f871051",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8a9b77b_f1ab0ba1",
@@ -211,6 +301,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a103931_fe98e093",
+        "filename": "cpld/lattice/cpld_fw_handler.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f6f59a4_0a575fba",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b65dc8ec_179104d9",
@@ -224,6 +332,24 @@
       "writtenOn": "2025-04-23T10:16:13Z",
       "side": 1,
       "message": "```lg2::info```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "695a9dfa_50660eb9",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b65dc8ec_179104d9",
       "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -245,6 +371,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2facbc85_57bce451",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7192ba60_aad350b6",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78e9f54b_2f76d41e",
@@ -258,6 +402,24 @@
       "writtenOn": "2025-04-23T10:16:13Z",
       "side": 1,
       "message": "```lg2::error```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6642f4d3_c695e70e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e9f54b_2f76d41e",
       "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -279,6 +441,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcfdab4a_3e97a117",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "428de964_21a83af2",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc0bfdf7_8fbd42dc",
@@ -296,6 +476,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb94601f_b9787fab",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc0bfdf7_8fbd42dc",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cbf229f_cc560e02",
@@ -309,6 +507,24 @@
       "writtenOn": "2025-04-23T10:16:13Z",
       "side": 1,
       "message": "```uint16_t bus```",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07bbb849_5ea420d8",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-09T17:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cbf229f_cc560e02",
       "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -27,7 +27,9 @@ class Helper
      */
     explicit Helper(sdbusplus::bus_t& bus) : bus(bus)
     {
-        // Empty
+        // Avoid warning for unused private variable.
+        // This var is unused in some compilation units but not in others.
+        (void)bus;
     }
 
     /** @brief Set an environment variable to the specified value

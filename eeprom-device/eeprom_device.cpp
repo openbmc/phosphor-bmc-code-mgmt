@@ -440,10 +440,10 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
 
     while (!ctx.stop_requested())
     {
-        auto [interfaceName, changedProperties] =
-            co_await hostPower.stateChangedMatch
-                .next<std::string,
-                      std::map<std::string, std::variant<std::string>>>();
+        auto nextResult = co_await hostPower.stateChangedMatch.next<
+            std::string, std::map<std::string, std::variant<std::string>>>();
+
+        auto [interfaceName, changedProperties] = nextResult;
 
         auto it = changedProperties.find("CurrentHostState");
         if (it != changedProperties.end())

@@ -121,9 +121,15 @@ sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
     {
         close(pipefd[1]);
 
-        sdbusplus::async::fdio pipe_fdio(ctx, pipefd[0]);
+        auto fdio = std::make_unique<sdbusplus::async::fdio>(ctx, pipefd[0]);
+        if (!fdio)
+        {
+            perror("fdio creation failed");
+            close(pipefd[0]);
+            co_return -1;
+        }
 
-        co_await pipe_fdio.next();
+        co_await fdio->next();
 
         int status;
         waitpid(pid, &status, 0);
@@ -440,10 +446,10 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
 
     while (!ctx.stop_requested())
     {
-        auto [interfaceName, changedProperties] =
-            co_await hostPower.stateChangedMatch
-                .next<std::string,
-                      std::map<std::string, std::variant<std::string>>>();
+        auto nextResult = co_await hostPower.stateChangedMatch.next<
+            std::string, std::map<std::string, std::variant<std::string>>>();
+
+        auto [interfaceName, changedProperties] = nextResult;
 
         auto it = changedProperties.find("CurrentHostState");
         if (it != changedProperties.end())

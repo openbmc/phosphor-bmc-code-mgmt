@@ -493,6 +493,7 @@ void ItemUpdater::erase(std::string entryId)
     auto it = versions.find(entryId);
     if (it != versions.end())
     {
+        // NOLINTNEXTLINE(misc-redundant-expression)
         if (it->second->isFunctional() && ACTIVE_BMC_MAX_ALLOWED > 1)
         {
             error(

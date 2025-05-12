@@ -9,20 +9,7 @@ namespace software
 namespace updater
 {
 
-void Helper::setEntry(const std::string& /* entryId */, uint8_t /* value */)
-{
-    // Empty
-}
-
-void Helper::clearEntry(const std::string& /* entryId */)
-{
-    // Empty
-}
-
-void Helper::cleanup()
-{
-    // Empty
-}
+Helper::Helper(sdbusplus::bus_t& bus) : bus(bus) {}
 
 void Helper::factoryReset()
 {

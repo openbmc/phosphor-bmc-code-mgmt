@@ -14,7 +14,6 @@ namespace updater
 class Helper
 {
   public:
-    Helper() = delete;
     Helper(const Helper&) = delete;
     Helper& operator=(const Helper&) = delete;
     Helper(Helper&&) = default;
@@ -23,28 +22,8 @@ class Helper
 
     /** @brief Constructor
      *
-     *  @param[in] bus - sdbusplus D-Bus bus connection
      */
-    explicit Helper(sdbusplus::bus_t& bus) : bus(bus)
-    {
-        // Empty
-    }
-
-    /** @brief Set an environment variable to the specified value
-     *
-     * @param[in] entryId - The variable name
-     * @param[in] value - The variable value
-     */
-    void setEntry(const std::string& entryId, uint8_t value);
-
-    /** @brief Clear an image with the entry id
-     *
-     * @param[in] entryId - The image entry id
-     */
-    void clearEntry(const std::string& entryId);
-
-    /** @brief Clean up all the unused images */
-    void cleanup();
+    explicit Helper(sdbusplus::bus_t& bus);
 
     /** @brief Do factory reset */
     static void factoryReset();

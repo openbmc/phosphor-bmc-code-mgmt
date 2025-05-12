@@ -14,7 +14,6 @@ namespace updater
 class Helper
 {
   public:
-    Helper() = delete;
     Helper(const Helper&) = delete;
     Helper& operator=(const Helper&) = delete;
     Helper(Helper&&) = default;
@@ -23,11 +22,9 @@ class Helper
 
     /** @brief Constructor
      *
-     *  @param[in] bus - sdbusplus D-Bus bus connection
      */
-    explicit Helper(sdbusplus::bus_t& bus) : bus(bus)
+    explicit Helper()
     {
-        // Empty
     }
 
     /** @brief Set an environment variable to the specified value
@@ -64,9 +61,6 @@ class Helper
     /** @brief Mirror Uboot to the alt uboot partition */
     void mirrorAlt();
 
-  private:
-    /** @brief Persistent sdbusplus D-Bus bus connection. */
-    sdbusplus::bus_t& bus;
 };
 
 } // namespace updater

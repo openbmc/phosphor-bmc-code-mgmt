@@ -66,7 +66,7 @@ class Helper
 
   private:
     /** @brief Persistent sdbusplus D-Bus bus connection. */
-    sdbusplus::bus_t& bus;
+    [[maybe_unused]] sdbusplus::bus_t& bus;
 };
 
 } // namespace updater

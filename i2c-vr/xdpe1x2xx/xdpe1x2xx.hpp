@@ -59,7 +59,6 @@ class XDPE1X2XX : public VoltageRegulator
 
     phosphor::i2c::I2C i2cInterface;
 
-    uint8_t Id;
     struct xdpe1x2xxConfig configuration;
 };
 

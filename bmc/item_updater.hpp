@@ -92,7 +92,7 @@ class ItemUpdater : public ItemUpdaterInherit
         ItemUpdaterInherit(ctx.get_bus(), path.c_str(),
                            ItemUpdaterInherit::action::defer_emit),
         type(type), useUpdateDBusInterface(useUpdateDBusInterface), ctx(ctx),
-        bus(ctx.get_bus()), helper(bus)
+        bus(ctx.get_bus()), helper(ctx.get_bus())
     {
         if (!useUpdateDBusInterface)
         {

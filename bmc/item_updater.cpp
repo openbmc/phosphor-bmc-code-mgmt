@@ -3,6 +3,7 @@
 #include "item_updater.hpp"
 
 #include "images.hpp"
+#include "item_updater_helper.hpp"
 #include "serialize.hpp"
 #include "version.hpp"
 #include "xyz/openbmc_project/Software/ExtendedVersion/server.hpp"
@@ -533,7 +534,6 @@ void ItemUpdater::erase(std::string entryId)
         {
             removeReadOnlyPartition(entryId);
             removePersistDataDirectory(flashId);
-            helper.clearEntry(flashId);
         }
 
         // Removing entry in versions map
@@ -566,8 +566,6 @@ void ItemUpdater::deleteAll()
     {
         ItemUpdater::erase(deletableIt);
     }
-
-    helper.cleanup();
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
@@ -598,7 +596,6 @@ void ItemUpdater::savePriority(const std::string& versionId, uint8_t value)
 {
     auto flashId = versions.find(versionId)->second->path();
     storePriority(flashId, value);
-    helper.setEntry(flashId, value);
 }
 
 void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)

@@ -9,21 +9,6 @@ namespace software
 namespace updater
 {
 
-void Helper::setEntry(const std::string& /* entryId */, uint8_t /* value */)
-{
-    // Empty
-}
-
-void Helper::clearEntry(const std::string& /* entryId */)
-{
-    // Empty
-}
-
-void Helper::cleanup()
-{
-    // Empty
-}
-
 void Helper::factoryReset()
 {
     // Set openbmconce=factory-reset env in U-Boot.

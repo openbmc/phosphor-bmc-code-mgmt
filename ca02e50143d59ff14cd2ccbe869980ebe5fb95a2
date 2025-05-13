@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6ed31f_b41b94de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2025-05-13T21:40:10Z",
+      "side": 1,
+      "message": "The rest of the options were updated to \u0027allowed\u0027 via https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/83d7d406f7cf6a0b74040cf3dec3d4cf7026ef09",
+      "revId": "ca02e50143d59ff14cd2ccbe869980ebe5fb95a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

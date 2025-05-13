@@ -459,6 +459,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5bb8a98_7b13bd73",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-13T17:08:30Z",
+      "side": 1,
+      "message": "Change to constexpr.",
+      "parentUuid": "dcfdab4a_3e97a117",
+      "revId": "4d7d2df60541dd9a1f6f27abccd58c28b95ba1bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc0bfdf7_8fbd42dc",

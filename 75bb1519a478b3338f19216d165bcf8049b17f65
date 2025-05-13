@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0b2d10_5a624681",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-13T17:08:30Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com, create Factory Pattern replace latticeUpdate.",
+      "parentUuid": "3ba51f08_104ed194",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2acb3a5_3934c822",
@@ -330,6 +348,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "b6811fd8_edf8c763",
+      "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51333050_31735335",
+        "filename": "cpld/cpld_fw_handler.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-13T17:08:30Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com, replace with common/i2c",
+      "parentUuid": "42cbb0a4_4bb1e855",
       "revId": "75bb1519a478b3338f19216d165bcf8049b17f65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

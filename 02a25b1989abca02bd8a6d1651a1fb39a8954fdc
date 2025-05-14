@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63bd1b99_af5ba6af",
+        "filename": "bmc/item_updater.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T18:58:51Z",
+      "side": 1,
+      "message": "Is this alarming because ACTIVE_BMC_MAX_ALLOWED is defined as 1 in meson.options as default and check becomes 1 \u003e 1 ?",
+      "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ee9ecf8_d3665b18",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T18:58:51Z",
+      "side": 1,
+      "message": "What was the warning here ?",
+      "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f590439_b02165f1",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T18:58:51Z",
+      "side": 1,
+      "message": "What was the warning here ?",
+      "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

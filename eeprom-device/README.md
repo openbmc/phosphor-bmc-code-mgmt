@@ -27,7 +27,7 @@ including bus details, address, GPIO settings, and compatibility information.
     "VendorIANA": 40981,
     "CompatibleHardware": "com.meta.Hardware.Harma.pt5161l.Retimer"
   },
-  "Type": "PT5161L"
+  "Type": "PT5161LFirmware"
 }
 ```
 

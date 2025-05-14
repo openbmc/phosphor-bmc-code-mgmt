@@ -16,7 +16,7 @@ std::unique_ptr<DeviceVersion> createProvider(
 }
 
 static const std::unordered_map<std::string, ProviderFactory> providerMap = {
-    {"PT5161L", createProvider<PT5161LDeviceVersion>}};
+    {"PT5161LFirmware", createProvider<PT5161LDeviceVersion>}};
 
 std::unique_ptr<DeviceVersion> getVersionProvider(
     const std::string& chipModel, const uint16_t bus, const uint8_t address)

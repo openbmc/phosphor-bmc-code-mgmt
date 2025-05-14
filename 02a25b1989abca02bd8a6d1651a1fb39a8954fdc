@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e15292e_65c64f25",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-14T20:23:40Z",
+      "side": 1,
+      "message": "clang-tidy gets confused about a garbage branch.\n\nThis is taken from @Kevin.Tung@quantatw.com \u0027s patch who already figured out this issue.\n\nI did not root-cause the issue since the output of clang-tidy is not clear to me.",
+      "parentUuid": "2ee9ecf8_d3665b18",
+      "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f590439_b02165f1",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 9
@@ -66,6 +84,24 @@
       "writtenOn": "2025-05-14T18:58:51Z",
       "side": 1,
       "message": "What was the warning here ?",
+      "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba894613_524c6578",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-14T20:23:40Z",
+      "side": 1,
+      "message": "clang-tidy gets confused around the combination of a ```co_await``` and destructuring assignment.\n\nThe solution was to simplify the code which resolved the issue.\n\nDid not root-cause this because i see the priority in getting CI working again.",
+      "parentUuid": "1f590439_b02165f1",
       "revId": "02a25b1989abca02bd8a6d1651a1fb39a8954fdc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

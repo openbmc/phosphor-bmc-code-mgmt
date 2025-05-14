@@ -70,6 +70,24 @@
       "parentUuid": "0e440a42_5ff62dc9",
       "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a83f8ac6_c441230d",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-14T11:57:18Z",
+      "side": 1,
+      "message": "\u003e but i want to see some traction on that work item rather than adding these calls every now and then.\n\nIt\u0027s been a month on the sdbusplus change without additional review comments.\nSo we can proceed to sprinkle those ```emit_added()``` calls where needed, instead of waiting around and sitting on broken software.",
+      "parentUuid": "d6550433_4e884b36",
+      "revId": "5e0d4eb4aef75c4c90310b8132cdd6089bb977b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

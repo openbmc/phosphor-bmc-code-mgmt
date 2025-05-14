@@ -64,10 +64,7 @@ class Helper
     /** @brief Mirror Uboot to the alt uboot partition */
     void mirrorAlt();
 
-  private:
-    /** @brief Persistent sdbusplus D-Bus bus connection. */
-    sdbusplus::bus_t& bus;
-};
+ };
 
 } // namespace updater
 } // namespace software

@@ -16,6 +16,24 @@
       "message": "Please update/remove this comment accordingly as it doesn\u0027t seem to apply.",
       "revId": "d6dd7050f9524507a494c94b2ea143b7616e1011",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3822ff_488dbd1c",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-15T08:54:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32e94040_78edc008",
+      "revId": "d6dd7050f9524507a494c94b2ea143b7616e1011",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,701 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a301047_21321634",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Why are you adding a new API?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e2ffc3_094dfc60",
+        "filename": "common/include/i2c/i2c.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Why new API?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7954ed77_842dc5b7",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "CPLD instead of Voltage Regulator",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5076e190_8d4783e7",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "\u0027voltage regulator\u0027 -\u003e \u0027cpld\u0027",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "011595e0_924950ac",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Rename to EntityManager configuration",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09f8f77_3cc914e7",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Lets just make the wording simple -\n\nThe following shows an example of entity manager configuration record for lattice LCMXO3LF-4300C CPLD.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04643129_469271f2",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Drop this header as its redundant.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f157ba_a761d985",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "VendorIANA and Compatible are inside FirmwareInfo, please fix that.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b670499e_5f5c2a16",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please use more concrete compatible here referring to the lattice cpld version you are referring to. Also this compatible value needs to be defined in phosphor-dbus-interfaces.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3041ff53_1b1b7df1",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please update this whole snippet based on new schema.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbb5c30_4c185bb4",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "lets drop else clause and keep enclosing code inline with if.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb54a0fd_024453a5",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Is it possible to do granular progress updates?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1c88788_52b81941",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please don\u0027t directly include full namespaces, use the format as on line 14.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a4a0ea_6aab0def",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Do you really need this? You are already inside the namespace.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964d43b1_b166e7b4",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "We need to support ApplyTime onReset as well.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c5ec70_69ef0847",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "no direct inclusions, please refer to line# 14.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e3944e1_385bc466",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "why are you returning a static var? Are u trying to create a singleton class ?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41ca1e7b_1d64621c",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Is this comment correct for next code line?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77dea750_af094f35",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "These comments look old as implementation seems to be there. Please drop these.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bcc353d_408ef6ee",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please break this function, this is very huge function.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96400314_9b566fee",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Are u defining this ifdef anywhere?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6670ad0_bd3be2c8",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "why usleep? Please use async sleep version. Change it at other places in code as well.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7701bd57_a8f4205c",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Comment doesn\u0027t seem necessary as its clear from function name, please drop it.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31729346_708ad446",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "no need for this comment, there is already a #define for this.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e791ff5e_dea74a7c",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "is this comment needed? looks like leftover code.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b39037e_70a53d8e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "drop else and move code in line.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "504e39bb_004fae80",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "drop else and move code in line.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faeec8b3_343598ff",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "lefover code comment?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c633cced_a59c9df5",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "no info logs, please fix everywhere and change to debug.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2b6fdb_88136055",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "fix this warning, anything other than readability-static-accessed-through-instance shall be fixed everywhere.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f908d3b_99988b7d",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Very huge function, please break it up.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b94ddf_8e753974",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "No info logs, only debug.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d718c4_87fe724a",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "I have raised https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80392 to disable this warning, once that PR merges you can go ahead and remove check for readability-static-accessed-through-instance from every where in your code.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a1c2f5_5c81de11",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please moving everything which is getting used in .cpp to .cpp, don\u0027t keep them in header.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a7e546_0187f67b",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Why is this in .hpp file? Seems to be getting used only in .cpp, if yes, then lets move it there.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b4f3569_f9663843",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Why are these in .hpp file? Seems to be getting used only in .cpp, if yes, then lets move it there.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c71cd5_5a7452b8",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "adding extra line.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c864f2c_65393d51",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Please change this to allowed as per latest change from Patrick https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/ca02e50143d59ff14cd2ccbe869980ebe5fb95a2 .",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66148ab4_8e14c153",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Same here and on line 94 and 112, use allowed based on https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/ca02e50143d59ff14cd2ccbe869980ebe5fb95a2.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0086c6dc_929cb7ce",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Lets just move this inside above check instead of defining i2c_build as i2c_build define is only getting used at line#96 for now.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f358ef97_d5a5bd23",
+        "filename": "meson.options",
+        "patchSetId": 66
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-17T03:12:24Z",
+      "side": 1,
+      "message": "Looks like you are disabling side-switch-on-boot feature, which was enabled?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

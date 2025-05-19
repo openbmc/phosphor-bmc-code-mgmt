@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb89083_b0dcc3b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T22:51:56Z",
+      "side": 1,
+      "message": "Which test you are referring to? I don\u0027t see any such change in the patch. Can you please fix the description accordingly.",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "294f542b_b0e7d673",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T22:51:56Z",
+      "side": 1,
+      "message": "Alternative to what? Can you please fix the comment description to state the intent of the patch.",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc84ea6_55b2450e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T22:51:56Z",
+      "side": 1,
+      "message": "The patch seems to be fine overall. Please fix the comment description.",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

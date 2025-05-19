@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8ea4117_e44f9576",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T23:25:36Z",
+      "side": 0,
+      "message": "@alexander.hansen@9elements.com\n\n1. Define an API which can handle the processing of EMConfiguration, for example, processConfiguration\n2. initDevices should register for matchers for the provided interface alongwith the regular config get.\n3. The processConfiguration shall get called from both regular initDevices flow as well as matcher for addedinterface.\n4. Define a new virtual function removeDevice in SoftwareManager and let the updater override it and use this function in the configuration removed matcher. As part of this remove the updaters can take any action and also remove the device from device list.",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

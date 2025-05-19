@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4231ea0f_02d34ea6",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T23:39:09Z",
+      "side": 1,
+      "message": "This check has been disabled via https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80392/2/.clang-tidy.\n\nSo, lets drop this from your change set.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a301047_21321634",
         "filename": "common/i2c/i2c.cpp",
         "patchSetId": 66
@@ -32,6 +49,24 @@
       "side": 1,
       "message": "Because the original API doesn\u0027t directly support vectors, and the updaters I referenced all use vectors, I can move the new vector API specifically to the CPLD updater.",
       "parentUuid": "8a301047_21321634",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f903c67_88c0286c",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T23:39:09Z",
+      "side": 1,
+      "message": "@Daniel-Hsu@quantatw.com Why can\u0027t you call buffer.data() from your updater ? Why do you need a vector API?",
+      "parentUuid": "bb8dfa69_dd47dd2f",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -340,6 +375,24 @@
       "side": 1,
       "message": "Yes, I\u0027m using a singleton for CPLDFactory so that there\u0027s only one instance of the factory. The goal is not to make CPLD itself a singleton, but to use the factory to create different types of CPLDs (from different vendors) with polymorphism.",
       "parentUuid": "8e3944e1_385bc466",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b243a49_f9c3f67b",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-19T23:39:09Z",
+      "side": 1,
+      "message": "Is this the same pattern as added by @Kevin.Tung@quantatw.com in EEPROM updater? If not, then why are we diverging. I am fine with your pattern too as long as you and @Kevin.Tung@quantatw.com can agree on one. I would prefer for updater to follow single pattern from maintainability POV.",
+      "parentUuid": "a346b24c_c1437a83",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8dfa69_dd47dd2f",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-19T00:50:19Z",
+      "side": 1,
+      "message": "Because the original API doesn\u0027t directly support vectors, and the updaters I referenced all use vectors, I can move the new vector API specifically to the CPLD updater.",
+      "parentUuid": "8a301047_21321634",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e2ffc3_094dfc60",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Why new API?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c325683_34e5ec58",
+        "filename": "common/include/i2c/i2c.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-19T00:50:19Z",
+      "side": 1,
+      "message": "same as #78",
+      "parentUuid": "f1e2ffc3_094dfc60",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -290,6 +326,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a346b24c_c1437a83",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-19T00:50:19Z",
+      "side": 1,
+      "message": "Yes, I\u0027m using a singleton for CPLDFactory so that there\u0027s only one instance of the factory. The goal is not to make CPLD itself a singleton, but to use the factory to create different types of CPLDs (from different vendors) with polymorphism.",
+      "parentUuid": "8e3944e1_385bc466",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41ca1e7b_1d64621c",
@@ -303,6 +357,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Is this comment correct for next code line?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6815dab_262ec99c",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-19T00:50:19Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "41ca1e7b_1d64621c",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

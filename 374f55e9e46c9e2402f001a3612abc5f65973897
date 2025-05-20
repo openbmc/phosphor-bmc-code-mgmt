@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4bc52b4_a6d131e4",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-20T03:19:57Z",
+      "side": 1,
+      "message": "It\u0027s just to avoid writing too much repetitive code for converting input parameters, which would make the code too long on a single line and hard to read.",
+      "parentUuid": "7f903c67_88c0286c",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1e2ffc3_094dfc60",
         "filename": "common/include/i2c/i2c.hpp",
         "patchSetId": 66
@@ -393,6 +411,24 @@
       "side": 1,
       "message": "Is this the same pattern as added by @Kevin.Tung@quantatw.com in EEPROM updater? If not, then why are we diverging. I am fine with your pattern too as long as you and @Kevin.Tung@quantatw.com can agree on one. I would prefer for updater to follow single pattern from maintainability POV.",
       "parentUuid": "a346b24c_c1437a83",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a58405_fe437dad",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-20T03:19:57Z",
+      "side": 1,
+      "message": "I just discussed with @Kevin.Tung@quantatw.com,it\u0027s the same pattern with slight differences. I\u0027ll convert it to his pattern.",
+      "parentUuid": "9b243a49_f9c3f67b",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -16,6 +16,24 @@
       "message": "Please refer to https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80101/comment/f8ea4117_e44f9576/.",
       "revId": "c4b02f433bee87d71959fa65fc44d0fa6009b171",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c0f7c92_ded0dd3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-20T10:03:20Z",
+      "side": 1,
+      "message": "The comment does not apply to this patch. This is patch to extract handleConfigurationInterfaceFound function.",
+      "parentUuid": "88209239_d862af33",
+      "revId": "c4b02f433bee87d71959fa65fc44d0fa6009b171",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

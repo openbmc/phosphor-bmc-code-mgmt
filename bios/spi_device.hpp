@@ -81,6 +81,7 @@ class SPIDevice : public Device, public NotifyWatchIntf
     // @returns          true on success
     sdbusplus::async::task<bool> unbindSPIFlash();
 
+    bool isSPIControllerBound();
     bool isSPIFlashBound();
 
     // @description preconditions:

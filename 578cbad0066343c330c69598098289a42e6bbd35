@@ -16,6 +16,24 @@
       "message": "@alexander.hansen@9elements.com\n\n1. Define an API which can handle the processing of EMConfiguration, for example, processConfiguration\n2. initDevices should register for matchers for the provided interface alongwith the regular config get.\n3. The processConfiguration shall get called from both regular initDevices flow as well as matcher for addedinterface.\n4. Define a new virtual function removeDevice in SoftwareManager and let the updater override it and use this function in the configuration removed matcher. As part of this remove the updaters can take any action and also remove the device from device list.",
       "revId": "578cbad0066343c330c69598098289a42e6bbd35",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f0bec5_b15e75b3",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-20T09:22:12Z",
+      "side": 0,
+      "message": "\u003e initDevices should register for matchers for the provided interface alongwith the regular config get.\n\nThis patch is not about any matchers. That\u0027s in another patch.\n\n\u003e Define a new virtual function removeDevice in SoftwareManager and let the updater override it and use this function in the configuration removed matcher. As part of this remove the updaters can take any action and also remove the device from device list.\n\nHow does the comment relate to the patch here?\nThe logic you are talking about is 2 patches further in the chain.",
+      "parentUuid": "f8ea4117_e44f9576",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

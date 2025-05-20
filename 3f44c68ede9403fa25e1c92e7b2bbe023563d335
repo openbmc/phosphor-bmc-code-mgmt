@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0dc2d1d_afcf9b78",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-20T09:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0640fff_74114cf5",
+      "revId": "3f44c68ede9403fa25e1c92e7b2bbe023563d335",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c84bc0fd_f65c7472",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-19T22:40:56Z",
       "side": 1,
       "message": "Please remove the prefix `Error:`, it would be known from the logging that its an error.",
+      "revId": "3f44c68ede9403fa25e1c92e7b2bbe023563d335",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c0b25e_d921974a",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-20T09:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84bc0fd_f65c7472",
       "revId": "3f44c68ede9403fa25e1c92e7b2bbe023563d335",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

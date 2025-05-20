@@ -134,51 +134,61 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
 }
 
 const std::string spiAspeedSMCPath = "/sys/bus/platform/drivers/spi-aspeed-smc";
+const std::string spiNorPath = "/sys/bus/spi/drivers/spi-nor";
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::bindSPIFlash()
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    debug("binding flash to SMC");
-
-    if (SPIDevice::isSPIFlashBound())
+    if (!SPIDevice::isSPIControllerBound())
     {
-        debug("flash was already bound, unbinding it now");
-        bool success = co_await SPIDevice::unbindSPIFlash();
-
-        if (!success)
-        {
-            error("error unbinding spi flash");
-            co_return false;
-        }
+        debug("binding flash to SMC");
+        std::ofstream ofbind(spiAspeedSMCPath + "/bind", std::ofstream::out);
+        ofbind << spiDev;
+        ofbind.close();
     }
-
-    std::ofstream ofbind(spiAspeedSMCPath + "/bind", std::ofstream::out);
-    ofbind << spiDev;
-    ofbind.close();
 
     const int driverBindSleepDuration = 2;
 
     co_await sdbusplus::async::sleep_for(
         ctx, std::chrono::seconds(driverBindSleepDuration));
 
-    const bool isBound = isSPIFlashBound();
-
-    if (!isBound)
+    if (!isSPIControllerBound())
     {
-        error("failed to bind spi device");
+        error("failed to bind spi controller");
+        co_return false;
     }
 
-    co_return isBound;
+    const std::string name =
+        std::format("spi{}.{}", spiControllerIndex, spiDeviceIndex);
+
+    std::ofstream ofbindSPINor(spiNorPath + "/bind", std::ofstream::out);
+    ofbindSPINor << name;
+    ofbindSPINor.close();
+
+    co_await sdbusplus::async::sleep_for(
+        ctx, std::chrono::seconds(driverBindSleepDuration));
+
+    if (!isSPIFlashBound())
+    {
+        error("failed to bind spi flash (spi-nor driver)");
+        co_return false;
+    }
+
+    co_return true;
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::unbindSPIFlash()
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    debug("unbinding flash from SMC");
-    std::ofstream ofunbind(spiAspeedSMCPath + "/unbind", std::ofstream::out);
-    ofunbind << spiDev;
+    debug("unbinding flash");
+
+    const std::string name =
+        std::format("spi{}.{}", spiControllerIndex, spiDeviceIndex);
+
+    std::ofstream ofunbind(spiNorPath + "/unbind", std::ofstream::out);
+    ofunbind << name;
     ofunbind.close();
 
     // wait for kernel
@@ -187,9 +197,18 @@ sdbusplus::async::task<bool> SPIDevice::unbindSPIFlash()
     co_return !isSPIFlashBound();
 }
 
-bool SPIDevice::isSPIFlashBound()
+bool SPIDevice::isSPIControllerBound()
 {
     std::string path = spiAspeedSMCPath + "/" + spiDev;
+
+    return std::filesystem::exists(path);
+}
+
+bool SPIDevice::isSPIFlashBound()
+{
+    const std::string name =
+        std::format("spi{}.{}", spiControllerIndex, spiDeviceIndex);
+    std::string path = spiNorPath + "/" + name;
 
     return std::filesystem::exists(path);
 }

@@ -1320,6 +1320,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "815b0d37_da6f784a",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T12:42:27Z",
+      "side": 1,
+      "message": "I have this same issue with clang-tidy on another patch (gpio-presence sensor).\n\nThere is an optional somewhere in sdbusplus / stdexec causing this issue but not sure if clang-tidy is understanding that correctly.\n\n```\n/usr/local/include/sdbusplus/async/stdexec/task.hpp:434:44: note: Calling \u0027__optional::operator*\u0027\n  434 |                              get_scheduler(*__context_)),\n```\n\nAlso not sure why it\u0027s appearing on some calls and not on others.",
+      "parentUuid": "407be18a_e3371e04",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f908d3b_99988b7d",
         "filename": "cpld/lattice/lattice.cpp",
         "patchSetId": 66

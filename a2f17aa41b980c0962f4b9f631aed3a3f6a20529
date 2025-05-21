@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f69e13c_f469b0e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 79
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T10:06:21Z",
+      "side": 1,
+      "message": "@anoo@us.ibm.com can you help to review this change 😊",
+      "revId": "a2f17aa41b980c0962f4b9f631aed3a3f6a20529",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

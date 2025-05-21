@@ -52,6 +52,24 @@
       "parentUuid": "87f0bec5_b15e75b3",
       "revId": "578cbad0066343c330c69598098289a42e6bbd35",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fefd29f_8c0e7bd5",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T09:58:27Z",
+      "side": 0,
+      "message": "\u003e i am explaining how the overall flow should look like with existing initDevices API and how the inventoryAdded and inventoryRemoved flow can be added as Get flow is already handled via initDevices API.\n\nIf you already know precisely how the code should look like, i cannot help you.\nCan\u0027t look inside your head. Writing it yourself will be faster in that case.\n\n\u003e Define an API which can handle the processing of EMConfiguration, for example, processConfiguration\n\nI have already defined an API to handle add / remove. Can you tell anything specifically that is wrong with it.\n\n\u003e Define a new virtual function removeDevice in SoftwareManager and let the updater override it and use this function in the configuration removed matcher. As part of this remove the updaters can take any action and also remove the device from device list.\n\n- Do you have any example for a device specific action that must happen there?\n\n- Why can it not be handled in the common code.\n\n- If the updater is responsible to remove the device, what happens if it does not do so? What is an acceptable delay for the updater to remove the device?\n  How does the common code track if that removal has taken place or not?",
+      "parentUuid": "70f3af36_f901819d",
+      "revId": "578cbad0066343c330c69598098289a42e6bbd35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

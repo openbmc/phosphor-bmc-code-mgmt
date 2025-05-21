@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2997082c_8ec2a41e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:15:50Z",
+      "side": 1,
+      "message": "Why do you have duplicate lines in log? This creates confusion better to just add one instance as your description already states that its bound throughout.",
+      "revId": "7e12e26214aebf9640ebe8fd7bffe94c93a73cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d844db9c_4da50aaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:15:50Z",
+      "side": 1,
+      "message": "Did u unbind spi1.0 in your test? Can you explain what your test configuration to understand this better?",
+      "revId": "7e12e26214aebf9640ebe8fd7bffe94c93a73cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

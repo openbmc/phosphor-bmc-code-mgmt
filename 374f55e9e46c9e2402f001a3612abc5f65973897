@@ -159,6 +159,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04cf0a12_dd432d00",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7954ed77_842dc5b7",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5076e190_8d4783e7",
@@ -172,6 +190,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "\u0027voltage regulator\u0027 -\u003e \u0027cpld\u0027",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82728b74_c6b2bfe2",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5076e190_8d4783e7",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -193,6 +229,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45e5089d_f340e09f",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "011595e0_924950ac",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f09f8f77_3cc914e7",
@@ -206,6 +260,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Lets just make the wording simple -\n\nThe following shows an example of entity manager configuration record for lattice LCMXO3LF-4300C CPLD.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe99e11_a3215ee0",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09f8f77_3cc914e7",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -227,6 +299,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3116a084_ac256b8b",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04643129_469271f2",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50f157ba_a761d985",
@@ -240,6 +330,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "VendorIANA and Compatible are inside FirmwareInfo, please fix that.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6084cfa_d3b4dc68",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50f157ba_a761d985",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -261,6 +369,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b04ee286_7e90525a",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b670499e_5f5c2a16",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3041ff53_1b1b7df1",
@@ -278,6 +404,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d2c3516_e6a5ff87",
+        "filename": "cpld/README.md",
+        "patchSetId": 66
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3041ff53_1b1b7df1",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fbb5c30_4c185bb4",
@@ -291,6 +435,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "lets drop else clause and keep enclosing code inline with if.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5c598ef_7045959f",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fbb5c30_4c185bb4",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -329,6 +491,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5527d649_a48d4735",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "c1c88788_52b81941",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60a4a0ea_6aab0def",
@@ -342,6 +522,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Do you really need this? You are already inside the namespace.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8268104a_e340b55c",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "60a4a0ea_6aab0def",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -363,6 +561,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da819256_5913235a",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "964d43b1_b166e7b4",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64c5ec70_69ef0847",
@@ -376,6 +592,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "no direct inclusions, please refer to line# 14.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1404eb_c4100c9d",
+        "filename": "cpld/cpld.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "64c5ec70_69ef0847",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -522,6 +756,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56883af3_e418f820",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "e6815dab_262ec99c",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f98b6f77_74a80bc8",
@@ -552,6 +804,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "These comments look old as implementation seems to be there. Please drop these.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23476019_ddd2fb65",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "77dea750_af094f35",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -590,6 +860,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9472fbf_f1b52d7f",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "split to jedFileParser and verifyChecksum.",
+      "parentUuid": "6bcc353d_408ef6ee",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96400314_9b566fee",
@@ -603,6 +891,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Are u defining this ifdef anywhere?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8435db36_c6743391",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "96400314_9b566fee",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -624,6 +930,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c624d15f_d08f4dfa",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6670ad0_bd3be2c8",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7701bd57_a8f4205c",
@@ -637,6 +961,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Comment doesn\u0027t seem necessary as its clear from function name, please drop it.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822a51c6_370b5a3e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7701bd57_a8f4205c",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -658,6 +1000,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bc8c620_6742d466",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31729346_708ad446",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e791ff5e_dea74a7c",
@@ -671,6 +1031,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "is this comment needed? looks like leftover code.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ebdaf2b_801eee8f",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e791ff5e_dea74a7c",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -692,6 +1070,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c898944_09011412",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b39037e_70a53d8e",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "504e39bb_004fae80",
@@ -705,6 +1101,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "drop else and move code in line.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1390e3f_e5ac24d8",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "504e39bb_004fae80",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -726,6 +1140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c706770_8fb367b6",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "faeec8b3_343598ff",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c633cced_a59c9df5",
@@ -739,6 +1171,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "no info logs, please fix everywhere and change to debug.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7deea2_71ae93a8",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c633cced_a59c9df5",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -777,6 +1227,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7103e1cd_91fe9de3",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "split to XO5jedFileParser and verifyChecksum.",
+      "parentUuid": "9f908d3b_99988b7d",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86b94ddf_8e753974",
@@ -790,6 +1258,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "No info logs, only debug.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce93569b_aa3880a6",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86b94ddf_8e753974",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -828,6 +1314,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3a6d55_f34b0828",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35a1c2f5_5c81de11",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7a7e546_0187f67b",
@@ -841,6 +1345,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Why is this in .hpp file? Seems to be getting used only in .cpp, if yes, then lets move it there.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f9d45f_b62a3fb1",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7a7e546_0187f67b",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -862,6 +1384,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3be938f_b2a505c2",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b4f3569_f9663843",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31c71cd5_5a7452b8",
@@ -875,6 +1415,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "adding extra line.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2f500bb_8b04c8b0",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31c71cd5_5a7452b8",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -896,6 +1454,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68362433_87de218f",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c864f2c_65393d51",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66148ab4_8e14c153",
@@ -909,6 +1485,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Same here and on line 94 and 112, use allowed based on https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/ca02e50143d59ff14cd2ccbe869980ebe5fb95a2.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "354a6070_50eaf3c3",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66148ab4_8e14c153",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -930,6 +1524,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c59c1eb_adc4d2e6",
+        "filename": "meson.build",
+        "patchSetId": 66
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0086c6dc_929cb7ce",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f358ef97_d5a5bd23",
@@ -943,6 +1555,24 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "Looks like you are disabling side-switch-on-boot feature, which was enabled?",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9711e436_525ffed8",
+        "filename": "meson.options",
+        "patchSetId": 66
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T08:54:12Z",
+      "side": 1,
+      "message": "The error that occurred during the merge, fixed.",
+      "parentUuid": "f358ef97_d5a5bd23",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

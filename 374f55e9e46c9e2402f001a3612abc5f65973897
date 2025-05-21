@@ -107,6 +107,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc078b43_3a8299a6",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "moved to the cpld/lattice/.",
+      "parentUuid": "9a6e9878_1e0b3805",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e2ffc3_094dfc60",
@@ -721,6 +739,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f86127d3_1dc98556",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23322660_54adb282",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41ca1e7b_1d64621c",
@@ -793,6 +829,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd8cba68_15ef8d43",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "I\u0027ve looked into the situation — it\u0027s due to the difference between the new and old XO5 update flows. The update flow on my side is the old version. Since the old method is still being discussed with the vendor to see whether it should be retained for compatibility, I’ll go ahead and remove it for now.",
+      "parentUuid": "f98b6f77_74a80bc8",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77dea750_af094f35",
         "filename": "cpld/lattice/interface.cpp",
         "patchSetId": 66
@@ -839,6 +893,24 @@
       "writtenOn": "2025-05-21T07:51:09Z",
       "side": 1,
       "message": "Why these are not part of CPLDInterface class ? They seems to be common to all CPLD types.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23faee4f_300c0de1",
+        "filename": "cpld/lattice/interface.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b941a9e7_6cc6a6b8",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1293,6 +1365,42 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "I have raised https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80392 to disable this warning, once that PR merges you can go ahead and remove check for readability-static-accessed-through-instance from every where in your code.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "990319fe_5ff7f393",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d718c4_87fe724a",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "859683ce_f9696f50",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T10:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d718c4_87fe724a",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

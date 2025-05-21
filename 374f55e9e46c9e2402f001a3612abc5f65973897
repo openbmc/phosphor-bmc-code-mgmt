@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a6e9878_1e0b3805",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:51:09Z",
+      "side": 1,
+      "message": "If that is the issue then change the existing API to accept vector (you can raise a different patch and stack your changes on top), lets not add new APIs like this to convert between types.",
+      "parentUuid": "d4bc52b4_a6d131e4",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1e2ffc3_094dfc60",
         "filename": "common/include/i2c/i2c.hpp",
         "patchSetId": 66
@@ -453,6 +471,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23322660_54adb282",
+        "filename": "cpld/cpld_interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:51:09Z",
+      "side": 1,
+      "message": "Sure, you can keep the pattern for now. We can revisit this in future if it becomes hard to manage.",
+      "parentUuid": "51c9dae4_fcf89900",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41ca1e7b_1d64621c",
         "filename": "cpld/cpld_software_manager.cpp",
         "patchSetId": 66
@@ -488,6 +524,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f98b6f77_74a80bc8",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:51:09Z",
+      "side": 1,
+      "message": "I got to know from SantaBarbara folks other day that sequence to update all MachX05 is not same. Please discuss with them if this can alter the flow in any way. (CC @Fred.Chen@quantatw.com).",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77dea750_af094f35",
         "filename": "cpld/lattice/interface.cpp",
         "patchSetId": 66
@@ -499,6 +552,23 @@
       "writtenOn": "2025-05-17T03:12:24Z",
       "side": 1,
       "message": "These comments look old as implementation seems to be there. Please drop these.",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b941a9e7_6cc6a6b8",
+        "filename": "cpld/lattice/interface.hpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-21T07:51:09Z",
+      "side": 1,
+      "message": "Why these are not part of CPLDInterface class ? They seems to be common to all CPLD types.",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

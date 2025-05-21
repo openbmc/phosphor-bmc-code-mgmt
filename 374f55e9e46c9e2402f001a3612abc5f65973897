@@ -1302,6 +1302,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "407be18a_e3371e04",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-21T11:32:18Z",
+      "side": 1,
+      "message": "https://jenkins.openbmc.org/job/ci-repository/108493/console\n\n  ...\nerror: Branch condition evaluates to a garbage value\n  ...\nnote: Calling \u0027__optional::operator*\u0027\n  ...\n\nClang appears to interpret the return type as task\u003cstd::optional\u003cbool\u003e\u003e instead of task\u003cbool\u003e, but the issue only occurs at this call site. Something may be confusing the analyzer, though I haven’t been able to pinpoint the cause.",
+      "parentUuid": "ad2b6fdb_88136055",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f908d3b_99988b7d",
         "filename": "cpld/lattice/lattice.cpp",
         "patchSetId": 66

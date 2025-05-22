@@ -881,6 +881,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "048c2594_136f2999",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-22T02:44:11Z",
+      "side": 1,
+      "message": "Harma doesn\u0027t have the XO5 CPLD — only Minerva does. But since they\u0027re still discussing it with the vendor, it\u0027s fine for me to remove it.",
+      "parentUuid": "976c1a94_b1728748",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77dea750_af094f35",
@@ -1368,6 +1386,24 @@
       "side": 1,
       "message": "@JunYe I see you made changes around this code. Can you check if it fixed the warning?\nIf not, can you check if adding it in the CpldLatticeManager::sendReceive fixes the warning, if yes, then lets add it there, that way we can avoid sprinkling it at multiple places.",
       "parentUuid": "815b0d37_da6f784a",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60c2e6a7_03166605",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-22T02:44:11Z",
+      "side": 1,
+      "message": "I\u0027ll try a few more times to get Clang working properly, and then try moving the NOLINT to CpldLatticeManager::sendReceive. If none of that works, the good news is that this piece of code belongs to old XO5 and will be removed anyway.",
+      "parentUuid": "247e1a21_44f7736b",
       "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

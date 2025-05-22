@@ -584,6 +584,13 @@ ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
     {
         imageUpdateList.clear();
         imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
+        auto optionalImages = getOptionalImages();
+        if (!optionalImages.empty())
+        {
+            imageUpdateList.insert(imageUpdateList.end(),
+                                   optionalImages.begin(),
+                                   optionalImages.end());
+        }
         valid = checkImage(filePath, imageUpdateList);
         if (!valid)
         {

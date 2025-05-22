@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c22e30_49a4931c",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-22T22:33:35Z",
+      "side": 1,
+      "message": "We dont need multiple matchers, just one matcher is good enough for all interfaces.",
+      "revId": "63c334ec05833215a226206690e1a1129c444ef7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

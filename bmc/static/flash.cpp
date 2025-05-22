@@ -57,6 +57,13 @@ void Activation::flashWrite()
         fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
                       fs::copy_options::overwrite_existing, ec);
     }
+    for (const auto& optionalImaage : getOptionalImages())
+    {
+        std::error_code ec;
+        fs::copy_file(uploadDir / versionId / optionalImaage,
+                      toPath / optionalImaage,
+                      fs::copy_options::overwrite_existing, ec);
+    }
 }
 
 void Activation::onStateChanges([[maybe_unused]] sdbusplus::message_t& msg)

@@ -1,0 +1,548 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d44d4609_c3d01016",
+        "filename": "cpld/README.md",
+        "patchSetId": 81
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "isn\u0027t it just I2c and not pmbus?",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7a6e4d_b11145ad",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "drop this NOLINTBEGIN and END",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f581da6_a5488734",
+        "filename": "cpld/cpld_software_manager.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Change `CPLDFirmware` -\u003e `CPLD`, as BusName suffix.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7237a55_f51c6902",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "`Variables should all be lowerCamelCase`\n\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730e03b6_ddf29585",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Variables should all be lowerCamelCase\n\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a65fd21_594b1ec1",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "why _t? this is not a typedef but a normal var.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd15b1e_7d3c542d",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop \"[OK]\"",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ed86d6_9bca0e73",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Whats this comment about?",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c58d7f92_8e6e78b0",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Please drop commented code.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f847ca9f_b73aa1ad",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop \"Error:\" as its already logged with error API.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa9afa0_ffd7287d",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop \"Error:\" as its already logged with error API.\n\nPlease club these 2 errors lines into one \u003d\n\n`The device id doesn\u0027t match the chip and supported chips are following:`",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60947f2_6611435e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "whats the purpose of this comment?",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91dced2_db0eec1f",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Please remove commented code.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15f8f5a8_b740714b",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "This comment doesn\u0027t seem useful, please move this. The cmd is already part of command enum definitions.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134b2c2b_d25b42a6",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "lets drop this line.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cd2ceba_a72b8b04",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Please use async sleep.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da050b97_256c4f67",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop this comment.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a8395b_e63b46ea",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop this comment.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af8516a_93e8e85e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Lets not use busy wait as it will block the updater thread, use async sleep instead.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0072e4e0_2d3ddcb5",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop debugMode as logging macro is itself debug.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e980e6fc_8220b8c0",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "return true here, drop the else condition and move its code out.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e7f38c_ed5fb126",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Drop commented code.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbc5e7e_2bbdca62",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Why is this printing error and same in else clause?",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d788da_92ec1b45",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "I don\u0027t see anyone using this enum here, if thats correct, can you please move this to .cpp file.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d28b24_cbd2369b",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#constants\n\n`Constants and enum members should be named like variables in lowerCamelCase`",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41861b1_4af8abe6",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "what is QF? may be make it more descriptive or add a comment, same goes for UFM below.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e70a9ec1_3cde7c87",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables\n\n`Variables should all be lowerCamelCase`\n\nSame for Checksum below.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a74b9e_8b4b8b45",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "rename this API to updateFirmware",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab72555_fefb8e6b",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Why is this public?",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5448e8c6_b3ca3abe",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 81
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "I don\u0027t see debugMode useful as you are passing it as false without any user input. I would suggest to drop this from class constructor and just use debug macro directly for debug messages.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d957d777_733bea05",
+        "filename": "cpld/xyz.openbmc_project.Software.CPLDFirmware.service",
+        "patchSetId": 81
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "Please change CPLDFirmware -\u003e CPLD in serviceName file.",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd2c772_c78d186f",
+        "filename": "cpld/xyz.openbmc_project.Software.CPLDFirmware.service",
+        "patchSetId": 81
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-23T02:47:24Z",
+      "side": 1,
+      "message": "This BusName should be xyz.openbmc_project.Software.CPLD\n\nPlease change in code as well",
+      "revId": "5dd53624882ed79c8a46a8fe486974ffed0fb80d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

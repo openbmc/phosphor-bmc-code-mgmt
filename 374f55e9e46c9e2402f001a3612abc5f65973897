@@ -510,6 +510,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82db0d1e_222ba281",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-23T01:15:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb54a0fd_024453a5",
+      "revId": "374f55e9e46c9e2402f001a3612abc5f65973897",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1c88788_52b81941",

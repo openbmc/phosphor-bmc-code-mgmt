@@ -34,6 +34,24 @@
       "parentUuid": "f11c837c_2f551b21",
       "revId": "2ffbd298967b5a6b4f4f72d7b639757cedf65310",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0d5af9_7dbb222b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 94
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-26T17:38:33Z",
+      "side": 1,
+      "message": "Please add UT for each of the items as mentioned in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/77088\n\n1. Display the fw inventory\n\n2. Query FW version.\n\n...\n\n6. Display the fw inventory with newly updated fw.\n\n7. Query the new fw version.",
+      "parentUuid": "33c991a3_c701ebf4",
+      "revId": "2ffbd298967b5a6b4f4f72d7b639757cedf65310",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

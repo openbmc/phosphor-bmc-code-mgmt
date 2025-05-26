@@ -16,6 +16,24 @@
       "message": "We dont need multiple matchers, just one matcher is good enough for all interfaces.",
       "revId": "63c334ec05833215a226206690e1a1129c444ef7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aafd769c_f50a433a",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-26T15:10:59Z",
+      "side": 1,
+      "message": "reworked it to have 1 for added and 1 for removed interfaces 👍",
+      "parentUuid": "64c22e30_49a4931c",
+      "revId": "63c334ec05833215a226206690e1a1129c444ef7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

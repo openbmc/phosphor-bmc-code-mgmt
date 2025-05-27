@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cde1698_164b4161",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:24:27Z",
+      "side": 1,
+      "message": "gs",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82ac275a_246a20ba",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:24:27Z",
+      "side": 1,
+      "message": "rename as handleInterfaceAdded()",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c92d0869_77806e55",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:24:27Z",
+      "side": 1,
+      "message": "Drop [config] tag and fix the message accordingly.",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492d511e_b7b1219f",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:24:27Z",
+      "side": 1,
+      "message": "Change OBJPATH to PATH to keep it consistent with other messages.",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d546716e_fb84b3ac",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:24:27Z",
+      "side": 1,
+      "message": "Failed to get configuration from ..",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

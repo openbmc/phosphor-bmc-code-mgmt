@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6b6c15_ef997990",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "I think you can drop this function from private member list and just define it as a static function in .cpp file.",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d0f4774_03e60e97",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename as getConfig",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79d6b02_d41880ec",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename interfaceFound to interfacePrefix",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc54abc_efa0cbf7",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "Remove [config] tag and change done to Done",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d17df5_2217e84e",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename ifaceFwInfoDef to interfaceName",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfbd4ba_60bf8fa6",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename to propConfigType",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74305a75_277a217e",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename to configType.",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8421c75f_7dad4884",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename to propConfigName",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7686c90_79e9861e",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "rename to configName",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2876787f_a0a53510",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "error(\"Failed to get config with {ERROR}\", \"ERROR\", e);",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe9f9f7_281e3947",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:18:27Z",
+      "side": 1,
+      "message": "I suppose you can co_return SoftwareConfig(....)",
+      "revId": "ff12b142c525b992335b6469ea56cfd935bfd5f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

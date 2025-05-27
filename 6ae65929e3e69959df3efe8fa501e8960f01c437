@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5738c35_d9e1cb6f",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Yes, to read the variable\n```\n  \n    private:\n      bool updateInProgress \u003d false;\n```",
+      "parentUuid": "d2e1d820_2530233c",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1072e0dd_1b8e9ec1",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "This can be dropped as i mentioned in another comment",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41927e0_07fd54f8",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1072e0dd_1b8e9ec1",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d5399f3_1a2cda02",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "637e01e5_751355c1",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8f9d28c_de2e98e4",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "rename to something smaller, for example, interfaceRemovedMatch().",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79b477eb_842fab59",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8f9d28c_de2e98e4",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9337818c_5e939de8",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19af3c50_87b37ca7",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b03a0d9d_8338b3d3",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "Lot of this code will get compressed once you move the matchers as normal class args.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c3b61a_afee8e06",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Yes. I was quite surprised by that 😊",
+      "parentUuid": "b03a0d9d_8338b3d3",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee3b2c8_0e87c578",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd03408c_e154be16",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fce7f1ab_2de6529d",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "You can move this above in same line instead of creating nextResult.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8169f8ee_2790b58c",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "I got ICE / clang-tidy warning in the past from doing destructuring assignment in combination with coroutines so i would prefer to avoid it.",
+      "parentUuid": "fce7f1ab_2de6529d",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c73665f5_afa93817",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "204ca5ab_96046c28",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60e8f2b9_9b223d14",
@@ -167,6 +329,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "rename configIntf to interface",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a7133d_b5524eca",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60e8f2b9_9b223d14",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27651a77_8d37ee93",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "I got ICE / clang-tidy warning in the past from doing destructuring assignment in combination with coroutines so i would prefer to avoid it.",
+      "parentUuid": "6044fe56_b7e4508d",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e9e8ebd_88b3f28b",
@@ -201,6 +399,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "rename intf to interface",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cac8511_95c01a4a",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e9e8ebd_88b3f28b",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -222,6 +438,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc6525c6_88f75812",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fbef0cf_0a18122b",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324fca60_db49a1ef",
@@ -235,6 +469,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "No need of this var, define an API handleInterfaceRemoved() and move all the below logic in that one and the API can be called here instead.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9004e28_e3b9166b",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "324fca60_db49a1ef",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -256,6 +508,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5949eb2d_daf298f6",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45e30f8d_7b73acd4",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b440f025_9013ff72",
@@ -273,6 +543,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47da3195_2ace49bf",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b440f025_9013ff72",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7abe7be4_ffd47e76",
@@ -286,6 +574,24 @@
       "writtenOn": "2025-05-27T01:57:33Z",
       "side": 1,
       "message": "No need of all this logic on next few lines, directly do devices.erase(objectPath) here. You can add a debug may be.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7feaad00_3026e044",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7abe7be4_ffd47e76",
       "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

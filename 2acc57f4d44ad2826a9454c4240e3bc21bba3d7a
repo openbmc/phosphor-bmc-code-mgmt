@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb0b27c9_567288f4",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82ac275a_246a20ba",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c92d0869_77806e55",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-05-27T01:24:27Z",
       "side": 1,
       "message": "Drop [config] tag and fix the message accordingly.",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00082d3c_dc1718e1",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c92d0869_77806e55",
       "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45515f9e_eec4557b",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "492d511e_b7b1219f",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d546716e_fb84b3ac",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-05-27T01:24:27Z",
       "side": 1,
       "message": "Failed to get configuration from ..",
+      "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e8505a_0d76f44e",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-27T10:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d546716e_fb84b3ac",
       "revId": "2acc57f4d44ad2826a9454c4240e3bc21bba3d7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

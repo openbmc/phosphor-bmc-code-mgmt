@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e1d820_2530233c",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "Do you need this?",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1072e0dd_1b8e9ec1",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "This can be dropped as i mentioned in another comment",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637e01e5_751355c1",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "rename to something smaller, for example, interfaceAddedMatch().",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f9d28c_de2e98e4",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "rename to something smaller, for example, interfaceRemovedMatch().",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19af3c50_87b37ca7",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "No need for unique pointers, define these as regular class vars and init them in class constructor args.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03a0d9d_8338b3d3",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "Lot of this code will get compressed once you move the matchers as normal class args.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd03408c_e154be16",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "Both these spawns can be done in caller and drop this API.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce7f1ab_2de6529d",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "You can move this above in same line instead of creating nextResult.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "204ca5ab_96046c28",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "I suppose you can avoid this loop by just doing \n\nif (interfacesMap.contains(interfaceName)) \n\ninside the next loop of interfaces",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e8f2b9_9b223d14",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "rename configIntf to interface",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6044fe56_b7e4508d",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "You can move this above in same line instead of creating nextResult.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e9e8ebd_88b3f28b",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "rename intf to interface",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbef0cf_0a18122b",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "change to           if (std::ranges::find(interfacesRemoved, interface) !\u003d\n                interfacesRemoved.end())",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324fca60_db49a1ef",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "No need of this var, define an API handleInterfaceRemoved() and move all the below logic in that one and the API can be called here instead.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e30f8d_7b73acd4",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "the devices is a map so u can do a lookup based on objectpath rather than this iteration.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b440f025_9013ff72",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "no need of this as devices is a map, so do find.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7abe7be4_ffd47e76",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T01:57:33Z",
+      "side": 1,
+      "message": "No need of all this logic on next few lines, directly do devices.erase(objectPath) here. You can add a debug may be.",
+      "revId": "6ae65929e3e69959df3efe8fa501e8960f01c437",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

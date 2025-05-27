@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7db51ad8_1a811f59",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-27T08:01:01Z",
+      "side": 1,
+      "message": "Since it\u0027s logically impossible for size to be 0 in writeData, I only applied the patch from #610.",
+      "parentUuid": "3f3ce077_3cb69d62",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddc9625a_14f7a69c",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-05-26T10:50:52Z",
       "side": 1,
       "message": "We can apply this diff\n\n```\ndiff --git a/cpld/lattice/lattice.cpp b/cpld/lattice/lattice.cpp\nindex 2931703..7dfa141 100644\n--- a/cpld/lattice/lattice.cpp\n+++ b/cpld/lattice/lattice.cpp\n@@ -2,6 +2,7 @@\n \n #include \u003cphosphor-logging/lg2.hpp\u003e\n \n+#include \u003calgorithm\u003e\n #include \u003cfstream\u003e\n #include \u003cmap\u003e\n #include \u003cthread\u003e\n@@ -44,7 +45,7 @@ sdbusplus::async::task\u003cbool\u003e CpldLatticeManager::sendrecv(\n     std::vector\u003cuint8_t\u003e\u0026 writeData, size_t readSize,\n     std::vector\u003cuint8_t\u003e\u0026 readData) const noexcept\n {\n-    readData.resize(readSize, 0);\n+    readData.resize(std::ranges::min(readSize, (size_t)1), 0);\n \n     bool success \u003d co_await i2cInterface.sendReceive(\n         writeData.data(), writeData.size(), readData.data(), readSize);\n@@ -607,7 +608,6 @@ sdbusplus::async::task\u003cbool\u003e CpldLatticeManager::disableConfigInterface()\n {\n     std::vector\u003cuint8_t\u003e command \u003d {commandDisableConfigInterface, 0x0, 0x0};\n     std::vector\u003cuint8_t\u003e read;\n-    // NOLINTNEXTLINE(clang-analyzer-core.uninitialized.Branch)\n     co_return co_await sendrecv(command, 0, read);\n }\n \n```\n\nto resolve the issue about the uninitialized branch.\nWhich prevents the vector from being resized to 0.\n\nSince later ```.data()``` is called on the vector it may be good to have a vector of nonzero size.",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d772eb0e_82720ff4",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-27T08:01:01Z",
+      "side": 1,
+      "message": "It works, thanks a lot.",
+      "parentUuid": "ddc9625a_14f7a69c",
       "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

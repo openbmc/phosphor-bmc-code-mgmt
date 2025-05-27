@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71b9febf_37bfaf45",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-27T08:07:13Z",
+      "side": 1,
+      "message": "Because it was originally written as a common API, I\u0027m concerned that if somewhere calls the function with a readSize larger than readData.size(), it might cause a segmentation fault.",
+      "parentUuid": "8cc1625b_d0d95d37",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f3ce077_3cb69d62",

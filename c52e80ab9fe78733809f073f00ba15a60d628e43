@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2447145b_0a5b2e38",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T18:00:39Z",
+      "side": 1,
+      "message": "Thats a bug and one would need to fix that. I don\u0027t think you need this resize API call, lets just drop this and with this i suppose even you LINT warning shall go aways as you can directly call i2cInterface.sendReceive() rather than having another wrapper API.",
+      "parentUuid": "71b9febf_37bfaf45",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f3ce077_3cb69d62",
         "filename": "cpld/lattice/lattice.cpp",
         "patchSetId": 97

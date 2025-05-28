@@ -47,6 +47,17 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         co_return false;
     }
 
+    enum FlashTool tool = flashToolNone;
+
+    std::optional<std::string> toolStr =
+        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                      configIface, "Tool");
+
+    if (toolStr.has_value() && toolStr.value() == "flashrom")
+    {
+        tool = flashToolFlashrom;
+    }
+
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 
     std::vector<std::string> names;
@@ -74,7 +85,6 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     }
 
     enum FlashLayout layout = flashLayoutFlat;
-    enum FlashTool tool = flashToolNone;
 
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());

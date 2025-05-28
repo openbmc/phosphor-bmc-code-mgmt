@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a37cec_da985503",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-28T23:42:00Z",
+      "side": 1,
+      "message": "@Daniel-Hsu@quantatw.com I am not convinced that we need this change because the new task should have the same execution context as the existing task (as there is a co_await). But i am not going to hold this whole patch for this reason. Lets handle this better as a followup patch.",
+      "parentUuid": "bcc4a8db_da123e19",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f3ce077_3cb69d62",

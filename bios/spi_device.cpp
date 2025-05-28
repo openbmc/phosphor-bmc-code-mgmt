@@ -407,7 +407,20 @@ sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
         co_return 1;
     }
 
-    std::string cmd = "flashrom -p linux_mtd:dev=" + devPath.value();
+    size_t devNum = 0;
+
+    try
+    {
+        devNum = std::stoi(devPath.value().substr(8));
+    }
+    catch (std::exception& e)
+    {
+        error("could not parse mtd device number from {STR}: {ERROR}", "STR",
+              devPath.value(), "ERROR", e);
+        co_return 1;
+    }
+
+    std::string cmd = "flashrom -p linux_mtd:dev=" + std::to_string(devNum);
 
     if (layout == flashLayoutFlat)
     {

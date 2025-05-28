@@ -235,7 +235,7 @@ static std::unique_ptr<::gpiod::line_bulk> requestMuxGPIOs(
     ::gpiod::line_request config{"", ::gpiod::line_request::DIRECTION_OUTPUT,
                                  0};
 
-    debug("[gpio] requesting gpios to mux SPI to BMC");
+    debug("requesting gpios for mux");
 
     auto lineBulk = std::make_unique<::gpiod::line_bulk>(lines);
 

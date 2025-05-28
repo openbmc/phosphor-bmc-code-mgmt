@@ -15,12 +15,14 @@ xyz.openbmc_project.Configuration.SPIFlash
   "Name": "HostSPIFlash",
   "SPIControllerIndex": "1",
   "SPIDeviceIndex": "0",
-  "HasME": false,
-  "MuxOutputs": ["BMC_SPI_SEL"],
-  "MuxGPIOValues": [1],
+  "MuxOutputs": [
+    {
+      "Name": "BMC_SPI_SEL",
+      "Polarity": "High"
+    }
+  ],
   "VendorIANA": "6653",
   "Layout": "Flat",
-  "Tool": "flashrom",
   "FirmwareInfo": {
     "VendorIANA": "6653",
     "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host"
@@ -28,8 +30,6 @@ xyz.openbmc_project.Configuration.SPIFlash
   "Type": "SPIFlash"
 }
 ```
-
-- 'HasME' is referring to the Intel Management Engine.
 
 ## Layout information
 

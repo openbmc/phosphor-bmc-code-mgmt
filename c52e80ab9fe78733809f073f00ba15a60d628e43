@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc4a8db_da123e19",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 97
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-05-28T12:04:27Z",
+      "side": 1,
+      "message": "The original wrapper included a resize that somehow allowed lazy co_await to work properly. Once it was removed, the warning started to appear. This time, the focus is on the context, because the coroutine didn\u0027t have its execution context properly established before being co_awaited, which is undefined behavior by design in stdexec. So now, each sendReceive call is wrapped with stdexec::starts_on to ensure the correct context is set.",
+      "parentUuid": "2447145b_0a5b2e38",
+      "revId": "c52e80ab9fe78733809f073f00ba15a60d628e43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f3ce077_3cb69d62",

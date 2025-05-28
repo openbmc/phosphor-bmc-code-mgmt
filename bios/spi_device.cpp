@@ -471,8 +471,15 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(
 
     for (size_t offset = 0; offset < image_size; offset += chunk)
     {
-        const ssize_t written =
-            write(fd, image + offset, std::min(chunk, image_size - offset));
+        const size_t writeSize = std::min(chunk, image_size - offset);
+
+        const std::string initialValues = std::format(
+            "{:02x} {:02x} {:02x} {:02x}", image[offset + 0], image[offset + 1],
+            image[offset + 2], image[offset + 3]);
+        debug("writing {N} byte chunk starting with {S}", "N", writeSize, "S",
+              initialValues);
+
+        const ssize_t written = write(fd, image + offset, writeSize);
 
         if (written < 0)
         {

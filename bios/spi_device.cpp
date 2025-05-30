@@ -297,6 +297,11 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
                 }
                 success = (status == 0);
             }
+            else if (tool == flashToolFlashcp)
+            {
+                success = co_await SPIDevice::writeSPIFlashWithFlashcp(
+                    image, image_size);
+            }
             else
             {
                 success =
@@ -440,6 +445,54 @@ sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
     std::filesystem::remove(path);
 
     co_return exitCode;
+}
+
+// NOLINTBEGIN(readability-static-accessed-through-instance)
+sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
+    const uint8_t* image, size_t image_size) const
+// NOLINTEND(readability-static-accessed-through-instance)
+{
+    // randomize the name to enable parallel updates
+    const std::string path = "/tmp/spi-device-image-" +
+                             std::to_string(Software::getRandomId()) + ".bin";
+
+    int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    if (fd < 0)
+    {
+        error("Failed to open file: {PATH}", "PATH", path);
+        co_return 1;
+    }
+
+    const ssize_t bytesWritten = write(fd, image, image_size);
+
+    close(fd);
+
+    setUpdateProgress(30);
+
+    if (bytesWritten < 0 || static_cast<size_t>(bytesWritten) != image_size)
+    {
+        error("Failed to write image to file");
+        co_return 1;
+    }
+
+    debug("wrote {SIZE} bytes to {PATH}", "SIZE", bytesWritten, "PATH", path);
+
+    auto devPath = getMTDDevicePath();
+
+    if (!devPath.has_value())
+    {
+        co_return 1;
+    }
+
+    std::string cmd = std::format("flashcp -v {} {}", path, devPath.value());
+
+    debug("running {CMD}", "CMD", cmd);
+
+    const int exitCode = co_await asyncSystem(ctx, cmd);
+
+    std::filesystem::remove(path);
+
+    co_return exitCode == 0;
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)

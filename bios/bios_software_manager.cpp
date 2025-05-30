@@ -53,6 +53,10 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     {
         tool = flashToolFlashrom;
     }
+    else if (config.configType == "SPIFlash")
+    {
+        tool = flashToolFlashcp;
+    }
 
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 

@@ -35,6 +35,7 @@ enum FlashTool
 {
     flashToolNone,     // write directly to the mtd device
     flashToolFlashrom, // use flashrom, to handle e.g. IFD
+    flashToolFlashcp,
 };
 
 class SPIDevice : public Device, public NotifyWatchIntf
@@ -111,6 +112,16 @@ class SPIDevice : public Device, public NotifyWatchIntf
     // @param image_size      size of 'image'
     // @returns               0 on success
     sdbusplus::async::task<int> writeSPIFlashWithFlashrom(
+        const uint8_t* image, size_t image_size) const;
+
+    // @description preconditions:
+    // - host is powered off
+    // - gpio / mux is set
+    // - spi device is bound to the driver
+    // @param image           the component image
+    // @param image_size      size of 'image'
+    // @returns               true on success
+    sdbusplus::async::task<bool> writeSPIFlashWithFlashcp(
         const uint8_t* image, size_t image_size) const;
 
     // @returns nullopt on error

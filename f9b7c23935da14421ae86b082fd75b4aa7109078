@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63a4b4b_0aa66188",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-02T18:10:13Z",
+      "side": 1,
+      "message": "I don\u0027t see any such property in EM schema and i think this is something which was not advised to add in past as well, so lets avoid this.",
+      "revId": "f9b7c23935da14421ae86b082fd75b4aa7109078",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6b33d0_e360c0ee",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-02T18:10:13Z",
+      "side": 1,
+      "message": "Lets log some valid message for exception and also drop what() as logging API takes care of it.",
+      "revId": "f9b7c23935da14421ae86b082fd75b4aa7109078",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

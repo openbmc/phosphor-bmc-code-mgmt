@@ -14,8 +14,10 @@ class CPLDInterface
 {
   public:
     CPLDInterface(sdbusplus::async::context& ctx, const std::string& chipname,
-                  uint16_t bus, uint8_t address) :
-        ctx(ctx), chipname(chipname), bus(bus), address(address)
+                  uint16_t bus, uint8_t address,
+                  const std::string& hardwareCompatible) :
+        ctx(ctx), chipname(chipname), bus(bus), address(address),
+        hardwareCompatible(hardwareCompatible)
     {}
 
     virtual ~CPLDInterface() = default;
@@ -35,6 +37,7 @@ class CPLDInterface
     std::string chipname;
     uint16_t bus;
     uint8_t address;
+    std::string hardwareCompatible;
 };
 
 class CPLDFactory
@@ -42,7 +45,7 @@ class CPLDFactory
   public:
     using Creator = std::function<std::unique_ptr<CPLDInterface>(
         sdbusplus::async::context& ctx, const std::string& chipName,
-        uint16_t bus, uint8_t address)>;
+        uint16_t bus, uint8_t address, const std::string& hardwareCompatible)>;
     using ConfigProvider = std::function<std::vector<std::string>()>;
 
     static CPLDFactory& instance();
@@ -51,7 +54,8 @@ class CPLDFactory
 
     std::unique_ptr<CPLDInterface> create(
         const std::string& vendorName, sdbusplus::async::context& ctx,
-        const std::string& chipName, uint16_t bus, uint8_t address) const;
+        const std::string& chipName, uint16_t bus, uint8_t address,
+        const std::string& hardwareCompatible) const;
 
     std::vector<std::string> getConfigs();
 

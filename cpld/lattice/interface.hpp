@@ -7,8 +7,8 @@ class LatticeCPLD : public CPLDInterface
 {
   public:
     LatticeCPLD(sdbusplus::async::context& ctx, const std::string& chipname,
-                uint16_t bus, uint8_t address) :
-        CPLDInterface(ctx, chipname, bus, address)
+                uint16_t bus, uint8_t address, std::string hardwareCompatible) :
+        CPLDInterface(ctx, chipname, bus, address, hardwareCompatible)
     {}
 
     sdbusplus::async::task<bool> updateFirmware(

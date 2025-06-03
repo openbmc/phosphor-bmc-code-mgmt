@@ -19,14 +19,11 @@ struct cpldI2cInfo
 class CpldLatticeManager
 {
   public:
-    CpldLatticeManager(sdbusplus::async::context& ctx, const uint16_t bus,
-                       const uint8_t address, const uint8_t* image,
-                       size_t imageSize, const std::string& chip,
-                       const std::string& target, const bool debugMode) :
-        ctx(ctx), image(image), imageSize(imageSize), chip(chip),
-        target(target), debugMode(debugMode),
-        i2cInterface(phosphor::i2c::I2C(bus, address))
-    {}
+    CpldLatticeManager(
+        sdbusplus::async::context& ctx, const uint16_t bus,
+        const uint8_t address, const std::string& hardwareCompatible,
+        const uint8_t* image, size_t imageSize, const std::string& chip,
+        const std::string& target, const bool debugMode);
     sdbusplus::async::task<bool> updateFirmware(
         std::function<bool(int)> progressCallBack);
     sdbusplus::async::task<bool> getVersion(std::string& version);
@@ -44,6 +41,9 @@ class CpldLatticeManager
 
     sdbusplus::async::task<bool> XO2XO3FamilyUpdate(
         std::function<bool(int)> progressCallBack);
+    sdbusplus::async::task<bool> safeSendReceive(
+        uint8_t* writeData, size_t writeSize, uint8_t* readData,
+        size_t readSize);
 
     int indexof(const char* str, const char* ptn);
     bool jedFileParser();

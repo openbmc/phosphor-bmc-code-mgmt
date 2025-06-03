@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <map>
+#include <regex>
 #include <thread>
 #include <vector>
 
@@ -71,6 +72,38 @@ static int findNumberSize(const std::string& end, const std::string& start,
     }
 
     return static_cast<int>(pos2 - pos1 - 1);
+}
+
+std::string uint32ToHexStr(uint32_t value)
+{
+    std::ostringstream oss;
+    oss << std::setfill('0') << std::setw(8) << std::hex << std::uppercase
+        << value;
+    return oss.str();
+}
+
+CpldLatticeManager::CpldLatticeManager(
+    sdbusplus::async::context& ctx, const uint16_t bus, const uint8_t address,
+    const std::string& hardwareCompatible, const uint8_t* image,
+    size_t imageSize, const std::string& /*chip*/, const std::string& target,
+    const bool debugMode) :
+    ctx(ctx), image(image), imageSize(imageSize), target(target),
+    debugMode(debugMode), i2cInterface(phosphor::i2c::I2C(bus, address))
+{
+    std::regex pattern(R"(CPLD\.([A-Za-z0-9_]+)_[A-Za-z0-9_]+)");
+
+    std::smatch match;
+    if (std::regex_search(hardwareCompatible, match, pattern))
+    {
+        lg2::debug("Extracted chip name: {CHIPNAME}", "CHIPNAME",
+                   match[1].str());
+        this->chip = match[1].str();
+    }
+    else
+    {
+        lg2::error(
+            "Error: Unable to extract chip name from hardware compatible string.");
+    }
 }
 
 bool CpldLatticeManager::jedFileParser()
@@ -854,14 +887,6 @@ sdbusplus::async::task<bool> CpldLatticeManager::updateFirmware(
     }
     lg2::error("Unsupported chip type: {CHIP}", "CHIP", chip);
     co_return false;
-}
-
-std::string uint32ToHexStr(uint32_t value)
-{
-    std::ostringstream oss;
-    oss << std::setfill('0') << std::setw(8) << std::hex << std::uppercase
-        << value;
-    return oss.str();
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::getVersion(

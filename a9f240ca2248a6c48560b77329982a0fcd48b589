@@ -16,6 +16,24 @@
       "message": "Don\u0027t you need a corresponding emit_removed?",
       "revId": "a9f240ca2248a6c48560b77329982a0fcd48b589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de80efd_c72aaafd",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T13:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4353165b_5ad6dbd6",
+      "revId": "a9f240ca2248a6c48560b77329982a0fcd48b589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

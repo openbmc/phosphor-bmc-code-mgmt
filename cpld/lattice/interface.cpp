@@ -8,8 +8,8 @@ namespace phosphor::software::cpld
 {
 
 const std::vector<std::string> supportedTypes = {
-    "LatticeXO2Firmware",
-    "LatticeXO3Firmware",
+    "LatticeMachXO2Firmware",
+    "LatticeMachXO3Firmware",
 };
 
 sdbusplus::async::task<bool> LatticeCPLD::updateFirmware(
@@ -18,9 +18,9 @@ sdbusplus::async::task<bool> LatticeCPLD::updateFirmware(
 {
     lg2::info("Updating Lattice CPLD firmware");
 
-    std::replace(chipname.begin(), chipname.end(), '_', '-');
     auto cpldManager = std::make_unique<CpldLatticeManager>(
-        ctx, bus, address, image, imageSize, chipname, "CFG0", false);
+        ctx, bus, address, hardwareCompatible, image, imageSize, chipname,
+        "CFG0", false);
 
     co_return co_await cpldManager->updateFirmware(progressCallBack);
 }
@@ -29,9 +29,9 @@ sdbusplus::async::task<bool> LatticeCPLD::getVersion(std::string& version)
 {
     lg2::info("Getting Lattice CPLD version");
 
-    std::replace(chipname.begin(), chipname.end(), '_', '-');
     auto cpldManager = std::make_unique<CpldLatticeManager>(
-        ctx, bus, address, nullptr, 0, chipname, "CFG0", false);
+        ctx, bus, address, hardwareCompatible, nullptr, 0, chipname, "CFG0",
+        false);
 
     co_return co_await cpldManager->getVersion(version);
 }
@@ -48,13 +48,13 @@ const bool vendorRegistered = [] {
     for (const auto& type : supportedTypes)
     {
         CPLDFactory::instance().registerCPLD(
-            type,
-            [](sdbusplus::async::context& ctx, const std::string& chipname,
-               uint16_t bus, uint8_t address) {
+            type, [](sdbusplus::async::context& ctx,
+                     const std::string& chipname, uint16_t bus, uint8_t address,
+                     const std::string& hardwareCompatible) {
                 // Create and return a LatticeCPLD instance
                 // Pass the parameters to the constructor
-                return std::make_unique<LatticeCPLD>(ctx, chipname, bus,
-                                                     address);
+                return std::make_unique<LatticeCPLD>(
+                    ctx, chipname, bus, address, hardwareCompatible);
             });
     }
     return true;

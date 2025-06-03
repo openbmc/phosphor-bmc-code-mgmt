@@ -16,6 +16,24 @@
       "message": "Please drop the [gpio] tag and fix the message accordingly.",
       "revId": "c13249a4d6928bf091848b9c1fdce06bc40f5a70",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d50825_81bac9fa",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T13:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a2a52f_03fe6621",
+      "revId": "c13249a4d6928bf091848b9c1fdce06bc40f5a70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

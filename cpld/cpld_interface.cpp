@@ -18,12 +18,13 @@ void CPLDFactory::registerCPLD(const std::string& vendorName, Creator creator)
 
 std::unique_ptr<CPLDInterface> CPLDFactory::create(
     const std::string& vendorName, sdbusplus::async::context& ctx,
-    const std::string& chipName, uint16_t bus, uint8_t address) const
+    const std::string& chipName, uint16_t bus, uint8_t address,
+    const std::string& hardwareCompatible) const
 {
     auto it = creators.find(vendorName);
     if (it != creators.end())
     {
-        return (it->second)(ctx, chipName, bus, address);
+        return (it->second)(ctx, chipName, bus, address, hardwareCompatible);
     }
     return nullptr;
 }

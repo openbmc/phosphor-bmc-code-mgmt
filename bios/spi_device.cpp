@@ -87,12 +87,9 @@ SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
         "DEVICEINDEX", spiDeviceIndex);
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
                                                      size_t image_size)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
-    // NOLINTBEGIN(readability-static-accessed-through-instance)
     // NOLINTNEXTLINE(clang-analyzer-core.uninitialized.Branch)
     auto prevPowerstate = co_await HostPower::getState(ctx);
 
@@ -101,9 +98,7 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
         co_return false;
     }
 
-    // NOLINTBEGIN(readability-static-accessed-through-instance)
     bool success = co_await HostPower::setState(ctx, stateOff);
-    // NOLINTEND(readability-static-accessed-through-instance)
     if (!success)
     {
         error("error changing host power state");
@@ -130,15 +125,12 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
     // return value here is only describing if we successfully wrote to the
     // SPI flash. Restoring powerstate can still fail.
     co_return success;
-    // NOLINTEND(readability-static-accessed-through-instance)
 }
 
 const std::string spiAspeedSMCPath = "/sys/bus/platform/drivers/spi-aspeed-smc";
 const std::string spiNorPath = "/sys/bus/spi/drivers/spi-nor";
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::bindSPIFlash()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     if (!SPIDevice::isSPIControllerBound())
     {
@@ -178,9 +170,7 @@ sdbusplus::async::task<bool> SPIDevice::bindSPIFlash()
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::unbindSPIFlash()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("unbinding flash");
 
@@ -259,10 +249,8 @@ static std::unique_ptr<::gpiod::line_bulk> requestMuxGPIOs(
     return lineBulk;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
                                                       size_t image_size)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("[gpio] requesting gpios to mux SPI to BMC");
 
@@ -330,10 +318,8 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
     co_return success;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
                                         const std::string& cmd)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     int pipefd[2];
     if (pipe(pipefd) == -1)
@@ -375,10 +361,8 @@ sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
     }
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
     const uint8_t* image, size_t image_size) const
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     // randomize the name to enable parallel updates
     const std::string path = "/tmp/spi-device-image-" +
@@ -447,10 +431,8 @@ sdbusplus::async::task<int> SPIDevice::writeSPIFlashWithFlashrom(
     co_return exitCode;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     const uint8_t* image, size_t image_size) const
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     // randomize the name to enable parallel updates
     const std::string path = "/tmp/spi-device-image-" +
@@ -495,10 +477,8 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     co_return exitCode == 0;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(
     const uint8_t* image, size_t image_size)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto devPath = getMTDDevicePath();
 

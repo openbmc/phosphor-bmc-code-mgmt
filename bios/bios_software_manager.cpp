@@ -19,10 +19,8 @@ BIOSSoftwareManager::BIOSSoftwareManager(sdbusplus::async::context& ctx,
     SoftwareManager(ctx, configTypeBIOS), dryRun(isDryRun)
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     const std::string& service, const std::string& path, SoftwareConfig& config)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;

@@ -34,10 +34,8 @@ SoftwareConfig::SoftwareConfig(const std::string& objPath, uint32_t vendorIANA,
     }
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<std::string> SoftwareConfig::getInventoryItemObjectPath(
     sdbusplus::async::context& ctx)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     std::vector<std::string> allInterfaces = {
         "xyz.openbmc_project.Inventory.Item.Board",

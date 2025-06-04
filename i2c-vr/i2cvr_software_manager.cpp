@@ -40,10 +40,8 @@ void I2CVRSoftwareManager::start()
     ctx.run();
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
     const std::string& service, const std::string& path, SoftwareConfig& config)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;

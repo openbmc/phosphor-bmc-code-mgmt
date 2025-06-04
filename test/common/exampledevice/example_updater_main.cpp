@@ -4,9 +4,7 @@
 
 using namespace phosphor::software::example_device;
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<void> init(ExampleCodeUpdater& updater)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     /*
      * In Concrete updaters, the initDevices() function needs to be called,

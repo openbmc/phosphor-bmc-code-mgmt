@@ -45,11 +45,9 @@ SoftwareManager::SoftwareManager(sdbusplus::async::context& ctx,
     debug("Initialized SoftwareManager");
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 static sdbusplus::async::task<std::optional<SoftwareConfig>> getConfig(
     sdbusplus::async::context& ctx, const std::string& service,
     const std::string& objectPath, const std::string& interfacePrefix)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto client = sdbusplus::async::proxy()
                       .service(service)
@@ -103,10 +101,8 @@ static sdbusplus::async::task<std::optional<SoftwareConfig>> getConfig(
                              configName);
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<> SoftwareManager::initDevices(
     const std::vector<std::string>& configurationInterfaces)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     ctx.spawn(interfaceAddedMatch(configurationInterfaces));
     ctx.spawn(interfaceRemovedMatch(configurationInterfaces));
@@ -152,11 +148,9 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
     debug("Done with initial configuration");
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     const std::string& service, const std::string& path,
     const std::string& interface)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",
           service, "PATH", path);
@@ -187,10 +181,8 @@ using BasicVariantType =
 using InterfacesMap = boost::container::flat_map<std::string, BasicVariantType>;
 using ConfigMap = boost::container::flat_map<std::string, InterfacesMap>;
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch(
     std::vector<std::string> interfaces)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     while (!ctx.stop_requested())
     {
@@ -214,10 +206,8 @@ sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch(
     }
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch(
     std::vector<std::string> interfaces)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     while (!ctx.stop_requested())
     {

@@ -69,9 +69,7 @@ std::string Software::getRandomSoftwareId(Device& parent)
     return std::format("{}_{}", parent.config.configName, getRandomId());
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("{SWID}: setting association definitions", "SWID", swid);
 

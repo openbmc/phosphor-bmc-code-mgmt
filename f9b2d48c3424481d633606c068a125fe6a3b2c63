@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d86f24_45c35270",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T10:40:20Z",
+      "side": 1,
+      "message": "nit: these NOLINT should not be required since\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80392\n\nwas merged.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d376f7_ba1dffa5",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T10:40:20Z",
+      "side": 1,
+      "message": "nit: i received feedback in the past to not use  ```this``` keyword\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/ce23f110_ebd76000/\n\nwhich seems to be a matter of preference 😊\n\nSo we can adjust to apply the preference for consistency reason.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9af86c3_503c5e79",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T10:40:20Z",
+      "side": 1,
+      "message": "nit: uninitialized branch\n\nI do realize the clang-tidy output can be cryptic and not helpful in this issue.\n\nMaybe i should take a shot to try and change the code here so we do not produce this warning.\n\nBut don\u0027t consider this comment blocking from my side, since the code has been tested to work, i am not too concerned 😊",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

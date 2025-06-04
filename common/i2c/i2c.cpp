@@ -31,11 +31,9 @@ int I2C::open()
     return 0;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> I2C::sendReceive(
     uint8_t* writeData, uint8_t writeSize, uint8_t* readData,
     uint8_t readSize) const
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     bool result = true;
 

@@ -41,11 +41,9 @@ ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
     SoftwareManager(ctx, "ExampleUpdater" + std::to_string(uniqueSuffix))
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
     const std::string& /*unused*/, const std::string& /*unused*/,
     SoftwareConfig& /*unused*/)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto device = std::make_unique<ExampleDevice>(ctx, this);
 
@@ -70,10 +68,8 @@ ExampleDevice::ExampleDevice(sdbusplus::async::context& ctx,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset})
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> ExampleDevice::updateDevice(
     const uint8_t* /*unused*/, size_t compImageSize)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("Called device specific update function with image size {SIZE}",
           "SIZE", compImageSize);

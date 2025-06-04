@@ -32,13 +32,11 @@ Device::Device(sdbusplus::async::context& ctx, const SoftwareConfig& config,
     parent(parent), ctx(ctx)
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::getImageInfo(
     std::unique_ptr<void, std::function<void(void*)>>& pldmPackage,
     size_t pldmPackageSize, uint8_t** matchingComponentImage,
     size_t* componentImageSize, std::string& componentVersion)
 
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     std::shared_ptr<PackageParser> packageParser =
         pldm_package_util::parsePLDMPackage(
@@ -67,11 +65,9 @@ sdbusplus::async::task<bool> Device::getImageInfo(
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::startUpdateAsync(
     sdbusplus::message::unix_fd image, RequestedApplyTimes applyTime,
     std::unique_ptr<Software> softwarePendingIn)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("starting the async update with memfd {FD}", "FD", image.fd);
 
@@ -135,9 +131,7 @@ std::string Device::getEMConfigType() const
     return config.configType;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::resetDevice()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     debug("Default implementation for device reset");
 
@@ -156,11 +150,9 @@ bool Device::setUpdateProgress(uint8_t progress) const
     return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     const uint8_t* matchingComponentImage, size_t componentImageSize,
     const std::string& componentVersion, RequestedApplyTimes applyTime)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     softwarePending->setActivation(ActivationInterface::Activations::Ready);
 

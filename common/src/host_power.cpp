@@ -38,10 +38,8 @@ HostPower::HostPower(sdbusplus::async::context& ctx) :
                                                         StateIntf::interface))
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,
                                                  HostState state)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     if (state != stateOn && state != stateOff)
     {
@@ -79,10 +77,8 @@ sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,
     co_return false;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<HostState> HostPower::getState(
     sdbusplus::async::context& ctx)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto client = sdbusplus::client::xyz::openbmc_project::state::Host(ctx)
                       .service(service)

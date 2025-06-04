@@ -46,10 +46,8 @@ class ExampleDevice : public Device
                   phosphor::software::manager::SoftwareManager* parent,
                   const SoftwareConfig& config = defaultConfig);
 
-    // NOLINTBEGIN(readability-static-accessed-through-instance)
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) override;
-    // NOLINTEND(readability-static-accessed-through-instance)
 
     bool deviceSpecificUpdateFunctionCalled = false;
 };

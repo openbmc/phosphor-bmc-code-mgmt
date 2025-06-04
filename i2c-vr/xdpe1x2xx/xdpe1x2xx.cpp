@@ -61,9 +61,7 @@ XDPE1X2XX::XDPE1X2XX(sdbusplus::async::context& ctx, uint16_t bus,
     VoltageRegulator(ctx), i2cInterface(phosphor::i2c::I2C(bus, address))
 {}
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::getDeviceId(uint8_t* deviceID)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = false;
     uint8_t tbuf[16] = {0};
@@ -85,10 +83,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::getDeviceId(uint8_t* deviceID)
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
                                                  uint8_t* resp)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = false;
     uint8_t tBuf[16] = {0};
@@ -151,9 +147,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::getRemainingWrites(uint8_t* remain)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = false;
     uint8_t tBuf[16] = {0};
@@ -211,9 +205,7 @@ int XDPE1X2XX::getConfigSize(uint8_t deviceId, uint8_t revision)
     return size;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     uint8_t tBuf[16] = {0};
     uint8_t rBuf[16] = {0};
@@ -233,9 +225,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
-// NOLINTEND(readability-static-accessed-through-instance)
 
 {
     bool ret = false;
@@ -629,10 +619,8 @@ int XDPE1X2XX::checkImage()
     return 0;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::verifyImage(const uint8_t* image,
                                                     size_t imageSize)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     if (parseImage(image, imageSize) < 0)
     {
@@ -649,9 +637,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::verifyImage(const uint8_t* image,
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     bool ret = co_await program(force);
@@ -680,9 +666,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
     co_return true;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::reset()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = co_await mfrFWcmd(MFRFwCmdReset, NULL, NULL);
     if (!ret)

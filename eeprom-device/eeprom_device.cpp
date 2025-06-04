@@ -88,10 +88,8 @@ static std::vector<std::unique_ptr<::gpiod::line_bulk>> requestMuxGPIOs(
     return lineBulks;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<int> asyncSystem(sdbusplus::async::context& ctx,
                                         const std::string& cmd)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     int pipefd[2];
     if (pipe(pipefd) == -1)
@@ -195,10 +193,8 @@ EEPROMDevice::EEPROMDevice(
     debug("Initialized EEPROM device instance on dbus");
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> EEPROMDevice::updateDevice(const uint8_t* image,
                                                         size_t image_size)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     std::vector<std::unique_ptr<::gpiod::line_bulk>> lineBulks;
 
@@ -285,9 +281,7 @@ sdbusplus::async::task<bool> EEPROMDevice::updateDevice(const uint8_t* image,
     co_return success;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> EEPROMDevice::bindEEPROM()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto i2cDeviceId = getI2CDeviceId(bus, address);
 
@@ -333,9 +327,7 @@ sdbusplus::async::task<bool> EEPROMDevice::bindEEPROM()
 
     co_return bound;
 }
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> EEPROMDevice::unbindEEPROM()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto i2cDeviceId = getI2CDeviceId(bus, address);
 
@@ -386,10 +378,8 @@ bool EEPROMDevice::isEEPROMBound()
     return std::filesystem::exists(driverPath + "/" + i2cDeviceId);
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<int> EEPROMDevice::writeEEPROM(const uint8_t* image,
                                                       size_t image_size) const
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto eepromPath = getEEPROMPath(bus, address);
     if (eepromPath.empty())
@@ -432,9 +422,7 @@ sdbusplus::async::task<int> EEPROMDevice::writeEEPROM(const uint8_t* image,
     co_return exitCode;
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     auto requiredHostState = deviceVersion->getHostStateToQueryVersion();
 

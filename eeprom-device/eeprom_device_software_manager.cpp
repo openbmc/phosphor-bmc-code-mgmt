@@ -32,10 +32,8 @@ void EEPROMDeviceSoftwareManager::start()
     ctx.run();
 }
 
-// NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     const std::string& service, const std::string& path, SoftwareConfig& config)
-// NOLINTEND(readability-static-accessed-through-instance)
 {
     const std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;

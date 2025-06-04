@@ -85,7 +85,6 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 
     std::string newObjPath = softwareInstance->objectPath;
 
-    // NOLINTBEGIN(readability-static-accessed-through-instance)
     ctx.spawn(
         [](Device& device, int imageDup, RequestedApplyTimes applyTime,
            std::unique_ptr<Software> swupdate) -> sdbusplus::async::task<> {
@@ -95,7 +94,6 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
             close(imageDup);
             co_return;
         }(device, imageDup, applyTime, std::move(softwareInstance)));
-    // NOLINTEND
 
     // We need the object path for the new software here.
     // It must be the same as constructed during the update process.

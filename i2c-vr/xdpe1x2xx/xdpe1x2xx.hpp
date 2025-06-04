@@ -15,13 +15,13 @@ class XDPE1X2XX : public VoltageRegulator
   public:
     XDPE1X2XX(sdbusplus::async::context& ctx, uint16_t bus, uint16_t address);
 
-    sdbusplus::async::task<bool> verifyImage(const uint8_t* image,
-                                             size_t imageSize) final;
+    bool verifyImage(const uint8_t* image, size_t imageSize) final;
 
     sdbusplus::async::task<bool> updateFirmware(bool force) final;
     sdbusplus::async::task<bool> reset() final;
 
-    sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
+    sdbusplus::async::task<bool> getCRC(
+        std::shared_ptr<phosphor::i2c::I2C> intf, uint32_t* checksum) final;
     bool forcedUpdateAllowed() final;
 
   private:
@@ -45,8 +45,10 @@ class XDPE1X2XX : public VoltageRegulator
     };
 
     sdbusplus::async::task<bool> getDeviceId(uint8_t* deviceId);
-    sdbusplus::async::task<bool> mfrFWcmd(uint8_t cmd, uint8_t* data,
-                                          uint8_t* resp);
+    static sdbusplus::async::task<bool> mfrFWcmd(
+        sdbusplus::async::context& ctx,
+        std::shared_ptr<phosphor::i2c::I2C> intf, uint8_t cmd, uint8_t* data,
+        uint8_t* resp);
     sdbusplus::async::task<bool> getRemainingWrites(uint8_t* remain);
     sdbusplus::async::task<bool> program(bool force);
 
@@ -57,7 +59,7 @@ class XDPE1X2XX : public VoltageRegulator
     static int getConfigSize(uint8_t deviceId, uint8_t revision);
     static int lineSplit(char** dst, char* src, char* delim);
 
-    phosphor::i2c::I2C i2cInterface;
+    std::shared_ptr<phosphor::i2c::I2C> i2cInterface;
 
     struct xdpe1x2xxConfig configuration;
 };

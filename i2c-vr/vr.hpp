@@ -1,5 +1,7 @@
 #pragma once
 
+#include "i2c.hpp"
+
 #include <sdbusplus/async.hpp>
 
 #include <cstdint>
@@ -27,9 +29,8 @@ class VoltageRegulator
 
     // @brief Parses the firmware image into the configuration structure
     //        and verifies its correctness.
-    // @return sdbusplus::async::task<bool> true indicates success.
-    virtual sdbusplus::async::task<bool> verifyImage(const uint8_t* image,
-                                                     size_t imageSize) = 0;
+    // @return true indicates success.
+    virtual bool verifyImage(const uint8_t* image, size_t imageSize) = 0;
 
     // @brief Applies update to the voltage regulator
     // @return sdbusplus::async::task<bool> true indicates success.
@@ -42,11 +43,14 @@ class VoltageRegulator
     // @brief Requests the CRC value of the voltage regulator over I2C.
     // @param pointer to write the result to.
     // @returns < 0 on error
-    virtual sdbusplus::async::task<bool> getCRC(uint32_t* checksum) = 0;
+    virtual sdbusplus::async::task<bool> getCRC(
+        std::shared_ptr<phosphor::i2c::I2C> intf, uint32_t* checksum) = 0;
 
     // @brief This function returns true if the voltage regulator supports
     //        force of updates.
     virtual bool forcedUpdateAllowed() = 0;
+
+    std::shared_ptr<i2c::I2C> i2cInterface;
 
   protected:
     sdbusplus::async::context& ctx;

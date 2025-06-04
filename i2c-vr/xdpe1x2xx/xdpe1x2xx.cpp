@@ -58,7 +58,8 @@ const char* const DataXV = "XV";
 
 XDPE1X2XX::XDPE1X2XX(sdbusplus::async::context& ctx, uint16_t bus,
                      uint16_t address) :
-    VoltageRegulator(ctx), i2cInterface(phosphor::i2c::I2C(bus, address))
+    VoltageRegulator(ctx),
+    i2cInterface(std::make_shared<phosphor::i2c::I2C>(bus, address))
 {}
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
@@ -73,7 +74,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::getDeviceId(uint8_t* deviceID)
     uint8_t rbuf[16] = {0};
     uint8_t rSize = IFXICDeviceIDLen + 1;
 
-    ret = co_await this->i2cInterface.sendReceive(tbuf, tSize, rbuf, rSize);
+    auto intf = this->i2cInterface;
+    ret = co_await intf->sendReceive(tbuf, tSize, rbuf, rSize);
     if (!ret)
     {
         error("Failed to get device ID");
@@ -86,8 +88,9 @@ sdbusplus::async::task<bool> XDPE1X2XX::getDeviceId(uint8_t* deviceID)
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
-sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
-                                                 uint8_t* resp)
+sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(
+    sdbusplus::async::context& ctx, std::shared_ptr<phosphor::i2c::I2C> intf,
+    uint8_t cmd, uint8_t* data, uint8_t* resp)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = false;
@@ -102,7 +105,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
         tBuf[1] = 4; // Block write 4 bytes
         tSize = 6;
         std::memcpy(&tBuf[2], data, 4);
-        ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf, rSize);
+        ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
         if (!ret)
         {
             error("Failed to send MFR command: {CMD}", "CMD",
@@ -117,7 +120,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
     tBuf[1] = cmd;
     tSize = 2;
     rSize = 0;
-    ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf, rSize);
+    ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
     if (!ret)
     {
         error("Failed to send MFR command: {CMD}", "CMD",
@@ -132,7 +135,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
         tBuf[0] = IFXMFRFwCmdData;
         tSize = 1;
         rSize = 6;
-        ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf, rSize);
+        ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
         if (!ret)
         {
             error("Failed to send MFR command: {CMD}", "CMD",
@@ -160,7 +163,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::getRemainingWrites(uint8_t* remain)
     uint8_t rBuf[16] = {0};
     uint8_t devId[2] = {0};
 
-    ret = co_await this->mfrFWcmd(MFRFwCmdRmng, tBuf, rBuf);
+    auto intf = this->i2cInterface;
+    ret = co_await mfrFWcmd(ctx, intf, MFRFwCmdRmng, tBuf, rBuf);
     if (!ret)
     {
         error("Failed to request remaining writes");
@@ -212,13 +216,14 @@ int XDPE1X2XX::getConfigSize(uint8_t deviceId, uint8_t revision)
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
-sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> XDPE1X2XX::getCRC(
+    std::shared_ptr<phosphor::i2c::I2C> intf, uint32_t* checksum)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
     uint8_t tBuf[16] = {0};
     uint8_t rBuf[16] = {0};
 
-    bool ret = co_await this->mfrFWcmd(MFRFwCmdGetCRC, tBuf, rBuf);
+    bool ret = co_await mfrFWcmd(ctx, intf, MFRFwCmdGetCRC, tBuf, rBuf);
     if (!ret)
     {
         error("Failed to get CRC value");
@@ -245,9 +250,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
     uint32_t sum = 0;
     int size = 0;
 
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    ret = co_await getCRC(&sum);
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
+    auto intf = this->i2cInterface;
+    ret = co_await getCRC(intf, &sum);
     if (!ret)
     {
         error("Failed to program the VR");
@@ -260,9 +264,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
         co_return -1;
     }
 
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     ret = co_await this->getRemainingWrites(&remain);
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     if (!ret)
     {
         error("Failed to program the VR - unable to obtain remaing writes");
@@ -294,7 +296,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
     tBuf[2] = 0x00;
     tBuf[3] = 0x00;
 
-    ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd, tBuf, NULL);
+    ret = co_await mfrFWcmd(ctx, intf, MFRFwCmdOTPFileInvd, tBuf, NULL);
     if (!ret)
     {
         error("Failed to program the VR - Invalidation of currect FW");
@@ -321,8 +323,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             tBuf[1] = 0x1;
             uint8_t tSize = 2;
             uint8_t rSize = 0;
-            ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf,
-                                                          rSize);
+            auto intf = this->i2cInterface;
+            ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
             if (!ret)
             {
                 error("Failed to program the VR on sendReceive {CMD}", "CMD",
@@ -335,7 +337,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             tBuf[2] = 0x00;
             tBuf[3] = 0x00;
 
-            ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd, tBuf, NULL);
+            ret = co_await mfrFWcmd(ctx, intf, MFRFwCmdOTPFileInvd, tBuf, NULL);
             if (!ret)
             {
                 error("Failed to program VR on mfrFWCmd on {CMD}", "CMD",
@@ -355,8 +357,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             tSize = 6;
             rSize = 0;
 
-            ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf,
-                                                          rSize);
+            ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
             if (!ret)
             {
                 error("Failed to program VR on sendReceive on {CMD}", "CMD",
@@ -377,8 +378,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             uint8_t tSize = 6;
             uint8_t rSize = 0;
             memcpy(&tBuf[2], &sect->data[j], 4);
-            ret = co_await this->i2cInterface.sendReceive(tBuf, tSize, rBuf,
-                                                          rSize);
+            auto intf = this->i2cInterface;
+            ret = co_await intf->sendReceive(tBuf, tSize, rBuf, rSize);
             if (!ret)
             {
                 error("Failed to program the VR on sendReceive {CMD}", "CMD",
@@ -401,7 +402,9 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             std::memcpy(tBuf, &size, 2);
             tBuf[2] = 0x00;
             tBuf[3] = 0x00;
-            bool ret = co_await this->mfrFWcmd(MFRFwCmdOTPConfSTO, tBuf, NULL);
+            auto intf = this->i2cInterface;
+            bool ret =
+                co_await mfrFWcmd(ctx, intf, MFRFwCmdOTPConfSTO, tBuf, NULL);
             if (ret)
             {
                 error("Failed to program the VR on mfrFWcmd {CMD}", "CMD",
@@ -421,8 +424,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             tBuf[0] = PMBusSTLCml;
             uint8_t tSize = 1;
             uint8_t rSize = 1;
-            ret = co_await this->i2cInterface.sendReceive(rBuf, tSize, tBuf,
-                                                          rSize);
+            ret = co_await intf->sendReceive(rBuf, tSize, tBuf, rSize);
             if (!ret)
             {
                 error("Failed to program VR on sendReceive {CMD}", "CMD",
@@ -630,32 +632,29 @@ int XDPE1X2XX::checkImage()
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
-sdbusplus::async::task<bool> XDPE1X2XX::verifyImage(const uint8_t* image,
-                                                    size_t imageSize)
+bool XDPE1X2XX::verifyImage(const uint8_t* image, size_t imageSize)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
     if (parseImage(image, imageSize) < 0)
     {
         error("Failed to update firmware on parsing Image");
-        co_return false;
+        return false;
     }
 
     if (checkImage() < 0)
     {
         error("Failed to update firmware on check image");
-        co_return false;
+        return false;
     }
 
-    co_return true;
+    return true;
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
 sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     bool ret = co_await program(force);
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     if (!ret)
     {
         error("Failed to update firmware on program");
@@ -684,7 +683,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
 sdbusplus::async::task<bool> XDPE1X2XX::reset()
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    bool ret = co_await mfrFWcmd(MFRFwCmdReset, NULL, NULL);
+    auto intf = this->i2cInterface;
+    bool ret = co_await mfrFWcmd(ctx, intf, MFRFwCmdReset, NULL, NULL);
     if (!ret)
     {
         error("Failed to reset the VR");

@@ -424,6 +424,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c38e4ab_eeaec616",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T09:19:35Z",
+      "side": 1,
+      "message": "\u003e What does it say after dropping this-\u003e ?\n\nI am wondering if it would make a difference. ```getProgStatus``` calls ```dmaReadWrite``` which does access ```i2cInterface``` member variable.\n\nSo there is access to the instance (via this) or otherwise.\n\nMay the ```co_await``` suspend the coroutine in case there is another coroutine pending to be run? In that case the clang-tidy has no way to know if the lifetime of the ISL69269 instance has already ended at the point the coroutine actually starts.\n\nLet me know if you think that\u0027s a plausible issue with the code. I\u0027m not too familiar with the stdexec/sdbusplus coroutine implementation there.\n\n\u003e Lets not make this a shared ptr without knowing the actual root cause.\n\nI am 80% sure clang-tidy knows the issue but it\u0027s just bad at communicating it. A lifetime issue can always manifest as an uninitialized branch.",
+      "parentUuid": "412fa983_9e36b0f7",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "063383ae_60abc9c6",
         "filename": "i2c-vr/isl69269/isl69269.hpp",
         "patchSetId": 37

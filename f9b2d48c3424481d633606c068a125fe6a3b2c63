@@ -442,6 +442,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f36df763_5a7c11e0",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T09:19:44Z",
+      "side": 1,
+      "message": "CI fails with:\n```\nerror: static member accessed through instance [readability-static-accessed-through-instance,-warnings-as-errors]\n```",
+      "parentUuid": "412fa983_9e36b0f7",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "063383ae_60abc9c6",
         "filename": "i2c-vr/isl69269/isl69269.hpp",
         "patchSetId": 37

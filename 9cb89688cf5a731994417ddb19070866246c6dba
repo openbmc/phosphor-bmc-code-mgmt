@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f027c16d_84a6bebe",
+        "filename": "bmc/code-update-manager/test/mock_context.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Why is there a need to mock the DBus? We can use a real DBus for any unit testing.",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba428093_96db11db",
+        "filename": "bmc/code-update-manager/test/pldm_mock.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Why is there a need to mock the PLDM package handling.\n\nThe entire PLDM package can be created in-memory and memory-mapped with existing APIs.",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce977977_fa739869",
+        "filename": "bmc/code-update-manager/test/software_mock.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Isn\u0027t this enum already defined somewhere?",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9bfe86_cc7732d9",
+        "filename": "bmc/code-update-manager/test/software_mock.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Isn\u0027t this enum already defined somewhere?",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cd5f7c_20a8d104",
+        "filename": "bmc/code-update-manager/update_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Can drop the comment. Can the forward declaration be moved closer to the usage?\n\nThat way it will be clear why it was forward-declared without looking at the whole file.",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d63b1756_c403187a",
+        "filename": "bmc/code-update-manager/update_manager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:44:52Z",
+      "side": 1,
+      "message": "Nice idea 👍 i can remember this for my own patches.",
+      "revId": "9cb89688cf5a731994417ddb19070866246c6dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

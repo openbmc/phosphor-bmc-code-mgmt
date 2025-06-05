@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be6a290e_393f3ad6",
+        "filename": "bmc/code-update-manager/update_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:37:39Z",
+      "side": 1,
+      "message": "comment can be dropped, the code below is obvious enough.",
+      "revId": "fe94b906ef55263d6559e4b5c7ce7d6b57e4343d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad3eb61e_fc4cc1f7",
+        "filename": "bmc/code-update-manager/update_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:37:39Z",
+      "side": 1,
+      "message": "entire comment can be dropped.\n\nCommit message already says it\u0027s a skeleton.\n\nInheritance does not have to be documented, it\u0027s right below, so no need to repeat again.",
+      "revId": "fe94b906ef55263d6559e4b5c7ce7d6b57e4343d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e48f4660_0dc021db",
+        "filename": "bmc/code-update-manager/update_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:37:39Z",
+      "side": 1,
+      "message": "Why do we need an explicit destructor?",
+      "revId": "fe94b906ef55263d6559e4b5c7ce7d6b57e4343d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f01a825b_4f042ab8",
         "filename": "meson.options",
         "patchSetId": 3

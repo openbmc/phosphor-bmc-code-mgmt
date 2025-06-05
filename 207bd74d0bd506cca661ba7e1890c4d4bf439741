@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "391a5454_b51788bb",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T10:06:24Z",
+      "side": 1,
+      "message": "The program function just copies the correct size accoring len, any extra data is ignored in programing. Can you elaborate why this would be required? Im aware the other meta implementation does it this way.",
+      "parentUuid": "27dc658d_5f5c4b25",
+      "revId": "207bd74d0bd506cca661ba7e1890c4d4bf439741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55e7f1bb_048f94dd",
         "filename": "i2c-vr/isl69269/isl69269.hpp",
         "patchSetId": 40

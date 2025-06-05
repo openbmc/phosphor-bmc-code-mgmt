@@ -3,6 +3,91 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e657c903_7e1648b8",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Why do we have DummyDeviceFirmware in here? I don\u0027t think its a valid EM type so its better not to add it here.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39cd8eb8_2ad66096",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Lets make all these constexpr.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e9dc76_01d1ae29",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Follow the naming guidelines as per https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#constants for all.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3bbf3ee_fe6bb86c",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "You can drop these readability-static-accessed-through-instance in your patch as this clang-tidy check has been disabled.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8829f598_5f6401ce",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "lets define a constexpr for 16 as you are using it at so many places to better understand it.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55d86f24_45c35270",
         "filename": "i2c-vr/isl69269/isl69269.cpp",
         "patchSetId": 37
@@ -20,6 +105,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ec52613_02ddf1aa",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "constexpr and lets use it at all places as you are using directly 1 in some APIs.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a534ef0_3e19cdba",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Better to define some inline API for this bit fiddling since you are doing it at multiple places.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad4996b_984d6f0c",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Make normal static API as you are not accessing anything from class.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87d376f7_ba1dffa5",
         "filename": "i2c-vr/isl69269/isl69269.cpp",
         "patchSetId": 37
@@ -31,6 +167,24 @@
       "writtenOn": "2025-06-04T10:40:20Z",
       "side": 1,
       "message": "nit: i received feedback in the past to not use  ```this``` keyword\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/74893/comment/ce23f110_ebd76000/\n\nwhich seems to be a matter of preference 😊\n\nSo we can adjust to apply the preference for consistency reason.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5634f1eb_ff47c330",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "+1, lets drop this.",
+      "parentUuid": "87d376f7_ba1dffa5",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -66,6 +220,92 @@
       "side": 1,
       "message": "Ok, resolved this warning by applying:\n\n```\nFrom e9a619ae0d8562cbca69896983bb89d686b82754 Mon Sep 17 00:00:00 2001\nFrom: Alexander Hansen \u003calexander.hansen@9elements.com\u003e\nDate: Wed, 4 Jun 2025 15:03:09 +0200\nSubject: [PATCH] fix uninitialized branch ISL69269\n\nChange-Id: I5cce8d10db6f2ecd37a8c63f45bcf321e65db5ce\nSigned-off-by: Alexander Hansen \u003calexander.hansen@9elements.com\u003e\n---\n i2c-vr/isl69269/isl69269.cpp | 23 +++++++++++++----------\n i2c-vr/isl69269/isl69269.hpp |  2 +-\n 2 files changed, 14 insertions(+), 11 deletions(-)\n\ndiff --git a/i2c-vr/isl69269/isl69269.cpp b/i2c-vr/isl69269/isl69269.cpp\nindex f8d3003..70c4580 100644\n--- a/i2c-vr/isl69269/isl69269.cpp\n+++ b/i2c-vr/isl69269/isl69269.cpp\n@@ -44,7 +44,8 @@ const char RecordTypeHeader \u003d 0x49;\n \n ISL69269::ISL69269(sdbusplus::async::context\u0026 ctx, uint16_t bus,\n                    uint16_t address) :\n-    VoltageRegulator(ctx), i2cInterface(phosphor::i2c::I2C(bus, address))\n+    VoltageRegulator(ctx),\n+    i2cInterface(std::make_unique\u003cphosphor::i2c::I2C\u003e(bus, address))\n {}\n \n // NOLINTBEGIN(readability-static-accessed-through-instance)\n@@ -57,7 +58,8 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::dmaReadWrite(uint8_t* reg, uint8_t* resp)\n     tbuf[0] \u003d RAARegDMAData;\n     std::memcpy(\u0026tbuf[1], reg, 2);\n \n-    if (!(co_await this-\u003ei2cInterface.sendReceive(tbuf, 3, rbuf, 0)))\n+    auto intf \u003d this-\u003ei2cInterface;\n+    if (!(co_await intf-\u003esendReceive(tbuf, 3, rbuf, 0)))\n     {\n         error(\"dmaReadWrite failed with {CMD}\", \"CMD\",\n               std::string(\"RAA_REG_DMA_ADDR\"));\n@@ -65,7 +67,7 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::dmaReadWrite(uint8_t* reg, uint8_t* resp)\n     }\n \n     tbuf[0] \u003d RAARegDMAAddr;\n-    if (!(co_await this-\u003ei2cInterface.sendReceive(tbuf, 1, resp, 4)))\n+    if (!(co_await intf-\u003esendReceive(tbuf, 1, resp, 4)))\n     {\n         error(\"dmaReadWrite failed with {CMD}\", \"CMD\",\n               std::string(\"RAA_REG_DMA_DATA\"));\n@@ -124,7 +126,9 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::getDeviceId(uint32_t* deviceId)\n \n     tbuf[0] \u003d PMBusDeviceId;\n \n-    if (!(co_await this-\u003ei2cInterface.sendReceive(tbuf, tLen, rbuf, rLen)))\n+    auto intf \u003d this-\u003ei2cInterface;\n+\n+    if (!(co_await intf-\u003esendReceive(tbuf, tLen, rbuf, rLen)))\n     {\n         error(\"getDeviceId failed\");\n         co_return false;\n@@ -143,8 +147,8 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::getDeviceRevision(uint32_t* revision)\n     uint8_t rbuf[8] \u003d {0};\n \n     tbuf[0] \u003d PMBusDeviceRev;\n-    if (!(co_await this-\u003ei2cInterface.sendReceive(tbuf, 1, rbuf,\n-                                                  RAADeviceRevisionLen + 1)))\n+    auto intf \u003d this-\u003ei2cInterface;\n+    if (!(co_await intf-\u003esendReceive(tbuf, 1, rbuf, RAADeviceRevisionLen + 1)))\n     {\n         error(\"getDeviceRevision failed with sendReceive\");\n     }\n@@ -366,8 +370,9 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::program()\n         std::memcpy(tbuf + 1, \u0026configuration.pData[i].data,\n                     configuration.pData[i].len - 1);\n \n-        if (!(co_await this-\u003ei2cInterface.sendReceive(\n-                tbuf, configuration.pData[i].len, rbuf, 0)))\n+        auto intf \u003d this-\u003ei2cInterface;\n+        if (!(co_await intf-\u003esendReceive(tbuf, configuration.pData[i].len, rbuf,\n+                                         0)))\n         {\n             error(\"program failed at writing data to voltage regulator\");\n         }\n@@ -543,9 +548,7 @@ sdbusplus::async::task\u003cbool\u003e ISL69269::verifyImage(const uint8_t* image,\n sdbusplus::async::task\u003cbool\u003e ISL69269::reset()\n // NOLINTEND(readability-static-accessed-through-instance)\n {\n-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)\n     if (!(co_await this-\u003egetProgStatus()))\n-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)\n     {\n         error(\"reset failed at getProgStatus\");\n         co_return false;\ndiff --git a/i2c-vr/isl69269/isl69269.hpp b/i2c-vr/isl69269/isl69269.hpp\nindex 8951f19..43af608 100644\n--- a/i2c-vr/isl69269/isl69269.hpp\n+++ b/i2c-vr/isl69269/isl69269.hpp\n@@ -58,7 +58,7 @@ class ISL69269 : public VoltageRegulator\n     bool checkImage();\n     static uint8_t calcCRC8(const uint8_t* data, uint8_t len);\n \n-    phosphor::i2c::I2C i2cInterface;\n+    std::shared_ptr\u003cphosphor::i2c::I2C\u003e i2cInterface;\n     uint8_t mode;\n \n     struct raaConfig configuration;\n-- \n2.49.0\n```\n\nnot sure what clang-tidy is seeing there, but there could be a possibility for the lifetime of the ISL69269 and with it, the I2C instance to end before the co-routine starts running.\n\nThe proposed fix is to have the phosphor::i2c::I2C i2cInterface be a shared ptr.",
       "parentUuid": "c9af86c3_503c5e79",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412fa983_9e36b0f7",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Lets not make this a shared ptr without knowing the actual root cause.\n\ni2cInterface is a var in ISL69269 class and its lifetime is tied to the lifetime of ISL69269 instance.\n\nWhat does it say after dropping this-\u003e ?",
+      "parentUuid": "05a6890b_ac230171",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "063383ae_60abc9c6",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Whats raa ? Please add some comment describing the purpose.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd622e2_94b408ab",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Whats raa ? Please add some comment describing the purpose.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948885be_9e7615e7",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "Drop this from class definition and make this a static function in .cpp file.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83bd19fe_35f7d1db",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-05T01:27:23Z",
+      "side": 1,
+      "message": "configuration - Keep it consistent in var naming style either short or long form throughout class definition.",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

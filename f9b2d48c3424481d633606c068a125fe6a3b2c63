@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afc7e33c_250582a4",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e657c903_7e1648b8",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39cd8eb8_2ad66096",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-06-05T01:27:23Z",
       "side": 1,
       "message": "Lets make all these constexpr.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a46457f_da29b8e8",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39cd8eb8_2ad66096",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1084da6_d755102d",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8e9dc76_01d1ae29",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3bbf3ee_fe6bb86c",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-06-05T01:27:23Z",
       "side": 1,
       "message": "You can drop these readability-static-accessed-through-instance in your patch as this clang-tidy check has been disabled.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "865e0ac6_4a559ce8",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3bbf3ee_fe6bb86c",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aee1dfc_ac9e8a80",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8829f598_5f6401ce",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55d86f24_45c35270",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-06-04T10:40:20Z",
       "side": 1,
       "message": "nit: these NOLINT should not be required since\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/80392\n\nwas merged.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d0a057_b76fb984",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55d86f24_45c35270",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6feca7d_3227136b",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec52613_02ddf1aa",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a534ef0_3e19cdba",
@@ -137,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db5c7506_9762a578",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a534ef0_3e19cdba",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cad4996b_984d6f0c",
@@ -150,6 +294,24 @@
       "writtenOn": "2025-06-05T01:27:23Z",
       "side": 1,
       "message": "Make normal static API as you are not accessing anything from class.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b000204c_5f1fab98",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cad4996b_984d6f0c",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -185,6 +347,24 @@
       "side": 1,
       "message": "+1, lets drop this.",
       "parentUuid": "87d376f7_ba1dffa5",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a60b01_367d422f",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5634f1eb_ff47c330",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -259,6 +439,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd38453_02609b2e",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Removed it completly.",
+      "parentUuid": "063383ae_60abc9c6",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd622e2_94b408ab",
@@ -272,6 +470,24 @@
       "writtenOn": "2025-06-05T01:27:23Z",
       "side": 1,
       "message": "Whats raa ? Please add some comment describing the purpose.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c5e203_a54cc1b3",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd622e2_94b408ab",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -293,6 +509,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5325347b_462db6c0",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "948885be_9e7615e7",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83bd19fe_35f7d1db",
@@ -306,6 +540,24 @@
       "writtenOn": "2025-06-05T01:27:23Z",
       "side": 1,
       "message": "configuration - Keep it consistent in var naming style either short or long form throughout class definition.",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec623f1_42d275f2",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T08:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83bd19fe_35f7d1db",
       "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

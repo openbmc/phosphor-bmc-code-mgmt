@@ -84,6 +84,74 @@
       "message": "Should we consider setting Activation to failed since we were unable to trigger the PLDM update?",
       "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "330023d2_e550a69b",
+        "filename": "common/include/utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:30:50Z",
+      "side": 1,
+      "message": "implementation can go into a .cpp file",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3299e887_0609e87a",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:30:50Z",
+      "side": 1,
+      "message": "This is contradictory to the comment in line 48 in ```common/include/software.hpp```.",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c4c73c_62cb1df7",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:30:50Z",
+      "side": 1,
+      "message": "This will segfault. Exceptions cannot help you with a null pointer.",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de367c15_70898ece",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T15:30:50Z",
+      "side": 1,
+      "message": "Is this the pointer you are dereferencing here?\n```device::Device* parentDevice \u003d nullptr;``` (from common/include/software.hpp)\n\nIn which case there may be a null pointer check needed.",
+      "revId": "8d1be81a8f231aeb0cae9d9f915cdb6cd750ca53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

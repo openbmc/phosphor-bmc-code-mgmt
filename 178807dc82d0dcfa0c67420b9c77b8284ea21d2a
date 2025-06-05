@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fea26631_cd4eee06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 41
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-05T10:06:49Z",
+      "side": 1,
+      "message": "gerrit does gerrit stuff.....",
+      "parentUuid": "ac05a469_f4e0a8ef",
+      "revId": "178807dc82d0dcfa0c67420b9c77b8284ea21d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35d47604_7e95b860",

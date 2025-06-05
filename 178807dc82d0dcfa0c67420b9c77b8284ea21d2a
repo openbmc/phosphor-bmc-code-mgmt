@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d47604_7e95b860",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002305
+      },
+      "writtenOn": "2025-06-05T09:42:15Z",
+      "side": 1,
+      "message": "co_return false;",
+      "revId": "178807dc82d0dcfa0c67420b9c77b8284ea21d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

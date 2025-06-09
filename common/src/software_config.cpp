@@ -17,7 +17,7 @@ SoftwareConfig::SoftwareConfig(const std::string& objPath, uint32_t vendorIANA,
     objectPath(objPath), configName(name), configType(configType),
     vendorIANA(vendorIANA), compatibleHardware(compatible)
 {
-    std::regex reCompatible("([a-zA-Z0-9])+(\\.([a-zA-Z0-9])+)+");
+    std::regex reCompatible("([a-zA-Z0-9_])+(\\.([a-zA-Z0-9_])+)+");
     std::cmatch m;
 
     if (name.empty())

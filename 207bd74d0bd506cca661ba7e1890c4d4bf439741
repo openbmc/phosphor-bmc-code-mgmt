@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49db2a9d_9e86c059",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T06:29:10Z",
+      "side": 1,
+      "message": "Ok. Here is the reason why this is not necessary:\n\nIn the original code the struct looks like this:\n```\nstruct raa_data {\n  union {\n    uint8_t raw[32];\n    struct {\n      uint8_t addr;\n      uint8_t cmd;\n      uint8_t data[];\n    } __attribute__((packed));\n  };\n  uint8_t len;  // [cmd] ~ data[N]\n  uint8_t pec;\n};\n```\nThe parse function writes into `raw`:\n```\n...\nmemcpy(config-\u003epdata[dcnt].raw, \u0026buf[2], config-\u003epdata[dcnt].len+1);\n...\n```\nSo because of the union we write into raw, but read from cmd-pointer into data. \nSee the program function:\n```\n...\nfor (i \u003d 0; i \u003c config-\u003ewr_cnt; i++) {\n    memcpy(tbuf, \u0026config-\u003epdata[i].cmd, config-\u003epdata[i].len);\n#ifdef VR_RAA_DEBUG\n    printf(\"Write RAA[%d]:\", i);\n    for (int j \u003d 0; j \u003c config-\u003epdata[i].len; j++) {\n      printf(\" %02X\", tbuf[j]);\n    }\n    printf(\"\\n\");\n#endif\n    if ((ret \u003d vr_xfer(bus, addr, tbuf, config-\u003epdata[i].len, rbuf, 0))) {\n      break;\n    }\n    printf(\"\\rupdated: %d %%  \", ((i+1)*100)/config-\u003ewr_cnt);\n    fflush(stdout);\n  }\n...\n```\nSo, the memcopy takes the address from cmd and copies the amount of bytes from len field. \n\nThe `__attribute__((packed))` makes sure, we safe some memory and the alignment for the other fields (len/pec) is not too far from the rest.\n\nIn my implementation the struct does not use an union:\n```\nstruct Data\n    {\n        uint8_t len;\n        uint8_t pec;\n        uint8_t addr;\n        uint8_t cmd;\n        uint8_t data[30];\n    };\n```\nand my parse function sets the fields seperatly:\n```\n                // According to documentation:\n                // 00 05 C2 E7 08 00 F6\n                //  |  |  |  |  |  |  |\n                //  |  |  |  |  |  |  - Packet Error Code (CRC8)\n                //  |  |  |  |  -  - Data\n                //  |  |  |  - Command Code\n                //  |  |  - Address\n                //  |  - Size of data (including Addr, Cmd, CRC8)\n                //  - Line type (0x00 - Data, 0x49 header information)\n                configuration.pData[dcnt].len \u003d sepLine[1] - 2;\n                configuration.pData[dcnt].pec \u003d\n                    sepLine[3 + configuration.pData[dcnt].len];\n                configuration.pData[dcnt].addr \u003d sepLine[2];\n                configuration.pData[dcnt].cmd \u003d sepLine[3];\n                std::memcpy(configuration.pData[dcnt].data, sepLine + 2,\n                            configuration.pData[dcnt].len + 1);\n```\n\nas well as my program function writes the cmd and data seperatly:\n```\n        tbuf[0] \u003d configuration.pData[i].cmd;\n        std::memcpy(tbuf + 1, \u0026configuration.pData[i].data,\n                    configuration.pData[i].len - 1);\n```\n\nBecause we dont have a union and data is a fixed size array, we dont run in the same problems in CPP as we do in C, so `__attribute__((packed))` is simply not required. The cant be a mismatch in my code, because there is no union.",
+      "parentUuid": "d2c39329_adeef1ac",
+      "revId": "207bd74d0bd506cca661ba7e1890c4d4bf439741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55e7f1bb_048f94dd",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "@christopher.meis@9elements.com Lets use the packed construct as it was in the original implementation as this data gets send to the hardware.",
       "parentUuid": "55e7f1bb_048f94dd",
+      "revId": "207bd74d0bd506cca661ba7e1890c4d4bf439741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05156113_67ef8eda",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T06:29:10Z",
+      "side": 1,
+      "message": "Ok. Here is the reason why this is not necessary:\n\nIn the original code the struct looks like this:\n```\nstruct raa_data {\n  union {\n    uint8_t raw[32];\n    struct {\n      uint8_t addr;\n      uint8_t cmd;\n      uint8_t data[];\n    } __attribute__((packed));\n  };\n  uint8_t len;  // [cmd] ~ data[N]\n  uint8_t pec;\n};\n```\nThe parse function writes into `raw`:\n```\n...\nmemcpy(config-\u003epdata[dcnt].raw, \u0026buf[2], config-\u003epdata[dcnt].len+1);\n...\n```\nSo because of the union we write into raw, but read from cmd-pointer into data. \nSee the program function:\n```\n...\nfor (i \u003d 0; i \u003c config-\u003ewr_cnt; i++) {\n    memcpy(tbuf, \u0026config-\u003epdata[i].cmd, config-\u003epdata[i].len);\n#ifdef VR_RAA_DEBUG\n    printf(\"Write RAA[%d]:\", i);\n    for (int j \u003d 0; j \u003c config-\u003epdata[i].len; j++) {\n      printf(\" %02X\", tbuf[j]);\n    }\n    printf(\"\\n\");\n#endif\n    if ((ret \u003d vr_xfer(bus, addr, tbuf, config-\u003epdata[i].len, rbuf, 0))) {\n      break;\n    }\n    printf(\"\\rupdated: %d %%  \", ((i+1)*100)/config-\u003ewr_cnt);\n    fflush(stdout);\n  }\n...\n```\nSo, the memcopy takes the address from cmd and copies the amount of bytes from len field. \n\nThe `__attribute__((packed))` makes sure, we safe some memory and the alignment for the other fields (len/pec) is not too far from the rest.\n\nIn my implementation the struct does not use an union:\n```\nstruct Data\n    {\n        uint8_t len;\n        uint8_t pec;\n        uint8_t addr;\n        uint8_t cmd;\n        uint8_t data[30];\n    };\n```\nand my parse function sets the fields seperatly:\n```\n                // According to documentation:\n                // 00 05 C2 E7 08 00 F6\n                //  |  |  |  |  |  |  |\n                //  |  |  |  |  |  |  - Packet Error Code (CRC8)\n                //  |  |  |  |  -  - Data\n                //  |  |  |  - Command Code\n                //  |  |  - Address\n                //  |  - Size of data (including Addr, Cmd, CRC8)\n                //  - Line type (0x00 - Data, 0x49 header information)\n                configuration.pData[dcnt].len \u003d sepLine[1] - 2;\n                configuration.pData[dcnt].pec \u003d\n                    sepLine[3 + configuration.pData[dcnt].len];\n                configuration.pData[dcnt].addr \u003d sepLine[2];\n                configuration.pData[dcnt].cmd \u003d sepLine[3];\n                std::memcpy(configuration.pData[dcnt].data, sepLine + 2,\n                            configuration.pData[dcnt].len + 1);\n```\n\nas well as my program function writes the cmd and data seperatly:\n```\n        tbuf[0] \u003d configuration.pData[i].cmd;\n        std::memcpy(tbuf + 1, \u0026configuration.pData[i].data,\n                    configuration.pData[i].len - 1);\n```\n\nBecause we dont have a union and data is a fixed size array, we dont run in the same problems in CPP as we do in C, so `__attribute__((packed))` is simply not required. The cant be a mismatch in my code, because there is no union.",
+      "parentUuid": "7cafbf89_d4c6e19f",
       "revId": "207bd74d0bd506cca661ba7e1890c4d4bf439741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

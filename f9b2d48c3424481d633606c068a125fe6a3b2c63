@@ -494,6 +494,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f942e3d0_435889fd",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T06:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9badef24_933e771f",
+      "revId": "f9b2d48c3424481d633606c068a125fe6a3b2c63",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "063383ae_60abc9c6",

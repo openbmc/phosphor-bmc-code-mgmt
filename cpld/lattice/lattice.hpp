@@ -44,6 +44,9 @@ class CpldLatticeManager
 
     sdbusplus::async::task<bool> XO2XO3FamilyUpdate(
         std::function<bool(int)> progressCallBack);
+    sdbusplus::async::task<bool> safeSendReceive(
+        uint8_t* writeData, size_t writeSize, uint8_t* readData,
+        size_t readSize);
 
     int indexof(const char* str, const char* ptn);
     bool jedFileParser();

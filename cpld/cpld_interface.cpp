@@ -11,16 +11,16 @@ CPLDFactory& CPLDFactory::instance()
     return factory;
 }
 
-void CPLDFactory::registerCPLD(const std::string& vendorName, Creator creator)
+void CPLDFactory::registerCPLD(const std::string& chipType, Creator creator)
 {
-    creators[vendorName] = std::move(creator);
+    creators[chipType] = std::move(creator);
 }
 
 std::unique_ptr<CPLDInterface> CPLDFactory::create(
-    const std::string& vendorName, sdbusplus::async::context& ctx,
+    const std::string& chipType, sdbusplus::async::context& ctx,
     const std::string& chipName, uint16_t bus, uint8_t address) const
 {
-    auto it = creators.find(vendorName);
+    auto it = creators.find(chipType);
     if (it != creators.end())
     {
         return (it->second)(ctx, chipName, bus, address);

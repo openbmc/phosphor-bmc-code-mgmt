@@ -7,11 +7,6 @@
 namespace phosphor::software::cpld
 {
 
-const std::vector<std::string> supportedTypes = {
-    "LatticeXO2Firmware",
-    "LatticeXO3Firmware",
-};
-
 sdbusplus::async::task<bool> LatticeCPLD::updateFirmware(
     bool /*force*/, const uint8_t* image, size_t imageSize,
     std::function<bool(int)> progressCallBack)
@@ -45,15 +40,16 @@ using namespace phosphor::software::cpld;
 
 // Register all the CPLD type with the CPLD factory
 const bool vendorRegistered = [] {
-    for (const auto& type : supportedTypes)
+    for (const auto& [type, info] : supportedDeviceMap)
     {
+        auto typeStr = std::string(type);
         CPLDFactory::instance().registerCPLD(
-            type,
-            [](sdbusplus::async::context& ctx, const std::string& chipname,
-               uint16_t bus, uint8_t address) {
+            type, [info](sdbusplus::async::context& ctx,
+                         const std::string& /*chipName*/, uint16_t bus,
+                         uint8_t address) {
                 // Create and return a LatticeCPLD instance
                 // Pass the parameters to the constructor
-                return std::make_unique<LatticeCPLD>(ctx, chipname, bus,
+                return std::make_unique<LatticeCPLD>(ctx, info.chipName, bus,
                                                      address);
             });
     }

@@ -12,10 +12,10 @@ lattice LCMXO3LF-4300C CPLD.
   "Address": "0x40",
   "Bus": 5,
   "FirmwareInfo": {
-    "CompatibleHardware": "com.meta.Hardware.CPLD",
+    "CompatibleHardware": "com.meta.Hardware.Harma.CPLD.LCMXO3LF_4300C_mb",
     "VendorIANA": 40981
   },
-  "Name": "LCMXO3LF_4300C",
-  "Type": "LatticeXO3Firmware"
+  "Name": "Harma_MB_CPLD",
+  "Type": "LatticeLCMXO3LF_4300CFirmware"
 }
 ```

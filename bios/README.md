@@ -6,7 +6,7 @@ This daemon is for updating SPI flash chips commonly used for Host Bios.
 
 This is an example EM Exposes record which can appear on dbus as
 
-```
+```text
 xyz.openbmc_project.Configuration.SPIFlash
 ```
 

@@ -1,7 +1,7 @@
 # Common Firmware Library
 
 This library follows the code update design:
-https://github.com/openbmc/docs/blob/master/designs/code-update.md
+<https://github.com/openbmc/docs/blob/master/designs/code-update.md>
 
 It enables implementing code updaters for different devices. Each one inherits
 from the classes found in the common folder.
@@ -25,7 +25,7 @@ used as a starting point.
 The PackageParser in the pldm directory currently references a following
 revision from the openbmc/pldm repository -
 
-https://github.com/openbmc/pldm/blob/f48015b39f945c2f9534e674819bdfef7b6c7054/fw-update/package_parser.cpp#L294
+<https://github.com/openbmc/pldm/blob/f48015b39f945c2f9534e674819bdfef7b6c7054/fw-update/package_parser.cpp#L294>
 
 However, this code will be deprecated and replaced with the package parsing APIs
 provided by libpldm once they become available.

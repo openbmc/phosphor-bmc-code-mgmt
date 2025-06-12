@@ -16,17 +16,14 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
 
-    std::optional<uint64_t> busNo = co_await dbusGetRequiredProperty<uint64_t>(
+    auto busNo = co_await dbusGetRequiredProperty<uint64_t>(
         ctx, service, path, configIface, "Bus");
-    std::optional<uint64_t> address =
-        co_await dbusGetRequiredProperty<uint64_t>(ctx, service, path,
-                                                   configIface, "Address");
-    std::optional<std::string> chipType =
-        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                      configIface, "Type");
-    std::optional<std::string> chipName =
-        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                      configIface, "Name");
+    auto address = co_await dbusGetRequiredProperty<uint64_t>(
+        ctx, service, path, configIface, "Address");
+    auto chipType = co_await dbusGetRequiredProperty<std::string>(
+        ctx, service, path, configIface, "Type");
+    auto chipName = co_await dbusGetRequiredProperty<std::string>(
+        ctx, service, path, configIface, "Name");
 
     if (!busNo.has_value() || !address.has_value() || !chipType.has_value() ||
         !chipName.has_value())

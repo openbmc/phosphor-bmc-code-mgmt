@@ -41,16 +41,16 @@ class CPLDFactory
 {
   public:
     using Creator = std::function<std::unique_ptr<CPLDInterface>(
-        sdbusplus::async::context& ctx, const std::string& chipName,
+        sdbusplus::async::context& ctx, const std::string& chipType,
         uint16_t bus, uint8_t address)>;
     using ConfigProvider = std::function<std::vector<std::string>()>;
 
     static CPLDFactory& instance();
 
-    void registerCPLD(const std::string& vendorName, Creator creator);
+    void registerCPLD(const std::string& chipType, Creator creator);
 
     std::unique_ptr<CPLDInterface> create(
-        const std::string& vendorName, sdbusplus::async::context& ctx,
+        const std::string& chipType, sdbusplus::async::context& ctx,
         const std::string& chipName, uint16_t bus, uint8_t address) const;
 
     std::vector<std::string> getConfigs();

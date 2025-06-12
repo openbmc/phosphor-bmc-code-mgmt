@@ -49,14 +49,6 @@ static uint8_t reverse_bit(uint8_t b)
     return b;
 }
 
-const std::map<std::string, std::vector<uint8_t>> xo2xo3DeviceIdMap = {
-    {"LCMXO3LF-4300C", {0x61, 0x2b, 0xc0, 0x43}},
-    {"LCMXO3LF-4300", {0x61, 0x2b, 0xc0, 0x43}},
-    {"LCMXO3LF-6900", {0x61, 0x2b, 0xd0, 0x43}},
-    {"LCMXO3D-4300", {0x01, 0x2e, 0x20, 0x43}},
-    {"LCMXO3D-9400", {0x21, 0x2e, 0x30, 0x43}},
-};
-
 static int findNumberSize(const std::string& end, const std::string& start,
                           const std::string& line)
 {
@@ -150,7 +142,7 @@ bool CpldLatticeManager::jedFileParser()
             }
             else
             {
-                lg2::debug("STOP UPDATEING: The image not match with chip.");
+                lg2::debug("Abort update as image doesn't match the chip name");
                 return false;
             }
         }
@@ -351,10 +343,14 @@ sdbusplus::async::task<bool> CpldLatticeManager::readDeviceId()
         co_return false;
     }
 
-    auto chipWantToUpdate = xo2xo3DeviceIdMap.find(chip);
+    auto chipWantToUpdate =
+        std::find_if(supportedDeviceMap.begin(), supportedDeviceMap.end(),
+                     [this](const auto& pair) {
+                         return pair.second.chipName == this->chip;
+                     });
 
-    if (chipWantToUpdate != xo2xo3DeviceIdMap.end() &&
-        chipWantToUpdate->second == readData)
+    if (chipWantToUpdate != supportedDeviceMap.end() &&
+        chipWantToUpdate->second.deviceId == readData)
     {
         if (chip.rfind("LCMXO3D", 0) == 0)
         {
@@ -371,12 +367,7 @@ sdbusplus::async::task<bool> CpldLatticeManager::readDeviceId()
         co_return true;
     }
 
-    lg2::error(
-        "The device id not match with chip. Only the following chip names are supported: ");
-    for (const auto& chip : xo2xo3DeviceIdMap)
-    {
-        lg2::error(chip.first.c_str());
-    }
+    lg2::error("The device id doesn't match with chip.");
     co_return false;
 }
 
@@ -828,12 +819,7 @@ sdbusplus::async::task<bool> CpldLatticeManager::XO2XO3FamilyUpdate(
 sdbusplus::async::task<bool> CpldLatticeManager::updateFirmware(
     std::function<bool(int)> progressCallBack)
 {
-    if (xo2xo3DeviceIdMap.find(chip) != xo2xo3DeviceIdMap.end())
-    {
-        co_return co_await XO2XO3FamilyUpdate(progressCallBack);
-    }
-    lg2::error("Unsupported chip type: {CHIP}", "CHIP", chip);
-    co_return false;
+    co_return co_await XO2XO3FamilyUpdate(progressCallBack);
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::getVersion(

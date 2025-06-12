@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef14d9b9_04411673",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-12T17:34:23Z",
+      "side": 1,
+      "message": "This needs to be dropped too. Please check at all other places too.",
+      "revId": "5f2a5b15632a9d72dfd5b1745160759877e59b1a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

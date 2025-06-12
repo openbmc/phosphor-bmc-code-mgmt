@@ -8,8 +8,6 @@
 #include <thread>
 #include <vector>
 
-using sdbusplus::async::details::context_friend;
-
 constexpr uint8_t busyWaitmaxRetry = 30;
 constexpr uint8_t busyFlagBit = 0x80;
 constexpr std::chrono::milliseconds waitBusyTime(200);
@@ -71,6 +69,14 @@ static int findNumberSize(const std::string& end, const std::string& start,
     }
 
     return static_cast<int>(pos2 - pos1 - 1);
+}
+
+std::string uint32ToHexStr(uint32_t value)
+{
+    std::ostringstream oss;
+    oss << std::setfill('0') << std::setw(8) << std::hex << std::uppercase
+        << value;
+    return oss.str();
 }
 
 bool CpldLatticeManager::jedFileParser()
@@ -332,13 +338,12 @@ bool CpldLatticeManager::verifyChecksum()
 
 sdbusplus::async::task<bool> CpldLatticeManager::readDeviceId()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandReadDeviceId, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> request = {commandReadDeviceId, 0x0, 0x0, 0x0};
     constexpr size_t resSize = 4;
     std::vector<uint8_t> readData(resSize, 0);
-    bool success = co_await stdexec::starts_on(
-        sched, i2cInterface.sendReceive(command.data(), command.size(),
-                                        readData.data(), resSize));
+    bool success = co_await i2cInterface.sendReceive(
+        request.data(), request.size(), readData.data(), resSize);
+
     if (!success)
     {
         lg2::error(
@@ -377,14 +382,12 @@ sdbusplus::async::task<bool> CpldLatticeManager::readDeviceId()
 
 sdbusplus::async::task<bool> CpldLatticeManager::enableProgramMode()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandEnableConfigMode, 0x08, 0x0, 0x0};
-    bool success = co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
+    std::vector<uint8_t> request = {commandEnableConfigMode, 0x08, 0x0, 0x0};
+    std::vector<uint8_t> response = {0};
 
-    if (!success)
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send enable program mode request.");
         co_return false;
     }
 
@@ -399,8 +402,8 @@ sdbusplus::async::task<bool> CpldLatticeManager::enableProgramMode()
 
 sdbusplus::async::task<bool> CpldLatticeManager::eraseFlash()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command;
+    std::vector<uint8_t> request;
+    std::vector<uint8_t> response = {0};
 
     if (isLCMXO3D)
     {
@@ -426,11 +429,11 @@ sdbusplus::async::task<bool> CpldLatticeManager::eraseFlash()
         */
         if (target.empty() || target == "CFG0")
         {
-            command = {commandEraseFlash, 0x00, 0x01, 0x00};
+            request = {commandEraseFlash, 0x00, 0x01, 0x00};
         }
         else if (target == "CFG1")
         {
-            command = {commandEraseFlash, 0x00, 0x02, 0x00};
+            request = {commandEraseFlash, 0x00, 0x02, 0x00};
         }
         else
         {
@@ -440,14 +443,12 @@ sdbusplus::async::task<bool> CpldLatticeManager::eraseFlash()
     }
     else
     {
-        command = {commandEraseFlash, 0xC, 0x0, 0x0};
+        request = {commandEraseFlash, 0xC, 0x0, 0x0};
     }
 
-    bool success = co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
-    if (!success)
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send erase flash request.");
         co_return false;
     }
 
@@ -462,8 +463,8 @@ sdbusplus::async::task<bool> CpldLatticeManager::eraseFlash()
 
 sdbusplus::async::task<bool> CpldLatticeManager::resetConfigFlash()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command;
+    std::vector<uint8_t> request;
+    std::vector<uint8_t> response = {0};
     if (isLCMXO3D)
     {
         /*
@@ -491,11 +492,11 @@ sdbusplus::async::task<bool> CpldLatticeManager::resetConfigFlash()
         */
         if (target.empty() || target == "CFG0")
         {
-            command = {commandResetConfigFlash, 0x00, 0x01, 0x00};
+            request = {commandResetConfigFlash, 0x00, 0x01, 0x00};
         }
         else if (target == "CFG1")
         {
-            command = {commandResetConfigFlash, 0x00, 0x02, 0x00};
+            request = {commandResetConfigFlash, 0x00, 0x02, 0x00};
         }
         else
         {
@@ -506,12 +507,10 @@ sdbusplus::async::task<bool> CpldLatticeManager::resetConfigFlash()
     }
     else
     {
-        command = {commandResetConfigFlash, 0x0, 0x0, 0x0};
+        request = {commandResetConfigFlash, 0x0, 0x0, 0x0};
     }
 
-    co_return co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
+    co_return i2cInterface.sendReceive(request, response);
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
@@ -521,8 +520,7 @@ sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
     used to program the NVCM0/CFG or
     NVCM1/UFM.
     */
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandProgramPage, 0x0, 0x0, 0x01};
+    std::vector<uint8_t> request = {commandProgramPage, 0x0, 0x0, 0x01};
     size_t iterSize = 16;
 
     for (size_t i = 0; i < fwInfo.cfgData.size(); i += iterSize)
@@ -535,17 +533,19 @@ sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
         uint8_t len = ((i + iterSize) < fwInfo.cfgData.size())
                           ? iterSize
                           : (fwInfo.cfgData.size() - i);
-        std::vector<uint8_t> data = command;
+        std::vector<uint8_t> data = request;
 
         data.insert(
             data.end(), fwInfo.cfgData.begin() + static_cast<std::ptrdiff_t>(i),
             fwInfo.cfgData.begin() + static_cast<std::ptrdiff_t>(i + len));
 
-        bool success = co_await stdexec::starts_on(
-            sched,
-            i2cInterface.sendReceive(data.data(), data.size(), nullptr, 0));
-        if (!success)
+        auto success = std::make_unique<bool>(co_await i2cInterface.sendReceive(
+            request.data(), request.size(), nullptr, 0));
+
+        if (success == nullptr || !(*success))
         {
+            lg2::error("Failed to send program page request. {CURRENT}",
+                       "CURRENT", uint32ToHexStr(i));
             co_return false;
         }
 
@@ -570,21 +570,18 @@ sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
 
 sdbusplus::async::task<bool> CpldLatticeManager::programUserCode()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandProgramUserCode, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> request = {commandProgramUserCode, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> response = {0};
     for (int i = 3; i >= 0; i--)
     {
-        command.push_back((fwInfo.version >> (i * 8)) & 0xFF);
+        request.push_back((fwInfo.version >> (i * 8)) & 0xFF);
     }
-    bool success = co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
 
-    if (!success)
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send program user code request.");
         co_return false;
     }
-
     if (!(co_await waitBusyAndVerify()))
     {
         lg2::error("Wait busy and verify fail");
@@ -596,16 +593,15 @@ sdbusplus::async::task<bool> CpldLatticeManager::programUserCode()
 
 sdbusplus::async::task<bool> CpldLatticeManager::programDone()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandProgramDone, 0x0, 0x0, 0x0};
-    bool success = co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
+    std::vector<uint8_t> request = {commandProgramDone, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> response = {0};
 
-    if (!success)
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send program done request.");
         co_return false;
     }
+
     if (!(co_await waitBusyAndVerify()))
     {
         lg2::error("Wait busy and verify fail");
@@ -617,14 +613,9 @@ sdbusplus::async::task<bool> CpldLatticeManager::programDone()
 
 sdbusplus::async::task<bool> CpldLatticeManager::disableConfigInterface()
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandDisableConfigInterface, 0x0, 0x0};
-
-    bool success = co_await stdexec::starts_on(
-        sched,
-        i2cInterface.sendReceive(command.data(), command.size(), nullptr, 0));
-
-    co_return success;
+    std::vector<uint8_t> request = {commandDisableConfigInterface, 0x0, 0x0};
+    std::vector<uint8_t> response = {0};
+    co_return i2cInterface.sendReceive(request, response);
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::waitBusyAndVerify()
@@ -635,7 +626,8 @@ sdbusplus::async::task<bool> CpldLatticeManager::waitBusyAndVerify()
     {
         uint8_t busyFlag = 0xff;
 
-        if (!(co_await readBusyFlag(busyFlag)))
+        auto readBusyFlagResult = co_await readBusyFlag(busyFlag);
+        if (!readBusyFlagResult)
         {
             lg2::error("Fail to read busy flag.");
             co_return false;
@@ -659,16 +651,16 @@ sdbusplus::async::task<bool> CpldLatticeManager::waitBusyAndVerify()
     } // while loop busy check
 
     // Check out status reg
-    uint8_t statusReg = 0xff;
+    auto statusReg = std::make_unique<uint8_t>(0xff);
 
-    if (!(co_await readStatusReg(statusReg)))
+    if (!(co_await readStatusReg(*statusReg)))
     {
         lg2::error("Fail to read status register.");
         co_return false;
     }
 
-    if (((statusReg >> busyOrReadyBit) & 1) == isReady &&
-        ((statusReg >> failOrOKBit) & 1) == isOK)
+    if (((*statusReg >> busyOrReadyBit) & 1) == isReady &&
+        ((*statusReg >> failOrOKBit) & 1) == isOK)
     {
         lg2::debug("Status Reg : OK");
         co_return true;
@@ -680,35 +672,26 @@ sdbusplus::async::task<bool> CpldLatticeManager::waitBusyAndVerify()
 
 sdbusplus::async::task<bool> CpldLatticeManager::readBusyFlag(uint8_t& busyFlag)
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandReadBusyFlag, 0x0, 0x0, 0x0};
-    constexpr size_t resSize = 1;
-    std::vector<uint8_t> readData(resSize, 0);
-    bool success = co_await stdexec::starts_on(
-        sched, i2cInterface.sendReceive(command.data(), command.size(),
-                                        readData.data(), resSize));
+    std::vector<uint8_t> request = {commandReadBusyFlag, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> response = {0};
 
-    if (!success || (readData.size() != resSize))
+    if (!i2cInterface.sendReceive(request, response))
     {
         co_return false;
     }
-    busyFlag = readData.at(0);
+    busyFlag = response.at(0);
     co_return true;
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::readStatusReg(
     uint8_t& statusReg)
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandReadStatusReg, 0x0, 0x0, 0x0};
-    constexpr size_t resSize = 4;
-    std::vector<uint8_t> readData(resSize, 0);
-    bool success = co_await stdexec::starts_on(
-        sched, i2cInterface.sendReceive(command.data(), command.size(),
-                                        readData.data(), resSize));
+    std::vector<uint8_t> request = {commandReadStatusReg, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> response(4, 0);
 
-    if (!success || (readData.size() != resSize))
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send read status register request.");
         co_return false;
     }
     /*
@@ -717,30 +700,27 @@ sdbusplus::async::task<bool> CpldLatticeManager::readStatusReg(
     0x3C 00 00 00 N/A YY YY YY YY Bit 1 0
     12 Busy Ready
     13 Fail OK
-        */
-    statusReg = readData.at(2);
+    */
+    statusReg = response.at(2);
     co_return true;
 }
 
 sdbusplus::async::task<bool> CpldLatticeManager::readUserCode(
     uint32_t& userCode)
 {
-    auto sched = context_friend::get_scheduler(ctx);
-    std::vector<uint8_t> command = {commandReadFwVersion, 0x0, 0x0, 0x0};
     constexpr size_t resSize = 4;
-    std::vector<uint8_t> readData(resSize, 0);
-    bool success = co_await stdexec::starts_on(
-        sched, i2cInterface.sendReceive(command.data(), command.size(),
-                                        readData.data(), resSize));
+    std::vector<uint8_t> request = {commandReadFwVersion, 0x0, 0x0, 0x0};
+    std::vector<uint8_t> response(resSize, 0);
 
-    if (!success)
+    if (!i2cInterface.sendReceive(request, response))
     {
+        lg2::error("Failed to send read user code request.");
         co_return false;
     }
 
     for (size_t i = 0; i < resSize; i++)
     {
-        userCode |= readData.at(i) << ((3 - i) * 8);
+        userCode |= response.at(i) << ((3 - i) * 8);
     }
     co_return true;
 }
@@ -856,28 +836,20 @@ sdbusplus::async::task<bool> CpldLatticeManager::updateFirmware(
     co_return false;
 }
 
-std::string uint32ToHexStr(uint32_t value)
-{
-    std::ostringstream oss;
-    oss << std::setfill('0') << std::setw(8) << std::hex << std::uppercase
-        << value;
-    return oss.str();
-}
-
 sdbusplus::async::task<bool> CpldLatticeManager::getVersion(
     std::string& version)
 {
-    uint32_t userCode = 0;
+    auto userCode = std::make_unique<uint32_t>(0);
 
     if (target.empty())
     {
-        if (!(co_await readUserCode(userCode)))
+        if (!(co_await readUserCode(*userCode)))
         {
             lg2::error("Read usercode failed.");
             co_return false;
         }
 
-        lg2::debug("CPLD version: {VERSION}", "VERSION", userCode);
+        lg2::debug("CPLD version: {VERSION}", "VERSION", *userCode);
     }
     else if (target == "CFG0" || target == "CFG1")
     {
@@ -896,7 +868,7 @@ sdbusplus::async::task<bool> CpldLatticeManager::getVersion(
             co_return false;
         }
 
-        if (!(co_await readUserCode(userCode)))
+        if (!(co_await readUserCode(*userCode)))
         {
             lg2::error("Read usercode failed.");
             co_return false;
@@ -915,7 +887,7 @@ sdbusplus::async::task<bool> CpldLatticeManager::getVersion(
         }
 
         lg2::debug("CPLD {TARGET} version: {VERSION}", "TARGET", target,
-                   "VERSION", userCode);
+                   "VERSION", *userCode);
     }
     else
     {
@@ -923,11 +895,11 @@ sdbusplus::async::task<bool> CpldLatticeManager::getVersion(
         co_return false;
     }
 
-    if (userCode == 0)
+    if (*userCode == 0)
     {
         lg2::error("User code is zero, cannot get version.");
         co_return false;
     }
-    version = uint32ToHexStr(userCode);
+    version = uint32ToHexStr(*userCode);
     co_return true;
 }

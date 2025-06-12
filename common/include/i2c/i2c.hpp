@@ -42,6 +42,8 @@ class I2C
     sdbusplus::async::task<bool> sendReceive(
         uint8_t* writeData, uint8_t writeSize, uint8_t* readData,
         uint8_t readSize) const;
+    bool sendReceive(const std::vector<uint8_t>& writeData,
+                     std::vector<uint8_t>& readData) const;
 
     bool isOpen() const
     {

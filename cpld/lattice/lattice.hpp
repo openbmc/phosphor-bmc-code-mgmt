@@ -6,6 +6,19 @@
 #include <string_view>
 #include <utility>
 
+struct cpldInfo
+{
+    std::string chipName;
+    std::vector<uint8_t> deviceId;
+};
+
+const std::map<std::string, cpldInfo> supportedDeviceMap = {
+    {"LatticeLCMXO3LF_2100CFirmware",
+     {"LCMXO3LF-2100C", {0x61, 0x2b, 0xb0, 0x43}}},
+    {"LatticeLCMXO3LF_4300CFirmware",
+     {"LCMXO3LF-4300C", {0x61, 0x2b, 0xc0, 0x43}}},
+};
+
 struct cpldI2cInfo
 {
     unsigned long int QF; // Quantity of Fuses

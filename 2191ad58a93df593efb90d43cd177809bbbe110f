@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfdb40c_05dd1004",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-13T17:26:41Z",
+      "side": 1,
+      "message": "Can you please update the Readme.md to reflect the new changes in terms of EM Type and compatibleHardware params.",
+      "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "293e6cc5_e466b393",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-13T17:26:41Z",
+      "side": 1,
+      "message": "Better to reword as -\n\n\"Abort update as image doesn\u0027t match the chip name\"",
+      "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

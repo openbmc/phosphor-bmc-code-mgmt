@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8552e864_2d3dc2d5",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-13T18:07:01Z",
+      "side": 1,
+      "message": "I think we are working around this warning issue a lot. So this is what i would suggest -\n\n1. Change the sendReceive API in i2c.cpp to have a check for readData pointer as well alongwith readSize (https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/common/i2c/i2c.cpp#L61) as that might be the reason for the warning (as readData is separate from readSize). See, if it fixes the problem.\n2. If #1 doesn\u0027t work then lets introduce a new API as you had in the beginning to use in CPLD updater. In a followup patch you can update the VR updater to use that too and drop the sendReceive API with primitive types. That way we don\u0027t have to do any of these work arounds.",
+      "revId": "7c2e9d05601ccf57626cee73f14f19a7f343070d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

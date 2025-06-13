@@ -33,6 +33,23 @@
       "message": "@Daniel-Hsu@quantatw.com I am trying to understand what\u0027s the purpose of this patch. The compatibleHardware strings are to be used just in common code for PLDM package validation. In your backend implementation you need to rely on EM types to select the right chip and updater.",
       "revId": "23745de3b36db33d01a1bb17344726bf1f6344b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d46105b_c21cc32a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2025-06-13T13:08:43Z",
+      "side": 1,
+      "message": "Private is really for security changes, I don\u0027t know another use for it. \nShould this be WIP instead of private?",
+      "revId": "23745de3b36db33d01a1bb17344726bf1f6344b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

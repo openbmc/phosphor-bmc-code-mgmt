@@ -45,13 +45,13 @@ class XDPE1X2XX : public VoltageRegulator
     };
 
     sdbusplus::async::task<bool> getDeviceId(uint8_t* deviceId);
-    sdbusplus::async::task<bool> mfrFWcmd(uint8_t cmd, uint8_t* data,
-                                          uint8_t* resp);
+    sdbusplus::async::task<bool> mfrFWcmd(uint8_t cmd, uint16_t pcTime,
+                                          uint8_t* data, uint8_t* resp);
     sdbusplus::async::task<bool> getRemainingWrites(uint8_t* remain);
     sdbusplus::async::task<bool> program(bool force);
 
     int parseImage(const uint8_t* image, size_t imageSize);
-    int checkImage();
+    bool checkImage();
 
     static uint32_t calcCRC32(const uint32_t* data, int len);
     static int getConfigSize(uint8_t deviceId, uint8_t revision);

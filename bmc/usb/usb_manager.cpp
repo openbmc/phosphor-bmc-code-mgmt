@@ -66,7 +66,6 @@ bool USBManager::copyImage()
 
 #ifdef START_UPDATE_DBUS_INTEFACE
 
-// NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto findAssociatedUpdatablePath(sdbusplus::async::context& ctx)
     -> sdbusplus::async::task<Paths>
 {
@@ -79,7 +78,6 @@ auto findAssociatedUpdatablePath(sdbusplus::async::context& ctx)
                                         interface, propertyName);
 }
 
-// NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto USBManager::startUpdate(int fd) -> sdbusplus::async::task<bool>
 {
     using Updater = sdbusplus::client::xyz::openbmc_project::software::Update<>;
@@ -108,7 +106,6 @@ auto USBManager::startUpdate(int fd) -> sdbusplus::async::task<bool>
     co_return true;
 }
 
-// NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto USBManager::run() -> sdbusplus::async::task<void>
 {
     auto res = copyImage();

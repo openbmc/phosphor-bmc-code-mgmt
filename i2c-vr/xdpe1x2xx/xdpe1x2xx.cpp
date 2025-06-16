@@ -16,7 +16,7 @@ namespace phosphor::software::VR
 {
 
 const uint32_t CRC32Poly = 0xEDB88320;
-const int VRResetDelay = 500000;
+constexpr uint16_t VRResetDelay = 500;
 
 enum RevisionCode
 {
@@ -32,22 +32,26 @@ enum ProductID
     ProductIDXDPE19283 = 0x95,
 };
 
-const uint32_t PMBusICDeviceID = 0xAD;
-const uint32_t PMBusSTLCml = 0x7E;
-const uint32_t IFXICDeviceIDLen = 2;
-const uint32_t IFXMFRAHBAddr = 0xCE;
-const uint32_t IFXMFRRegWrite = 0xDE;
-const uint32_t IFXMFRFwCmdData = 0xFD;
-const uint32_t IFXMFRFwCmd = 0xFE;
-const uint32_t MFRFwCmdReset = 0x0e;
-const uint32_t MFRFwCmdRmng = 0x10;
-const uint32_t MFRFwCmdOTPConfSTO = 0x11;
-const uint32_t MFRFwCmdOTPFileInvd = 0x12;
-const uint32_t MFRFwCmdGetCRC = 0x2D;
-const int XDPE15284CConfSize = 1344;
-const int XDPE19283BConfSize = 1416;
-const uint32_t VRWarnRemaining = 3;
-const uint32_t SectTrim = 0x02;
+constexpr uint8_t PMBusICDeviceID = 0xAD;
+constexpr uint8_t PMBusSTLCml = 0x7E;
+constexpr uint8_t IFXICDeviceIDLen = 2;
+constexpr uint8_t IFXMFRAHBAddr = 0xCE;
+constexpr uint8_t IFXMFRRegWrite = 0xDE;
+constexpr uint8_t IFXMFRFwCmdData = 0xFD;
+constexpr uint8_t IFXMFRFwCmd = 0xFE;
+constexpr uint8_t MFRFwCmdReset = 0x0e;
+constexpr uint8_t MFRFwCmdRmng = 0x10;
+constexpr uint8_t MFRFwCmdOTPConfSTO = 0x11;
+constexpr uint8_t MFRFwCmdOTPFileInvd = 0x12;
+constexpr uint8_t MFRFwCmdGetCRC = 0x2D;
+constexpr int XDPE15284CConfSize = 1344;
+constexpr int XDPE19283BConfSize = 1416;
+constexpr uint8_t VRWarnRemaining = 3;
+constexpr uint8_t SectTrim = 0x02;
+
+constexpr uint16_t MFRDefaultWaitTime = 20;
+constexpr uint16_t MFROTPFileInvalidationWaitTime = 500;
+constexpr uint16_t MFRSectionInvalidationWaitTime = 40;
 
 const char* const AddressField = "PMBus Address :";
 const char* const ChecksumField = "Checksum :";
@@ -86,8 +90,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::getDeviceId(uint8_t* deviceID)
 }
 
 // NOLINTBEGIN(readability-static-accessed-through-instance)
-sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
-                                                 uint8_t* resp)
+sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint16_t pcTime,
+                                                 uint8_t* data, uint8_t* resp)
 // NOLINTEND(readability-static-accessed-through-instance)
 {
     bool ret = false;
@@ -125,7 +129,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::mfrFWcmd(uint8_t cmd, uint8_t* data,
         co_return false;
     }
 
-    co_await sdbusplus::async::sleep_for(ctx, std::chrono::microseconds(20000));
+    co_await sdbusplus::async::sleep_for(ctx,
+                                         std::chrono::milliseconds(pcTime));
 
     if (resp)
     {
@@ -160,7 +165,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::getRemainingWrites(uint8_t* remain)
     uint8_t rBuf[16] = {0};
     uint8_t devId[2] = {0};
 
-    ret = co_await this->mfrFWcmd(MFRFwCmdRmng, tBuf, rBuf);
+    ret = co_await this->mfrFWcmd(MFRFwCmdRmng, MFRDefaultWaitTime, tBuf, rBuf);
     if (!ret)
     {
         error("Failed to request remaining writes");
@@ -218,7 +223,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
     uint8_t tBuf[16] = {0};
     uint8_t rBuf[16] = {0};
 
-    bool ret = co_await this->mfrFWcmd(MFRFwCmdGetCRC, tBuf, rBuf);
+    bool ret =
+        co_await this->mfrFWcmd(MFRFwCmdGetCRC, MFRDefaultWaitTime, tBuf, rBuf);
     if (!ret)
     {
         error("Failed to get CRC value");
@@ -294,15 +300,15 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
     tBuf[2] = 0x00;
     tBuf[3] = 0x00;
 
-    ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd, tBuf, NULL);
+    ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd,
+                                  MFROTPFileInvalidationWaitTime, tBuf, NULL);
     if (!ret)
     {
         error("Failed to program the VR - Invalidation of currect FW");
         co_return ret;
     }
 
-    co_await sdbusplus::async::sleep_for(ctx,
-                                         std::chrono::microseconds(500000));
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(500));
 
     for (int i = 0; i < configuration.sectCnt; i++)
     {
@@ -335,16 +341,15 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             tBuf[2] = 0x00;
             tBuf[3] = 0x00;
 
-            ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd, tBuf, NULL);
+            ret = co_await this->mfrFWcmd(MFRFwCmdOTPFileInvd,
+                                          MFRSectionInvalidationWaitTime, tBuf,
+                                          NULL);
             if (!ret)
             {
                 error("Failed to program VR on mfrFWCmd on {CMD}", "CMD",
                       std::string("MFRFwCmdOTPFileInvd"));
                 break;
             }
-
-            co_await sdbusplus::async::sleep_for(
-                ctx, std::chrono::microseconds(10000)); // Write delay
 
             tBuf[0] = IFXMFRAHBAddr;
             tBuf[1] = 4;
@@ -385,8 +390,8 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
                       std::string("IFXMFRRegWrite"));
                 break;
             }
-            co_await sdbusplus::async::sleep_for(
-                ctx, std::chrono::microseconds(10000));
+            co_await sdbusplus::async::sleep_for(ctx,
+                                                 std::chrono::milliseconds(10));
         }
         if (ret)
         {
@@ -397,33 +402,28 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
         if ((i + 1 >= configuration.sectCnt) ||
             (sect->type != configuration.section[i + 1].type))
         {
+            // wait for programming soak (2ms/byte, at least 200ms)
+            // ex: Config (604 bytes): (604 / 50) + 2 = 14 (1400 ms)
+            uint16_t soakTime = 100 * ((size / 50) + 2);
+
             // Upload to scratchpad
+            debug("Upload from scratch pad to OTP");
             std::memcpy(tBuf, &size, 2);
             tBuf[2] = 0x00;
             tBuf[3] = 0x00;
-            bool ret = co_await this->mfrFWcmd(MFRFwCmdOTPConfSTO, tBuf, NULL);
-            if (ret)
+            if (!(co_await this->mfrFWcmd(MFRFwCmdOTPConfSTO, soakTime, tBuf,
+                                          NULL)))
             {
                 error("Failed to program the VR on mfrFWcmd {CMD}", "CMD",
                       std::string("MFRFwCmdOTPConfSTO"));
                 break;
             }
 
-            // wait for programming soak (2ms/byte, at least 200ms)
-            // ex: Config (604 bytes): (604 / 50) + 2 = 14 (1400 ms)
-            size = (size / 50) + 2;
-            for (int j = 0; j < size; j++)
-            {
-                co_await sdbusplus::async::sleep_for(
-                    ctx, std::chrono::microseconds(100000));
-            }
-
             tBuf[0] = PMBusSTLCml;
             uint8_t tSize = 1;
             uint8_t rSize = 1;
-            ret = co_await this->i2cInterface.sendReceive(rBuf, tSize, tBuf,
-                                                          rSize);
-            if (!ret)
+            if (!(co_await this->i2cInterface.sendReceive(rBuf, tSize, tBuf,
+                                                          rSize)))
             {
                 error("Failed to program VR on sendReceive {CMD}", "CMD",
                       std::string("PMBusSTLCml"));
@@ -684,15 +684,12 @@ sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
 sdbusplus::async::task<bool> XDPE1X2XX::reset()
 // NOLINTEND(readability-static-accessed-through-instance)
 {
-    bool ret = co_await mfrFWcmd(MFRFwCmdReset, NULL, NULL);
+    bool ret = co_await mfrFWcmd(MFRFwCmdReset, VRResetDelay, NULL, NULL);
     if (!ret)
     {
         error("Failed to reset the VR");
         co_return false;
     }
-
-    co_await sdbusplus::async::sleep_for(
-        ctx, std::chrono::microseconds(VRResetDelay));
 
     co_return true;
 }

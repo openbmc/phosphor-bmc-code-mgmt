@@ -51,7 +51,6 @@ bool verifyImagePurpose(Version::VersionPurpose purpose,
     return true;
 }
 
-// NOLINTNEXTLINE(readability-static-accessed-through-instance)
 auto Manager::processImage(sdbusplus::message::unix_fd image,
                            ApplyTimeIntf::RequestedApplyTimes applyTime,
                            std::string id, std::string objPath)

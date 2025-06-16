@@ -28,6 +28,16 @@ class XDPE1X2XX : public VoltageRegulator
     static const int MaxSectCnt = 16;
     static const int MaxSectDataCnt = 200;
 
+    struct deviceInfo
+    {
+        uint8_t deviceId;
+        uint8_t deviceRev;
+        uint8_t remainingWrites;
+        uint32_t scratchPadAddress;
+        uint32_t actualCRC;
+        uint32_t configSize;
+    };
+
     struct configSect
     {
         uint8_t type;
@@ -45,13 +55,14 @@ class XDPE1X2XX : public VoltageRegulator
     };
 
     sdbusplus::async::task<bool> getDeviceId(uint8_t* deviceId);
-    sdbusplus::async::task<bool> mfrFWcmd(uint8_t cmd, uint8_t* data,
-                                          uint8_t* resp);
+    sdbusplus::async::task<bool> mfrFWcmd(uint8_t cmd, uint16_t pcTime,
+                                          uint8_t* data, uint8_t* resp);
     sdbusplus::async::task<bool> getRemainingWrites(uint8_t* remain);
     sdbusplus::async::task<bool> program(bool force);
+    sdbusplus::async::task<bool> getScratchPadAddress();
 
-    int parseImage(const uint8_t* image, size_t imageSize);
-    int checkImage();
+    bool parseImage(const uint8_t* image, size_t imageSize);
+    bool checkImage();
 
     static uint32_t calcCRC32(const uint32_t* data, int len);
     static int getConfigSize(uint8_t deviceId, uint8_t revision);
@@ -59,6 +70,7 @@ class XDPE1X2XX : public VoltageRegulator
 
     phosphor::i2c::I2C i2cInterface;
 
+    struct deviceInfo info;
     struct xdpe1x2xxConfig configuration;
 };
 

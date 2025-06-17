@@ -16,6 +16,24 @@
       "message": "I think we are working around this warning issue a lot. So this is what i would suggest -\n\n1. Change the sendReceive API in i2c.cpp to have a check for readData pointer as well alongwith readSize (https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/common/i2c/i2c.cpp#L61) as that might be the reason for the warning (as readData is separate from readSize). See, if it fixes the problem.\n2. If #1 doesn\u0027t work then lets introduce a new API as you had in the beginning to use in CPLD updater. In a followup patch you can update the VR updater to use that too and drop the sendReceive API with primitive types. That way we don\u0027t have to do any of these work arounds.",
       "revId": "7c2e9d05601ccf57626cee73f14f19a7f343070d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b3a9b69_fb3c5278",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-06-17T13:05:44Z",
+      "side": 1,
+      "message": "I believe the issue stems from the use of std::vector. Since vector is a non-trivial type — meaning it manages internal state and heap memory — creating it on the stack and then passing a reference into a coroutine introduces a potential lifetime issue. The coroutine may suspend and resume in a way that leads to accessing a reference to an already-invalidated stack frame.\n\nIn contrast, the original VR updater uses a fixed-size raw array (uint8_t rbuf[16]), which contains no heap pointers, virtual functions, or allocators. The compiler can recognize this pattern and often embeds such buffers directly into the coroutine frame, automatically managing their lifetime safely across suspension points.\n\nUsing std::make_unique moves the vector allocation to the heap, decoupling its lifetime from the stack and ensuring it remains valid throughout the coroutine\u0027s execution.\n\n1. \nFor the original (#1) API, no matter how I tried to modify it internally, the lifetime issue persisted because the vector was still tied to the stack.\n2. \nFor the new (#2) API, the logical solution seems to be shifting this responsibility to the caller side, rather than trying to encapsulate it entirely within the library API.\n\nSo I want to stick with the make_unique workaround, without making broader changes to the API structure.",
+      "parentUuid": "8552e864_2d3dc2d5",
+      "revId": "7c2e9d05601ccf57626cee73f14f19a7f343070d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

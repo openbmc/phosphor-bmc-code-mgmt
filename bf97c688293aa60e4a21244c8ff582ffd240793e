@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bd1ff2_5c5ca781",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-17T16:49:05Z",
+      "side": 1,
+      "message": "Why they are being removed now? Did you disable any warning?",
+      "revId": "bf97c688293aa60e4a21244c8ff582ffd240793e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6f7abaf3_a09fa471",

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "173a8e3c_d29e2d40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-06-17T13:07:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bfdb40c_05dd1004",
+      "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "293e6cc5_e466b393",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3218faec_942e1078",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-06-17T13:07:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "293e6cc5_e466b393",
+      "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11a5168e_e3d7ee24",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-06-13T17:37:33Z",
       "side": 1,
       "message": "nit: The device id doesn\u0027t match with chip.",
+      "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "140b7295_b3a3a4db",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-06-17T13:07:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11a5168e_e3d7ee24",
       "revId": "2191ad58a93df593efb90d43cd177809bbbe110f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

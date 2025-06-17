@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f7abaf3_a09fa471",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-17T13:15:07Z",
+      "side": 1,
+      "message": "@anoo@us.ibm.com @paligill@gmail.com @gunnar@gmills.xyz\n\nCan you kindly look into this change 😊",
+      "revId": "bf97c688293aa60e4a21244c8ff582ffd240793e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

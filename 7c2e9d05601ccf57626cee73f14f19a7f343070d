@@ -34,6 +34,24 @@
       "parentUuid": "8552e864_2d3dc2d5",
       "revId": "7c2e9d05601ccf57626cee73f14f19a7f343070d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d4bd23_35eb0f75",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-17T17:21:43Z",
+      "side": 1,
+      "message": "\u003e I believe the issue stems from the use of std::vector. Since vector is a non-trivial type — meaning it manages internal state and heap memory — creating it on the stack and then passing a reference into a coroutine introduces a potential lifetime issue. The coroutine may suspend and resume in a way that leads to accessing a reference to an already-invalidated stack frame.\n\u003e \n\u003e In contrast, the original VR updater uses a fixed-size raw array (uint8_t rbuf[16]), which contains no heap pointers, virtual functions, or allocators. The compiler can recognize this pattern and often embeds such buffers directly into the coroutine frame, automatically managing their lifetime safely across suspension points.\n\n\n@Daniel-Hsu@quantatw.com Then why don\u0027t we move to using fixed-size raw array to avoid all these workarounds? That code will be much cleaner in terms of readability and maintainability.",
+      "parentUuid": "7b3a9b69_fb3c5278",
+      "revId": "7c2e9d05601ccf57626cee73f14f19a7f343070d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

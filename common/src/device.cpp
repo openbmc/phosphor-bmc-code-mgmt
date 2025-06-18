@@ -9,6 +9,7 @@
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/bus.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
+#include <xyz/openbmc_project/Software/ActivationProgress/aserver.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
 
 #include <utility>
@@ -16,6 +17,13 @@
 PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software::device;
+
+using SoftwareActivationProgress =
+    sdbusplus::aserver::xyz::openbmc_project::software::ActivationProgress<
+        phosphor::software::Software>;
+
+using SoftwareActivationProgressProperties = sdbusplus::common::xyz::
+    openbmc_project::software::ActivationProgress::properties_t;
 
 const auto applyTimeImmediate = sdbusplus::common::xyz::openbmc_project::
     software::ApplyTime::RequestedApplyTimes::Immediate;
@@ -145,7 +153,7 @@ bool Device::setUpdateProgress(uint8_t progress) const
         return false;
     }
 
-    softwarePending->softwareActivationProgress->setProgress(progress);
+    softwarePending->softwareActivationProgress->progress(progress);
 
     return true;
 }
@@ -162,7 +170,8 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     std::string objPath = softwarePending->objectPath;
 
     softwarePending->softwareActivationProgress =
-        std::make_unique<SoftwareActivationProgress>(ctx, objPath.c_str());
+        std::make_unique<SoftwareActivationProgress>(
+            ctx, objPath.c_str(), SoftwareActivationProgressProperties{0});
 
     softwarePending->setActivationBlocksTransition(true);
 

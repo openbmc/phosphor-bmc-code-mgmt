@@ -19,36 +19,18 @@ using namespace phosphor::software::update;
 
 const static std::string baseObjPathSoftware = "/xyz/openbmc_project/software/";
 
-SoftwareActivationProgress::SoftwareActivationProgress(
-    sdbusplus::async::context& ctx, const char* objPath) :
-    ActivationProgress(ctx, objPath)
-{
-    // This prevents "Conditional jump or move depends on uninitialised
-    // value(s)"
-    // when properties are updated for the first time
-    progress_ = 0;
-}
-
-void SoftwareActivationProgress::setProgress(int progressArg)
-{
-    progress(progressArg);
-}
-
 Software::Software(sdbusplus::async::context& ctx, Device& parent) :
     Software(ctx, parent, getRandomSoftwareId(parent))
 {}
 
 Software::Software(sdbusplus::async::context& ctx, Device& parent,
                    const std::string& swid) :
-    SoftwareActivation(ctx, (baseObjPathSoftware + swid).c_str()),
+    SoftwareActivation(ctx, (baseObjPathSoftware + swid).c_str(),
+                       Activation::properties_t{Activations::NotReady,
+                                                RequestedActivations::None}),
     objectPath(baseObjPathSoftware + swid), parentDevice(parent), swid(swid),
     ctx(ctx)
 {
-    // initialize the members of our base class to prevent
-    // "Conditional jump or move depends on uninitialised value(s)"
-    activation_ = Activations::NotReady;
-    requested_activation_ = RequestedActivations::None;
-
     std::string objPath = baseObjPathSoftware + swid;
 
     debug("{SWID}: created dbus interfaces on path {OBJPATH}", "SWID", swid,
@@ -88,16 +70,17 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
     {
         std::string path = objectPath;
         associationDefinitions =
-            std::make_unique<SoftwareAssociationDefinitions>(ctx, path.c_str());
+            std::make_unique<SoftwareAssociationDefinitions>(
+                ctx, path.c_str(),
+                SoftwareAssociationDefinitions::properties_t{{}});
     }
-
-    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
 
     if (endpoint.empty())
     {
-        associationDefinitions->associations(assocs);
         co_return;
     }
+
+    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
 
     if (isRunning)
     {
@@ -126,21 +109,17 @@ void Software::setVersion(const std::string& versionStr,
 {
     debug("{SWID}: set version {VERSION}", "SWID", swid, "VERSION", versionStr);
 
-    const bool emitSignal = !version;
-
     if (!version)
     {
-        version =
-            std::make_unique<SoftwareVersion>(ctx, objectPath.str.c_str());
+        version = std::make_unique<SoftwareVersion>(
+            ctx, objectPath.str.c_str(),
+            SoftwareVersion::properties_t{versionStr, versionPurpose});
+        version->emit_added();
+        return;
     }
 
     version->version(versionStr);
     version->purpose(versionPurpose);
-
-    if (emitSignal)
-    {
-        version->emit_added();
-    }
 }
 
 SoftwareVersion::VersionPurpose Software::getPurpose()

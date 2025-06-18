@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93830220_949d8cea",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-18T15:52:48Z",
+      "side": 1,
+      "message": "nit: would probably be nice to use some kind of `using` here to shorten this.",
+      "range": {
+        "startLine": 165,
+        "startChar": 25,
+        "endLine": 166,
+        "endChar": 47
+      },
+      "revId": "9332ccd1a923a88e4aab31d577390913f0306c3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

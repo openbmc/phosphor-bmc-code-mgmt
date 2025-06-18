@@ -20,20 +20,6 @@ class Device;
 namespace phosphor::software
 {
 
-// Need to declare this class to initialize the protected members of our base
-// class. This prevents "Conditional jump or move depends on uninitialised
-// value(s)" when properties are updated for the first time.
-class SoftwareActivationProgress :
-    private sdbusplus::aserver::xyz::openbmc_project::software::
-        ActivationProgress<Software>
-{
-  public:
-    SoftwareActivationProgress(sdbusplus::async::context& ctx,
-                               const char* objPath);
-
-    void setProgress(int progressArg);
-};
-
 using SoftwareActivationBlocksTransition = sdbusplus::aserver::xyz::
     openbmc_project::software::ActivationBlocksTransition<Software>;
 
@@ -95,8 +81,9 @@ class Software : private SoftwareActivation
     // and is deleted again afterwards.
     // This member is public since the device specific update function
     // needs to update the progress.
-    std::unique_ptr<SoftwareActivationProgress> softwareActivationProgress =
-        nullptr;
+    std::unique_ptr<sdbusplus::aserver::xyz::openbmc_project::software::
+                        ActivationProgress<Software>>
+        softwareActivationProgress = nullptr;
 
     static long int getRandomId();
 

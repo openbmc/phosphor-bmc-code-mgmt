@@ -145,7 +145,7 @@ bool Device::setUpdateProgress(uint8_t progress) const
         return false;
     }
 
-    softwarePending->softwareActivationProgress->setProgress(progress);
+    softwarePending->softwareActivationProgress->progress(progress);
 
     return true;
 }
@@ -162,7 +162,11 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     std::string objPath = softwarePending->objectPath;
 
     softwarePending->softwareActivationProgress =
-        std::make_unique<SoftwareActivationProgress>(ctx, objPath.c_str());
+        std::make_unique<sdbusplus::aserver::xyz::openbmc_project::software::
+                             ActivationProgress<Software>>(
+            ctx, objPath.c_str(),
+            sdbusplus::common::xyz::openbmc_project::software::
+                ActivationProgress::properties_t{0});
 
     softwarePending->setActivationBlocksTransition(true);
 

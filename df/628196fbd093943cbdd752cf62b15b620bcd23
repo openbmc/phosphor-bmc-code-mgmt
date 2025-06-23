@@ -1,0 +1,9 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Patrick Williams <patrick@stwcx.xyz>
+Code-Review+2: Adriana Kobylak <anoo@us.ibm.com>
+Submitted-by: Adriana Kobylak <anoo@us.ibm.com>
+Submitted-at: Mon, 23 Jun 2025 18:40:33 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/81238
+Comments-Total: 2
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

@@ -5,7 +5,6 @@ Instructions on how to execute UTEST.
 - When using an SDK - make sure it has been built for an x86 machine.
 
   Run the following commands:
-
   1. meson -Dtests=enabled build
   2. ninja -C build test
 

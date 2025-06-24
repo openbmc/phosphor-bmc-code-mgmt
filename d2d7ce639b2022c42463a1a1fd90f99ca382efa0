@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "76234c89_6245bd63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-24T01:57:42Z",
+      "side": 1,
+      "message": "@Daniel-Hsu@quantatw.com The intent is not to make this flow synchronous but to make it better async so we don\u0027t block the thread. As a followup patch, lets explore better async alternatives such as io_uring to see if we can solve the ioctl blocking issue.",
+      "revId": "d2d7ce639b2022c42463a1a1fd90f99ca382efa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e6abfba2_2e911037",
@@ -14,6 +31,23 @@
       "writtenOn": "2025-06-24T01:04:30Z",
       "side": 1,
       "message": "Hi @paligill@gmail.com, please help the review.",
+      "revId": "d2d7ce639b2022c42463a1a1fd90f99ca382efa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625f095d_80f35c3d",
+        "filename": "common/include/i2c/i2c.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-24T01:57:42Z",
+      "side": 1,
+      "message": "@Daniel-Hsu@quantatw.com As a followup patch please migrate the VR code to start using the vector based API rather than raw pointers.",
       "revId": "d2d7ce639b2022c42463a1a1fd90f99ca382efa0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

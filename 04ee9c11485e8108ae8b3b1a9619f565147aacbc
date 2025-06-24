@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aca00a78_b81d4926",
+        "filename": "common/include/utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-24T20:31:41Z",
+      "side": 1,
+      "message": "@Kevin.Tung@quantatw.com Sorry there is some misunderstanding. My point was to return pass and fail as a bool as i don\u0027t see the child exit status useful to the caller. Lets do the exit status handling in the asyncSystem() and just return pass and fail as bool.",
+      "parentUuid": "9ec65cfd_7308bd43",
+      "revId": "04ee9c11485e8108ae8b3b1a9619f565147aacbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ae1755b_754256da",
         "filename": "common/src/utils.cpp",
         "patchSetId": 3

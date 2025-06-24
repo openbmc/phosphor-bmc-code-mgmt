@@ -50,12 +50,7 @@ std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf, size_t size)
     debug("parsing package, pkg header size: {N}", "N",
           packageParser->pkgHeaderSize);
 
-    std::vector<uint8_t> pkgHeaderOnly;
-    pkgHeaderOnly.insert(
-        pkgHeaderOnly.end(), pkgData.begin(),
-        pkgData.begin() + (long)(packageParser->pkgHeaderSize));
-
-    packageParser->parse(pkgHeaderOnly, pkgData.size());
+    packageParser->parse(pkgData, pkgData.size());
 
     return packageParser;
 }

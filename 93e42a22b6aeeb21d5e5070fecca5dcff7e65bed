@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9868ade4_a61a4fc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-25T06:03:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40f2e562_7d9a68f7",
+      "revId": "93e42a22b6aeeb21d5e5070fecca5dcff7e65bed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b481b45b_13feebe4",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-06-24T18:52:01Z",
       "side": 1,
       "message": "what is pcTime?",
+      "revId": "93e42a22b6aeeb21d5e5070fecca5dcff7e65bed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e28d2eb6_1ec2b77b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-25T06:03:45Z",
+      "side": 1,
+      "message": "pcTime \u003d process time. According to programming guide, mfr commands require different process times for the chip to process and give replies.",
+      "parentUuid": "b481b45b_13feebe4",
       "revId": "93e42a22b6aeeb21d5e5070fecca5dcff7e65bed",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

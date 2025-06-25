@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3319d2f5_6857ec28",
+        "filename": "common/include/utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-06-25T01:50:03Z",
+      "side": 1,
+      "message": "Understood. The return type has been updated to bool as suggested.",
+      "parentUuid": "aca00a78_b81d4926",
+      "revId": "04ee9c11485e8108ae8b3b1a9619f565147aacbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ae1755b_754256da",

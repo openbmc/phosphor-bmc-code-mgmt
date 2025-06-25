@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a285724c_3d21d097",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-25T03:42:02Z",
+      "side": 1,
+      "message": "@Kevin.Tung@quantatw.com Lets change this return type from int to bool as well and make it consistent.",
+      "revId": "dde2056179241a86f51d616d42e26eeb26b210ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c98ee42_e1e1204d",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-06-25T03:42:02Z",
+      "side": 1,
+      "message": "Would it be possible to dump these logs using phosphor::logging APIs? Do you see any concurrency issues?",
+      "revId": "dde2056179241a86f51d616d42e26eeb26b210ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

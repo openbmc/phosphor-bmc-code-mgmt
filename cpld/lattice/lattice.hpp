@@ -13,6 +13,7 @@ struct cpldInfo
 };
 
 const std::map<std::string, cpldInfo> supportedDeviceMap = {
+    {"LatticeLCMXO3D_9400Firmware", {"LCMXO3D-9400", {0x21, 0x2e, 0x30, 0x43}}},
     {"LatticeLCMXO3LF_2100CFirmware",
      {"LCMXO3LF-2100C", {0x61, 0x2b, 0xb0, 0x43}}},
     {"LatticeLCMXO3LF_4300CFirmware",

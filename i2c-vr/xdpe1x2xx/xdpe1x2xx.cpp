@@ -46,8 +46,9 @@ constexpr uint8_t MFRFwCmdGetHWAddress = 0x2E;
 constexpr uint8_t MFRFwCmdOTPConfSTO = 0x11;
 constexpr uint8_t MFRFwCmdOTPFileInvd = 0x12;
 constexpr uint8_t MFRFwCmdGetCRC = 0x2D;
-constexpr int XDPE15284CConfSize = 1344;
-constexpr int XDPE19283BConfSize = 1416;
+constexpr int XDPE152XXConfSize = 1344;
+constexpr int XDPE152XXDConfSize = 1312;
+constexpr int XDPE192XXBConfSize = 1416; // Config(728) + PMBus(568) + SVID(120)
 constexpr uint8_t VRWarnRemaining = 3;
 constexpr uint8_t SectTrim = 0x02;
 
@@ -196,27 +197,24 @@ sdbusplus::async::task<bool> XDPE1X2XX::getRemainingWrites(uint8_t* remain)
 
 int XDPE1X2XX::getConfigSize(uint8_t deviceId, uint8_t revision)
 {
-    int size = -1;
+    static const std::map<std::pair<uint8_t, uint8_t>, int> configSizeMap = {
+        {{ProductIDXDPE19283AC, REV_B}, XDPE192XXBConfSize},
+        {{ProductIDXDPE15284, REV_A}, XDPE152XXConfSize},
+        {{ProductIDXDPE15284, REV_B}, XDPE152XXConfSize},
+        {{ProductIDXDPE15284, REV_C}, XDPE152XXConfSize},
+        {{ProductIDXDPE15284, REV_D}, XDPE152XXDConfSize},
+        {{ProductIDXDPE192C3AC, REV_B}, XDPE192XXBConfSize},
+    };
 
-    switch (deviceId)
+    auto it = configSizeMap.find({deviceId, revision});
+    if (it != configSizeMap.end())
     {
-        case ProductIDXDPE19283AC:
-            if (revision == REV_B)
-            {
-                size = XDPE19283BConfSize;
-            }
-            break;
-        case ProductIDXDPE15284:
-            size = XDPE15284CConfSize;
-            break;
-        default:
-            error(
-                "Failed to get configuration size of {DEVID} with revision {REV}",
-                "DEVID", deviceId, "REV", revision);
-            return -1;
+        return it->second;
     }
 
-    return size;
+    error("Failed to get configuration size of {DEVID} with revision {REV}",
+          "DEVID", deviceId, "REV", revision);
+    return -1;
 }
 
 sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
@@ -521,7 +519,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
 
                 for (int i = 1; i < tokenSize; i++)
                 {
-                    dWord = (uint32_t)strtol(tokenList[i], NULL, 16);
+                    dWord = (uint32_t)strtoul(tokenList[i], NULL, 16);
                     if ((offset == 0x0) && (i == 1))
                     {
                         sectType = (uint8_t)dWord;

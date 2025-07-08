@@ -24,11 +24,6 @@ executable(
     link_args: '-li2c',
 )
 
-systemd_system_unit_dir = dependency('systemd').get_variable(
-    'systemdsystemunitdir',
-    pkgconfig_define: ['prefix', get_option('prefix')],
-)
-
 install_data(
     'xyz.openbmc_project.Software.I2CVR.service',
     install_dir: systemd_system_unit_dir,

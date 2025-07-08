@@ -14,7 +14,7 @@ executable(
         phosphor_logging_dep,
         pdi_dep,
         boost_dep,
-        libgpiod,
+        libgpiod_dep,
         libpldm_dep,
     ],
     link_with: [libpldmutil, software_common_lib],

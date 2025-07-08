@@ -69,23 +69,28 @@ subdir('bmc')
 common_include = include_directories('.')
 
 common_build = build_tests.allowed() or get_option('bios-software-update').allowed() or get_option(
-    'i2cvr-software-update',
+    'cpld-software-update',
 ).allowed() or get_option(
     'eepromdevice-software-update',
 ).allowed() or get_option(
-    'cpld-software-update',
+    'i2cvr-software-update',
 ).allowed()
 
 if common_build
     libpldm_dep = dependency('libpldm')
+    subdir('common')
+endif
 
-    libgpiod = dependency(
+gpiod_needed = get_option('bios-software-update') or get_option(
+    'eepromdevice-software-update',
+).allowed()
+
+if gpiod_needed
+    libgpiod_dep = dependency(
         'libgpiodcxx',
         default_options: ['bindings=cxx'],
         version: '>=1.1.2',
     )
-
-    subdir('common')
 endif
 
 if get_option('bios-software-update').allowed()

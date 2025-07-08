@@ -67,28 +67,49 @@ systemd_system_unit_dir = systemd_dep.get_variable(
 
 build_tests = get_option('tests')
 
-subdir('bmc')
-
 common_include = include_directories('.')
 
-common_build = build_tests.allowed() or get_option('bios-software-update').allowed() or get_option(
-    'cpld-software-update',
-).allowed() or get_option(
-    'eepromdevice-software-update',
-).allowed() or get_option(
-    'i2cvr-software-update',
-).allowed()
+subdir('bmc')
 
-if common_build
+
+all_options = {
+    'bios-software-update': {'dirs' : ['bios'], 'deps': ['libgpiod']},
+    'cpld-software-update': {'dirs' : ['common/i2c', 'cpld']},
+    'eepromdevice-software-update': {
+        'dirs': ['eeprom-device'],
+        'deps': ['libgpiod'],
+    },
+    'i2cvr-software-update': {'dirs' : ['common/i2c', 'i2c-vr']},
+}
+
+optioned_subdirs = []
+optioned_deps = []
+common_build = false
+
+foreach option_name, option_settings : all_options
+    if get_option(option_name).allowed()
+        common_build = true
+
+        foreach dir : option_settings.get('dirs', [])
+            if not optioned_subdirs.contains(dir)
+                optioned_subdirs += dir
+            endif
+        endforeach
+
+        foreach dep : option_settings.get('deps', [])
+            if not optioned_deps.contains(dep)
+                optioned_deps += dep
+            endif
+        endforeach
+    endif
+endforeach
+
+if common_build or build_tests.allowed()
     libpldm_dep = dependency('libpldm')
     subdir('common')
 endif
 
-gpiod_needed = get_option('bios-software-update').allowed() or get_option(
-    'eepromdevice-software-update',
-).allowed()
-
-if gpiod_needed
+if optioned_deps.contains('libgpiod')
     libgpiod_dep = dependency(
         'libgpiodcxx',
         default_options: ['bindings=cxx'],
@@ -96,27 +117,9 @@ if gpiod_needed
     )
 endif
 
-if get_option('bios-software-update').allowed()
-    subdir('bios')
-endif
-
-if get_option('i2cvr-software-update').allowed() or get_option(
-    'cpld-software-update',
-).allowed()
-    subdir('common/i2c/')
-endif
-
-if get_option('i2cvr-software-update').allowed()
-    subdir('i2c-vr')
-endif
-
-if get_option('eepromdevice-software-update').allowed()
-    subdir('eeprom-device')
-endif
-
-if get_option('cpld-software-update').allowed()
-    subdir('cpld')
-endif
+foreach dir : optioned_subdirs
+    subdir(dir)
+endforeach
 
 if build_tests.allowed()
     subdir('test')

@@ -199,7 +199,7 @@ if get_option('software-update-dbus-interface').allowed()
         'software_manager.cpp',
         image_updater_sources,
         software_common_sources,
-        dependencies: [deps, ssl],
+        dependencies: [deps, ssl_dep],
         install: true,
         install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
     )
@@ -216,7 +216,7 @@ executable(
     image_updater_sources,
     software_common_sources,
     'item_updater_main.cpp',
-    dependencies: [deps, ssl, boost_dep],
+    dependencies: [deps, ssl_dep, boost_dep],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )
@@ -228,7 +228,7 @@ executable(
     'version.cpp',
     'watch.cpp',
     software_common_sources,
-    dependencies: [deps, ssl],
+    dependencies: [deps, ssl_dep],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )
@@ -281,7 +281,7 @@ if build_tests.allowed()
         executable(
             'utest',
             './test/utest.cpp',
-            dependencies: [deps, gtest, include_srcs, ssl],
+            dependencies: [deps, gtest, include_srcs, ssl_dep],
         ),
     )
 endif

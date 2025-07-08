@@ -22,11 +22,6 @@ executable(
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )
 
-systemd_system_unit_dir = dependency('systemd').get_variable(
-    'systemd_system_unit_dir',
-    pkgconfig_define: ['prefix', get_option('prefix')],
-)
-
 install_data(
     'xyz.openbmc_project.Software.BIOS.service',
     install_dir: systemd_system_unit_dir,

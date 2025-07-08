@@ -23,10 +23,6 @@ executable(
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )
 
-systemd_system_unit_dir = dependency('systemd').get_variable(
-    'systemdsystemunitdir',
-    pkgconfig_define: ['prefix', get_option('prefix')],
-)
 udev_dir = dependency('udev').get_variable(
     'udev_dir',
     pkgconfig_define: ['prefix', get_option('prefix')],

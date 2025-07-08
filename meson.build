@@ -59,8 +59,11 @@ deps = [cereal_dep, pdi_dep, phosphor_logging_dep, sdbusplus_dep]
 
 ssl_dep = dependency('openssl')
 
-systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
+systemd_dep = dependency('systemd')
+systemd_system_unit_dir = systemd_dep.get_variable(
+    'systemdsystemunitdir',
+    pkgconfig_define: ['prefix', get_option('prefix')],
+)
 
 build_tests = get_option('tests')
 

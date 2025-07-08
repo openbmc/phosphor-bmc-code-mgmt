@@ -57,7 +57,7 @@ endif
 
 deps = [cereal_dep, pdi_dep, phosphor_logging_dep, sdbusplus_dep]
 
-ssl = dependency('openssl')
+ssl_dep = dependency('openssl')
 
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')

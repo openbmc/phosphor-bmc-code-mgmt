@@ -11,7 +11,12 @@ executable(
     'eeprom_device.cpp',
     eeprom_device_version_src,
     include_directories: [common_include, eeprom_device_include],
-    dependencies: [sdbusplus_dep, phosphor_logging_dep, libgpiod_dep],
+    dependencies: [
+        libgpiod_dep,
+        libpldm_dep,
+        phosphor_logging_dep,
+        sdbusplus_dep,
+    ],
     link_with: [software_common_lib, libpldmutil],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',

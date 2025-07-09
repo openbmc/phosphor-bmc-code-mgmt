@@ -181,6 +181,9 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
         if (device->softwareCurrent)
         {
             co_await device->softwareCurrent->createInventoryAssociations(true);
+
+            device->softwareCurrent->setActivation(
+                SoftwareActivation::Activations::Active);
         }
     }
 

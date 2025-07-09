@@ -18,12 +18,14 @@ const std::map<std::string, cpldInfo> supportedDeviceMap = {
      {"LCMXO3LF-2100C", {0x61, 0x2b, 0xb0, 0x43}}},
     {"LatticeLCMXO3LF_4300CFirmware",
      {"LCMXO3LF-4300C", {0x61, 0x2b, 0xc0, 0x43}}},
+    {"LatticeLCMXO3D_4300Firmware", {"LCMXO3D-4300", {0x01, 0x2e, 0x20, 0x43}}},
+    {"LatticeLCMXO3D_9400Firmware", {"LCMXO3D-9400", {0x21, 0x2e, 0x30, 0x43}}},
 };
 
 struct cpldI2cInfo
 {
-    unsigned long int QF; // Quantity of Fuses
-    unsigned int* UFM;    // User Flash Memory
+    unsigned long int QF;
+    unsigned int* UFM;
     unsigned int version;
     unsigned int checksum;
     std::vector<uint8_t> cfgData;
@@ -52,6 +54,7 @@ class CpldLatticeManager
     size_t imageSize;
     std::string chip;
     std::string target;
+    std::vector<uint8_t> sumOnly;
     bool isLCMXO3D = false;
     bool debugMode = false;
     phosphor::i2c::I2C i2cInterface;

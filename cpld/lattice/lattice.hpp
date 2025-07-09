@@ -6,6 +6,25 @@
 #include <string_view>
 #include <utility>
 
+constexpr uint8_t isOK = 0;
+constexpr uint8_t isReady = 0;
+constexpr uint8_t busyOrReadyBit = 4;
+constexpr uint8_t failOrOKBit = 5;
+constexpr uint8_t busyWaitmaxRetry = 45;
+constexpr uint8_t busyFlagBit = 0x80;
+constexpr std::chrono::milliseconds waitBusyTime(200);
+
+static constexpr std::string_view TAG_QF = "QF";
+static constexpr std::string_view TAG_UH = "UH";
+static constexpr std::string_view TAG_CF_START = "L000";
+static constexpr std::string_view TAG_TAG_DATA = "NOTE TAG DATA";
+static constexpr std::string_view TAG_UFM = "NOTE USER MEMORY DATA";
+static constexpr std::string_view TAG_CHECKSUM = "C";
+static constexpr std::string_view TAG_USERCODE = "NOTE User Electronic";
+static constexpr std::string_view TAG_EBR_INIT_DATA = "NOTE EBR_INIT DATA";
+static constexpr std::string_view TAG_END_CONFIG = "NOTE END CONFIG DATA";
+static constexpr std::string_view TAG_DEV_NAME = "NOTE DEVICE NAME";
+
 struct cpldInfo
 {
     std::string chipName;
@@ -17,14 +36,16 @@ const std::map<std::string, cpldInfo> supportedDeviceMap = {
      {"LCMXO3LF-2100C", {0x61, 0x2b, 0xb0, 0x43}}},
     {"LatticeLCMXO3LF_4300CFirmware",
      {"LCMXO3LF-4300C", {0x61, 0x2b, 0xc0, 0x43}}},
+    {"LatticeLCMXO3D_4300Firmware", {"LCMXO3D-4300", {0x01, 0x2e, 0x20, 0x43}}},
+    {"LatticeLCMXO3D_9400Firmware", {"LCMXO3D-9400", {0x21, 0x2e, 0x30, 0x43}}},
 };
 
 struct cpldI2cInfo
 {
-    unsigned long int QF; // Quantity of Fuses
-    unsigned int* UFM;    // User Flash Memory
-    unsigned int version;
-    unsigned int checksum;
+    unsigned long int QF;
+    unsigned int* UFM;
+    unsigned int Version;
+    unsigned int CheckSum;
     std::vector<uint8_t> cfgData;
     std::vector<uint8_t> ufmData;
 };
@@ -51,6 +72,7 @@ class CpldLatticeManager
     size_t imageSize;
     std::string chip;
     std::string target;
+    std::vector<uint8_t> sumOnly;
     bool isLCMXO3D = false;
     bool debugMode = false;
     phosphor::i2c::I2C i2cInterface;

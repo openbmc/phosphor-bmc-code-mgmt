@@ -5,26 +5,29 @@
 #include <algorithm>
 #include <fstream>
 #include <map>
+#include <numeric>
 #include <thread>
 #include <vector>
 
-constexpr uint8_t busyWaitmaxRetry = 30;
+constexpr uint8_t busyWaitmaxRetry = 45;
 constexpr uint8_t busyFlagBit = 0x80;
 constexpr std::chrono::milliseconds waitBusyTime(200);
 
-static constexpr std::string_view tagQF = "QF";
-static constexpr std::string_view tagUH = "UH";
-static constexpr std::string_view tagCFStart = "L000";
-static constexpr std::string_view tagChecksum = "C";
-static constexpr std::string_view tagUserCode = "NOTE User Electronic";
-static constexpr std::string_view tagEbrInitData = "NOTE EBR_INIT DATA";
+static constexpr std::string_view TAG_QF = "QF";
+static constexpr std::string_view TAG_UH = "UH";
+static constexpr std::string_view TAG_CF_START = "L000";
+static constexpr std::string_view TAG_TAG_DATA = "NOTE TAG DATA";
+static constexpr std::string_view TAG_UFM = "NOTE USER MEMORY DATA";
+static constexpr std::string_view TAG_CHECKSUM = "C";
+static constexpr std::string_view TAG_USERCODE = "NOTE User Electronic";
+static constexpr std::string_view TAG_EBR_INIT_DATA = "NOTE EBR_INIT DATA";
+static constexpr std::string_view TAG_END_CONFIG = "NOTE END CONFIG DATA";
+static constexpr std::string_view TAG_DEV_NAME = "NOTE DEVICE NAME";
 
 constexpr uint8_t isOK = 0;
 constexpr uint8_t isReady = 0;
 constexpr uint8_t busyOrReadyBit = 4;
 constexpr uint8_t failOrOKBit = 5;
-
-constexpr bool enableUpdateEbrInit = false;
 
 enum cpldI2cCmd
 {
@@ -49,20 +52,6 @@ static uint8_t reverse_bit(uint8_t b)
     return b;
 }
 
-static int findNumberSize(const std::string& end, const std::string& start,
-                          const std::string& line)
-{
-    auto pos1 = line.find(start);
-    auto pos2 = line.find(end);
-
-    if (pos1 == std::string::npos || pos2 == std::string::npos || pos1 >= pos2)
-    {
-        return false;
-    }
-
-    return static_cast<int>(pos2 - pos1 - 1);
-}
-
 std::string uint32ToHexStr(uint32_t value)
 {
     std::ostringstream oss;
@@ -73,13 +62,16 @@ std::string uint32ToHexStr(uint32_t value)
 
 bool CpldLatticeManager::jedFileParser()
 {
-    bool cfStart = false;
-    bool ufmStart = false; // for isLCMXO3D
-    bool ufmPrepare = false;
-    bool versionStart = false;
-    bool checksumStart = false;
-    bool ebrInitDataStart = false;
-    int numberSize = 0;
+    enum class ParseState
+    {
+        none,
+        cfg,
+        endCfg,
+        ufm,
+        checksum,
+        userCode
+    };
+    ParseState state = ParseState::none;
 
     if (image == nullptr || imageSize == 0)
     {
@@ -94,208 +86,140 @@ bool CpldLatticeManager::jedFileParser()
     std::istringstream iss(content);
     std::string line;
 
-    // Parsing JED file
+    auto pushPage = [](std::string& line, std::vector<uint8_t>& sector) {
+        if (line[0] == '0' || line[0] == '1')
+        {
+            while (line.size() >= 8)
+            {
+                try
+                {
+                    sector.push_back(static_cast<uint8_t>(
+                        std::stoi(line.substr(0, 8), 0, 2)));
+                    line.erase(0, 8);
+                }
+                catch (...)
+                {
+                    break;
+                }
+            }
+        }
+    };
+
     while (getline(iss, line))
     {
-        if (line.rfind(tagQF, 0) == 0)
+        if (!line.empty() && line.back() == '\r')
         {
-            numberSize = findNumberSize("*", "F", line);
-            if (numberSize <= 0)
-            {
-                lg2::error("Error in parsing QF tag");
-                return false;
-            }
-            static constexpr auto start = tagQF.length();
-            fwInfo.QF = std::stoul(line.substr(start, numberSize));
-
-            lg2::debug("QF Size = {QF}", "QF", fwInfo.QF);
+            line.pop_back();
         }
-        else if (line.rfind(tagCFStart, 0) == 0)
+        if (line.empty())
         {
-            cfStart = true;
-        }
-        else if (enableUpdateEbrInit && line.rfind(tagEbrInitData, 0) == 0)
-        {
-            ebrInitDataStart = true;
-        }
-        else if (ufmPrepare)
-        {
-            ufmPrepare = false;
-            ufmStart = true;
             continue;
         }
-        else if (line.rfind(tagUserCode, 0) == 0)
+
+        if (line.starts_with(TAG_QF))
         {
-            versionStart = true;
+            ssize_t numberSize = static_cast<ssize_t>(line.find('*')) -
+                                 static_cast<ssize_t>(line.find('F')) - 1;
+            if (numberSize > 0)
+            {
+                fwInfo.QF =
+                    std::stoul(line.substr(TAG_QF.length(), numberSize));
+                lg2::debug("QF Size = {QFSIZE}", "QFSIZE", fwInfo.QF);
+            }
         }
-        else if (line.rfind(tagChecksum, 0) == 0)
+        else if (line.starts_with(TAG_CF_START) ||
+                 line.starts_with(TAG_EBR_INIT_DATA))
         {
-            checksumStart = true;
+            state = ParseState::cfg;
+            continue;
+        }
+        else if (line.starts_with(TAG_END_CONFIG))
+        {
+            state = ParseState::endCfg;
+            continue;
+        }
+        else if (line.starts_with(TAG_UFM) || line.starts_with(TAG_TAG_DATA))
+        {
+            state = ParseState::ufm;
+            continue;
+        }
+        else if (line.starts_with(TAG_USERCODE))
+        {
+            state = ParseState::userCode;
+            continue;
+        }
+        else if (line.starts_with(TAG_CHECKSUM))
+        {
+            state = ParseState::checksum;
+        }
+        else if (line.starts_with(TAG_DEV_NAME))
+        {
+            lg2::debug("{DEVNAME}", "DEVNAME", line);
+            if (line.find(chip) == std::string::npos)
+            {
+                lg2::debug("STOP UPDATING: The image does not match the chip.");
+                return -1;
+            }
         }
 
-        if (line.rfind("NOTE DEVICE NAME:", 0) == 0)
+        switch (state)
         {
-            lg2::error(line.c_str());
-            if (line.find(chip) != std::string::npos)
-            {
-                lg2::debug("[OK] The image device name match with chip name");
-            }
-            else
-            {
-                lg2::debug("Abort update as image doesn't match the chip name");
-                return false;
-            }
-        }
-
-        if (cfStart)
-        {
-            // L000
-            if ((line.rfind(tagCFStart, 0)) && (line.size() != 1))
-            {
-                if ((line.rfind('0', 0) == 0) || (line.rfind('1', 0) == 0))
+            case ParseState::cfg:
+                pushPage(line, fwInfo.cfgData);
+                break;
+            case ParseState::endCfg:
+                pushPage(line, sumOnly);
+                break;
+            case ParseState::ufm:
+                pushPage(line, fwInfo.ufmData);
+                break;
+            case ParseState::checksum:
+                if (line.size() > 1)
                 {
-                    while (!line.empty())
-                    {
-                        auto binaryStr = line.substr(0, 8);
-                        try
-                        {
-                            fwInfo.cfgData.push_back(
-                                std::stoi(binaryStr, 0, 2));
-                            line.erase(0, 8);
-                        }
-                        catch (const std::invalid_argument& error)
-                        {
-                            break;
-                        }
-                        catch (...)
-                        {
-                            lg2::error("Error while parsing CF section");
-                            return false;
-                        }
-                    }
-                }
-                else
-                {
-                    lg2::debug("CF size = {CF}", "CF", fwInfo.cfgData.size());
-                    cfStart = false;
-                    if (!ebrInitDataStart)
-                    {
-                        ufmPrepare = true;
-                    }
-                }
-            }
-        }
-        else if (enableUpdateEbrInit && ebrInitDataStart)
-        {
-            // NOTE EBR_INIT DATA
-            if ((line.rfind(tagEbrInitData, 0)) && (line.size() != 1))
-            {
-                if ((line.rfind('L', 0)) && (line.size() != 1))
-                {
-                    if ((line.rfind('0', 0) == 0) || (line.rfind('1', 0) == 0))
-                    {
-                        while (!line.empty())
-                        {
-                            auto binaryStr = line.substr(0, 8);
-                            try
-                            {
-                                fwInfo.cfgData.push_back(
-                                    std::stoi(binaryStr, 0, 2));
-                                line.erase(0, 8);
-                            }
-                            catch (const std::invalid_argument& error)
-                            {
-                                break;
-                            }
-                            catch (...)
-                            {
-                                lg2::error("Error while parsing CF section");
-                                return false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        lg2::debug("CF size with EBR_INIT Data = {CF}", "CF",
-                                   fwInfo.cfgData.size());
-                        ebrInitDataStart = false;
-                        ufmPrepare = true;
-                    }
-                }
-            }
-        }
-        else if ((checksumStart) && (line.size() != 1))
-        {
-            checksumStart = false;
-            numberSize = findNumberSize("*", "C", line);
-            if (numberSize <= 0)
-            {
-                lg2::error("Error in parsing checksum");
-                return false;
-            }
-            static constexpr auto start = tagChecksum.length();
-            std::istringstream iss(line.substr(start, numberSize));
-            iss >> std::hex >> fwInfo.checksum;
-
-            lg2::debug("Checksum = {CHECKSUM}", "CHECKSUM", fwInfo.checksum);
-        }
-        else if (versionStart)
-        {
-            if ((line.rfind(tagUserCode, 0)) && (line.size() != 1))
-            {
-                versionStart = false;
-
-                if (line.rfind(tagUH, 0) == 0)
-                {
-                    numberSize = findNumberSize("*", "H", line);
+                    state = ParseState::none;
+                    ssize_t numberSize =
+                        static_cast<ssize_t>(line.find('*')) -
+                        static_cast<ssize_t>(line.find('C')) - 1;
                     if (numberSize <= 0)
                     {
-                        lg2::error("Error in parsing version");
-                        return false;
+                        lg2::debug("Error in parsing checksum");
+                        return -1;
                     }
-                    static constexpr auto start = tagUH.length();
+                    static constexpr auto start = TAG_CHECKSUM.length();
                     std::istringstream iss(line.substr(start, numberSize));
+                    iss >> std::hex >> fwInfo.checksum;
+                    lg2::debug("Checksum = 0x{CHECKSUM}", "CHECKSUM",
+                               fwInfo.checksum);
+                }
+                break;
+            case ParseState::userCode:
+                if (line.starts_with(TAG_UH))
+                {
+                    state = ParseState::none;
+                    ssize_t numberSize =
+                        static_cast<ssize_t>(line.find('*')) -
+                        static_cast<ssize_t>(line.find('H')) - 1;
+                    if (numberSize <= 0)
+                    {
+                        lg2::debug("Error in parsing usercode");
+                        return -1;
+                    }
+                    std::istringstream iss(
+                        line.substr(TAG_UH.length(), numberSize));
                     iss >> std::hex >> fwInfo.version;
-
-                    lg2::debug("UserCode = {USERCODE}", "USERCODE",
+                    lg2::debug("UserCode = 0x{USERCODE}", "USERCODE",
                                fwInfo.version);
                 }
-            }
+                break;
+            default:
+                break;
         }
-        else if (ufmStart)
-        {
-            if ((line.rfind('L', 0)) && (line.size() != 1))
-            {
-                if ((line.rfind('0', 0) == 0) || (line.rfind('1', 0) == 0))
-                {
-                    while (!line.empty())
-                    {
-                        auto binaryStr = line.substr(0, 8);
-                        try
-                        {
-                            fwInfo.ufmData.push_back(
-                                std::stoi(binaryStr, 0, 2));
-                            line.erase(0, 8);
-                        }
-                        catch (const std::invalid_argument& error)
-                        {
-                            break;
-                        }
-                        catch (...)
-                        {
-                            lg2::error("Error while parsing UFM section");
-                            return false;
-                        }
-                    }
-                }
-                else
-                {
-                    lg2::debug("UFM size = {UFM}", "UFM",
-                               fwInfo.ufmData.size());
-                    ufmStart = false;
-                }
-            }
-        }
+    }
+
+    lg2::debug("CFG Size = {CFGSIZE}", "CFGSIZE", fwInfo.cfgData.size());
+    if (!fwInfo.ufmData.empty())
+    {
+        lg2::debug("UFM size = {UFMSIZE}", "UFMSIZE", fwInfo.ufmData.size());
     }
 
     return true;
@@ -303,28 +227,34 @@ bool CpldLatticeManager::jedFileParser()
 
 bool CpldLatticeManager::verifyChecksum()
 {
-    // Compute check sum
-    unsigned int jedFileCheckSum = 0;
-    for (unsigned i = 0; i < fwInfo.cfgData.size(); i++)
-    {
-        jedFileCheckSum += reverse_bit(fwInfo.cfgData.at(i));
-    }
-    for (unsigned i = 0; i < fwInfo.ufmData.size(); i++)
-    {
-        jedFileCheckSum += reverse_bit(fwInfo.ufmData.at(i));
-    }
-    lg2::debug("jedFileCheckSum = {JEDFILECHECKSUM}", "JEDFILECHECKSUM",
-               jedFileCheckSum);
-    jedFileCheckSum = jedFileCheckSum & 0xffff;
+    uint32_t calculated = 0U;
+    auto addByte = [](uint32_t sum, uint8_t byte) {
+        return sum + reverse_bit(byte);
+    };
 
-    if ((fwInfo.checksum != jedFileCheckSum) || (fwInfo.checksum == 0))
+    calculated = std::accumulate(fwInfo.cfgData.begin(), fwInfo.cfgData.end(),
+                                 calculated, addByte);
+    calculated =
+        std::accumulate(sumOnly.begin(), sumOnly.end(), calculated, addByte);
+    calculated = std::accumulate(fwInfo.ufmData.begin(), fwInfo.ufmData.end(),
+                                 calculated, addByte);
+
+    lg2::debug("Calculated checksum = {CALCULATED}", "CALCULATED", lg2::hex,
+               calculated);
+    lg2::debug("Checksum from JED file = {JEDFILECHECKSUM}", "JEDFILECHECKSUM",
+               lg2::hex, fwInfo.checksum);
+
+    if (fwInfo.checksum != (calculated & 0xFFFF))
     {
-        lg2::error("CPLD JED File CheckSum Error = {JEDFILECHECKSUM}",
-                   "JEDFILECHECKSUM", jedFileCheckSum);
+        lg2::error("JED file checksum compare fail, "
+                   "Calculated checksum = {CALCULATED}, "
+                   "Checksum from JED file = {JEDFILECHECKSUM}",
+                   "CALCULATED", lg2::hex, calculated, "JEDFILECHECKSUM",
+                   lg2::hex, fwInfo.checksum);
         return false;
     }
 
-    lg2::debug("JED File Checksum compare success");
+    lg2::debug("JED file checksum compare success");
     return true;
 }
 

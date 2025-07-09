@@ -60,7 +60,7 @@ deps = [cereal_dep, pdi_dep, phosphor_logging_dep, sdbusplus_dep]
 ssl = dependency('openssl')
 
 systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_variable('systemdsystemunitdir')
+systemd_system_unit_dir = systemd.get_variable('systemd_system_unit_dir')
 
 build_tests = get_option('tests')
 

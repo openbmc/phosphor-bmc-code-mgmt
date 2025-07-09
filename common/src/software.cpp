@@ -33,6 +33,8 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
 {
     std::string objPath = baseObjPathSoftware + swid;
 
+    Activation::emit_added();
+
     debug("{SWID}: created dbus interfaces on path {OBJPATH}", "SWID", swid,
           "OBJPATH", objPath);
 };
@@ -138,6 +140,8 @@ void Software::setActivationBlocksTransition(bool enabled)
     std::string path = objectPath;
     activationBlocksTransition =
         std::make_unique<SoftwareActivationBlocksTransition>(ctx, path.c_str());
+
+    activationBlocksTransition->emit_added();
 }
 
 void Software::setActivation(SoftwareActivation::Activations act)

@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b83c9c05_6e686b4f",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-07-10T06:07:00Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#constants\nPlease use lowerCamelCase.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 16
+      },
+      "revId": "5e22b4cf7b47b262c888c23a325d8da074c380f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d648345_feb733b4",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-07-10T06:07:00Z",
+      "side": 1,
+      "message": "If the following items are only used in the .cpp file, please move them there.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 68
+      },
+      "revId": "5e22b4cf7b47b262c888c23a325d8da074c380f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85ae7bd_4928c0f9",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-07-10T06:07:00Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#constants\nPlease use lowerCamelCase.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "5e22b4cf7b47b262c888c23a325d8da074c380f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

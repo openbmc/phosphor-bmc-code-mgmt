@@ -34,6 +34,24 @@
       "parentUuid": "19720706_d5fb853f",
       "revId": "a02807c31c5a8e0edd4f26e587d830462ce81715",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8673ce8_be8048cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-11T04:03:01Z",
+      "side": 1,
+      "message": "You see there are 3 commits earlier in the chain \"meson: fix ...\".  These were all mistakes in the if-logic and/or subdirectory cross-dependencies.",
+      "parentUuid": "05bdedb9_06ea1ca0",
+      "revId": "a02807c31c5a8e0edd4f26e587d830462ce81715",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

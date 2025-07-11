@@ -70,6 +70,24 @@
       "parentUuid": "f8673ce8_be8048cf",
       "revId": "a02807c31c5a8e0edd4f26e587d830462ce81715",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "677ff03d_4ca0a44e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-11T09:41:07Z",
+      "side": 1,
+      "message": "\u003e And the proposed code has if and for blocks nested 4 levels deep.\n\nI don’t see how that is equivalent. The previous code had options reused adhoc in different of blocks. It was not clear where each option was used.\n\n\u003e The existing logic is easy to understand. If you need some subdir or dependency,\nor the meson option to the corresponding if statement.\n\nMaybe it was “easy to understand” but it was clearly not “easy to get right”.  And if it was so “easy to understand” wouldn’t the reviewers (and the authors) have noticed that it was wrong?",
+      "parentUuid": "46aefc82_507d600e",
+      "revId": "a02807c31c5a8e0edd4f26e587d830462ce81715",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,344 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b4d71e_cb0f2079",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Please drop the NOLINT throughout code if they are added due to recently dropped warnings.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccbd88ae_af819852",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Lets rename this exampleUpdater.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830c0f7c_6c2335e5",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "I suppose u can directly pass var as \u0026var to this constructor.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc02cc4_5967eefa",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Why NOLINT?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949ecf3c_d2c5206e",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Please use EXPECT_EQ and other gtest macros.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de370d21_6b4f8001",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Rename to exampleUpdater.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4344d832_065824c1",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "You can directly pass \u0026var to constructor and drop this.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5d52f2_ffb55068",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Please use EXPECT_TRUE gtest macro and change assert at all other places to EXPECT_* macros as well.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb5f96a_57786eb1",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Change to EXPECT_EQ.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3680f9b4_309dcd8c",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Why NOLINT?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad9d7b29_31dd9b37",
+        "filename": "test/common/test_software_config.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Lets change all files to drop test_ as you are already in test dir, so its redundant and making the file names too long.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b53b542_d9f9e19b",
+        "filename": "test/common/test_software_config.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Lets change success to ConfigCreate",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a17cd80_5eab0d8f",
+        "filename": "test/common/test_software_config.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Lets change TestCase name to first char as capital in all places.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e668b80b_f62d6ade",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "change sap to activationProgress",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6088d53f_f4e1420e",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Move all the logic until now to Test class constructor since this all initialization.\nAlso introduce a negative test case for update failure scenarios so you can use this common code.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dec52ad_e4a883c6",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e6511fc_b84d3fbc",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "change to EXPECT_ instead.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7694939e_7b7b219f",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Are these prints actually working in gtest? I had tried but nothing shows in journal or on console or in testlog.txt, so wondering if these are even useful?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b57c83_86bfa8dc",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "print this as part of EXPECT_EQ.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59718a62_538425f3",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-12T03:04:56Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

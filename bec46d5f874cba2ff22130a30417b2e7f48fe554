@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab00c52_c35fbccf",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75b4d71e_cb0f2079",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccbd88ae_af819852",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Lets rename this exampleUpdater.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a2d6b1_31bb18a0",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccbd88ae_af819852",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e23bf8_c1bf33b7",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "830c0f7c_6c2335e5",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dc02cc4_5967eefa",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Why NOLINT?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d88c066_b3eb6d84",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "removed it, the NOLINT was not necessary 😊",
+      "parentUuid": "3dc02cc4_5967eefa",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "835acfc4_303af5a4",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "949ecf3c_d2c5206e",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de370d21_6b4f8001",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Rename to exampleUpdater.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "331e259a_f2f33af2",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de370d21_6b4f8001",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3705ea88_d10a9332",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4344d832_065824c1",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc5d52f2_ffb55068",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Please use EXPECT_TRUE gtest macro and change assert at all other places to EXPECT_* macros as well.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a90c5f_eef887aa",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "removed all `assert(...)` from this commit",
+      "parentUuid": "fc5d52f2_ffb55068",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b68614e6_aebc1a52",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fb5f96a_57786eb1",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3680f9b4_309dcd8c",
@@ -167,6 +329,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Why NOLINT?",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2880580_924c1778",
+        "filename": "test/common/device/test_device_specific_update_function.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "changed it to nolint for garbage branch.",
+      "parentUuid": "3680f9b4_309dcd8c",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +385,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd1da29d_dab7dc14",
+        "filename": "test/common/test_software_config.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b53b542_d9f9e19b",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a17cd80_5eab0d8f",
@@ -222,6 +420,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2770427_edeb8520",
+        "filename": "test/common/test_software_config.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a17cd80_5eab0d8f",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e668b80b_f62d6ade",
@@ -235,6 +451,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "change sap to activationProgress",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "707b8b16_3d54e05c",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e668b80b_f62d6ade",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -275,6 +509,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc5ea5ee_014a5f63",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Since the update is started in a separate coroutine, i did not directly find something to await here.\nDo you have any recommendation? Should i use the fdio?\nOtherwise i will look for something.",
+      "parentUuid": "5dec52ad_e4a883c6",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e6511fc_b84d3fbc",
         "filename": "test/common/test_software_update.cpp",
         "patchSetId": 95
@@ -286,6 +538,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "change to EXPECT_ instead.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "153608c3_4c71c587",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e6511fc_b84d3fbc",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -307,6 +577,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68343b17_3b61eba8",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "They do work if you run the test binary directly.\n\nThe intent is to quickly figure what\u0027s wrong if a test case does not pass.\n\n```\n./build/test/common/test_software_update\nRunning main() from /usr/src/debug/gtest/googletest-1.17.0/googletest/src/gtest_main.cc\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] Running 1 test from 1 test suite.\n[----------] Global test environment set-up.\n[----------] 1 test from SoftwareUpdate\n[ RUN      ] SoftwareUpdate.TestSoftwareUpdate\n\u003c7\u003e create fd 7\n\u003c7\u003e wrote 171 bytes for pldm update package\n\u003c7\u003e requesting dbus name xyz.openbmc_project.Software.ExampleUpdater1323\n\u003c7\u003e Initialized SoftwareManager\n\u003c7\u003e ExampleSoftware_4747: created dbus interfaces on path /xyz/openbmc_project/software/ExampleSoftware_4747\n\u003c7\u003e ExampleSoftware_4747: set version v12.345\n\u003c7\u003e [Software] enabling update of /xyz/openbmc_project/software/ExampleSoftware_4747 (adding the update interface)\n\u003c7\u003e Requesting Image update with 9\n\u003c7\u003e started asynchronous update with fd 9\n\u003c7\u003e starting async update with FD: 10\n\n\u003c7\u003e ExampleSoftware_1593: created dbus interfaces on path /xyz/openbmc_project/software/ExampleSoftware_1593\n\u003c7\u003e starting the async update with memfd 10\n\u003c7\u003e open fd 10\n\u003c7\u003e file size: 171\n\u003c7\u003e parsing package header\n\u003c7\u003e parsing package, pkg header size: 167\n\u003c7\u003e ExampleSoftware_1593: set version mycompversion\n\u003c7\u003e Called device specific update function with image size 4\n\u003c7\u003e Default implementation for device reset\n\u003c7\u003e ExampleSoftware_1593: setting association definitions\n\u003c3\u003e method: org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable\n\u003c7\u003e [Software] enabling update of /xyz/openbmc_project/software/ExampleSoftware_1593 (adding the update interface)\n\u003c7\u003e Successfully updated to software version ExampleSoftware_1593\n[       OK ] SoftwareUpdate.TestSoftwareUpdate (2006 ms)\n[----------] 1 test from SoftwareUpdate (2006 ms total)\n\n[----------] Global test environment tear-down\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] 1 test from 1 test suite ran. (2006 ms total)\n[  PASSED  ] 1 test.\n```",
+      "parentUuid": "7694939e_7b7b219f",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8b57c83_86bfa8dc",
@@ -324,6 +612,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebeb9f4b_69c4f885",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b57c83_86bfa8dc",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59718a62_538425f3",
@@ -337,6 +643,24 @@
       "writtenOn": "2025-07-12T03:04:56Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3fab035_d5a60677",
+        "filename": "test/common/test_software_update.cpp",
+        "patchSetId": 95
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-15T09:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59718a62_538425f3",
       "revId": "bec46d5f874cba2ff22130a30417b2e7f48fe554",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

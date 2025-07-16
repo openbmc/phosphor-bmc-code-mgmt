@@ -575,14 +575,29 @@ function mmc_mount() {
 }
 
 function mmc_update() {
+    # shellcheck disable=SC2154
+    echo "mmc_update storage mode: $mode"
     # Update u-boot if needed
-    bootPartition="mmcblk0boot0"
+    if [ "$mode" == "ufs" ]; then
+        diskdev="sda"
+        bootPartition="sdb"
+        rootPartition="sda"
+
+    else
+        diskdev="mmcblk0"
+        bootPartition="mmcblk0boot0"
+        rootPartition="mmcblk0p"
+    fi
     devUBoot="/dev/${bootPartition}"
     imgUBoot="${imgpath}/${version}/image-u-boot"
     if [ "$(cmp_uboot "${devUBoot}" "${imgUBoot}")" != "0" ]; then
-        echo 0 > "/sys/block/${bootPartition}/force_ro"
-        dd if="${imgUBoot}" of="${devUBoot}"
-        echo 1 > "/sys/block/${bootPartition}/force_ro"
+        if [ "$mode" == "ufs" ]; then
+            dd if="${imgUBoot}" of="${devUBoot}"
+        else
+            echo 0 > "/sys/block/${bootPartition}/force_ro"
+            dd if="${imgUBoot}" of="${devUBoot}"
+            echo 1 > "/sys/block/${bootPartition}/force_ro"
+        fi
     fi
 
     # Update the secondary (non-running) boot and rofs partitions.
@@ -592,13 +607,15 @@ function mmc_update() {
     # by getting the partition number mmcblk0pX from their label.
     zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
     number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
-    number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
+    # shellcheck disable=SC2295
+    number="${number##*/${rootPartition}}"
+    sgdisk --change-name="${number}":boot-"${label}" /dev/${diskdev} 1>/dev/null
 
     zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
     number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
-    number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
+    # shellcheck disable=SC2295
+    number="${number##*/${rootPartition}}"
+    sgdisk --change-name="${number}":boot-"${label}" /dev/${diskdev} 1>/dev/null
 
     # Run this after sgdisk for labels to take effect.
     partprobe
@@ -646,14 +663,23 @@ function mmc_setprimary() {
 }
 
 function mmc_mirroruboot() {
+    echo "mmc_mirroruboot storage mode: $mode"
+    if [ "$mode" == "ufs" ]; then
+        storage_boot0="sdb"
+        storage_boot1="sdc"
+    else
+        storage_boot0="mmcblk0boot0"
+        storage_boot1="mmcblk0boot1"
+    fi
     # Get current boot device; 0-primary_bootdev device; 1 - alt_bootdev
     bootdev=$(cat /sys/kernel/debug/aspeed/sbc/abr_image)
+    # Update u-boot if needed
     if [[ "${bootdev}" == "0" ]]; then
-        bootPartition="mmcblk0boot0"
-        alt_bootPartition="mmcblk0boot1"
+        bootPartition="${storage_boot0}"
+        alt_bootPartition="${storage_boot1}"
     else
-        bootPartition="mmcblk0boot1"
-        alt_bootPartition="mmcblk0boot0"
+        bootPartition="${storage_boot1}"
+        alt_bootPartition="${storage_boot0}"
     fi
 
     devUBoot="/dev/${bootPartition}"
@@ -666,9 +692,13 @@ function mmc_mirroruboot() {
 
     if [[ "${checksum_UBoot}" != "${checksum_alt_UBoot}" ]]; then
         echo "Mirroring U-boot to alt chip"
-        echo 0 > "/sys/block/${alt_bootPartition}/force_ro"
-        dd if="${devUBoot}" of="${alt_devUBoot}"
-        echo 1 > "/sys/block/${alt_bootPartition}/force_ro"
+        if [ "$mode" == "ufs" ]; then
+            dd if="${devUBoot}" of="${alt_devUBoot}"
+        else
+            echo 0 > "/sys/block/${alt_bootPartition}/force_ro"
+            dd if="${devUBoot}" of="${alt_devUBoot}"
+            echo 1 > "/sys/block/${alt_bootPartition}/force_ro"
+        fi
     fi
 }
 

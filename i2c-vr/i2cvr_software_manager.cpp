@@ -88,7 +88,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
         co_return false;
     }
 
-    software->setVersion(std::to_string(sum));
+    software->setVersion(std::format("{:X}", sum));
 
     std::set<RequestedApplyTimes> allowedApplyTime = {
         RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};

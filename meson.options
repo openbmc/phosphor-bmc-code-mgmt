@@ -11,6 +11,13 @@ option(
     description: 'The BMC layout type.',
 )
 
+option(
+    'storage-mode',
+    type: 'string',
+    value: 'mmc',
+    description: 'The BMC mass storage type.',
+)
+
 # Features
 option(
     'host-bios-upgrade',

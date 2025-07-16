@@ -1,6 +1,11 @@
 #!/bin/bash
 set -eo pipefail
 
+# If the mode is not specified, default to mmc
+if [ -z "$MODE" ]; then
+    MODE="mmc"
+fi
+
 # Get the root mtd device number (mtdX) from "/dev/ubiblockX_Y on /"
 function findrootmtd() {
     rootmatch=" on / "
@@ -576,29 +581,40 @@ function mmc_mount() {
 
 function mmc_update() {
     # Update u-boot if needed
-    bootPartition="mmcblk0boot0"
+    if [ "$MODE" == "ufs" ]; then
+        bootPartition=$(basename "$(readlink -f /dev/disk/by-path/*ufshc-scsi-0:0:0:1)")
+    else
+        bootPartition=$(basename "$(readlink -f /dev/disk/by-path/*sdhci-boot0)")
+    fi
+    echo "mmc_update storage mode: $MODE bootPartition: $bootPartition"
     devUBoot="/dev/${bootPartition}"
     imgUBoot="${imgpath}/${version}/image-u-boot"
     if [ "$(cmp_uboot "${devUBoot}" "${imgUBoot}")" != "0" ]; then
-        echo 0 > "/sys/block/${bootPartition}/force_ro"
-        dd if="${imgUBoot}" of="${devUBoot}"
-        echo 1 > "/sys/block/${bootPartition}/force_ro"
+        if [ -e "/sys/block/${bootPartition}/force_ro" ]; then
+            echo 0 > "/sys/block/${bootPartition}/force_ro"
+            dd if="${imgUBoot}" of="${devUBoot}"
+            echo 1 > "/sys/block/${bootPartition}/force_ro"
+        else
+            dd if="${imgUBoot}" of="${devUBoot}"
+        fi
     fi
 
     # Update the secondary (non-running) boot and rofs partitions.
     label="$(mmc_get_secondary_label)"
 
+    diskPartition=$(basename "$(readlink -f /dev/disk/by-partlabel/boot-"${label}")")
+    diskdev=$(basename "$(dirname "$(realpath "/sys/class/block/${diskPartition}")")")
+    echo "mmc_update label: $label diskPartition: $diskPartition diskdev: $diskdev"
+
     # Update the boot and rootfs partitions, restore their labels after the update
     # by getting the partition number mmcblk0pX from their label.
     zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
-    number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
-    number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
+    number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}" | grep -o '[0-9]\+$')"
+    sgdisk --change-name="${number}":boot-"${label}" "/dev/${diskdev}" 1>/dev/null
 
     zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
-    number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
-    number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
+    number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}" | grep -o '[0-9]\+$')"
+    sgdisk --change-name="${number}":rofs-"${label}" "/dev/${diskdev}" 1>/dev/null
 
     # Run this after sgdisk for labels to take effect.
     partprobe
@@ -646,14 +662,22 @@ function mmc_setprimary() {
 }
 
 function mmc_mirroruboot() {
+    if [ "$MODE" == "ufs" ]; then
+        storage_boot0=$(basename "$(readlink -f /dev/disk/by-path/*ufshc-scsi-0:0:0:1)")
+        storage_boot1=$(basename "$(readlink -f /dev/disk/by-path/*ufshc-scsi-0:0:0:2)")
+    else
+        storage_boot0=$(basename "$(readlink -f /dev/disk/by-path/*sdhci-boot0)")
+        storage_boot1=$(basename "$(readlink -f /dev/disk/by-path/*sdhci-boot1)")
+    fi
+    echo "mmc_mirroruboot storage mode: $MODE storage_boot0: $storage_boot0 storage_boot1: $storage_boot1"
     # Get current boot device; 0-primary_bootdev device; 1 - alt_bootdev
     bootdev=$(cat /sys/kernel/debug/aspeed/sbc/abr_image)
     if [[ "${bootdev}" == "0" ]]; then
-        bootPartition="mmcblk0boot0"
-        alt_bootPartition="mmcblk0boot1"
+        bootPartition="${storage_boot0}"
+        alt_bootPartition="${storage_boot1}"
     else
-        bootPartition="mmcblk0boot1"
-        alt_bootPartition="mmcblk0boot0"
+        bootPartition="${storage_boot1}"
+        alt_bootPartition="${storage_boot0}"
     fi
 
     devUBoot="/dev/${bootPartition}"
@@ -666,9 +690,13 @@ function mmc_mirroruboot() {
 
     if [[ "${checksum_UBoot}" != "${checksum_alt_UBoot}" ]]; then
         echo "Mirroring U-boot to alt chip"
-        echo 0 > "/sys/block/${alt_bootPartition}/force_ro"
-        dd if="${devUBoot}" of="${alt_devUBoot}"
-        echo 1 > "/sys/block/${alt_bootPartition}/force_ro"
+        if [ -e "/sys/block/${bootPartition}/force_ro" ]; then
+            echo 0 > "/sys/block/${alt_bootPartition}/force_ro"
+            dd if="${devUBoot}" of="${alt_devUBoot}"
+            echo 1 > "/sys/block/${alt_bootPartition}/force_ro"
+        else
+            dd if="${devUBoot}" of="${alt_devUBoot}"
+        fi
     fi
 }
 

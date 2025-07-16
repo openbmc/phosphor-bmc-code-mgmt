@@ -4,4 +4,5 @@ Description=Write image %I to BMC storage
 [Service]
 Type=oneshot
 RemainAfterExit=no
+Environment=mode=@STORAGE_MODE@
 ExecStart=/usr/bin/obmc-flash-bmc mmc %i @IMG_UPLOAD_DIR@

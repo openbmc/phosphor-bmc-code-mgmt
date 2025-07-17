@@ -16,6 +16,24 @@
       "message": "I posted the test results in a Discord thread:\nhttps://discord.com/channels/775381525260664832/867820390406422538/threads/1395349728459231316\n\nDuring testing `phosphor-image-updater` crashes with the following errors:\n1) `std::bad_alloc` -\u003e sigabrt;\n2) segfault.",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41da776_c1c739fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-17T18:25:15Z",
+      "side": 1,
+      "message": "1. @striker_1993@mail.ru I would suggest NOT to make any changes to repo versions but just take the one\u0027s which are in openbmc/openbmc and use this patch and see how it goes. Did u test with this combination?\n2. Also for your testing can please add a info log before this-\u003eparent.erase(this-\u003eversionId); to see if it actually gets called. Also you can add and check the logs in https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/bmc/item_updater.cpp#L490 erase function and see what flow is it going through?",
+      "parentUuid": "92dd4fec_6aa07232",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

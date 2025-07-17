@@ -38,5 +38,3 @@ struct RemovablePath
 bool unTar(int imageFd, const std::string& extractDirPath);
 
 } // namespace phosphor::software::utils
-
-boost::asio::io_context& getIOContext();

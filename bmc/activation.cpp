@@ -18,8 +18,6 @@
 #include "image_verify.hpp"
 #endif
 
-extern boost::asio::io_context& getIOContext();
-
 namespace phosphor
 {
 namespace software
@@ -448,9 +446,10 @@ void Activation::onStateChangesBios(sdbusplus::message_t& msg)
                 parent.versions.find(versionId)->second->version());
 
             // Delete the uploaded activation
-            boost::asio::post(getIOContext(), [this]() {
-                this->parent.erase(this->versionId);
-            });
+            ctx.spawn([](auto self) -> sdbusplus::async::task<> {
+                self->parent.erase(self->versionId);
+                co_return;
+            }(this));
         }
         else if (newStateResult == "failed")
         {

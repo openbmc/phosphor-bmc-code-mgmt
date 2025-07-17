@@ -150,7 +150,7 @@ void ItemUpdater::createActivationWithApplyTime(
                         bmcInventoryPath));
     activations.insert(std::make_pair(
         id, std::make_unique<Activation>(
-                bus, path, *this, id, server::Activation::Activations::NotReady,
+                ctx, path, *this, id, server::Activation::Activations::NotReady,
                 associations)));
     activations[id]->applyTime = applyTime;
 }
@@ -195,7 +195,7 @@ ActivationIntf::Activations ItemUpdater::verifyAndCreateObjects(
     if (activation == activations.end())
     {
         activations.insert(std::make_pair(
-            id, std::make_unique<Activation>(bus, path, *this, id,
+            id, std::make_unique<Activation>(ctx, path, *this, id,
                                              activationState, associations)));
     }
     else
@@ -397,7 +397,7 @@ void ItemUpdater::processBMCImage()
             // Create Activation instance for this version.
             activations.insert(std::make_pair(
                 id, std::make_unique<Activation>(
-                        bus, path, *this, id, activationState, associations)));
+                        ctx, path, *this, id, activationState, associations)));
 
 #ifdef BMC_STATIC_DUAL_IMAGE
             uint8_t priority;
@@ -964,7 +964,7 @@ void ItemUpdater::createBIOSObject()
     auto version = "null";
     AssociationList assocs;
     biosActivation = std::make_unique<Activation>(
-        bus, path, *this, versionId, server::Activation::Activations::Active,
+        ctx, path, *this, versionId, server::Activation::Activations::Active,
         assocs);
     auto dummyErase = [](const std::string& /*entryId*/) {
         // Do nothing;

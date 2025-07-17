@@ -56,9 +56,3 @@ bool unTar(int imageFd, const std::string& extractDirPath)
 }
 
 } // namespace phosphor::software::utils
-
-boost::asio::io_context& getIOContext()
-{
-    static boost::asio::io_context io;
-    return io;
-}

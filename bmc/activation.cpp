@@ -448,9 +448,10 @@ void Activation::onStateChangesBios(sdbusplus::message_t& msg)
                 parent.versions.find(versionId)->second->version());
 
             // Delete the uploaded activation
-            boost::asio::post(getIOContext(), [this]() {
+            ctx.spawn([this]() -> sdbusplus::async::task<> {
                 this->parent.erase(this->versionId);
-            });
+                co_return;
+            }());
         }
         else if (newStateResult == "failed")
         {

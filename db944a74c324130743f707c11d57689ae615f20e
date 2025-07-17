@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9a74130_1f7c79bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-17T17:11:54Z",
+      "side": 1,
+      "message": "Can you please verify that removing the change repros the issue. Thanks",
+      "revId": "db944a74c324130743f707c11d57689ae615f20e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4fe4780_bc08dfb9",
         "filename": "common/src/device.cpp",
         "patchSetId": 2

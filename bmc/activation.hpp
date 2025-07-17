@@ -7,6 +7,7 @@
 #include "xyz/openbmc_project/Software/ActivationProgress/server.hpp"
 #include "xyz/openbmc_project/Software/RedundancyPriority/server.hpp"
 
+#include <sdbusplus/async.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
@@ -193,14 +194,15 @@ class Activation : public ActivationInherit, public Flash
      * @param[in] activationStatus - The status of Activation
      * @param[in] assocs - Association objects
      */
-    Activation(sdbusplus::bus_t& bus, const std::string& path,
+    Activation(sdbusplus::async::context& ctx, const std::string& path,
                ItemUpdater& parent, std::string& versionId,
                sdbusplus::server::xyz::openbmc_project::software::Activation::
                    Activations activationStatus,
                AssociationList& assocs) :
-        ActivationInherit(bus, path.c_str(),
+        ActivationInherit(ctx.get_bus(), path.c_str(),
                           ActivationInherit::action::defer_emit),
-        bus(bus), path(path), parent(parent), versionId(versionId),
+        ctx(ctx), bus(ctx.get_bus()), path(path), parent(parent),
+        versionId(versionId),
         systemdSignals(
             bus,
             sdbusRule::type::signal() + sdbusRule::member("JobRemoved") +
@@ -308,6 +310,9 @@ class Activation : public ActivationInherit, public Flash
      * @return none
      **/
     void rebootBmc();
+
+    /** @brief D-Bus context */
+    sdbusplus::async::context& ctx;
 
     /** @brief Persistent sdbusplus DBus bus connection */
     sdbusplus::bus_t& bus;

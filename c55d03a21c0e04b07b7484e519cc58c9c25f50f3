@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0294989_792051b6",
+        "filename": "test/common/software/software_config.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:36:01Z",
+      "side": 1,
+      "message": "Lets define consexpr for vendorIANA and use in all tests.",
+      "revId": "c55d03a21c0e04b07b7484e519cc58c9c25f50f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b02285e6_ea3e393d",
+        "filename": "test/common/software/software_config.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:36:01Z",
+      "side": 1,
+      "message": "Lets define constexpr for CompatibleHardware and use it all tests\n\nlets use com.ExampleCorp.Hardware.ExamplePlatform.ExampleDevice",
+      "revId": "c55d03a21c0e04b07b7484e519cc58c9c25f50f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6810f08_fa140923",
+        "filename": "test/common/software/software_config.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:36:01Z",
+      "side": 1,
+      "message": "Change ConfigType to ExampleConfigType",
+      "revId": "c55d03a21c0e04b07b7484e519cc58c9c25f50f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ba7e08_1113b851",
+        "filename": "test/common/software/software_config.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:36:01Z",
+      "side": 1,
+      "message": "Change SampleComponent to ExampleConfigName",
+      "revId": "c55d03a21c0e04b07b7484e519cc58c9c25f50f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7911e57f_84c445aa",
+        "filename": "test/common/software/software_config.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:36:01Z",
+      "side": 1,
+      "message": "Please define constexpr for all these and use it throughout the code.",
+      "revId": "c55d03a21c0e04b07b7484e519cc58c9c25f50f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

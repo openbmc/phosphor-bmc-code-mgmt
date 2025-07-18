@@ -124,6 +124,10 @@ void Software::setVersion(const std::string& versionStr,
 
 SoftwareVersion::VersionPurpose Software::getPurpose()
 {
+    if (!version)
+    {
+        throw std::invalid_argument("no version present, cannot get version purpose");
+    }
     return version->purpose();
 }
 

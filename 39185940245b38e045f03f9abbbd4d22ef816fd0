@@ -34,6 +34,24 @@
       "parentUuid": "92dd4fec_6aa07232",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c23cc3_4e7d00e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001853
+      },
+      "writtenOn": "2025-07-18T16:30:19Z",
+      "side": 1,
+      "message": "1. Yes.\nThis revision: https://github.com/openbmc/openbmc/commit/0fc8d76b76\nAnd applied your patch.\n\n2. Changes and logs are below.",
+      "parentUuid": "c41da776_c1c739fd",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

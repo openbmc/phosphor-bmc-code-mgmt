@@ -58,8 +58,9 @@ class Software : private SoftwareActivation
                     SoftwareVersion::VersionPurpose versionPurpose =
                         SoftwareVersion::VersionPurpose::Unknown);
 
-    // Return the version purpose
-    SoftwareVersion::VersionPurpose getPurpose();
+    // @returns the version purpose
+    // @returns std::nullopt in case the version has not been set
+    std::optional<SoftwareVersion::VersionPurpose> getPurpose();
 
     // This should populate 'softwareAssociationDefinitions'
     // @param isRunning             if the software version is currently running

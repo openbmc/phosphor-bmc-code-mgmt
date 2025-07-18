@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd91913d_b0a73c2a",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:16:46Z",
+      "side": 1,
+      "message": "I don\u0027t see you are doing any exception handling in the caller https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/e793150ace1a40145fa12dc1718ccac14d086a49/common/src/device.cpp#L167. So, lets change the API signature instead to return std::optional\u003cSoftwareVersion::VersionPurpose\u003e and return std::nullopt in case of error and do the due handling in the caller.",
+      "revId": "d7b72646615202dc66ab979517aa6a73d585c746",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

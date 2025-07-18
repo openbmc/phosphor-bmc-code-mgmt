@@ -70,6 +70,24 @@
       "parentUuid": "f4c23cc3_4e7d00e0",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d087192_3f6c89c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001853
+      },
+      "writtenOn": "2025-07-18T16:47:40Z",
+      "side": 1,
+      "message": "Also tried this change:\n\n```\ndiff --git a/bmc/activation.cpp b/bmc/activation.cpp\nindex 5cbeed5..4aaeca1 100644\n--- a/bmc/activation.cpp\n+++ b/bmc/activation.cpp\n@@ -447,8 +447,10 @@ void Activation::onStateChangesBios(sdbusplus::message_t\u0026 msg)\n             parent.biosVersion-\u003eversion(\n                 parent.versions.find(versionId)-\u003esecond-\u003eversion());\n \n+            error(\"[DEBUG] Outside coro: this\u003d{ADDR}\", \"ADDR\", this);\n             // Delete the uploaded activation\n             ctx.spawn([this]() -\u003e sdbusplus::async::task\u003c\u003e {\n+                error(\"[DEBUG] Inside coro: this\u003d{ADDR}\", \"ADDR\", this);\n                 this-\u003eparent.erase(this-\u003eversionId);\n                 co_return;\n             }());\ndiff --git a/bmc/item_updater.cpp b/bmc/item_updater.cpp\nindex 6320158..0974fe7 100644\n--- a/bmc/item_updater.cpp\n+++ b/bmc/item_updater.cpp\n@@ -489,8 +489,10 @@ void ItemUpdater::processBMCImage()\n \n void ItemUpdater::erase(std::string entryId)\n {\n+    error(\"[DEBUG] Inside erase(): arg\u003d{ID}\", \"ID\", entryId);\n     // Find entry in versions map\n     auto it \u003d versions.find(entryId);\n+    error(\"[DEBUG] Inside erase(): step1\");\n     if (it !\u003d versions.end())\n     {\n         if (it-\u003esecond-\u003eisFunctional() \u0026\u0026 ACTIVE_BMC_MAX_ALLOWED \u003e 1)\n\n```\n\nLog:\n\n```\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]: BMC activation has ended - BMC reboots are re-enabled.\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]: Bios upgrade completed successfully.\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]: terminate called after throwing an instance of \u0027std::length_error\u0027\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]:   what():  basic_string::_M_create\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]: [DEBUG] Outside coro: this\u003d0x75a05308\nJul 18 19:12:02 openbmc phosphor-image-updater[21441]: [DEBUG] Inside coro: this\u003d0x00c89ea8\nJul 18 19:12:02 openbmc systemd[1]: Starting Removes the guard that blocks BMC reboot...\nJul 18 19:12:03 openbmc systemd-coredump[21982]: Process 21441 (phosphor-image-) of user 0 terminated abnormally with signal 6/ABRT, processing...\n```",
+      "parentUuid": "f5325ae6_530a5f86",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

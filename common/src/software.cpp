@@ -122,8 +122,12 @@ void Software::setVersion(const std::string& versionStr,
     version->purpose(versionPurpose);
 }
 
-SoftwareVersion::VersionPurpose Software::getPurpose()
+std::optional<SoftwareVersion::VersionPurpose> Software::getPurpose()
 {
+    if (!version)
+    {
+        return std::nullopt;
+    }
     return version->purpose();
 }
 

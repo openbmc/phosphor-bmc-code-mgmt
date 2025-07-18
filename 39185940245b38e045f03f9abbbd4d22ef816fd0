@@ -52,6 +52,24 @@
       "parentUuid": "c41da776_c1c739fd",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5325ae6_530a5f86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001853
+      },
+      "writtenOn": "2025-07-18T16:44:45Z",
+      "side": 1,
+      "message": "```\ndiff --git a/bmc/activation.cpp b/bmc/activation.cpp\nindex 5cbeed5..3d009ea 100644\n--- a/bmc/activation.cpp\n+++ b/bmc/activation.cpp\n@@ -447,8 +447,11 @@ void Activation::onStateChangesBios(sdbusplus::message_t\u0026 msg)\n             parent.biosVersion-\u003eversion(\n                 parent.versions.find(versionId)-\u003esecond-\u003eversion());\n \n+            error(\"[DEBUG] Outside coro\");\n             // Delete the uploaded activation\n             ctx.spawn([this]() -\u003e sdbusplus::async::task\u003c\u003e {\n+                error(\"[DEBUG] Inside coro\");\n+                //error(\"[DEBUG] Inside coro: versionId\u003d{ID}\", \"ID\", this-\u003eversionId);\n                 this-\u003eparent.erase(this-\u003eversionId);\n                 co_return;\n             }());\ndiff --git a/bmc/item_updater.cpp b/bmc/item_updater.cpp\nindex 6320158..0974fe7 100644\n--- a/bmc/item_updater.cpp\n+++ b/bmc/item_updater.cpp\n@@ -489,8 +489,10 @@ void ItemUpdater::processBMCImage()\n \n void ItemUpdater::erase(std::string entryId)\n {\n+    error(\"[DEBUG] Inside erase(): arg\u003d{ID}\", \"ID\", entryId);\n     // Find entry in versions map\n     auto it \u003d versions.find(entryId);\n+    error(\"[DEBUG] Inside erase(): step1\");\n     if (it !\u003d versions.end())\n     {\n         if (it-\u003esecond-\u003eisFunctional() \u0026\u0026 ACTIVE_BMC_MAX_ALLOWED \u003e 1)\n\n```\n\nLog:\n\n```\nJul 18 19:01:25 openbmc phosphor-image-updater[12979]: BMC activation has ended - BMC reboots are re-enabled.\nJul 18 19:01:25 openbmc phosphor-image-updater[12979]: Bios upgrade completed successfully.\nJul 18 19:01:25 openbmc phosphor-image-updater[12979]: [DEBUG] Outside coro\nJul 18 19:01:25 openbmc phosphor-image-updater[12979]: [DEBUG] Inside coro\nJul 18 19:01:25 openbmc phosphor-image-updater[12979]: [DEBUG] Inside erase(): arg\u003d\nJul 18 19:01:26 openbmc systemd[1]: Starting Removes the guard that blocks BMC reboot...\nJul 18 19:01:26 openbmc systemd-coredump[15000]: Process 12979 (phosphor-image-) of user 0 terminated abnormally with signal 11/SEGV, processing...\n\n```\n\nIf uncomment line 554 (this is the commented out error() call) \u003d\u003d attempt to access `this-\u003eversionId`):\n\n```\nJul 18 19:07:14 aqc621ab phosphor-image-updater[18570]: BMC activation has ended - BMC reboots are re-enabled.\nJul 18 19:07:14 aqc621ab phosphor-image-updater[18570]: Bios upgrade completed successfully.\nJul 18 19:07:14 aqc621ab phosphor-image-updater[18570]: [DEBUG] Outside coro\nJul 18 19:07:14 aqc621ab phosphor-image-updater[18570]: [DEBUG] Inside coro\nJul 18 19:07:15 aqc621ab systemd[1]: Starting Removes the guard that blocks BMC reboot...\nJul 18 19:07:15 aqc621ab systemd-coredump[19058]: Process 18570 (phosphor-image-) of user 0 terminated abnormally with signal 11/SEGV, processing...\n\n```",
+      "parentUuid": "f4c23cc3_4e7d00e0",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

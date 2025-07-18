@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03461174_09493e12",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:23:03Z",
+      "side": 1,
+      "message": "rename this to TestSoftware",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0236174e_ce18255f",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:23:03Z",
+      "side": 1,
+      "message": "rename this to testGetRandomSoftwareId",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b88f528_9fa34473",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:23:03Z",
+      "side": 1,
+      "message": "Change \"Nop\" to \"Example\"",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbb3b49_6eb8f247",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:23:03Z",
+      "side": 1,
+      "message": "Change to \"MB1ExampleComponent\"",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31de7d1_5333352f",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-18T18:23:03Z",
+      "side": 1,
+      "message": "Please define a constexpr for MB1ExampleComponent and use it throughout the test code.",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f901a1da_d39288d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-18T08:02:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9a74130_1f7c79bb",
+      "revId": "db944a74c324130743f707c11d57689ae615f20e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4fe4780_bc08dfb9",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-17T17:09:33Z",
       "side": 1,
       "message": "Please add corresponding emit_removed pair.",
+      "revId": "db944a74c324130743f707c11d57689ae615f20e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d95e72_0e695e65",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-18T08:02:19Z",
+      "side": 1,
+      "message": "Looking at ```ActivationBlocksTransition``` ```aserver.hpp```,\n\nthis is the generated code\n```cpp\ntemplate \u003ctypename Instance, typename Server\u003e\nclass ActivationBlocksTransition :\n    public sdbusplus::common::xyz::openbmc_project::software::ActivationBlocksTransition,\n    protected server_details::server_context_friend\n{\n\n  public:\n      explicit ActivationBlocksTransition(const char* path) :\n          _xyz_openbmc_project_software_ActivationBlocksTransition_interface(\n              _context(), path, interface, _vtable, this)\n      {}\n  \n      ActivationBlocksTransition(\n              const char* path,\n              [[maybe_unused]] ActivationBlocksTransition::properties_t props)\n          : ActivationBlocksTransition(path)\n      {\n      }\n\n    /** @brief Emit interface added */\n    void emit_added()\n    {\n        _xyz_openbmc_project_software_ActivationBlocksTransition_interface.emit_added();\n    }\n\n    /** @brief Emit interface removed */\n    void emit_removed()\n    {\n        _xyz_openbmc_project_software_ActivationBlocksTransition_interface.emit_removed();\n    }\n// ...\n}\n```\n\nIt is referring to this private member\n\n```\n    sdbusplus::server::interface_t\n        _xyz_openbmc_project_software_ActivationBlocksTransition_interface;\n```\n\nfollowing that we get\n```\nusing interface_t \u003d interface::interface;\n\n 35 struct interface final : private sdbusplus::bus::details::bus_friend\n```\nwhich is in ```include/sdbusplus/server/interface.hpp```.\n\nand defines a destructor\n```\ninterface::~interface()\n  {\n      emit_removed();\n  }\n```\n\nwhich is the same ```emit_removed``` as the toplevel one, they both resolve to\nthe function defined in ```include/sdbusplus/server/interface.hpp```.\n\nSo the ```emit_removed()``` is already called.\n\nLet\u0027s verify that it is actually called (see the other comment)",
+      "parentUuid": "d4fe4780_bc08dfb9",
       "revId": "db944a74c324130743f707c11d57689ae615f20e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d6c625_ebdb7e71",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-18T08:02:19Z",
+      "side": 1,
+      "message": "no in was only fully qualified name for clarity, changed it to just ```emit_added()```.",
+      "parentUuid": "aa6258ff_9b952b00",
+      "revId": "db944a74c324130743f707c11d57689ae615f20e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0259b1ac_1a99c981",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-07-17T17:09:33Z",
       "side": 1,
       "message": "Please add corresponding emit_removed pair.",
+      "revId": "db944a74c324130743f707c11d57689ae615f20e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6137eee0_2ea36acd",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-18T08:02:19Z",
+      "side": 1,
+      "message": "```dbus-monitor --system \"sender\u003d\u0027xyz.openbmc_project.Software.BIOS\u0027,member\u003d\u0027InterfacesRemoved\u0027\"```\n\nresults\n\n```\nsignal time\u003d1752825383.607399 sender\u003d:1.141 -\u003e destination\u003d(null destination) serial\u003d43 path\u003d/xyz/openbmc_project/software; interface\u003dorg.freedesktop.DBus.ObjectManager; member\u003dInterfacesRemoved\n   object path \"/xyz/openbmc_project/software/HostSPIFlash_2154\"\n   array [\n      string \"xyz.openbmc_project.Software.ActivationBlocksTransition\"\n   ]\nsignal time\u003d1752825383.610836 sender\u003d:1.141 -\u003e destination\u003d(null destination) serial\u003d44 path\u003d/xyz/openbmc_project/software; interface\u003dorg.freedesktop.DBus.ObjectManager; member\u003dInterfacesRemoved\n   object path \"/xyz/openbmc_project/software/HostSPIFlash_2154\"\n   array [\n      string \"xyz.openbmc_project.Software.ActivationProgress\"\n   ]\nsignal time\u003d1752825383.656998 sender\u003d:1.141 -\u003e destination\u003d(null destination) serial\u003d48 path\u003d/xyz/openbmc_project/software; interface\u003dorg.freedesktop.DBus.ObjectManager; member\u003dInterfacesRemoved\n   object path \"/xyz/openbmc_project/software/HostSPIFlash_2291\"\n   array [\n      string \"xyz.openbmc_project.Software.Version\"\n   ]\nsignal time\u003d1752825383.667300 sender\u003d:1.141 -\u003e destination\u003d(null destination) serial\u003d49 path\u003d/xyz/openbmc_project/software; interface\u003dorg.freedesktop.DBus.ObjectManager; member\u003dInterfacesRemoved\n   object path \"/xyz/openbmc_project/software/HostSPIFlash_2291\"\n   array [\n      string \"xyz.openbmc_project.Software.Update\"\n   ]\nsignal time\u003d1752825383.667828 sender\u003d:1.141 -\u003e destination\u003d(null destination) serial\u003d50 path\u003d/xyz/openbmc_project/software; interface\u003dorg.freedesktop.DBus.ObjectManager; member\u003dInterfacesRemoved\n   object path \"/xyz/openbmc_project/software/HostSPIFlash_2291\"\n   array [\n      string \"xyz.openbmc_project.Software.Activation\"\n   ]\n```\n\nSo the `InterfacesRemoved` signals are already emitted.",
+      "parentUuid": "0259b1ac_1a99c981",
       "revId": "db944a74c324130743f707c11d57689ae615f20e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

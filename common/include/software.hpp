@@ -58,9 +58,6 @@ class Software : private SoftwareActivation
                     SoftwareVersion::VersionPurpose versionPurpose =
                         SoftwareVersion::VersionPurpose::Unknown);
 
-    // Return the version purpose
-    SoftwareVersion::VersionPurpose getPurpose();
-
     // This should populate 'softwareAssociationDefinitions'
     // @param isRunning             if the software version is currently running
     // on the device. Otherwise the software is assumed to be activating (not
@@ -88,6 +85,10 @@ class Software : private SoftwareActivation
     static long int getRandomId();
 
   protected:
+    // @returns the version purpose
+    // @returns std::nullopt in case the version has not been set
+    std::optional<SoftwareVersion::VersionPurpose> getPurpose();
+
     // @returns        a random software id (swid) for that device
     static std::string getRandomSoftwareId(device::Device& parent);
 
@@ -118,6 +119,7 @@ class Software : private SoftwareActivation
     sdbusplus::async::context& ctx;
 
     friend update::SoftwareUpdate;
+    friend device::Device;
 };
 
 }; // namespace phosphor::software

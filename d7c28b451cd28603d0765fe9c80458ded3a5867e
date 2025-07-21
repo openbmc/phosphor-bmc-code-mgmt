@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef4b2dc_45fd1aa9",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T09:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03461174_09493e12",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0236174e_ce18255f",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-18T18:23:03Z",
       "side": 1,
       "message": "rename this to testGetRandomSoftwareId",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7b0965_71ff02d9",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T09:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0236174e_ce18255f",
       "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42900e7b_3f4838f6",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T09:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b88f528_9fa34473",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cbb3b49_6eb8f247",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0c776a_229da640",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T09:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cbb3b49_6eb8f247",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f31de7d1_5333352f",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-07-18T18:23:03Z",
       "side": 1,
       "message": "Please define a constexpr for MB1ExampleComponent and use it throughout the test code.",
+      "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da2635c_940fed0e",
+        "filename": "test/common/software/software_get_random_softwareid.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T09:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31de7d1_5333352f",
       "revId": "d7c28b451cd28603d0765fe9c80458ded3a5867e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

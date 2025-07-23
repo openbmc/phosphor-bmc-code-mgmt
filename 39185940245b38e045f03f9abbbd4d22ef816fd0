@@ -88,6 +88,24 @@
       "parentUuid": "f5325ae6_530a5f86",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60173eb_def39d4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T22:46:22Z",
+      "side": 1,
+      "message": "\u003e Jul 18 19:12:02 openbmc phosphor-image-updater[21441]: terminate called after throwing an instance of \u0027std::length_error\u0027\n\u003e Jul 18 19:12:02 openbmc phosphor-image-updater[21441]:   what():  basic_string::_M_create\n\nLooks like something wrong with the versionId. Can you try printing it before lambda and check the value? I don\u0027t think activation object shall go out of scope until its erased but we need to see why correct versionId/entryId is not being passed. \n\n\nAlso going back to the original issue you mentioned on discord -\n\n\u003e ```\n\u003e Since boost::asio::io_context is not run, the downloaded activation will not be deleted, resulting in \"no free space\" after 3-4 iterations.\n\u003e Should it be fixed with sdbusplus::async::context spawn()?\n\u003e ```\n\nAre you running out of flash memory?",
+      "parentUuid": "3d087192_3f6c89c6",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

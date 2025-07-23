@@ -66,6 +66,8 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
         error(e.what());
     }
 
+    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
+
     if (!associationDefinitions)
     {
         std::string path = objectPath;
@@ -77,10 +79,9 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
 
     if (endpoint.empty())
     {
+        associationDefinitions->emit_added();
         co_return;
     }
-
-    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
 
     if (isRunning)
     {
@@ -100,6 +101,7 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
     }
 
     associationDefinitions->associations(assocs);
+    associationDefinitions->emit_added();
 
     co_return;
 }

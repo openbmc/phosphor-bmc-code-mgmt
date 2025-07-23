@@ -112,6 +112,8 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
     spiDevice->softwareCurrent->setVersion(SPIDevice::getVersion());
 
+    co_await spiDevice->softwareCurrent->createInventoryAssociations(true);
+
     devices.insert({config.objectPath, std::move(spiDevice)});
 
     co_return true;

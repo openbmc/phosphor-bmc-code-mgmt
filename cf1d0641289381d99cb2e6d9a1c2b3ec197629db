@@ -51,6 +51,23 @@
       "message": "@kevin.wtmh@gmail.com can you kindly confirm that the logs and described error case match with what you\u0027ve seen 😊",
       "revId": "cf1d0641289381d99cb2e6d9a1c2b3ec197629db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e7bc20_0d43fe29",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T18:57:30Z",
+      "side": 1,
+      "message": "This is something again which is better to do in common code after the API return in https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/common/src/software_manager.cpp?r\u003dbd5081f0b99a27dde8101576524b2c02a4a580b6#174. You only called the initDevice because we couldn\u0027t find it in device list but now its there so you should be able to do it in one place for all devices.",
+      "revId": "cf1d0641289381d99cb2e6d9a1c2b3ec197629db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

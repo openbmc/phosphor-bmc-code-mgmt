@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09060d18_0725eece",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T21:37:56Z",
+      "side": 1,
+      "message": "Lets update these vars to better names as well. Same for UH. \n\nYou can do it in a followup diff to keep those changes separate but share the gerrit diff link here to make sure its being tracked.",
+      "revId": "d70ade5b441a381a6133f77b31b3064d5ca7aec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9994de77_98cf3d18",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T21:37:56Z",
+      "side": 1,
+      "message": "Update tagUFM name here accordingly.",
+      "revId": "d70ade5b441a381a6133f77b31b3064d5ca7aec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b638cc36_90678d5e",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T21:37:56Z",
+      "side": 1,
+      "message": "Is this comment useful? If not better drop this.",
+      "revId": "d70ade5b441a381a6133f77b31b3064d5ca7aec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eba8071_9d1c7e34",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T21:37:56Z",
+      "side": 1,
+      "message": "What is UH? Doesn\u0027t seem to map to userCode nomenclature?",
+      "revId": "d70ade5b441a381a6133f77b31b3064d5ca7aec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f3d0a60_4c561e84",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-23T21:37:56Z",
+      "side": 1,
+      "message": "What is sumOnly?",
+      "revId": "d70ade5b441a381a6133f77b31b3064d5ca7aec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -163,14 +163,26 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
         co_return;
     }
 
-    if (devices.contains(optConfig.value().objectPath))
+    auto& config = optConfig.value();
+
+    if (devices.contains(config.objectPath))
     {
         error("Device configured from {PATH} is already known", "PATH",
-              optConfig.value().objectPath);
+              config.objectPath);
         co_return;
     }
 
-    co_await initDevice(service, path, optConfig.value());
+    const bool accepted = co_await initDevice(service, path, config);
+
+    if (accepted && devices.contains(config.objectPath))
+    {
+        auto& device = devices[config.objectPath];
+
+        if (device->softwareCurrent)
+        {
+            co_await device->softwareCurrent->createInventoryAssociations(true);
+        }
+    }
 
     co_return;
 }

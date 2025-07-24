@@ -23,8 +23,8 @@ const std::map<std::string, cpldInfo> supportedDeviceMap = {
 
 struct cpldI2cInfo
 {
-    unsigned long int QF;
-    unsigned int* UFM;
+    unsigned long int fuseQuantity;
+    unsigned int* userFlashMemory;
     unsigned int version;
     unsigned int checksum;
     std::vector<uint8_t> cfgData;

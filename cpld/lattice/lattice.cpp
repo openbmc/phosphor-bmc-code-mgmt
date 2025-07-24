@@ -13,11 +13,11 @@ constexpr uint8_t busyWaitmaxRetry = 30;
 constexpr uint8_t busyFlagBit = 0x80;
 constexpr std::chrono::milliseconds waitBusyTime(200);
 
-static constexpr std::string_view tagQF = "QF";
-static constexpr std::string_view tagUH = "UH";
+static constexpr std::string_view tagFuseQuantity = "QF";
+static constexpr std::string_view tagUserCodeHex = "UH";
 static constexpr std::string_view tagCFStart = "L000";
 static constexpr std::string_view tagData = "NOTE TAG DATA";
-static constexpr std::string_view tagUFM = "NOTE USER MEMORY DATA";
+static constexpr std::string_view tagUserFlashMemory = "NOTE USER MEMORY DATA";
 static constexpr std::string_view tagChecksum = "C";
 static constexpr std::string_view tagUserCode = "NOTE User Electronic";
 static constexpr std::string_view tagEbrInitData = "NOTE EBR_INIT DATA";
@@ -114,14 +114,14 @@ bool CpldLatticeManager::jedFileParser()
             continue;
         }
 
-        if (line.starts_with(tagQF))
+        if (line.starts_with(tagFuseQuantity))
         {
             ssize_t numberSize = static_cast<ssize_t>(line.find('*')) -
                                  static_cast<ssize_t>(line.find('F')) - 1;
             if (numberSize > 0)
             {
-                fwInfo.QF = std::stoul(line.substr(tagQF.length(), numberSize));
-                lg2::debug("QF Size = {QFSIZE}", "QFSIZE", fwInfo.QF);
+                fwInfo.fuseQuantity = std::stoul(line.substr(tagFuseQuantity.length(), numberSize));
+                lg2::debug("fuseQuantity Size = {QFSIZE}", "QFSIZE", fwInfo.fuseQuantity);
             }
         }
         else if (line.starts_with(tagCFStart) ||
@@ -135,7 +135,7 @@ bool CpldLatticeManager::jedFileParser()
             state = ParseState::endCfg;
             continue;
         }
-        else if (line.starts_with(tagUFM) || line.starts_with(tagData))
+        else if (line.starts_with(tagUserFlashMemory) || line.starts_with(tagData))
         {
             state = ParseState::ufm;
             continue;
@@ -190,7 +190,7 @@ bool CpldLatticeManager::jedFileParser()
                 }
                 break;
             case ParseState::userCode:
-                if (line.starts_with(tagUH))
+                if (line.starts_with(tagUserCodeHex))
                 {
                     state = ParseState::none;
                     ssize_t numberSize =
@@ -202,7 +202,7 @@ bool CpldLatticeManager::jedFileParser()
                         return -1;
                     }
                     std::istringstream iss(
-                        line.substr(tagUH.length(), numberSize));
+                        line.substr(tagUserCodeHex.length(), numberSize));
                     iss >> std::hex >> fwInfo.version;
                     lg2::debug("UserCode = 0x{USERCODE}", "USERCODE",
                                fwInfo.version);
@@ -216,7 +216,7 @@ bool CpldLatticeManager::jedFileParser()
     lg2::debug("CFG Size = {CFGSIZE}", "CFGSIZE", fwInfo.cfgData.size());
     if (!fwInfo.ufmData.empty())
     {
-        lg2::debug("UFM size = {UFMSIZE}", "UFMSIZE", fwInfo.ufmData.size());
+        lg2::debug("userFlashMemory size = {UFMSIZE}", "UFMSIZE", fwInfo.ufmData.size());
     }
 
     return true;

@@ -84,6 +84,13 @@ option(
     description: 'Enable EEPROM device update support.',
 )
 
+option(
+    'tpm-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable TPM software update support.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

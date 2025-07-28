@@ -80,6 +80,7 @@ all_options = {
         'deps': ['libgpiod'],
     },
     'i2cvr-software-update': {'dirs' : ['common/i2c', 'i2c-vr']},
+    'tpm-software-update': {'dirs': ['tpm']},
 }
 
 optioned_subdirs = []

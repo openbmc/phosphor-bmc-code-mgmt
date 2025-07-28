@@ -4,11 +4,14 @@
 
 PHOSPHOR_LOG2_USING;
 
-sdbusplus::async::task<bool> asyncSystem(sdbusplus::async::context& ctx,
-                                         const std::string& cmd)
+sdbusplus::async::task<bool> asyncSystem(
+    sdbusplus::async::context& ctx, const std::string& cmd,
+    std::optional<std::reference_wrapper<std::string>> result)
 {
-    int pipefd[2];
-    if (pipe(pipefd) == -1)
+    int exitPipefd[2];
+    int resultPipefd[2];
+
+    if (pipe(exitPipefd) == -1 || (result && pipe(resultPipefd) == -1))
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
         co_return false;
@@ -17,32 +20,59 @@ sdbusplus::async::task<bool> asyncSystem(sdbusplus::async::context& ctx,
     pid_t pid = fork();
     if (pid == 0)
     {
-        close(pipefd[0]);
+        close(exitPipefd[0]);
+
+        if (result)
+        {
+            close(resultPipefd[0]);
+            dup2(resultPipefd[1], STDOUT_FILENO);
+            dup2(resultPipefd[1], STDERR_FILENO);
+            close(resultPipefd[1]);
+        }
 
         int exitCode = std::system(cmd.c_str());
-        ssize_t status = write(pipefd[1], &exitCode, sizeof(exitCode));
+        ssize_t status = write(exitPipefd[1], &exitCode, sizeof(exitCode));
 
-        close(pipefd[1]);
+        close(exitPipefd[1]);
         _exit((status == sizeof(exitCode)) ? 0 : 1);
     }
     else if (pid > 0)
     {
-        close(pipefd[1]);
+        close(exitPipefd[1]);
 
-        auto fdio = std::make_unique<sdbusplus::async::fdio>(ctx, pipefd[0]);
+        if (result)
+        {
+            close(resultPipefd[1]);
+        }
+
+        auto fdio =
+            std::make_unique<sdbusplus::async::fdio>(ctx, exitPipefd[0]);
 
         if (!fdio)
         {
             error("Failed to create fdio for command: {CMD}", "CMD", cmd);
-            close(pipefd[0]);
+            close(exitPipefd[0]);
             co_return false;
         }
 
         co_await fdio->next();
 
+        if (result)
+        {
+            auto& resStr = result->get();
+            resStr.clear();
+            char buffer[1024];
+            ssize_t n;
+            while ((n = read(resultPipefd[0], buffer, sizeof(buffer))) > 0)
+            {
+                resStr.append(buffer, n);
+            }
+            close(resultPipefd[0]);
+        }
+
         int exitCode = -1;
-        ssize_t bytesRead = read(pipefd[0], &exitCode, sizeof(exitCode));
-        close(pipefd[0]);
+        ssize_t bytesRead = read(exitPipefd[0], &exitCode, sizeof(exitCode));
+        close(exitPipefd[0]);
 
         if (bytesRead != sizeof(exitCode))
         {
@@ -72,8 +102,13 @@ sdbusplus::async::task<bool> asyncSystem(sdbusplus::async::context& ctx,
     else
     {
         error("Fork failed for command: {CMD}", "CMD", cmd);
-        close(pipefd[0]);
-        close(pipefd[1]);
+        close(exitPipefd[0]);
+        close(exitPipefd[1]);
+        if (result)
+        {
+            close(resultPipefd[0]);
+            close(resultPipefd[1]);
+        }
         co_return false;
     }
 }

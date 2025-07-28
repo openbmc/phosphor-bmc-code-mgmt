@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c06ed2c3_90ca6132",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T08:56:48Z",
+      "side": 1,
+      "message": "Which benefit do we gain by making this private/protected?\n\nIt\u0027s just a getter function it cannot modify anything.",
+      "parentUuid": "3d4b8545_165b44b0",
+      "revId": "fc8233d0d07ad3d347fd714f5c730e18e9f790b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4d5886b_60ba0a73",
         "filename": "common/src/software.cpp",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-23T18:39:24Z",
       "side": 1,
       "message": "In which flow sequence you think this would be null or is it just a safety check you are adding for nullptrs?",
+      "revId": "fc8233d0d07ad3d347fd714f5c730e18e9f790b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abd8993f_6aa98014",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T08:56:48Z",
+      "side": 1,
+      "message": "Since we are in common code, i am writing this code against our class `Software` where the version is unique ptr and by default nullptr.\n\nSo it may be set or may not be set. We cannot make any assumption there about how the class may be used.\n\nIn our BIOS updater the version of the currently running software is communicated to the updater via a file which is written by an external service.\n\nOn my system i did not implement that service so i do not have the version information.",
+      "parentUuid": "a4d5886b_60ba0a73",
       "revId": "fc8233d0d07ad3d347fd714f5c730e18e9f790b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

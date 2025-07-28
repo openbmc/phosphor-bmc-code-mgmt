@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baf7189c_05311fad",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T10:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5d3ffb5_15431bbd",
+      "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04a7ea0c_885d727f",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-23T18:18:47Z",
       "side": 1,
       "message": "Lets have a error message here with this - \"Failed to create association with {ERROR}\".",
+      "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae3278c_f7692adb",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T10:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04a7ea0c_885d727f",
       "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4cddcb3_16b442bd",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T10:17:03Z",
+      "side": 1,
+      "message": "no - sorry.\nMoved it back.",
+      "parentUuid": "e94375ba_59e97092",
+      "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f97814dc_f8240b70",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-07-23T18:18:47Z",
       "side": 1,
       "message": "No association has been created yet. How would creating Association Definition help? Looks like associations are being added at later step in line 92 and 100.\n\nIn general, i think its better to fail early in this flow on line66 and just return.",
+      "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62138b4a_1c3a7568",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T10:17:03Z",
+      "side": 1,
+      "message": "ok, i moved this check for empty endpoint to be earlier and not create the association definitions in that case.",
+      "parentUuid": "f97814dc_f8240b70",
       "revId": "b4a5b4d4e1f714c4c9b15e067963cd2d06beb66a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

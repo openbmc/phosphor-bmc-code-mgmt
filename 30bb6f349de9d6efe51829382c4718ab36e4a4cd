@@ -69,6 +69,46 @@
       "message": "Can you please make sure your test covers a powercycle flow and making sure the firmware version persists after the reboot.",
       "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b772357d_92d08b23",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-28T07:50:50Z",
+      "side": 1,
+      "message": "What does ATE stand for?",
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06886c8e_3ba4724d",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-28T07:50:50Z",
+      "side": 1,
+      "message": "Does this count as ideomatic code? It sure looks very cryptic, but at the same time, I\u0027m not very familiar with every best practice in CPP. \n\nIf it is not improvable, at least put a comment above what does magic does please",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

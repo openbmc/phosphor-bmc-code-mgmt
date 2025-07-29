@@ -1,12 +1,5 @@
 
-testcases = [
-    'software_get_random_softwareid',
-    'software_config',
-    'software_association',
-    'software',
-    'software_update',
-    'software_version',
-]
+testcases = ['device']
 
 foreach t : testcases
     test(

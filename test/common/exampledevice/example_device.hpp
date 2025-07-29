@@ -52,6 +52,7 @@ class ExampleSoftware : public Software
 {
   public:
     using Software::createInventoryAssociation;
+    using Software::getPurpose;
     ExampleSoftware(sdbusplus::async::context& ctx, ExampleDevice& parent);
 };
 

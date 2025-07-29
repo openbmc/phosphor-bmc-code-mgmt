@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3cf6a74a_b542f209",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-29T07:20:57Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com My understanding was -\n\nFor ISL69269 and XDPE1X2XX we always needed an AC cycle to get the new image applied. So, ApplyTime was onReset. So are you saying for MPS you can immediately make the new image to take affect thats why u r using ApplyTime as Immediate in your Redfish query?",
+      "parentUuid": "11f7f7fb_908ade73",
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1a30f05_9012a5c9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1

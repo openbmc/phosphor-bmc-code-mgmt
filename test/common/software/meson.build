@@ -1,5 +1,9 @@
 
-testcases = ['software_get_random_softwareid', 'software_config']
+testcases = [
+    'software_get_random_softwareid',
+    'software_config',
+    'software_association',
+]
 
 foreach t : testcases
     test(

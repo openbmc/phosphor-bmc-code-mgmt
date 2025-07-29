@@ -16,6 +16,24 @@
       "message": "Lets change the var names to be more useful and descriptive -\n\nfuseQuantity\nuserFlash or userFlashMemory",
       "revId": "f00ce80edf0bd9e417c095d580151c3eaf83107d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3563ac20_1d6483fd",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-29T07:13:17Z",
+      "side": 0,
+      "message": "The remaining comments will be taken care in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82245.",
+      "parentUuid": "5fea9a64_0df78159",
+      "revId": "f00ce80edf0bd9e417c095d580151c3eaf83107d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

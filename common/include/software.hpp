@@ -92,6 +92,13 @@ class Software : private SoftwareActivation
     // @returns        a random software id (swid) for that device
     static std::string getRandomSoftwareId(device::Device& parent);
 
+    // @param isRunning             if the software version is currently running
+    // on the device. Otherwise the software is assumed to be activating (not
+    // yet running).
+    // @param objectPath            The object path of the inventory item to
+    // associate with. We only ever associate to one inventory item.
+    void createInventoryAssociation(bool isRunning, std::string objectPath);
+
   private:
     Software(sdbusplus::async::context& ctx, device::Device& parent,
              const std::string& swid);

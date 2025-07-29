@@ -41,13 +41,47 @@ ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
     SoftwareManager(ctx, "ExampleUpdater" + std::to_string(uniqueSuffix))
 {}
 
+ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
+                                       const char* busName) :
+    ExampleCodeUpdater(ctx)
+{
+    this->busName = busName;
+    ctx.get_bus().request_name(busName);
+
+    const std::string exampleInvObjPath =
+        "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
+    auto device = std::make_unique<ExampleDevice>(ctx, &(*this));
+
+    devices.insert({exampleInvObjPath, std::move(device)});
+}
+
+ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
+                                       const char* busName,
+                                       const char* swVersion) :
+    ExampleCodeUpdater(ctx, busName)
+{
+    auto& device = getDevice();
+    device->softwareCurrent = std::make_unique<ExampleSoftware>(ctx, *device);
+    device->softwareCurrent->setVersion(swVersion);
+}
+
+std::unique_ptr<ExampleDevice>& ExampleCodeUpdater::getDevice()
+{
+    for (auto& [_, v] : devices)
+    {
+        return reinterpret_cast<std::unique_ptr<ExampleDevice>&>(v);
+    }
+    throw std::invalid_argument(
+        "could not find any device, example CU wrongly initialized");
+}
+
 sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
     const std::string& /*unused*/, const std::string& /*unused*/,
     SoftwareConfig& /*unused*/)
 {
     auto device = std::make_unique<ExampleDevice>(ctx, this);
 
-    device->softwareCurrent = std::make_unique<Software>(ctx, *device);
+    device->softwareCurrent = std::make_unique<ExampleSoftware>(ctx, *device);
 
     device->softwareCurrent->setVersion("v1.0");
     device->softwareCurrent->setActivation(
@@ -90,3 +124,7 @@ sdbusplus::async::task<bool> ExampleDevice::updateDevice(
 
     co_return true;
 }
+
+ExampleSoftware::ExampleSoftware(sdbusplus::async::context& ctx,
+                                 ExampleDevice& parent) : Software(ctx, parent)
+{}

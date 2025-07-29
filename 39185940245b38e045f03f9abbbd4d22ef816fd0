@@ -159,6 +159,24 @@
       "parentUuid": "2d1ae64e_0a0c9599",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bbd88b3_db9798d5",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2025-07-29T18:36:11Z",
+      "side": 1,
+      "message": "I think your observation is correct. The Version created by the ImageManager when a file was uploaded had its own erase callback that deletes the /tmp/images/\u003cid\u003e/ dir. But with the new code update, only the ItemUpdater Version is created, which has a erase callback that doesn\u0027t erase the /tmp/images/\u003cid\u003e/ dir.\n\nLet me just confirm that the /tmp/images/\u003cid\u003e dir is not erased either with bmc images with OnReset option, and I think we would just need to add the logic from the ImageManager erase() into the ItemUpdater erase().",
+      "parentUuid": "87834c37_d7340d08",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

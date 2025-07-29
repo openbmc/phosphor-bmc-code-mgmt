@@ -74,6 +74,12 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
         co_return;
     }
 
+    co_await createInventoryAssociationWithEndpoint(isRunning, endpoint);
+}
+
+sdbusplus::async::task<> Software::createInventoryAssociationWithEndpoint(
+    bool isRunning, std::string endpoint)
+{
     std::vector<std::tuple<std::string, std::string, std::string>> assocs;
 
     if (isRunning)

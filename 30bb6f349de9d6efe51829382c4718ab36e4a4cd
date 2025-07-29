@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0531dcdb_a666d709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-07-29T11:26:27Z",
+      "side": 1,
+      "message": "@paligill@gmail.com In the current implementations for ISL69269 and XDPE1X2XX, a reset command allows firmware changes to take effect immediately. In contrast, MPS VRs needed an AC cycle to let the new image take effect. As such, using ApplyTime\u003dImmediate in the Redfish query was incorrect for MPS devices. The commit message has been updated to reflect the correct value: ApplyTime\u003dOnReset.\n\nHowever, the common VR update logic currently accepts both ApplyTime\u003dImmediate and ApplyTime\u003dOnReset [1]. If we want to enforce specific ApplyTime values based on the VR type, a separate patch should be introduced to implement that restriction explicitly.\n\n[1] https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/i2c-vr/i2cvr_software_manager.cpp?r\u003d466c66a3df6b295b851094480fd5513d790cfa67\u0026mo\u003d3060\u0026fi\u003d93#93",
+      "parentUuid": "3cf6a74a_b542f209",
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1a30f05_9012a5c9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -103,6 +121,24 @@
       "writtenOn": "2025-07-23T18:50:54Z",
       "side": 1,
       "message": "Can you please make sure your test covers a powercycle flow and making sure the firmware version persists after the reboot.",
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0c9fef2_63d0a9c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-07-29T11:26:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1a30f05_9012a5c9",
       "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -124,6 +160,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83815c3d_2db6ebbd",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-07-29T11:26:27Z",
+      "side": 1,
+      "message": "Added a comment to clarify the implementation.",
+      "parentUuid": "b772357d_92d08b23",
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06886c8e_3ba4724d",
@@ -137,6 +191,30 @@
       "writtenOn": "2025-07-28T07:50:50Z",
       "side": 1,
       "message": "Does this count as ideomatic code? It sure looks very cryptic, but at the same time, I\u0027m not very familiar with every best practice in CPP. \n\nIf it is not improvable, at least put a comment above what does magic does please",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "30bb6f349de9d6efe51829382c4718ab36e4a4cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc4db0b_639a98a4",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-07-29T11:26:27Z",
+      "side": 1,
+      "message": "Added comments to clarify the implementation.",
+      "parentUuid": "06886c8e_3ba4724d",
       "range": {
         "startLine": 50,
         "startChar": 0,

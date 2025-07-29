@@ -12,11 +12,23 @@
 namespace phosphor::software::example_device
 {
 
+class ExampleDevice;
+class ExampleSoftware;
+
 class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
 {
   public:
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* busName,
+                       const char* swVersion);
+
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* busName);
+
     ExampleCodeUpdater(sdbusplus::async::context& ctx,
                        long uniqueSuffix = getRandomId());
+
+    const char* busName = nullptr;
+
+    std::unique_ptr<ExampleDevice>& getDevice();
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
                                             const std::string& path,
@@ -34,11 +46,18 @@ const std::string exampleCompatibleHardware = "com.example.CompatibleDevice";
 const std::string exampleInvObjPath =
     "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
 
+class ExampleSoftware : public Software
+{
+  public:
+    using Software::createInventoryAssociationWithEndpoint;
+    ExampleSoftware(sdbusplus::async::context& ctx, ExampleDevice& parent);
+};
+
 class ExampleDevice : public Device
 {
   public:
     using Device::softwarePending;
-    using phosphor::software::device::Device::softwareCurrent;
+    std::unique_ptr<ExampleSoftware> softwareCurrent;
 
     static SoftwareConfig defaultConfig;
 

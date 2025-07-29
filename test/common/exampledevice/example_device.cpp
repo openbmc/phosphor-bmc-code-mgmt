@@ -36,10 +36,54 @@ long ExampleCodeUpdater::getRandomId()
 }
 
 // nop code updater needs unique suffix on dbus for parallel unit testing
-ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
-                                       long uniqueSuffix) :
-    SoftwareManager(ctx, "ExampleUpdater" + std::to_string(uniqueSuffix))
+ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx) :
+    SoftwareManager(ctx, "ExampleUpdater" + std::to_string(getRandomId()))
 {}
+
+ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
+                                       const char* swVersion) :
+    ExampleCodeUpdater(ctx)
+{
+    const std::string exampleInvObjPath =
+        "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
+    auto exampleDevice = std::make_unique<ExampleDevice>(ctx, &(*this));
+
+    devices.insert({exampleInvObjPath, std::move(exampleDevice)});
+
+    if (swVersion)
+    {
+        auto& device = getDevice();
+        device->softwareCurrent =
+            std::make_unique<ExampleSoftware>(ctx, *device);
+        device->softwareCurrent->setVersion(swVersion);
+    }
+}
+
+std::optional<std::string> ExampleCodeUpdater::getBusName()
+{
+    std::vector<std::string> names = ctx.get_bus().list_names_acquired();
+    for (const auto& name : names)
+    {
+        if (name.starts_with("xyz.openbmc_project."))
+        {
+            return name;
+        }
+    }
+    return std::nullopt;
+}
+
+std::unique_ptr<ExampleDevice>& ExampleCodeUpdater::getDevice()
+{
+    if (devices.empty())
+    {
+        throw std::invalid_argument(
+            "could not find any device, example CU wrongly initialized");
+    }
+
+    auto& deviceRef = devices.begin()->second;
+
+    return reinterpret_cast<std::unique_ptr<ExampleDevice>&>(deviceRef);
+}
 
 sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
     const std::string& /*unused*/, const std::string& /*unused*/,
@@ -47,7 +91,7 @@ sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
 {
     auto device = std::make_unique<ExampleDevice>(ctx, this);
 
-    device->softwareCurrent = std::make_unique<Software>(ctx, *device);
+    device->softwareCurrent = std::make_unique<ExampleSoftware>(ctx, *device);
 
     device->softwareCurrent->setVersion("v1.0");
     device->softwareCurrent->setActivation(
@@ -90,3 +134,7 @@ sdbusplus::async::task<bool> ExampleDevice::updateDevice(
 
     co_return true;
 }
+
+ExampleSoftware::ExampleSoftware(sdbusplus::async::context& ctx,
+                                 ExampleDevice& parent) : Software(ctx, parent)
+{}

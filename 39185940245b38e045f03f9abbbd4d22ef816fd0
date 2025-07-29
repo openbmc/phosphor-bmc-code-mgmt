@@ -195,6 +195,24 @@
       "parentUuid": "8bbd88b3_db9798d5",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a2c7ca_805093d4",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2025-07-29T19:45:44Z",
+      "side": 1,
+      "message": "I see.\n\n@chaul@amperecomputing.com @Kamalesh if you could you verify a few things?. The ItemUpdater erase() function calls deleteImageManagerObject() which just calls GetObject and Delete d-bus apis. We\u0027re going to try to call them manually:\n\n1. When you upload a bios image, check the /tmp/images/\u003cid\u003e/ dir is created:\n\n```\n# ls /tmp/images/\nc38f873b\n```\n\n2. Check that a Delete exists under the Version interface (there\u0027ll likely be a Delete one also under the Host.Updater interface):\n\n```\n# busctl -j call xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/object_mapper xyz.openbmc_project.ObjectMapper GetObject sas /xyz/openbmc_project/software/c38f873b  1 xyz.openbmc_project.Software.Version\n...\n\t\t\t\"org.open_power.Software.Host.Updater\" : [\n...\n\t\t\t\t\"xyz.openbmc_project.Object.Delete\",\n...\n\t\t\t\"xyz.openbmc_project.Software.Version\" : [\n...\n\t\t\t\t\"xyz.openbmc_project.Object.Delete\",\n```\n\n3. Check that the Path property is set to /tmp/images/\u003cid\u003e:\n\n```\n# busctl introspect xyz.openbmc_project.Software.BMC.Updater /xyz/openbmc_project/software/c38f873b\n...\nxyz.openbmc_project.Common.FilePath                interface -         -                                        -\n.Path                                              property  s         \"/tmp/images/c38f873b\"                   emits-change writable\n```\n\n4. Try calling the Delete which is what the deleteImageManagerObject() calls:\n\n```\n# busctl call xyz.openbmc_project.Software.Version /xyz/openbmc_project/software/c38f873b xyz.openbmc_project.Object.Delete Delete\n```\n\n5. Check the /tmp/images/\u003cid\u003e/ dir is deleted:\n\n```\n# ls /tmp/images\n```",
+      "parentUuid": "db6085c9_c2015476",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

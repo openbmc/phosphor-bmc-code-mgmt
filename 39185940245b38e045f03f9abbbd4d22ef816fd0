@@ -141,6 +141,24 @@
       "message": "Hi @paligill@gmail.com\nAs @chaul@amperecomputing.com suggested, using the below lambda function call the erase function correctly.\n```\nctx.spawn([](auto self) -\u003e sdbusplus::async::task\u003c\u003e {\n    self-\u003eparent.erase(self-\u003eversionId);\n    co_return;\n}(this));\n```\nBut eventhough calling the erase function it is not erasing the files under /tmp/images directory. Not sure the intended functionality of erase function. It seems it needs to implement a logic to delete the files under /tmp/images in erase function.",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87834c37_d7340d08",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-29T07:56:05Z",
+      "side": 1,
+      "message": "@anoo@us.ibm.com  Looks like ImageManager was the one to delete the images from /tmp/images dir https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bmc/image_manager.cpp?r\u003dcab87e9cdeeb3e166d6d577511f6be4dc7721aca#243. Do you know how item_updater used to call back into it or is it some other flow.\n\nPS: This is for bios update (not BMC).",
+      "parentUuid": "2d1ae64e_0a0c9599",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

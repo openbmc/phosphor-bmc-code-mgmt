@@ -213,6 +213,24 @@
       "parentUuid": "db6085c9_c2015476",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4d74a6_8b01558a",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-07-30T03:17:23Z",
+      "side": 1,
+      "message": "\u003e We\u0027re going to try to call them manually\n\nI have tried all the steps before. I can confirm that calling Delete to the software object does not result in the /tmp/images/\u003cid\u003e being removed. The call is directed to ItemUpdater::erase() callback, which currently does not involve the removal.\n\n\u003e Let me just confirm that the /tmp/images/\u003cid\u003e dir is not erased either with bmc images with OnReset option\n\nYes, it\u0027s not removed even with OnReset option for BMC image, because when Activation is set, this [line](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/activation.cpp#L148) also leads to ItemUdater::erase() function.\n\n\u003e I think we would just need to add the logic from the ImageManager erase() into the ItemUpdater erase().\n\nI think so. In our local WA to fix this, we added an `else` condition to this [if](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/item_updater.cpp#L533) and erase the temp folder there. Do you think this is the correct move? I\u0027m not sure how it should be for BMC image.",
+      "parentUuid": "68a2c7ca_805093d4",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

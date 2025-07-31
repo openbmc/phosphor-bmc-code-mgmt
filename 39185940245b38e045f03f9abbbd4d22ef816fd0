@@ -249,6 +249,24 @@
       "parentUuid": "bb4d74a6_8b01558a",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e9a229_0ad74362",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-07-31T02:32:45Z",
+      "side": 1,
+      "message": "\u003e Ok, I would expect it to work in your environment since the ItemUpdater::erase() calls deleteImageManagerObject() which in turns calls the ImageManager::erase().\nBut at least you found that ItemUpdater::erase() is called and that we can add the deletion of the image there.\n\ndeleteImageManagerObject() in this case does not call ImageManager::erase() though, because the Version and Delete interface for this software object, which is a result of a [UpdateManager::startUpdate()](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/update_manager.cpp#L210) call, is registered [here](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/item_updater.cpp#L186), and the erase callback passed in is ItemUpdater::erase(), not ImagerManager\u0027s. It\u0027s a different flow than the old implementation.\n\n\u003e Yeah I think that will work for both old and new implementations, and for both BIOS and BMC, let\u0027s just check if the path exists so that even if the ImageManager erase is called to delete the upload path, there are no errors if it doesn\u0027t exist.\n\nYes. Thank you for your info. I think I should send a patch, right as it will address the part of issue `https://github.com/openbmc/phosphor-bmc-code-mgmt/issues/16`, which will partly be fixed by this patch if the segmentation fault issue of it is addressed.",
+      "parentUuid": "6514cd30_a3d013f6",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

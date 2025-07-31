@@ -267,6 +267,24 @@
       "parentUuid": "6514cd30_a3d013f6",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ace4d33_54bb18e2",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-31T23:39:59Z",
+      "side": 1,
+      "message": "\u003e \u003e Ok, I would expect it to work in your environment since the ItemUpdater::erase() calls deleteImageManagerObject() which in turns calls the ImageManager::erase().\n\u003e But at least you found that ItemUpdater::erase() is called and that we can add the deletion of the image there.\n\u003e \n\u003e deleteImageManagerObject() in this case does not call ImageManager::erase() though, because the Version and Delete interface for this software object, which is a result of a [UpdateManager::startUpdate()](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/update_manager.cpp#L210) call, is registered [here](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/d9825681c72ef99f98371123f705fc3fdc86c913/bmc/item_updater.cpp#L186), and the erase callback passed in is ItemUpdater::erase(), not ImagerManager\u0027s. It\u0027s a different flow than the old implementation.\n\n@chaul@amperecomputing.com UpdaterManager won\u0027t be used in the old flow (software-update-dbus-interface as disabled). On this patch we are trying to understand and fix the image deletion issue in the old flow. So, lets keep the UpdateManager flow separate (which we will address on a separate patch). As @anoo@us.ibm.com asked can you please confirm in old flow  if following sequence is getting triggered or not -\n\nItemUpdater::erase() -\u003e Activation::deleteImageManagerObject() - calls -\u003e ImageManager delete.\n\nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/bmc/item_updater.cpp?r\u003d01ba956256e45b953c78591319a5f25ff4ba618d#522\n\n\n\u003e \n\u003e \u003e Yeah I think that will work for both old and new implementations, and for both BIOS and BMC, let\u0027s just check if the path exists so that even if the ImageManager erase is called to delete the upload path, there are no errors if it doesn\u0027t exist.\n\u003e \n\u003e Yes. Thank you for your info. I think I should send a patch, right as it will address the part of issue `https://github.com/openbmc/phosphor-bmc-code-mgmt/issues/16`, which will partly be fixed by this patch if the segmentation fault issue of it is addressed.\n\n@aadriance@nvidia.com My suggestion is to keep the old flow as such to keep the old design consistent and we can try to figure out whats broken there as @chaul@amperecomputing.com was referring to new flow in previous chat, so that seems to be the mis-understanding. \nFor new flow (software-update-dbus-interface enabled) case we can raise a separate patch to handle the image deleteion directly in erase function by adding a check for \"if (!useUpdateDBusInterface)\".\nPlease let me know your thoughts?",
+      "parentUuid": "94e9a229_0ad74362",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

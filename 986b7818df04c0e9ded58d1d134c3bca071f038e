@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed8901e2_5391dce3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-08-01T15:36:28Z",
+      "side": 1,
+      "message": "Is this related to https://github.com/openbmc/smbios-mdr/blob/master/src/tpm.cpp ?",
+      "revId": "986b7818df04c0e9ded58d1d134c3bca071f038e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

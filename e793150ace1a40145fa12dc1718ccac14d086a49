@@ -51,6 +51,24 @@
       "message": "Hi @paligill@gmail.com, I see that the ItemUpdater::erase() function is not handling removing image folders under `/tmp/images`, is it expected? Because after many bios updates on our platform, `No space left...` appears.",
       "revId": "e793150ace1a40145fa12dc1718ccac14d086a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966bc4d1_785899e1",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-01T00:40:32Z",
+      "side": 0,
+      "message": "Already being discussed at https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82088/comment/2d1ae64e_0a0c9599/. Hence , marking this as resolved.",
+      "parentUuid": "ac027bd4_29a32139",
+      "revId": "e793150ace1a40145fa12dc1718ccac14d086a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

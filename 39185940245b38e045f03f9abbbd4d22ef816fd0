@@ -126,6 +126,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aecf0255_bdd4061a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-01T00:40:32Z",
+      "side": 1,
+      "message": "@striker_1993@mail.ru This is already being discussed on https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82088/comment/2d1ae64e_0a0c9599/. So, lets use that comment thread. Please feel free to test the requested flow in that thread and provide your feedback as this patch is specifically for old flow.",
+      "parentUuid": "b9c25045_1c0bcd43",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d1ae64e_0a0c9599",

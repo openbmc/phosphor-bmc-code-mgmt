@@ -16,6 +16,24 @@
       "message": "Is this related to https://github.com/openbmc/smbios-mdr/blob/master/src/tpm.cpp ?",
       "revId": "986b7818df04c0e9ded58d1d134c3bca071f038e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87219ce_0d523b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-08-04T01:31:44Z",
+      "side": 1,
+      "message": "I don\u0027t think so. The purpose of this patch is to handle the BMC\u0027s TPM firmware, not the BIOS TPM.",
+      "parentUuid": "ed8901e2_5391dce3",
+      "revId": "986b7818df04c0e9ded58d1d134c3bca071f038e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

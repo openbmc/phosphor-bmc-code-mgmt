@@ -16,6 +16,24 @@
       "message": "This works on our platform.",
       "revId": "ec8acfb72d80f682926e1ca492da9bc203a98922",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e846db95_d7eea951",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T07:49:29Z",
+      "side": 1,
+      "message": "@chaul@amperecomputing.com Can you please confirm if you are referring to the old flow(software-update-dbus-interface DISABLED) or new flow(software-update-dbus-interface ENABLED) here when you say its working for you?",
+      "parentUuid": "cca5702a_56ed1b3d",
+      "revId": "ec8acfb72d80f682926e1ca492da9bc203a98922",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

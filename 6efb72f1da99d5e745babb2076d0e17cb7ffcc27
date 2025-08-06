@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "206d57d1_985a8a98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:46:13Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com Do you have an EM patch to add MPS Type to https://github.com/openbmc/entity-manager/blob/master/schemas/firmware.json#L30? If not, please raise and share it here. Thanks",
+      "revId": "6efb72f1da99d5e745babb2076d0e17cb7ffcc27",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c485a6ff_c24a5181",
         "filename": "common/include/pmbus.hpp",
         "patchSetId": 2

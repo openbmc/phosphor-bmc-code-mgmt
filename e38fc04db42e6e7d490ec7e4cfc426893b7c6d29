@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf0030d6_9ffb6d2e",
+        "filename": "test/common/exampledevice/example_device.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:16:14Z",
+      "side": 1,
+      "message": "Why forward declaring ExampleSoftware, don\u0027t see it being used before definition?",
+      "revId": "e38fc04db42e6e7d490ec7e4cfc426893b7c6d29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "468f2e4b_a4c51af9",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:16:14Z",
+      "side": 1,
+      "message": "objectPath should be a private member of class.\nAlso why do u need to get the path this way. Is there no other way?",
+      "revId": "e38fc04db42e6e7d490ec7e4cfc426893b7c6d29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b5f9a1_e2c9b2c1",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:16:14Z",
+      "side": 1,
+      "message": "Define \"/xyz/example_endpoint\" as constexpr and use it everywhere.",
+      "revId": "e38fc04db42e6e7d490ec7e4cfc426893b7c6d29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

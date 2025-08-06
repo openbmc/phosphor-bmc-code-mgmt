@@ -16,6 +16,24 @@
       "message": "@Ken.Chen@quantatw.com Please take care of all pending comments from https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/81727.",
       "revId": "6a8672e9d0ec88a331e7ddde305f25bdf74fb7f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab1c07b_77ff58d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T17:35:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a0ab4984_0b319bae",
+      "revId": "6a8672e9d0ec88a331e7ddde305f25bdf74fb7f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

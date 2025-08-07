@@ -90,10 +90,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
 
     software->setVersion(std::format("{:X}", sum));
 
-    std::set<RequestedApplyTimes> allowedApplyTime = {
-        RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};
-
-    software->enableUpdate(allowedApplyTime);
+    software->enableUpdate(i2cDevice->vrInterface->getAllowedApplyTimes());
 
     i2cDevice->softwareCurrent = std::move(software);
 

@@ -1,10 +1,14 @@
 #pragma once
 
 #include <sdbusplus/async.hpp>
+#include <xyz/openbmc_project/Software/ApplyTime/common.hpp>
 
 #include <cstdint>
 #include <memory>
 #include <string>
+
+using RequestedApplyTimes = sdbusplus::common::xyz::openbmc_project::software::
+    ApplyTime::RequestedApplyTimes;
 
 namespace phosphor::software::VR
 {
@@ -49,6 +53,9 @@ class VoltageRegulator
     // @brief This function returns true if the voltage regulator supports
     //        force of updates.
     virtual bool forcedUpdateAllowed() = 0;
+
+    // @brief This function returns the allowed apply times
+    virtual std::set<RequestedApplyTimes> getAllowedApplyTimes() = 0;
 
   protected:
     sdbusplus::async::context& ctx;

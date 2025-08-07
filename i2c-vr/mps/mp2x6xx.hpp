@@ -20,6 +20,10 @@ class MP2X6XX : public MPSVoltageRegulator
     sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
     sdbusplus::async::task<bool> parseDeviceConfiguration() final;
     bool forcedUpdateAllowed() final;
+    std::set<RequestedApplyTimes> getAllowedApplyTimes() final
+    {
+        return {RequestedApplyTimes::OnReset};
+    }
 
   private:
     sdbusplus::async::task<bool> checkId(PMBusCmd pmBusCmd, uint32_t expected);

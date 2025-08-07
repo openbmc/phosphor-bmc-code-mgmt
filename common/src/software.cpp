@@ -28,7 +28,7 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
     SoftwareActivation(ctx, (baseObjPathSoftware + swid).c_str(),
                        Activation::properties_t{Activations::NotReady,
                                                 RequestedActivations::None}),
-    objectPath(baseObjPathSoftware + swid), parentDevice(parent), swid(swid),
+    parentDevice(parent), swid(swid), objectPath(baseObjPathSoftware + swid),
     ctx(ctx)
 {
     std::string objPath = baseObjPathSoftware + swid;

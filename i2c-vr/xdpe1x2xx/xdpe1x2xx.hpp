@@ -23,6 +23,10 @@ class XDPE1X2XX : public VoltageRegulator
 
     sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
     bool forcedUpdateAllowed() final;
+    std::set<RequestedApplyTimes> getAllowedApplyTimes() final
+    {
+        return {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};
+    }
 
   private:
     static const int MaxSectCnt = 16;

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15c6248f_3fa2b3f6",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T13:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e86d18b6_c969adf3",
+      "revId": "740ab433ea2062e035ec7d2db7a44fd612e23609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5419ad8a_d16e5325",
@@ -52,6 +70,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0809c378_cbccffde",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T13:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5419ad8a_d16e5325",
+      "revId": "740ab433ea2062e035ec7d2db7a44fd612e23609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20cbe936_740b252b",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T13:48:00Z",
+      "side": 1,
+      "message": "👍. Done.",
+      "parentUuid": "aa72af82_db8a2871",
+      "revId": "740ab433ea2062e035ec7d2db7a44fd612e23609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95f0a5e6_4558bff4",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-08-06T18:05:21Z",
       "side": 1,
       "message": "rename endpoint to objectPath.",
+      "revId": "740ab433ea2062e035ec7d2db7a44fd612e23609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a33cc77_a2490553",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T13:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95f0a5e6_4558bff4",
       "revId": "740ab433ea2062e035ec7d2db7a44fd612e23609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

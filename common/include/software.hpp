@@ -65,7 +65,7 @@ class Software : private SoftwareActivation
     sdbusplus::async::task<> createInventoryAssociations(bool isRunning);
 
     // object path of this software
-    sdbusplus::message::object_path objectPath;
+    const sdbusplus::message::object_path objectPath;
 
     // The device we are associated to, meaning this software is either running
     // on the device, or could potentially run on that device (update).

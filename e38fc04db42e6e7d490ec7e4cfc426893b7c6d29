@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a5fb889_2189698a",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-07T17:06:47Z",
+      "side": 1,
+      "message": "Can you make it protected then.",
+      "parentUuid": "177810aa_2b52a4d5",
+      "revId": "e38fc04db42e6e7d490ec7e4cfc426893b7c6d29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4b5f9a1_e2c9b2c1",
         "filename": "test/common/software/software_association.cpp",
         "patchSetId": 2

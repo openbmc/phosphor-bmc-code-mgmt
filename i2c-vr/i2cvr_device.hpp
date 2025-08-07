@@ -12,8 +12,6 @@ namespace ConfigInf = SoftwareInf::config;
 
 namespace VRInf = SoftwareInf::VR;
 
-namespace SDBusPlusSoftware = sdbusplus::common::xyz::openbmc_project::software;
-
 namespace phosphor::software::i2c_vr::device
 {
 
@@ -25,12 +23,14 @@ class I2CVRDevice : public DeviceInf::Device
                 const uint16_t& bus, const uint8_t& address,
                 ConfigInf::SoftwareConfig& config,
                 ManagerInf::SoftwareManager* parent) :
-        DeviceInf::Device(
-            ctx, config, parent,
-            {SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::Immediate,
-             SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::OnReset}),
+        DeviceInf::Device(ctx, config, parent, {}),
         vrInterface(VRInf::create(ctx, vrType, bus, address))
-    {}
+    {
+        if (vrInterface)
+        {
+            this->allowedApplyTimes = vrInterface->getAllowedApplyTimes();
+        }
+    }
 
     std::unique_ptr<VRInf::VoltageRegulator> vrInterface;
 

@@ -25,6 +25,10 @@ class MP2X6XX : public VoltageRegulator
     sdbusplus::async::task<bool> reset() final;
     sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
     bool forcedUpdateAllowed() final;
+    std::set<RequestedApplyTimes> getAllowedApplyTimes() final
+    {
+        return {RequestedApplyTimes::OnReset};
+    }
 
   private:
     std::map<uint8_t, std::vector<MP2X6XXData>> getGroupedConfigData();

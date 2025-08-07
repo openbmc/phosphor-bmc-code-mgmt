@@ -23,6 +23,10 @@ class ISL69269 : public VoltageRegulator
     sdbusplus::async::task<bool> reset() final;
 
     bool forcedUpdateAllowed() final;
+    std::set<RequestedApplyTimes> getAllowedApplyTimes() final
+    {
+        return {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};
+    }
 
   private:
     struct Data

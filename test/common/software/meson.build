@@ -4,6 +4,7 @@ testcases = [
     'software_config',
     'software_association',
     'software_version',
+    'software',
 ]
 
 foreach t : testcases

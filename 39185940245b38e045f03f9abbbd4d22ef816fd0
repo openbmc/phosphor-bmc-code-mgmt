@@ -321,6 +321,24 @@
       "parentUuid": "9ace4d33_54bb18e2",
       "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7597580e_7e0e3479",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T04:02:30Z",
+      "side": 1,
+      "message": "Marking this as resolved since i haven\u0027t heard back and the last comment from Kamalesh as per https://discord.com/channels/775381525260664832/1395349728459231316/1399291253769637930 which says that it works.",
+      "parentUuid": "7a4d6b23_b19ae31f",
+      "revId": "39185940245b38e045f03f9abbbd4d22ef816fd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

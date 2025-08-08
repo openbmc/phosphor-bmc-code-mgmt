@@ -20,9 +20,12 @@ class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
     ExampleCodeUpdater(sdbusplus::async::context& ctx,
                        long uniqueSuffix = getRandomId());
 
+    // @param createDevice  create an ExampleDevice. Prerequisite for param
+    // 'swVersion'.
     // @param swVersion     if this is nullptr, do not create the software
     // version.
-    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* swVersion);
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, bool createDevice,
+                       const char* swVersion);
 
     std::unique_ptr<ExampleDevice>& getDevice();
 

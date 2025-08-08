@@ -38,10 +38,14 @@ ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx) :
     SoftwareManager(ctx, "ExampleUpdater" + getRandomId())
 {}
 
-ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
-                                       const char* swVersion) :
+ExampleCodeUpdater::ExampleCodeUpdater(
+    sdbusplus::async::context& ctx, bool createDevice, const char* swVersion) :
     ExampleCodeUpdater(ctx)
 {
+    if (!createDevice)
+    {
+        return;
+    }
     const std::string exampleInvObjPath =
         "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
     auto exampleDevice = std::make_unique<ExampleDevice>(ctx, &(*this));

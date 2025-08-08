@@ -17,9 +17,12 @@ class ExampleDevice;
 class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
 {
   public:
+    // @param createDevice  create an ExampleDevice. Prerequisite for param
+    // 'swVersion'.
     // @param swVersion     if this is nullptr, do not create the software
     // version.
-    ExampleCodeUpdater(sdbusplus::async::context& ctx, const char* swVersion);
+    ExampleCodeUpdater(sdbusplus::async::context& ctx, bool createDevice,
+                       const char* swVersion);
 
     ExampleCodeUpdater(sdbusplus::async::context& ctx);
 

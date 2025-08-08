@@ -48,8 +48,7 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
     if (device.updateInProgress)
     {
         error("An update is already in progress, cannot update.");
-        report<Unavailable>();
-        co_return sdbusplus::message::object_path();
+        elog<Unavailable>();
     }
 
     device.updateInProgress = true;
@@ -61,8 +60,8 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
             "the selected apply time {APPLYTIME} is not allowed by the device",
             "APPLYTIME", applyTime);
         device.updateInProgress = false;
-        report<Unavailable>();
-        co_return sdbusplus::message::object_path();
+        elog<sdbusplus::error::xyz::openbmc_project::software::update::
+                 Incompatible>();
     }
 
     debug("started asynchronous update with fd {FD}", "FD", image.fd);

@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f14ed77_eb33e871",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T09:55:57Z",
+      "side": 1,
+      "message": "Made it `protected` + `const` in below patch.",
+      "parentUuid": "6a5fb889_2189698a",
+      "revId": "e38fc04db42e6e7d490ec7e4cfc426893b7c6d29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4b5f9a1_e2c9b2c1",

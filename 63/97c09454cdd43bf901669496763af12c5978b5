@@ -1,0 +1,9 @@
+Code-Review+1: Adriana Kobylak <anoo@us.ibm.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Jagpal S Gill <paligill@gmail.com>
+Submitted-by: Jagpal S Gill <paligill@gmail.com>
+Submitted-at: Fri, 08 Aug 2025 17:31:21 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82088
+Comments-Total: 28
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

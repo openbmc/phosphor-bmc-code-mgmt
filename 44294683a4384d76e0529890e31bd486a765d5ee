@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b4bc102_41fa72a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T17:58:35Z",
+      "side": 1,
+      "message": "Please test this flow through BMCWeb to make sure it works fine in both the negative scenarios. And lets have the UT attached via Redfish client API.",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe0ce554_c673c35e",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T17:58:35Z",
+      "side": 1,
+      "message": "This should still throw Unavailable as updater is busy.",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7a81fb4_d1c9e647",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T17:58:35Z",
+      "side": 1,
+      "message": "empty/invalid sdbus path should have itself generated an exception, so exception should have been getting generated already. But agree it should be the right one. You don\u0027t need to call the throw. Please replace report with elog for exception name and it will take care of throwing the mentioned exception.",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

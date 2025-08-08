@@ -22,7 +22,8 @@ class SoftwareAssocTest : public testing::Test
 {
   protected:
     SoftwareAssocTest() :
-        exampleUpdater(ctx, "swVersion"), device(exampleUpdater.getDevice()),
+        exampleUpdater(ctx, true, "swVersion"),
+        device(exampleUpdater.getDevice()),
         objPathCurrentSoftware(
             reinterpret_cast<ExampleSoftware*>(device->softwareCurrent.get())
                 ->objectPath),

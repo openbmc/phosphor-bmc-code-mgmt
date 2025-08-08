@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5645e61_4d7f29f1",
+        "filename": "tpm/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T18:36:04Z",
+      "side": 1,
+      "message": "WOuld reading and updating the firmware version change on the type of Chip? If yes, then we should have a different EM Type based on chip.",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cf829d_36950500",
+        "filename": "tpm/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T18:36:04Z",
+      "side": 1,
+      "message": "Please see my comment above.",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8e2809_00dd3817",
+        "filename": "tpm/tpm2/tpm2.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T18:36:04Z",
+      "side": 1,
+      "message": "Also u have tmp2 as different directory. Are u doing it to have facilitate a parallel flow if someone has a TPM1 chip? IF yes, then how much is the difference between two technologies in terms of reading version and update flow?",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0206fdcf_86218b34",
+        "filename": "tpm/tpm_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-08T18:36:04Z",
+      "side": 1,
+      "message": "Please look at my other comment related to TPM type, looks like u have a usecase for different handling for different TPM chips.",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

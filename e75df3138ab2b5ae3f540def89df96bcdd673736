@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b952291_5cdfc26c",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T11:02:51Z",
+      "side": 1,
+      "message": "removed `createDevice` argument.",
+      "parentUuid": "e527adc2_2d2e9705",
+      "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df507a5b_e05f505d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-08T18:15:15Z",
       "side": 1,
       "message": "rename to exampleDevice.",
+      "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdc59ea_7cd54b6a",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T11:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df507a5b_e05f505d",
       "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d52fe9ee_abb80742",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T11:02:51Z",
+      "side": 1,
+      "message": "changed it to an ```std::optional```",
+      "parentUuid": "a55196ad_8b1f4aef",
+      "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52a5c868_02a6d766",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-08-08T18:15:15Z",
       "side": 1,
       "message": "You have just one device. So, either find that based on objectPath (if u have usecase for multiple devices in future tests) or throw an exception if devices.empty(), otherwise return devices.begin()-\u003esecond.",
+      "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e59553a_48e17c0e",
+        "filename": "test/common/exampledevice/example_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T11:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52a5c868_02a6d766",
       "revId": "e75df3138ab2b5ae3f540def89df96bcdd673736",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

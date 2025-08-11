@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ae729d8_356df342",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-11T16:45:26Z",
+      "side": 1,
+      "message": "\u003e Attached the logs.\n\u003e \n\u003e \u003e And lets have the UT attached via Redfish client API.\n\u003e \n\u003e Do you mean the DBus test for start update?\n\u003e \n\u003e That`s part of the UT patch train.\n\u003e \n\u003e Testing with redfish client API is not possible in CI environment, or is it?\n\nI am not referring to testing using gtest. I am referring to testing using Redfish by making multi-part redfish request. Please test this with that.",
+      "parentUuid": "4b7d620b_0e6368c5",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe0ce554_c673c35e",
         "filename": "common/src/software_update.cpp",
         "patchSetId": 2

@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b7d620b_0e6368c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T14:52:00Z",
+      "side": 1,
+      "message": "Attached the logs.\n\n\u003e And lets have the UT attached via Redfish client API.\n\nDo you mean the DBus test for start update?\n\nThat`s part of the UT patch train.\n\nTesting with redfish client API is not possible in CI environment, or is it?",
+      "parentUuid": "7b4bc102_41fa72a2",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe0ce554_c673c35e",
         "filename": "common/src/software_update.cpp",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-08T17:58:35Z",
       "side": 1,
       "message": "This should still throw Unavailable as updater is busy.",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38663005_c910a54c",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T14:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe0ce554_c673c35e",
       "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2025-08-08T17:58:35Z",
       "side": 1,
       "message": "empty/invalid sdbus path should have itself generated an exception, so exception should have been getting generated already. But agree it should be the right one. You don\u0027t need to call the throw. Please replace report with elog for exception name and it will take care of throwing the mentioned exception.",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd1c95e_d482e8f5",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T14:52:00Z",
+      "side": 1,
+      "message": "Thanks for letting me know of this `elog` function. Done.",
+      "parentUuid": "b7a81fb4_d1c9e647",
       "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

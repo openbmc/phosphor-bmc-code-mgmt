@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6926c33_2b28dbaf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-11T17:00:39Z",
+      "side": 1,
+      "message": "I see you already did the testing via Redfish. So, marking this as resolved.",
+      "parentUuid": "1ae729d8_356df342",
+      "revId": "44294683a4384d76e0529890e31bd486a765d5ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe0ce554_c673c35e",

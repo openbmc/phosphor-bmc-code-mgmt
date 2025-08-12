@@ -32,6 +32,7 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
     std::map<std::string, enum VRType> VRTypeToString{
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
         {"ISL69269Firmware", VRType::ISL69269},
+        {"Renesas_DMP_Gen3p5Firmware", VRType::ISL69269},
     };
 
     if (VRTypeToString.contains(vrStr))

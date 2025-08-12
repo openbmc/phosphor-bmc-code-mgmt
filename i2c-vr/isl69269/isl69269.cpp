@@ -12,8 +12,10 @@ namespace phosphor::software::VR
 {
 
 constexpr uint8_t regProgStatus = 0x7E;
+constexpr uint8_t regGen3p5ProgStatus = 0x83;
 constexpr uint8_t regHexModeCFG0 = 0x87;
 constexpr uint8_t regCRC = 0x94;
+constexpr uint8_t regGen3p5CRC = 0xF8;
 constexpr uint8_t regHexModeCFG1 = 0xBD;
 constexpr uint8_t regDMAData = 0xC5;
 constexpr uint8_t regDMAAddr = 0xC7;
@@ -22,15 +24,21 @@ constexpr uint8_t regRestoreCfg = 0xF2;
 constexpr uint8_t regRemainginWrites = 0x35;
 
 constexpr uint8_t gen3SWRevMin = 0x06;
+constexpr uint8_t gen3p5HWRevMax = 0x06;
+constexpr uint8_t gen3p5HWRevMin = 0x03;
 constexpr uint8_t deviceIdLength = 4;
 
 constexpr uint8_t gen3Legacy = 1;
 constexpr uint8_t gen3Production = 2;
+constexpr uint8_t gen3p5 = 3;
 
 constexpr uint16_t cfgId = 7;
+constexpr uint16_t gen3p5cfgId = 3;
 constexpr uint16_t gen3FileHead = 5;
+constexpr uint16_t gen3p5FileHead = 5;
 constexpr uint16_t gen3LegacyCRC = 276 - gen3FileHead;
 constexpr uint16_t gen3ProductionCRC = 290 - gen3FileHead;
+constexpr uint16_t gen3p5CRC = 336 - gen3p5FileHead;
 constexpr uint8_t checksumLen = 4;
 constexpr uint8_t deviceRevisionLen = 4;
 
@@ -150,22 +158,40 @@ sdbusplus::async::task<bool> ISL69269::getHexMode(uint8_t* mode)
 {
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
-
-    tbuf[0] = regHexModeCFG0;
-    tbuf[1] = regHexModeCFG1;
-    if (!(co_await dmaReadWrite(tbuf, rbuf)))
+    uint32_t devID = 0;
+    if (!(co_await getDeviceId(&devID)))
     {
-        error("getHexMode failed");
+        error("program failed at getDeviceId");
         co_return false;
     }
+    devID = (devID >> 8) & 0xFF;
 
-    *mode = (rbuf[0] == 0) ? gen3Legacy : gen3Production;
+    if (devID >= 0xBA)
+    {
+        *mode = gen3p5;
+    }
+    else
+    {
+        tbuf[0] = regHexModeCFG0;
+        tbuf[1] = regHexModeCFG1;
+        if (!(co_await dmaReadWrite(tbuf, rbuf)))
+        {
+            error("getHexMode failed");
+            co_return false;
+        }
+
+        *mode = (rbuf[0] == 0) ? gen3Legacy : gen3Production;
+    }
 
     co_return true;
 }
 
 sdbusplus::async::task<bool> ISL69269::getDeviceId(uint32_t* deviceId)
 {
+    if (deviceId == nullptr)
+    {
+        co_return false;
+    }
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t tLen = oneByteLen;
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -173,7 +199,9 @@ sdbusplus::async::task<bool> ISL69269::getDeviceId(uint32_t* deviceId)
 
     tbuf[0] = pmBusDeviceId;
 
+    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     if (!(co_await i2cInterface.sendReceive(tbuf, tLen, rbuf, rLen)))
+    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("getDeviceId failed");
         co_return false;
@@ -192,13 +220,15 @@ sdbusplus::async::task<bool> ISL69269::getDeviceRevision(uint32_t* revision)
     uint8_t rlen = deviceRevisionLen + 1;
 
     tbuf[0] = pmBusDeviceRev;
+    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     if (!(co_await i2cInterface.sendReceive(tbuf, tlen, rbuf, rlen)))
+    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("getDeviceRevision failed with sendreceive");
         co_return false;
     }
 
-    if (mode == gen3Legacy)
+    if (mode == gen3Legacy || mode == gen3p5)
     {
         std::memcpy(revision, &rbuf[1], deviceRevisionLen);
     }
@@ -214,8 +244,23 @@ sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t* sum)
 {
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
+    uint8_t mode = 0xFF;
 
-    tbuf[0] = regCRC;
+    if (!(co_await getHexMode(&mode)))
+    {
+        error("program failed at getHexMode");
+        co_return false;
+    }
+
+    if (mode == gen3p5)
+    {
+        tbuf[0] = regGen3p5CRC;
+    }
+    else
+    {
+        tbuf[0] = regCRC;
+    }
+
     if (!(co_await dmaReadWrite(tbuf, rbuf)))
     {
         error("getCRC failed");
@@ -230,6 +275,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
 {
     size_t nextLineStart = 0;
     int dcnt = 0;
+    configuration.mode = 0;
 
     for (size_t i = 0; i < imageSize; i++)
     {
@@ -257,6 +303,10 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     shiftLeftFromMSB(sepLine + 4, &configuration.devIdExp);
                     debug("device id from configuration: {ID}", "ID", lg2::hex,
                           configuration.devIdExp);
+                    if (sepLine[6] >= 0xBA) // GEN3p5 IC_DEVICE_ID Byte ID[1]
+                    {
+                        configuration.mode = gen3p5;
+                    }
                 }
                 else if (sepLine[3] == pmBusDeviceRev)
                 {
@@ -267,15 +317,21 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     // According to programing guide:
                     // If legacy hex file
                     // MSB device revision == 0x00 | 0x01
-                    if (configuration.devRevExp < (gen3SWRevMin << 24))
+                    // The MSB device revision of GEN3p5 will be between
+                    // 0x03 and 0x06 (inclusive), so it cannot be used
+                    // alone to determine Gen3 or GEN3p5.
+                    if (configuration.mode == 0)
                     {
-                        debug("Legacy hex file format recognized");
-                        configuration.mode = gen3Legacy;
-                    }
-                    else
-                    {
-                        debug("Production hex file format recognized");
-                        configuration.mode = gen3Production;
+                        if (configuration.devRevExp < (gen3SWRevMin << 24))
+                        {
+                            debug("Legacy hex file format recognized");
+                            configuration.mode = gen3Legacy;
+                        }
+                        else
+                        {
+                            debug("Production hex file format recognized");
+                            configuration.mode = gen3Production;
+                        }
                     }
                 }
             }
@@ -305,9 +361,20 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                 switch (dcnt)
                 {
                     case cfgId:
-                        configuration.cfgId = sepLine[4] & 0x0F;
-                        debug("Config ID: {ID}", "ID", lg2::hex,
-                              configuration.cfgId);
+                        if (configuration.mode != gen3p5)
+                        {
+                            configuration.cfgId = sepLine[4] & 0x0F;
+                            debug("Config ID: {ID}", "ID", lg2::hex,
+                                  configuration.cfgId);
+                        }
+                        break;
+                    case gen3p5cfgId:
+                        if (configuration.mode == gen3p5)
+                        {
+                            configuration.cfgId = sepLine[4];
+                            debug("Config ID: {ID}", "ID", lg2::hex,
+                                  configuration.cfgId);
+                        }
                         break;
                     case gen3LegacyCRC:
                         if (configuration.mode == gen3Legacy)
@@ -325,6 +392,15 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                                         checksumLen);
                             debug("Config Production CRC: {CRC}", "CRC",
                                   lg2::hex, configuration.crcExp);
+                        }
+                        break;
+                    case gen3p5CRC:
+                        if (configuration.mode == gen3p5)
+                        {
+                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                                        checksumLen);
+                            debug("Config Gen3p5 CRC: {CRC}", "CRC", lg2::hex,
+                                  configuration.crcExp);
                         }
                         break;
                 }
@@ -372,9 +448,8 @@ sdbusplus::async::task<bool> ISL69269::program()
 
     for (int i = 0; i < configuration.wrCnt; i++)
     {
-        tbuf[0] = configuration.pData[i].cmd;
-        std::memcpy(tbuf + 1, &configuration.pData[i].data,
-                    configuration.pData[i].len - 1);
+        std::memcpy(tbuf, configuration.pData[i].data + 1,
+                    configuration.pData[i].len);
 
         if (!(co_await i2cInterface.sendReceive(
                 tbuf, configuration.pData[i].len, rbuf, rlen)))
@@ -392,7 +467,15 @@ sdbusplus::async::task<bool> ISL69269::getProgStatus()
     uint8_t rbuf[programBufferSize] = {0};
     int retry = 3;
 
-    tbuf[0] = regProgStatus;
+    if (configuration.mode == gen3p5)
+    {
+        tbuf[0] = regGen3p5ProgStatus;
+    }
+    else
+    {
+        tbuf[0] = regProgStatus;
+    }
+
     tbuf[1] = 0x00;
 
     do
@@ -554,6 +637,17 @@ sdbusplus::async::task<bool> ISL69269::verifyImage(const uint8_t* image,
             {
                 error(
                     "revision requirements for production mode device not fulfilled");
+            }
+            break;
+        case gen3p5:
+            if (((devRev >> 24) >= gen3p5HWRevMin) &&
+                ((devRev >> 24) <= gen3p5HWRevMax))
+            {
+                debug("Gen3p5 revision checks out");
+            }
+            else
+            {
+                error("revision requirements for Gen3p5 device not fulfilled");
             }
             break;
     }

@@ -101,8 +101,10 @@ class NotifyWatch
                         buffer.data() + offset + offsetof(inotify_event, name)),
                     len[0]};
                 // NOLINTEND(cppcoreguidelines-pro-type-reinterpret-cast)
-                co_await static_cast<Instance*>(this)->processUpdate(
-                    std::string(name.begin(), name.end()));
+                auto fileName = std::string(
+                    name.data(),
+                    std::find(name.data(), name.data() + name.size(), '\0'));
+                co_await static_cast<Instance*>(this)->processUpdate(fileName);
             }
             offset += offsetof(inotify_event, name) + len[0];
         }

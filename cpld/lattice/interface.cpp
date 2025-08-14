@@ -2,6 +2,7 @@
 
 #include "lattice.hpp"
 #include "xo2xo3.hpp"
+#include "xo5.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
@@ -16,6 +17,11 @@ std::unique_ptr<CpldLatticeManager> getCpldManager(
     if (chip->second.updateStrategy == "XO2XO3FamilyUpdate")
     {
         return std::make_unique<XO2XO3FamilyUpdate>(
+            ctx, bus, address, chip->second.chipName, "CFG0", false);
+    }
+    if (chip->second.updateStrategy == "XO5FamilyUpdate")
+    {
+        return std::make_unique<XO5FamilyUpdate>(
             ctx, bus, address, chip->second.chipName, "CFG0", false);
     }
     lg2::error("Unsupported Lattice CPLD chip: {CHIPTYPE}", "CHIPTYPE",

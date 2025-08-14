@@ -4,9 +4,10 @@ cpld_vendor_src = files(
     'lattice/interface.cpp',
     'lattice/lattice.cpp',
     'lattice/xo2xo3.cpp',
+    'lattice/xo5.cpp',
 )
 
-executable(
+exe = executable(
     'phosphor-cpld-software-update',
     cpld_src,
     cpld_vendor_src,

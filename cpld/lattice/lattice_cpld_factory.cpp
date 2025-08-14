@@ -1,6 +1,7 @@
 #include "lattice_cpld_factory.hpp"
 
 #include "lattice_xo3_cpld.hpp"
+#include "lattice_xo5_cpld.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
@@ -25,6 +26,10 @@ std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD()
         case latticeChipFamily::XO2:
         case latticeChipFamily::XO3:
             return std::make_unique<LatticeXO3CPLD>(
+                CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
+                chipModelStr, "CFG0", false);
+        case latticeChipFamily::XO5:
+            return std::make_unique<LatticeXO5CPLD>(
                 CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
                 chipModelStr, "CFG0", false);
         default:

@@ -1,33 +1,52 @@
 #include "interface.hpp"
 
 #include "lattice.hpp"
+#include "xo2xo3.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
 namespace phosphor::software::cpld
 {
 
+std::unique_ptr<CpldLatticeManager> getCpldManager(
+    sdbusplus::async::context& ctx, const std::string& chipType, uint16_t bus,
+    uint8_t address)
+{
+    auto chip = supportedDeviceMap.find(chipType);
+    if (chip->second.updateStrategy == "XO2XO3FamilyUpdate")
+    {
+        return std::make_unique<XO2XO3FamilyUpdate>(
+            ctx, bus, address, chip->second.chipName, "CFG0", false);
+    }
+    lg2::error("Unsupported Lattice CPLD chip: {CHIPTYPE}", "CHIPTYPE",
+               chipType);
+    return nullptr;
+}
+
 sdbusplus::async::task<bool> LatticeCPLD::updateFirmware(
     bool /*force*/, const uint8_t* image, size_t imageSize,
     std::function<bool(int)> progressCallBack)
 {
     lg2::info("Updating Lattice CPLD firmware");
-
-    std::replace(chipname.begin(), chipname.end(), '_', '-');
-    auto cpldManager = std::make_unique<CpldLatticeManager>(
-        ctx, bus, address, image, imageSize, chipname, "CFG0", false);
-
-    co_return co_await cpldManager->updateFirmware(progressCallBack);
+    auto cpldManager = getCpldManager(ctx, chipType, bus, address);
+    if (cpldManager == nullptr)
+    {
+        lg2::error("CPLD manager is not initialized.");
+        co_return false;
+    }
+    co_return co_await cpldManager->updateFirmware(image, imageSize,
+                                                   progressCallBack);
 }
 
 sdbusplus::async::task<bool> LatticeCPLD::getVersion(std::string& version)
 {
     lg2::info("Getting Lattice CPLD version");
-
-    std::replace(chipname.begin(), chipname.end(), '_', '-');
-    auto cpldManager = std::make_unique<CpldLatticeManager>(
-        ctx, bus, address, nullptr, 0, chipname, "CFG0", false);
-
+    auto cpldManager = getCpldManager(ctx, chipType, bus, address);
+    if (cpldManager == nullptr)
+    {
+        lg2::error("CPLD manager is not initialized.");
+        co_return false;
+    }
     co_return co_await cpldManager->getVersion(version);
 }
 
@@ -42,15 +61,13 @@ using namespace phosphor::software::cpld;
 const bool vendorRegistered = [] {
     for (const auto& [type, info] : supportedDeviceMap)
     {
-        auto typeStr = std::string(type);
         CPLDFactory::instance().registerCPLD(
-            type, [info](sdbusplus::async::context& ctx,
+            type, [type](sdbusplus::async::context& ctx,
                          const std::string& /*chipName*/, uint16_t bus,
                          uint8_t address) {
                 // Create and return a LatticeCPLD instance
                 // Pass the parameters to the constructor
-                return std::make_unique<LatticeCPLD>(ctx, info.chipName, bus,
-                                                     address);
+                return std::make_unique<LatticeCPLD>(ctx, type, bus, address);
             });
     }
     return true;

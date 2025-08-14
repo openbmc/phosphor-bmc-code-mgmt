@@ -16,6 +16,24 @@
       "message": "Introduced this flag here to fix flaky test runs and isolate them from each other since otherwise they would be using the same DBus session.\n\nSince the tests are pretty fast, i do not think it will be an issue to run them sequentially. \n\nAlternative would be `dbus-run-session` but that inroduces another indirection and makes it less straightforward to run tests manually.",
       "revId": "e66c5f371ce4b5ef5948b3c18f8f485773136feb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "955103db_7cb5ed7b",
+        "filename": "test/common/software/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T17:36:00Z",
+      "side": 1,
+      "message": "Let\u0027s look into why it is not working in the parallel case. It should work.",
+      "parentUuid": "1196ba59_d928d1ed",
+      "revId": "e66c5f371ce4b5ef5948b3c18f8f485773136feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

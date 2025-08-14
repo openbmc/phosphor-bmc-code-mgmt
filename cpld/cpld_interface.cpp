@@ -1,7 +1,5 @@
 #include "cpld_interface.hpp"
 
-#include "lattice/interface.hpp"
-
 namespace phosphor::software::cpld
 {
 

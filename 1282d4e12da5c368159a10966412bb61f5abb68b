@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "985fcf44_97860596",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-15T16:45:14Z",
+      "side": 1,
+      "message": "I\u0027m very confused by the use of \"sd{a,b,c}\" throughout this commit.  Aren\u0027t sdX used for the raw device and sdXN is used for partitions?  Wouldn\u0027t the boot partition be `sda0` or `sda1`?\n\nHow are we guaranteed that sda or sdb are the correct devices?  What happens if someone also plugs in a USB flash device?  Is there some kind of /sys/block identifier we could use instead?",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 27
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d9ae586_a58870fe",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-15T16:45:14Z",
+      "side": 1,
+      "message": "Why?",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ddfb182_63c8e3ac",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-15T16:45:14Z",
+      "side": 1,
+      "message": "Why?",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41a09f97_81e6fc67",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-15T16:45:14Z",
+      "side": 1,
+      "message": "Can we make this an enumeration?  We know which ones are supported.  Nobody is going to know that \"ufs\" is the appropriate option from what is written here.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

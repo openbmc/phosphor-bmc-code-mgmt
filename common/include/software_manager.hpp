@@ -51,6 +51,8 @@ class SoftwareManager
                                                     const std::string& path,
                                                     SoftwareConfig& config) = 0;
 
+    std::string getBusName();
+
     sdbusplus::async::context& ctx;
 
   private:
@@ -70,8 +72,8 @@ class SoftwareManager
     sdbusplus::async::match configIntfAddedMatch;
     sdbusplus::async::match configIntfRemovedMatch;
 
-    // this is appended to the common prefix to construct the dbus name
-    std::string serviceNameSuffix;
+    // the dbus name
+    const std::string serviceName;
 
     sdbusplus::server::manager_t manager;
 

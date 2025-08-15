@@ -52,6 +52,24 @@
       "parentUuid": "955103db_7cb5ed7b",
       "revId": "e66c5f371ce4b5ef5948b3c18f8f485773136feb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abef1afc_efe14e5c",
+        "filename": "test/common/software/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T15:31:09Z",
+      "side": 1,
+      "message": "Looks like there was a bus name re-used across tests\n\nLooking into `list_names_acquired`\nit does `_intf-\u003esd_bus_list_names(_bus.get(), \u0026names, nullptr);`\n\nwhich calls\n\n```\n  _public_ int sd_bus_list_names(sd_bus *bus, char ***ret_acquired, char ***ret_activatable) {\n          _cleanup_(sd_bus_message_unrefp) sd_bus_message *reply \u003d NULL;\n          _cleanup_strv_free_ char **x \u003d NULL, **y \u003d NULL;\n          int r;\n  \n          assert_return(bus, -EINVAL);\n          assert_return(bus \u003d bus_resolve(bus), -ENOPKG);\n          assert_return(ret_acquired || ret_activatable, -EINVAL);\n          assert_return(!bus_origin_changed(bus), -ECHILD);\n  \n          if (!bus-\u003ebus_client)\n                  return -EINVAL;\n  \n          if (!BUS_IS_OPEN(bus-\u003estate))\n                  return -ENOTCONN;\n  \n          if (ret_acquired) {\n                  r \u003d sd_bus_call_method(\n                                  bus, \n                                  \"org.freedesktop.DBus\",\n                                  \"/org/freedesktop/DBus\",\n                                  \"org.freedesktop.DBus\",\n                                  \"ListNames\",\n                                  NULL,\n                                  \u0026reply,\n                                  NULL);\n```\n\nwhich calls all the names acquired on that bus.\n\nIf we now do that call in userspace, for the system bus\n\n```\n[alexander@alexanderarchlinux phosphor-bmc-code-mgmt]$ busctl call --system org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus ListNames\nas 12 \"org.freedesktop.DBus\" \":1.0\" \":1.1\" \":1.2\" \":1.3\" \":1.4\" \":1.12\" \":1.22\" \"org.freedesktop.login1\" \"org.freedesktop.network1\" \"org.freedesktop.resolve1\" \"org.freedesktop.systemd1\"\n```\n\nwe see there are multiple bus names belonging to different processes.\n\nSo `list_names_acquired` is the wrong API to get the bus name for the connection.\n\nWe would have to go by unique names https://manpages.debian.org/testing/libsystemd-dev/sd_bus_get_unique_name.3.en.html\n\nor keep track of our bus name ourselves and not query it again later on.\n\nSince the common code API does not use unique bus names, i can add a method to `SoftwareManager` class to get our bus name from the unique suffix which is stored in the class.\n\nSo we do not have to rebuild that in the test code and avoid any duplication there.\n\n\nWe could also go with `org.freedesktop.DBus.GetNameOwner` to map any name found back to the unique name and then compare with our unique name but that would involve bunch of extra code which is not needed.",
+      "parentUuid": "e0145c1a_d0fe6fdc",
+      "revId": "e66c5f371ce4b5ef5948b3c18f8f485773136feb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

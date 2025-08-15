@@ -39,6 +39,8 @@ enum class MPSPage : uint8_t
     page2,
     page3,
     page4,
+    page29 = 0x29,
+    page2A = 0x2A,
 };
 
 struct MPSData

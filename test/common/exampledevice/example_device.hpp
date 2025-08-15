@@ -15,15 +15,14 @@ namespace phosphor::software::example_device
 class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
 {
   public:
-    ExampleCodeUpdater(sdbusplus::async::context& ctx,
-                       long uniqueSuffix = getRandomId());
+    ExampleCodeUpdater(sdbusplus::async::context& ctx);
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
                                             const std::string& path,
                                             SoftwareConfig& config) final;
 
   private:
-    static long getRandomId();
+    static std::string getRandomId();
 };
 
 const std::string exampleName = "ExampleSoftware";

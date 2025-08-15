@@ -26,19 +26,16 @@ SoftwareConfig ExampleDevice::defaultConfig =
     SoftwareConfig(exampleInvObjPath, exampleVendorIANA,
                    exampleCompatibleHardware, "Nop", exampleName);
 
-long ExampleCodeUpdater::getRandomId()
+std::string ExampleCodeUpdater::getRandomId()
 {
-    struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
-    unsigned int seed = ts.tv_nsec ^ getpid();
-    srandom(seed);
-    return random() % 10000;
+    static std::atomic<uint64_t> counter{0};
+    const uint64_t id = ++counter;
+    return std::to_string(getpid()) + "_" + std::to_string(id);
 }
 
 // nop code updater needs unique suffix on dbus for parallel unit testing
-ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx,
-                                       long uniqueSuffix) :
-    SoftwareManager(ctx, "ExampleUpdater" + std::to_string(uniqueSuffix))
+ExampleCodeUpdater::ExampleCodeUpdater(sdbusplus::async::context& ctx) :
+    SoftwareManager(ctx, "ExampleUpdater" + getRandomId())
 {}
 
 sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(

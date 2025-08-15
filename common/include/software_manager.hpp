@@ -51,6 +51,8 @@ class SoftwareManager
                                                     const std::string& path,
                                                     SoftwareConfig& config) = 0;
 
+    std::string getBusName();
+
     sdbusplus::async::context& ctx;
 
   private:

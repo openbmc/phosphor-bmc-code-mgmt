@@ -35,8 +35,7 @@ SoftwareManager::SoftwareManager(sdbusplus::async::context& ctx,
     manager(ctx, sdbusplus::client::xyz::openbmc_project::software::Version<>::
                      namespace_path)
 {
-    const std::string serviceNameFull =
-        "xyz.openbmc_project.Software." + serviceNameSuffix;
+    const std::string serviceNameFull = getBusName();
 
     debug("requesting dbus name {BUSNAME}", "BUSNAME", serviceNameFull);
 
@@ -146,6 +145,11 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
     }
 
     debug("Done with initial configuration");
+}
+
+std::string SoftwareManager::getBusName()
+{
+    return "xyz.openbmc_project.Software." + serviceNameSuffix;
 }
 
 sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(

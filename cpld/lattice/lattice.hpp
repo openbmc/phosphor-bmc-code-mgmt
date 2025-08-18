@@ -77,4 +77,8 @@ class CpldLatticeManager
     sdbusplus::async::task<bool> readStatusReg(uint8_t& statusReg);
     sdbusplus::async::task<bool> waitBusyAndVerify();
     sdbusplus::async::task<bool> readUserCode(uint32_t& userCode);
+    sdbusplus::async::task<bool> programSinglePage(
+        uint16_t page_offset, std::span<const uint8_t> page_data);
+    sdbusplus::async::task<bool> verifySinglePage(
+        uint16_t page_offset, std::span<const uint8_t> page_data);
 };

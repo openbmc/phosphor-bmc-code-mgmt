@@ -3,6 +3,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <algorithm>
+#include <cstddef>
 #include <fstream>
 #include <map>
 #include <numeric>
@@ -37,7 +38,9 @@ enum cpldI2cCmd
     commandResetConfigFlash = 0x46,
     commandProgramDone = 0x5E,
     commandProgramPage = 0x70,
+    commandReadPage = 0x73,
     commandEnableConfigMode = 0x74,
+    commandSetPageAddress = 0xB4,
     commandReadFwVersion = 0xC0,
     commandProgramUserCode = 0xC2,
     commandReadDeviceId = 0xE0,
@@ -435,6 +438,85 @@ sdbusplus::async::task<bool> CpldLatticeManager::resetConfigFlash()
     co_return i2cInterface.sendReceive(request, response);
 }
 
+sdbusplus::async::task<bool> CpldLatticeManager::programSinglePage(
+    uint16_t pageOffset, std::span<const uint8_t> pageData)
+{
+    // Set Page Offset
+    std::vector<uint8_t> emptyResp(0);
+    std::vector<uint8_t> setPageAddrCmd = {
+        commandSetPageAddress, 0x0, 0x0, 0x0, 0x00, 0x00, 0x00, 0x00};
+    setPageAddrCmd[6] = (pageOffset / 256);
+    setPageAddrCmd[7] = (pageOffset % 256);
+
+    if (!i2cInterface.sendReceive(setPageAddrCmd, emptyResp))
+    {
+        lg2::error("Write page address failed");
+        co_return false;
+    }
+
+    // Write Page Data
+    constexpr uint8_t pageCount = 1;
+    std::vector<uint8_t> writeCmd = {commandProgramPage, 0x0, 0x0, pageCount};
+    writeCmd.insert(writeCmd.end(), pageData.begin(), pageData.end());
+    if (!i2cInterface.sendReceive(writeCmd, emptyResp))
+    {
+        lg2::error("Write page data failed");
+        co_return false;
+    }
+
+    // Defensive check to satisfy clang-analyzer
+    assert(&ctx != nullptr);
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::microseconds(200));
+
+    if (!(co_await waitBusyAndVerify()))
+    {
+        lg2::error("Wait busy and verify fail");
+        co_return false;
+    }
+
+    co_return true;
+}
+
+sdbusplus::async::task<bool> CpldLatticeManager::verifySinglePage(
+    uint16_t pageOffset, std::span<const uint8_t> pageData)
+{
+    // Set Page Offset
+    std::vector<uint8_t> emptyResp(0);
+    std::vector<uint8_t> setPageAddrCmd = {
+        commandSetPageAddress, 0x0, 0x0, 0x0, 0x00, 0x00, 0x00, 0x00};
+    setPageAddrCmd[6] = static_cast<uint8_t>(pageOffset >> 8); // high byte
+    setPageAddrCmd[7] = static_cast<uint8_t>(pageOffset);      // low byte
+
+    if (!i2cInterface.sendReceive(setPageAddrCmd, emptyResp))
+    {
+        lg2::error("Write page address failed");
+        co_return false;
+    }
+
+    // Read Page Data
+    constexpr uint8_t pageCount = 1;
+    std::vector<uint8_t> readData(pageData.size());
+    std::vector<uint8_t> readCmd = {commandReadPage, 0x0, 0x0, pageCount};
+
+    if (!i2cInterface.sendReceive(readCmd, readData))
+    {
+        lg2::error("Read page data failed");
+        co_return false;
+    }
+
+    auto mismatch_pair =
+        std::mismatch(pageData.begin(), pageData.end(), readData.begin());
+    if (mismatch_pair.first != pageData.end())
+    {
+        size_t idx = std::distance(pageData.begin(), mismatch_pair.first);
+        lg2::error("Verify failed at {INDEX}", "INDEX",
+                   ((static_cast<size_t>(pageOffset * 16)) + idx));
+        co_return false;
+    }
+
+    co_return true;
+}
+
 sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
 {
     /*
@@ -442,47 +524,54 @@ sdbusplus::async::task<bool> CpldLatticeManager::writeProgramPage()
     used to program the NVCM0/CFG or
     NVCM1/UFM.
     */
-    std::vector<uint8_t> request = {commandProgramPage, 0x0, 0x0, 0x01};
-    std::vector<uint8_t> response;
     size_t iterSize = 16;
 
-    for (size_t i = 0; i < fwInfo.cfgData.size(); i += iterSize)
+    for (size_t i = 0; (i * iterSize) < fwInfo.cfgData.size(); i++)
     {
+        size_t byteOffset = i * iterSize;
         double progressRate =
-            ((double(i) / double(fwInfo.cfgData.size())) * 100);
+            ((double(byteOffset) / double(fwInfo.cfgData.size())) * 100);
         std::cout << "Update :" << std::fixed << std::dec
                   << std::setprecision(2) << progressRate << "% \r";
 
-        uint8_t len = ((i + iterSize) < fwInfo.cfgData.size())
+        uint8_t len = ((byteOffset + iterSize) < fwInfo.cfgData.size())
                           ? iterSize
-                          : (fwInfo.cfgData.size() - i);
-        std::vector<uint8_t> data = request;
+                          : (fwInfo.cfgData.size() - byteOffset);
+        auto pageData = std::vector<uint8_t>(
+            fwInfo.cfgData.begin() + static_cast<std::ptrdiff_t>(byteOffset),
+            fwInfo.cfgData.begin() +
+                static_cast<std::ptrdiff_t>(byteOffset + len));
 
-        data.insert(
-            data.end(), fwInfo.cfgData.begin() + static_cast<std::ptrdiff_t>(i),
-            fwInfo.cfgData.begin() + static_cast<std::ptrdiff_t>(i + len));
-
-        if (!i2cInterface.sendReceive(data, response))
+        size_t retry = 0;
+        const size_t maxWriteRetry = 10;
+        while (retry < maxWriteRetry)
         {
-            lg2::error("Failed to send program page request. {CURRENT}",
-                       "CURRENT", uint32ToHexStr(i));
-            co_return false;
+            if (!(co_await programSinglePage(i, pageData)))
+            {
+                retry++;
+                continue;
+            }
+
+            if (!(co_await verifySinglePage(i, pageData)))
+            {
+                retry++;
+                continue;
+            }
+
+            break;
         }
 
-        /*
-         Reference spec
-         Important! If don't sleep, it will take a long time to update.
-        */
-        co_await sdbusplus::async::sleep_for(ctx,
-                                             std::chrono::microseconds(200));
-
-        if (!(co_await waitBusyAndVerify()))
+        if (retry >= maxWriteRetry)
         {
-            lg2::error("Wait busy and verify fail");
+            lg2::error("Program and verify page failed");
             co_return false;
         }
+    }
 
-        data.clear();
+    if (!(co_await waitBusyAndVerify()))
+    {
+        lg2::error("Wait busy and verify fail");
+        co_return false;
     }
 
     co_return true;

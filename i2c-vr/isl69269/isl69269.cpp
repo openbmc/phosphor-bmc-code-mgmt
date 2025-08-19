@@ -372,9 +372,8 @@ sdbusplus::async::task<bool> ISL69269::program()
 
     for (int i = 0; i < configuration.wrCnt; i++)
     {
-        tbuf[0] = configuration.pData[i].cmd;
-        std::memcpy(tbuf + 1, &configuration.pData[i].data,
-                    configuration.pData[i].len - 1);
+        std::memcpy(tbuf, configuration.pData[i].data + 1,
+                    configuration.pData[i].len);
 
         if (!(co_await i2cInterface.sendReceive(
                 tbuf, configuration.pData[i].len, rbuf, rlen)))

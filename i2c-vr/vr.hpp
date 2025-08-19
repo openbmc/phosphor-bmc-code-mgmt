@@ -19,6 +19,7 @@ enum class VRType
     ISL69269,
     MP2X6XX,
     MP297X,
+    MP5998,
 };
 
 class VoltageRegulator

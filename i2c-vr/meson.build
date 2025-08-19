@@ -4,6 +4,7 @@ regulators_src = files(
     'isl69269/isl69269.cpp',
     'mps/mp297x.cpp',
     'mps/mp2x6xx.cpp',
+    'mps/mp5998.cpp',
     'mps/mps.cpp',
     'xdpe1x2xx/xdpe1x2xx.cpp',
 )

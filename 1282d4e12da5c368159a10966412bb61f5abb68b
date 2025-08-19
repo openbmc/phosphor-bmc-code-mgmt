@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "300d4a10_274066a0",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-19T09:55:00Z",
+      "side": 1,
+      "message": "I used /dev/disk/by-path to identify the boot partition. Please help review it again. Thanks.",
+      "parentUuid": "f344d3bb_507fa8e6",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 27
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d9ae586_a58870fe",
         "filename": "bmc/obmc-flash-bmc",
         "patchSetId": 3
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "Originally it was written as number\u003d\"${number##*mmcblk0p}\".\nI added a rootPartition variable to make it more flexible, but that causes ShellCheck to report SC2295.\nI followed the approach in [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/bmc/obmc-flash-bmc#L530) and added disable\u003dSC2295 since this is a false positive.",
       "parentUuid": "3d9ae586_a58870fe",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f03eca27_f010172d",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-19T09:55:00Z",
+      "side": 1,
+      "message": "I have rewritten it. Please help review it again. Thanks.",
+      "parentUuid": "88ef48bb_59847dd2",
       "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce176102_c66801f3",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-19T09:55:00Z",
+      "side": 1,
+      "message": "I have rewritten it. Please help review it again. Thanks.",
+      "parentUuid": "281a093c_471c1fa6",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41a09f97_81e6fc67",
         "filename": "meson.options",
         "patchSetId": 3
@@ -155,6 +215,30 @@
       "side": 1,
       "message": "OK, I’ll change it to an enumeration.",
       "parentUuid": "41a09f97_81e6fc67",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b215cef_e675c207",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-19T09:55:00Z",
+      "side": 1,
+      "message": "I have rewritten it. Please help review it again. Thanks.",
+      "parentUuid": "c2ececf8_7d43e7dd",
       "range": {
         "startLine": 14,
         "startChar": 0,

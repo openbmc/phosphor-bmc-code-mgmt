@@ -125,6 +125,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33eb9de6_bdf13179",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-19T12:22:13Z",
+      "side": 1,
+      "message": "In the future, please mark as resolved.",
+      "parentUuid": "f03eca27_f010172d",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ddfb182_63c8e3ac",
@@ -174,6 +192,24 @@
       "side": 1,
       "message": "I have rewritten it. Please help review it again. Thanks.",
       "parentUuid": "281a093c_471c1fa6",
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "479ca09c_1c815ce9",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-19T12:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce176102_c66801f3",
       "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

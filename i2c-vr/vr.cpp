@@ -24,6 +24,9 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
             return std::make_unique<MP2X6XX>(ctx, bus, address);
         case VRType::MP297X:
             return std::make_unique<MP297X>(ctx, bus, address);
+        case VRType::RAA22XGen2:
+            return std::make_unique<ISL69269>(ctx, bus, address,
+                                              ISL69269::Gen::Gen2);
         default:
             return nullptr;
     }
@@ -35,7 +38,8 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
         {"ISL69269Firmware", VRType::ISL69269},
         {"MP2X6XXFirmware", VRType::MP2X6XX},
-        {"MP297XFirmware", VRType::MP297X}};
+        {"MP297XFirmware", VRType::MP297X},
+        {"RAA22XGen2Firmware", VRType::RAA22XGen2}};
     if (VRTypeToString.contains(vrStr))
     {
         vrType = VRTypeToString[vrStr];

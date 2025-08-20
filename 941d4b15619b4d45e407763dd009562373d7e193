@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fec7f09_b2996543",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 5
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-20T07:58:15Z",
+      "side": 1,
+      "message": "Please help review it again. Thanks.",
+      "parentUuid": "6979cbdb_5af936cc",
+      "revId": "941d4b15619b4d45e407763dd009562373d7e193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66f5b79b_bfe34531",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-08-19T12:22:13Z",
       "side": 1,
       "message": "Does this assume a particular partition layout?  Should we use this or should we require GPT labels?  (We are using GPT here, right?)",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 582,
+        "endChar": 88
+      },
+      "revId": "941d4b15619b4d45e407763dd009562373d7e193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f036227_c1fbe409",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-20T07:58:15Z",
+      "side": 1,
+      "message": "As I understand it, the sgdisk command for changing a partition’s name requires using `/dev/sda` for UFS and `/dev/mmcblk0` for eMMC. The /dev/disk/by-partlabel/ path cannot provide this device name.\n\n```\nroot@ast2700-ufs:~# ls -l /dev/disk/by-partlabel/\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-a -\u003e ../../sda2\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-b -\u003e ../../sda3\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 primary -\u003e ../../sda1\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-a -\u003e ../../sda4\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-b -\u003e ../../sda5\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rwfs -\u003e ../../sda6\n```  \n\n```\nroot@ast2600-emmc:~# ls -l /dev/disk/by-partlabel/\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 boot-a -\u003e ../../mmcblk0p2\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 boot-b -\u003e ../../mmcblk0p3\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 primary -\u003e ../../mmcblk0p1\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rofs-a -\u003e ../../mmcblk0p4\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rofs-b -\u003e ../../mmcblk0p5\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rwfs -\u003e ../../mmcblk0p6\n```",
+      "parentUuid": "66f5b79b_bfe34531",
       "range": {
         "startLine": 581,
         "startChar": 0,

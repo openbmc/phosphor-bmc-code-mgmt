@@ -26,6 +26,7 @@ constexpr uint8_t deviceIdLength = 4;
 
 constexpr uint8_t gen3Legacy = 1;
 constexpr uint8_t gen3Production = 2;
+constexpr uint8_t gen2Hex = 3;
 
 constexpr uint16_t cfgId = 7;
 constexpr uint16_t gen3FileHead = 5;
@@ -50,9 +51,21 @@ constexpr uint8_t oneByteLen = 1;
 constexpr uint8_t threeByteLen = 3;
 constexpr uint8_t fourByteLen = 4;
 
+// RAA Gen2
+constexpr uint8_t gen2RegProgStatus = 0x07;
+constexpr uint8_t gen2RegCRC = 0x3F;
+constexpr uint8_t gen2RegRemainginWrites = 0xC2;
+
+constexpr uint32_t gen2RevMin = 0x02000003;
+
+constexpr uint8_t hexFileRev = 0x00;
+constexpr uint16_t gen2FileHead = 6;
+constexpr uint16_t gen2CRC = 600 - gen2FileHead;
+
 ISL69269::ISL69269(sdbusplus::async::context& ctx, uint16_t bus,
-                   uint16_t address) :
-    VoltageRegulator(ctx), i2cInterface(phosphor::i2c::I2C(bus, address))
+                   uint16_t address, Gen gen) :
+    VoltageRegulator(ctx), i2cInterface(phosphor::i2c::I2C(bus, address)),
+    generation(gen)
 {}
 
 inline void shiftLeftFromLSB(const uint8_t* data, uint32_t* result)
@@ -134,7 +147,8 @@ sdbusplus::async::task<bool> ISL69269::getRemainingWrites(uint8_t* remain)
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
 
-    tbuf[0] = regRemainginWrites;
+    tbuf[0] =
+        (generation == Gen::Gen2) ? gen2RegRemainginWrites : regRemainginWrites;
     tbuf[1] = 0x00;
     if (!(co_await dmaReadWrite(tbuf, rbuf)))
     {
@@ -148,6 +162,12 @@ sdbusplus::async::task<bool> ISL69269::getRemainingWrites(uint8_t* remain)
 
 sdbusplus::async::task<bool> ISL69269::getHexMode(uint8_t* mode)
 {
+    if (generation == Gen::Gen2)
+    {
+        *mode = gen2Hex;
+        co_return true;
+    }
+
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
 
@@ -192,7 +212,9 @@ sdbusplus::async::task<bool> ISL69269::getDeviceRevision(uint32_t* revision)
     uint8_t rlen = deviceRevisionLen + 1;
 
     tbuf[0] = pmBusDeviceRev;
+    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     if (!(co_await i2cInterface.sendReceive(tbuf, tlen, rbuf, rlen)))
+    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("getDeviceRevision failed with sendreceive");
         co_return false;
@@ -215,7 +237,7 @@ sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t* sum)
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
 
-    tbuf[0] = regCRC;
+    tbuf[0] = (generation == Gen::Gen2) ? gen2RegCRC : regCRC;
     if (!(co_await dmaReadWrite(tbuf, rbuf)))
     {
         error("getCRC failed");
@@ -264,19 +286,27 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     debug("device revision from config: {ID}", "ID", lg2::hex,
                           configuration.devRevExp);
 
-                    // According to programing guide:
-                    // If legacy hex file
-                    // MSB device revision == 0x00 | 0x01
-                    if (configuration.devRevExp < (gen3SWRevMin << 24))
+                    if (generation != Gen::Gen2)
                     {
-                        debug("Legacy hex file format recognized");
-                        configuration.mode = gen3Legacy;
+                        // According to programing guide:
+                        // If legacy hex file
+                        // MSB device revision == 0x00 | 0x01
+                        if (configuration.devRevExp < (gen3SWRevMin << 24))
+                        {
+                            debug("Legacy hex file format recognized");
+                            configuration.mode = gen3Legacy;
+                        }
+                        else
+                        {
+                            debug("Production hex file format recognized");
+                            configuration.mode = gen3Production;
+                        }
                     }
-                    else
-                    {
-                        debug("Production hex file format recognized");
-                        configuration.mode = gen3Production;
-                    }
+                }
+                else if (sepLine[3] == hexFileRev)
+                {
+                    debug("Gen2 hex file format recognized");
+                    configuration.mode = gen2Hex;
                 }
             }
             else if (sepLine[0] == recordTypeData)
@@ -325,6 +355,15 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                                         checksumLen);
                             debug("Config Production CRC: {CRC}", "CRC",
                                   lg2::hex, configuration.crcExp);
+                        }
+                        break;
+                    case gen2CRC:
+                        if (configuration.mode == gen2Hex)
+                        {
+                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                                        checksumLen);
+                            debug("Config Gen2 CRC: {CRC}", "CRC", lg2::hex,
+                                  configuration.crcExp);
                         }
                         break;
                 }
@@ -391,8 +430,16 @@ sdbusplus::async::task<bool> ISL69269::getProgStatus()
     uint8_t rbuf[programBufferSize] = {0};
     int retry = 3;
 
-    tbuf[0] = regProgStatus;
-    tbuf[1] = 0x00;
+    if (generation == Gen::Gen2)
+    {
+        tbuf[0] = gen2RegProgStatus;
+        tbuf[1] = gen2RegProgStatus;
+    }
+    else
+    {
+        tbuf[0] = regProgStatus;
+        tbuf[1] = 0x00;
+    }
 
     do
     {
@@ -406,7 +453,7 @@ sdbusplus::async::task<bool> ISL69269::getProgStatus()
 
         if (rbuf[0] & 0x01)
         {
-            debug("Programming succesful");
+            debug("Programming successful");
             break;
         }
         if (--retry == 0)
@@ -452,7 +499,8 @@ sdbusplus::async::task<bool> ISL69269::restoreCfg()
     tbuf[0] = regRestoreCfg;
     tbuf[1] = configuration.cfgId;
 
-    debug("Restore configurtion ID: {ID}", "ID", lg2::hex, configuration.cfgId);
+    debug("Restore configuration ID: {ID}", "ID", lg2::hex,
+          configuration.cfgId);
 
     if (!(co_await dmaReadWrite(tbuf, rbuf)))
     {
@@ -553,6 +601,16 @@ sdbusplus::async::task<bool> ISL69269::verifyImage(const uint8_t* image,
             {
                 error(
                     "revision requirements for production mode device not fulfilled");
+            }
+            break;
+        case gen2Hex:
+            if (devRev >= gen2RevMin)
+            {
+                debug("Gen2 mode revision checks out");
+            }
+            else
+            {
+                error("revision requirements for Gen2 device not fulfilled");
             }
             break;
     }

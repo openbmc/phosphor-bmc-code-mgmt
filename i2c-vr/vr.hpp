@@ -13,6 +13,7 @@ enum class VRType
 {
     XDPE1X2XX,
     ISL69269,
+    RAA22XGen2,
 };
 
 class VoltageRegulator

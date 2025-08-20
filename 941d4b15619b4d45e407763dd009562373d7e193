@@ -81,6 +81,30 @@
       },
       "revId": "941d4b15619b4d45e407763dd009562373d7e193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c40b468_3a441893",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-20T19:15:50Z",
+      "side": 1,
+      "message": "If you use `by-partlabel` to find a partition, such as `boot-a`, then you can use the following to find the parent, correct?\n\n```\nbasename $(dirname $(realpath /sys/class/block/mmcblk0p2)))\n```",
+      "parentUuid": "7f036227_c1fbe409",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 582,
+        "endChar": 88
+      },
+      "revId": "941d4b15619b4d45e407763dd009562373d7e193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

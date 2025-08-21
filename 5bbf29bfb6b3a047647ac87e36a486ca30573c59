@@ -33,6 +33,57 @@
       "message": "Why this NOLINT? i don\u0027t see it in the code you are updating.",
       "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa5a39fe_cba7cf43",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T16:28:57Z",
+      "side": 1,
+      "message": "\"Write page address failed\"",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b886728d_4fc2b9b0",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T16:28:57Z",
+      "side": 1,
+      "message": "What is 0x01? Please define constexpr defining the meaning and using them here.",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cc711f_dd0bc640",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T16:28:57Z",
+      "side": 1,
+      "message": "Please do constexpr for 256 and use it. Same at other places in patch.",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

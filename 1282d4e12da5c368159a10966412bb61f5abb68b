@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63a200c_79b72511",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-21T14:56:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "300d4a10_274066a0",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 27
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d9ae586_a58870fe",
@@ -275,6 +299,30 @@
       "side": 1,
       "message": "I have rewritten it. Please help review it again. Thanks.",
       "parentUuid": "c2ececf8_7d43e7dd",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "1282d4e12da5c368159a10966412bb61f5abb68b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b688e0_609eed10",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-21T14:56:52Z",
+      "side": 1,
+      "message": "Please mark \"resolved\" on your own when you\u0027ve taken care of the comments.  Done.",
+      "parentUuid": "2b215cef_e675c207",
       "range": {
         "startLine": 14,
         "startChar": 0,

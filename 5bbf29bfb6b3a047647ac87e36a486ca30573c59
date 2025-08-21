@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ae81bab_e0ecf1f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T16:19:13Z",
+      "side": 1,
+      "message": "Please add Tested section for this by running the relevant Redfish CPLD update, firmware inventory show commands.\nPerform an ac cycle/cpld off operation and re-read redfish firmware inventory to make sure it does take affect. Add a line to the Tested section that this Testing has been performed.\n\nFor what to test, you can refer to Tested section in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82113.",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf8bc299_aab973a5",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T16:19:13Z",
+      "side": 1,
+      "message": "Why this NOLINT? i don\u0027t see it in the code you are updating.",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

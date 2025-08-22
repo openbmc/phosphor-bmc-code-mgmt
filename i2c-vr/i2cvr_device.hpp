@@ -27,8 +27,7 @@ class I2CVRDevice : public DeviceInf::Device
                 ManagerInf::SoftwareManager* parent) :
         DeviceInf::Device(
             ctx, config, parent,
-            {SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::Immediate,
-             SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::OnReset}),
+            {SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::OnReset}),
         vrInterface(VRInf::create(ctx, vrType, bus, address))
     {}
 

@@ -19,7 +19,6 @@ class XDPE1X2XX : public VoltageRegulator
                                              size_t imageSize) final;
 
     sdbusplus::async::task<bool> updateFirmware(bool force) final;
-    sdbusplus::async::task<bool> reset() final;
 
     sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
     bool forcedUpdateAllowed() final;

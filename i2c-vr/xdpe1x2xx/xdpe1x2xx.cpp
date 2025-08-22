@@ -40,7 +40,6 @@ constexpr uint8_t IFXMFRAHBAddr = 0xCE;
 constexpr uint8_t IFXMFRRegWrite = 0xDE;
 constexpr uint8_t IFXMFRFwCmdData = 0xFD;
 constexpr uint8_t IFXMFRFwCmd = 0xFE;
-constexpr uint8_t MFRFwCmdReset = 0x0e;
 constexpr uint8_t MFRFwCmdRmng = 0x10;
 constexpr uint8_t MFRFwCmdGetHWAddress = 0x2E;
 constexpr uint8_t MFRFwCmdOTPConfSTO = 0x11;
@@ -56,7 +55,6 @@ constexpr uint16_t MFRDefaultWaitTime = 20;
 constexpr uint16_t MFRGetHWAddressWaitTime = 5;
 constexpr uint16_t MFROTPFileInvalidationWaitTime = 100;
 constexpr uint16_t MFRSectionInvalidationWaitTime = 4;
-constexpr uint16_t VRResetDelay = 500;
 
 constexpr uint32_t CRC32Poly = 0xEDB88320;
 
@@ -715,17 +713,6 @@ sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
 
     if (!ret)
     {
-        co_return false;
-    }
-
-    co_return true;
-}
-
-sdbusplus::async::task<bool> XDPE1X2XX::reset()
-{
-    if (!(co_await mfrFWcmd(MFRFwCmdReset, VRResetDelay, NULL, NULL)))
-    {
-        error("Failed to reset the VR");
         co_return false;
     }
 

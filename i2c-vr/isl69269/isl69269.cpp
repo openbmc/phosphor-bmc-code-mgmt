@@ -98,6 +98,12 @@ static uint8_t calcCRC8(const uint8_t* data, uint8_t len)
 
 sdbusplus::async::task<bool> ISL69269::dmaReadWrite(uint8_t* reg, uint8_t* resp)
 {
+    if (reg == nullptr || resp == nullptr)
+    {
+        error("dmaReadWrite invalid input");
+        co_return false;
+    }
+
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t tlen = threeByteLen;
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -166,6 +172,12 @@ sdbusplus::async::task<bool> ISL69269::getHexMode(uint8_t* mode)
 
 sdbusplus::async::task<bool> ISL69269::getDeviceId(uint32_t* deviceId)
 {
+    if (deviceId == nullptr)
+    {
+        error("getDeviceId invalid input");
+        co_return false;
+    }
+
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t tLen = oneByteLen;
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -186,6 +198,12 @@ sdbusplus::async::task<bool> ISL69269::getDeviceId(uint32_t* deviceId)
 
 sdbusplus::async::task<bool> ISL69269::getDeviceRevision(uint32_t* revision)
 {
+    if (revision == nullptr)
+    {
+        error("getDeviceRevision invalid input");
+        co_return false;
+    }
+
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t tlen = oneByteLen;
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -383,6 +401,12 @@ sdbusplus::async::task<bool> ISL69269::program()
         }
     }
 
+    if (!(co_await getProgStatus()))
+    {
+        error("program failed at getProgStatus");
+        co_return false;
+    }
+
     co_return true;
 }
 
@@ -576,46 +600,6 @@ sdbusplus::async::task<bool> ISL69269::verifyImage(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> ISL69269::reset()
-{
-    bool ret = true;
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    ret = co_await getProgStatus();
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
-    if (!ret)
-    {
-        error("reset failed at getProgStatus");
-    }
-
-    ret = co_await restoreCfg();
-    if (!ret)
-    {
-        error("reset failed at restoreCfg");
-    }
-
-    // Reset configuration for next update.
-    configuration.addr = 0;
-    configuration.mode = 0;
-    configuration.cfgId = 0;
-    configuration.devIdExp = 0;
-    configuration.devRevExp = 0;
-    configuration.crcExp = 0x00;
-    for (int i = 0; i < configuration.wrCnt; i++)
-    {
-        configuration.pData[i].pec = 0x00;
-        configuration.pData[i].addr = 0x00;
-        configuration.pData[i].cmd = 0x00;
-        for (int j = 0; j < configuration.pData[i].len; j++)
-        {
-            configuration.pData[i].data[j] = 0x00;
-        }
-        configuration.pData[i].len = 0x00;
-    }
-    configuration.wrCnt = 0;
-
-    co_return ret;
-}
-
 bool ISL69269::forcedUpdateAllowed()
 {
     return true;
@@ -624,7 +608,9 @@ bool ISL69269::forcedUpdateAllowed()
 sdbusplus::async::task<bool> ISL69269::updateFirmware(bool force)
 {
     (void)force;
+    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     if (!(co_await program()))
+    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("programing ISL69269 failed");
         co_return false;

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88042e43_21494446",
+        "filename": "bmc/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-22T02:23:05Z",
+      "side": 1,
+      "message": "Yes. Please help review it again. Thanks.",
+      "parentUuid": "811352c7_61bc3d74",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce046b72_cd360d90",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-08-21T14:56:52Z",
       "side": 1,
       "message": "`mode\u003d@STORAGE_MODE@` should be sufficient; drop the quotes.  If you keep the quotes and add `conf.set_quoted` you end up with `\"mode\u003d\"mmc\"\"`, which is definitely broken.",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "542c550d_bdc08eba",
+        "filename": "bmc/mmc/obmc-flash-mmc-mirroruboot.service.in",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-22T02:23:05Z",
+      "side": 1,
+      "message": "Yes. Please help review it again. Thanks.",
+      "parentUuid": "ce046b72_cd360d90",
       "range": {
         "startLine": 7,
         "startChar": 12,
@@ -60,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19b147bb_9edb5670",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-22T02:23:05Z",
+      "side": 1,
+      "message": "Yes, the by-partlabel doesn’t expose the boot partitions. For eMMC the boot partition is stable `/dev/mmcblk0boot0`, but for UFS the boot LUNs appears as `/dev/sdX`, which can change. That’s why I used by-path to find them.\n\nMaybe my way is not good enough. the `readlink -f /dev/disk/by-path/*ufshc-scsi-0:0:0:1` still depends on how the UFS LUNs are created (see the U-Boot commands below).\n\n```\nufs create lun 0 100000 (create 16GB user area)\nufs create boot 1 1000000 (create 4MB boot part 1)\nufs create boot 2 1000000 (create 4MB boot part 2)\n```\n\n```\nroot@ast2700-ufs:~# ls -l /dev/disk/by-partlabel/\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-a -\u003e ../../sdb2\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-b -\u003e ../../sdb3\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 primary -\u003e ../../sdb1\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-a -\u003e ../../sdb4\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-b -\u003e ../../sdb5\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rwfs -\u003e ../../sdb6\n\nroot@ast2700-ufs:~# readlink -f /dev/disk/by-path/*ufshc-scsi-0:0:0:1\n/dev/sdc\n```",
+      "parentUuid": "7160b8ce_1e76bf3d",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9dd61ec_7325b306",
         "filename": "meson.options",
         "patchSetId": 7
@@ -71,6 +131,24 @@
       "writtenOn": "2025-08-21T14:56:52Z",
       "side": 1,
       "message": "We maybe need a \u0027none\u0027 or \u0027spi\u0027 also?  Or else should this be \u0027mmc-storage-mode\u0027, since it is only used when `bmc-layout \u003d\u003d mmc`?  Or should we just add a \u0027ufs\u0027 to the \u0027bmc-layout\u0027?",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d19fbf_ec7433e1",
+        "filename": "meson.options",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-08-22T02:23:05Z",
+      "side": 1,
+      "message": "I don\u0027t think we need a `ufs` to the bmc-layout. The build process is essentially the same as MMC; only the sector size differs. I’ve changed the option to `mmc-storage-mode`. Please review again. Thanks.",
+      "parentUuid": "e9dd61ec_7325b306",
       "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

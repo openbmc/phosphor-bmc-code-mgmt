@@ -28,15 +28,6 @@ sdbusplus::async::task<bool> I2CVRDevice::updateDevice(const uint8_t* image,
         co_return false;
     }
 
-    setUpdateProgress(80);
-
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!(co_await vrInterface->reset()))
-    //  NOLINTEND(clang-analyzer-core.uninitialized.Branch)
-    {
-        co_return false;
-    }
-
     setUpdateProgress(100);
 
     lg2::info("Successfully updated VR {NAME}", "NAME", config.configName);

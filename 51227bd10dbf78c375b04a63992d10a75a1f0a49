@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3354abf_0a994158",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-26T02:17:14Z",
+      "side": 1,
+      "message": "Why this NOLINT?",
+      "revId": "51227bd10dbf78c375b04a63992d10a75a1f0a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

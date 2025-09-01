@@ -370,6 +370,7 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
 
 sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
 {
+    constexpr int maxRetries = 15;
     auto requiredHostState = deviceVersion->getHostStateToQueryVersion();
 
     if (!requiredHostState)
@@ -383,7 +384,7 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
         auto nextResult = co_await hostPower.stateChangedMatch.next<
             std::string, std::map<std::string, std::variant<std::string>>>();
 
-        auto [interfaceName, changedProperties] = nextResult;
+        const auto& [interfaceName, changedProperties] = nextResult;
 
         auto it = changedProperties.find("CurrentHostState");
         if (it != changedProperties.end())
@@ -393,10 +394,22 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
             if (currentHostState ==
                 State::convertForMessage(*requiredHostState))
             {
+                auto isDeviceReady = false;
                 debug("Host state {STATE} matches to retrieve the version",
                       "STATE", currentHostState);
+                for (int i = 0; i < maxRetries; ++i)
+                {
+                    isDeviceReady = deviceVersion->isDeviceReady();
+                    if (isDeviceReady)
+                    {
+                        debug("Device version is ready");
+                        break;
+                    }
+                    co_await sdbusplus::async::sleep_for(
+                        ctx, std::chrono::seconds(2));
+                }
                 std::string version = deviceVersion->getVersion();
-                if (!version.empty())
+                if (isDeviceReady && !version.empty())
                 {
                     softwareCurrent->setVersion(version);
                 }

@@ -17,6 +17,10 @@ class DeviceVersion
         chipModel(chipModel), bus(bus), address(address)
     {}
 
+    virtual bool getVersionReady()
+    {
+        return true;
+    }
     virtual std::string getVersion() = 0;
     virtual std::optional<HostPowerInf::HostState>
         getHostStateToQueryVersion() = 0;

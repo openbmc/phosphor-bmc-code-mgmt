@@ -536,6 +536,15 @@ void ItemUpdater::erase(std::string entryId)
             removePersistDataDirectory(flashId);
             helper.clearEntry(flashId);
         }
+        else
+        {
+            fs::path imageDirPath = flashId;
+            if (fs::exists(imageDirPath))
+            {
+                info("Erasing image temporary folder {ID}", "ID", flashId);
+                fs::remove_all(imageDirPath);
+            }
+        }
 
         // Removing entry in versions map
         this->versions.erase(entryId);

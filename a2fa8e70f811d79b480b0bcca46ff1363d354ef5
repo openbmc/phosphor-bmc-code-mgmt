@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "a5d1377b_93596833",
         "filename": "item_updater.cpp",
@@ -14,8 +15,8 @@
       "side": 1,
       "message": "Here we\u0027d want to create the new error log you\u0027re proposing. Would you address the review comments and refresh your patch?: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/36587",
       "revId": "a2fa8e70f811d79b480b0bcca46ff1363d354ef5",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
-  ]
+  ],
+  "submitRequirementResults": []
 }

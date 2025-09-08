@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84332e0_d3b7f446",
+        "filename": "bios/bios_software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-08T23:15:32Z",
+      "side": 1,
+      "message": "This should be BIOS as there is a BIOS purpose already there.",
+      "revId": "06afa0d1425c0e3de951df14d07fa7b3270fee43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

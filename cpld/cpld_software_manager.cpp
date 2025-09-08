@@ -50,7 +50,7 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
 
     std::unique_ptr<Software> software = std::make_unique<Software>(ctx, *cpld);
 
-    software->setVersion(version);
+    software->setVersion(version, SoftwareVersion::VersionPurpose::Other);
 
     std::set<RequestedApplyTimes> allowedApplyTimes = {
         RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};

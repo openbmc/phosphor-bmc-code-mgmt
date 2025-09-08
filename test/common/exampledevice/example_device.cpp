@@ -49,7 +49,8 @@ sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
 
     device->softwareCurrent = std::make_unique<Software>(ctx, *device);
 
-    device->softwareCurrent->setVersion("v1.0");
+    device->softwareCurrent->setVersion("v1.0",
+                                        SoftwareVersion::VersionPurpose::Other);
     device->softwareCurrent->setActivation(
         SoftwareActivation::Activations::Active);
 

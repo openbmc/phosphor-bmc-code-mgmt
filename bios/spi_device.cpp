@@ -527,7 +527,8 @@ auto SPIDevice::processUpdate(std::string versionFileName)
 
     if (softwareCurrent)
     {
-        softwareCurrent->setVersion(getVersion());
+        softwareCurrent->setVersion(getVersion(),
+                                    SoftwareVersion::VersionPurpose::Host);
     }
 
     co_return;

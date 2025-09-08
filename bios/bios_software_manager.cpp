@@ -110,7 +110,8 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
     spiDevice->softwareCurrent = std::move(software);
 
-    spiDevice->softwareCurrent->setVersion(SPIDevice::getVersion());
+    spiDevice->softwareCurrent->setVersion(
+        SPIDevice::getVersion(), SoftwareVersion::VersionPurpose::Other);
 
     devices.insert({config.objectPath, std::move(spiDevice)});
 

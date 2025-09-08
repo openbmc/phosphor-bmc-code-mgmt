@@ -171,7 +171,8 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     std::unique_ptr<SoftwareInf::Software> software =
         std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);
 
-    software->setVersion(version.empty() ? "Unknown" : version);
+    software->setVersion(version.empty() ? "Unknown" : version,
+                         SoftwareInf::SoftwareVersion::VersionPurpose::Other);
 
     std::set<RequestedApplyTimes> allowedApplyTimes = {
         RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};

@@ -398,7 +398,9 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
                 std::string version = deviceVersion->getVersion();
                 if (!version.empty())
                 {
-                    softwareCurrent->setVersion(version);
+                    softwareCurrent->setVersion(
+                        version,
+                        SoftwareInf::SoftwareVersion::VersionPurpose::Other);
                 }
             }
         }

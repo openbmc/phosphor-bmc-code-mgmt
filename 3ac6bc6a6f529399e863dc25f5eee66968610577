@@ -108,6 +108,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a1bed50_1dda49fa",
+        "filename": "tpm/tpm2/tpm2.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:03Z",
+      "side": 1,
+      "message": "This is going to block the calling process, isn\u0027t it? \n\nI think we should use fdio as an example shown in https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/common/src/utils.cpp?r\u003da2eb951f7384c2b4fa494f90e78295f615c12a56#32",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61bbc5a1_b123f76f",
+        "filename": "tpm/tpm2/tpm2.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:03Z",
+      "side": 1,
+      "message": "You are defaulting to IFX vendor. Is there no manufacturerId for IFX. If there is one then lets use that and set default vendor to Unknown in begining.",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9edc4eef_cd876936",
+        "filename": "tpm/tpm2/tpm2.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:03Z",
+      "side": 1,
+      "message": "Please move this function to cpp file as its getting used there and also lets make this static by passing tpmIndex as in arg",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0206fdcf_86218b34",
         "filename": "tpm/tpm_device.hpp",
         "patchSetId": 3

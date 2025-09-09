@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3b8f98_c6fd737f",
+        "filename": "tpm/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d9c5da84_3c42ec3e",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7cf829d_36950500",
@@ -71,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c743d10_50de6bf7",
+        "filename": "tpm/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d5597ceb_f825a04e",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d8e2809_00dd3817",
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "Yes, the plan is to facilitate a parallel flow, so the same framework can support TPM 1.2, TPM 2.x, or even future versions like TPM 3.0.\nI’m not certain about the exact differences between the technologies in terms of version reading and firmware update flows.\nThat’s why the parent TPM class defines virtual getVersion() and updateFirmware() methods, allowing each derived TPM class to implement these functions according to the specific requirements of its TPM version.",
       "parentUuid": "9d8e2809_00dd3817",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc801d08_ff16aa00",
+        "filename": "tpm/tpm2/tpm2.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c81c4cd7_5eaddc6a",
       "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +242,24 @@
       "side": 1,
       "message": "Yes. Firmware version reading and updating will be implemented in separate TPM classes for each TPM specification version.",
       "parentUuid": "0206fdcf_86218b34",
+      "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7464912f_ac9e3802",
+        "filename": "tpm/tpm_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-09T17:11:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "98f6790f_d3ed06f0",
       "revId": "3ac6bc6a6f529399e863dc25f5eee66968610577",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

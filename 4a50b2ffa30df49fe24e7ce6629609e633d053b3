@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "647a6c51_51318cf4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-11T07:34:30Z",
+      "side": 1,
+      "message": "Hi, I meant that this referred to the erasure happens in image_manager::erase(), which will be registered if an image is processed upon inotify signal watched by image_manager_main.cpp and is used when `redfish-updateservice-use-dbus` is disabled from bmcweb (image is copied into /tmp by bmcweb).\n\nAnyway, I updated the commit msg to get rid of this ambiguousness.",
+      "parentUuid": "ffa7af29_c48eb9c9",
+      "revId": "4a50b2ffa30df49fe24e7ce6629609e633d053b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0a0c83a_c38bf766",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-11T00:05:13Z",
       "side": 1,
       "message": "Can you please safeguard this with if (useUpdateDBusInterface) check as this needs to only kick-in in that flow.",
+      "revId": "4a50b2ffa30df49fe24e7ce6629609e633d053b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8106d101_3bf80267",
+        "filename": "bmc/item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-11T07:34:30Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b0a0c83a_c38bf766",
       "revId": "4a50b2ffa30df49fe24e7ce6629609e633d053b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa7af29_c48eb9c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-11T00:05:13Z",
+      "side": 1,
+      "message": "I suppose you mean enabled as you are referring to enabled flow in first line in description.\n\n`redfish-updateservice-use-dbus` is enabled.",
+      "revId": "4a50b2ffa30df49fe24e7ce6629609e633d053b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0a0c83a_c38bf766",
+        "filename": "bmc/item_updater.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-11T00:05:13Z",
+      "side": 1,
+      "message": "Can you please safeguard this with if (useUpdateDBusInterface) check as this needs to only kick-in in that flow.",
+      "revId": "4a50b2ffa30df49fe24e7ce6629609e633d053b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

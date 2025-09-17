@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db5fcca_c0fdb238",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T02:11:02Z",
+      "side": 1,
+      "message": "Please add \"Related PR\" section and add related PRs which adds the support to EM and phosphor-dbus-interfaces for this VR type.",
+      "revId": "04eb59692914615517e43068af0a4cc893a086cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e23088_56f7204d",
+        "filename": "i2c-vr/mps/mp5998.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T02:11:02Z",
+      "side": 1,
+      "message": "Not needed anymore as default apply time is onReset only.",
+      "revId": "04eb59692914615517e43068af0a4cc893a086cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51a371bb_5918135a",
+        "filename": "i2c-vr/mps/mp5998.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T02:11:02Z",
+      "side": 1,
+      "message": "Not needed anymore as its default onReset.",
+      "revId": "04eb59692914615517e43068af0a4cc893a086cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

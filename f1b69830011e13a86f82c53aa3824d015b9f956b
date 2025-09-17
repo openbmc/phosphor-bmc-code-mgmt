@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ead2ed47_032045b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T02:02:10Z",
+      "side": 1,
+      "message": "Please add \"Related PR\" section and add related PRs which adds the support to EM and phosphor-dbus-interfaces for this VR type.",
+      "revId": "f1b69830011e13a86f82c53aa3824d015b9f956b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a73d623_b71b0610",
         "filename": "i2c-vr/mps/mp2x6xx.hpp",
         "patchSetId": 5

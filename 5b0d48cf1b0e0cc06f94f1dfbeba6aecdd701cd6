@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2724e629_040b62ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:36:15Z",
+      "side": 1,
+      "message": "Please add \"Related PRs\" section and add PRs from other repositories such as EM and phosphor-dbus-interfaces where you have added relevant support for this VR type.",
+      "revId": "5b0d48cf1b0e0cc06f94f1dfbeba6aecdd701cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "744c4cf6_065946a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:36:15Z",
+      "side": 1,
+      "message": "Please update this tested section as shown in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834. You need to do an ac cycle and make sure the update takes affect as mentioned in Tested section of https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834.",
+      "revId": "5b0d48cf1b0e0cc06f94f1dfbeba6aecdd701cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

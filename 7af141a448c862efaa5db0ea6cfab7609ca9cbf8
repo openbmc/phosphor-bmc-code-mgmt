@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a31615f7_74ef4f06",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:13:39Z",
+      "side": 1,
+      "message": "I think your filenames are not reflecting the intent of the code. This file or class is the one which creates different types of Lattice CPLD interfaces, as you have started doing now at line#18, so i would consider this class to be LatticeFactory rather than interface. \nHaving said that the CpldLatticeManager is more of a LatticeInterface instead since different Lattice CPLD updaters are going to inherit and implement that interface, isn\u0027t it?\nIf you agree with what i mentioned my suggestion is to rename these files accordingly so we can avoid this confusion. Since, now you are adding more types of Lattice CPLDs now is the right time to do it.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d61aba12_9a490de2",
         "filename": "cpld/lattice/lattice.hpp",
         "patchSetId": 1
@@ -48,6 +65,23 @@
       "writtenOn": "2025-09-17T00:55:30Z",
       "side": 1,
       "message": "lets define an enum for chipType as well and use that everywhere rather than passing strings around. This is kind of becoming unmanageable given the number of types being added.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ffb645_aa748b06",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:13:39Z",
+      "side": 1,
+      "message": "Why is readUserCode protected? i see getVersion use to call it earlier.",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

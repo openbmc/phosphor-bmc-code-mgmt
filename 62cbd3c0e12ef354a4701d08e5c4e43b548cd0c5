@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfa18b9c_bd1ef7ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2025-09-17T15:34:36Z",
+      "side": 1,
+      "message": "I added EM schema:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/83788",
+      "parentUuid": "c26dbce8_824674fe",
+      "revId": "62cbd3c0e12ef354a4701d08e5c4e43b548cd0c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc271c10_9492b419",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T01:34:31Z",
       "side": 1,
       "message": "Please add the UT as mentioned in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834.",
+      "revId": "62cbd3c0e12ef354a4701d08e5c4e43b548cd0c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1a3b335_c463ca1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2025-09-17T15:34:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc271c10_9492b419",
       "revId": "62cbd3c0e12ef354a4701d08e5c4e43b548cd0c5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

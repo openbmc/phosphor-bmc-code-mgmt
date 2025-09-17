@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8561b7c4_20973064",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2025-09-17T17:55:28Z",
+      "side": 1,
+      "message": "I added EM schema:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/83802",
+      "parentUuid": "2724e629_040b62ba",
+      "revId": "5b0d48cf1b0e0cc06f94f1dfbeba6aecdd701cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "744c4cf6_065946a8",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T01:36:15Z",
       "side": 1,
       "message": "Please update this tested section as shown in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834. You need to do an ac cycle and make sure the update takes affect as mentioned in Tested section of https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834.",
+      "revId": "5b0d48cf1b0e0cc06f94f1dfbeba6aecdd701cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "725acbf8_fe6f0d2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2025-09-17T17:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744c4cf6_065946a8",
       "revId": "5b0d48cf1b0e0cc06f94f1dfbeba6aecdd701cd6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

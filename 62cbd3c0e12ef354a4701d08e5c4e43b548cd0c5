@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c26dbce8_824674fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:34:31Z",
+      "side": 1,
+      "message": "Please add \"Related PRs\" section which adds support for this type to EM schema, EM configurations and phosphor-dbus-interfaces for compatible hardware.",
+      "revId": "62cbd3c0e12ef354a4701d08e5c4e43b548cd0c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc271c10_9492b419",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:34:31Z",
+      "side": 1,
+      "message": "Please add the UT as mentioned in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/82834.",
+      "revId": "62cbd3c0e12ef354a4701d08e5c4e43b548cd0c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

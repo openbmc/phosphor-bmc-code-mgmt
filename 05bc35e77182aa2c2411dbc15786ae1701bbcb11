@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f9f6f68_8a9ffb3e",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:17:32Z",
+      "side": 1,
+      "message": "Same as comment on parent patch. Can we rename this better rather than X05 ?otherwise we will need to rename this again of something else starts using this X05 method",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caceda5f_9c3cc9e9",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:17:32Z",
+      "side": 1,
+      "message": "Please use async sleep, we cannot use sync sleep. Please fix it at other places in code too.",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17845007_99495748",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:17:32Z",
+      "side": 1,
+      "message": "Please use async sleep, we cannot use sync sleep.",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

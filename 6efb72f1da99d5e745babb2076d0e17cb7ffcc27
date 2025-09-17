@@ -196,6 +196,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eeb05e88_55cb7aee",
+        "filename": "i2c-vr/mps/mp2x6xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:56:52Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com Can you please raise a followup patch to fix this warning?",
+      "parentUuid": "64fe8fdf_6c81517c",
+      "revId": "6efb72f1da99d5e745babb2076d0e17cb7ffcc27",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c355cf8_aad22fd5",
         "filename": "i2c-vr/mps/mp2x6xx.cpp",
         "patchSetId": 2
@@ -225,6 +243,24 @@
       "side": 1,
       "message": "The reset() function is called by the parent I2CVRDevice::updateDevice(). If it returns false, the update process is considered a failure (see [1]). However, since MPS VRs do not support a reset command, this implementation simply returns true.\n\n[1] https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/9c05c3c63d2187a62bd2db2da1b24dca4f0c9816/i2c-vr/i2cvr_device.cpp#L34",
       "parentUuid": "4c355cf8_aad22fd5",
+      "revId": "6efb72f1da99d5e745babb2076d0e17cb7ffcc27",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68c6e995_8adffb82",
+        "filename": "i2c-vr/mps/mp2x6xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:56:52Z",
+      "side": 1,
+      "message": "Being handled as part of https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/83055, gave another comment to drop this.",
+      "parentUuid": "3b3aabe9_5de299f0",
       "revId": "6efb72f1da99d5e745babb2076d0e17cb7ffcc27",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

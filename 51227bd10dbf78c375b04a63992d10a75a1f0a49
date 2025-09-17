@@ -16,6 +16,24 @@
       "message": "Why this NOLINT?",
       "revId": "51227bd10dbf78c375b04a63992d10a75a1f0a49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9475067e_badba5d4",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T01:53:10Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com Can you please handle this as part of a separate patch. Thanks.",
+      "parentUuid": "e3354abf_0a994158",
+      "revId": "51227bd10dbf78c375b04a63992d10a75a1f0a49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

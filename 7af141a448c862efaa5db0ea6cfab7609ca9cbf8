@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61aba12_9a490de2",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T00:55:30Z",
+      "side": 1,
+      "message": "lets change this from chipName to chipModel instead.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2da7491_5aca1829",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T00:55:30Z",
+      "side": 1,
+      "message": "Lets define an enum for this and call the enum chipFamily. Choose the right updater based on chip family. Fix at other places in the code also based on this idea.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45b32e3_9543b2f2",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T00:55:30Z",
+      "side": 1,
+      "message": "lets define an enum for chipType as well and use that everywhere rather than passing strings around. This is kind of becoming unmanageable given the number of types being added.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b4cffa_ccfae39f",
+        "filename": "cpld/lattice/xo2xo3.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T00:55:30Z",
+      "side": 1,
+      "message": "What is the difference between X02X03 and X05 update flows. I am thinking we need to name this better so in future we don\u0027t have to change the file names again if another X0x chip model needs to use the same method again. Do you see such a use case in future?",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

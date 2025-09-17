@@ -16,6 +16,24 @@
       "message": "@paligill@gmail.com I was thinking about the ApplyTime for VRs. In most cases, VRs should use `OnReset`, since applying updates `immediately` could trigger a power change in the system and potentially cause abnormal behavior. Instead of adding a new API to determine the supported ApplyTime based on VR type, we can simply define the ApplyTime for VRs as `OnReset`. Do u have any concerns?",
       "revId": "74885bb6815641c1bddd5ee04d9a8a000163e4d9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e55575dc_4062917f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-17T02:00:14Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com Please abandon this patch as you have  https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/83055 now.",
+      "parentUuid": "10dba330_b6c24766",
+      "revId": "74885bb6815641c1bddd5ee04d9a8a000163e4d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

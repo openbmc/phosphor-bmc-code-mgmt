@@ -16,6 +16,24 @@
       "message": "What is 256? I think i asked you to make a similar change in another place by defining a constexpr. Can you please fix it in the entire patch. Thanks",
       "revId": "484760bfb6d75fc0f49db95c77501ba111d58463",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89536cf_3f357293",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2025-09-18T00:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afb84320_bfdc75b7",
+      "revId": "484760bfb6d75fc0f49db95c77501ba111d58463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f360f19f_e949da3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T09:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c6605b_2e2cc40f",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b73036_99ab1eae",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89e4ad50_2010147f",
+        "filename": "i2c-vr/mps/mp297x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T09:46:59Z",
+      "side": 1,
+      "message": "Will submit a separate patch to address NONLINT issues.",
+      "parentUuid": "42b73036_99ab1eae",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb92d2f1_c18d75f8",
         "filename": "i2c-vr/mps/mp297x.cpp",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2025-09-17T02:07:54Z",
       "side": 1,
       "message": "This shall be dropped.",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671c26a7_849e9a0b",
+        "filename": "i2c-vr/mps/mp297x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T09:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb92d2f1_c18d75f8",
       "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "342a768b_2381e6d7",
+        "filename": "i2c-vr/mps/mp297x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T09:46:59Z",
+      "side": 1,
+      "message": "Yes. Removed unbind/rebind logic to prevent sensor reading failures. We need to discuss a better approach to prevent PSUSensor from switching VR pages during VR updates.",
+      "parentUuid": "a2604531_177b9ed6",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd187aa0_e06f817d",
         "filename": "i2c-vr/mps/mp297x.hpp",
         "patchSetId": 1
@@ -82,6 +154,24 @@
       "writtenOn": "2025-09-17T02:07:54Z",
       "side": 1,
       "message": "I think this is not needed anymore.",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07dec1de_d25d3c90",
+        "filename": "i2c-vr/mps/mp297x.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T09:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd187aa0_e06f817d",
       "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c583ea26_e81e004e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T07:22:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ead2ed47_032045b4",
+      "revId": "f1b69830011e13a86f82c53aa3824d015b9f956b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a73d623_b71b0610",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T01:56:52Z",
       "side": 1,
       "message": "Do you still need reset as you are dropping this in https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/83055?",
+      "revId": "f1b69830011e13a86f82c53aa3824d015b9f956b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f11a1bb3_d5a62600",
+        "filename": "i2c-vr/mps/mp2x6xx.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-19T07:22:28Z",
+      "side": 1,
+      "message": "No longer needed, removed.",
+      "parentUuid": "7a73d623_b71b0610",
       "revId": "f1b69830011e13a86f82c53aa3824d015b9f956b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

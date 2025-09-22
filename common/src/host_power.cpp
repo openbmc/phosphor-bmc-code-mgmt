@@ -1,5 +1,7 @@
 #include "host_power.hpp"
 
+#include "common_config.h"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
@@ -56,13 +58,11 @@ sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,
 
     debug("Requested host transition to {STATE}", "STATE", state);
 
-    constexpr size_t retries = 4;
-    constexpr size_t retryTimeout = 3;
+    constexpr size_t transitionTimeout = HOST_STATE_TRANSITION_TIMEOUT;
 
-    for (size_t i = 0; i < retries; i++)
+    for (size_t i = 0; i < transitionTimeout; i++)
     {
-        co_await sdbusplus::async::sleep_for(
-            ctx, std::chrono::seconds(retryTimeout));
+        co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(1));
 
         if ((co_await client.current_host_state()) == state)
         {
@@ -72,7 +72,7 @@ sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,
     }
 
     error("Failed to achieve state {STATE} before the timeout of {TIMEOUT}s",
-          "STATE", state, "TIMEOUT", retries * retryTimeout);
+          "STATE", state, "TIMEOUT", transitionTimeout);
 
     co_return false;
 }

@@ -1,6 +1,14 @@
 
 subdir('pldm')
 
+conf = configuration_data()
+conf.set(
+    'HOST_STATE_TRANSITION_TIMEOUT',
+    get_option('host-state-transition-timeout'),
+)
+
+configure_file(output: 'common_config.h', configuration: conf)
+
 software_common_lib = static_library(
     'software_common_lib',
     'src/software_manager.cpp',

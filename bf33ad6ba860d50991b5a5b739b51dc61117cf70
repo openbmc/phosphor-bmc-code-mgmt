@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c265bba7_cebf763a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-22T09:12:36Z",
+      "side": 1,
+      "message": "Looks like a platform specific thing.\n\nDo you think it makes sense to put a meson option for this purpose?\n\nsomething like \n\n`-Dhost-powerstate-change-timeout\u003d20`\n`-Dhost-powerstate-change-retry\u003d3`\n\nor just the timeout and then leave the retry as hardcoded.\n\nOtherwise we are taking a 1 minute delay for the update logic even on platforms which do not take so long, extending the time until the user gets an error for a failed update.",
+      "revId": "bf33ad6ba860d50991b5a5b739b51dc61117cf70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

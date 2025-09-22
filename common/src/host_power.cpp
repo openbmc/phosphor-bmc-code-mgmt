@@ -56,7 +56,7 @@ sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,
 
     debug("Requested host transition to {STATE}", "STATE", state);
 
-    constexpr size_t retries = 4;
+    constexpr size_t retries = 20;
     constexpr size_t retryTimeout = 3;
 
     for (size_t i = 0; i < retries; i++)

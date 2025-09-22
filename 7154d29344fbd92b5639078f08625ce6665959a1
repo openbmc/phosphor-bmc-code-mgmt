@@ -16,6 +16,24 @@
       "message": "Why do we need to generate this everytime? I don\u0027t see any other use of serviceNameSuffix, so lets define the busName as class private member instead and use it in getBusName().",
       "revId": "7154d29344fbd92b5639078f08625ce6665959a1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01d0fd4_fa2f94c0",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-22T10:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00a1d4ab_6026d299",
+      "revId": "7154d29344fbd92b5639078f08625ce6665959a1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

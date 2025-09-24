@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3a5996a_43a63938",
+        "filename": "i2c-vr/mps/mp297x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-24T06:27:51Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com, please refer to  https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/83968 to skip sensor polling during firmware updates.",
+      "parentUuid": "342a768b_2381e6d7",
+      "revId": "17b6049ed3227f10dcfad863e1bf887b69fcb8ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd187aa0_e06f817d",
         "filename": "i2c-vr/mps/mp297x.hpp",
         "patchSetId": 1

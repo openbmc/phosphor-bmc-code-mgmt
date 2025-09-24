@@ -16,6 +16,24 @@
       "message": "Looks like a platform specific thing.\n\nDo you think it makes sense to put a meson option for this purpose?\n\nsomething like \n\n`-Dhost-powerstate-change-timeout\u003d20`\n`-Dhost-powerstate-change-retry\u003d3`\n\nor just the timeout and then leave the retry as hardcoded.\n\nOtherwise we are taking a 1 minute delay for the update logic even on platforms which do not take so long, extending the time until the user gets an error for a failed update.",
       "revId": "bf33ad6ba860d50991b5a5b739b51dc61117cf70",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "159f407f_8c848678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-09-24T02:36:07Z",
+      "side": 1,
+      "message": "I don’t think we are actually taking 1 minute delay if the expected state is reached earlier. For example, if the state is achieved within 5 seconds, the update will proceed after just 5 seconds.\n\nI agree we could add a Meson option `host-powerstate-change-timeout` for the timeout, but 12 seconds seems too short for a graceful power-off on most platforms. We could increase the default timeout to 30 or even 60 seconds.",
+      "parentUuid": "c265bba7_cebf763a",
+      "revId": "bf33ad6ba860d50991b5a5b739b51dc61117cf70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

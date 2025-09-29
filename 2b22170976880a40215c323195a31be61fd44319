@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ea1eda_68241cd7",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-29T17:39:15Z",
+      "side": 1,
+      "message": "I did multiple scans of the code to figure out difference between testSoftwareAssociationRunning and testSoftwareAssociationActivating, they looks exactly same or am i missing something here?",
+      "revId": "2b22170976880a40215c323195a31be61fd44319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6c8da9_3bf4c8ab",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-29T17:39:15Z",
+      "side": 1,
+      "message": "Please create one helper function and pass some in_args which can help you to do some decision making. Looks like most of the code is same in all 3 helper functions and with some in_args, it can easily be folded into one.",
+      "revId": "2b22170976880a40215c323195a31be61fd44319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

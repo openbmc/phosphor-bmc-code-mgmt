@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18aef7f_5489da90",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-29T18:52:20Z",
+      "side": 1,
+      "message": "```\ncreateInventoryAssociation(true, exampleEndpoint);\n\ncreateInventoryAssociation(false, exampleEndpoint);\n```\n\nI added the assertion for `running` / `activating`, sorry that was somehow missing.",
+      "parentUuid": "34ea1eda_68241cd7",
+      "revId": "2b22170976880a40215c323195a31be61fd44319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df6c8da9_3bf4c8ab",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-29T17:39:15Z",
       "side": 1,
       "message": "Please create one helper function and pass some in_args which can help you to do some decision making. Looks like most of the code is same in all 3 helper functions and with some in_args, it can easily be folded into one.",
+      "revId": "2b22170976880a40215c323195a31be61fd44319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e199cf0e_6842c310",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-29T18:52:20Z",
+      "side": 1,
+      "message": "Removed `busName` and `objPathCurrentSoftware` from each of those testcases.\n\nThe rest is just forming the client (which is the same but has a fairly verbose template which i did not see anyone actually write down).\n\nFor that reason i declare the client in the testcase.\n\nThe remainder is just the assertions which are unique for each testcase.\n\nThe `ctx.request_stop` is something i left in there so folks can just comment that out when debugging some test case.\n\nLet me know if i should compact the code further.",
+      "parentUuid": "df6c8da9_3bf4c8ab",
       "revId": "2b22170976880a40215c323195a31be61fd44319",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

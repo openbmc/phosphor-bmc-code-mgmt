@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37e1e7ec_a328edc8",
+        "filename": "cpld/lattice/lattice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-29T07:28:43Z",
+      "side": 1,
+      "message": "@potin.lai@quantatw.com Please work with Daniel and Kevin to resolve this as a separate patch.",
+      "parentUuid": "bf8bc299_aab973a5",
+      "revId": "5bbf29bfb6b3a047647ac87e36a486ca30573c59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa5a39fe_cba7cf43",

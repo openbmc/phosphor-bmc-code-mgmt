@@ -16,7 +16,8 @@ class ISL69269 : public VoltageRegulator
     enum class Gen
     {
         Gen2,
-        Gen3
+        Gen3,
+        Gen3p5
     };
 
     ISL69269(sdbusplus::async::context& ctx, uint16_t bus, uint16_t address,

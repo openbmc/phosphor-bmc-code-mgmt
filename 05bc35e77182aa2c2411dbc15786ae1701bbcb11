@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44df29fb_3521007b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:44:01Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "bb75af6a_e5a9f36b",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f9f6f68_8a9ffb3e",
         "filename": "cpld/lattice/interface.cpp",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T01:17:32Z",
       "side": 1,
       "message": "Same as comment on parent patch. Can we rename this better rather than X05 ?otherwise we will need to rename this again of something else starts using this X05 method",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f64fa2_f25b0e9e",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:44:01Z",
+      "side": 1,
+      "message": "It will be named updateFlowB since these update flows were not given specific names.",
+      "parentUuid": "9f9f6f68_8a9ffb3e",
       "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e80b416_aa2b3793",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:44:01Z",
+      "side": 1,
+      "message": "I’ll implement it. I originally used a synchronous sleep to work around a Clang false positive.",
+      "parentUuid": "caceda5f_9c3cc9e9",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17845007_99495748",
         "filename": "cpld/lattice/xo5.cpp",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2025-09-17T01:17:32Z",
       "side": 1,
       "message": "Please use async sleep, we cannot use sync sleep.",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a81b7b2_cef4caee",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:44:01Z",
+      "side": 1,
+      "message": "I’ll implement it. I originally used a synchronous sleep to work around a Clang false positive.",
+      "parentUuid": "17845007_99495748",
       "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8a5285b_b1d2846a",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-30T20:56:46Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me why you want to use `by-path` instead of `by-partlabel`.  It looks like boot-a and boot-b show up in your example here when using `by-partlabel`.",
+      "parentUuid": "7e5029ba_c2fd793b",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9dd61ec_7325b306",
         "filename": "meson.options",
         "patchSetId": 7

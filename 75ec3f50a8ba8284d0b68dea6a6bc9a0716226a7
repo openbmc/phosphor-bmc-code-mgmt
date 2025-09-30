@@ -118,6 +118,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5029ba_c2fd793b",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-09-30T03:09:10Z",
+      "side": 1,
+      "message": "@patrick@stwcx.xyz Do you have any idea about this commit? Thanks.",
+      "parentUuid": "19b147bb_9edb5670",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9dd61ec_7325b306",

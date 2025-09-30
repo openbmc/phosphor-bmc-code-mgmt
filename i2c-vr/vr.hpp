@@ -16,6 +16,7 @@ enum class VRType
     MP2X6XX,
     MP297X,
     RAA22XGen2,
+    RAA22XGen3p5,
 };
 
 class VoltageRegulator

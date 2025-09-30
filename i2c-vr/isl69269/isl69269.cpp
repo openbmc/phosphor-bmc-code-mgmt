@@ -27,6 +27,7 @@ constexpr uint8_t deviceIdLength = 4;
 constexpr uint8_t gen3Legacy = 1;
 constexpr uint8_t gen3Production = 2;
 constexpr uint8_t gen2Hex = 3;
+constexpr uint8_t gen3p5 = 4;
 
 constexpr uint16_t cfgId = 7;
 constexpr uint16_t gen3FileHead = 5;
@@ -61,6 +62,15 @@ constexpr uint32_t gen2RevMin = 0x02000003;
 constexpr uint8_t hexFileRev = 0x00;
 constexpr uint16_t gen2FileHead = 6;
 constexpr uint16_t gen2CRC = 600 - gen2FileHead;
+
+// RAA Gen3p5
+constexpr uint8_t regGen3p5ProgStatus = 0x83;
+constexpr uint8_t gen3p5RegCRC = 0xF8;
+constexpr uint8_t gen3p5HWRevMax = 0x06;
+constexpr uint8_t gen3p5HWRevMin = 0x03;
+constexpr uint16_t gen3p5cfgId = 3;
+constexpr uint16_t gen3p5FileHead = 5;
+constexpr uint16_t gen3p5CRC = 336 - gen3p5FileHead;
 
 ISL69269::ISL69269(sdbusplus::async::context& ctx, uint16_t bus,
                    uint16_t address, Gen gen) :
@@ -173,6 +183,22 @@ sdbusplus::async::task<bool> ISL69269::getHexMode(uint8_t* mode)
         *mode = gen2Hex;
         co_return true;
     }
+    else if (generation == Gen::Gen3p5)
+    {
+        uint32_t devID = 0;
+        if (!(co_await getDeviceId(&devID)))
+        {
+            error("program failed at getDeviceId");
+            co_return false;
+        }
+        devID = (devID >> 8) & 0xFF;
+
+        if (devID >= 0xBA)
+        {
+            *mode = gen3p5;
+        }
+        co_return true;
+    }
 
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -238,7 +264,7 @@ sdbusplus::async::task<bool> ISL69269::getDeviceRevision(uint32_t* revision)
         co_return false;
     }
 
-    if (mode == gen3Legacy)
+    if (mode == gen3Legacy || mode == gen3p5)
     {
         std::memcpy(revision, &rbuf[1], deviceRevisionLen);
     }
@@ -255,7 +281,19 @@ sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t* sum)
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
 
-    tbuf[0] = (generation == Gen::Gen2) ? gen2RegCRC : regCRC;
+    switch (generation)
+    {
+        case Gen::Gen2:
+            tbuf[0] = gen2RegCRC;
+            break;
+        case Gen::Gen3p5:
+            tbuf[0] = gen3p5RegCRC;
+            break;
+        default:
+            tbuf[0] = regCRC;
+            break;
+    }
+
     if (!(co_await dmaReadWrite(tbuf, rbuf)))
     {
         error("getCRC failed");
@@ -297,6 +335,12 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     shiftLeftFromMSB(sepLine + 4, &configuration.devIdExp);
                     debug("device id from configuration: {ID}", "ID", lg2::hex,
                           configuration.devIdExp);
+                    // GEN3p5 IC_DEVICE_ID Byte ID[1]
+                    if (generation == Gen::Gen3p5 && sepLine[6] >= 0xBA)
+                    {
+                        debug("Gen3p5 hex file format recognized");
+                        configuration.mode = gen3p5;
+                    }
                 }
                 else if (sepLine[3] == pmBusDeviceRev)
                 {
@@ -304,7 +348,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     debug("device revision from config: {ID}", "ID", lg2::hex,
                           configuration.devRevExp);
 
-                    if (generation != Gen::Gen2)
+                    if (generation == Gen::Gen3)
                     {
                         // According to programing guide:
                         // If legacy hex file
@@ -353,9 +397,20 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                 switch (dcnt)
                 {
                     case cfgId:
-                        configuration.cfgId = sepLine[4] & 0x0F;
-                        debug("Config ID: {ID}", "ID", lg2::hex,
-                              configuration.cfgId);
+                        if (configuration.mode != gen3p5)
+                        {
+                            configuration.cfgId = sepLine[4] & 0x0F;
+                            debug("Config ID: {ID}", "ID", lg2::hex,
+                                  configuration.cfgId);
+                        }
+                        break;
+                    case gen3p5cfgId:
+                        if (configuration.mode == gen3p5)
+                        {
+                            configuration.cfgId = sepLine[4];
+                            debug("Config ID: {ID}", "ID", lg2::hex,
+                                  configuration.cfgId);
+                        }
                         break;
                     case gen3LegacyCRC:
                         if (configuration.mode == gen3Legacy)
@@ -381,6 +436,15 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                             std::memcpy(&configuration.crcExp, &sepLine[4],
                                         checksumLen);
                             debug("Config Gen2 CRC: {CRC}", "CRC", lg2::hex,
+                                  configuration.crcExp);
+                        }
+                        break;
+                    case gen3p5CRC:
+                        if (configuration.mode == gen3p5)
+                        {
+                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                                        checksumLen);
+                            debug("Config Gen3p5 CRC: {CRC}", "CRC", lg2::hex,
                                   configuration.crcExp);
                         }
                         break;
@@ -458,6 +522,11 @@ sdbusplus::async::task<bool> ISL69269::getProgStatus()
     {
         tbuf[0] = gen2RegProgStatus;
         tbuf[1] = gen2RegProgStatus;
+    }
+    else if (generation == Gen::Gen3p5)
+    {
+        tbuf[0] = regGen3p5ProgStatus;
+        tbuf[1] = 0x00;
     }
     else
     {
@@ -635,6 +704,17 @@ sdbusplus::async::task<bool> ISL69269::verifyImage(const uint8_t* image,
             else
             {
                 error("revision requirements for Gen2 device not fulfilled");
+            }
+            break;
+        case gen3p5:
+            if (((devRev >> 24) >= gen3p5HWRevMin) &&
+                ((devRev >> 24) <= gen3p5HWRevMax))
+            {
+                debug("Gen3p5 revision checks out");
+            }
+            else
+            {
+                error("revision requirements for Gen3p5 device not fulfilled");
             }
             break;
     }

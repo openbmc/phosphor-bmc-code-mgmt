@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c150b61d_b51e13d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "12e33db2_df0eb974",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a31615f7_74ef4f06",
         "filename": "cpld/lattice/interface.cpp",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T01:13:39Z",
       "side": 1,
       "message": "I think your filenames are not reflecting the intent of the code. This file or class is the one which creates different types of Lattice CPLD interfaces, as you have started doing now at line#18, so i would consider this class to be LatticeFactory rather than interface. \nHaving said that the CpldLatticeManager is more of a LatticeInterface instead since different Lattice CPLD updaters are going to inherit and implement that interface, isn\u0027t it?\nIf you agree with what i mentioned my suggestion is to rename these files accordingly so we can avoid this confusion. Since, now you are adding more types of Lattice CPLDs now is the right time to do it.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c5632c_3ac9a5d9",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "would do.",
+      "parentUuid": "a31615f7_74ef4f06",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "733e61ae_9ba9151e",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "would do.",
+      "parentUuid": "d61aba12_9a490de2",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2da7491_5aca1829",
         "filename": "cpld/lattice/lattice.hpp",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2025-09-17T00:55:30Z",
       "side": 1,
       "message": "Lets define an enum for this and call the enum chipFamily. Choose the right updater based on chip family. Fix at other places in the code also based on this idea.",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da1c975d_62147208",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "They can all be changed to enums, but since enums don’t support strings, an additional toString function will inevitably be needed for maintenance.",
+      "parentUuid": "d2da7491_5aca1829",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a601173c_92fb5246",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "They can all be changed to enums, but since enums don’t support strings, an additional toString function will inevitably be needed for maintenance.",
+      "parentUuid": "d45b32e3_9543b2f2",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51ffb645_aa748b06",
         "filename": "cpld/lattice/lattice.hpp",
         "patchSetId": 1
@@ -105,6 +195,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6ed1d48_11fe144a",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "You are correct — the derived class does not need to call base::readUserCode(). Therefore, its access level can be changed to private or delete it.",
+      "parentUuid": "51ffb645_aa748b06",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28b4cffa_ccfae39f",
         "filename": "cpld/lattice/xo2xo3.hpp",
         "patchSetId": 1
@@ -116,6 +224,24 @@
       "writtenOn": "2025-09-17T00:55:30Z",
       "side": 1,
       "message": "What is the difference between X02X03 and X05 update flows. I am thinking we need to name this better so in future we don\u0027t have to change the file names again if another X0x chip model needs to use the same method again. Do you see such a use case in future?",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678a8d56_316712fb",
+        "filename": "cpld/lattice/xo2xo3.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-09-30T01:37:19Z",
+      "side": 1,
+      "message": "I checked the SPEC, and Lattice did not specifically name these update flows; they are simply organized by device. I can only name the files as updateFlowA.hpp, updateFlowB.hpp, …, or use a single updateFlows.hpp file, but it would still contain class updateFlowA, class updateFlowB.",
+      "parentUuid": "28b4cffa_ccfae39f",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

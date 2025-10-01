@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a5d90b6_805a19a5",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-01T03:31:46Z",
+      "side": 1,
+      "message": "convention for environment variables is upper case",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec52433_c71ad753",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-01T03:31:46Z",
+      "side": 1,
+      "message": "this sdhci sounds like a name from the controller not a generic property if eMMC devices.",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2baa625a_52c2e947",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-01T03:31:46Z",
+      "side": 1,
+      "message": "can we combine by looking for the force _ro sysfs unique to eMMC boot hw partition devices?",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edeeed51_26d95d64",
+        "filename": "meson.options",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-01T03:31:46Z",
+      "side": 1,
+      "message": "why is this mmc storage mode?\n\nit\u0027s Media not mode and mnc is a choice",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

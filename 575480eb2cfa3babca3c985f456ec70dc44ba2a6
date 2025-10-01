@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35290938_5383a400",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-01T09:53:24Z",
+      "side": 1,
+      "message": "Please review V9 again when you have a chance. Thanks.",
+      "parentUuid": "8a5d90b6_805a19a5",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ec52433_c71ad753",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-01T03:31:46Z",
       "side": 1,
       "message": "this sdhci sounds like a name from the controller not a generic property if eMMC devices.",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b91167_4e89fadd",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-01T09:53:24Z",
+      "side": 1,
+      "message": "Yes, As my understand it from 60-persistent-storage.rules and ID_PATH is from controller.\n```\nKERNEL\u003d\u003d\"mmcblk[0-9]boot[0-9]\", ENV{DEVTYPE}\u003d\u003d\"disk\", ENV{ID_PATH}\u003d\u003d\"?*\",                   SYMLINK+\u003d\"disk/by-path/$env{ID_PATH}-boot%n\"\n```\n\nI guess we can use `sdhci` for eMMC devices and `ufshc-scsi` for UFS devices.\n```\nroot@ast2700-ufs:~#  udevadm info -q property -n /dev/sdb | grep ID_PATH\u003d\nID_PATH\u003dplatform-12c08200.ufshc-scsi-0:0:0:1\nroot@ast2700-emmc:~#  udevadm info -q property -n /dev/mmcblk0boot0 | grep ID_PATH\u003d\nID_PATH\u003dplatform-12090100.sdhci\n```",
+      "parentUuid": "4ec52433_c71ad753",
       "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1cd1046_87688469",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 8
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-01T09:53:24Z",
+      "side": 1,
+      "message": "Please review V10 again when you have a chance. Thanks.",
+      "parentUuid": "2baa625a_52c2e947",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edeeed51_26d95d64",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-10-01T03:31:46Z",
       "side": 1,
       "message": "why is this mmc storage mode?\n\nit\u0027s Media not mode and mnc is a choice",
+      "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85badb7_66544f69",
+        "filename": "meson.options",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-01T09:53:24Z",
+      "side": 1,
+      "message": "Since both MMC and UFS are media, and our service is obmc-flash-mmc@.service. I feel ‘mode’ is the more neutral term.\n\nI originally named it `storage-mode` to choose between eMMC and UFS. Later, Patrick suggested `mmc-storage-mode`. What naming do you prefer?",
+      "parentUuid": "edeeed51_26d95d64",
       "revId": "575480eb2cfa3babca3c985f456ec70dc44ba2a6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

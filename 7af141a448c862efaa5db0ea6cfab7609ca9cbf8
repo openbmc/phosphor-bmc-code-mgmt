@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39d0197_41774254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c150b61d_b51e13d7",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a31615f7_74ef4f06",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "would do.",
       "parentUuid": "a31615f7_74ef4f06",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5234bf0b_9989a6a6",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "Renamed LatticeCPLDInterface to LatticeCPLDFactory, since this class mainly instantiates the corresponding CPLDDevice class via its constructor to handle the update() and getVersion() functions. Also renamed the original CPLDManager and XO2XO3UpdateFlow to LatticeBaseCPLD and LatticeXO3CPLD, respectively.",
+      "parentUuid": "61c5632c_3ac9a5d9",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -106,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5530168_8bf21633",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "Since enums do not support strings, an enum_to_string function is needed. Therefore, I removed the chipModel string and let the enum_to_string function handle cases where the chip model string is required.",
+      "parentUuid": "733e61ae_9ba9151e",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2da7491_5aca1829",
@@ -137,6 +191,24 @@
       "side": 1,
       "message": "They can all be changed to enums, but since enums don’t support strings, an additional toString function will inevitably be needed for maintenance.",
       "parentUuid": "d2da7491_5aca1829",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3c5c670_7d9f33aa",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "da1c975d_62147208",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -176,6 +248,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39869af4_d2c23921",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a601173c_92fb5246",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ffb645_aa748b06",
@@ -211,6 +301,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ef6f96_3808b741",
+        "filename": "cpld/lattice/lattice.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d6ed1d48_11fe144a",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28b4cffa_ccfae39f",
@@ -242,6 +350,24 @@
       "side": 1,
       "message": "I checked the SPEC, and Lattice did not specifically name these update flows; they are simply organized by device. I can only name the files as updateFlowA.hpp, updateFlowB.hpp, …, or use a single updateFlows.hpp file, but it would still contain class updateFlowA, class updateFlowB.",
       "parentUuid": "28b4cffa_ccfae39f",
+      "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd0b6ea_e02e6f6c",
+        "filename": "cpld/lattice/xo2xo3.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-01T08:16:33Z",
+      "side": 1,
+      "message": "Changed to LatticeXO3CPLD. Since there is no specific name and the main chips used are from the XO3 family, while XO2 also shares this update flow but is not reflected in the LatticeXO3CPLD naming, the logic is handled in code (in lattice/interface.hpp)\n\n    switch (chipFamily)\n    {\n        case latticeChipFamily::XO2:\n        case latticeChipFamily::XO3:\n            return std::make_unique\u003cLatticeXO3CPLD\u003e(\n                CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,\n                chipModelStr, \"CFG0\", false);",
+      "parentUuid": "678a8d56_316712fb",
       "revId": "7af141a448c862efaa5db0ea6cfab7609ca9cbf8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

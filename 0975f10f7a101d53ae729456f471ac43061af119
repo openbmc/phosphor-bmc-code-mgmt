@@ -16,6 +16,24 @@
       "message": "@Freddie.Jheng@quantatw.com Please resolve the merge conflicts. Thanks",
       "revId": "0975f10f7a101d53ae729456f471ac43061af119",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecc8ed3_55d34f12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2025-10-01T02:37:30Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "0885274f_9ab42eda",
+      "revId": "0975f10f7a101d53ae729456f471ac43061af119",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

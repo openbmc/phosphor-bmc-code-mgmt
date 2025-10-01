@@ -154,6 +154,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0eaa35_6ac9e083",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-01T01:18:23Z",
+      "side": 1,
+      "message": "The boot partitions do not carry a GPT and therefore never appear under `/dev/disk/by-partlabel`. U-Boot is usually stored in the boot partitions. The boot-a and boot-b partitions under `/dev/disk/by-partlabel` usually contain Linux FIT images.\n\nEMMC:\n\n```\nroot@ast2600-emmc~# ls -l /dev/disk/by-partlabel/\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 boot-a -\u003e ../../mmcblk0p2\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 boot-b -\u003e ../../mmcblk0p3\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 primary -\u003e ../../mmcblk0p1\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rofs-a -\u003e ../../mmcblk0p4\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rofs-b -\u003e ../../mmcblk0p5\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 rwfs -\u003e ../../mmcblk0p6\n\nroot@ast2600-emmc:~# ls -l /dev/disk/by-path/\nlrwxrwxrwx    1 root     root            13 Jan  1  1970 platform-1e750100.sdhci -\u003e ../../mmcblk0\nlrwxrwxrwx    1 root     root            18 Jan  1  1970 platform-1e750100.sdhci-boot0 -\u003e ../../mmcblk0boot0\nlrwxrwxrwx    1 root     root            18 Jan  1  1970 platform-1e750100.sdhci-boot1 -\u003e ../../mmcblk0boot1\ndrwxr-xr-x    7 root     root           140 Jan  1  1970 platform-1e750100.sdhci-part\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part1 -\u003e ../../mmcblk0p1\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part2 -\u003e ../../mmcblk0p2\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part3 -\u003e ../../mmcblk0p3\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part4 -\u003e ../../mmcblk0p4\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part5 -\u003e ../../mmcblk0p5\nlrwxrwxrwx    1 root     root            15 Jan  1  1970 platform-1e750100.sdhci-part6 -\u003e ../../mmcblk0p6\n```\n\nUFS:\n\n```\nroot@ast2700-ufs:~# ls -l /dev/disk/by-partlabel/\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-a -\u003e ../../sda2\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 boot-b -\u003e ../../sda3\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 primary -\u003e ../../sda1\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-a -\u003e ../../sda4\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rofs-b -\u003e ../../sda5\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 rwfs -\u003e ../../sda6\nroot@ast2700-ufs:~# ls -l /dev/disk/by-path/\nlrwxrwxrwx    1 root     root             9 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0 -\u003e ../../sda\ndrwxr-xr-x    7 root     root           140 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part1 -\u003e ../../sda1\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part2 -\u003e ../../sda2\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part3 -\u003e ../../sda3\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part4 -\u003e ../../sda4\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part5 -\u003e ../../sda5\nlrwxrwxrwx    1 root     root            10 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:0-part6 -\u003e ../../sda6\nlrwxrwxrwx    1 root     root             9 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:1 -\u003e ../../sdb\nlrwxrwxrwx    1 root     root             9 Jan  1  1970 platform-12c08200.ufshc-scsi-0:0:0:2 -\u003e ../../sdc\n```",
+      "parentUuid": "a8a5285b_b1d2846a",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9dd61ec_7325b306",

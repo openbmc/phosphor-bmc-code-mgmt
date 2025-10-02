@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4763f721_378f204f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-02T12:37:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44df29fb_3521007b",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f9f6f68_8a9ffb3e",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "It will be named updateFlowB since these update flows were not given specific names.",
       "parentUuid": "9f9f6f68_8a9ffb3e",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4757639_8e2f7311",
+        "filename": "cpld/lattice/interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-02T12:37:54Z",
+      "side": 1,
+      "message": "Switch to using an enum with a switch statement, while keeping the naming as \u0027xo5\u0027. In the future, if other series use the same flow, express it through the switch logic.",
+      "parentUuid": "94f64fa2_f25b0e9e",
       "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -106,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "115b7eca_b9f0b396",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-02T12:37:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e80b416_aa2b3793",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17845007_99495748",
@@ -137,6 +191,24 @@
       "side": 1,
       "message": "I’ll implement it. I originally used a synchronous sleep to work around a Clang false positive.",
       "parentUuid": "17845007_99495748",
+      "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588e8217_ebcc1d55",
+        "filename": "cpld/lattice/xo5.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-10-02T12:37:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a81b7b2_cef4caee",
       "revId": "05bc35e77182aa2c2411dbc15786ae1701bbcb11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

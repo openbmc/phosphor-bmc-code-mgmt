@@ -16,6 +16,24 @@
       "message": "Please use \u0026 here and instead of *, lets keep the code consistent.",
       "revId": "782d6eed913236bc78c533551876389f176bf121",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff338d81_3cac7032",
+        "filename": "i2c-vr/mps/mp5998.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2025-10-02T06:35:04Z",
+      "side": 1,
+      "message": "Can I address this in a separate patch since it requires updating the base class and other VR implementations?",
+      "parentUuid": "79c46a08_c1759e91",
+      "revId": "782d6eed913236bc78c533551876389f176bf121",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

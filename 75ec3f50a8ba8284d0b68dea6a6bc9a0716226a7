@@ -210,6 +210,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e75cb020_6c34c577",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-03T20:07:19Z",
+      "side": 1,
+      "message": "These are hardware partitions created external command to the device they create a unique logical sector number space.  the roms read raw content.   They are not expecting formatting and don\u0027t have code to parse partitions.  (This is similar to NVME namespaces but I don\u0027t know of anyone using those for booting yet).\n\nOn eMMC they can be updated from Linux but are provisioned by additional commands. the commands reserve a connanded number of sectors for them reducing the logical size of the main device.  I expect similar for ufs.\n\nfor Patrick\u0027s raspberry pi example the soc has a large rom that starts on the GPU and reads files from mbr marked boot partition as fat.  an open source can load from USB host, USB device, SPI, SD card, or similar.  \n\nThe question should be: is there a better way to go from the other partition back to the hardware selected by the ROM.\n\nthe difficulty is when we can choose to boot from eg removable media (SD card, USB drive, etc) with the boot started on nor instead of a hardware partition device like ufs or eMMC.  At some point this will require system specific configuration.\n\n\nI think the best we can do is s start with the root and try to find the same physical device.  I agree it\u0027s a bad choice to use the sysfs pathbaw d on device tree names we already have examples of that changing over time.\n\nCaan we find root and have some known fixed relationship using the scsi id?",
+      "parentUuid": "37684b1f_2f60db68",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9dd61ec_7325b306",
         "filename": "meson.options",
         "patchSetId": 7

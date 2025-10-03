@@ -2,6 +2,7 @@
 
 #include "common/include/software.hpp"
 #include "common/include/utils.hpp"
+#include "common/include/gpio_controller.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
@@ -15,79 +16,6 @@ PHOSPHOR_LOG2_USING;
 namespace fs = std::filesystem;
 namespace MatchRules = sdbusplus::bus::match::rules;
 namespace State = sdbusplus::common::xyz::openbmc_project::state;
-
-static std::vector<std::unique_ptr<::gpiod::line_bulk>> requestMuxGPIOs(
-    const std::vector<std::string>& gpioLines,
-    const std::vector<bool>& gpioPolarities, bool inverted)
-{
-    std::map<std::string, std::vector<std::string>> groupLineNames;
-    std::map<std::string, std::vector<int>> groupValues;
-
-    for (size_t i = 0; i < gpioLines.size(); ++i)
-    {
-        auto line = ::gpiod::find_line(gpioLines[i]);
-
-        if (!line)
-        {
-            error("Failed to find GPIO line: {LINE}", "LINE", gpioLines[i]);
-            return {};
-        }
-
-        if (line.is_used())
-        {
-            error("GPIO line {LINE} was still used", "LINE", gpioLines[i]);
-            return {};
-        }
-
-        std::string chipName = line.get_chip().name();
-        groupLineNames[chipName].push_back(gpioLines[i]);
-        groupValues[chipName].push_back(gpioPolarities[i] ^ inverted ? 1 : 0);
-    }
-
-    std::vector<std::unique_ptr<::gpiod::line_bulk>> lineBulks;
-    ::gpiod::line_request config{"", ::gpiod::line_request::DIRECTION_OUTPUT,
-                                 0};
-
-    for (auto& [chipName, lineNames] : groupLineNames)
-    {
-        ::gpiod::chip chip(chipName);
-        std::vector<::gpiod::line> lines;
-
-        for (size_t i = 0; i < lineNames.size(); ++i)
-        {
-            const auto& name = lineNames[i];
-            auto line = chip.find_line(name);
-
-            if (!line)
-            {
-                error("Failed to get {LINE} from chip {CHIP}", "LINE", name,
-                      "CHIP", chipName);
-                return {};
-            }
-
-            debug("Requesting chip {CHIP}, GPIO line {LINE} to {VALUE}", "CHIP",
-                  chip.name(), "LINE", line.name(), "VALUE",
-                  groupValues[chipName][i]);
-
-            lines.push_back(std::move(line));
-        }
-
-        auto lineBulk = std::make_unique<::gpiod::line_bulk>(lines);
-
-        if (!lineBulk)
-        {
-            error("Failed to create line bulk for chip={CHIP}", "CHIP",
-                  chipName);
-            return {};
-        }
-
-        lineBulk->request(config, groupValues[chipName]);
-
-        lineBulks.push_back(std::move(lineBulk));
-    }
-
-    return lineBulks;
-}
 
 static std::string getDriverPath(const std::string& chipModel)
 {
@@ -148,19 +76,11 @@ EEPROMDevice::EEPROMDevice(
 sdbusplus::async::task<bool> EEPROMDevice::updateDevice(const uint8_t* image,
                                                         size_t image_size)
 {
-    std::vector<std::unique_ptr<::gpiod::line_bulk>> lineBulks;
-
+    GPIOGroup muxGPIO(gpioLines, gpioPolarities);
+    std::optional<MuxGuard> guard;
     if (!gpioLines.empty())
     {
-        debug("Requesting GPIOs to mux EEPROM to BMC");
-
-        lineBulks = requestMuxGPIOs(gpioLines, gpioPolarities, false);
-
-        if (lineBulks.empty())
-        {
-            error("Failed to mux EEPROM to BMC");
-            co_return false;
-        }
+        guard.emplace(muxGPIO);
     }
 
     setUpdateProgress(20);
@@ -189,29 +109,6 @@ sdbusplus::async::task<bool> EEPROMDevice::updateDevice(const uint8_t* image,
     if (success)
     {
         setUpdateProgress(80);
-    }
-
-    if (!gpioLines.empty())
-    {
-        for (auto& lineBulk : lineBulks)
-        {
-            lineBulk->release();
-        }
-
-        debug("Requesting GPIOs to mux EEPROM back to device");
-
-        lineBulks = requestMuxGPIOs(gpioLines, gpioPolarities, true);
-
-        if (lineBulks.empty())
-        {
-            error("Failed to mux EEPROM back to device");
-            co_return false;
-        }
-
-        for (auto& lineBulk : lineBulks)
-        {
-            lineBulk->release();
-        }
     }
 
     if (success)

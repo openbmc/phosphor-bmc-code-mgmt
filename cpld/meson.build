@@ -18,6 +18,7 @@ exe = executable(
         sdbusplus_dep,
         libpldm_dep,
         libi2c_dep,
+        libgpiod_dep,
     ],
     link_with: [libpldmutil, software_common_lib, libi2c_dev],
     link_args: '-li2c',

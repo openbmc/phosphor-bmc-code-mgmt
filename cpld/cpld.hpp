@@ -20,11 +20,15 @@ class CPLDDevice : public Device
     CPLDDevice(sdbusplus::async::context& ctx, const std::string& chiptype,
                const std::string& chipname, const uint16_t& bus,
                const uint8_t& address, SoftwareConfig& config,
-               ManagerInf::SoftwareManager* parent) :
+               ManagerInf::SoftwareManager* parent,
+               const std::vector<std::string>& gpioLinesIn,
+               const std::vector<bool>& gpioValuesIn) :
         Device(ctx, config, parent,
                {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
         cpldInterface(CPLDFactory::instance().create(chiptype, ctx, chipname,
-                                                     bus, address))
+                                                     bus, address)),
+        gpioLines(gpioLinesIn),
+        gpioPolarities(gpioValuesIn)
     {}
 
     using Device::softwareCurrent;
@@ -34,6 +38,8 @@ class CPLDDevice : public Device
 
   private:
     std::unique_ptr<CPLDInterface> cpldInterface;
+    std::vector<std::string> gpioLines;
+    std::vector<bool> gpioPolarities;
 };
 
 } // namespace phosphor::software::cpld

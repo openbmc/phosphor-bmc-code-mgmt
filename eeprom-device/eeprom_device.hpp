@@ -6,7 +6,6 @@
 #include "common/include/software_manager.hpp"
 #include "eeprom_device_version.hpp"
 
-#include <gpiod.hpp>
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/bus/match.hpp>
 

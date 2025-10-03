@@ -18,6 +18,13 @@ software_common_lib = static_library(
     'src/software_update.cpp',
     'src/host_power.cpp',
     'src/utils.cpp',
+    'src/gpio_controller.cpp',
     include_directories: ['.', 'include/', common_include],
-    dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep],
+    dependencies: [
+        pdi_dep,
+        phosphor_logging_dep,
+        sdbusplus_dep,
+        libgpiod_dep,
+        libpldm_dep
+        ],
 )

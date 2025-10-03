@@ -31,9 +31,18 @@ class CPLDDevice : public Device
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) final;
     sdbusplus::async::task<bool> getVersion(std::string& version);
+    
+    void setGpioConfig(const std::vector<std::string>& lines,
+                       const std::vector<bool>& polarities)
+    {
+        gpioLines = lines;
+        gpioPolarities = polarities;
+    }
 
   private:
     std::unique_ptr<CPLDInterface> cpldInterface;
+    std::vector<std::string> gpioLines;
+    std::vector<bool> gpioPolarities;
 };
 
 } // namespace phosphor::software::cpld

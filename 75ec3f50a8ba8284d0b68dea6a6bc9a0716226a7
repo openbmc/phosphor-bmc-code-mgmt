@@ -174,6 +174,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38552249_9408ced9",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-03T17:01:15Z",
+      "side": 1,
+      "message": "Why aren\u0027t we adding a GPT for them?  This is not obvious to me.\n\nIf we don\u0027t have a GPT for them, how do we update them from Linux?\n\nAre they stored in the MBR location?  If so, can we use the symlink from the `boot-a` to find the parent device?",
+      "parentUuid": "4d0eaa35_6ac9e083",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9dd61ec_7325b306",
         "filename": "meson.options",
         "patchSetId": 7

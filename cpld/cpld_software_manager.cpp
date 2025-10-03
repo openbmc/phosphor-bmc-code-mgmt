@@ -37,9 +37,42 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
         "TYPE", chipType.value(), "NAME", chipName.value(), "BUS",
         busNo.value(), "ADDR", address.value());
 
+    const std::string configIfaceMux = configIface + ".MuxOutputs";
+
+    std::vector<std::string> names;
+    std::vector<bool> values;
+
+    for (size_t i = 0; true; i++)
+    {
+        const std::string iface = configIfaceMux + std::to_string(i);
+        lg2::info("Trying CPLD interface: {IFACE}", "IFACE", iface);
+
+        std::optional<std::string> name =
+            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                          iface, "Name");
+
+        std::optional<std::string> polarity =
+            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                          iface, "Polarity");
+
+        if (!name.has_value() || !polarity.has_value())
+        {
+            break;
+        }
+
+        lg2::info(
+            "Found CPLD MuxOutput[{INDEX}]: Name={NAME}, Polarity={POLARITY}",
+            "INDEX", i, "NAME", name.value(), "POLARITY", polarity.value());
+
+        names.push_back(name.value());
+        values.push_back((polarity == "High") ? 1 : 0);
+    }
+
+    lg2::info("Total CPLD MuxOutputs found: {COUNT}", "COUNT", names.size());
+
     auto cpld = std::make_unique<CPLDDevice>(
         ctx, chipType.value(), chipName.value(), busNo.value(), address.value(),
-        config, this);
+        config, this, names, values);
 
     std::string version = "unknown";
     if (!(co_await cpld->getVersion(version)))

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9806574_d4e86c52",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:46:35Z",
+      "side": 1,
+      "message": "Please add some comment description stating whats the purpose of this class?",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a8fa3c_04227819",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:46:35Z",
+      "side": 1,
+      "message": "What does this function do? Please add some description to all function definitions. Its hard to understand by looking at the function name.",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f94b8f_e363251f",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:46:35Z",
+      "side": 1,
+      "message": "Please add some comment description stating whats the purpose of this class?",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

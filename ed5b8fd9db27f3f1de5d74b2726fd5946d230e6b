@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a39b6fa_7cd53f55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 115
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:43:38Z",
+      "side": 1,
+      "message": "Lets update the comment description to reflect the intent for the tests covered in this patch.",
+      "revId": "ed5b8fd9db27f3f1de5d74b2726fd5946d230e6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "393beb0d_9ba9fe4a",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 115
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:43:38Z",
+      "side": 1,
+      "message": "Please move the package creation logic as a helper function in test class and call it from testcases.",
+      "revId": "ed5b8fd9db27f3f1de5d74b2726fd5946d230e6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68cf1109_3cd9c4c9",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 115
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:43:38Z",
+      "side": 1,
+      "message": "Make this the first test.",
+      "revId": "ed5b8fd9db27f3f1de5d74b2726fd5946d230e6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ba1c5e_eb58bc0d",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 115
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-06T17:43:38Z",
+      "side": 1,
+      "message": "?",
+      "revId": "ed5b8fd9db27f3f1de5d74b2726fd5946d230e6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

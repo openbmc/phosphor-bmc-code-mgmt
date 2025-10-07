@@ -18,7 +18,7 @@ class MP994X : public MPSVoltageRegulator
     sdbusplus::async::task<bool> verifyImage(const uint8_t* image,
                                              size_t imageSize) final;
     sdbusplus::async::task<bool> updateFirmware(bool force) final;
-    sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
+    sdbusplus::async::task<bool> getCRC(uint32_t& checksum) final;
     sdbusplus::async::task<bool> parseDeviceConfiguration() final;
     bool forcedUpdateAllowed() final;
 

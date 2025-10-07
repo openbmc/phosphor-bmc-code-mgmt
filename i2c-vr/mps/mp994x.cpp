@@ -441,7 +441,7 @@ sdbusplus::async::task<bool> MP994X::storeDataIntoMTP()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> MP994X::getCRC(uint32_t& checksum)
 {
     static constexpr size_t crcUserMultiDataLength = 4;
     static constexpr size_t statusByteLength = 1;
@@ -465,9 +465,9 @@ sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
     }
 
     auto crcBytes = std::span(rbuf).subspan(statusByteLength);
-    *checksum = bytesToInt<uint32_t>(crcBytes);
+    checksum = bytesToInt<uint32_t>(crcBytes);
 
-    debug("Read CRC: {CRC}", "CRC", lg2::hex, *checksum);
+    debug("Read CRC: {CRC}", "CRC", lg2::hex, checksum);
     co_return true;
 }
 
@@ -529,9 +529,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
 sdbusplus::async::task<bool> MP994X::checkMTPCRC()
 {
     uint32_t crc = 0;
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!co_await getCRC(&crc))
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
+    if (!co_await getCRC(crc))
     {
         error("Failed to get CRC for MTP check");
         co_return false;

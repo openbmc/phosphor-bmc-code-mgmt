@@ -289,9 +289,7 @@ sdbusplus::async::task<bool> MP5998::waitForMTPComplete()
 sdbusplus::async::task<bool> MP5998::verifyCRC()
 {
     uint32_t deviceCRC{0};
-    // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    bool getCRCSuccess = co_await getCRC(&deviceCRC);
-    // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
+    bool getCRCSuccess = co_await getCRC(deviceCRC);
     if (!getCRCSuccess)
     {
         error("Failed to read CRC from device");
@@ -303,7 +301,7 @@ sdbusplus::async::task<bool> MP5998::verifyCRC()
     co_return crcMatch;
 }
 
-sdbusplus::async::task<bool> MP5998::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> MP5998::getCRC(uint32_t& checksum)
 {
     constexpr size_t crcLength = 2;
 
@@ -325,7 +323,7 @@ sdbusplus::async::task<bool> MP5998::getCRC(uint32_t* checksum)
         co_return false;
     }
 
-    *checksum = bytesToInt<uint32_t>(rbuf);
+    checksum = bytesToInt<uint32_t>(rbuf);
 
     co_return true;
 }

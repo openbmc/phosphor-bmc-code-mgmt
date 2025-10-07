@@ -44,7 +44,7 @@ class VoltageRegulator
     // @brief Requests the CRC value of the voltage regulator over I2C.
     // @param pointer to write the result to.
     // @returns < 0 on error
-    virtual sdbusplus::async::task<bool> getCRC(uint32_t* checksum) = 0;
+    virtual sdbusplus::async::task<bool> getCRC(uint32_t& checksum) = 0;
 
     // @brief This function returns true if the voltage regulator supports
     //        force of updates.

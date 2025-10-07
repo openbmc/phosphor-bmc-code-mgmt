@@ -226,6 +226,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "856ff8a5_4b9101dc",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 7
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2025-10-07T03:20:15Z",
+      "side": 1,
+      "message": "@patrick@stwcx.xyz\nThe U-Boot boot partition isn’t described by the GPT. In obmc-flash-bmc, we need to locate that partition and update it using dd.\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/bmc/obmc-flash-bmc#L578-L586\n\n```\n    # Update u-boot if needed\n    bootPartition\u003d\"mmcblk0boot0\"\n    devUBoot\u003d\"/dev/${bootPartition}\"\n    imgUBoot\u003d\"${imgpath}/${version}/image-u-boot\"\n    if [ \"$(cmp_uboot \"${devUBoot}\" \"${imgUBoot}\")\" !\u003d \"0\" ]; then\n        echo 0 \u003e \"/sys/block/${bootPartition}/force_ro\"\n        dd if\u003d\"${imgUBoot}\" of\u003d\"${devUBoot}\"\n        echo 1 \u003e \"/sys/block/${bootPartition}/force_ro\"\n    fi\n```\n\nI don’t have other chip hardware right now. If we adopt those platforms and issues arise, we can keep improving this script.\n\n\n@mdmii@outlook.com\neMMC exposes fixed node names like /dev/mmcblk0, /dev/mmcblk0boot0, and /dev/mmcblk0boot1. However, UFS depends on how to create UFS LUN partition. For example in U-Boot:\n\n```\nufs create lun 0 100000 (create 16GB user area)\nufs create boot 1 1000000 (create 4MB boot part 1)\nufs create boot 2 1000000 (create 4MB boot part 2)\n```\n\nIt also related [U-Boot boot command](https://github.com/AspeedTech-BMC/u-boot/blob/aspeed-master-v2023.10/include/configs/evb_ast2700.h#L29) selects the boot target and then loads the kernel via scsi. Once Linux is up, we get /dev/sdX for access.\n\n```\nufsboota\u003dsetenv bootpart 2; setenv rootfs rofs-a; run setufsargs; ext4load scsi 0:${bootpart} ${loadaddr} fitImage \u0026\u0026 bootm ${loadaddr}; echo Error loading kernel FIT image\\0\" \\\n```\n\nI don’t have a better way to find the boot LUN in the Linux.",
+      "parentUuid": "e75cb020_6c34c577",
+      "revId": "75ec3f50a8ba8284d0b68dea6a6bc9a0716226a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9dd61ec_7325b306",

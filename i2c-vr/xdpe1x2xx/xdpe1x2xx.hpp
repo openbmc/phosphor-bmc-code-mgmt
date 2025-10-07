@@ -20,7 +20,7 @@ class XDPE1X2XX : public VoltageRegulator
 
     sdbusplus::async::task<bool> updateFirmware(bool force) final;
 
-    sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
+    sdbusplus::async::task<bool> getCRC(uint32_t& checksum) final;
     bool forcedUpdateAllowed() final;
 
   private:

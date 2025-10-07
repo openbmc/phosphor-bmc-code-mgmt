@@ -26,7 +26,7 @@ class ISL69269 : public VoltageRegulator
                                              size_t imageSize) final;
 
     sdbusplus::async::task<bool> updateFirmware(bool force) final;
-    sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
+    sdbusplus::async::task<bool> getCRC(uint32_t& checksum) final;
 
     bool forcedUpdateAllowed() final;
 

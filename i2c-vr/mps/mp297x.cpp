@@ -376,14 +376,8 @@ sdbusplus::async::task<bool> MP297X::enableMultiConfigCRC()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP297X::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> MP297X::getCRC(uint32_t& checksum)
 {
-    if (checksum == nullptr)
-    {
-        error("getCRC() called with null checksum pointer");
-        co_return false;
-    }
-
     constexpr size_t crcLength = 2;
 
     std::vector<uint8_t> tbuf;
@@ -431,10 +425,10 @@ sdbusplus::async::task<bool> MP297X::getCRC(uint32_t* checksum)
     multiConfigCRC = bytesToInt<uint16_t>(rbuf);
 
     // Combine: [byte3 byte2] = userCodeCRC, [byte1 byte0] = multiConfigCRC
-    *checksum = (static_cast<uint32_t>(userCodeCRC) << 16) |
-                static_cast<uint32_t>(multiConfigCRC);
+    checksum = (static_cast<uint32_t>(userCodeCRC) << 16) |
+               static_cast<uint32_t>(multiConfigCRC);
 
-    debug("Read CRC: {CRC}", "CRC", lg2::hex, *checksum);
+    debug("Read CRC: {CRC}", "CRC", lg2::hex, checksum);
 
     co_return true;
 }
@@ -445,7 +439,7 @@ sdbusplus::async::task<bool> MP297X::checkMTPCRC()
     auto expectedCRC = (configuration->crcUser << 16) | configuration->crcMulti;
 
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!co_await getCRC(&crc))
+    if (!co_await getCRC(crc))
     // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("Failed to get CRC for MTP check");

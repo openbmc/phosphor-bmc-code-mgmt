@@ -35,7 +35,7 @@ sdbusplus::async::task<bool> I2CVRDevice::updateDevice(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> I2CVRDevice::getVersion(uint32_t* sum) const
+sdbusplus::async::task<bool> I2CVRDevice::getVersion(uint32_t& sum) const
 {
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
     if (!(co_await this->vrInterface->getCRC(sum)))

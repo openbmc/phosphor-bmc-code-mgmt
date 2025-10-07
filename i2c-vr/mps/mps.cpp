@@ -47,9 +47,17 @@ std::vector<MPSData> MPSImageParser::getRegistersData()
 }
 
 sdbusplus::async::task<bool> MPSVoltageRegulator::parseImage(
-    const uint8_t* image, size_t imageSize)
+    const uint8_t* image, size_t imageSize,
+    std::unique_ptr<MPSImageParser> customParser)
 {
-    parser = std::make_unique<MPSImageParser>(image, imageSize);
+    if (customParser)
+    {
+        parser = std::move(customParser);
+    }
+    else
+    {
+        parser = std::make_unique<MPSImageParser>(image, imageSize);
+    }
 
     configuration = std::make_unique<MPSConfig>();
     configuration->registersData = parser->getRegistersData();

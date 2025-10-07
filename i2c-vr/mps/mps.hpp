@@ -39,6 +39,9 @@ enum class MPSPage : uint8_t
     page2,
     page3,
     page4,
+    page5,
+    page6,
+    page7,
     page29 = 0x29,
     page2A = 0x2A,
 };
@@ -181,6 +184,12 @@ class MPSImageParser
         lineTokens(image, imageSize)
     {}
 
+    virtual ~MPSImageParser() = default;
+    MPSImageParser(const MPSImageParser&) = delete;
+    MPSImageParser& operator=(const MPSImageParser&) = delete;
+    MPSImageParser(MPSImageParser&&) = default;
+    MPSImageParser& operator=(MPSImageParser&&) = default;
+
     template <typename>
     inline static constexpr bool always_false = false;
 
@@ -238,7 +247,7 @@ class MPSImageParser
     /**
      * @brief Convert tokenized line into MPSData structure.
      */
-    MPSData extractData(const std::vector<std::string_view>& tokens);
+    virtual MPSData extractData(const std::vector<std::string_view>& tokens);
 
     /**
      * @brief Collect all register data entries from the parsed image.
@@ -271,8 +280,9 @@ class MPSVoltageRegulator : public VoltageRegulator
      * @param imageSize Size of the image data
      * @return async task returning true if parsing succeeds
      */
-    sdbusplus::async::task<bool> parseImage(const uint8_t* image,
-                                            size_t imageSize);
+    sdbusplus::async::task<bool> parseImage(
+        const uint8_t* image, size_t imageSize,
+        std::unique_ptr<MPSImageParser> customParser = nullptr);
 
     /**
      * @brief Group register data by page, optionally masked and shifted.

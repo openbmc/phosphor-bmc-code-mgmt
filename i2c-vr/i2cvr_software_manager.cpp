@@ -83,7 +83,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
         std::make_unique<SoftwareInf::Software>(ctx, *i2cDevice);
 
     uint32_t sum;
-    if (!(co_await i2cDevice->getVersion(&sum)))
+    if (!(co_await i2cDevice->getVersion(sum)))
     {
         error("unable to obtain Version/CRC from voltage regulator");
         co_return false;

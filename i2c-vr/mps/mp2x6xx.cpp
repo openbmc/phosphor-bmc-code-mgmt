@@ -336,14 +336,8 @@ sdbusplus::async::task<bool> MP2X6XX::storeUserCode()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP2X6XX::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> MP2X6XX::getCRC(uint32_t& checksum)
 {
-    if (checksum == nullptr)
-    {
-        error("getCRC() called with null checksum pointer");
-        co_return false;
-    }
-
     std::vector<uint8_t> tbuf;
     std::vector<uint8_t> rbuf;
 
@@ -368,9 +362,9 @@ sdbusplus::async::task<bool> MP2X6XX::getCRC(uint32_t* checksum)
         co_return false;
     }
 
-    *checksum = bytesToInt<uint32_t>(rbuf);
+    checksum = bytesToInt<uint32_t>(rbuf);
 
-    debug("Read CRC: {CRC}", "CRC", lg2::hex, *checksum);
+    debug("Read CRC: {CRC}", "CRC", lg2::hex, checksum);
 
     co_return true;
 }
@@ -379,7 +373,7 @@ sdbusplus::async::task<bool> MP2X6XX::checkMTPCRC()
 {
     uint32_t crc = 0;
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!co_await getCRC(&crc))
+    if (!co_await getCRC(crc))
     // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("Failed to get CRC for MTP check");

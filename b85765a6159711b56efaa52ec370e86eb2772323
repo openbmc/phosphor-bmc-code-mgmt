@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "168f896b_d28798e3",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-10-07T08:26:13Z",
+      "side": 1,
+      "message": "Added a comment, as done in patch 6.\nThis class is used to create the interface and reduce redundant code for comparing polarities, checking the mux status, and inverting the mux when necessary.",
+      "parentUuid": "e9806574_d4e86c52",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a8fa3c_04227819",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62dfb64_9c089414",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-10-07T08:26:13Z",
+      "side": 1,
+      "message": "Added a comment, as done in patch 6.\nI removed muxToHost() because it was unnecessary.\nmuxToBMC() calls mux(false) with inverted \u003d false; it compares the polarity of the GPIO and checks whether it needs to toggle.\nThe function muxToDevice() is defined as mux(true).",
+      "parentUuid": "28a8fa3c_04227819",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3f94b8f_e363251f",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-10-06T17:46:35Z",
       "side": 1,
       "message": "Please add some comment description stating whats the purpose of this class?",
+      "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c98944_293481a1",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-10-07T08:26:13Z",
+      "side": 1,
+      "message": "Added a comment, as done in patch 6.",
+      "parentUuid": "d3f94b8f_e363251f",
       "revId": "b85765a6159711b56efaa52ec370e86eb2772323",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

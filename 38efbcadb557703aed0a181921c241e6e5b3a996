@@ -16,6 +16,24 @@
       "message": "Fold testSoftwareAssociationActivating and testSoftwareAssociationRunning into one function testSoftwareAssociation and pass the association name as in_arg from caller. As i see the only difference between 2 functions is the association name so lets pass it as input to new function testSoftwareAssociation.",
       "revId": "38efbcadb557703aed0a181921c241e6e5b3a996",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5326c11a_ce9e6c72",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-07T15:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca8a110e_9e1f8731",
+      "revId": "38efbcadb557703aed0a181921c241e6e5b3a996",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

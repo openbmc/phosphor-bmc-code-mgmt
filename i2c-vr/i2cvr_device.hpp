@@ -36,7 +36,7 @@ class I2CVRDevice : public DeviceInf::Device
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) final;
 
-    sdbusplus::async::task<bool> getVersion(uint32_t* sum) const;
+    sdbusplus::async::task<bool> getVersion(uint32_t& sum) const;
 };
 
 } // namespace phosphor::software::i2c_vr::device

@@ -215,7 +215,7 @@ int XDPE1X2XX::getConfigSize(uint8_t deviceId, uint8_t revision)
     return -1;
 }
 
-sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t& checksum)
 {
     uint8_t tBuf[16] = {0};
     uint8_t rBuf[16] = {0};
@@ -227,7 +227,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::getCRC(uint32_t* checksum)
         co_return false;
     }
 
-    *checksum = (static_cast<uint32_t>(rBuf[3]) << 24) |
+    checksum = (static_cast<uint32_t>(rBuf[3]) << 24) |
                 (static_cast<uint32_t>(rBuf[2]) << 16) |
                 (static_cast<uint32_t>(rBuf[1]) << 8) |
                 (static_cast<uint32_t>(rBuf[0]));
@@ -244,7 +244,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
     int size = 0;
 
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!(co_await getCRC(&sum)))
+    if (!(co_await getCRC(sum)))
     // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
         error("Failed to program the VR");

@@ -250,7 +250,7 @@ sdbusplus::async::task<bool> ISL69269::getDeviceRevision(uint32_t* revision)
     co_return true;
 }
 
-sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t* sum)
+sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t& sum)
 {
     uint8_t tbuf[defaultBufferSize] = {0};
     uint8_t rbuf[defaultBufferSize] = {0};
@@ -261,7 +261,7 @@ sdbusplus::async::task<bool> ISL69269::getCRC(uint32_t* sum)
         error("getCRC failed");
         co_return false;
     }
-    std::memcpy(sum, rbuf, sizeof(uint32_t));
+    std::memcpy(&sum, rbuf, sizeof(uint32_t));
 
     co_return true;
 }
@@ -639,7 +639,7 @@ sdbusplus::async::task<bool> ISL69269::verifyImage(const uint8_t* image,
             break;
     }
 
-    if (!(co_await getCRC(&crc)))
+    if (!(co_await getCRC(crc)))
     {
         error("program failed at getCRC");
         co_return false;

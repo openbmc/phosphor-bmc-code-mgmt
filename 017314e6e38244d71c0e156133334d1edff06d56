@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9283bc87_75945c69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-09T23:28:37Z",
+      "side": 1,
+      "message": "@Leo-Yang@quantatw.com Can you please add a related PRs section with -\n\n- EM schema change for this type.\n- Configuration patch for this type.\n- PDI Hardware change for this type for specific platform.",
+      "revId": "017314e6e38244d71c0e156133334d1edff06d56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

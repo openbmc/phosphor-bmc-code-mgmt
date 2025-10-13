@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dff0baa_84c68237",
+        "filename": "i2c-vr/mps/mp994x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-10-13T07:54:30Z",
+      "side": 1,
+      "message": "In the MPS9945 datasheet, “08” is the suffix of the USER_DATA_08 (B8h) command. I think it’s better to keep the original naming as defined in the datasheet.",
+      "parentUuid": "3a59f709_7ceb6a56",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "9e9bd1287f4c2eafc637b06c2f599fe360f420b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45693bd9_21db4f94",
         "filename": "i2c-vr/mps/mps.hpp",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-10T09:25:58Z",
       "side": 1,
       "message": "I think this should be broken out into an addional patch with its own commit message.",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 58
+      },
+      "revId": "9e9bd1287f4c2eafc637b06c2f599fe360f420b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59a4810_864f8724",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-10-13T07:54:30Z",
+      "side": 1,
+      "message": "This modification allows other MPS VR implementations to extend or customize how the image parser extracts data. It was introduced because the MP9945 VR image includes additional fields that require a different parsing approach from other MPS VRs. Since this change is directly related to enabling MP9945 image parsing, I don’t see a clear benefit in splitting it into a separate patch.",
+      "parentUuid": "45693bd9_21db4f94",
       "range": {
         "startLine": 187,
         "startChar": 4,

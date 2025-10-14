@@ -10,9 +10,20 @@ bool MPSImageParser::isValidDataTokens(
            !tokens[0].starts_with('*');
 }
 
-MPSData MPSImageParser::extractData(const std::vector<std::string_view>& tokens)
+MPSData MPSImageParser::extractType0Data(
+    const std::vector<std::string_view>& tokens)
 {
     MPSData data;
+    static constexpr size_t type0TokensSize = 7;
+
+    if (tokens.size() != type0TokensSize)
+    {
+        lg2::error("Invalid token count for Type0 image line: "
+                   "expected {EXPECTED}, got {ACTUAL}",
+                   "EXPECTED", type0TokensSize, "ACTUAL", tokens.size());
+        return data;
+    }
+
     data.page = getVal<uint8_t>(tokens, ATE::pageNum);
     data.addr = getVal<uint8_t>(tokens, ATE::regAddrHex);
 
@@ -28,9 +39,96 @@ MPSData MPSImageParser::extractData(const std::vector<std::string_view>& tokens)
     return data;
 }
 
-std::vector<MPSData> MPSImageParser::getRegistersData()
+MPSData MPSImageParser::extractType1Data(
+    const std::vector<std::string_view>& tokens)
 {
-    std::vector<MPSData> registersData;
+    MPSData data;
+    static constexpr size_t type0TokensSize = 8;
+
+    if (tokens.size() != type0TokensSize)
+    {
+        lg2::error("Invalid token count for Type1 image line: "
+                   "expected {EXPECTED}, got {ACTUAL}",
+                   "EXPECTED", type0TokensSize, "ACTUAL", tokens.size());
+        return data;
+    }
+
+    data.page = getVal<uint8_t>(tokens, ATE::pageNum);
+    auto addr = getVal<uint16_t>(tokens, ATE::regAddrHex);
+    auto cmdType = getVal<std::string>(tokens, ATE::writeType);
+    int blockDataBytes = 0;
+
+    if (cmdType.starts_with("P"))
+    {
+        // Check if these tokens represent a P1 or P2 process call.
+        // The upper byte of 'addr' is the command code, and the lower byte
+        // is the LSB of the data.
+        // Example:
+        // addr = 0x0F11 and data = 0x18, this sends 0x1811 to command 0x0F
+        static constexpr uint16_t processCallAddrMask = 0xFF00;
+        data.data[0] = static_cast<uint8_t>(addr & ~processCallAddrMask);
+        data.data[1] = getVal<uint8_t>(tokens, ATE::regDataHex);
+        data.addr = static_cast<uint8_t>((addr & processCallAddrMask) >> 8);
+        data.length = 2;
+        return data;
+    }
+    else if (cmdType.starts_with("B"))
+    {
+        // Command types starting with 'B' indicate block r/w commands.
+        // The number following 'B' specifies the number of data bytes.
+        if (cmdType.size() > 1 && std::isdigit(cmdType[1]))
+        {
+            blockDataBytes = std::stoi(cmdType.substr(1));
+        }
+    }
+
+    std::string regData = getVal<std::string>(tokens, ATE::regDataHex);
+    size_t byteCount = std::min(regData.length() / 2, size_t(4));
+    size_t dataIndex = 0;
+
+    if (blockDataBytes > 0)
+    {
+        data.data[dataIndex++] = static_cast<uint8_t>(blockDataBytes);
+    }
+
+    for (size_t i = 0; i < byteCount; ++i)
+    {
+        data.data[dataIndex + (byteCount - 1 - i)] = static_cast<uint8_t>(
+            std::stoul(regData.substr(i * 2, 2), nullptr, 16));
+    }
+    data.length = static_cast<uint8_t>(dataIndex + byteCount);
+    data.addr = getVal<uint8_t>(tokens, ATE::regAddrHex);
+    return data;
+}
+
+std::vector<MPSData> MPSImageParser::parse(
+    const uint8_t* image, size_t imageSize, MPSImageType imageType)
+{
+    lineTokens = TokenizedLines(image, imageSize);
+    std::vector<MPSData> results;
+
+    using ExtractFunc =
+        std::function<MPSData(const std::vector<std::string_view>&)>;
+    ExtractFunc extractData;
+
+    switch (imageType)
+    {
+        case MPSImageType::type0:
+            extractData = [this](const auto& tokens) {
+                return extractType0Data(tokens);
+            };
+            break;
+        case MPSImageType::type1:
+            extractData = [this](const auto& tokens) {
+                return extractType1Data(tokens);
+            };
+            break;
+        default:
+            lg2::error("Unsupported or unknown MPS image type: {TYPE}", "TYPE",
+                       static_cast<int>(imageType));
+            return results;
+    }
+
     for (const auto& tokens : lineTokens)
     {
         if (tokens[0].starts_with("END"))
@@ -40,22 +138,36 @@ std::vector<MPSData> MPSImageParser::getRegistersData()
 
         if (isValidDataTokens(tokens))
         {
-            registersData.push_back(extractData(tokens));
+            auto data = extractData(tokens);
+            if (data.length == 0)
+            {
+                return {};
+            }
+            results.push_back(data);
         }
     }
-    return registersData;
+
+    return results;
 }
 
 sdbusplus::async::task<bool> MPSVoltageRegulator::parseImage(
-    const uint8_t* image, size_t imageSize)
+    const uint8_t* image, size_t imageSize, MPSImageType imageType)
 {
-    parser = std::make_unique<MPSImageParser>(image, imageSize);
-
     configuration = std::make_unique<MPSConfig>();
-    configuration->registersData = parser->getRegistersData();
 
-    if (!co_await parseDeviceConfiguration())
+    try
     {
+        configuration->registersData =
+            parser->parse(image, imageSize, imageType);
+
+        if (!co_await parseDeviceConfiguration())
+        {
+            co_return false;
+        }
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to parse MPS image: {ERR}", "ERR", e.what());
         co_return false;
     }
 
@@ -88,6 +200,20 @@ std::map<uint8_t, std::vector<MPSData>>
     }
 
     return groupedData;
+}
+
+bool MPSVoltageRegulator::setImageParser(
+    std::unique_ptr<MPSImageParser> customParser)
+{
+    if (!customParser)
+    {
+        lg2::error("Failed to set image parser: provided parser is null");
+        return false;
+    }
+
+    parser = std::move(customParser);
+
+    return true;
 }
 
 } // namespace phosphor::software::VR

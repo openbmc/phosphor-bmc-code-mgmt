@@ -32,6 +32,23 @@ enum class ATE : uint8_t
     colCount,
 };
 
+/**
+ * @brief Represents the format of an MPS configuration image.
+ *
+ * type0: 7-columns ATE image without write/read command information.
+ *
+ * type1: 8-columns ATE image that includes write/read command information,
+ *        specifying byte, word, block, or process call operations.
+ *
+ * typeUnknown: Unknown or unsupported image format.
+ */
+enum class MPSImageType : uint8_t
+{
+    type0 = 0,
+    type1,
+    typeUnknown = 0xFF
+};
+
 enum class MPSPage : uint8_t
 {
     page0 = 0,
@@ -68,6 +85,7 @@ struct MPSConfig
 class TokenizedLines
 {
   public:
+    TokenizedLines() = default;
     TokenizedLines(const uint8_t* d, size_t s) :
         data(reinterpret_cast<const char*>(d), s)
     {}
@@ -177,9 +195,12 @@ class TokenizedLines
 class MPSImageParser
 {
   public:
-    MPSImageParser(const uint8_t* image, size_t imageSize) :
-        lineTokens(image, imageSize)
-    {}
+    MPSImageParser() = default;
+    virtual ~MPSImageParser() = default;
+    MPSImageParser(const MPSImageParser&) = delete;
+    MPSImageParser& operator=(const MPSImageParser&) = delete;
+    MPSImageParser(MPSImageParser&&) = default;
+    MPSImageParser& operator=(MPSImageParser&&) = default;
 
     template <typename>
     inline static constexpr bool always_false = false;
@@ -236,16 +257,17 @@ class MPSImageParser
     static bool isValidDataTokens(const std::vector<std::string_view>& tokens);
 
     /**
-     * @brief Convert tokenized line into MPSData structure.
+     * @brief Parse image buffer into a list of MPSData entries.
      */
-    MPSData extractData(const std::vector<std::string_view>& tokens);
-
-    /**
-     * @brief Collect all register data entries from the parsed image.
-     */
-    std::vector<MPSData> getRegistersData();
+    virtual std::vector<MPSData> parse(
+        const uint8_t* image, size_t imageSize,
+        MPSImageType imageType = MPSImageType::typeUnknown);
 
     TokenizedLines lineTokens;
+
+  private:
+    MPSData extractType0Data(const std::vector<std::string_view>& tokens);
+    MPSData extractType1Data(const std::vector<std::string_view>& tokens);
 };
 
 /**
@@ -271,8 +293,9 @@ class MPSVoltageRegulator : public VoltageRegulator
      * @param imageSize Size of the image data
      * @return async task returning true if parsing succeeds
      */
-    sdbusplus::async::task<bool> parseImage(const uint8_t* image,
-                                            size_t imageSize);
+    sdbusplus::async::task<bool> parseImage(
+        const uint8_t* image, size_t imageSize,
+        MPSImageType imageType = MPSImageType::typeUnknown);
 
     /**
      * @brief Group register data by page, optionally masked and shifted.
@@ -283,9 +306,20 @@ class MPSVoltageRegulator : public VoltageRegulator
     std::map<uint8_t, std::vector<MPSData>> getGroupedConfigData(
         uint8_t configMask = 0xFF, uint8_t shift = 0);
 
+    /**
+     * @brief Assign a custom image parser for MPS configuration files parsing.
+     *
+     * Allows replacing the default image parser with a custom implementation,
+     * useful for handling non-standard or model-specific MPS image formats.
+     *
+     * @param customParser Unique pointer to a custom MPSImageParser instance
+     * @return true if the custom parser was successfully assigned
+     */
+    bool setImageParser(std::unique_ptr<MPSImageParser> customParser);
+
   protected:
     phosphor::i2c::I2C i2cInterface;
-    std::unique_ptr<MPSImageParser> parser;
+    std::unique_ptr<MPSImageParser> parser = std::make_unique<MPSImageParser>();
     std::unique_ptr<MPSConfig> configuration;
 };
 

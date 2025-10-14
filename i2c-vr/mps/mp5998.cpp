@@ -57,7 +57,7 @@ sdbusplus::async::task<bool> MP5998::parseDeviceConfiguration()
 sdbusplus::async::task<bool> MP5998::verifyImage(const uint8_t* image,
                                                  size_t imageSize)
 {
-    if (!co_await parseImage(image, imageSize))
+    if (!co_await parseImage(image, imageSize, MPSImageType::type1))
     {
         error("Image verification failed: image parsing failed");
         co_return false;

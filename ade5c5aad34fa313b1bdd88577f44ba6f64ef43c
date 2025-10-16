@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f8e7b3_910d6edd",
+        "filename": "test/common/software/software_association.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-16T17:15:13Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Can you please check why you need this NOLINTNEXTLINE and create a followup patch to fix this if its an actual warning. We can discuss on this thread once you have a trace for this warning.\nFor now, i am merging this patch since all other comments have been resolved.",
+      "revId": "ade5c5aad34fa313b1bdd88577f44ba6f64ef43c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

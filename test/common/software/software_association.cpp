@@ -118,7 +118,6 @@ TEST_F(SoftwareAssocTest, TestSoftwareAssociationRunning)
 
 TEST_F(SoftwareAssocTest, TestSoftwareAssociationActivating)
 {
-    // NOLINTNEXTLINE(clang-analyzer-core.uninitialized.Branch)
     ctx.spawn(testSoftwareAssociation(ctx, device, objPathCurrentSoftware,
                                       busName, false, "activating"));
     ctx.run();

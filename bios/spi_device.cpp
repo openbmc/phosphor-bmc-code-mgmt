@@ -91,7 +91,6 @@ SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
 sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
                                                      size_t image_size)
 {
-    // NOLINTNEXTLINE(clang-analyzer-core.uninitialized.Branch)
     auto prevPowerstate = co_await HostPower::getState(ctx);
 
     if (prevPowerstate != stateOn && prevPowerstate != stateOff)

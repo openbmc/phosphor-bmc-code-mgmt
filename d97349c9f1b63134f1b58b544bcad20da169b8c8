@@ -1,0 +1,192 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5425ad86_5b66c632",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "amazing works on common code 😎",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8b11b0_54464d0d",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "nit: I would prefer setting the gpio values (`muxToBMC`, `muxToDevice`) to be written down in this function.\n\nI feel like that\u0027s more in line with C++ semantics since we acquire the gpios (as a resource) but i don\u0027t consider gpio control itself to be a resource, conceptually.\n\nFrom my perspective:\n- `lineBulk-\u003erequest(config, groupValues[chipName]);` -\u003e resource\n- `muxToDevice` / `muxToBMC` -\u003e control action, not a resource\n\nIt\u0027s a matter of perspective i guess but i feel like the code would be more straightforward that way. What do you think?",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d228e930_ed5faad0",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "fstream and map headers are unused in this header.\n\nWe can `#include \u003cmap\u003e` in the cpp file where it is used.",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bba7c43_ad834bf4",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "Why do we put the underscore after the variable name?",
+      "range": {
+        "startLine": 38,
+        "startChar": 29,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b4ca421_f53942fb",
+        "filename": "common/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "```suggestion\n    dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep, libgpiod_dep],\n```",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c5def4_d7a6e909",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "```suggestion\nGPIOGroup::GPIOGroup(std::vector\u003cstd::string\u003e linesIn, std::vector\u003cbool\u003e polaritiesIn) :\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a923dd62_144a3f3f",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "Do we use this move constructor anywhere?\n\nI deleted the move constructor and the code still compiles.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 2
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c0b9f1_21f0632a",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "Do we use this move assignment operator anywhere?\n\nI deleted the move assignment operator and the code still compiles.",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942b58a5_66ac7aa8",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "The error value from `muxToBMC` is discarded here.\n\nSo we would either have to throw exception or just let the user call the mux control functions by themselves and handle the error there.",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cffcacb_e8862992",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T10:29:00Z",
+      "side": 1,
+      "message": "Can we pass gpio config as part of the constructor?\n\nIs there any use-case where the gpio config has to change at a later point?",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

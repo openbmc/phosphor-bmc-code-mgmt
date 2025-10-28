@@ -16,6 +16,24 @@
       "message": "Why would we need this? I dont see this used in either this gerrit or future gerrits. IMHO we should try and keep our config files in a consistent format.",
       "revId": "81479f13b1d30a6224e0e471875323dfea83fdce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b14e623d_ed24e69f",
+        "filename": "i2c-vr/mps/mps.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-10-28T13:07:10Z",
+      "side": 1,
+      "message": "Ack. Removed it.",
+      "parentUuid": "90886324_cc214cb3",
+      "revId": "81479f13b1d30a6224e0e471875323dfea83fdce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

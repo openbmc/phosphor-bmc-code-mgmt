@@ -25,7 +25,7 @@ class XDPE1X2XX : public VoltageRegulator
 
   private:
     static const int MaxSectCnt = 16;
-    static const int MaxSectDataCnt = 200;
+    static const int MaxSectDataCnt = 300;
 
     struct deviceInfo
     {

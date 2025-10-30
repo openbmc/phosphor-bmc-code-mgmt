@@ -482,6 +482,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
         if (image[i] == '\n')
         {
             std::memcpy(line, image + start, i - start);
+            line[i - start] = '\0';
             if (!strncmp(line, DataComment, lenComment))
             {
                 token = line + lenComment;
@@ -705,7 +706,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::updateFirmware(bool force)
     {
         configuration.section[i].type = 0;
         configuration.section[i].dataCnt = 0;
-        for (int j = 0; j <= MaxSectDataCnt; j++)
+        for (int j = 0; j < MaxSectDataCnt; j++)
         {
             configuration.section[i].data[j] = 0;
         }

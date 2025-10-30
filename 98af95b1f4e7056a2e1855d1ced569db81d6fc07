@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbeeb9e_e16b027a",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-30T09:30:02Z",
+      "side": 1,
+      "message": "Hi, i made this example:\n\n```\nimage_size \u003d\u003d 1000\nstart \u003d\u003d 0\ni \u003d\u003d 40\nimage[40] \u003d\u003d `\\n`\n```\n\nThis will result in \n`line[i-start]\u003d \u0027\\0\u0027;`\nwhich is\n`line[40] \u003d \u0027\\0\u0027;`\nbut `line[39]` is the last element we can set.\n\nDo you agree that currently this code will fail if there is no newline encountered in the first 40 chars.\n\nWe get into this flow via\n`I2CVRDevice::updateDevice` -\u003e `VoltageRegulator::verifyImage` -\u003e `XDPE1X2XX::verifyImage` -\u003e `XDPE1X2XX::parseImage`\n\nand i did not find a check which would prevent this issue in any of these functions.\n\nWould it work if we had something like\n```\nconst size_t lineLength \u003d i - start;\nif (lineLength \u003e\u003d maxLineLength) {\n    error(\"line length exceeded\");\n    return false;\n}\nstd::memcpy(line, image + start, lineLength);\nline[lineLength] \u003d \u0027\\0\u0027;\n```",
+      "revId": "98af95b1f4e7056a2e1855d1ced569db81d6fc07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99cf671_9e09286f",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-30T09:30:02Z",
+      "side": 1,
+      "message": "Agree with this fix, looks good to me.",
+      "revId": "98af95b1f4e7056a2e1855d1ced569db81d6fc07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

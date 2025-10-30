@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11f01d1_8e44f512",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-10-30T10:01:00Z",
+      "side": 1,
+      "message": "Not sure if that should be the solution. The issue is the lack of \\n in the line variable. I think if you adapt the memcpy to:\n`std::memcpy(line, image + start, i - start + 1);`\nit should work without the bogus logs.",
+      "parentUuid": "2fbeeb9e_e16b027a",
+      "revId": "98af95b1f4e7056a2e1855d1ced569db81d6fc07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c99cf671_9e09286f",

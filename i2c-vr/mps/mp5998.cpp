@@ -93,7 +93,7 @@ sdbusplus::async::task<bool> MP5998::checkId(PMBusCmd idCmd, uint32_t expected)
         co_return false;
     }
 
-    size_t bufferSize;
+    size_t bufferSize = 0;
 
     if (idCmd == PMBusCmd::mfrId)
     {

@@ -21,6 +21,7 @@ enum RevisionCode
     REV_B,
     REV_C,
     REV_D,
+    REV_E,
 };
 
 enum ProductID
@@ -31,6 +32,8 @@ enum ProductID
     ProductIDXDPE19283D = 0xAE,  // Revision D
     ProductIDXDPE192C3AC = 0x96, // Revision A,B,C
     ProductIDXDPE192C3D = 0xAF,  // Revision D
+    ProductIDXDPE192C3E = 0xB8,  // Revision E
+    ProductIDXDPE1D2G3B = 0xA5,  // Revision B
 };
 
 constexpr uint8_t PMBusICDeviceID = 0xAD;
@@ -48,6 +51,8 @@ constexpr uint8_t MFRFwCmdGetCRC = 0x2D;
 constexpr int XDPE152XXConfSize = 1344;
 constexpr int XDPE152XXDConfSize = 1312;
 constexpr int XDPE192XXBConfSize = 1416; // Config(728) + PMBus(568) + SVID(120)
+constexpr int XDPE192C3EConfSize = 1532; // Config(844) + PMBus(568) + SVID(120)
+constexpr int XDPE1D2G3BConfSize = 1552; // Config(864) + PMBus(568) + SVID(120)
 constexpr uint8_t VRWarnRemaining = 3;
 constexpr uint8_t SectTrim = 0x02;
 
@@ -202,6 +207,8 @@ int XDPE1X2XX::getConfigSize(uint8_t deviceId, uint8_t revision)
         {{ProductIDXDPE15284, REV_C}, XDPE152XXConfSize},
         {{ProductIDXDPE15284, REV_D}, XDPE152XXDConfSize},
         {{ProductIDXDPE192C3AC, REV_B}, XDPE192XXBConfSize},
+        {{ProductIDXDPE192C3E, REV_E}, XDPE192C3EConfSize},
+        {{ProductIDXDPE1D2G3B, REV_B}, XDPE1D2G3BConfSize},
     };
 
     auto it = configSizeMap.find({deviceId, revision});

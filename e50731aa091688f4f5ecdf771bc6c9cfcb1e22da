@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e046c59f_60c09a40",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "lets create the interface at a better path for testing\n\n/xyz/openbmc_project/software/test_device",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e082f588_27dffc2f",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Would it be possible to use ASSERT here instead so u don\u0027t need to handle return on line 109. You can try if its works (as this function is a coroutine you might see some issues).",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ee9387_95bb9212",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Why do you need a dup for fd, the fd2 and fd are valid for same scope and you are doing co_await on coroutine, so fd should be valid after coroutine finishes.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbf81acf_fc773044",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Most of the code is same as above testcase. Please factor this out into a different function and call it from both the testcases.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6b46c7_cc1b3f34",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Same as above for object path.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1d5f4b_fc7e1e70",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Whats the purpose of this check? Its better on line #229. I don\u0027t think test needs to test the test code.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ed7a91_58981525",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Why NOLint?",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0bf8550_71893c38",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "How r u guaranteeing timeout will be greater than 0? Do u have some sleep in the test backend update function?",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44fa567b_03f734a0",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Lets define a constexpr for mycompversion and use it in other places in test code and example device too.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ff4c25_31d158b8",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "I think one check is good for version as both of them cannot be true.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef0b0b9d_3ab981a1",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Can we have more tests for invalid packages for failure scenarios. Also, lets break this patch into device and software_update as device one can go in after comments are addressed and you can work on software_update one to add more test cases.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7cef832_0ae14d1d",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Better to use ASSERT to avoid test going further as fd creation failed.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6490dc25_6aa20690",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-10-31T17:53:12Z",
+      "side": 1,
+      "message": "Better to use ASSERT to avoid check on line# 115.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

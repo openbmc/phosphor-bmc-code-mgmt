@@ -74,6 +74,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4961395d_0b1154a6",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-10-31T02:34:02Z",
+      "side": 1,
+      "message": "Hi Alexander,\nCurrently, the maximum length of a line containing \\n in image files is only 40 characters.\nTherefore, I believe this edge case should not occur at present, but implementing additional checks would indeed provide greater safety.\nThanks.\n\n\nHi Christopher,\nI think this problem should come from that the input lg2 uses const char*, string_view will rely on \u0027\\0\u0027 to calculate the length when it is constructed from const char*\nDue to the lack of \u0027\\0\u0027 in the copying, the length may crosses to the outside of the buffer incorrectly and causes overflow.\nThanks.",
+      "parentUuid": "c88cca3e_c06b0977",
+      "revId": "98af95b1f4e7056a2e1855d1ced569db81d6fc07",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c99cf671_9e09286f",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 2

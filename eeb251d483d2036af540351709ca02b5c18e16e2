@@ -16,6 +16,24 @@
       "message": "nit: Do you have a document number or something like that to put as a comment.\n\nSo people can know where this value was pulled from.",
       "revId": "eeb251d483d2036af540351709ca02b5c18e16e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a88a8c71_df03a97b",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-10-31T02:36:14Z",
+      "side": 1,
+      "message": "Hi Alexander,\nThanks for the suggestion,\nComments have been added so far.",
+      "parentUuid": "88f199ef_43a85105",
+      "revId": "eeb251d483d2036af540351709ca02b5c18e16e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

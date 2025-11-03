@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef3d844_62884a3b",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f64da75d_1f248a93",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "913f60b7_88892b57",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-31T17:24:14Z",
       "side": 1,
       "message": "initialize to 0;",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaff8d5_e858d2a7",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "913f60b7_88892b57",
       "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb228a4a_643e7354",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "83d6d24b_76386c09",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a489331_081bf377",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-10-31T17:24:14Z",
       "side": 1,
       "message": "Please define constexpr for 300 defining whats the purpose for this wait.",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ad473f_3fb9f73b",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5a489331_081bf377",
       "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc4974c_7a47d4ea",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3a26b20e_c14b1cc0",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "766446ea_acb53b89",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-10-31T17:24:14Z",
       "side": 1,
       "message": "Whats \"0x00D7[7] \u003d\u003d 0\", please provide more appropriate message defining the intent.",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef5828e4_cf42b325",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "766446ea_acb53b89",
       "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11604702_e86314a5",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "Removed.\nThanks.",
+      "parentUuid": "46a98893_f608b202",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "131814a1_05e2798d",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-10-31T17:24:14Z",
       "side": 1,
       "message": "Is this some sort of challenge response or password? If yes, then why are we adding it here?",
+      "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "183110a5_b6dc775d",
+        "filename": "i2c-vr/tda38640a/tda38640a.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002051
+      },
+      "writtenOn": "2025-11-03T12:08:53Z",
+      "side": 1,
+      "message": "According to the chip programming guide, these are the OTP registers used by the USER section.\nI whitelisted them to avoid illegal writes to registers that are not in USER section.",
+      "parentUuid": "131814a1_05e2798d",
       "revId": "0b9d35a75534d88559b18b4ad2776af313ced026",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -333,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59114a4d_652f243a",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T13:40:38Z",
+      "side": 1,
+      "message": "Make a constexpr for it in `test/create_package/create_pldm_fw_package.hpp`",
+      "parentUuid": "44fa567b_03f734a0",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0b0b9d_3ab981a1",
@@ -346,6 +364,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "Can we have more tests for invalid packages for failure scenarios. Also, lets break this patch into device and software_update as device one can go in after comments are addressed and you can work on software_update one to add more test cases.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7570af46_222bda2b",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T13:40:38Z",
+      "side": 1,
+      "message": "Agree, split the patch as suggested 👍\n\nThe stacked patch now has more testcases for failure scenario, let\u0027s continue discussion there and see what can be expanded 👍",
+      "parentUuid": "ef0b0b9d_3ab981a1",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

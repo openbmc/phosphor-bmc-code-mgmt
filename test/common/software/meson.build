@@ -3,6 +3,7 @@ testcases = [
     'software_get_random_softwareid',
     'software_config',
     'software_association',
+    'software_update',
     'software_version',
     'software',
 ]

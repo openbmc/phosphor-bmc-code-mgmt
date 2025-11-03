@@ -1,3 +1,5 @@
+#include "create_pldm_fw_package.hpp"
+
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -56,7 +58,7 @@ ssize_t create_pldm_component_image_info_area_v1_0_0(
     // ComponentVersionStringType
     b[i++] = 0x1; // type = Ascii
 
-    const char* buf = (const char*)"mycompversion";
+    const char* buf = exampleVersion;
     // ComponentVersionStringLength
     b[i++] = strlen(buf);
 

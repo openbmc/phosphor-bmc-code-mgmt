@@ -6,6 +6,8 @@
 #include <optional>
 #include <string>
 
+constexpr const char* exampleVersion = "mycompversion";
+
 std::optional<std::string> create_pldm_package(uint8_t* component_image,
                                                size_t component_image_size);
 

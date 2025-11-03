@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad69590_f22cf142",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-03T19:02:53Z",
+      "side": 1,
+      "message": "Was this verified after an ac cycle, if yes, can you please mention that.",
+      "revId": "063c4b2005da9813524495fa6988758ad92f4125",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc0d6c2_c7cbd109",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-03T19:02:53Z",
+      "side": 1,
+      "message": "You are doing setPage(0) at multiple places, please define a constexpr for 0 and use it at all the places in code.",
+      "revId": "063c4b2005da9813524495fa6988758ad92f4125",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7676ba62_9538e859",
+        "filename": "i2c-vr/tda38640a/tda38640a.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-03T19:02:53Z",
+      "side": 1,
+      "message": "Remove this std::cout.",
+      "revId": "063c4b2005da9813524495fa6988758ad92f4125",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f346273_9f9e2b90",
+        "filename": "i2c-vr/tda38640a/tda38640a.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-03T19:02:53Z",
+      "side": 1,
+      "message": "Please move this to cpp file where they are being used. Follow similar for other definitions which are only being used in .cpp file.",
+      "revId": "063c4b2005da9813524495fa6988758ad92f4125",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

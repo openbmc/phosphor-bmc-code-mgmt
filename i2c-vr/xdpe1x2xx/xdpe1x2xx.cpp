@@ -488,10 +488,14 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
     {
         if (image[i] == '\n')
         {
-            const size_t lineLength = i - start;
+            size_t lineLength = i - start;
+            if (i > start && image[i - 1] == '\r')
+            {
+                lineLength--;
+            }
             if (lineLength >= maxLineLength)
             {
-                error("line length exceeded 40, please check image file.");
+                error("line length >= 40, please check image file.");
                 return false;
             }
             std::memcpy(line, image + start, lineLength);

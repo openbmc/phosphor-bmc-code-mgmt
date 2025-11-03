@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3590933b_435f17e2",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "removed the activation progress interface here as it was not relevant for the testcase.",
+      "parentUuid": "e046c59f_60c09a40",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e082f588_27dffc2f",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "Would it be possible to use ASSERT here instead so u don\u0027t need to handle return on line 109. You can try if its works (as this function is a coroutine you might see some issues).",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4e028b_6a2eb78e",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "It cannot work since `ASSERT_TRUE` does a `return` statement.\n\n```\n  #if !(defined(GTEST_DONT_DEFINE_ASSERT_TRUE) \u0026\u0026 GTEST_DONT_DEFINE_ASSERT_TRUE)\n  #define ASSERT_TRUE(condition) GTEST_ASSERT_TRUE(condition)\n  #endif\n\n  #define GTEST_ASSERT_TRUE(condition) \\\n    GTEST_TEST_BOOLEAN_(condition, #condition, false, true, GTEST_FATAL_FAILURE_)\n\n  #define GTEST_TEST_BOOLEAN_(expression, text, actual, expected, fail) \\\n    GTEST_AMBIGUOUS_ELSE_BLOCKER_                                       \\\n    if (const ::testing::AssertionResult gtest_ar_ \u003d                    \\\n            ::testing::AssertionResult(expression))                     \\\n      ;                                                                 \\\n    else                                                                \\\n      fail(::testing::internal::GetBoolAssertionFailureMessage(         \\\n               gtest_ar_, text, #actual, #expected)                     \\\n               .c_str())\n\n  #define GTEST_FATAL_FAILURE_(message) \\\n    return GTEST_MESSAGE_(message, ::testing::TestPartResult::kFatalFailure)\n```",
+      "parentUuid": "e082f588_27dffc2f",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed163a5_fbd7a515",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "right, removed the dup.",
+      "parentUuid": "a9ee9387_95bb9212",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbf81acf_fc773044",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "Most of the code is same as above testcase. Please factor this out into a different function and call it from both the testcases.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6017cab_1dffc34b",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Done. Agree, it helped to drop some code.",
+      "parentUuid": "fbf81acf_fc773044",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aed83456_d549a4ca",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Done, removed the activation progress interface here.",
+      "parentUuid": "5f6b46c7_cc1b3f34",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a1d5f4b_fc7e1e70",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "Whats the purpose of this check? Its better on line #229. I don\u0027t think test needs to test the test code.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcf0a0e_99ae169d",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Agree. Removed it here.",
+      "parentUuid": "9a1d5f4b_fc7e1e70",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "925a9dfb_30325def",
+        "filename": "test/common/device/device.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "stdexec has some internal problems, it is almost always the same issue about garbage branch due to unchecked optional access.\n\nThey made a \u0027fix\u0027 for it but it\u0027s not in our downstream version yet.\n\nSo likely most these `NOLINT` which we have for garbage branch are unrelated to our code.\n\nfull discussion:\n\nhttps://discordapp.com/channels/775381525260664832/1318185382906560544/1429849877717717103",
+      "parentUuid": "64ed7a91_58981525",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0bf8550_71893c38",
@@ -133,6 +259,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "How r u guaranteeing timeout will be greater than 0? Do u have some sleep in the test backend update function?",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44adafd2_71643766",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "I\u0027m only requesting the new version here. So the update (immediate) does not have to be applied yet, it only has to appear on DBus as per \n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md\n\nTo avoid waiting endlessly for the update to appear, i have this timeout of 500 ms.\n\n\nYou are right that we cannot guarantee we will hit the timeout even if the code is right. If there is a lot of load on the test runner the testcase may not be scheduled in time.\n\nThe testcases already have a timeout of 300 seconds by default. So there is always some timeout to the whole thing.\n\nWe can get rid of the timeout if you like and retry endlessly but then the feedback from test will be delayed until the outer timeout is hit.",
+      "parentUuid": "d0bf8550_71893c38",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +315,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15a9c1bf_bbcd9234",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ff4c25_31d158b8",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0b0b9d_3ab981a1",
@@ -205,6 +367,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d88a900f_6569067d",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7cef832_0ae14d1d",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6490dc25_6aa20690",
@@ -218,6 +398,24 @@
       "writtenOn": "2025-10-31T17:53:12Z",
       "side": 1,
       "message": "Better to use ASSERT to avoid check on line# 115.",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ebdbf5_e7c5811e",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T11:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6490dc25_6aa20690",
       "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

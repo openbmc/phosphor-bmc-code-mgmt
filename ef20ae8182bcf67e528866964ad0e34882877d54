@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e46dadc_accd95bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T14:31:58Z",
+      "side": 1,
+      "message": "local fix, lgtm",
+      "revId": "ef20ae8182bcf67e528866964ad0e34882877d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c35e497b_da3d20ce",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T14:31:58Z",
+      "side": 1,
+      "message": "unrelated to this patch, but related issue:\n\nISL69269 image parser seems to have the same issue and calculates line length without looking at carriage return.\n\nIt also looks like it copies into the buffer without checking for a possible overflow.\n\n```\nbool ISL69269::parseImage(const uint8_t* image, size_t imageSize)\n  {\n      size_t nextLineStart \u003d 0;\n      int dcnt \u003d 0;\n  \n      for (size_t i \u003d 0; i \u003c imageSize; i++)\n      {\n          if (image[i] \u003d\u003d \u0027\\n\u0027) // We have a hex file, so we check new line.\n          {\n              char line[40];\n              char xdigit[8] \u003d {0};\n              uint8_t sepLine[32] \u003d {0};\n  \n              size_t lineLen \u003d i - nextLineStart;\n              std::memcpy(line, image + nextLineStart, lineLen);\n```\n\n@paligill@gmail.com",
+      "revId": "ef20ae8182bcf67e528866964ad0e34882877d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1141327_eac03e21",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-03T14:31:58Z",
+      "side": 1,
+      "message": "I have a minor preference for `const` offset/length variables since the function is so long.\n\nMarking it as resolved since it\u0027s not a real issue with the code.\n\n```suggestion\n            const size_t lineLength \u003d (i \u003e start \u0026\u0026 image[i - 1] \u003d\u003d \u0027\\r\u0027)? i - start - 1:i - start;\n\n```",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 495,
+        "endChar": 13
+      },
+      "revId": "ef20ae8182bcf67e528866964ad0e34882877d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

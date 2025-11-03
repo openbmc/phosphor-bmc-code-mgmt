@@ -94,66 +94,66 @@ machine=""
 version=""
 
 while [[ $# -gt 0 ]]; do
-  key="$1"
-  case $key in
-    -o|--out)
-      outfile="$2"
-      shift 2
-      ;;
-    -s|--sign)
-      do_sign=true
-      if [[ -n "${2}"  && "${2}" != -* ]]; then
-        private_key_path="$2"
-        shift 2
-      else
-        shift 1
-      fi
-      ;;
-    -m|--machine)
-      machine="$2"
-      shift 2
-      ;;
-    -v|--version)
-      version="$2"
-      shift 2
-      ;;
-    -e|--extended)
-      extended="$2"
-      shift 2
-      ;;
-    -h|--help)
-      echo "$help"
-      exit
-      ;;
-    -*)
-      echo "Unrecognised option $1"
-      echo "$help"
-      exit
-      ;;
-    *)
-      file="$1"
-      shift 1
-      ;;
-  esac
+    key="$1"
+    case $key in
+        -o|--out)
+            outfile="$2"
+            shift 2
+            ;;
+        -s|--sign)
+            do_sign=true
+            if [[ -n "${2}"  && "${2}" != -* ]]; then
+                private_key_path="$2"
+                shift 2
+            else
+                shift 1
+            fi
+            ;;
+        -m|--machine)
+            machine="$2"
+            shift 2
+            ;;
+        -v|--version)
+            version="$2"
+            shift 2
+            ;;
+        -e|--extended)
+            extended="$2"
+            shift 2
+            ;;
+        -h|--help)
+            echo "$help"
+            exit
+            ;;
+        -*)
+            echo "Unrecognised option $1"
+            echo "$help"
+            exit
+            ;;
+        *)
+            file="$1"
+            shift 1
+            ;;
+    esac
 done
 
 if [ ! -f "${file}" ]; then
-  echo "${file} not found, Please enter a valid Bios image file"
-  echo "$help"
-  exit 1
+    echo "${file} not found, Please enter a valid Bios image file"
+    echo "$help"
+    exit 1
 fi
 
 if [[ -z $version ]]; then
-  echo "Please provide version of image with -v option"
-  exit 1
+    echo "Please provide version of image with -v option"
+    exit 1
 fi
 
 if [[ -z $outfile ]]; then
-  outfile=$(pwd)/obmc-bios.tar.gz
+    outfile=$(pwd)/obmc-bios.tar.gz
 else
-  if [[ $outfile != /* ]]; then
-    outfile=$(pwd)/$outfile
-  fi
+    if [[ $outfile != /* ]]; then
+        outfile=$(pwd)/$outfile
+    fi
 fi
 
 scratch_dir=$(mktemp -d)
@@ -163,22 +163,22 @@ scratch_dir=$(mktemp -d)
 trap '{ rm -r --interactive=never ${scratch_dir}; }' EXIT
 
 if [[ "${do_sign}" == true ]]; then
-  if [[ -z "${private_key_path}" ]]; then
-    private_key_path=${scratch_dir}/OpenBMC.priv
-    echo "${private_key}" > "${private_key_path}"
-    echo "Image is NOT secure!! Signing with the open private key!"
-  else
-    if [[ ! -f "${private_key_path}" ]]; then
-      echo "Couldn't find private key ${private_key_path}."
-      exit 1
+    if [[ -z "${private_key_path}" ]]; then
+        private_key_path=${scratch_dir}/OpenBMC.priv
+        echo "${private_key}" > "${private_key_path}"
+        echo "Image is NOT secure!! Signing with the open private key!"
+    else
+        if [[ ! -f "${private_key_path}" ]]; then
+            echo "Couldn't find private key ${private_key_path}."
+            exit 1
+        fi
+
+        echo "Signing with ${private_key_path}."
     fi
 
-    echo "Signing with ${private_key_path}."
-  fi
-
-  public_key_file=publickey
-  public_key_path=${scratch_dir}/$public_key_file
-  openssl pkey -in "${private_key_path}" -pubout -out "${public_key_path}"
+    public_key_file=publickey
+    public_key_path=${scratch_dir}/$public_key_file
+    openssl pkey -in "${private_key_path}" -pubout -out "${public_key_path}"
 fi
 
 manifest_location="MANIFEST"
@@ -202,16 +202,16 @@ if [[ -n "${machine}" ]]; then
 fi
 
 if [[ "${do_sign}" == true ]]; then
-  private_key_name=$(basename "${private_key_path}")
-  key_type="${private_key_name%.*}"
-  echo KeyType="${key_type}" >> $manifest_location
-  echo HashType="RSA-SHA256" >> $manifest_location
+    private_key_name=$(basename "${private_key_path}")
+    key_type="${private_key_name%.*}"
+    echo KeyType="${key_type}" >> $manifest_location
+    echo HashType="RSA-SHA256" >> $manifest_location
 
-  for file in $files_to_sign; do
-    openssl dgst -sha256 -sign "${private_key_path}" -out "${file}.sig" "$file"
-  done
+    for file in $files_to_sign; do
+        openssl dgst -sha256 -sign "${private_key_path}" -out "${file}.sig" "$file"
+    done
 
-  additional_files="*.sig"
+    additional_files="*.sig"
 fi
 
 # shellcheck disable=SC2086

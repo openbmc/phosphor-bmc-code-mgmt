@@ -382,8 +382,8 @@ bool Activation::checkApplyTimeImmediate()
         {
             auto reply = bus.call(method);
 
-            std::variant<std::string> result;
-            reply.read(result);
+            auto result = reply.unpack<std::variant<std::string>>();
+
             auto applyTime = std::get<std::string>(result);
             if (applyTime == applyTimeImmediate)
             {

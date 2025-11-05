@@ -748,8 +748,7 @@ void ItemUpdater::setBMCInventoryPath()
         auto response = bus.call(mapperCall);
 
         using ObjectPaths = std::vector<std::string>;
-        ObjectPaths result;
-        response.read(result);
+        auto result = response.unpack<ObjectPaths>();
 
         if (!result.empty())
         {

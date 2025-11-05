@@ -84,6 +84,8 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 
     std::string newObjPath = softwareInstance->objectPath;
 
+    softwareInstance->setActivationBlocksTransition(true);
+
     ctx.spawn(
         [](Device& device, int imageDup, RequestedApplyTimes applyTime,
            std::unique_ptr<Software> swupdate) -> sdbusplus::async::task<> {

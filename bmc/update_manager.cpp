@@ -230,6 +230,8 @@ sdbusplus::message::object_path Manager::startUpdate(
     int newFd = dup(image);
     ctx.spawn(processImage(newFd, applyTime, id, objPath));
 
+    itemUpdater.createActivationBlocksTransition(id);
+
     return sdbusplus::message::object_path(objPath);
 }
 

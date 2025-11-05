@@ -187,6 +187,8 @@ class ItemUpdater : public ItemUpdaterInherit
     bool updateActivationStatus(std::string& id,
                                 ActivationIntf::Activations status);
 
+    bool createActivationBlocksTransition(std::string& id);
+
     /**
      * @brief Create the Update object
      * @param[in] id - The unique identifier for the update.

@@ -98,6 +98,7 @@ auto Activation::activation(Activations value) -> Activations
             // Stop the activation process, if fieldMode is enabled.
             if (parent.control::FieldMode::fieldModeEnabled())
             {
+                activationBlocksTransition.reset(nullptr);
                 return softwareServer::Activation::activation(
                     softwareServer::Activation::Activations::Failed);
             }
@@ -108,6 +109,7 @@ auto Activation::activation(Activations value) -> Activations
 
         if (!minimum_ship_level::verify(versionStr))
         {
+            activationBlocksTransition.reset(nullptr);
             return softwareServer::Activation::activation(
                 softwareServer::Activation::Activations::Failed);
         }
@@ -116,12 +118,6 @@ auto Activation::activation(Activations value) -> Activations
         {
             activationProgress =
                 std::make_unique<ActivationProgress>(bus, path);
-        }
-
-        if (!activationBlocksTransition)
-        {
-            activationBlocksTransition =
-                std::make_unique<ActivationBlocksTransition>(bus, path);
         }
 
 #ifdef HOST_BIOS_UPGRADE
@@ -166,7 +162,9 @@ auto Activation::activation(Activations value) -> Activations
         // On secondary, wait for the service to complete
 #endif
     }
-    else
+    else if ((value == softwareServer::Activation::Activations::Failed) ||
+             (value == softwareServer::Activation::Activations::Invalid) ||
+             (value == softwareServer::Activation::Activations::Active))
     {
         activationBlocksTransition.reset(nullptr);
     }

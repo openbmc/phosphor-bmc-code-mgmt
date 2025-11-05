@@ -231,6 +231,24 @@ bool ItemUpdater::updateActivationStatus(std::string& id,
     return true;
 }
 
+bool ItemUpdater::createActivationBlocksTransition(std::string& id)
+{
+    auto activation = activations.find(id);
+    if (activation == activations.end())
+    {
+        error("Activation object not found for id: {ID}", "ID", id);
+        return false;
+    }
+
+    if (!activation->second->activationBlocksTransition)
+    {
+        activation->second->activationBlocksTransition =
+            std::make_unique<ActivationBlocksTransition>(
+                activation->second->bus, activation->second->path);
+    }
+    return true;
+}
+
 void ItemUpdater::createUpdateObject(const std::string& id,
                                      const std::string& path)
 {

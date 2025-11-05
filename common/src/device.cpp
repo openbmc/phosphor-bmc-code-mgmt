@@ -176,8 +176,6 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 
     softwarePending->softwareActivationProgress->emit_added();
 
-    softwarePending->setActivationBlocksTransition(true);
-
     softwarePending->setActivation(
         ActivationInterface::Activations::Activating);
 

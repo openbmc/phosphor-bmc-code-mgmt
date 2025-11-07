@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f484ff51_b12c33cc",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T08:48:46Z",
+      "side": 1,
+      "message": "i guess both approaches have their advantages.\n\nYour solution prevents accidentally leaving the gpios in the wrong state as they are switched back on destruction.\n\nmarking as resolved.",
+      "parentUuid": "b3b21fd1_ca21c389",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d228e930_ed5faad0",
@@ -143,6 +161,30 @@
       "side": 1,
       "message": "It’s usually a naming convention to distinguish private member variables from public ones, but I’m not sure if that convention applies to this project. I can adjust it if you prefer.",
       "parentUuid": "9bba7c43_ad834bf4",
+      "range": {
+        "startLine": 38,
+        "startChar": 29,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a0d525_444a3d97",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T08:48:46Z",
+      "side": 1,
+      "message": "I\u0027m fine with it, resolving.",
+      "parentUuid": "b7e65dc4_f313460e",
       "range": {
         "startLine": 38,
         "startChar": 29,
@@ -282,6 +324,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91248454_d2e951e6",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T08:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93c8aadb_273b80fe",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 2
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c0b9f1_21f0632a",
@@ -313,6 +379,24 @@
       "side": 1,
       "message": "As previous comment",
       "parentUuid": "93c0b9f1_21f0632a",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4f0bcd2_b4f0c7da",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T08:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4778900f_f3a69172",
       "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

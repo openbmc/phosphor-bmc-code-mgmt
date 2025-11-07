@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3b21fd1_ca21c389",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Yes, I agree with your opinion. I simplified the code, but also added a comment in gpio_controller.hpp to clarify when the mux status is switched.\nThis should make the control flow easier to follow while keeping the code concise.\nWould you prefer that I keep it this way, or move the GPIO control (muxToBMC / muxToDevice) into this function as you suggested?",
+      "parentUuid": "1d8b11b0_54464d0d",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d228e930_ed5faad0",
         "filename": "common/include/gpio_controller.hpp",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2025-10-22T10:29:00Z",
       "side": 1,
       "message": "fstream and map headers are unused in this header.\n\nWe can `#include \u003cmap\u003e` in the cpp file where it is used.",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a69dfc14_1297752b",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Already move to cpp file",
+      "parentUuid": "d228e930_ed5faad0",
       "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -77,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7e65dc4_f313460e",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "It’s usually a naming convention to distinguish private member variables from public ones, but I’m not sure if that convention applies to this project. I can adjust it if you prefer.",
+      "parentUuid": "9bba7c43_ad834bf4",
+      "range": {
+        "startLine": 38,
+        "startChar": 29,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b4ca421_f53942fb",
         "filename": "common/meson.build",
         "patchSetId": 7
@@ -88,6 +148,24 @@
       "writtenOn": "2025-10-22T10:29:00Z",
       "side": 1,
       "message": "```suggestion\n    dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep, libgpiod_dep],\n```",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e50dae_fc87615b",
+        "filename": "common/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Add libgpiod_dep. This requires moving the libgpio definition ahead of the common subdirectory in the top-level meson.build.",
+      "parentUuid": "5b4ca421_f53942fb",
       "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -105,6 +183,30 @@
       "writtenOn": "2025-10-22T10:29:00Z",
       "side": 1,
       "message": "```suggestion\nGPIOGroup::GPIOGroup(std::vector\u003cstd::string\u003e linesIn, std::vector\u003cbool\u003e polaritiesIn) :\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a64192e_155923e6",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Change the variable names.",
+      "parentUuid": "c4c5def4_d7a6e909",
       "range": {
         "startLine": 7,
         "startChar": 0,
@@ -140,6 +242,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93c8aadb_273b80fe",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Yes, removing std::move() would still compile and work.\nHowever, std::move() avoids copying — it allows the member variables (lines_ and polarities_) to be move-constructed instead of copy-constructed.\nSince lines_ and polarities_ are not static vectors and may have multiple instances, using std::move() helps improve performance and efficiency by preventing unnecessary memory copies.",
+      "parentUuid": "a923dd62_144a3f3f",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 2
+      },
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93c0b9f1_21f0632a",
         "filename": "common/src/gpio_controller.cpp",
         "patchSetId": 7
@@ -151,6 +277,24 @@
       "writtenOn": "2025-10-22T10:29:00Z",
       "side": 1,
       "message": "Do we use this move assignment operator anywhere?\n\nI deleted the move assignment operator and the code still compiles.",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4778900f_f3a69172",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "As previous comment",
+      "parentUuid": "93c0b9f1_21f0632a",
       "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +316,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "285ac9a4_a1083079",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "I added exception handling here in case the mux switch fails.",
+      "parentUuid": "942b58a5_66ac7aa8",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cffcacb_e8862992",
@@ -185,6 +347,24 @@
       "writtenOn": "2025-10-22T10:29:00Z",
       "side": 1,
       "message": "Can we pass gpio config as part of the constructor?\n\nIs there any use-case where the gpio config has to change at a later point?",
+      "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562e74bf_3e2f2fd6",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-11-07T08:29:00Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "3cffcacb_e8862992",
       "revId": "d97349c9f1b63134f1b58b544bcad20da169b8c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

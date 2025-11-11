@@ -281,6 +281,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f7203b_7fb1aff6",
+        "filename": "test/common/software/software_update.cpp",
+        "patchSetId": 116
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-11T15:32:11Z",
+      "side": 1,
+      "message": "\u003e How r u guaranteeing timeout will be greater than 0? Do u have some sleep in the test backend update function?\n\nSorry, i feel like i misunderstood your question initially. The Example updater creates an ExampleDevice which has following `updateDevice` function\n\n```\n\nsdbusplus::async::task\u003cbool\u003e ExampleDevice::updateDevice(\n    const uint8_t* /*unused*/, size_t compImageSize)\n{\n    debug(\"Called device specific update function with image size {SIZE}\",\n          \"SIZE\", compImageSize);\n\n    deviceSpecificUpdateFunctionCalled \u003d true;\n\n    // Setting this property for demonstration purpose.\n    // For a real device, this could represent the\n    // percentage completion of writing the firmware,\n    // and any progress made in the update process within this function.\n    // There is no hard constraint on the values here,\n    // we do not have to reach any specific percentage.\n    // The percentage should be monotonic and increasing.\n    for (auto progress \u003d 0; progress \u003c\u003d 100; progress +\u003d 20) \n    {   \n        setUpdateProgress(progress);\n    }   \n\n    co_return true;\n}\n```\n\nSo there is no extra sleep to race with our timeout.",
+      "parentUuid": "44adafd2_71643766",
+      "revId": "e50731aa091688f4f5ecdf771bc6c9cfcb1e22da",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44fa567b_03f734a0",

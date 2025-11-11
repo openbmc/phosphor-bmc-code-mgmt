@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bd138906_6723a1bc",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-11T02:14:34Z",
+      "side": 1,
+      "message": "@Leo-Yang@quantatw.com @kevin.tung.openbmc@gmail.com Can you please address this issue in ISL69269 VR as well. Thanks",
+      "parentUuid": "c35e497b_da3d20ce",
+      "revId": "ef20ae8182bcf67e528866964ad0e34882877d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d1141327_eac03e21",
         "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
         "patchSetId": 2

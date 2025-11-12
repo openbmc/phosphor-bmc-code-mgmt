@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1179713_881f365e",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Why u r not passing muxGPIO to class constructor, it already handles empty gpioLines?",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3582f987_bdffb6d7",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "You don\u0027t need this. Please update the class constructor to throw an exception and handle it here.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fb171b_4b70e986",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Please follow the coding guidelines as per https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables and drop _ from end. Make the change throughout the patch.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64cddd8_4dd43d4b",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "By looking at the description, i don\u0027t think this is a MuxGuard, this is just a RAII wrapper for MuxToBMC and then returning to default at destrucion. So, i think we need a better name to reflect the intent.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c0b0e5a_3549d3fc",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Why do you need this ok var, please throw an exception from constructor if it fails to muxtoBMC.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36da280_65296277",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Please follow the coding guidelines as per https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables and drop _ from end. Make the change throughout the patch.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b911fe00_ba591f94",
+        "filename": "common/meson.build",
+        "patchSetId": 14
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Lets define a new static lib for gpio_controller and use it in required update daemons.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7a9f68_4199fcd1",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "Same comments as in bios updater.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7fd3ccd_f64b1a41",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:58:31Z",
+      "side": 1,
+      "message": "You have added MuxOutput as an optional property https://grok.openbmc.org/xref/openbmc/entity-manager/schemas/cpld.json?r\u003d46906e5d3e9df92cf5ac495d21dc041f51f52fe9 Please handle it accordingly.",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2602543_bcba2600",
+        "filename": "i2c-vr/mps/mp994x.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-12T02:10:26Z",
+      "side": 1,
+      "message": "Please define a constexpr for 7 with its meaning and use it here.",
+      "revId": "df2bbf032f97dae2503971cc14b681b78c41ca4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

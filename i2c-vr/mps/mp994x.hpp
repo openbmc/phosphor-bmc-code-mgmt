@@ -6,7 +6,7 @@
 namespace phosphor::software::VR
 {
 
-enum class MP994XCmd : uint8_t;
+enum class MPX9XXCmd : uint8_t;
 
 class MP994X : public MPSVoltageRegulator
 {
@@ -23,7 +23,7 @@ class MP994X : public MPSVoltageRegulator
     bool forcedUpdateAllowed() final;
 
   private:
-    sdbusplus::async::task<bool> checkId(MP994XCmd idCmd, uint32_t expected);
+    sdbusplus::async::task<bool> checkId(MPX9XXCmd idCmd, uint32_t expected);
     sdbusplus::async::task<bool> unlockWriteProtect();
     sdbusplus::async::task<bool> disableStoreFaultTriggering();
     sdbusplus::async::task<bool> setMultiConfigAddress(uint8_t config);
@@ -33,6 +33,28 @@ class MP994X : public MPSVoltageRegulator
     sdbusplus::async::task<bool> storeDataIntoMTP();
     sdbusplus::async::task<bool> restoreDataFromNVM();
     sdbusplus::async::task<bool> checkMTPCRC();
+
+  protected:
+    virtual MPX9XXCmd getConfigIdCmd() const;
+};
+
+/**
+ * @class MP292X
+ * @brief Derived class for MP292X voltage regulator
+ *
+ * The firmware update process for MP292X is identical to MP994X.
+ * The only difference is the Config ID register, which uses 0xA9
+ * instead of 0xAF. All other steps, such as unlocking write protect,
+ * programming registers, restoring from NVM, and CRC checks, remain
+ * the same as MP994X.
+ */
+class MP292X : public MP994X
+{
+  public:
+    using MP994X::MP994X;
+
+  protected:
+    MPX9XXCmd getConfigIdCmd() const final;
 };
 
 } // namespace phosphor::software::VR

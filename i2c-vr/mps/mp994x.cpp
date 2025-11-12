@@ -15,15 +15,16 @@ static constexpr std::string_view crcUserMultiRegName = "CRC_USER_MULTI";
 
 static constexpr uint8_t pageMask = 0x0F;
 
-enum class MP994XCmd : uint8_t
+enum class MPX9XXCmd : uint8_t
 {
     // Page 0 commands
     storeUserAll = 0x15,
     userData08 = 0xB8,
 
     // Page 2 commands
+    configIdMP292X = 0xA9,
     mfrMulconfigSel = 0xAB,
-    configId = 0xAF,
+    configIdMP994X = 0xAF,
     mfrNVMPmbusCtrl = 0xCA,
     mfrDebug = 0xD4,
     deviceId = 0xDB,
@@ -34,6 +35,11 @@ enum class MP994XCmd : uint8_t
     // Page 7 commands
     storeFaultTrigger = 0x51,
 };
+
+MPX9XXCmd MP292X::getConfigIdCmd() const
+{
+    return MPX9XXCmd::configIdMP292X;
+}
 
 sdbusplus::async::task<bool> MP994X::parseDeviceConfiguration()
 {
@@ -101,7 +107,12 @@ sdbusplus::async::task<bool> MP994X::verifyImage(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
+MPX9XXCmd MP994X::getConfigIdCmd() const
+{
+    return MPX9XXCmd::configIdMP994X;
+}
+
+sdbusplus::async::task<bool> MP994X::checkId(MPX9XXCmd idCmd, uint32_t expected)
 {
     static constexpr size_t vendorIdLength = 2;
     static constexpr size_t productIdLength = 1;
@@ -111,23 +122,25 @@ sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
     size_t idLen = 0;
     const uint8_t cmd = static_cast<uint8_t>(idCmd);
 
-    switch (idCmd)
+    if (idCmd == MPX9XXCmd::vendorId)
     {
-        case MP994XCmd::vendorId:
-            page = MPSPage::page5;
-            idLen = vendorIdLength;
-            break;
-        case MP994XCmd::deviceId:
-            page = MPSPage::page2;
-            idLen = productIdLength;
-            break;
-        case MP994XCmd::configId:
-            page = MPSPage::page2;
-            idLen = configIdLength;
-            break;
-        default:
-            error("Invalid command for ID check: {CMD}", "CMD", lg2::hex, cmd);
-            co_return false;
+        page = MPSPage::page5;
+        idLen = vendorIdLength;
+    }
+    else if (idCmd == MPX9XXCmd::deviceId)
+    {
+        page = MPSPage::page2;
+        idLen = productIdLength;
+    }
+    else if (idCmd == getConfigIdCmd())
+    {
+        page = MPSPage::page2;
+        idLen = configIdLength;
+    }
+    else
+    {
+        error("Invalid command for ID check: {CMD}", "CMD", lg2::hex, cmd);
+        co_return false;
     }
 
     std::vector<uint8_t> tbuf;
@@ -202,7 +215,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::mfrDebug);
+    tbuf = buildByteVector(MPX9XXCmd::mfrDebug);
     rbuf.resize(mfrDebugDataLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -211,7 +224,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
     }
 
     uint16_t data = (rbuf[1] << 8) | rbuf[0] | enableEnteringPage7Mask;
-    tbuf = buildByteVector(MP994XCmd::mfrDebug, data);
+    tbuf = buildByteVector(MPX9XXCmd::mfrDebug, data);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -227,7 +240,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::storeFaultTrigger,
+    tbuf = buildByteVector(MPX9XXCmd::storeFaultTrigger,
                            disableStoreFaultTriggeringData);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
@@ -270,12 +283,12 @@ sdbusplus::async::task<bool> MP994X::setMultiConfigAddress(uint8_t config)
     }
 
     uint8_t selectAddrData = enableMultiConfigAddrSel + addr;
-    tbuf = buildByteVector(MP994XCmd::mfrMulconfigSel, selectAddrData);
+    tbuf = buildByteVector(MPX9XXCmd::mfrMulconfigSel, selectAddrData);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
         error("Failed to write {DATA} to multi config select register {REG}",
               "DATA", lg2::hex, selectAddrData, "REG", lg2::hex,
-              static_cast<uint8_t>(MP994XCmd::mfrMulconfigSel));
+              static_cast<uint8_t>(MPX9XXCmd::mfrMulconfigSel));
         co_return false;
     }
 
@@ -367,7 +380,7 @@ sdbusplus::async::task<bool> MP994X::storeDataIntoMTP()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::storeUserAll);
+    tbuf = buildByteVector(MPX9XXCmd::storeUserAll);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
         error("Failed to store data into MTP");
@@ -396,7 +409,7 @@ sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::userData08);
+    tbuf = buildByteVector(MPX9XXCmd::userData08);
     rbuf.resize(crcUserMultiDataLength + statusByteLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -427,7 +440,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::mfrNVMPmbusCtrl);
+    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl);
     rbuf.resize(nvmPmbusCtrlDataLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -436,7 +449,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
     }
 
     uint16_t data = ((rbuf[1] << 8) | rbuf[0]) | enableRestoreDataFromMTPMask;
-    tbuf = buildByteVector(MP994XCmd::mfrNVMPmbusCtrl, data);
+    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl, data);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -498,17 +511,17 @@ sdbusplus::async::task<bool> MP994X::updateFirmware(bool force)
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::vendorId, configuration->vendorId))
+    if (!co_await checkId(MPX9XXCmd::vendorId, configuration->vendorId))
     {
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::deviceId, configuration->productId))
+    if (!co_await checkId(MPX9XXCmd::deviceId, configuration->productId))
     {
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::configId, configuration->configId))
+    if (!co_await checkId(getConfigIdCmd(), configuration->configId))
     {
         co_return false;
     }

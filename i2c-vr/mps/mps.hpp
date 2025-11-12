@@ -68,7 +68,7 @@ struct MPSData
     uint8_t page = 0;
     uint8_t addr = 0;
     uint8_t length = 0;
-    std::array<uint8_t, 4> data{};
+    std::array<uint8_t, 8> data{};
 };
 
 struct MPSConfig

@@ -33,6 +33,9 @@ class MP994X : public MPSVoltageRegulator
     sdbusplus::async::task<bool> storeDataIntoMTP();
     sdbusplus::async::task<bool> restoreDataFromNVM();
     sdbusplus::async::task<bool> checkMTPCRC();
+
+  protected:
+    virtual MP994XCmd getConfigIdCmd() const;
 };
 
 } // namespace phosphor::software::VR

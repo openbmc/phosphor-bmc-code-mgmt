@@ -101,6 +101,11 @@ sdbusplus::async::task<bool> MP994X::verifyImage(const uint8_t* image,
     co_return true;
 }
 
+MP994XCmd MP994X::getConfigIdCmd() const
+{
+    return MP994XCmd::configId;
+}
+
 sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
 {
     static constexpr size_t vendorIdLength = 2;
@@ -111,23 +116,25 @@ sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
     size_t idLen = 0;
     const uint8_t cmd = static_cast<uint8_t>(idCmd);
 
-    switch (idCmd)
+    if (idCmd == MP994XCmd::vendorId)
     {
-        case MP994XCmd::vendorId:
-            page = MPSPage::page5;
-            idLen = vendorIdLength;
-            break;
-        case MP994XCmd::deviceId:
-            page = MPSPage::page2;
-            idLen = productIdLength;
-            break;
-        case MP994XCmd::configId:
-            page = MPSPage::page2;
-            idLen = configIdLength;
-            break;
-        default:
-            error("Invalid command for ID check: {CMD}", "CMD", lg2::hex, cmd);
-            co_return false;
+        page = MPSPage::page5;
+        idLen = vendorIdLength;
+    }
+    else if (idCmd == MP994XCmd::deviceId)
+    {
+        page = MPSPage::page2;
+        idLen = productIdLength;
+    }
+    else if (idCmd == getConfigIdCmd())
+    {
+        page = MPSPage::page2;
+        idLen = configIdLength;
+    }
+    else
+    {
+        error("Invalid command for ID check: {CMD}", "CMD", lg2::hex, cmd);
+        co_return false;
     }
 
     std::vector<uint8_t> tbuf;
@@ -508,7 +515,7 @@ sdbusplus::async::task<bool> MP994X::updateFirmware(bool force)
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::configId, configuration->configId))
+    if (!co_await checkId(getConfigIdCmd(), configuration->configId))
     {
         co_return false;
     }

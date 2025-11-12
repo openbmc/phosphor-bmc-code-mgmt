@@ -1,4 +1,4 @@
-#include "mp994x.hpp"
+#include "mpx9xx.hpp"
 
 #include "common/include/utils.hpp"
 
@@ -15,15 +15,16 @@ static constexpr std::string_view crcUserMultiRegName = "CRC_USER_MULTI";
 
 static constexpr uint8_t pageMask = 0x0F;
 
-enum class MP994XCmd : uint8_t
+enum class MPX9XXCmd : uint8_t
 {
     // Page 0 commands
     storeUserAll = 0x15,
     userData08 = 0xB8,
 
     // Page 2 commands
+    configIdMP292X = 0xA9,
     mfrMulconfigSel = 0xAB,
-    configId = 0xAF,
+    configIdMP994X = 0xAF,
     mfrNVMPmbusCtrl = 0xCA,
     mfrDebug = 0xD4,
     deviceId = 0xDB,
@@ -35,7 +36,17 @@ enum class MP994XCmd : uint8_t
     storeFaultTrigger = 0x51,
 };
 
-sdbusplus::async::task<bool> MP994X::parseDeviceConfiguration()
+MPX9XXCmd MP292X::getConfigIdCmd() const
+{
+    return MPX9XXCmd::configIdMP292X;
+}
+
+MPX9XXCmd MP994X::getConfigIdCmd() const
+{
+    return MPX9XXCmd::configIdMP994X;
+}
+
+sdbusplus::async::task<bool> MPX9XX::parseDeviceConfiguration()
 {
     if (!configuration)
     {
@@ -75,7 +86,7 @@ sdbusplus::async::task<bool> MP994X::parseDeviceConfiguration()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::verifyImage(const uint8_t* image,
+sdbusplus::async::task<bool> MPX9XX::verifyImage(const uint8_t* image,
                                                  size_t imageSize)
 {
     if (!co_await parseImage(image, imageSize, MPSImageType::type1))
@@ -101,7 +112,7 @@ sdbusplus::async::task<bool> MP994X::verifyImage(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
+sdbusplus::async::task<bool> MPX9XX::checkId(MPX9XXCmd idCmd, uint32_t expected)
 {
     static constexpr size_t vendorIdLength = 2;
     static constexpr size_t productIdLength = 1;
@@ -113,15 +124,16 @@ sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
 
     switch (idCmd)
     {
-        case MP994XCmd::vendorId:
+        case MPX9XXCmd::vendorId:
             page = MPSPage::page5;
             idLen = vendorIdLength;
             break;
-        case MP994XCmd::deviceId:
+        case MPX9XXCmd::deviceId:
             page = MPSPage::page2;
             idLen = productIdLength;
             break;
-        case MP994XCmd::configId:
+        case MPX9XXCmd::configIdMP292X:
+        case MPX9XXCmd::configIdMP994X:
             page = MPSPage::page2;
             idLen = configIdLength;
             break;
@@ -160,7 +172,7 @@ sdbusplus::async::task<bool> MP994X::checkId(MP994XCmd idCmd, uint32_t expected)
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::unlockWriteProtect()
+sdbusplus::async::task<bool> MPX9XX::unlockWriteProtect()
 {
     static constexpr uint8_t unlockWriteProtectData = 0x00;
 
@@ -185,7 +197,7 @@ sdbusplus::async::task<bool> MP994X::unlockWriteProtect()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
+sdbusplus::async::task<bool> MPX9XX::disableStoreFaultTriggering()
 {
     static constexpr size_t mfrDebugDataLength = 2;
     static constexpr uint16_t enableEnteringPage7Mask = 0x8000;
@@ -202,7 +214,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::mfrDebug);
+    tbuf = buildByteVector(MPX9XXCmd::mfrDebug);
     rbuf.resize(mfrDebugDataLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -211,7 +223,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
     }
 
     uint16_t data = (rbuf[1] << 8) | rbuf[0] | enableEnteringPage7Mask;
-    tbuf = buildByteVector(MP994XCmd::mfrDebug, data);
+    tbuf = buildByteVector(MPX9XXCmd::mfrDebug, data);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -227,7 +239,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::storeFaultTrigger,
+    tbuf = buildByteVector(MPX9XXCmd::storeFaultTrigger,
                            disableStoreFaultTriggeringData);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
@@ -241,7 +253,7 @@ sdbusplus::async::task<bool> MP994X::disableStoreFaultTriggering()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::setMultiConfigAddress(uint8_t config)
+sdbusplus::async::task<bool> MPX9XX::setMultiConfigAddress(uint8_t config)
 {
     // MPS994X: Select multi-configuration address
     // Write to Page 2 @ 0xAB:
@@ -270,12 +282,12 @@ sdbusplus::async::task<bool> MP994X::setMultiConfigAddress(uint8_t config)
     }
 
     uint8_t selectAddrData = enableMultiConfigAddrSel + addr;
-    tbuf = buildByteVector(MP994XCmd::mfrMulconfigSel, selectAddrData);
+    tbuf = buildByteVector(MPX9XXCmd::mfrMulconfigSel, selectAddrData);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
         error("Failed to write {DATA} to multi config select register {REG}",
               "DATA", lg2::hex, selectAddrData, "REG", lg2::hex,
-              static_cast<uint8_t>(MP994XCmd::mfrMulconfigSel));
+              static_cast<uint8_t>(MPX9XXCmd::mfrMulconfigSel));
         co_return false;
     }
 
@@ -283,7 +295,7 @@ sdbusplus::async::task<bool> MP994X::setMultiConfigAddress(uint8_t config)
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::programConfigData(
+sdbusplus::async::task<bool> MPX9XX::programConfigData(
     const std::vector<MPSData>& gdata)
 {
     std::vector<uint8_t> tbuf;
@@ -324,7 +336,7 @@ sdbusplus::async::task<bool> MP994X::programConfigData(
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::programAllRegisters()
+sdbusplus::async::task<bool> MPX9XX::programAllRegisters()
 {
     // config 0 = User Registers
     // config 1 ~ 8 = Multi-configuration Registers
@@ -355,7 +367,7 @@ sdbusplus::async::task<bool> MP994X::programAllRegisters()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::storeDataIntoMTP()
+sdbusplus::async::task<bool> MPX9XX::storeDataIntoMTP()
 {
     std::vector<uint8_t> tbuf;
     std::vector<uint8_t> rbuf;
@@ -367,7 +379,7 @@ sdbusplus::async::task<bool> MP994X::storeDataIntoMTP()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::storeUserAll);
+    tbuf = buildByteVector(MPX9XXCmd::storeUserAll);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
         error("Failed to store data into MTP");
@@ -381,7 +393,7 @@ sdbusplus::async::task<bool> MP994X::storeDataIntoMTP()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
+sdbusplus::async::task<bool> MPX9XX::getCRC(uint32_t* checksum)
 {
     static constexpr size_t crcUserMultiDataLength = 4;
     static constexpr size_t statusByteLength = 1;
@@ -396,7 +408,7 @@ sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::userData08);
+    tbuf = buildByteVector(MPX9XXCmd::userData08);
     rbuf.resize(crcUserMultiDataLength + statusByteLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -411,7 +423,7 @@ sdbusplus::async::task<bool> MP994X::getCRC(uint32_t* checksum)
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
+sdbusplus::async::task<bool> MPX9XX::restoreDataFromNVM()
 {
     static constexpr size_t nvmPmbusCtrlDataLength = 2;
     static constexpr uint16_t enableRestoreDataFromMTPMask = 0x0008;
@@ -427,7 +439,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
         co_return false;
     }
 
-    tbuf = buildByteVector(MP994XCmd::mfrNVMPmbusCtrl);
+    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl);
     rbuf.resize(nvmPmbusCtrlDataLength);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -436,7 +448,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
     }
 
     uint16_t data = ((rbuf[1] << 8) | rbuf[0]) | enableRestoreDataFromMTPMask;
-    tbuf = buildByteVector(MP994XCmd::mfrNVMPmbusCtrl, data);
+    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl, data);
     rbuf.clear();
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -466,7 +478,7 @@ sdbusplus::async::task<bool> MP994X::restoreDataFromNVM()
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP994X::checkMTPCRC()
+sdbusplus::async::task<bool> MPX9XX::checkMTPCRC()
 {
     uint32_t crc = 0;
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
@@ -483,12 +495,12 @@ sdbusplus::async::task<bool> MP994X::checkMTPCRC()
     co_return configuration->crcMulti == crc;
 }
 
-bool MP994X::forcedUpdateAllowed()
+bool MPX9XX::forcedUpdateAllowed()
 {
     return true;
 }
 
-sdbusplus::async::task<bool> MP994X::updateFirmware(bool force)
+sdbusplus::async::task<bool> MPX9XX::updateFirmware(bool force)
 {
     (void)force;
 
@@ -498,17 +510,17 @@ sdbusplus::async::task<bool> MP994X::updateFirmware(bool force)
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::vendorId, configuration->vendorId))
+    if (!co_await checkId(MPX9XXCmd::vendorId, configuration->vendorId))
     {
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::deviceId, configuration->productId))
+    if (!co_await checkId(MPX9XXCmd::deviceId, configuration->productId))
     {
         co_return false;
     }
 
-    if (!co_await checkId(MP994XCmd::configId, configuration->configId))
+    if (!co_await checkId(getConfigIdCmd(), configuration->configId))
     {
         co_return false;
     }

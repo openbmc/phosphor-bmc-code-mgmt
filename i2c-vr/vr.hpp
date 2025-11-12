@@ -14,6 +14,7 @@ enum class VRType
     XDPE1X2XX,
     ISL69269,
     MP2X6XX,
+    MP292X,
     MP297X,
     MP5998,
     MP994X,

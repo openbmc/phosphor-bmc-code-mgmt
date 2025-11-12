@@ -6,12 +6,20 @@
 namespace phosphor::software::VR
 {
 
-enum class MP994XCmd : uint8_t;
+enum class MPX9XXCmd : uint8_t;
 
-class MP994X : public MPSVoltageRegulator
+/**
+ * @class MPX9XX
+ * @brief Base class for MPX9XX voltage regulators
+ *
+ * Provides common firmware update steps such as unlocking write protection,
+ * programming registers, storing/restoring NVM data, and CRC checks.
+ * Derived classes only need to provide the Config ID command.
+ */
+class MPX9XX : public MPSVoltageRegulator
 {
   public:
-    MP994X(sdbusplus::async::context& ctx, uint16_t bus, uint16_t address) :
+    MPX9XX(sdbusplus::async::context& ctx, uint16_t bus, uint16_t address) :
         MPSVoltageRegulator(ctx, bus, address)
     {}
 
@@ -23,7 +31,7 @@ class MP994X : public MPSVoltageRegulator
     bool forcedUpdateAllowed() final;
 
   private:
-    sdbusplus::async::task<bool> checkId(MP994XCmd idCmd, uint32_t expected);
+    sdbusplus::async::task<bool> checkId(MPX9XXCmd idCmd, uint32_t expected);
     sdbusplus::async::task<bool> unlockWriteProtect();
     sdbusplus::async::task<bool> disableStoreFaultTriggering();
     sdbusplus::async::task<bool> setMultiConfigAddress(uint8_t config);
@@ -33,6 +41,27 @@ class MP994X : public MPSVoltageRegulator
     sdbusplus::async::task<bool> storeDataIntoMTP();
     sdbusplus::async::task<bool> restoreDataFromNVM();
     sdbusplus::async::task<bool> checkMTPCRC();
+
+  protected:
+    virtual MPX9XXCmd getConfigIdCmd() const = 0;
+};
+
+class MP292X : public MPX9XX
+{
+  public:
+    using MPX9XX::MPX9XX;
+
+  protected:
+    MPX9XXCmd getConfigIdCmd() const final;
+};
+
+class MP994X : public MPX9XX
+{
+  public:
+    using MPX9XX::MPX9XX;
+
+  protected:
+    MPX9XXCmd getConfigIdCmd() const final;
 };
 
 } // namespace phosphor::software::VR

@@ -19,6 +19,13 @@ sdbusplus::async::task<bool> I2CVRDevice::updateDevice(const uint8_t* image,
         co_return false;
     }
 
+    setUpdateProgress(40);
+
+    if (!(co_await vrInterface->preUpdateFirmware()))
+    {
+        co_return false;
+    }
+
     setUpdateProgress(50);
 
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)

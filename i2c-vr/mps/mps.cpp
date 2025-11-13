@@ -183,6 +183,14 @@ sdbusplus::async::task<bool> MPSVoltageRegulator::parseImage(
     co_return true;
 }
 
+sdbusplus::async::task<bool> MPSVoltageRegulator::preUpdateFirmware()
+{
+    // Wait for psusensor to detect firmware update signal and pause sensor
+    // polling to avoid PMBus command conflicts.
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(1000));
+    co_return true;
+}
+
 std::map<uint8_t, std::vector<MPSData>>
     MPSVoltageRegulator::getGroupedConfigData(uint8_t configMask, uint8_t shift)
 {

@@ -298,6 +298,12 @@ class MPSVoltageRegulator : public VoltageRegulator
         MPSImageType imageType = MPSImageType::typeUnknown);
 
     /**
+     * @brief Performs MPS-specific preparations before firmware update.
+     * @return async task returning true if preparation succeeds
+     */
+    sdbusplus::async::task<bool> preUpdateFirmware() override;
+
+    /**
      * @brief Group register data by page, optionally masked and shifted.
      * @param configMask Bitmask to select relevant page bits (default 0xFF)
      * @param shift Number of bits to shift masked value to obtain group key

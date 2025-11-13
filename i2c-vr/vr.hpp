@@ -38,6 +38,13 @@ class VoltageRegulator
     virtual sdbusplus::async::task<bool> verifyImage(const uint8_t* image,
                                                      size_t imageSize) = 0;
 
+    // @brief Performs device-specific preparations before update.
+    // @return sdbusplus::async::task<bool> true indicates success.
+    virtual sdbusplus::async::task<bool> preUpdateFirmware()
+    {
+        co_return true;
+    }
+
     // @brief Applies update to the voltage regulator
     // @return sdbusplus::async::task<bool> true indicates success.
     virtual sdbusplus::async::task<bool> updateFirmware(bool force) = 0;

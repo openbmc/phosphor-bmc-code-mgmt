@@ -16,6 +16,24 @@
       "message": "Please raise a PR to propose a change in design section \"Proposed End to End Flow\" and get it reviewed and approved. \n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#proposed-end-to-end-flow\n\nAlso add gerrit link for that PR in this PR\u0027s description.",
       "revId": "f58ce4566d9ff90042b43b263a8772c2bc175c03",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b983fb1_b2e58627",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-11-13T04:23:01Z",
+      "side": 1,
+      "message": "Pushed a patch to the docs repo and added the link to this patch\u0027s commit message.",
+      "parentUuid": "7991353a_f05bb265",
+      "revId": "f58ce4566d9ff90042b43b263a8772c2bc175c03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

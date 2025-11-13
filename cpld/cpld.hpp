@@ -19,12 +19,16 @@ class CPLDDevice : public Device
   public:
     CPLDDevice(sdbusplus::async::context& ctx, const std::string& chiptype,
                const std::string& chipname, const uint16_t& bus,
-               const uint8_t& address, SoftwareConfig& config,
-               ManagerInf::SoftwareManager* parent) :
+               const uint8_t& address, const std::string& protocol,
+               const std::string& jtagIndex,
+               const std::vector<std::string>& gpioLines,
+               const std::vector<std::string>& gpioValues,
+               SoftwareConfig& config, ManagerInf::SoftwareManager* parent) :
         Device(ctx, config, parent,
                {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
         cpldInterface(CPLDFactory::instance().create(chiptype, ctx, chipname,
-                                                     bus, address))
+                          protocol, jtagIndex, bus, address, 
+                          gpioLines, gpioValues))
     {}
 
     using Device::softwareCurrent;

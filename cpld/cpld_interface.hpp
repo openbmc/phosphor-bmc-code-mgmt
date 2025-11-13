@@ -14,8 +14,12 @@ class CPLDInterface
 {
   public:
     CPLDInterface(sdbusplus::async::context& ctx, const std::string& chipname,
-                  uint16_t bus, uint8_t address) :
-        ctx(ctx), chipname(chipname), bus(bus), address(address)
+                  const std::string& protocol, const std::string& jtagIndex,
+                  uint16_t bus, uint8_t address,
+                  const std::vector<std::string>& gpioLines,
+                  const std::vector<std::string>& gpioValues) :
+        ctx(ctx), chipname(chipname), protocol(protocol), jtagIndex(jtagIndex),
+        bus(bus), address(address), gpioLines(gpioLines), gpioValues(gpioValues)
     {}
 
     virtual ~CPLDInterface() = default;
@@ -33,8 +37,12 @@ class CPLDInterface
   protected:
     sdbusplus::async::context& ctx;
     std::string chipname;
+    std::string protocol;
+    std::string jtagIndex;
     uint16_t bus;
     uint8_t address;
+    const std::vector<std::string> gpioLines;
+    const std::vector<std::string> gpioValues;
 };
 
 class CPLDFactory
@@ -42,7 +50,10 @@ class CPLDFactory
   public:
     using Creator = std::function<std::unique_ptr<CPLDInterface>(
         sdbusplus::async::context& ctx, const std::string& chipType,
-        uint16_t bus, uint8_t address)>;
+        const std::string& protocol, const std::string& jtagIndex,
+        uint16_t bus, uint8_t address,
+        const std::vector<std::string>& gpioLines,
+        const std::vector<std::string>& gpioValues)>;
     using ConfigProvider = std::function<std::vector<std::string>()>;
 
     static CPLDFactory& instance();
@@ -51,7 +62,10 @@ class CPLDFactory
 
     std::unique_ptr<CPLDInterface> create(
         const std::string& chipType, sdbusplus::async::context& ctx,
-        const std::string& chipName, uint16_t bus, uint8_t address) const;
+        const std::string& chipName, const std::string& protocol,
+        const std::string& jtagIndex, uint16_t bus, uint8_t address,
+        const std::vector<std::string>& gpioLines,
+        const std::vector<std::string>& gpioValues) const;
 
     std::vector<std::string> getConfigs();
 

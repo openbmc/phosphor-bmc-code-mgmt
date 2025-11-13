@@ -16,12 +16,16 @@ void CPLDFactory::registerCPLD(const std::string& chipType, Creator creator)
 
 std::unique_ptr<CPLDInterface> CPLDFactory::create(
     const std::string& chipType, sdbusplus::async::context& ctx,
-    const std::string& chipName, uint16_t bus, uint8_t address) const
+    const std::string& chipName, const std::string& protocol,
+    const std::string& jtagIndex, uint16_t bus, uint8_t address,
+    const std::vector<std::string>& gpioLines,
+    const std::vector<std::string>& gpioValues) const
 {
     auto it = creators.find(chipType);
     if (it != creators.end())
     {
-        return (it->second)(ctx, chipName, bus, address);
+        return (it->second)(ctx, chipName, protocol, jtagIndex,
+                            bus, address, gpioLines, gpioValues);
     }
     return nullptr;
 }

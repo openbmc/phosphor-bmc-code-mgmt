@@ -1,5 +1,7 @@
 #pragma once
 #include "common/include/i2c/i2c.hpp"
+#include "common/include/software.hpp"
+#include "common/include/utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
@@ -20,6 +22,7 @@ enum class latticeChip
     LCMXO3D_4300,
     LCMXO3D_9400,
     LFMXO5_25,
+    LFMXO5_15D,
     UNSUPPORTED = -1,
 };
 
@@ -39,6 +42,7 @@ inline std::string getLatticeChipStr(latticeChip chip,
         {latticeChip::LCMXO3D_4300, "LCMXO3D_4300"},
         {latticeChip::LCMXO3D_9400, "LCMXO3D_9400"},
         {latticeChip::LFMXO5_25, "LFMXO5_25"},
+        {latticeChip::LFMXO5_15D, "LFMXO5_15D"},
     };
     auto chipString = chipStringMap.at(chip);
     if (chipStringMap.find(chip) == chipStringMap.end())
@@ -86,6 +90,7 @@ const std::map<latticeChip, cpldInfo> supportedDeviceMap = {
     {latticeChip::LCMXO3D_9400,
      {latticeChipFamily::XO3, {0x21, 0x2e, 0x30, 0x43}}},
     {latticeChip::LFMXO5_25, {latticeChipFamily::XO5, {}}},
+    {latticeChip::LFMXO5_15D, {latticeChipFamily::XO5, {}}},
 };
 
 struct cpldI2cInfo
@@ -166,6 +171,40 @@ class LatticeBaseCPLD
     sdbusplus::async::task<bool> readBusyFlag(uint8_t& busyFlag);
     sdbusplus::async::task<bool> readStatusReg(uint8_t& statusReg);
     static std::string uint32ToHexStr(uint32_t value);
+};
+
+class LatticeBaseCPLDJtag
+{
+  public:
+    LatticeBaseCPLDJtag(
+        sdbusplus::async::context& ctx, uint16_t bus, uint8_t address,
+        const std::string& jtagIndex, const std::string& chipName,
+        const std::string& chipModel, const std::vector<std::string>& gpioLines,
+        const std::vector<std::string>& gpioValues) :
+        ctx(ctx), jtagIndex(jtagIndex), chipName(chipName),
+        chipModel(chipModel), gpioLines(gpioLines), gpioValues(gpioValues),
+        i2cInterface(phosphor::i2c::I2C(bus, address))
+    {}
+    virtual ~LatticeBaseCPLDJtag() = default;
+    LatticeBaseCPLDJtag(const LatticeBaseCPLDJtag&) = delete;
+    LatticeBaseCPLDJtag& operator=(const LatticeBaseCPLDJtag&) = delete;
+    LatticeBaseCPLDJtag(LatticeBaseCPLDJtag&&) noexcept = delete;
+    LatticeBaseCPLDJtag& operator=(LatticeBaseCPLDJtag&&) noexcept = delete;
+
+    sdbusplus::async::task<bool> updateFirmware(
+        const uint8_t* image, size_t imageSize,
+        std::function<bool(int)> progressCallBack);
+    virtual sdbusplus::async::task<bool> getVersion(std::string& version) = 0;
+    static std::string findActionInFile(std::string &path);
+
+  protected:
+    sdbusplus::async::context& ctx;
+    std::string jtagIndex;
+    std::string chipName;
+    std::string chipModel;
+    const std::vector<std::string> gpioLines;
+    const std::vector<std::string> gpioValues;
+    phosphor::i2c::I2C i2cInterface;
 };
 
 } // namespace phosphor::software::cpld

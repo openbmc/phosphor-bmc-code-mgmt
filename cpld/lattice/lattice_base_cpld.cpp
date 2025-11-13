@@ -545,4 +545,155 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::getVersion(std::string& version)
     co_return true;
 }
 
+static std::string LatticeBaseCPLDJtag::findActionInFile(std::string path)
+{
+    int fd = open(path.c_str(), O_RDONLY);
+    if (fd < 0)
+    {
+        lg2::info("Failed to open file: {PATH}", "PATH", path);
+        return {};
+    }
+
+    std::string content;
+    constexpr size_t bufSize = 4096;
+    std::vector<char> buf(bufSize);
+    ssize_t bytesRead;
+
+    lseek(fd, 0, SEEK_SET);
+
+    while ((bytesRead = read(fd, buf.data(), bufSize)) > 0)
+    {
+        content.append(buf.data(), bytesRead);
+    }
+
+    if (bytesRead < 0)
+    {
+        lg2::error("Failed to read image from file");
+        close(fd);
+        return {};
+    }
+
+    const std::string keyword = "ACTION";
+    size_t pos = content.find(keyword);
+    if (pos == std::string::npos)
+    {
+        lg2::error("no found");
+        close(fd);
+        return {};
+    }
+
+    pos += keyword.size();
+
+    // Skip whitespace after ACTION
+    while (pos < content.size() &&
+           std::isspace(static_cast<unsigned char>(content[pos])))
+    {
+        ++pos;
+    }
+
+    // Take all characters until next whitespace, newline, or EOF
+    std::string token;
+    while (pos < content.size() &&
+           !std::isspace(static_cast<unsigned char>(content[pos])))
+    {
+        token.push_back(content[pos]);
+        ++pos;
+    }
+
+    close(fd);
+
+    return token;
+}
+
+sdbusplus::async::task<bool> LatticeBaseCPLDJtag::updateFirmware(
+    const uint8_t* image, size_t imageSize,
+    std::function<bool(int)> progressCallBack)
+{
+    std::string linuxCmd;
+    bool success;
+    using phosphor::software::Software;
+    std::string path =
+        "/tmp/cpld-image-" + std::to_string(Software::getRandomId()) + ".bin";
+
+    int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    if (fd < 0)
+    {
+        lg2::info("Failed to open file: {PATH}", "PATH", path);
+        co_return false;
+    }
+
+    const ssize_t bytesWritten = write(fd, image, imageSize);
+    if (bytesWritten < 0)
+    {
+        lg2::error("Failed to write image to file");
+        close(fd);
+        co_return false;
+    }
+
+    close(fd);
+
+    std::string action = findActionInFile(path);
+
+    if (action.empty())
+    {
+        lg2::info("ERR: Cannot find ACTION in the image");
+        std::filesystem::remove(path);
+        co_return false;
+    }
+
+    for (size_t i = 0; i < gpioLines.size(); i++)
+    {
+        linuxCmd = "gpioset $(gpiofind " + gpioLines[i] + ")=" + gpioValues[i];
+        lg2::info("gpioset $(gpiofind {LINE})={VAL}", "LINE", gpioLines[i],
+                  "VAL", gpioValues[i]);
+        success = co_await asyncSystem(ctx, linuxCmd);
+        if (!success)
+        {
+            lg2::info("ERR: gpioset $(gpiofind {LINE})={VAL}", "LINE",
+                      gpioLines[i], "VAL", gpioValues[i]);
+            std::filesystem::remove(path);
+            co_return success;
+        }
+    }
+
+    progressCallBack(50);
+
+    linuxCmd = "jam-player -j /dev/jtag" + jtagIndex + " -a " + action + " " +
+               path;
+
+    lg2::info("execute {CMD}", "CMD", linuxCmd);
+
+    success = co_await asyncSystem(ctx, linuxCmd);
+    if (!success)
+    {
+        lg2::error("ERR: CPLD update fail");
+        std::filesystem::remove(path);
+        co_return success;
+    }
+
+    for (size_t i = 0; i < gpioLines.size(); i++)
+    {
+        std::string inverted = (gpioValues[i] == "1") ? "0" : "1";
+
+        linuxCmd = "gpioset $(gpiofind " + gpioLines[i] + ")=" + inverted;
+        success = co_await asyncSystem(ctx, linuxCmd);
+
+        if (!success)
+        {
+            lg2::error("ERR: gpioset $(gpiofind {LINE})={VAL}", "LINE",
+                       gpioLines[i], "VAL", inverted);
+            std::filesystem::remove(path);
+            co_return success;
+        }
+    }
+
+    std::filesystem::remove(path);
+
+    lg2::info("CPLD {CHIPNAME} updateFirmware Done", "CHIPNAME", chipName);
+
+    progressCallBack(100);
+
+    co_return true;
+}
+
 } // namespace phosphor::software::cpld

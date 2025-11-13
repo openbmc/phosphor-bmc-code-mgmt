@@ -17,6 +17,7 @@ exe = executable(
         phosphor_logging_dep,
         sdbusplus_dep,
         libpldm_dep,
+        libgpiod_dep,
         libi2c_dep,
     ],
     link_with: [libpldmutil, software_common_lib, libi2c_dev],

@@ -36,4 +36,24 @@ class LatticeXO5CPLD : public LatticeBaseCPLD
                                           std::vector<uint8_t>& data);
 };
 
+class LatticeXO5CPLDJtag : public LatticeBaseCPLDJtag 
+{
+  public:
+    LatticeXO5CPLDJtag(sdbusplus::async::context& ctx,
+                       uint16_t bus, uint8_t address,
+                       const std::string& jtagIndex,
+                       const std::string& chipName,
+                       const std::string& chipModel,
+                       const std::vector<std::string>& gpioLines,
+                       const std::vector<std::string>& gpioValues) :
+                       LatticeBaseCPLDJtag(ctx, bus, address, 
+                                     jtagIndex, chipName, chipModel,
+                                     gpioLines, gpioValues)
+
+    {}
+
+    ~LatticeXO5CPLDJtag() override = default;
+    sdbusplus::async::task<bool> getVersion(std::string& version) override;
+};
+
 } // namespace phosphor::software::cpld

@@ -374,4 +374,31 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::finishUpdate()
     co_return true;
 }
 
+sdbusplus::async::task<bool> LatticeXO5CPLDJtag::getVersion(
+    std::string& version)
+{
+    uint8_t versionReg = 0;
+    uint8_t regLength = 1;
+    uint8_t verLength = 3;
+    uint8_t readBuf[4] = {0};
+
+    auto success = co_await i2cInterface.sendReceive(&versionReg, 
+                                    regLength, readBuf, verLength);
+    if (!success)
+    {
+        lg2::error("Failed to get version");
+        co_return success;
+    }
+
+    std::ostringstream oss;
+    oss << std::hex << std::setfill('0')
+        << std::setw(2) << static_cast<int>(readBuf[0]) << "."
+        << std::setw(2) << static_cast<int>(readBuf[1]) << "."
+        << std::setw(2) << static_cast<int>(readBuf[2]);
+
+    version = oss.str();
+
+    co_return success;
+}
+
 } // namespace phosphor::software::cpld

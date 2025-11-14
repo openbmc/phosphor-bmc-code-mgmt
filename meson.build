@@ -81,6 +81,10 @@ all_options = {
     },
     'i2cvr-software-update': {'dirs' : ['common/i2c', 'i2c-vr']},
     'tpm-software-update': {'dirs': ['tpm']},
+    'pcieswitch-software-update': {
+        'dirs' : ['pcieswitch'],
+        'deps': ['libgpiod'],
+    },
 }
 
 optioned_subdirs = []

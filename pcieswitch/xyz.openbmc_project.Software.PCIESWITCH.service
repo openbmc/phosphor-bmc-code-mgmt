@@ -1,0 +1,14 @@
+[Unit]
+Description=PCIe switch FW Code Update Daemon
+Requires=xyz.openbmc_project.EntityManager.service
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=always
+Type=dbus
+BusName=xyz.openbmc_project.Software.PCIESWITCH
+RemainAfterExit=no
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-pcieswitch-software-update
+
+[Install]
+WantedBy=multi-user.target

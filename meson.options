@@ -91,6 +91,13 @@ option(
     description: 'Enable TPM software update support.',
 )
 
+option(
+    'pcieswitch-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable PCIe switch firmware update',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb36fd15_a63940c3",
+        "filename": "i2c-vr/mps/mp292x.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:36:39Z",
+      "side": 1,
+      "message": "I don\u0027t like this static cast for enum. Is it possible to define MPX9XXCmd as enum and use that instead in both the classes? You can add 2 entries for both the ConfigIDCmd with suffix for MPS type.",
+      "revId": "15f96bd9b3fb3989dd238340ccd9901672831cd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

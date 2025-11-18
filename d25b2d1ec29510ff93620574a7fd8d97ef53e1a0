@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd0bc3d_96ab6153",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "Please add some details on whats the HW access interface for this new updater and any other relevant details?",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c248229_0877cf89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "Please add related PRs as a section in comment description which adds supports in EM schema, configuration and phosphor-dbus-interfaces.",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bba35ba_4b4b2368",
+        "filename": "pcieswitch/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "What does this file shows as an executable?",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c1d5ee_44c61054",
+        "filename": "pcieswitch/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "What does this file shows as an executable?",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08779202_a8ec4540",
+        "filename": "pcieswitch/spi_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "What is this /etc/update_pex_spi.tcl script? Is it available upstream?",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1803c3c0_a2ae2c98",
+        "filename": "pcieswitch/xyz.openbmc_project.Software.PCIESWITCH.service",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:43:36Z",
+      "side": 1,
+      "message": "What does this file shows as an executable?",
+      "revId": "d25b2d1ec29510ff93620574a7fd8d97ef53e1a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9fa47b6_da1b08a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:40:18Z",
+      "side": 1,
+      "message": "There is no standard driver for JTAG protocol, how are you adding this support?",
+      "revId": "6562bccfde161389df4137d4fef6822cfb147674",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a63f161d_fcb04264",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:40:18Z",
+      "side": 1,
+      "message": "Please add related PRs as a section in comment description which adds supports in EM schema, configuration and phosphor-dbus-interfaces.",
+      "revId": "6562bccfde161389df4137d4fef6822cfb147674",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac827937_72ce695b",
         "filename": "cpld/cpld_interface.hpp",
         "patchSetId": 8

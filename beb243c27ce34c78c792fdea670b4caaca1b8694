@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064ea981_5b1b7255",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-18T02:14:57Z",
+      "side": 1,
+      "message": "Please add related PRs to this diff in the comment description.",
+      "revId": "beb243c27ce34c78c792fdea670b4caaca1b8694",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

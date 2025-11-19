@@ -308,16 +308,26 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
 {
     size_t nextLineStart = 0;
     int dcnt = 0;
+    const int maxLineLength = 40;
 
     for (size_t i = 0; i < imageSize; i++)
     {
         if (image[i] == '\n') // We have a hex file, so we check new line.
         {
-            char line[40];
+            char line[maxLineLength];
             char xdigit[8] = {0};
             uint8_t sepLine[32] = {0};
 
             size_t lineLen = i - nextLineStart;
+            if (i > nextLineStart && image[i - 1] == '\r')
+            {
+                lineLen--;
+            }
+            if (lineLen > maxLineLength)
+            {
+                error("line length > 40, please check image file.");
+                return false;
+            }
             std::memcpy(line, image + nextLineStart, lineLen);
             int k = 0;
             size_t j = 0;

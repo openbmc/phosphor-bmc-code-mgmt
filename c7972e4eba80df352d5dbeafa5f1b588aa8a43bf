@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c505181_c637faf1",
+        "filename": "i2c-vr/mps/mp994x.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-19T18:39:57Z",
+      "side": 1,
+      "message": "Lets rename this file to mpx9xx as well since it includes both the mps versions. Same goes for header file.",
+      "revId": "c7972e4eba80df352d5dbeafa5f1b588aa8a43bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e60647_b53511ad",
+        "filename": "i2c-vr/mps/mp994x.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-11-19T18:39:57Z",
+      "side": 1,
+      "message": "Lets define base class as MPX9XX instead and create another class MP994X and let both MP994X and MP292X inherit from it.\n\nMP994X can have bare minimum getConfigIdCmd as in MP292X.",
+      "revId": "c7972e4eba80df352d5dbeafa5f1b588aa8a43bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

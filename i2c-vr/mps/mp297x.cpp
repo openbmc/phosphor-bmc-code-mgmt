@@ -76,7 +76,7 @@ sdbusplus::async::task<bool> MP297X::parseDeviceConfiguration()
 sdbusplus::async::task<bool> MP297X::verifyImage(const uint8_t* image,
                                                  size_t imageSize)
 {
-    if (!co_await parseImage(image, imageSize, MPSImageType::type1))
+    if (!co_await parseImage(image, imageSize, MPSImageType::type0))
     {
         error("Image verification failed: image parsing failed");
         co_return false;

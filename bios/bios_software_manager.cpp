@@ -59,7 +59,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 
     std::vector<std::string> names;
-    std::vector<uint64_t> values;
+    std::vector<bool> values;
 
     for (size_t i = 0; true; i++)
     {

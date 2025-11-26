@@ -9,6 +9,15 @@ conf.set(
 
 configure_file(output: 'common_config.h', configuration: conf)
 
+gpio_inc = include_directories('include')
+
+libgpio_controller = static_library(
+    'gpio_controller',
+    'src/gpio_controller.cpp',
+    include_directories: ['.', 'include', common_include],
+    dependencies: [libgpiod_dep, phosphor_logging_dep],
+)
+
 software_common_lib = static_library(
     'software_common_lib',
     'src/software_manager.cpp',
@@ -19,5 +28,11 @@ software_common_lib = static_library(
     'src/host_power.cpp',
     'src/utils.cpp',
     include_directories: ['.', 'include/', common_include],
-    dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep],
+    dependencies: [
+        pdi_dep,
+        phosphor_logging_dep,
+        sdbusplus_dep,
+        libgpiod_dep,
+        libpldm_dep,
+    ],
 )

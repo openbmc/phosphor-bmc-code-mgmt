@@ -8,7 +8,7 @@ executable(
     'phosphor-bios-software-update',
     'main.cpp',
     bios_spi_src,
-    include_directories: [common_include, bios_spi_include],
+    include_directories: [common_include, bios_spi_include, gpio_inc],
     dependencies: [
         sdbusplus_dep,
         phosphor_logging_dep,
@@ -17,7 +17,7 @@ executable(
         libgpiod_dep,
         libpldm_dep,
     ],
-    link_with: [libpldmutil, software_common_lib],
+    link_with: [libpldmutil, software_common_lib, libgpio_controller],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )

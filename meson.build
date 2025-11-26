@@ -105,17 +105,17 @@ foreach option_name, option_settings : all_options
     endif
 endforeach
 
-if common_build or build_tests.allowed()
-    libpldm_dep = dependency('libpldm')
-    subdir('common')
-endif
-
 if optioned_deps.contains('libgpiod')
     libgpiod_dep = dependency(
         'libgpiodcxx',
         default_options: ['bindings=cxx'],
         version: '>=1.1.2',
     )
+endif
+
+if common_build or build_tests.allowed()
+    libpldm_dep = dependency('libpldm')
+    subdir('common')
 endif
 
 foreach dir : optioned_subdirs

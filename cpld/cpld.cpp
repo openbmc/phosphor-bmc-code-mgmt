@@ -1,5 +1,7 @@
 #include "cpld.hpp"
 
+#include <gpio_controller.hpp>
+
 namespace phosphor::software::cpld
 {
 
@@ -13,6 +15,22 @@ sdbusplus::async::task<bool> CPLDDevice::updateDevice(const uint8_t* image,
     }
     else
     {
+        GPIOGroup muxGPIO(gpioLines, gpioPolarities);
+        std::optional<ScopedBmcMux> guard;
+        if (!gpioLines.empty())
+        {
+            try
+            {
+                guard.emplace(muxGPIO);
+            }
+            catch (const std::exception& e)
+            {
+                lg2::error("Failed to mux GPIOs to BMC: {ERROR}", "ERROR",
+                           e.what());
+                co_return false;
+            }
+        }
+
         setUpdateProgress(1);
         if (!(co_await cpldInterface->updateFirmware(
                 false, image, image_size, [this](int percent) -> bool {

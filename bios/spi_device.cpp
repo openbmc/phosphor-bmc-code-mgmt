@@ -6,7 +6,7 @@
 #include "common/include/software_manager.hpp"
 #include "common/include/utils.hpp"
 
-#include <gpiod.hpp>
+#include <gpio_controller.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
@@ -59,7 +59,7 @@ static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
 SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
                      uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
                      bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                     const std::vector<uint64_t>& gpioValuesIn,
+                     const std::vector<bool>& gpioValuesIn,
                      SoftwareConfig& config, SoftwareManager* parent,
                      enum FlashLayout layout, enum FlashTool tool,
                      const std::string& versionDirPath) :
@@ -204,62 +204,28 @@ bool SPIDevice::isSPIFlashBound()
     return std::filesystem::exists(path);
 }
 
-static std::unique_ptr<::gpiod::line_bulk> requestMuxGPIOs(
-    const std::vector<std::string>& gpioLines,
-    const std::vector<int>& gpioValues, bool inverted)
-{
-    std::vector<::gpiod::line> lines;
-
-    for (const std::string& lineName : gpioLines)
-    {
-        const ::gpiod::line line = ::gpiod::find_line(lineName);
-
-        if (line.is_used())
-        {
-            error("gpio line {LINE} was still used", "LINE", lineName);
-            return nullptr;
-        }
-
-        lines.push_back(line);
-    }
-
-    ::gpiod::line_request config{"", ::gpiod::line_request::DIRECTION_OUTPUT,
-                                 0};
-
-    debug("requesting gpios for mux");
-
-    auto lineBulk = std::make_unique<::gpiod::line_bulk>(lines);
-
-    if (inverted)
-    {
-        std::vector<int> valuesInverted;
-        valuesInverted.reserve(gpioValues.size());
-
-        for (int value : gpioValues)
-        {
-            valuesInverted.push_back(value ? 0 : 1);
-        }
-
-        lineBulk->request(config, valuesInverted);
-    }
-    else
-    {
-        lineBulk->request(config, gpioValues);
-    }
-
-    return lineBulk;
-}
-
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
                                                       size_t image_size)
 {
     debug("[gpio] requesting gpios to mux SPI to BMC");
 
-    std::unique_ptr<::gpiod::line_bulk> lineBulk =
-        requestMuxGPIOs(gpioLines, gpioValues, false);
-
-    if (!lineBulk)
+    GPIOGroup muxGPIO(gpioLines, gpioValues);
+    std::optional<ScopedBmcMux> guard;
+    if (!gpioLines.empty())
     {
+        try
+        {
+            guard.emplace(muxGPIO);
+        }
+        catch (const std::exception& e)
+        {
+            error("Failed to mux GPIOs to BMC: {ERROR}", "ERROR", e.what());
+            co_return false;
+        }
+    }
+    else
+    {
+        error("No GPIO lines configured for SPI muxing");
         co_return false;
     }
 
@@ -299,21 +265,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
         success = success && co_await SPIDevice::unbindSPIFlash();
     }
 
-    lineBulk->release();
-
-    // switch bios flash back to host via mux / GPIO
-    // (not assume there is a pull to the default value)
-    debug("[gpio] requesting gpios to mux SPI to Host");
-
-    lineBulk = requestMuxGPIOs(gpioLines, gpioValues, true);
-
-    if (!lineBulk)
-    {
-        co_return success;
-    }
-
-    lineBulk->release();
-
+    lg2::info("Successfully updated SPI flash");
     co_return success;
 }
 

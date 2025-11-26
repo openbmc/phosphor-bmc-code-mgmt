@@ -45,7 +45,7 @@ class SPIDevice : public Device, public NotifyWatchIntf
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
               uint64_t spiDeviceIndex, bool dryRun,
               const std::vector<std::string>& gpioLinesIn,
-              const std::vector<uint64_t>& gpioValuesIn, SoftwareConfig& config,
+              const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
               SoftwareManager* parent, enum FlashLayout layout,
               enum FlashTool tool,
               const std::string& versionDirPath = biosVersionDirPath);
@@ -64,7 +64,7 @@ class SPIDevice : public Device, public NotifyWatchIntf
 
     std::vector<std::string> gpioLines;
 
-    std::vector<int> gpioValues;
+    std::vector<bool> gpioValues;
 
     uint64_t spiControllerIndex;
     uint64_t spiDeviceIndex;

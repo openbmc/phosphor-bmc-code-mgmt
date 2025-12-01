@@ -314,6 +314,24 @@
       "parentUuid": "d7fd3ccd_f64b1a41",
       "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4f504d_abf9feeb",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-01T06:09:27Z",
+      "side": 1,
+      "message": "@Henry_WU@quantatw.com, If MuxOutputs is expected to be a required field, then lets make this a required field in EM schema as well.",
+      "parentUuid": "d6748e82_dcf9dae2",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,6 +1,6 @@
 [Unit]
 Description=CPLD Code Update Daemon
-After=xyz.openbmc_project.ObjectMapper
+After=xyz.openbmc_project.ObjectMapper.service
 After=xyz.openbmc_project.EntityManager.service
 
 [Service]

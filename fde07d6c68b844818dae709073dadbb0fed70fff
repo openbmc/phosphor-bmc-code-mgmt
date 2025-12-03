@@ -33,6 +33,24 @@
       "message": "Is it really necessary to support move-ctor?\nDoes `releaseAll()` change the gpio status?",
       "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80614546_88ad2354",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-12-03T06:52:39Z",
+      "side": 1,
+      "message": "1. No, it still works without std::move() — the move constructor/assignment is used mainly as defensive programming.\n\n2. No, releaseAll() simply releases ownership of the GPIO lines back to the kernel.",
+      "parentUuid": "1ed29043_b0d8e605",
+      "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

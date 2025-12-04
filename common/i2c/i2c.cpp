@@ -121,9 +121,13 @@ bool I2C::sendReceive(const std::vector<uint8_t>& writeData,
     return result;
 }
 
-int I2C::close() const
+void I2C::close()
 {
-    return ::close(fd);
+    if (fd != invalidFd)
+    {
+        ::close(fd);
+        fd = invalidFd;
+    }
 }
 
 } // namespace phosphor::i2c

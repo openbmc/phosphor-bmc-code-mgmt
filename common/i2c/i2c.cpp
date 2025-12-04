@@ -25,6 +25,7 @@ int I2C::open()
     if (ret < 0)
     {
         close();
+        fd = invalidFd;
         return ret;
     }
 

@@ -36,7 +36,10 @@ class I2C
 
     ~I2C()
     {
-        this->close();
+        if (fd != invalidFd)
+        {
+            this->close();
+        }
     }
 
     sdbusplus::async::task<bool> sendReceive(

@@ -3,6 +3,7 @@
 #include <boost/asio/io_context.hpp>
 
 #include <filesystem>
+#include <optional>
 
 namespace phosphor::software::utils
 {
@@ -32,9 +33,11 @@ struct RemovablePath
 /** @brief Untar the image
  *  @param[in] imageFd - The file descriptor of the image to untar.
  *  @param[in] extractDirPath - The destination directory for the untarred
- * image.
+ *                              image.
+ *  @param[in] maxBytes - Maximum bytes to read (nullopt = read until EOF).
  *  @param[out] bool - The result of the untar operation.
  */
-bool unTar(int imageFd, const std::string& extractDirPath);
+bool unTar(int imageFd, const std::string& extractDirPath,
+           std::optional<size_t> maxBytes = std::nullopt);
 
 } // namespace phosphor::software::utils

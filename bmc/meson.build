@@ -58,6 +58,9 @@ conf.set(
     get_option('software-update-dbus-interface').allowed(),
 )
 
+# BMC Multipart Update (PLDM package support)
+conf.set('BMC_MULTIPART_UPDATE', get_option('bmc-multipart-update').allowed())
+
 # Configurable variables
 conf.set('ACTIVE_BMC_MAX_ALLOWED', get_option('active-bmc-max-allowed'))
 conf.set_quoted('HASH_FILE_NAME', get_option('hash-file-name'))
@@ -193,13 +196,25 @@ executable(
 
 software_common_sources = files('software_utils.cpp')
 
+# PLDM support - always compiled, feature flag controls runtime behavior via if constexpr
+libpldm_dep = dependency('libpldm')
+pldm_sources = files(
+    '../common/pldm/package_parser.cpp',
+    '../common/pldm/pldm_package_util.cpp',
+)
+
+# Dependencies for phosphor-software-manager
+software_manager_deps = [deps, ssl_dep, libpldm_dep]
+
 if get_option('software-update-dbus-interface').allowed()
     executable(
         'phosphor-software-manager',
         'software_manager.cpp',
         image_updater_sources,
         software_common_sources,
-        dependencies: [deps, ssl_dep],
+        pldm_sources,
+        include_directories: common_include,
+        dependencies: software_manager_deps,
         install: true,
         install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
     )
@@ -211,12 +226,17 @@ else
     ]
 endif
 
+# Dependencies for phosphor-image-updater
+image_updater_deps = [deps, ssl_dep, boost_dep, libpldm_dep]
+
 executable(
     'phosphor-image-updater',
     image_updater_sources,
     software_common_sources,
+    pldm_sources,
     'item_updater_main.cpp',
-    dependencies: [deps, ssl_dep, boost_dep],
+    include_directories: common_include,
+    dependencies: image_updater_deps,
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )

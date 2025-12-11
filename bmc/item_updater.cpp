@@ -12,9 +12,11 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
+#include <xyz/openbmc_project/ObjectMapper/client.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
 
 #include <filesystem>
+#include <flat_map>
 #include <fstream>
 #include <queue>
 #include <set>
@@ -762,6 +764,162 @@ void ItemUpdater::setBMCInventoryPath()
     }
 
     return;
+}
+
+// Type aliases for Entity Manager config parsing
+using BasicVariantType =
+    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
+                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
+using InterfacesMap = std::flat_map<std::string, BasicVariantType>;
+using ConfigMap = std::flat_map<std::string, InterfacesMap>;
+
+static constexpr auto serviceNameEM = "xyz.openbmc_project.EntityManager";
+static constexpr auto bmcConfigIface = "xyz.openbmc_project.Configuration.BMC";
+static constexpr auto bmcFirmwareInfoIface =
+    "xyz.openbmc_project.Configuration.BMC.FirmwareInfo";
+
+sdbusplus::async::task<> ItemUpdater::discoverBmcFirmwareInfo()
+{
+    namespace MatchRules = sdbusplus::bus::match::rules;
+
+    // Set up match for BMC config additions from Entity Manager
+    bmcConfigAddedMatch.emplace(ctx, MatchRules::interfacesAdded() +
+                                         MatchRules::sender(serviceNameEM));
+    ctx.spawn(bmcConfigInterfaceAddedWatch());
+
+    // Set up match for BMC config removals from Entity Manager
+    bmcConfigRemovedMatch.emplace(ctx, MatchRules::interfacesRemoved() +
+                                           MatchRules::sender(serviceNameEM));
+    ctx.spawn(bmcConfigInterfaceRemovedWatch());
+
+    // Query ObjectMapper for existing BMC configuration
+    using ObjectMapper =
+        sdbusplus::client::xyz::openbmc_project::ObjectMapper<>;
+
+    auto mapper = ObjectMapper(ctx)
+                      .service(ObjectMapper::default_service)
+                      .path(ObjectMapper::instance_path);
+
+    try
+    {
+        auto result = co_await mapper.get_sub_tree(
+            std::string{INVENTORY_PATH}, 0,
+            std::vector<std::string>{bmcConfigIface});
+
+        if (result.empty())
+        {
+            info("No BMC FirmwareInfo found yet, waiting for Entity Manager");
+            co_return;
+        }
+
+        // Use the first BMC configuration found
+        const auto& [path, serviceMap] = *result.begin();
+        if (serviceMap.empty())
+        {
+            co_return;
+        }
+
+        const auto& service = serviceMap.begin()->first;
+        co_await handleBmcConfigFound(service, path);
+    }
+    catch (const std::exception& e)
+    {
+        warning("Failed to query BMC config: {ERROR}", "ERROR", e);
+    }
+}
+
+sdbusplus::async::task<> ItemUpdater::handleBmcConfigFound(
+    const std::string& service, const std::string& path)
+{
+    if (bmcVendorIANA && bmcCompatibleHardware)
+    {
+        // Already discovered
+        co_return;
+    }
+
+    debug("Found BMC config at {PATH} from {SERVICE}", "PATH", path, "SERVICE",
+          service);
+
+    try
+    {
+        auto propsClient =
+            sdbusplus::async::proxy().service(service).path(path).interface(
+                "org.freedesktop.DBus.Properties");
+
+        // Read VendorIANA property from FirmwareInfo sub-interface
+        auto ianaResult = co_await propsClient.call<std::variant<uint64_t>>(
+            ctx, "Get", bmcFirmwareInfoIface, "VendorIANA");
+        bmcVendorIANA = static_cast<uint32_t>(std::get<uint64_t>(ianaResult));
+
+        // Read CompatibleHardware property from FirmwareInfo sub-interface
+        auto compatResult =
+            co_await propsClient.call<std::variant<std::string>>(
+                ctx, "Get", bmcFirmwareInfoIface, "CompatibleHardware");
+        bmcCompatibleHardware = std::get<std::string>(compatResult);
+
+        bmcConfigPath = path;
+        info(
+            "Discovered BMC FirmwareInfo: VendorIANA=0x{IANA}, CompatibleHardware={COMPAT}",
+            "IANA", lg2::hex, *bmcVendorIANA, "COMPAT", *bmcCompatibleHardware);
+    }
+    catch (const std::exception& e)
+    {
+        warning("Failed to read BMC FirmwareInfo properties: {ERROR}", "ERROR",
+                e);
+    }
+}
+
+sdbusplus::async::task<> ItemUpdater::bmcConfigInterfaceAddedWatch()
+{
+    if (!bmcConfigAddedMatch)
+    {
+        co_return;
+    }
+
+    while (!ctx.stop_requested())
+    {
+        auto result = co_await bmcConfigAddedMatch
+                          ->next<sdbusplus::message::object_path, ConfigMap>();
+
+        auto& [objPath, interfacesMap] = result;
+
+        if (interfacesMap.contains(bmcConfigIface))
+        {
+            debug("Detected BMC config added on {PATH}", "PATH",
+                  std::string(objPath));
+
+            co_await handleBmcConfigFound(serviceNameEM, std::string(objPath));
+        }
+    }
+}
+
+sdbusplus::async::task<> ItemUpdater::bmcConfigInterfaceRemovedWatch()
+{
+    if (!bmcConfigRemovedMatch)
+    {
+        co_return;
+    }
+
+    while (!ctx.stop_requested())
+    {
+        auto result = co_await bmcConfigRemovedMatch->next<
+            sdbusplus::message::object_path, std::vector<std::string>>();
+
+        auto& [objPath, interfacesRemoved] = result;
+
+        // Check if this is our BMC config being removed
+        if (std::string(objPath) == bmcConfigPath &&
+            std::ranges::find(interfacesRemoved, bmcConfigIface) !=
+                interfacesRemoved.end())
+        {
+            info("BMC config removed from {PATH}, resetting FirmwareInfo",
+                 "PATH", std::string(objPath));
+
+            bmcVendorIANA.reset();
+            bmcCompatibleHardware.reset();
+            bmcConfigPath.clear();
+        }
+    }
 }
 
 void ItemUpdater::createActiveAssociation(const std::string& path)

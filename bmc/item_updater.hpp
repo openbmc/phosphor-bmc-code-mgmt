@@ -8,6 +8,7 @@
 #include "xyz/openbmc_project/Collection/DeleteAll/server.hpp"
 
 #include <sdbusplus/async.hpp>
+#include <sdbusplus/async/match.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Common/FactoryReset/server.hpp>
@@ -38,7 +39,7 @@ namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
-using UpdateManager = phosphor::software::update::Manager;
+using UpdateManager = phosphor::software::update::UpdateManager;
 
 /** @class MinimumVersion
  *  @brief OpenBMC MinimumVersion implementation.
@@ -105,6 +106,8 @@ class ItemUpdater : public ItemUpdaterInherit
         }
         getRunningSlot();
         setBMCInventoryPath();
+        // Spawn async discovery of BMC FirmwareInfo from Entity Manager
+        ctx.spawn(discoverBmcFirmwareInfo());
         if (type == UpdaterType::BMC || type == UpdaterType::ALL)
         {
             processBMCImage();
@@ -319,9 +322,60 @@ class ItemUpdater : public ItemUpdaterInherit
     /** @brief The path to the BMC inventory item. */
     std::string bmcInventoryPath;
 
+    /** @brief Discovers BMC FirmwareInfo from Entity Manager.
+     *  Queries ObjectMapper for existing config and sets up watch for new ones.
+     */
+    sdbusplus::async::task<> discoverBmcFirmwareInfo();
+
+    /** @brief Handles BMC config interface added from Entity Manager.
+     *  @param service - D-Bus service name
+     *  @param path - Object path of the config
+     */
+    sdbusplus::async::task<> handleBmcConfigFound(const std::string& service,
+                                                  const std::string& path);
+
+    /** @brief Watch for BMC config additions from Entity Manager. */
+    sdbusplus::async::task<> bmcConfigInterfaceAddedWatch();
+
+    /** @brief Watch for BMC config removals from Entity Manager. */
+    sdbusplus::async::task<> bmcConfigInterfaceRemovedWatch();
+
+    /** @brief D-Bus match for BMC config interface additions */
+    std::optional<sdbusplus::async::match> bmcConfigAddedMatch;
+
+    /** @brief D-Bus match for BMC config interface removals */
+    std::optional<sdbusplus::async::match> bmcConfigRemovedMatch;
+
+    /** @brief Path to the BMC config object (for removal detection) */
+    std::string bmcConfigPath;
+
+    /** @brief BMC Vendor IANA from Entity Manager */
+    std::optional<uint32_t> bmcVendorIANA;
+
+    /** @brief BMC Compatible Hardware string from Entity Manager */
+    std::optional<std::string> bmcCompatibleHardware;
+
     /** @brief Restores field mode status on reboot. */
     void restoreFieldModeStatus();
 
+  public:
+    /** @brief Get BMC Vendor IANA from Entity Manager
+     *  @return IANA value, or std::nullopt if not discovered
+     */
+    std::optional<uint32_t> getBmcVendorIANA() const
+    {
+        return bmcVendorIANA;
+    }
+
+    /** @brief Get BMC Compatible Hardware string from Entity Manager
+     *  @return Compatible hardware string, or std::nullopt if not discovered
+     */
+    std::optional<std::string> getBmcCompatibleHardware() const
+    {
+        return bmcCompatibleHardware;
+    }
+
+  private:
     /** @brief Creates a functional association to the
      *  "running" BMC software image
      *

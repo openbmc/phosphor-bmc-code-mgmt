@@ -217,3 +217,10 @@ option(
     value: 60,
     description: 'Timeout for host state transition.',
 )
+
+option(
+    'bmc-multipart-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable Software.MultipartUpdate interface for BMC updates via PLDM packages. FirmwareInfo (VendorIANA, CompatibleHardware) is discovered at runtime from Entity Manager.',
+)

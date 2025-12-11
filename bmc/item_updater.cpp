@@ -234,13 +234,28 @@ bool ItemUpdater::updateActivationStatus(std::string& id,
 void ItemUpdater::createUpdateObject(const std::string& id,
                                      const std::string& path)
 {
-    if (updateManagers.find(id) != updateManagers.end())
+    using phosphor::software::update::bmcMultipartUpdateEnabled;
+
+    if constexpr (bmcMultipartUpdateEnabled)
     {
-        error("UpdateManager object already exists for id: {ID}", "ID", id);
+        // When multipart update is enabled, we have a single UpdateManager
+        // at /xyz/openbmc_project/software/bmc that handles all updates.
+        // Don't create per-activation UpdateManagers, as they would incorrectly
+        // expose MultipartUpdate interface on individual version objects.
+        (void)id;
+        (void)path;
         return;
     }
-    updateManagers.insert(
-        std::make_pair(id, std::make_unique<UpdateManager>(ctx, path, *this)));
+    else
+    {
+        if (updateManagers.find(id) != updateManagers.end())
+        {
+            error("UpdateManager object already exists for id: {ID}", "ID", id);
+            return;
+        }
+        updateManagers.insert(std::make_pair(
+            id, std::make_unique<UpdateManager>(ctx, path, *this)));
+    }
 }
 
 void ItemUpdater::processBMCImage()

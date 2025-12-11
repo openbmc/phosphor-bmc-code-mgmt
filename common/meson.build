@@ -21,3 +21,16 @@ software_common_lib = static_library(
     include_directories: ['.', 'include/', common_include],
     dependencies: [pdi_dep, phosphor_logging_dep, sdbusplus_dep, libpldm_dep],
 )
+
+# Export dependency for other components to use
+software_common_dep = declare_dependency(
+    link_with: software_common_lib,
+    include_directories: ['.', 'include/', common_include],
+    dependencies: [
+        pdi_dep,
+        phosphor_logging_dep,
+        sdbusplus_dep,
+        libpldm_dep,
+        pldm_package_dep,
+    ],
+)

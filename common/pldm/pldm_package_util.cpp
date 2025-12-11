@@ -14,9 +14,11 @@
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/message/native_types.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cassert>
 #include <cstring>
+#include <exception>
 #include <functional>
 
 PHOSPHOR_LOG2_USING;
@@ -38,19 +40,34 @@ std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf, size_t size)
 
     debug("parsing package header");
 
-    std::unique_ptr<PackageParser> packageParser =
-        pldm::fw_update::parsePackageHeader(pkgData);
-
-    if (packageParser == nullptr)
+    std::unique_ptr<PackageParser> packageParser;
+    try
     {
-        error("could not parse package header");
-        return packageParser;
+        packageParser = pldm::fw_update::parsePackageHeader(pkgData);
+
+        if (packageParser == nullptr)
+        {
+            error("could not parse package header");
+            return nullptr;
+        }
+
+        debug("parsing package, pkg header size: {N}", "N",
+              packageParser->pkgHeaderSize);
+
+        packageParser->parse(pkgData, pkgData.size());
     }
-
-    debug("parsing package, pkg header size: {N}", "N",
-          packageParser->pkgHeaderSize);
-
-    packageParser->parse(pkgData, pkgData.size());
+    catch (
+        const sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure&
+            e)
+    {
+        error("Failed to parse PLDM package: InternalFailure exception");
+        return nullptr;
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to parse PLDM package: {ERROR}", "ERROR", e.what());
+        return nullptr;
+    }
 
     return packageParser;
 }

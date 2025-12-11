@@ -43,6 +43,18 @@ class SoftwareConfig
     sdbusplus::async::task<std::string> getInventoryItemObjectPath(
         sdbusplus::async::context& ctx);
 
+    // @returns        the vendor IANA from the EM config
+    uint32_t getVendorIANA() const
+    {
+        return vendorIANA;
+    }
+
+    // @returns        the compatible hardware string from the EM config
+    const std::string& getCompatibleHardware() const
+    {
+        return compatibleHardware;
+    }
+
   private:
     // 'VendorIANA' field from the EM config
     const uint32_t vendorIANA; // e.g. "0x0000A015", 4 bytes as per PLDM spec

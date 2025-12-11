@@ -17,7 +17,7 @@ int main()
     sdbusplus::server::manager_t objManager(ctx, SOFTWARE_OBJPATH);
 
     ItemUpdaterIntf updater(ctx, SOFTWARE_OBJPATH,
-                            ItemUpdaterIntf::UpdaterType::ALL, false);
+                            ItemUpdaterIntf::UpdaterType::ALL);
 
     ctx.request_name(BUSNAME_UPDATER);
 

@@ -89,8 +89,27 @@ struct CustomMap
     CustomMap() = delete;
     CustomMap(const CustomMap&) = delete;
     CustomMap& operator=(const CustomMap&) = delete;
-    CustomMap(CustomMap&&) = default;
-    CustomMap& operator=(CustomMap&&) = default;
+    CustomMap(CustomMap&& other) noexcept :
+        addr(other.addr), length(other.length)
+    {
+        other.addr = MAP_FAILED;
+        other.length = 0;
+    }
+    CustomMap& operator=(CustomMap&& other) noexcept
+    {
+        if (this != &other)
+        {
+            if (addr != MAP_FAILED)
+            {
+                munmap(addr, length);
+            }
+            addr = other.addr;
+            length = other.length;
+            other.addr = MAP_FAILED;
+            other.length = 0;
+        }
+        return *this;
+    }
 
     /** @brief Saves starting address of the map and
      *         and length of the file.
@@ -101,7 +120,10 @@ struct CustomMap
 
     ~CustomMap()
     {
-        munmap(addr, length);
+        if (addr != MAP_FAILED)
+        {
+            munmap(addr, length);
+        }
     }
 
     void* operator()() const

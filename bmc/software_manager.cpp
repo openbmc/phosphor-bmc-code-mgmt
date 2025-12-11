@@ -1,11 +1,13 @@
 #include "config.h"
 
 #include "item_updater.hpp"
+#include "update_manager.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 
 #include <string>
+#include <type_traits>
 
 using ItemUpdaterIntf = phosphor::software::updater::ItemUpdater;
 
@@ -23,6 +25,16 @@ int main()
 
     ItemUpdaterIntf bmcItemUpdater{ctx, bmcPath,
                                    ItemUpdaterIntf::UpdaterType::BMC};
+
+    // Create the Software.Update interface at the BMC path
+    // When multipart update is enabled, use MultipartUpdateManager which
+    // exposes both Update and MultipartUpdate interfaces
+    using namespace phosphor::software::update;
+    using BmcUpdateManagerType =
+        std::conditional_t<bmcMultipartUpdateEnabled, MultipartUpdateManager,
+                           UpdateManager>;
+    BmcUpdateManagerType bmcUpdateManager{ctx, bmcPath, bmcItemUpdater};
+
 #ifdef HOST_BIOS_UPGRADE
     ItemUpdaterIntf biosItemUpdater{ctx, biosPath,
                                     ItemUpdaterIntf::UpdaterType::BIOS};

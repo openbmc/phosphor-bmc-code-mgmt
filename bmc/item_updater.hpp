@@ -38,7 +38,7 @@ namespace MatchRules = sdbusplus::bus::match::rules;
 using VersionClass = phosphor::software::manager::Version;
 using AssociationList =
     std::vector<std::tuple<std::string, std::string, std::string>>;
-using UpdateManager = phosphor::software::update::Manager;
+using UpdateManager = phosphor::software::update::UpdateManager;
 
 /** @class MinimumVersion
  *  @brief OpenBMC MinimumVersion implementation.

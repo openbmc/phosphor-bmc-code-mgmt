@@ -1,8 +1,13 @@
 #include "update_manager.hpp"
 
+#include "common/pldm/pldm_package_util.hpp"
+#include "image_verify.hpp"
 #include "item_updater.hpp"
 #include "software_utils.hpp"
 #include "version.hpp"
+
+#include <sys/mman.h>
+#include <unistd.h>
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -10,6 +15,7 @@
 #include <sdbusplus/async.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Image/error.hpp>
+#include <xyz/openbmc_project/Software/Update/error.hpp>
 
 #include <filesystem>
 
@@ -31,8 +37,9 @@ using UnTarFail = SoftwareLogging::image::UnTarFailure;
 using InternalFail = SoftwareLogging::image::InternalFailure;
 using ImageFail = SoftwareLogging::image::ImageFailure;
 
-void Manager::processImageFailed(sdbusplus::message::unix_fd image,
-                                 std::string& id)
+template <typename UpdateIntf>
+void ManagerImpl<UpdateIntf>::processImageFailed(
+    sdbusplus::message::unix_fd image, std::string& id)
 {
     close(image);
     updateInProgress = false;
@@ -51,12 +58,77 @@ bool verifyImagePurpose(Version::VersionPurpose purpose,
     return true;
 }
 
-auto Manager::processImage(sdbusplus::message::unix_fd image,
-                           ApplyTimeIntf::RequestedApplyTimes applyTime,
-                           std::string id, std::string objPath)
+template <typename UpdateIntf>
+ManagerImpl<UpdateIntf>::PldmParseResult
+    ManagerImpl<UpdateIntf>::tryParsePldmPackage(int fd, size_t& offset,
+                                                 size_t& size)
+{
+    off_t fileSize = lseek(fd, 0, SEEK_END);
+    if (fileSize <= 0)
+    {
+        return PldmParseResult::NotPldm;
+    }
+    lseek(fd, 0, SEEK_SET);
+
+    phosphor::software::image::CustomMap mapped(
+        mmap(nullptr, static_cast<size_t>(fileSize), PROT_READ, MAP_PRIVATE, fd,
+             0),
+        static_cast<size_t>(fileSize));
+    if (mapped() == MAP_FAILED)
+    {
+        return PldmParseResult::NotPldm;
+    }
+
+    lseek(fd, 0, SEEK_SET);
+
+    PldmParseResult result = PldmParseResult::NotPldm;
+    const uint8_t* data = static_cast<const uint8_t*>(mapped());
+
+    // Try to parse as PLDM package
+    auto packageParser = pldm_package_util::parsePLDMPackage(
+        data, static_cast<size_t>(fileSize));
+    if (packageParser)
+    {
+        result = PldmParseResult::PldmNoMatch;
+
+        uint32_t componentOffset = 0;
+        size_t componentSize = 0;
+        std::string componentVersion;
+
+        constexpr uint32_t vendorIANA = bmcVendorIANA;
+        constexpr const char* compatibleHardware = bmcCompatibleHardware;
+
+        debug(
+            "Looking for PLDM component: vendorIANA=0x{IANA:x}, compatible={COMPAT}",
+            "IANA", vendorIANA, "COMPAT", compatibleHardware);
+
+        int rc = pldm_package_util::extractMatchingComponentImage(
+            packageParser, compatibleHardware, vendorIANA, &componentOffset,
+            &componentSize, componentVersion);
+
+        if (rc == 0)
+        {
+            info("Found PLDM component: version={VER}, offset={OFF}, size={SZ}",
+                 "VER", componentVersion, "OFF", componentOffset, "SZ",
+                 componentSize);
+            offset = componentOffset;
+            size = componentSize;
+            result = PldmParseResult::PldmMatch;
+        }
+    }
+
+    return result;
+}
+
+template <typename UpdateIntf>
+auto ManagerImpl<UpdateIntf>::processImage(
+    sdbusplus::message::unix_fd image,
+    ApplyTimeIntf::RequestedApplyTimes applyTime, std::string id,
+    std::string objPath, std::optional<size_t> maxBytes)
     -> sdbusplus::async::task<>
 {
-    debug("Processing image {FD}", "FD", image.fd);
+    debug("Processing image {FD}, maxBytes={MAX}", "FD", image.fd, "MAX",
+          maxBytes.value_or(0));
     fs::path tmpDirPath(std::string{IMG_UPLOAD_DIR});
     tmpDirPath /= "imageXXXXXX";
     auto tmpDir = tmpDirPath.string();
@@ -74,7 +146,7 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     softwareUtils::RemovablePath tmpDirToRemove(tmpDirPath);
 
     // Untar tarball into the tmp dir
-    if (!softwareUtils::unTar(image, tmpDirPath.string()))
+    if (!softwareUtils::unTar(image, tmpDirPath.string(), maxBytes))
     {
         error("Error occurred during untar");
         processImageFailed(image, id);
@@ -207,7 +279,8 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     co_return;
 }
 
-sdbusplus::message::object_path Manager::startUpdate(
+template <typename UpdateIntf>
+sdbusplus::message::object_path ManagerImpl<UpdateIntf>::startUpdate(
     sdbusplus::message::unix_fd image,
     ApplyTimeIntf::RequestedApplyTimes applyTime)
 {
@@ -228,9 +301,59 @@ sdbusplus::message::object_path Manager::startUpdate(
     itemUpdater.createActivationWithApplyTime(id, objPath, applyTime);
 
     int newFd = dup(image);
-    ctx.spawn(processImage(newFd, applyTime, id, objPath));
+
+    // process as regular TAR if PLDM support not enabled
+    if constexpr (!bmcMultipartUpdateEnabled)
+    {
+        ctx.spawn(processImage(newFd, applyTime, id, objPath));
+        return sdbusplus::message::object_path(objPath);
+    }
+
+    // Try to parse as PLDM package
+    size_t componentOffset = 0;
+    size_t componentSize = 0;
+
+    PldmParseResult pldmResult =
+        tryParsePldmPackage(newFd, componentOffset, componentSize);
+
+    switch (pldmResult)
+    {
+        case PldmParseResult::PldmMatch:
+            info("Detected PLDM package, extracting component at offset {OFF}",
+                 "OFF", componentOffset);
+            // Seek to component offset
+            if (lseek(newFd, static_cast<off_t>(componentOffset), SEEK_SET) ==
+                -1)
+            {
+                error("Failed to seek to component offset: {ERRNO}", "ERRNO",
+                      errno);
+                close(newFd);
+                processImageFailed(image, id);
+                return sdbusplus::message::object_path();
+            }
+            ctx.spawn(
+                processImage(newFd, applyTime, id, objPath, componentSize));
+            break;
+
+        case PldmParseResult::PldmNoMatch:
+            close(newFd);
+            updateInProgress = false;
+            itemUpdater.updateActivationStatus(
+                id, ActivationIntf::Activations::Invalid);
+            throw sdbusplus::error::xyz::openbmc_project::software::update::
+                Incompatible();
+
+        case PldmParseResult::NotPldm:
+            // Not a PLDM package, process as regular TAR
+            ctx.spawn(processImage(newFd, applyTime, id, objPath));
+            break;
+    }
 
     return sdbusplus::message::object_path(objPath);
 }
+
+// Explicit template instantiations for both manager types
+template class ManagerImpl<UpdateIntfOnly>;
+template class ManagerImpl<UpdateIntfWithMultipart>;
 
 } // namespace phosphor::software::update

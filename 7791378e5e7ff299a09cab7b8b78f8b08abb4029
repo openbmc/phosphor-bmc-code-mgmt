@@ -512,6 +512,24 @@
       "parentUuid": "6678e49b_9b17cd56",
       "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601b136b_d22cb4f3",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-12-16T07:48:32Z",
+      "side": 1,
+      "message": "@paligill@gmail.com nit: Making the MuxOutputs property required in EM means all existing platform EM configurations that already define the CPLDFirmware field must be updated to explicitly add an empty []. This change introduces a mandatory but functionally redundant field for platforms that don\u0027t use mux outputs. Is this requirement intentional, or should MuxOutputs remain optional to avoid unnecessary config change across platforms?",
+      "parentUuid": "74949c08_a8f885a9",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

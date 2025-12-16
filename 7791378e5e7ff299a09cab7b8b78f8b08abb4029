@@ -494,6 +494,24 @@
       "parentUuid": "8d4f504d_abf9feeb",
       "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74949c08_a8f885a9",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-16T03:16:01Z",
+      "side": 1,
+      "message": "@Henry_WU@quantatw.com This is the with the long term intent that Dbus properties have fixed fields. Currently muxOutputs is an array. For any CPLD which doesn\u0027t need to trigger the mux can send this list as empty from EM side and this code shall handle it accordingly. So, lets mark this property as required in EM schema.",
+      "parentUuid": "6678e49b_9b17cd56",
+      "revId": "7791378e5e7ff299a09cab7b8b78f8b08abb4029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

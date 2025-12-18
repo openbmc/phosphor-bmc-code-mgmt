@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c706a60f_8900d2b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-18T21:01:22Z",
+      "side": 1,
+      "message": "Why would the IANA be a meson option and not something we get from entity-manager?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f573722_1d2f336a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-18T21:01:22Z",
+      "side": 1,
+      "message": "Is this ROTless or rootless?",
+      "range": {
+        "startLine": 28,
+        "startChar": 39,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64a16eb_d840c050",
+        "filename": "meson.options",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-18T21:01:22Z",
+      "side": 1,
+      "message": "We generally want all options `enabled` in CI.  Having it be disabled means we have code that isn\u0027t even compile-tested in CI.\n\nAre we comfortable that the code between the two of them is minimal enough that it is acceptable to have only one path compiled?",
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

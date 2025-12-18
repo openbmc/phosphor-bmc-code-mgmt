@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04862d4_879ef7c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-18T17:08:57Z",
+      "side": 1,
+      "message": "Please verify this with the latest code as this patch has been in review for sometime.",
+      "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7aa08e29_258fde17",
@@ -84,6 +101,57 @@
       "side": 1,
       "message": "Not all muxes switch between the BMC and the host.\nFor example, the debug-card-mux is used to cut off the connection between the CPLD and the debug card, rather than switching ownership between the BMC and host.\n\nBecause of this, I named the function muxToDevice() instead of assuming all muxes are BMC–host switches.",
       "parentUuid": "e00b21e6_8b9841e3",
+      "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e342dbe_4fb50d19",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-18T17:08:57Z",
+      "side": 1,
+      "message": "Please drop the info message.",
+      "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06a0241_f9f3687d",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-18T17:08:57Z",
+      "side": 1,
+      "message": "Please make this debug instead.",
+      "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b60c9e_41af2ffb",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-18T17:08:57Z",
+      "side": 1,
+      "message": "Please make this debug.",
       "revId": "fde07d6c68b844818dae709073dadbb0fed70fff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

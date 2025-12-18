@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d59718e2_ce761380",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-12-18T21:20:30Z",
+      "side": 1,
+      "message": "The thought was that BMC update today is a singleton already (i.e. bmcweb hard codes the association on lookup, iirc). I had a patch for getting it from entity-manager, but moved to this because the runtime path is simpler, and we didn\u0027t seem to sacrifice much for it.",
+      "parentUuid": "c706a60f_8900d2b3",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f573722_1d2f336a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ef6991f_afd2b1b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-12-18T21:20:30Z",
+      "side": 1,
+      "message": "ROTless. this is really just \"self update,\" i.e. update via cp to /run/initramfs and reboot.",
+      "parentUuid": "8f573722_1d2f336a",
+      "range": {
+        "startLine": 28,
+        "startChar": 39,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b64a16eb_d840c050",
         "filename": "meson.options",
         "patchSetId": 4
@@ -60,6 +108,24 @@
       "writtenOn": "2025-12-18T21:01:22Z",
       "side": 1,
       "message": "We generally want all options `enabled` in CI.  Having it be disabled means we have code that isn\u0027t even compile-tested in CI.\n\nAre we comfortable that the code between the two of them is minimal enough that it is acceptable to have only one path compiled?",
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995b3a4b_7b3aee22",
+        "filename": "meson.options",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-12-18T21:20:30Z",
+      "side": 1,
+      "message": "Most of the code is under an ifconstexpr, so it will at least have syntactic checking. That said, I\u0027m fine with having it enabled in CI. I\u0027m open to feedback on how to deal with this in general, but I didn\u0027t love having compile time code switches, this just seemed to be the least invasive change and the least risky way to introduce this change. That said, it will have a PACKAGECONFIG switch in yocto anyways, so not sure there\u0027s much actual risk to have this default to enabled.",
+      "parentUuid": "b64a16eb_d840c050",
       "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

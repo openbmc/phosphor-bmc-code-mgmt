@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28fd2cdf_768b6277",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-12-18T22:25:43Z",
+      "side": 1,
+      "message": "That\u0027s fair, I can definitely understand wanting uniformity. If we want to go with entity-manager just to avoid exceptions in how we define this, I\u0027m fine with that. \n\nFor the An -\u003e Bn, its not clear to me what situation you\u0027d run into where this wouldn\u0027t work, its very possible I\u0027m just being dense. If you changed device identifiers across a firmware boundary, you\u0027re going to run into a situation where you\u0027d need to build a new fwpkg with both sets of descriptors to transition cleanly across that boundary, no? or just build a new version of An with the new device identifiers. In any case, you won\u0027t have to deal with incompatibility at update time, just after it boots, at which point you\u0027d have to have a new package anyways to match the new identifiers.\n\ni.e. if you\u0027re on image A, with device identifiers x and y, you can still build a fwpkg where the image being updated to will report z and c. But after update you can\u0027t update back to image A without also packaging device descriptors support for x and y, or rebuilding the binary into a \"transitory package\". Its not clear to me how having this in entity-manager mitigates this problem. Are you saying that people may want to be able to advertise what device descriptors they support based off of which eeprom they find, i.e. one image for any number of actual configurations, but they are advertising it under different device descriptors based on eeprom (maybe off of product_sku, for example)?",
+      "parentUuid": "fc7f59d1_52478ace",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f573722_1d2f336a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4

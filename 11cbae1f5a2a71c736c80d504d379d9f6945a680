@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc7f59d1_52478ace",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-12-18T21:53:43Z",
+      "side": 1,
+      "message": "\u003e Am I missing usecases where we can\u0027t set it through meson options (i.e. we can\u0027t know the identifiers at build) or do you have a preference for entity-manager?\n\nI guess I don\u0027t have a lot of skin in this decision.\n\nI don\u0027t know if you have any cases where you want to restrict the image to be updated based on the EEPROM detection of the hardware.  IBM does some stuff where they have a minimal device tree and then they do some detection and load a more robust device tree.  Maybe that\u0027s still all one image.\n\nIf you have image A1 -\u003e An, then using the image settings (via Meson config) is fine.  If you have image A1 -\u003e Bn, where they\u0027re not identical in IANA, you\u0027d need EEPROM data to be able to do that.\n\nGenerally, I like having it in the entity-manager data just because that\u0027s where we have all the other IANA information and I don\u0027t like the proliferation of meson options, but it isn\u0027t a hard requirement.",
+      "parentUuid": "19a3988b_2b16f542",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f573722_1d2f336a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4

@@ -16,6 +16,24 @@
       "message": "Change this message to debug.",
       "revId": "c7d7a17acf7edd9d3d7cee7ed7a5bd04055bbba9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d398a56e_2ef91bec",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-12-22T01:43:39Z",
+      "side": 1,
+      "message": "This info notifies the user when the GPIO is triggered.\nSince not all devices require GPIO triggering, this notification helps make the behavior explicit.\nI think this info should be kept.",
+      "parentUuid": "204fcc19_38b039e2",
+      "revId": "c7d7a17acf7edd9d3d7cee7ed7a5bd04055bbba9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

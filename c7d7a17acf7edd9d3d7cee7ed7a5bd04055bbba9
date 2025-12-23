@@ -34,6 +34,24 @@
       "parentUuid": "204fcc19_38b039e2",
       "revId": "c7d7a17acf7edd9d3d7cee7ed7a5bd04055bbba9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f70e20da_771520d4",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-12-23T05:42:15Z",
+      "side": 1,
+      "message": "Sure, we can keep this for now and monitor how much chattiness this adds. Based on that we can decide if it shall be removed.",
+      "parentUuid": "d398a56e_2ef91bec",
+      "revId": "c7d7a17acf7edd9d3d7cee7ed7a5bd04055bbba9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

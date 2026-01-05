@@ -74,7 +74,7 @@ subdir('bmc')
 
 all_options = {
     'bios-software-update': {'dirs' : ['bios'], 'deps': ['libgpiod']},
-    'cpld-software-update': {'dirs' : ['common/i2c', 'cpld']},
+    'cpld-software-update': {'dirs' : ['common/i2c', 'cpld'], 'deps': ['libgpiod']},
     'eepromdevice-software-update': {
         'dirs': ['eeprom-device'],
         'deps': ['libgpiod'],

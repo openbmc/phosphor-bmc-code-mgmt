@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1932c08_d8731a9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-06T21:53:09Z",
+      "side": 1,
+      "message": "\u003e For the An -\u003e Bn, its not clear to me what situation you\u0027d run into where this wouldn\u0027t work, its very possible I\u0027m just being dense.\n\nCurrently you have a single string as \"compatible hardware\", which implies to me that this image is only going to accept a single image type that it has been programmed to accept (\"An\").\n\nI could see designs where you have a single DC-SCM type (A) but that DC-SCM goes into multiple platforms (B, C).  You program \"A\" at your DC-SCM manufacturing, which is some generic image type, and then during your chassis build you plug the card into a \"B\" chassis and want to program it with the \"B\" image.  If the Entity-Manager compatible for some FRU in the chassis says \"compatible with com.company.BMC.B\" then this repository can accept transitioning from \"An\" to \"Bn\".  But if you go the meson route, as I\u0027m interpreting it, you can\u0027t do this kind of transition because the \"An\" image will say \"I only accept com.company.BMC.A images\".",
+      "parentUuid": "28fd2cdf_768b6277",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f573722_1d2f336a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4

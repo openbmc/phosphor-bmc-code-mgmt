@@ -272,6 +272,24 @@
       "parentUuid": "b64a16eb_d840c050",
       "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b7585e_97c8809b",
+        "filename": "meson.options",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2026-01-08T21:33:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "995b3a4b_7b3aee22",
+      "revId": "11cbae1f5a2a71c736c80d504d379d9f6945a680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

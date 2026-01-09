@@ -8,6 +8,7 @@ regulators_src = files(
     'mps/mps.cpp',
     'mps/mpx9xx.cpp',
     'tda38640a/tda38640a.cpp',
+    'xdp71x/xdp71x.cpp',
     'xdpe1x2xx/xdpe1x2xx.cpp',
 )
 

@@ -21,7 +21,8 @@ enum class VRType
     MPQ87XX,
     RAA22XGen2,
     RAA22XGen3p5,
-    TDA38640A
+    TDA38640A,
+    XDP71X
 };
 
 class VoltageRegulator

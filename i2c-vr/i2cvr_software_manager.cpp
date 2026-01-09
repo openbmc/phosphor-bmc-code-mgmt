@@ -24,7 +24,7 @@ const std::vector<std::string> emConfigTypes = {
     "XDPE1X2XXFirmware", "ISL69269Firmware",   "MP2X6XXFirmware",
     "MP292XFirmware",    "MP297XFirmware",     "MP5998Firmware",
     "MP994XFirmware",    "RAA22XGen2Firmware", "RAA22XGen3p5Firmware",
-    "TDA38640AFirmware"};
+    "TDA38640AFirmware", "XDP71XFirmware"};
 
 I2CVRSoftwareManager::I2CVRSoftwareManager(sdbusplus::async::context& ctx) :
     ManagerInf::SoftwareManager(ctx, configDBusName)

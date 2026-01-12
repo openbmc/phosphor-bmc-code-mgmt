@@ -2,6 +2,7 @@
 
 #include "lattice_xo3_cpld.hpp"
 #include "lattice_xo5_cpld.hpp"
+#include "lattice_xo5d_cpld.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
@@ -33,6 +34,10 @@ std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD(
             return std::make_unique<LatticeXO5CPLD>(
                 CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
                 chipModelStr, target, false);
+        case latticeChipFamily::XO5D:
+            return std::make_unique<LatticeXO5DCPLD>(
+                CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
+                chipModelStr, "", false);
         default:
             lg2::error("Unsupported Lattice CPLD chip family: {CHIPMODEL}",
                        "CHIPMODEL", chipModelStr);

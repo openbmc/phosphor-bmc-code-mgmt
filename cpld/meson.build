@@ -5,6 +5,7 @@ cpld_vendor_src = files(
     'lattice/lattice_cpld_factory.cpp',
     'lattice/lattice_xo3_cpld.cpp',
     'lattice/lattice_xo5_cpld.cpp',
+    'lattice/lattice_xo5_cpld2.cpp',
 )
 
 exe = executable(
@@ -24,6 +25,7 @@ exe = executable(
         libpldm_dep,
         libi2c_dep,
         libgpiod_dep,
+        ssl_dep,
     ],
     link_with: [
         libpldmutil,

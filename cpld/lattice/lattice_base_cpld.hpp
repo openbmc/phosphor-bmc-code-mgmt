@@ -20,6 +20,7 @@ enum class latticeChip
     LCMXO3D_4300,
     LCMXO3D_9400,
     LFMXO5_25,
+    LFMXO5_15D,
     UNSUPPORTED = -1,
 };
 
@@ -39,6 +40,7 @@ inline std::string getLatticeChipStr(latticeChip chip,
         {latticeChip::LCMXO3D_4300, "LCMXO3D_4300"},
         {latticeChip::LCMXO3D_9400, "LCMXO3D_9400"},
         {latticeChip::LFMXO5_25, "LFMXO5_25"},
+        {latticeChip::LFMXO5_15D, "LFMXO5_15D"},
     };
     auto chipString = chipStringMap.at(chip);
     if (chipStringMap.find(chip) == chipStringMap.end())
@@ -66,6 +68,7 @@ enum class latticeChipFamily
     XO2,
     XO3,
     XO5,
+    XO5D,
 };
 
 struct cpldInfo
@@ -86,6 +89,7 @@ const std::map<latticeChip, cpldInfo> supportedDeviceMap = {
     {latticeChip::LCMXO3D_9400,
      {latticeChipFamily::XO3, {0x21, 0x2e, 0x30, 0x43}}},
     {latticeChip::LFMXO5_25, {latticeChipFamily::XO5, {}}},
+    {latticeChip::LFMXO5_15D, {latticeChipFamily::XO5D, {}}},
 };
 
 struct cpldI2cInfo

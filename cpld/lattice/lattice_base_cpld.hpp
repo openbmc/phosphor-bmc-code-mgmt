@@ -22,6 +22,7 @@ enum class latticeChip
     LFMXO5_25,
     LFMXO5_35T,
     LFMXO5_65T,
+    LFMXO5_15D,
     UNSUPPORTED = -1,
 };
 
@@ -29,6 +30,13 @@ enum class latticeStringType
 {
     typeString,
     modelString,
+};
+
+enum class targetType
+{
+    CFG0,
+    CFG1,
+    DYNAMIC
 };
 
 inline std::string getLatticeChipStr(latticeChip chip,
@@ -43,6 +51,7 @@ inline std::string getLatticeChipStr(latticeChip chip,
         {latticeChip::LFMXO5_25, "LFMXO5_25"},
         {latticeChip::LFMXO5_35T, "LFMXO5_35T"},
         {latticeChip::LFMXO5_65T, "LFMXO5_65T"},
+        {latticeChip::LFMXO5_15D, "LFMXO5_15D"},
     };
     auto chipString = chipStringMap.at(chip);
     if (chipStringMap.find(chip) == chipStringMap.end())
@@ -64,6 +73,21 @@ inline std::string getLatticeChipStr(latticeChip chip,
             return "";
     }
 };
+
+inline std::string targetTypeToString(targetType type)
+{
+    switch (type)
+    {
+        case targetType::CFG0:
+            return "CFG0";
+        case targetType::CFG1:
+            return "CFG1";
+        case targetType::DYNAMIC:
+            return "";
+        default:
+            return "CFG0";
+    }
+}
 
 enum class latticeChipFamily
 {
@@ -95,6 +119,7 @@ const std::map<latticeChip, cpldInfo> supportedDeviceMap = {
      {latticeChipFamily::XO5, {0x09, 0x0F, 0xC0, 0x43}}},
     {latticeChip::LFMXO5_65T,
      {latticeChipFamily::XO5, {0x01, 0x0F, 0xC0, 0x43}}},
+    {latticeChip::LFMXO5_15D, {latticeChipFamily::XO5, {}}},
 };
 
 struct cpldI2cInfo

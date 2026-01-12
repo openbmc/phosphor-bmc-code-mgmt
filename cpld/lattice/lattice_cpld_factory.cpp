@@ -1,6 +1,7 @@
 #include "lattice_cpld_factory.hpp"
 
 #include "lattice_xo3_cpld.hpp"
+#include "lattice_xo5_dseries_cpld.hpp"
 #include "lattice_xo5_standard_cpld.hpp"
 #include "lattice_xo5_tseries_cpld.hpp"
 
@@ -38,6 +39,12 @@ std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD(
                     CPLDInterface::ctx, CPLDInterface::bus,
                     CPLDInterface::address, chipModelStr, target, false);
             }
+            else if (chipEnum == latticeChip::LFMXO5_15D)
+            {
+                return std::make_unique<LatticeXO5DSeriesCPLD>(
+                    CPLDInterface::ctx, CPLDInterface::bus,
+                    CPLDInterface::address, chipModelStr, target, false);
+            }
             else
             {
                 return std::make_unique<LatticeXO5StandardCPLD>(
@@ -56,7 +63,18 @@ sdbusplus::async::task<bool> LatticeCPLDFactory::updateFirmware(
     std::function<bool(int)> progressCallBack)
 {
     lg2::info("Updating Lattice CPLD firmware");
-    auto cpldManager = getLatticeCPLD("CFG0");
+    auto getTargetForChip = [](latticeChip chip) {
+        switch (chip)
+        {
+            case latticeChip::LFMXO5_15D:
+                return targetType::DYNAMIC;
+            default:
+                return targetType::CFG0;
+        }
+    };
+
+    auto cpldManager =
+        getLatticeCPLD(targetTypeToString(getTargetForChip(chipEnum)));
     if (cpldManager == nullptr)
     {
         lg2::error("CPLD manager is not initialized.");

@@ -20,6 +20,7 @@ class LatticeXO3CPLD : public LatticeBaseCPLD
   protected:
     sdbusplus::async::task<bool> prepareUpdate(const uint8_t* image,
                                                size_t imageSize) override;
+    sdbusplus::async::task<bool> doErase() override;
     sdbusplus::async::task<bool> doUpdate() override;
     sdbusplus::async::task<bool> finishUpdate() override;
 

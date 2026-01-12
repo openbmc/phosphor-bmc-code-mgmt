@@ -20,6 +20,7 @@ enum class latticeChip
     LCMXO3D_4300,
     LCMXO3D_9400,
     LFMXO5_25,
+    LFMXO5_65T,
     UNSUPPORTED = -1,
 };
 
@@ -39,6 +40,7 @@ inline std::string getLatticeChipStr(latticeChip chip,
         {latticeChip::LCMXO3D_4300, "LCMXO3D_4300"},
         {latticeChip::LCMXO3D_9400, "LCMXO3D_9400"},
         {latticeChip::LFMXO5_25, "LFMXO5_25"},
+        {latticeChip::LFMXO5_65T, "LFMXO5_65T"},
     };
     auto chipString = chipStringMap.at(chip);
     if (chipStringMap.find(chip) == chipStringMap.end())
@@ -85,7 +87,10 @@ const std::map<latticeChip, cpldInfo> supportedDeviceMap = {
      {latticeChipFamily::XO3, {0x01, 0x2e, 0x20, 0x43}}},
     {latticeChip::LCMXO3D_9400,
      {latticeChipFamily::XO3, {0x21, 0x2e, 0x30, 0x43}}},
-    {latticeChip::LFMXO5_25, {latticeChipFamily::XO5, {}}},
+    {latticeChip::LFMXO5_25,
+     {latticeChipFamily::XO5, {0x01, 0x0F, 0x70, 0x43}}},
+    {latticeChip::LFMXO5_65T,
+     {latticeChipFamily::XO5, {0x01, 0x0F, 0xC0, 0x43}}},
 };
 
 struct cpldI2cInfo
@@ -150,6 +155,7 @@ class LatticeBaseCPLD
 
     virtual sdbusplus::async::task<bool> prepareUpdate(const uint8_t*,
                                                        size_t) = 0;
+    virtual sdbusplus::async::task<bool> doErase() = 0;
     virtual sdbusplus::async::task<bool> doUpdate() = 0;
     virtual sdbusplus::async::task<bool> finishUpdate() = 0;
 

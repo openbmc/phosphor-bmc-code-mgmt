@@ -344,7 +344,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::prepareUpdate(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::doUpdate()
+sdbusplus::async::task<bool> LatticeXO5CPLD::doErase()
 {
     lg2::debug("Erasing {TARGET}...", "TARGET", target);
     if (!(co_await eraseCfg()))
@@ -353,6 +353,11 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::doUpdate()
         co_return false;
     }
 
+    co_return true;
+}
+
+sdbusplus::async::task<bool> LatticeXO5CPLD::doUpdate()
+{
     lg2::debug("Programming {TARGET}...", "TARGET", target);
     if (!(co_await programCfg()))
     {

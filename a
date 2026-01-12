@@ -1,0 +1,147 @@
+cpld: add update support for Lattice xo5 new update IP
+
+Enable firmware update capability for Lattice XO5-65T device,
+allowing the update flow to recongnize and handle device type.
+This is the new update IP from Lattice, base on XO5, adding
+a second version method.
+
+Tested:
+- Verified get CPLD firmware version
+- Verified update CPLD
+
+```
+Test on Ventura2:
+1. Check firmware
+curl -k -u root:0penBmc -X GET https://127.0.0.1/redfish/v1/UpdateService/FirmwareInventory/Ventura2_MB_CPLD_4990 | jq -r '.Version'
+00010018
+
+2. Trigger Update
+root@bmc:~# curl -k -u root:0penBmc -H "Content-Type:multipart/form-data" \
+-X POST https://127.0.0.1/redfish/v1/UpdateService/update-multipart \
+-F UpdateParameters="{\"Targets\": [\"\${targetpath}"],\
+\"@Redfish.OperationApplyTime\":\"Immediate\"};type=application/json" \
+-F UpdateFile=@${fwpath};type=application/octet-stream
+{
+  "@odata.id": "/redfish/v1/TaskService/Tasks/0",
+  "@odata.type": "#Task.v1_4_3.Task",
+  "HidePayload": false,
+  "Id": "0",
+  "Messages": [
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has started.",
+      "MessageArgs": [
+        "0"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskStarted",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    }
+  ],
+  "Name": "Task 0",
+  "Payload": {
+    "HttpHeaders": [],
+    "HttpOperation": "POST",
+    "TargetUri": "/redfish/v1/UpdateService/update-multipart"
+  },
+  "PercentComplete": 0,
+  "StartTime": "2026-01-12T07:08:23+00:00",
+  "TaskMonitor": "/redfish/v1/TaskService/TaskMonitors/0",
+  "TaskState": "Running",
+  "TaskStatus": "OK"
+}
+
+3. Check task
+root@bmc:~# curl -k -u root:0penBmc -X GET https://127.0.0.1/redfish/v1/TaskService/Tasks/0
+{
+  "@odata.id": "/redfish/v1/TaskService/Tasks/0",
+  "@odata.type": "#Task.v1_4_3.Task",
+  "EndTime": "2026-01-12T07:13:30+00:00",
+  "HidePayload": false,
+  "Id": "0",
+  "Messages": [
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has started.",
+      "MessageArgs": [
+        "0"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskStarted",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    },
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has changed to progress 50 percent complete.",
+      "MessageArgs": [
+        "0",
+        "50"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskProgressChanged",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    },
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has changed to progress 70 percent complete.",
+      "MessageArgs": [
+        "0",
+        "70"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskProgressChanged",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    },
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has changed to progress 90 percent complete.",
+      "MessageArgs": [
+        "0",
+        "90"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskProgressChanged",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    },
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has changed to progress 100 percent complete.",
+      "MessageArgs": [
+        "0",
+        "100"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskProgressChanged",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    },
+    {
+      "@odata.type": "#Message.v1_1_1.Message",
+      "Message": "The task with Id '0' has completed.",
+      "MessageArgs": [
+        "0"
+      ],
+      "MessageId": "TaskEvent.1.0.TaskCompletedOK",
+      "MessageSeverity": "OK",
+      "Resolution": "None."
+    }
+  ],
+  "Name": "Task 0",
+  "Payload": {
+    "HttpHeaders": [],
+    "HttpOperation": "POST",
+    "JsonBody": "null",
+    "TargetUri": "/redfish/v1/UpdateService/update-multipart"
+  },
+  "PercentComplete": 100,
+  "StartTime": "2026-01-12T07:08:23+00:00",
+  "TaskState": "Completed",
+  "TaskStatus": "OK"
+}
+
+4. After AC cycle, check firmware again
+root@bmc:~# curl -k -u root:0penBmc -X GET https://127.0.0.1/redfish/v1/UpdateService/FirmwareInventory/Ventura2_MB_CPLD_2556  | jq -r '.Version'
+00100019
+```
+
+Change-Id: I16dfe33a3ac1b8ab6adb232f7bf94f6c5cec0d38
+Signed-off-by: Kyle Hsieh <Kyle.Hsieh@quantatw.com>

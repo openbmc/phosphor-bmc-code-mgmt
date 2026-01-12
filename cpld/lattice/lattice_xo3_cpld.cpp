@@ -242,7 +242,7 @@ sdbusplus::async::task<bool> LatticeXO3CPLD::prepareUpdate(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO3CPLD::doUpdate()
+sdbusplus::async::task<bool> LatticeXO3CPLD::doErase()
 {
     co_await waitBusyAndVerify();
 
@@ -264,6 +264,11 @@ sdbusplus::async::task<bool> LatticeXO3CPLD::doUpdate()
         co_return false;
     }
 
+    co_return true;
+}
+
+sdbusplus::async::task<bool> LatticeXO3CPLD::doUpdate()
+{
     if (!(co_await writeProgramPage()))
     {
         lg2::error("Write program page failed.");

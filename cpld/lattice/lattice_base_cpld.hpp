@@ -150,6 +150,7 @@ class LatticeBaseCPLD
 
     virtual sdbusplus::async::task<bool> prepareUpdate(const uint8_t*,
                                                        size_t) = 0;
+    virtual sdbusplus::async::task<bool> doErase() = 0;
     virtual sdbusplus::async::task<bool> doUpdate() = 0;
     virtual sdbusplus::async::task<bool> finishUpdate() = 0;
 

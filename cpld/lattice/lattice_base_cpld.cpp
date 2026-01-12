@@ -71,6 +71,15 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
     lg2::debug("Prepare update success");
     progressCallBack(50);
 
+    result = co_await doErase();
+    if (!result)
+    {
+        lg2::error("Do erase failed.");
+        co_return false;
+    }
+    lg2::debug("Do erase success");
+    progressCallBack(70);
+
     result = co_await doUpdate();
     if (!result)
     {

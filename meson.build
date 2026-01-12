@@ -73,13 +73,13 @@ subdir('bmc')
 
 
 all_options = {
-    'bios-software-update': {'dirs' : ['bios'], 'deps': ['libgpiod']},
-    'cpld-software-update': {'dirs' : ['common/i2c', 'cpld']},
+    'bios-software-update': {'dirs': ['bios'], 'deps': ['libgpiod']},
+    'cpld-software-update': {'dirs': ['common/i2c', 'cpld']},
     'eepromdevice-software-update': {
         'dirs': ['eeprom-device'],
         'deps': ['libgpiod'],
     },
-    'i2cvr-software-update': {'dirs' : ['common/i2c', 'i2c-vr']},
+    'i2cvr-software-update': {'dirs': ['common/i2c', 'i2c-vr']},
     'tpm-software-update': {'dirs': ['tpm']},
 }
 

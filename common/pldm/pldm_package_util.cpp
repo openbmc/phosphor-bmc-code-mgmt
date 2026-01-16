@@ -7,7 +7,6 @@
 #include <libpldm/base.h>
 #include <libpldm/firmware_update.h>
 #include <libpldm/pldm_types.h>
-#include <libpldm/utils.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/mman.h>

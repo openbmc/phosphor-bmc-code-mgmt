@@ -4,6 +4,7 @@
 #include "phosphor-logging/lg2.hpp"
 
 #include <inttypes.h>
+#include <libpldm/edac.h>
 #include <libpldm/firmware_update.h>
 
 #include <cstring>

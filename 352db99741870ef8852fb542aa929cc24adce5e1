@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b525f95_321ea46d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-19T18:12:04Z",
+      "side": 1,
+      "message": "Please add Related PR section which shows any related changes in PDI, EM configuration, EM schemas etc.",
+      "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b1ba1278_f35c0199",

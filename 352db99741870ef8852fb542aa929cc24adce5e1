@@ -33,6 +33,74 @@
       "message": "cc Patrick for visibility",
       "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e876b71a_72e441a2",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-19T18:16:44Z",
+      "side": 1,
+      "message": "Why the second arg is empty?",
+      "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c569bf7_630f4db7",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-19T18:16:44Z",
+      "side": 1,
+      "message": "Please use constexpr and follow the coding guidelines as in https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#types.",
+      "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f15c94a_31f142ab",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-19T18:16:44Z",
+      "side": 1,
+      "message": "I see you have defined bunch of stuff in .hpp file but looks like they are only getting used in .cpp. Please move all such definitions to .cpp file.",
+      "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d51139_1b571b35",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-19T18:16:44Z",
+      "side": 1,
+      "message": "Enums are suppose to be lower camel case https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#constants. \n\nPlease go through the coding guidelines and update the patch as per guidelines.",
+      "revId": "352db99741870ef8852fb542aa929cc24adce5e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

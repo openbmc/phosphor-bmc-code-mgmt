@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2b9a3c_0ee6184d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-01-23T10:10:05Z",
+      "side": 1,
+      "message": "There is no such approved design for this flow. BMCWeb will support only single Multipart update interface. Please raise a design update for https://github.com/openbmc/docs/blob/master/designs/code-update.md for approval first.\nPlease make sure any further design updates are aligned on discussion here https://gerrit.openbmc.org/c/openbmc/docs/+/76645/comment/39e9183c_afc771dd/.",
+      "revId": "57c5958778e713f74ffc983c9fc24216679e7536",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 
-bios_spi_src = files('bios_software_manager.cpp'
-, 'spi_device.cpp')
+bios_spi_src = files('bios_software_manager.cpp', 'spi_device.cpp')
 
 bios_spi_include = include_directories('.')
 

@@ -16,6 +16,24 @@
       "message": "There is no such approved design for this flow. BMCWeb will support only single Multipart update interface. Please raise a design update for https://github.com/openbmc/docs/blob/master/designs/code-update.md for approval first.\nPlease make sure any further design updates are aligned on discussion here https://gerrit.openbmc.org/c/openbmc/docs/+/76645/comment/39e9183c_afc771dd/.",
       "revId": "57c5958778e713f74ffc983c9fc24216679e7536",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcf4655_60fac7ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T17:33:40Z",
+      "side": 1,
+      "message": "\u003e There is no such approved design for this flow. BMCWeb will support only single Multipart update interface.\n\nI\u0027m not understanding this comment.  The flow proposed here still supports multipart.\n\n\u003e Please raise a design update for https://github.com/openbmc/docs/blob/master/designs/code-update.md for approval first.\n\u003e Please make sure any further design updates are aligned on discussion here https://gerrit.openbmc.org/c/openbmc/docs/+/76645/comment/39e9183c_afc771dd/.\n\nbmcweb -\u003e bmc-code-updater is the only flow that\u0027s changing here, and the DBus api itself isn\u0027t changing.  Is there a design concern that you\u0027d like to see addressed?  Ideally if you could outline a requirement that you think this doesn\u0027t handle we could have a productive conversation.  From my perspective, this is a pretty minimal changeset, so if I were writing Marcs design doc, I\u0027m not sure what I\u0027d put in it.",
+      "parentUuid": "5e2b9a3c_0ee6184d",
+      "revId": "57c5958778e713f74ffc983c9fc24216679e7536",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

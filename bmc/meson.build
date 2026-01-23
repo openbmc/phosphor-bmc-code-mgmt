@@ -105,8 +105,16 @@ unit_files = [
     'xyz.openbmc_project.Software.Sync.service.in',
 ]
 
-image_updater_sources = files('activation.cpp', 'images.cpp', 'item_updater.cpp', 'msl_verify.cpp', 'serialize.cpp', 'update_manager.cpp'
-, 'utils.cpp', 'version.cpp')
+image_updater_sources = files(
+    'activation.cpp',
+    'images.cpp',
+    'item_updater.cpp',
+    'msl_verify.cpp',
+    'serialize.cpp',
+    'update_manager.cpp',
+    'utils.cpp',
+    'version.cpp',
+)
 
 if get_option('bmc-layout').contains('static')
     image_updater_sources += files(
@@ -178,8 +186,11 @@ if get_option('sync-bmc-files').allowed()
 endif
 
 if (get_option('verify-signature').allowed())
-    image_updater_sources += files('image_verify.cpp', 'openssl_alloc.cpp'
-    , 'utils.cpp')
+    image_updater_sources += files(
+        'image_verify.cpp',
+        'openssl_alloc.cpp',
+        'utils.cpp',
+    )
 endif
 
 executable(

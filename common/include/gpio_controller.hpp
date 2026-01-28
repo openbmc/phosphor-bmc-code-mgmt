@@ -26,6 +26,8 @@ class GPIOGroup
 
     void releaseAll();
 
+    bool empty() const;
+
     GPIOGroup(const GPIOGroup&) = delete;
     GPIOGroup& operator=(const GPIOGroup&) = delete;
     GPIOGroup(GPIOGroup&& /*other*/) noexcept;

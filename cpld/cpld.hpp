@@ -4,6 +4,7 @@
 #include "common/include/software_manager.hpp"
 #include "cpld_interface.hpp"
 
+#include <gpio_controller.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async/context.hpp>
 
@@ -27,7 +28,7 @@ class CPLDDevice : public Device
                {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
         cpldInterface(CPLDFactory::instance().create(chiptype, ctx, chipname,
                                                      bus, address)),
-        gpioLines(gpioLinesIn), gpioPolarities(gpioValuesIn)
+        muxGPIOs(gpioLinesIn, gpioValuesIn)
     {}
 
     using Device::softwareCurrent;
@@ -36,9 +37,9 @@ class CPLDDevice : public Device
     sdbusplus::async::task<bool> getVersion(std::string& version);
 
   private:
+    std::optional<ScopedBmcMux> guardBmcMux();
     std::unique_ptr<CPLDInterface> cpldInterface;
-    std::vector<std::string> gpioLines;
-    std::vector<bool> gpioPolarities;
+    GPIOGroup muxGPIOs;
 };
 
 } // namespace phosphor::software::cpld

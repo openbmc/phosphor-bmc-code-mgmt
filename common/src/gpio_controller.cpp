@@ -38,9 +38,15 @@ bool GPIOGroup::muxToBMC()
 {
     return mux(false);
 }
+
 bool GPIOGroup::muxToDevice()
 {
     return mux(true);
+}
+
+bool GPIOGroup::hasGPIOs() const
+{
+    return !lines.empty();
 }
 
 void GPIOGroup::releaseAll()
@@ -57,7 +63,7 @@ void GPIOGroup::releaseAll()
 
 bool GPIOGroup::mux(bool inverted)
 {
-    if (lines.empty())
+    if (!hasGPIOs())
     {
         return true;
     }

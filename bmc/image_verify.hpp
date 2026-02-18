@@ -9,6 +9,7 @@
 #include <unistd.h>
 
 #include <filesystem>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -174,6 +175,21 @@ class Signature
     inline KeyHashPathPair getKeyHashFileNames(const Key_t& key) const;
 
     /**
+     * Structure to hold post-quantum algorithm information
+     */
+    struct PQAlgorithm
+    {
+        std::string name;     // Algorithm name
+        std::string hashFunc; // Hash function
+    };
+
+    /**
+     * @brief Get post-quantum algorithm from MANIFEST file
+     * @return Optional containing PQ algorithm, or nullopt if none found
+     */
+    std::optional<PQAlgorithm> getPQAlgorithmFromManifest() const;
+
+    /**
      * @brief Verify the file signature using public key and hash function
      *
      * @param[in]  - Image file path
@@ -187,11 +203,11 @@ class Signature
                            const std::string& hashFunc);
 
     /**
-     * @brief Create RSA object from the public key
+     * @brief Create EVP_PKEY object from the public key
      * @param[in]  - publickey
-     * @param[out] - RSA Object.
+     * @param[out] - EVP_PKEY Object.
      */
-    static inline EVP_PKEY_Ptr createPublicRSA(const fs::path& publicKey);
+    static inline EVP_PKEY_Ptr createPublicKey(const fs::path& publicKey);
 
     /**
      * @brief Memory map the  file
@@ -233,10 +249,12 @@ class Signature
      * @return true if all image files are found in BMC tarball and
      * Verify Success false if one of image files is missing
      */
-    bool checkAndVerifyImage(const std::string& filePath,
-                             const std::string& publicKeyPath,
-                             const std::vector<std::string>& imageList,
-                             bool& fileFound);
+    static bool checkAndVerifyImage(
+        const std::string& filePath, const std::string& publicKeyPath,
+        const std::vector<std::string>& imageList, bool& fileFound,
+        const std::string& hashFunc = "", const std::string& sigSubDir = "");
+
+    bool verifyPQSignatures(const std::vector<std::string>& imageList);
 };
 
 } // namespace image

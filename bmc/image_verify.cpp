@@ -35,6 +35,7 @@ using InternalFailure =
 
 constexpr auto keyTypeTag = "KeyType";
 constexpr auto hashFunctionTag = "HashType";
+constexpr auto hashTagSuffix = "_Hash_Type";
 
 Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
@@ -50,6 +51,7 @@ Signature::Signature(const fs::path& imageDirPath,
     auto convertedPurpose =
         sdbusplus::message::convert_from_string<VersionPurpose>(purposeString);
     purpose = convertedPurpose.value_or(Version::VersionPurpose::Unknown);
+    pqAlgorithm = getPQAlgorithmFromManifest();
 }
 
 AvailableKeyTypes Signature::getAvailableKeyTypesFromSystem() const
@@ -96,6 +98,51 @@ inline KeyHashPathPair Signature::getKeyHashFileNames(const Key_t& key) const
     return std::make_pair(std::move(hashpath), std::move(keyPath));
 }
 
+std::optional<Signature::PQAlgorithm> Signature::getPQAlgorithmFromManifest()
+    const
+{
+    fs::path manifestFile(imageDirPath / MANIFEST_FILE_NAME);
+
+    std::ifstream efile(manifestFile);
+    if (!efile.good())
+    {
+        return std::nullopt;
+    }
+
+    std::string line;
+    while (std::getline(efile, line))
+    {
+        // Look for lines ending with "_Hash_Type"
+        auto delimPos = line.find('=');
+        if (delimPos == std::string::npos)
+        {
+            continue;
+        }
+
+        std::string key = line.substr(0, delimPos);
+        std::string value = line.substr(delimPos + 1);
+
+        if (key.find(hashTagSuffix) == std::string::npos)
+        {
+            continue;
+        }
+
+        auto commaPos = value.find(',');
+        if (commaPos == std::string::npos)
+        {
+            continue;
+        }
+
+        Signature::PQAlgorithm algo;
+        algo.hashType = value.substr(0, commaPos);
+        algo.name = value.substr(commaPos + 1);
+
+        return algo;
+    }
+
+    return std::nullopt;
+}
+
 bool Signature::verifyFullImage()
 {
     bool ret = true;
@@ -132,6 +179,34 @@ bool Signature::verifyFullImage()
 
     ret = verifyFile(pkeyFullFile, pkeyFullFileSig, publicKeyFile, hashType);
 
+    if (ret)
+    {
+        if (pqAlgorithm.has_value())
+        {
+            std::error_code ec2;
+            fs::path algoDir(imageDirPath / pqAlgorithm->name);
+
+            if (fs::exists(algoDir, ec2))
+            {
+                fs::path algoFullImageSig = algoDir / imageFullSig;
+                fs::path algoPublicKeyFile = algoDir / PUBLICKEY_FILE_NAME;
+
+                if (fs::exists(algoFullImageSig, ec2) &&
+                    fs::exists(tmpFullFile, ec2))
+                {
+                    ret = verifyFile(tmpFullFile, algoFullImageSig,
+                                     algoPublicKeyFile, pqAlgorithm->hashType);
+                    if (!ret)
+                    {
+                        error(
+                            "Full image signature validation failed for {ALGO}",
+                            "ALGO", pqAlgorithm->name);
+                    }
+                }
+            }
+        }
+    }
+
     std::error_code ec;
     fs::remove(tmpFullFile, ec);
 #endif
@@ -161,7 +236,7 @@ bool Signature::verify()
         // for images with partitions
         std::vector<std::string> imageUpdateList = {bmcFullImages};
         valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                    imageUpdateList, bmcFilesFound);
+                                    imageUpdateList, bmcFilesFound, hashType);
         if (bmcFilesFound && !valid)
         {
             return false;
@@ -172,11 +247,17 @@ bool Signature::verify()
             // Validate bmcImages
             imageUpdateList.clear();
             imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
-            valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                        imageUpdateList, bmcFilesFound);
-            if (bmcFilesFound && !valid)
+            valid =
+                checkAndVerifyImage(imageDirPath, publicKeyFile,
+                                    imageUpdateList, bmcFilesFound, hashType);
+
+            if (bmcFilesFound && valid)
             {
-                return false;
+                if (!verifyPQSignatures(bmcImages))
+                {
+                    error("PQ image signature verification failed");
+                    return false;
+                }
             }
         }
 
@@ -206,6 +287,34 @@ bool Signature::verify()
                     error("Image file Signature Validation failed on {IMAGE}",
                           "IMAGE", optionalImage);
                     return false;
+                }
+
+                if (pqAlgorithm.has_value())
+                {
+                    fs::path algoDir(imageDirPath / pqAlgorithm->name);
+
+                    if (fs::exists(algoDir, ec))
+                    {
+                        fs::path algoPublicKeyFile =
+                            algoDir / PUBLICKEY_FILE_NAME;
+                        fs::path algoSigFile =
+                            algoDir / (optionalImage + ".sig");
+
+                        if (fs::exists(algoSigFile, ec))
+                        {
+                            bool algoValid =
+                                verifyFile(file, algoSigFile, algoPublicKeyFile,
+                                           pqAlgorithm->hashType);
+                            if (!algoValid)
+                            {
+                                error(
+                                    "Signature validation failed for optional image {IMAGE} with {ALGO}",
+                                    "IMAGE", optionalImage, "ALGO",
+                                    pqAlgorithm->name);
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -284,7 +393,58 @@ bool Signature::systemLevelVerify()
                                    hashFunc);
                 if (valid)
                 {
-                    break;
+                    if (pqAlgorithm.has_value())
+                    {
+                        std::error_code ec;
+                        fs::path algoDir(imageDirPath / pqAlgorithm->name);
+
+                        if (!fs::exists(algoDir, ec))
+                        {
+                            break; // RSA passed, PQ optional
+                        }
+
+                        // Check if system has corresponding key
+                        fs::path systemAlgoKeyPath =
+                            signedConfPath / keyType / pqAlgorithm->name /
+                            PUBLICKEY_FILE_NAME;
+
+                        if (!fs::exists(systemAlgoKeyPath, ec))
+                        {
+                            break; // RSA passed, PQ optional
+                        }
+
+                        fs::path algoManifestSig = algoDir / MANIFEST_FILE_NAME;
+                        algoManifestSig.replace_extension(SIGNATURE_FILE_EXT);
+
+                        fs::path algoPkeySig = algoDir / PUBLICKEY_FILE_NAME;
+                        algoPkeySig.replace_extension(SIGNATURE_FILE_EXT);
+
+                        valid = verifyFile(manifestFile, algoManifestSig,
+                                           systemAlgoKeyPath,
+                                           pqAlgorithm->hashType);
+                        if (!valid)
+                        {
+                            error("System level verification failed for {ALGO}",
+                                  "ALGO", pqAlgorithm->name);
+                            break;
+                        }
+
+                        valid =
+                            verifyFile(pkeyFile, algoPkeySig, systemAlgoKeyPath,
+                                       pqAlgorithm->hashType);
+                        if (!valid)
+                        {
+                            error(
+                                "System level publickey verification failed for {ALGO}",
+                                "ALGO", pqAlgorithm->name);
+                            break;
+                        }
+                    }
+
+                    if (valid)
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -312,16 +472,15 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    // Create RSA.
-    auto publicRSA = createPublicRSA(publicKey);
-    if (!publicRSA)
+    auto publicKeyPtr = createPublicKey(publicKey);
+    if (!publicKeyPtr)
     {
-        error("Failed to create RSA from {PATH}", "PATH", publicKey);
+        error("Failed to create public key from {PATH}", "PATH", publicKey);
         elog<InternalFailure>();
     }
 
     // Initializes a digest context.
-    EVP_MD_CTX_Ptr rsaVerifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+    EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
 
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();
@@ -335,8 +494,8 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    auto result = EVP_DigestVerifyInit(rsaVerifyCtx.get(), nullptr, hashStruct,
-                                       nullptr, publicRSA.get());
+    auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, hashStruct,
+                                       nullptr, publicKeyPtr.get());
 
     if (result <= 0)
     {
@@ -349,7 +508,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     auto size = fs::file_size(file, ec);
     auto dataPtr = mapFile(file, size);
 
-    result = EVP_DigestVerifyUpdate(rsaVerifyCtx.get(), dataPtr(), size);
+    result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
     if (result <= 0)
     {
         error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
@@ -362,8 +521,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     auto signature = mapFile(sigFile, size);
 
     result = EVP_DigestVerifyFinal(
-        rsaVerifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
-        size);
+        verifyCtx.get(), reinterpret_cast<unsigned char*>(signature()), size);
 
     // Check the verification result.
     if (result < 0)
@@ -382,7 +540,7 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
     return true;
 }
 
-inline EVP_PKEY_Ptr Signature::createPublicRSA(const fs::path& publicKey)
+inline EVP_PKEY_Ptr Signature::createPublicKey(const fs::path& publicKey)
 {
     std::error_code ec;
     auto size = fs::file_size(publicKey, ec);
@@ -411,7 +569,8 @@ CustomMap Signature::mapFile(const fs::path& path, size_t size)
 
 bool Signature::checkAndVerifyImage(
     const std::string& filePath, const std::string& publicKeyPath,
-    const std::vector<std::string>& imageList, bool& fileFound)
+    const std::vector<std::string>& imageList, bool& fileFound,
+    const std::string& hashType, const std::string& sigSubDir)
 {
     bool valid = true;
 
@@ -429,8 +588,19 @@ bool Signature::checkAndVerifyImage(
         }
         fileFound = true;
 
-        fs::path sigFile(file);
-        sigFile += SIGNATURE_FILE_EXT;
+        fs::path sigFile;
+        if (sigSubDir.empty())
+        {
+            // Top-level: signature in same directory
+            sigFile = file;
+            sigFile += SIGNATURE_FILE_EXT;
+        }
+        else
+        {
+            // Subdirectory: signature in algorithm-specific subdirectory
+            sigFile = fs::path(filePath) / sigSubDir /
+                      (bmcImage + SIGNATURE_FILE_EXT);
+        }
 
         // Verify the signature.
         valid = verifyFile(file, sigFile, publicKeyPath, hashType);
@@ -444,6 +614,36 @@ bool Signature::checkAndVerifyImage(
 
     return valid;
 }
+
+bool Signature::verifyPQSignatures(const std::vector<std::string>& imageList)
+{
+    if (!pqAlgorithm.has_value())
+    {
+        return true; // No PQ algorithm, skip
+    }
+
+    std::error_code ec;
+    fs::path algoDir(imageDirPath / pqAlgorithm->name);
+
+    if (!fs::exists(algoDir, ec))
+    {
+        return true; // PQ directory doesn't exist, optional
+    }
+
+    fs::path algoPublicKeyFile = algoDir / PUBLICKEY_FILE_NAME;
+    if (!fs::exists(algoPublicKeyFile, ec))
+    {
+        error("Public key not found in {ALGO} directory", "ALGO",
+              pqAlgorithm->name);
+        return false;
+    }
+
+    bool algoFileFound = false;
+    return checkAndVerifyImage(imageDirPath, algoPublicKeyFile.string(),
+                               imageList, algoFileFound, pqAlgorithm->hashType,
+                               pqAlgorithm->name);
+}
+
 } // namespace image
 } // namespace software
 } // namespace phosphor

@@ -237,6 +237,39 @@ class Signature
                              const std::string& publicKeyPath,
                              const std::vector<std::string>& imageList,
                              bool& fileFound);
+
+    /**
+     * @brief System level verification for MLDSA signatures
+     *
+     * @return true if signature verification was successful, false if not
+     */
+    bool systemLevelVerifyMLDSA();
+
+    /**
+     * @brief Verify file signature using MLDSA with SHA3-512
+     *
+     * @param[in]  - Image file path
+     * @param[in]  - Signature file path
+     * @param[in]  - MLDSA public key path
+     * @return true if signature verification was successful, false if not
+     */
+    static bool verifyFileMLDSA(const fs::path& file,
+                                const fs::path& signature,
+                                const fs::path& publicKey);
+
+    /**
+     * @brief Create MLDSA key object
+     * @param[in]  - publickey path
+     * @param[out] - EVP_PKEY Object for MLDSA
+     */
+
+    static inline EVP_PKEY_Ptr createPublicMLDSA(const fs::path& publicKey);
+    /**
+     * @brief Verify MLDSA signatures for all image files
+     *
+     * @return true if signature verification was successful, false if not
+     */
+    bool verifyMLDSASignatures();
 };
 
 } // namespace image

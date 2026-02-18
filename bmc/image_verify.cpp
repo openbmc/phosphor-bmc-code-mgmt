@@ -35,6 +35,8 @@ using InternalFailure =
 
 constexpr auto keyTypeTag = "KeyType";
 constexpr auto hashFunctionTag = "HashType";
+constexpr auto mldsaDirName = "MLDSA";
+constexpr auto sha3_512HashFunc = "sha3-512";
 
 Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
@@ -132,6 +134,33 @@ bool Signature::verifyFullImage()
 
     ret = verifyFile(pkeyFullFile, pkeyFullFileSig, publicKeyFile, hashType);
 
+    if (ret)
+    {
+        fs::path mldsaDir(imageDirPath / mldsaDirName);
+        std::error_code ec2;
+
+        if (fs::exists(mldsaDir, ec2))
+        {
+            fs::path mldsaFullImageSig(mldsaDir / "image-full.sig");
+            fs::path mldsaPublicKeyFile(mldsaDir / PUBLICKEY_FILE_NAME);
+
+            if (fs::exists(mldsaFullImageSig, ec2) &&
+                fs::exists(tmpFullFile, ec2))
+            {
+                ret = verifyFileMLDSA(tmpFullFile, mldsaFullImageSig,
+                                      mldsaPublicKeyFile);
+                if (!ret)
+                {
+                    error("MLDSA full image signature validation failed");
+                }
+                else
+                {
+                    debug("MLDSA full image signature verification successful");
+                }
+            }
+        }
+    }
+
     std::error_code ec;
     fs::remove(tmpFullFile, ec);
 #endif
@@ -174,9 +203,13 @@ bool Signature::verify()
             imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
             valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
                                         imageUpdateList, bmcFilesFound);
-            if (bmcFilesFound && !valid)
+            if (bmcFilesFound && valid)
             {
-                return false;
+                if (!verifyMLDSASignatures())
+                {
+                    error("MLDSA image signature verification failed");
+                    return false;
+                }
             }
         }
 
@@ -206,6 +239,27 @@ bool Signature::verify()
                     error("Image file Signature Validation failed on {IMAGE}",
                           "IMAGE", optionalImage);
                     return false;
+                }
+
+                // Verify MLDSA signature for optional image if present
+                fs::path mldsaDir(imageDirPath / mldsaDirName);
+                if (fs::exists(mldsaDir, ec))
+                {
+                    fs::path mldsaPublicKeyFile(mldsaDir / PUBLICKEY_FILE_NAME);
+                    fs::path mldsaSigFile(mldsaDir / (optionalImage + ".sig"));
+
+                    if (fs::exists(mldsaSigFile, ec))
+                    {
+                        bool mldsaValid = verifyFileMLDSA(file, mldsaSigFile,
+                                                          mldsaPublicKeyFile);
+                        if (!mldsaValid)
+                        {
+                            error(
+                                "MLDSA validation failed for optional image {IMAGE}",
+                                "IMAGE", optionalImage);
+                            return false;
+                        }
+                    }
                 }
             }
         }
@@ -284,7 +338,11 @@ bool Signature::systemLevelVerify()
                                    hashFunc);
                 if (valid)
                 {
-                    break;
+                    valid = systemLevelVerifyMLDSA();
+                    if (valid)
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -443,6 +501,212 @@ bool Signature::checkAndVerifyImage(
     }
 
     return valid;
+}
+
+inline EVP_PKEY_Ptr Signature::createPublicMLDSA(const fs::path& publicKey)
+{
+    std::error_code ec;
+    auto size = fs::file_size(publicKey, ec);
+
+    auto data = mapFile(publicKey, size);
+
+    BIO_MEM_Ptr keyBio(BIO_new_mem_buf(data(), -1), &::BIO_free);
+    if (keyBio.get() == nullptr)
+    {
+        error("Failed to create new BIO Memory buffer for MLDSA key");
+        elog<InternalFailure>();
+    }
+
+    EVP_PKEY* pkey = 
+        PEM_read_bio_PUBKEY(keyBio.get(), nullptr, nullptr, nullptr);
+    if (pkey == nullptr)
+    {
+        error("Failed to read MLDSA public key from PEM format");
+        elog<InternalFailure>();
+    }
+
+    return {pkey, &::EVP_PKEY_free};
+}
+
+bool Signature::verifyFileMLDSA(const fs::path& file, const fs::path& sigFile,
+                                const fs::path& publicKey)
+{
+    std::error_code ec;
+    if (!(fs::exists(file, ec) && fs::exists(sigFile, ec)))
+    {
+        error("Failed to find MLDSA data or signature file {PATH}", "PATH",
+              file);
+        if (ec)
+        {
+            error("Error message: {ERROR_MSG}", "ERROR_MSG", ec.message());
+        }
+        elog<InternalFailure>();
+    }
+
+    auto mldsaPublicKey = createPublicMLDSA(publicKey);
+    if (!mldsaPublicKey)
+    {
+        error("Failed to create MLDSA public key from {PATH}", "PATH",
+              publicKey);
+        elog<InternalFailure>();
+    }
+
+    EVP_MD_CTX_Ptr mldsaVerifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+    OpenSSL_add_all_digests();
+
+    auto hashStruct = EVP_get_digestbyname(sha3_512HashFunc);
+    if (!hashStruct)
+    {
+        error("EVP_get_digestbyname: Unknown message digest: {HASH}", "HASH",
+              sha3_512HashFunc);
+        elog<InternalFailure>();
+    }
+
+    auto result =
+        EVP_DigestVerifyInit(mldsaVerifyCtx.get(), nullptr, hashStruct, nullptr,
+                             mldsaPublicKey.get());
+    if (result <= 0)
+    {
+        error("Error ({RC}) occurred during MLDSA EVP_DigestVerifyInit", "RC",
+              ERR_get_error());
+        elog<InternalFailure>();
+    }
+
+    auto size = fs::file_size(file, ec);
+    auto dataPtr = mapFile(file, size);
+    result = EVP_DigestVerifyUpdate(mldsaVerifyCtx.get(), dataPtr(), size);
+    if (result <= 0)
+    {
+        error("Error ({RC}) occurred during MLDSA EVP_DigestVerifyUpdate", "RC",
+              ERR_get_error());
+        elog<InternalFailure>();
+    }
+
+    size = fs::file_size(sigFile, ec);
+    auto signature = mapFile(sigFile, size);
+    result = EVP_DigestVerifyFinal(
+        mldsaVerifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
+        size);
+
+    if (result < 0)
+    {
+        error("Error ({RC}) occurred during MLDSA EVP_DigestVerifyFinal", "RC",
+              ERR_get_error());
+        elog<InternalFailure>();
+    }
+
+    if (result == 0)
+    {
+        error("MLDSA signature validation failed on {PATH}", "PATH", sigFile);
+        return false;
+    }
+
+    return true;
+}
+
+bool Signature::systemLevelVerifyMLDSA()
+{
+    fs::path mldsaDir(imageDirPath / mldsaDirName);
+    std::error_code ec;
+
+    if (!fs::exists(mldsaDir, ec))
+    {
+        return true;
+    }
+
+    auto keyTypes = getAvailableKeyTypesFromSystem();
+    if (keyTypes.empty())
+    {
+        error("Missing Signature configuration data in system");
+        elog<InternalFailure>();
+    }
+
+    fs::path manifestFile(imageDirPath / MANIFEST_FILE_NAME);
+    fs::path mldsaPkeyFile(mldsaDir / PUBLICKEY_FILE_NAME);
+    fs::path mldsaPkeyFileSig(mldsaDir / "publickey.sig");
+    fs::path mldsaManifestFileSig(mldsaDir / "MANIFEST.sig");
+
+    auto valid = false;
+
+    for (const auto& keyType : keyTypes)
+    {
+        fs::path systemMldsaKeyPath = 
+            signedConfPath / keyType / mldsaDirName / PUBLICKEY_FILE_NAME;
+
+        if (!fs::exists(systemMldsaKeyPath, ec))
+        {
+            debug("System MLDSA key not found for {KEYTYPE}, trying next",
+                  "KEYTYPE", keyType);
+            continue;
+        }
+
+        try
+        {
+            valid = verifyFileMLDSA(manifestFile, mldsaManifestFileSig,
+                                    systemMldsaKeyPath);
+            if (valid)
+            {
+                valid = verifyFileMLDSA(mldsaPkeyFile, mldsaPkeyFileSig,
+                                        systemMldsaKeyPath);
+                if (valid)
+                {
+                    debug(
+                        "MLDSA system level verification successful with {KEYTYPE}",
+                        "KEYTYPE", keyType);
+                    break;
+                }
+            }
+        }
+        catch (const InternalFailure& e)
+        {
+            valid = false;
+        }
+    }
+
+    return valid;
+}
+
+bool Signature::verifyMLDSASignatures()
+{
+    fs::path mldsaDir(imageDirPath / mldsaDirName);
+    std::error_code ec;
+
+    if (!fs::exists(mldsaDir, ec))
+    {
+        debug("MLDSA directory not found, skipping MLDSA image verification");
+        return true;
+    }
+
+    fs::path mldsaPublicKeyFile(mldsaDir / PUBLICKEY_FILE_NAME);
+    std::vector<std::string> imageList = bmcImages;
+    imageList.push_back("image-hostfw");
+
+    for (const auto& imageName : imageList)
+    {
+        fs::path imageFile(imageDirPath / imageName);
+        if (!fs::exists(imageFile, ec))
+        {
+            continue;
+        }
+
+        fs::path mldsaSigFile(mldsaDir / (imageName + ".sig"));
+        if (!fs::exists(mldsaSigFile, ec))
+        {
+            error("MLDSA signature file not found for {IMAGE}", "IMAGE", imageName);
+            return false;
+        }
+
+        bool valid =
+            verifyFileMLDSA(imageFile, mldsaSigFile, mldsaPublicKeyFile);
+        if (!valid)
+        {
+            error("MLDSA signature validation failed for {IMAGE}", "IMAGE",
+                  imageName);
+            return false;
+        }
+    }
+
+    return true;
 }
 } // namespace image
 } // namespace software

@@ -1,8 +1,5 @@
 #include "pldm_package_util.hpp"
 
-#include "package_parser.hpp"
-#include "types.hpp"
-
 #include <fcntl.h>
 #include <libpldm/base.h>
 #include <libpldm/firmware_update.h>
@@ -11,6 +8,7 @@
 #include <stdlib.h>
 #include <sys/mman.h>
 
+#include <libpldm++/firmware_update.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/message/native_types.hpp>
 
@@ -25,33 +23,24 @@ using namespace pldm::fw_update;
 namespace pldm_package_util
 {
 
-std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf, size_t size)
+std::unique_ptr<pldm::fw_update::Package> parsePLDMPackage(const uint8_t* buf,
+                                                           size_t size)
 {
-    std::vector<uint8_t> pkgData;
+    const std::span<const uint8_t> pkgSpan = {buf, size};
 
-    pkgData.reserve(size);
-    for (size_t i = 0; i < size; i++)
+    std::expected<std::unique_ptr<Package>, PackageParserError> res =
+        pldm::fw_update::PackageParser::parse(pkgSpan, PackagePin::v1);
+
+    if (!res.has_value())
     {
-        pkgData.push_back(buf[i]);
+        error("Failed to parse PLDM package: {ERR}", "ERR", res.error().msg);
+        return nullptr;
     }
 
-    debug("parsing package header");
+    // take ownership of the package pointer
+    Package* pkg = res.value().release();
 
-    std::unique_ptr<PackageParser> packageParser =
-        pldm::fw_update::parsePackageHeader(pkgData);
-
-    if (packageParser == nullptr)
-    {
-        error("could not parse package header");
-        return packageParser;
-    }
-
-    debug("parsing package, pkg header size: {N}", "N",
-          packageParser->pkgHeaderSize);
-
-    packageParser->parse(pkgData, pkgData.size());
-
-    return packageParser;
+    return std::unique_ptr<Package>(pkg);
 }
 
 int readImagePackage(FILE* file, uint8_t* packageData, const size_t packageSize)
@@ -121,28 +110,26 @@ std::unique_ptr<void, std::function<void(void*)>> mmapImagePackage(
 bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
                                        const std::string& compatible)
 {
-    Descriptors desc = std::get<3>(record);
+    const auto& desc = record.recordDescriptors;
     if (desc.empty())
     {
         return false;
     }
 
-    if (!desc.contains(0xffff))
+    if (!desc.contains(PLDM_FWUP_VENDOR_DEFINED))
     {
         return false;
     }
 
-    auto v = desc[0xffff];
+    auto& v = desc.at(PLDM_FWUP_VENDOR_DEFINED);
 
-    if (!std::holds_alternative<VendorDefinedDescriptorInfo>(v))
+    if (!v->vendorDefinedDescriptorTitle.has_value())
     {
         debug("descriptor does not have the vendor defined descriptor info");
         return false;
     }
 
-    auto data = std::get<VendorDefinedDescriptorInfo>(v);
-
-    std::string actualCompatible = std::get<VendorDefinedDescriptorTitle>(data);
+    std::string actualCompatible = v->vendorDefinedDescriptorTitle.value();
 
     return compatible == actualCompatible;
 }
@@ -150,36 +137,31 @@ bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
 bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
                                  uint32_t vendorIANA)
 {
-    Descriptors desc = std::get<3>(record);
+    const auto& desc = record.recordDescriptors;
 
     if (desc.empty())
     {
         return false;
     }
 
-    if (!desc.contains(0x1))
+    if (!desc.contains(PLDM_FWUP_IANA_ENTERPRISE_ID))
     {
         error("did not find iana enterprise id");
         return false;
     }
 
-    auto viana = desc[0x1];
+    auto& viana = desc.at(PLDM_FWUP_IANA_ENTERPRISE_ID);
 
-    if (!std::holds_alternative<DescriptorData>(viana))
-    {
-        error("did not find iana enterprise id");
-        return false;
-    }
+    const DescriptorData& dd = *viana;
 
-    const DescriptorData& dd = std::get<DescriptorData>(viana);
-
-    if (dd.size() != 4)
+    if (dd.data.size() != 4)
     {
         error("descriptor data wrong size ( != 4) for vendor iana");
         return false;
     }
 
-    const uint32_t actualIANA = dd[0] | dd[1] << 8 | dd[2] << 16 | dd[3] << 24;
+    const uint32_t actualIANA =
+        dd.data[0] | dd.data[1] << 8 | dd.data[2] << 16 | dd.data[3] << 24;
 
     return actualIANA == vendorIANA;
 }
@@ -192,7 +174,7 @@ bool fwDeviceIDRecordMatches(const FirmwareDeviceIDRecord& record,
 }
 
 ssize_t findMatchingDeviceDescriptorIndex(
-    const FirmwareDeviceIDRecords& records, uint32_t vendorIANA,
+    const std::vector<FirmwareDeviceIDRecord>& records, uint32_t vendorIANA,
     const std::string& compatible)
 {
     for (size_t i = 0; i < records.size(); i++)
@@ -207,13 +189,13 @@ ssize_t findMatchingDeviceDescriptorIndex(
 }
 
 int extractMatchingComponentImage(
-    const std::shared_ptr<PackageParser>& packageParser,
+    const uint8_t* buf, const std::unique_ptr<Package>& package,
     const std::string& compatible, uint32_t vendorIANA,
     uint32_t* componentOffsetOut, size_t* componentSizeOut,
     std::string& componentVersionOut)
 {
-    const FirmwareDeviceIDRecords& fwDeviceIdRecords =
-        packageParser->getFwDeviceIDRecords();
+    const std::vector<FirmwareDeviceIDRecord>& fwDeviceIdRecords =
+        package->firmwareDeviceIdRecords;
 
     // find fw descriptor matching vendor iana and compatible
     ssize_t deviceDescriptorIndex = findMatchingDeviceDescriptorIndex(
@@ -232,7 +214,7 @@ int extractMatchingComponentImage(
     // find applicable components
     // iterate over components to find the applicable component
 
-    ApplicableComponents ac = std::get<1>(descriptor);
+    const std::vector<size_t>& ac = descriptor.applicableComponents;
 
     if (ac.empty())
     {
@@ -243,7 +225,8 @@ int extractMatchingComponentImage(
     // component is 0 based index
     const size_t component = ac[0];
 
-    const ComponentImageInfos& cs = packageParser->getComponentImageInfos();
+    const std::vector<ComponentImageInfo>& cs =
+        package->componentImageInformation;
 
     if (component >= cs.size())
     {
@@ -253,12 +236,10 @@ int extractMatchingComponentImage(
 
     const ComponentImageInfo& c = cs[component];
 
-    CompLocationOffset off = std::get<5>(c);
-    CompSize size = std::get<6>(c);
-
-    *componentOffsetOut = off;
-    *componentSizeOut = size;
-    componentVersionOut = std::get<7>(c);
+    // calculate component offset with pointer arithmetic
+    *componentOffsetOut = c.componentLocation.ptr - buf;
+    *componentSizeOut = c.componentLocation.length;
+    componentVersionOut = c.componentVersion;
 
     return EXIT_SUCCESS;
 }

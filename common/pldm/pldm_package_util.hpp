@@ -1,7 +1,17 @@
 #pragma once
 
-#include "package_parser.hpp"
 #include "sdbusplus/message/native_types.hpp"
+
+// To avoid inconsistent definitions w.r.t symbol visibility,
+// libpldm++ headers declare the same symbol visibility as the cpp files.
+// Cancel out the symbol visibility here since we don't need to know
+// and only link to it.
+
+#define LIBPLDM_ABI_TESTING
+#define LIBPLDM_ABI_STABLE
+#define LIBPLDM_ABI_DEPRECATED
+
+#include <libpldm++/firmware_update.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -14,9 +24,9 @@ namespace pldm_package_util
 
 // @param buf           pointer to the pldm package
 // @param size          size of 'buf'
-// @returns             PackageParser instance
-std::shared_ptr<PackageParser> parsePLDMPackage(const uint8_t* buf,
-                                                size_t size);
+// @returns             Package instance
+std::shared_ptr<pldm::fw_update::Package> parsePLDMPackage(const uint8_t* buf,
+                                                           size_t size);
 
 // reads into a buffer, from file
 // @param file            the file to read from
@@ -30,7 +40,8 @@ int readImagePackage(FILE* file, uint8_t* packageData, size_t packageSize);
 std::unique_ptr<void, std::function<void(void*)>> mmapImagePackage(
     sdbusplus::message::unix_fd image, size_t* sizeOut);
 
-// @param packageParser          PackageParser instance
+// @param buf                    original package buffer
+// @param package                Package instance
 // @param compatible             'compatible' string of device
 // @param vendorIANA             vendor iana of device
 // @param componentOffsetOut     function returns offset of component image
@@ -38,7 +49,8 @@ std::unique_ptr<void, std::function<void(void*)>> mmapImagePackage(
 // @param componentVersionOut    function returns version of component image
 // @returns                      0 on success
 int extractMatchingComponentImage(
-    const std::shared_ptr<PackageParser>& packageParser,
+    const uint8_t* buf,
+    const std::shared_ptr<pldm::fw_update::Package>& package,
     const std::string& compatible, uint32_t vendorIANA,
     uint32_t* componentOffsetOut, size_t* componentSizeOut,
     std::string& componentVersionOut);

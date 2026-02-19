@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common/pldm/package_parser.hpp"
 #include "software.hpp"
 #include "software_config.hpp"
 

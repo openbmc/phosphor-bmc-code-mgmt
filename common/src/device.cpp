@@ -46,11 +46,11 @@ sdbusplus::async::task<bool> Device::getImageInfo(
     size_t* componentImageSize, std::string& componentVersion)
 
 {
-    std::shared_ptr<PackageParser> packageParser =
+    std::unique_ptr<pldm::fw_update::Package> package =
         pldm_package_util::parsePLDMPackage(
             static_cast<uint8_t*>(pldmPackage.get()), pldmPackageSize);
 
-    if (packageParser == nullptr)
+    if (package == nullptr)
     {
         error("could not parse PLDM package");
         co_return false;
@@ -58,8 +58,9 @@ sdbusplus::async::task<bool> Device::getImageInfo(
 
     uint32_t componentOffset = 0;
     const int status = pldm_package_util::extractMatchingComponentImage(
-        packageParser, config.compatibleHardware, config.vendorIANA,
-        &componentOffset, componentImageSize, componentVersion);
+        static_cast<uint8_t*>(pldmPackage.get()), package,
+        config.compatibleHardware, config.vendorIANA, &componentOffset,
+        componentImageSize, componentVersion);
 
     if (status != 0)
     {

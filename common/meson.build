@@ -34,5 +34,6 @@ software_common_lib = static_library(
         sdbusplus_dep,
         libgpiod_dep,
         libpldm_dep,
+        libpldmcpp_dep,
     ],
 )

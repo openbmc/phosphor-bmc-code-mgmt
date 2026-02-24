@@ -16,6 +16,24 @@
       "message": "It seems the new functions are pretty much identical to the existing ones. Instead of duplicating the code, could we call checkAndVerifyImage() once more but setting hashType to the new sha3_512HashFunc value?\nThe systemLevelVerify() function would just need updating to build the paths from the top level or the MLDSA subdir.",
       "revId": "a5076ce8bbda40389c3923ed21306395441bc7ff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6361ca9_baa578df",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T07:10:10Z",
+      "side": 1,
+      "message": "Refactored the code to avoid duplication. Please review",
+      "parentUuid": "57d94fed_e7167974",
+      "revId": "a5076ce8bbda40389c3923ed21306395441bc7ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

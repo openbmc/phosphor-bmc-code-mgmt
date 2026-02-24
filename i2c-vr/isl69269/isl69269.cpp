@@ -360,7 +360,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
 
                     if (generation == Gen::Gen3)
                     {
-                        // According to programing guide:
+                        // According to programming guide:
                         // If legacy hex file
                         // MSB device revision == 0x00 | 0x01
                         if (configuration.devRevExp < (gen3SWRevMin << 24))
@@ -759,7 +759,7 @@ sdbusplus::async::task<bool> ISL69269::updateFirmware(bool force)
     if (!(co_await program()))
     // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
-        error("programing ISL69269 failed");
+        error("programming ISL69269 failed");
         co_return false;
     }
 

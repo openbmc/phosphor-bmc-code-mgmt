@@ -271,7 +271,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
     if (!(co_await this->getRemainingWrites(&remain)))
     // NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
-        error("Failed to program the VR - unable to obtain remaing writes");
+        error("Failed to program the VR - unable to obtain remaining writes");
         co_return -1;
     }
 

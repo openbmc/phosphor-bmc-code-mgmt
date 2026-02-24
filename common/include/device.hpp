@@ -57,7 +57,7 @@ class Device
     // @param image                The memory fd with the pldm package
     // @param applyTime            When the update should be applied
     // @param swid                 The software id to use
-    // @returns                    true if update was successfull
+    // @returns                    true if update was successful
     sdbusplus::async::task<bool> startUpdateAsync(
         sdbusplus::message::unix_fd image, RequestedApplyTimes applyTime,
         std::unique_ptr<Software> softwareUpdateExternal);

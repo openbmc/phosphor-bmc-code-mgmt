@@ -176,7 +176,7 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
         Version::getRepeatedValues(manifestPath.string(), "CompatibleName");
 
     // Rename IMG_UPLOAD_DIR/imageXXXXXX to IMG_UPLOAD_DIR/id as Manifest
-    // parsing succedded.
+    // parsing succeeded.
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
     fs::rename(tmpDirPath, imageDirPath, ec);

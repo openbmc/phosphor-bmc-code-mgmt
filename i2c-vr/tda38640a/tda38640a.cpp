@@ -453,7 +453,7 @@ sdbusplus::async::task<bool> TDA38640A::updateFirmware(bool force)
     (void)force;
     if (!(co_await program()))
     {
-        error("programing TDA38640A failed");
+        error("programming TDA38640A failed");
         co_return false;
     }
 

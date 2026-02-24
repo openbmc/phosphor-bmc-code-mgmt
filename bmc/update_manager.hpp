@@ -46,7 +46,7 @@ class Manager : public UpdateIntf
 
   private:
     /** @brief Implementation for StartUpdate
-     *  Start a firware update to be performed asynchronously.
+     *  Start a firmware update to be performed asynchronously.
      */
     sdbusplus::message::object_path startUpdate(
         sdbusplus::message::unix_fd image,

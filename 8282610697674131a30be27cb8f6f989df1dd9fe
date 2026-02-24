@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa47803a_268956b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5850a209_792a21f8",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "627e649e_73db281c",
         "filename": "bmc/image_verify.cpp",
         "patchSetId": 20
@@ -31,6 +49,24 @@
       "writtenOn": "2026-02-24T14:22:25Z",
       "side": 1,
       "message": "This function is being called 3 times, we could minimize the amount file open operations if we call it from the constructor were the \"keyType/HashType\" variables are being initialized, and save the PQAlgorithm result for the other functions to use.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6590739e_1d9cc8b9",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "627e649e_73db281c",
       "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2026-02-24T14:22:25Z",
       "side": 1,
       "message": "It is interesting that the sha functions can take the upper case value \"RSA-SHA256\" but for \"SHA3-512\" it needs to be lower case.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a2a3f6e_ec7eeb82",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Tested on OpenSSL 3.5.4 - EVP_get_digestbyname() accepts both \u0027SHA3-512\u0027 and \u0027sha3-512\u0027.",
+      "parentUuid": "72ad386e_37cf1999",
       "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -75,6 +129,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "145311ca_1e63f1e1",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35d227cb_3a10937f",
+      "range": {
+        "startLine": 197,
+        "startChar": 54,
+        "endLine": 197,
+        "endChar": 71
+      },
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a02ce3d_b64c5bfb",
@@ -88,6 +166,24 @@
       "writtenOn": "2026-02-24T14:22:25Z",
       "side": 1,
       "message": "These names can be built with MANIFEST_FILE_NAME/PUBLICKEY_FILE_NAME and SIGNATURE_FILE_EXT as done in line 374 above.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270be265_fd75fca6",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a02ce3d_b64c5bfb",
       "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -109,6 +205,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64164866_b7e4e6f8",
+        "filename": "bmc/image_verify.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e33f39a5_0a359fe0",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8dbcaa6_c08ba5b4",
@@ -122,6 +236,24 @@
       "writtenOn": "2026-02-24T14:22:25Z",
       "side": 1,
       "message": "Let\u0027s add a brief description of this new function.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3261b34_f6ac5758",
+        "filename": "bmc/image_verify.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1001663
+      },
+      "writtenOn": "2026-02-24T17:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8dbcaa6_c08ba5b4",
       "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

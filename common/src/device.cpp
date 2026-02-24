@@ -121,14 +121,14 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
 
     if (applyTime == RequestedApplyTimes::Immediate)
     {
+        std::string swid = softwarePending->swid;
         softwareCurrent = std::move(softwarePending);
 
         // In case an immediate update is triggered after an update for
         // onReset.
         softwarePending = nullptr;
 
-        debug("Successfully updated to software version {SWID}", "SWID",
-              softwareCurrent->swid);
+        debug("Successfully updated to software version {SWID}", "SWID", swid);
     }
 
     co_return true;

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5850a209_792a21f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:26:39Z",
+      "side": 1,
+      "message": "Also if you wouldn\u0027t mind replying to your email \"Adopting FIPS 204 (ML-DSA) Post-Quantum Encryption Standards in BMC Tar Image\" to notify the community that support is coming, it may be useful too to mention that an private community key won\u0027t be added because the quantum verification is optional and we already have the default SHA key.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "627e649e_73db281c",
         "filename": "bmc/image_verify.cpp",
         "patchSetId": 20

@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627e649e_73db281c",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "This function is being called 3 times, we could minimize the amount file open operations if we call it from the constructor were the \"keyType/HashType\" variables are being initialized, and save the PQAlgorithm result for the other functions to use.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ad386e_37cf1999",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "It is interesting that the sha functions can take the upper case value \"RSA-SHA256\" but for \"SHA3-512\" it needs to be lower case.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d227cb_3a10937f",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "Use \u0027imageFullSig\u0027,it was already defined above.",
+      "range": {
+        "startLine": 197,
+        "startChar": 54,
+        "endLine": 197,
+        "endChar": 71
+      },
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a02ce3d_b64c5bfb",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "These names can be built with MANIFEST_FILE_NAME/PUBLICKEY_FILE_NAME and SIGNATURE_FILE_EXT as done in line 374 above.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e33f39a5_0a359fe0",
+        "filename": "bmc/image_verify.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "Let\u0027s update the description with the new parameters.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8dbcaa6_c08ba5b4",
+        "filename": "bmc/image_verify.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-02-24T14:22:25Z",
+      "side": 1,
+      "message": "Let\u0027s add a brief description of this new function.",
+      "revId": "8282610697674131a30be27cb8f6f989df1dd9fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

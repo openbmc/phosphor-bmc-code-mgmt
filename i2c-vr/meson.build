@@ -5,6 +5,7 @@ regulators_src = files(
     'mps/mp297x.cpp',
     'mps/mp2x6xx.cpp',
     'mps/mp5998.cpp',
+    'mps/mpq87xx.cpp',
     'mps/mps.cpp',
     'mps/mpx9xx.cpp',
     'tda38640a/tda38640a.cpp',

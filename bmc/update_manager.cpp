@@ -43,8 +43,13 @@ void ManagerImpl<UpdateIntf>::processImageFailed(
 {
     close(image);
     updateInProgress = false;
-    itemUpdater.updateActivationStatus(id,
-                                       ActivationIntf::Activations::Invalid);
+    if (itemUpdater.updateActivationStatus(
+            id, ActivationIntf::Activations::Invalid))
+    {
+        // Remove the failed activation object to prevent interference with
+        // future updates
+        itemUpdater.erase(id);
+    }
 }
 
 bool verifyImagePurpose(Version::VersionPurpose purpose,

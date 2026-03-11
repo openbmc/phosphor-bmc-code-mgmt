@@ -216,6 +216,8 @@ class SignatureTest : public testing::Test
 
         std::string hashFile = signedConfOpenBMCPath.string() + "/hashfunc";
         command("echo \"HashType=RSA-SHA256\" > " + hashFile);
+        command("echo \"KeyType=OpenBMC\" >> " + manifestFile);
+        command("echo \"MLDSA_Hash_Type=SHA-256,MLDSA\" >> " + manifestFile);
 
         std::string manifestFile = extractPath.string() + "/" + "MANIFEST";
         command(
@@ -257,6 +259,56 @@ class SignatureTest : public testing::Test
                 ubootFile);
         command(opensslCmd + pkeyFile + " -out " + pubkeyFile + ".sig " +
                 pubkeyFile);
+
+        // Generate ML-DSA signatures
+        std::string mldsaConfDir = signedConfOpenBMCPath.string() + "/MLDSA";
+        command("mkdir -p " + mldsaConfDir);
+
+        std::string mldsaPkeyFile =
+            extractPath.string() + "/" + "mldsa_private.pem";
+        command("openssl genpkey -algorithm ML-DSA-87 -out " + mldsaPkeyFile);
+
+        std::string mldsaPubkeyFile =
+            extractPath.string() + "/" + "mldsa_publickey";
+        command("openssl pkey -in " + mldsaPkeyFile + " -pubout -out " +
+                mldsaPubkeyFile);
+        command("cp " + mldsaPubkeyFile + " " + mldsaConfDir);
+
+        command("openssl dgst -sha3-512 -binary " + kernelFile + " > " +
+                kernelFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                kernelFile + ".hash -out " + kernelFile + ".sig");
+        command("rm -f " + kernelFile + ".hash");
+
+        command("openssl dgst -sha3-512 -binary " + manifestFile + " > " +
+                manifestFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                manifestFile + ".hash -out " + manifestFile + ".sig");
+        command("rm -f " + manifestFile + ".hash");
+
+        command("openssl dgst -sha3-512 -binary " + rofsFile + " > " +
+                rofsFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                rofsFile + ".hash -out " + rofsFile + ".sig");
+        command("rm -f " + rofsFile + ".hash");
+
+        command("openssl dgst -sha3-512 -binary " + rwfsFile + " > " +
+                rwfsFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                rwfsFile + ".hash -out " + rwfsFile + ".sig");
+        command("rm -f " + rwfsFile + ".hash");
+
+        command("openssl dgst -sha3-512 -binary " + ubootFile + " > " +
+                ubootFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                ubootFile + ".hash -out " + ubootFile + ".sig");
+        command("rm -f " + ubootFile + ".hash");
+
+        command("openssl dgst -sha3-512 -binary " + mldsaPubkeyFile + " > " +
+                mldsaPubkeyFile + ".hash");
+        command("openssl pkeyutl -sign -inkey " + mldsaPkeyFile + " -in " +
+                mldsaPubkeyFile + ".hash -out " + mldsaPubkeyFile + ".sig");
+        command("rm -f " + mldsaPubkeyFile + ".hash");
 
 #ifdef WANT_SIGNATURE_VERIFY
         std::string fullFile = extractPath.string() + "/" + "image-full";

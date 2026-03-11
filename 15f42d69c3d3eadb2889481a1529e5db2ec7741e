@@ -34,6 +34,24 @@
       "parentUuid": "471e1daa_d4be79ae",
       "revId": "15f42d69c3d3eadb2889481a1529e5db2ec7741e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a9a0e6b_41003202",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-11T08:42:06Z",
+      "side": 1,
+      "message": "I understand you may have had an observation of a segv, but this change does not make sense.  If softwareCurrent-\u003eswid were invalid without your change, it is still invalid with your change. You may have fixed a local variable used in debugging but you haven’t fixed the state of the softwareCurrent variable. \n\nIf there is a bug prior to your code change, there is still a bug after your code change. I do not accept making random illogical changes because it reduces the _observance_ of a bug, without actually fixing the bug. This just sets us up for a future failure when the compiler changes and subtlety introduces the same problem you are now seeing (except then nobody is doing testing of it).\n\nWe should leave this code alone unless we can explain why this fixes a problem. If there is a problem, we need to fix a problem and be able to explain how the fix fixes the problem.\n\n[Are you sure at one point you didn’t have softwarePending-\u003eswid in testing?]",
+      "parentUuid": "72504c8b_fbfa1332",
+      "revId": "15f42d69c3d3eadb2889481a1529e5db2ec7741e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

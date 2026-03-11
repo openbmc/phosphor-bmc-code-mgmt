@@ -17,6 +17,7 @@
 
 #include <cassert>
 #include <fstream>
+#include <iostream>
 #include <set>
 #include <system_error>
 
@@ -36,6 +37,7 @@ using InternalFailure =
 constexpr auto keyTypeTag = "KeyType";
 constexpr auto hashFunctionTag = "HashType";
 constexpr auto hashTagSuffix = "_Hash_Type";
+constexpr auto EVP_PKEY_MLDSA87 = 6;
 
 Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
@@ -83,7 +85,10 @@ AvailableKeyTypes Signature::getAvailableKeyTypesFromSystem() const
             // extract the key types
             // /etc/activationdata/OpenBMC/  -> get OpenBMC from the path
             auto key = p.path().parent_path();
-            keyTypes.insert(key.filename());
+            if (key.parent_path() == signedConfPath)
+            {
+                keyTypes.insert(key.filename());
+            }
         }
     }
 
@@ -224,6 +229,7 @@ bool Signature::verify()
         if (!systemLevelVerify())
         {
             error("System level Signature Validation failed");
+            std::cout << "systemLevelVerify failed" << std::endl;
             return false;
         }
 
@@ -239,6 +245,7 @@ bool Signature::verify()
                                     imageUpdateList, bmcFilesFound, hashType);
         if (bmcFilesFound && !valid)
         {
+            std::cout << "checkAndVerifyImage failed" << std::endl;
             return false;
         }
 
@@ -255,6 +262,7 @@ bool Signature::verify()
             {
                 if (!verifyPQSignatures(bmcImages))
                 {
+                    std::cout << "verifyPQSignatures failed" << std::endl;
                     error("PQ image signature verification failed");
                     return false;
                 }
@@ -354,6 +362,7 @@ bool Signature::systemLevelVerify()
     auto keyTypes = getAvailableKeyTypesFromSystem();
     if (keyTypes.empty())
     {
+        std::cout << "keyTypes empty" << std::endl;
         error("Missing Signature configuration data in system");
         elog<InternalFailure>();
     }
@@ -377,6 +386,7 @@ bool Signature::systemLevelVerify()
     // available Key/hash pair.
     for (const auto& keyType : keyTypes)
     {
+        std::cout << "looping keyType: " << keyType << std::endl;
         auto keyHashPair = getKeyHashFileNames(keyType);
 
         auto hashFunc = Version::getValue(keyHashPair.first, hashFunctionTag);
@@ -461,6 +471,12 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
                            const std::string& hashFunc)
 {
     // Check existence of the files in the system.
+    std::cout << "inside verifyFile" << std::endl;
+    std::cout << "file: " << file << std::endl;
+    std::cout << "sigFile: " << sigFile << std::endl;
+    std::cout << "publicKey: " << publicKey << std::endl;
+    std::cout << "hashFunc: " << hashFunc << std::endl;
+
     std::error_code ec;
     if (!(fs::exists(file, ec) && fs::exists(sigFile, ec)))
     {
@@ -479,9 +495,6 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    // Initializes a digest context.
-    EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
-
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();
 
@@ -494,50 +507,124 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, hashStruct,
-                                       nullptr, publicKeyPtr.get());
-
-    if (result <= 0)
-    {
-        error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
-    }
-
-    // Hash the data file and update the verification context
     auto size = fs::file_size(file, ec);
     auto dataPtr = mapFile(file, size);
 
-    result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
-    if (result <= 0)
+    auto sigSize = fs::file_size(sigFile, ec);
+    auto signature = mapFile(sigFile, sigSize);
+
+    // Check if this is an ML-DSA key
+    int keyType = EVP_PKEY_id(publicKeyPtr.get());
+    bool isMLDSA = (keyType == EVP_PKEY_MLDSA87);
+
+    if (!isMLDSA)
     {
-        error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
+        // Initializes a digest context.
+        EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+
+        auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, hashStruct,
+                                           nullptr, publicKeyPtr.get());
+
+        if (result <= 0)
+        {
+            std::cout << "EVP_DigestVerifyInit failed" << std::endl;
+            error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        // Hash the data file and update the verification context
+        result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
+        if (result <= 0)
+        {
+            std::cout << "EVP_DigestVerifyUpdate failed" << std::endl;
+            error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        // Verify the data with signature.
+        result = EVP_DigestVerifyFinal(
+            verifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
+            sigSize);
+
+        // Check the verification result.
+        if (result < 0)
+        {
+            std::cout << "EVP_DigestVerifyFinal failed" << std::endl;
+            error("Error ({RC}) occurred during EVP_DigestVerifyFinal", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (result == 0)
+        {
+            std::cout << "Signature validationl failed" << std::endl;
+            error("EVP_DigestVerifyFinal:Signature validation failed on {PATH}",
+                  "PATH", sigFile);
+            return false;
+        }
+        return true;
     }
-
-    // Verify the data with signature.
-    size = fs::file_size(sigFile, ec);
-    auto signature = mapFile(sigFile, size);
-
-    result = EVP_DigestVerifyFinal(
-        verifyCtx.get(), reinterpret_cast<unsigned char*>(signature()), size);
-
-    // Check the verification result.
-    if (result < 0)
+    else
     {
-        error("Error ({RC}) occurred during EVP_DigestVerifyFinal", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
-    }
+        EVP_MD_CTX_Ptr hashCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
 
-    if (result == 0)
-    {
-        error("EVP_DigestVerifyFinal:Signature validation failed on {PATH}",
-              "PATH", sigFile);
-        return false;
+        if (EVP_DigestInit_ex(hashCtx.get(), hashStruct, nullptr) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestInit_ex", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (EVP_DigestUpdate(hashCtx.get(), dataPtr(), size) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestUpdate", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        unsigned char hash[EVP_MAX_MD_SIZE];
+        unsigned int hashLen = 0;
+
+        if (EVP_DigestFinal_ex(hashCtx.get(), hash, &hashLen) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestFinal_ex", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+        auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, nullptr,
+                                           nullptr, publicKeyPtr.get());
+        if (result <= 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        result = EVP_DigestVerify(verifyCtx.get(),
+                                  reinterpret_cast<unsigned char*>(signature()),
+                                  sigSize, hash, hashLen);
+
+        if (result < 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerify", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (result == 0)
+        {
+            error(
+                "EVP_DigestVerify: ML-DSA signature validation failed on {PATH}",
+                "PATH", sigFile);
+            return false;
+        }
+
+        return true;
     }
-    return true;
 }
 
 inline EVP_PKEY_Ptr Signature::createPublicKey(const fs::path& publicKey)

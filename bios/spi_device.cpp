@@ -114,6 +114,14 @@ sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
         setUpdateProgress(100);
     }
 
+    // lift the activation blocks transition to prevent rejection of the
+    // host power state restore request.
+    if (softwarePending)
+    {
+        softwarePending->setActivationBlocksTransition(false);
+        debug("ActivationBlocksTransition lifted for host power restore");
+    }
+
     // restore the previous powerstate
     const bool powerstate_restore =
         co_await HostPower::setState(ctx, prevPowerstate);

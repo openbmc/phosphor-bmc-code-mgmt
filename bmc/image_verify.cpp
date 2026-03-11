@@ -36,6 +36,7 @@ using InternalFailure =
 constexpr auto keyTypeTag = "KeyType";
 constexpr auto hashFunctionTag = "HashType";
 constexpr auto hashTagSuffix = "_Hash_Type";
+constexpr auto EVP_PKEY_MLDSA87 = 6;
 
 Signature::Signature(const fs::path& imageDirPath,
                      const fs::path& signedConfPath) :
@@ -479,9 +480,6 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    // Initializes a digest context.
-    EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
-
     // Adds all digest algorithms to the internal table
     OpenSSL_add_all_digests();
 
@@ -494,50 +492,120 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
         elog<InternalFailure>();
     }
 
-    auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, hashStruct,
-                                       nullptr, publicKeyPtr.get());
-
-    if (result <= 0)
-    {
-        error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
-    }
-
-    // Hash the data file and update the verification context
     auto size = fs::file_size(file, ec);
     auto dataPtr = mapFile(file, size);
 
-    result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
-    if (result <= 0)
+    auto sigSize = fs::file_size(sigFile, ec);
+    auto signature = mapFile(sigFile, sigSize);
+
+    // Check if this is an ML-DSA key
+    int keyType = EVP_PKEY_id(publicKeyPtr.get());
+    bool isMLDSA = (keyType == EVP_PKEY_MLDSA87);
+
+    if (!isMLDSA)
     {
-        error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
+        // Initializes a digest context.
+        EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+
+        auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, hashStruct,
+                                           nullptr, publicKeyPtr.get());
+
+        if (result <= 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        // Hash the data file and update the verification context
+        result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
+        if (result <= 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerifyUpdate", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        // Verify the data with signature.
+        result = EVP_DigestVerifyFinal(
+            verifyCtx.get(), reinterpret_cast<unsigned char*>(signature()),
+            sigSize);
+
+        // Check the verification result.
+        if (result < 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerifyFinal", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (result == 0)
+        {
+            error("EVP_DigestVerifyFinal:Signature validation failed on {PATH}",
+                  "PATH", sigFile);
+            return false;
+        }
+        return true;
     }
-
-    // Verify the data with signature.
-    size = fs::file_size(sigFile, ec);
-    auto signature = mapFile(sigFile, size);
-
-    result = EVP_DigestVerifyFinal(
-        verifyCtx.get(), reinterpret_cast<unsigned char*>(signature()), size);
-
-    // Check the verification result.
-    if (result < 0)
+    else
     {
-        error("Error ({RC}) occurred during EVP_DigestVerifyFinal", "RC",
-              ERR_get_error());
-        elog<InternalFailure>();
-    }
+        EVP_MD_CTX_Ptr hashCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
 
-    if (result == 0)
-    {
-        error("EVP_DigestVerifyFinal:Signature validation failed on {PATH}",
-              "PATH", sigFile);
-        return false;
+        if (EVP_DigestInit_ex(hashCtx.get(), hashStruct, nullptr) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestInit_ex", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (EVP_DigestUpdate(hashCtx.get(), dataPtr(), size) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestUpdate", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        unsigned char hash[EVP_MAX_MD_SIZE];
+        unsigned int hashLen = 0;
+
+        if (EVP_DigestFinal_ex(hashCtx.get(), hash, &hashLen) != 1)
+        {
+            error("Error ({RC}) occurred during EVP_DigestFinal_ex", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        EVP_MD_CTX_Ptr verifyCtx(EVP_MD_CTX_new(), ::EVP_MD_CTX_free);
+        auto result = EVP_DigestVerifyInit(verifyCtx.get(), nullptr, nullptr,
+                                           nullptr, publicKeyPtr.get());
+        if (result <= 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerifyInit", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        result = EVP_DigestVerify(verifyCtx.get(),
+                                  reinterpret_cast<unsigned char*>(signature()),
+                                  sigSize, hash, hashLen);
+
+        if (result < 0)
+        {
+            error("Error ({RC}) occurred during EVP_DigestVerify", "RC",
+                  ERR_get_error());
+            elog<InternalFailure>();
+        }
+
+        if (result == 0)
+        {
+            error(
+                "EVP_DigestVerify: ML-DSA signature validation failed on {PATH}",
+                "PATH", sigFile);
+            return false;
+        }
+
+        return true;
     }
-    return true;
 }
 
 inline EVP_PKEY_Ptr Signature::createPublicKey(const fs::path& publicKey)

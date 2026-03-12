@@ -32,7 +32,7 @@ std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD(
         case latticeChipFamily::XO5:
             return std::make_unique<LatticeXO5CPLD>(
                 CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
-                chipModelStr, target, false);
+                chipModelStr, target, chipEnum, false);
         default:
             lg2::error("Unsupported Lattice CPLD chip family: {CHIPMODEL}",
                        "CHIPMODEL", chipModelStr);

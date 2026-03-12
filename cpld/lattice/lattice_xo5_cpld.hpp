@@ -6,11 +6,11 @@ namespace phosphor::software::cpld
 class LatticeXO5CPLD : public LatticeBaseCPLD
 {
   public:
-    LatticeXO5CPLD(sdbusplus::async::context& ctx, const uint16_t bus,
-                   const uint8_t address, const std::string& chip,
-                   const std::string& target, const bool debugMode) :
-        LatticeBaseCPLD(ctx, bus, address, chip, target, debugMode)
-    {}
+    LatticeXO5CPLD(sdbusplus::async::context& ctx, uint16_t bus,
+                   uint8_t address, const std::string& chip,
+                   const std::string& target, latticeChip chipType,
+                   bool debugMode);
+
     ~LatticeXO5CPLD() override = default;
     LatticeXO5CPLD(const LatticeXO5CPLD&) = delete;
     LatticeXO5CPLD& operator=(const LatticeXO5CPLD&) = delete;
@@ -26,15 +26,35 @@ class LatticeXO5CPLD : public LatticeBaseCPLD
     sdbusplus::async::task<bool> readUserCode(uint32_t& userCode) override;
 
   private:
+    uint8_t getCfgIdx(std::string_view target) const;
+    static std::optional<std::vector<uint8_t>> calculateSha2_384Openssl(
+        const std::vector<uint8_t>& input);
+    sdbusplus::async::task<bool> readSoftIPId();
     sdbusplus::async::task<bool> waitUntilReady(
         std::chrono::milliseconds timeout);
-    sdbusplus::async::task<bool> eraseCfg();
-    sdbusplus::async::task<bool> programCfg();
+    sdbusplus::async::task<bool> eraseCfg(
+        std::optional<uint8_t> setIdx = std::nullopt);
+    sdbusplus::async::task<bool> programCfg(
+        std::optional<uint8_t> setIdx = std::nullopt,
+        const std::vector<uint8_t>* customData = nullptr);
     sdbusplus::async::task<bool> programPage(uint8_t block, uint8_t page,
                                              const std::vector<uint8_t>& data);
     sdbusplus::async::task<bool> verifyCfg();
     sdbusplus::async::task<bool> readPage(uint8_t block, uint8_t page,
                                           std::vector<uint8_t>& data);
+
+    // Add program For(35T/65T) series
+    bool isTSeries = false;
+    bool crc16Enabled_ = true;
+
+    sdbusplus::async::task<bool> readCfg(
+        uint8_t targetCfg, std::vector<uint8_t>& dataOut, uint32_t bytesToRead);
+    sdbusplus::async::task<bool> backupHeader();
+    sdbusplus::async::task<bool> restoreHeader();
+    sdbusplus::async::task<bool> toggleCrc16(bool enable);
+    sdbusplus::async::task<bool> readCrcStatus(bool& crc_ok);
+    sdbusplus::async::task<bool> sendReceive(
+        const std::vector<uint8_t>& request, std::vector<uint8_t>& response);
 };
 
 } // namespace phosphor::software::cpld

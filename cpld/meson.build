@@ -24,6 +24,7 @@ exe = executable(
         libpldm_dep,
         libi2c_dep,
         libgpiod_dep,
+        ssl_dep,
     ],
     link_with: [
         libpldmutil,

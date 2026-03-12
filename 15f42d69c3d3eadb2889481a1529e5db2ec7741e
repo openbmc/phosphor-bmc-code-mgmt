@@ -52,6 +52,24 @@
       "parentUuid": "72504c8b_fbfa1332",
       "revId": "15f42d69c3d3eadb2889481a1529e5db2ec7741e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6853fd43_183dc063",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-12T09:58:28Z",
+      "side": 1,
+      "message": "I completely understand your concerns and have reverted the changes to device.cpp.\n\nI did not use softwarePending-\u003eswid in testing and did not touch entire common folder.\n\nTo clarify, my initial PR only extended the support for the PT5081L by adding it to the device vector (as seen in patch 2), without touching device.cpp. The SIGSEGV observed during the previous CI run was unexpected since startUpdateAsync is a common entry point for all common firmware updates via bmcweb.\n\nI have since verified the original logic on actual Anacapa hardware, and it works correctly. After restoring the code to patch 2 and re-submitting, the CI passed the tests this time.\n\nYou are correct that we should not introduce illogical changes without a clear root cause. I will leave the device.cpp untouched and keep your suggestions in mind.",
+      "parentUuid": "2a9a0e6b_41003202",
+      "revId": "15f42d69c3d3eadb2889481a1529e5db2ec7741e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

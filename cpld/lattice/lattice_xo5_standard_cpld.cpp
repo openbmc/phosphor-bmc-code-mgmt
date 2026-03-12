@@ -1,36 +1,36 @@
-#include "lattice_xo5_cpld.hpp"
+#include "lattice_xo5_standard_cpld.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
 namespace phosphor::software::cpld
 {
-
-constexpr std::chrono::milliseconds ReadyPollInterval(10);
-constexpr std::chrono::milliseconds ReadyTimeout(1000);
-
-enum class xo5Cmd : uint8_t
+namespace
 {
-    sectorErase = 0xd8,
-    pageProgram = 0x02,
-    pageRead = 0x0b,
-    programDone = 0x5e,
-    readUsercode = 0xc0
-};
+constexpr std::chrono::milliseconds readyPollInterval{10};
+constexpr std::chrono::milliseconds pageReadDelay{1};
+constexpr uint8_t targetSlotCfg1 = 1;
+constexpr uint8_t targetSlotCfg0 = 0;
+} // namespace
+LatticeXO5StandardCPLD::LatticeXO5StandardCPLD(
+    sdbusplus::async::context& ctx, uint16_t bus, uint8_t address,
+    const std::string& chip, const std::string& target, bool debugMode) :
+    LatticeXO5BaseCPLD(ctx, bus, address, chip, target, readyPollInterval,
+                       debugMode)
+{}
 
-enum class xo5Status : uint8_t
+uint8_t LatticeXO5StandardCPLD::getCfgIdx(std::string_view target) const
 {
-    ready = 0x00,
-    notReady = 0xff
-};
+    if (target.empty())
+    {
+        return 0;
+    }
+    std::string lowerTarget(target);
+    std::transform(lowerTarget.begin(), lowerTarget.end(), lowerTarget.begin(),
+                   ::tolower);
+    return (lowerTarget == "cfg1") ? targetSlotCfg1 : targetSlotCfg0;
+}
 
-struct xo5Cfg
-{
-    static constexpr size_t pageSize = 256;
-    static constexpr size_t pagesPerBlock = 256;
-    static constexpr size_t blocksPerCfg = 11;
-};
-
-static bool getStartBlock(uint8_t cfg, uint8_t& startBlock)
+bool getStartBlock(uint8_t cfg, uint8_t& startBlock)
 {
     static constexpr std::array<uint8_t, 3> cfgStartBlocks = {0x01, 0x10, 0x1F};
 
@@ -43,42 +43,10 @@ static bool getStartBlock(uint8_t cfg, uint8_t& startBlock)
     return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::waitUntilReady(
-    std::chrono::milliseconds timeout)
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::eraseCfg(
+    [[maybe_unused]] std::optional<uint8_t> setIdx)
 {
-    const auto endTime = std::chrono::steady_clock::now() + timeout;
-
-    auto readDummy = [this]() -> sdbusplus::async::task<bool> {
-        std::vector<uint8_t> request = {};
-        std::vector<uint8_t> response = {0xff};
-        if (!i2cInterface.sendReceive(request, response))
-        {
-            lg2::error("Failed to read.");
-            co_return false;
-        }
-        if (response.at(0) == static_cast<uint8_t>(xo5Status::ready))
-        {
-            co_return true;
-        }
-        co_return false;
-    };
-
-    while (std::chrono::steady_clock::now() < endTime)
-    {
-        if (co_await readDummy())
-        {
-            co_return true;
-        }
-        co_await sdbusplus::async::sleep_for(ctx, ReadyPollInterval);
-    }
-
-    lg2::error("Timeout waiting for device ready");
-    co_return false;
-}
-
-sdbusplus::async::task<bool> LatticeXO5CPLD::eraseCfg()
-{
-    auto cfgIndex = (target == "CFG0") ? 0 : 1;
+    auto cfgIndex = getCfgIdx(target);
     uint8_t startBlock;
     if (!getStartBlock(cfgIndex, startBlock))
     {
@@ -110,7 +78,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::eraseCfg()
             lg2::error("Erase failed: Block {BLOCK}", "BLOCK", block);
             co_return false;
         }
-        if (!(co_await waitUntilReady(ReadyTimeout)))
+        if (!(co_await waitUntilReady(readyTimeout)))
         {
             lg2::error("Failed to wait until ready");
             co_return false;
@@ -119,7 +87,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::eraseCfg()
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::programPage(
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programPage(
     uint8_t block, uint8_t page, const std::vector<uint8_t>& data)
 {
     std::vector<uint8_t> request;
@@ -138,11 +106,13 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::programPage(
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::programCfg()
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programCfg(
+    [[maybe_unused]] std::optional<uint8_t> setIdx,
+    [[maybe_unused]] const std::vector<uint8_t>* customData)
 {
     using diff_t = std::vector<uint8_t>::difference_type;
 
-    auto cfgIndex = (target == "CFG0") ? 0 : 1;
+    auto cfgIndex = getCfgIdx(target);
     uint8_t startBlock;
     if (!getStartBlock(cfgIndex, startBlock))
     {
@@ -173,8 +143,8 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::programCfg()
 
             auto success = false;
             success |= co_await programPage(block, page, chunk);
-            co_await sdbusplus::async::sleep_for(ctx, ReadyPollInterval);
-            success |= co_await waitUntilReady(ReadyTimeout);
+            co_await sdbusplus::async::sleep_for(ctx, readyPollInterval);
+            success |= co_await waitUntilReady(readyTimeout);
             if (!success)
             {
                 lg2::error("Failed to program block {BLOCK} page {PAGE}",
@@ -188,7 +158,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::programCfg()
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::readPage(
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::readPage(
     uint8_t block, uint8_t page, std::vector<uint8_t>& data)
 {
     if (data.empty())
@@ -212,9 +182,9 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::readPage(
                page);
     request.clear();
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    co_await sdbusplus::async::sleep_for(ctx, pageReadDelay);
 
-    if (!(co_await waitUntilReady(ReadyTimeout)))
+    if (!(co_await waitUntilReady(readyTimeout)))
     {
         co_return false;
     }
@@ -227,11 +197,11 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::readPage(
     co_return data[0] == static_cast<uint8_t>(xo5Status::ready);
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::verifyCfg()
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::verifyCfg()
 {
     using diff_t = std::vector<uint8_t>::difference_type;
 
-    auto cfgIndex = (target == "CFG0") ? 0 : 1;
+    auto cfgIndex = getCfgIdx(target);
     uint8_t startBlock;
     if (!getStartBlock(cfgIndex, startBlock))
     {
@@ -296,7 +266,8 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::verifyCfg()
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::readUserCode(uint32_t& userCode)
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::readUserCode(
+    uint32_t& userCode)
 {
     constexpr size_t resSize = 5;
     std::vector<uint8_t> request = {commandReadFwVersion, 0x0, 0x0, 0x0};
@@ -308,15 +279,12 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::readUserCode(uint32_t& userCode)
         co_return false;
     }
 
-    userCode |= response[4] << 24;
-    userCode |= response[3] << 16;
-    userCode |= response[2] << 8;
-    userCode |= response[1];
+    userCode = extractUint32(response, 1, false);
 
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::programDone()
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programDone()
 {
     std::vector<uint8_t> request = {};
     std::vector<uint8_t> response = {};
@@ -334,8 +302,8 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::programDone()
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::prepareUpdate(const uint8_t* image,
-                                                           size_t imageSize)
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::prepareUpdate(
+    const uint8_t* image, size_t imageSize)
 {
     if (target.empty())
     {
@@ -354,7 +322,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::prepareUpdate(const uint8_t* image,
     }
     lg2::debug("JED file parsing success");
 
-    if (!(co_await waitUntilReady(ReadyTimeout)))
+    if (!(co_await waitUntilReady(readyTimeout)))
     {
         lg2::error("Error: Device not ready.");
         co_return false;
@@ -363,7 +331,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::prepareUpdate(const uint8_t* image,
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::doErase()
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::doErase()
 {
     lg2::debug("Erasing {TARGET}...", "TARGET", target);
     if (!(co_await eraseCfg()))
@@ -375,19 +343,7 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::doErase()
     co_return true;
 }
 
-sdbusplus::async::task<bool> LatticeXO5CPLD::doUpdate()
-{
-    lg2::debug("Programming {TARGET}...", "TARGET", target);
-    if (!(co_await programCfg()))
-    {
-        lg2::error("Program cfg data failed.");
-        co_return false;
-    }
-
-    co_return true;
-}
-
-sdbusplus::async::task<bool> LatticeXO5CPLD::finishUpdate()
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::finishUpdate()
 {
     lg2::debug("Verifying {TARGET}...", "TARGET", target);
     if (!(co_await verifyCfg()))
@@ -405,4 +361,16 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::finishUpdate()
     co_return true;
 }
 
+sdbusplus::async::task<bool> LatticeXO5StandardCPLD::checkDeviceReady()
+{
+    std::vector<uint8_t> request = {};
+    std::vector<uint8_t> response = {0xff};
+
+    if (!i2cInterface.sendReceive(request, response))
+    {
+        co_return false;
+    }
+
+    co_return response.at(0) == static_cast<uint8_t>(xo5Status::ready);
+}
 } // namespace phosphor::software::cpld

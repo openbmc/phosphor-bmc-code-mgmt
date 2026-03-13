@@ -267,6 +267,16 @@ class Signature
      * failure
      */
     bool verifyPQSignatures(const std::vector<std::string>& imageList);
+
+    /**
+     * @brief Check if the given public key is an ML-DSA key
+     * @param[in]  - EVP_PKEY pointer
+     * @return true if ML-DSA key, false otherwise
+     */
+    static inline bool isMLDSAKey(const EVP_PKEY* pkey);
+
+    /** @brief Name of the ML-DSA key type found during system scan */
+    mutable std::optional<std::string> mldsakeyType;
 };
 
 } // namespace image

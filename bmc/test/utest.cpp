@@ -223,6 +223,7 @@ class SignatureTest : public testing::Test
             manifestFile);
         command("echo \"HashType=RSA-SHA256\" >> " + manifestFile);
         command("echo \"KeyType=OpenBMC\" >> " + manifestFile);
+        command("echo \"MLDSA_Hash_Type=SHA3-512,MLDSA\" >> " + manifestFile);
 
         std::string kernelFile = extractPath.string() + "/" + "image-kernel";
         command("echo \"image-kernel file \" > " + kernelFile);
@@ -257,6 +258,9 @@ class SignatureTest : public testing::Test
                 ubootFile);
         command(opensslCmd + pkeyFile + " -out " + pubkeyFile + ".sig " +
                 pubkeyFile);
+
+        std::string mldsaImageDir = extractPath.string() + "/MLDSA";
+        command("mkdir -p " + mldsaImageDir);
 
 #ifdef WANT_SIGNATURE_VERIFY
         std::string fullFile = extractPath.string() + "/" + "image-full";

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59c6e39_268ee97c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-17T21:01:03Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com Please add the update commands to the unit test to make sure the update works along with before and after update version changes. Refer to the Tested section in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/f730973b554c83b7a8e85232e9c730a89d5f3692 to cover the required scenarios.",
+      "revId": "b10a1cb4fa16cbda11727ce02df1ffa3e4c7a5db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

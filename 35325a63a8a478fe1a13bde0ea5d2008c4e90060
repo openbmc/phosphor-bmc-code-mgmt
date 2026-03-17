@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49dc813_3c084e72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-17T21:23:46Z",
+      "side": 1,
+      "message": "Please add a Tested section which makes sure the update reflects after this change. Refer to https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/f730973b554c83b7a8e85232e9c730a89d5f3692 to see list of what needs to be tested. Also please test with AC cycle to make sure the update sticks.",
+      "revId": "35325a63a8a478fe1a13bde0ea5d2008c4e90060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71bc71a_c4539973",
+        "filename": "i2c-vr/mps/mpq87xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-17T21:23:46Z",
+      "side": 1,
+      "message": "Is 2 also a satisfactory number as per update guide for this chip?",
+      "revId": "35325a63a8a478fe1a13bde0ea5d2008c4e90060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

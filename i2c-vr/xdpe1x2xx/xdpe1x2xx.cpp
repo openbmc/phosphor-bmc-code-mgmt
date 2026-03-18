@@ -531,6 +531,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
                 offset = (uint16_t)strtol(tokenList[0], NULL, 16);
                 if (sectType == SectTrim && offset != 0x0)
                 {
+                    start = i + 1;
                     continue;
                 }
 

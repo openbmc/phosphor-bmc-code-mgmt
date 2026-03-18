@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b472a99_97aae20b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-18T05:59:29Z",
+      "side": 1,
+      "message": "Follow the test section and revise the commit message.\nPlease review it to see whether it meets your expectations.",
+      "parentUuid": "b49dc813_3c084e72",
+      "revId": "35325a63a8a478fe1a13bde0ea5d2008c4e90060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a71bc71a_c4539973",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-17T21:23:46Z",
       "side": 1,
       "message": "Is 2 also a satisfactory number as per update guide for this chip?",
+      "revId": "35325a63a8a478fe1a13bde0ea5d2008c4e90060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16477cfc_919be00e",
+        "filename": "i2c-vr/mps/mpq87xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-18T05:59:29Z",
+      "side": 1,
+      "message": "yes.\nAccording to configuration user guide (AN203), the flowcharts on Figure 3.\nIn the final step, check CRC value.\n\nif (match CRC)\n{\n　　　 Configuration complete.\n}\nelse \n{\n　　　 if (first time failing)\n　　　 {\n　　　 　　　 retry and write all registers in the configuration file\n　　　 }\n　　　 else\n　　　 {\n　　　 　　　 return fail.\n　　　 }\n}",
+      "parentUuid": "a71bc71a_c4539973",
       "revId": "35325a63a8a478fe1a13bde0ea5d2008c4e90060",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

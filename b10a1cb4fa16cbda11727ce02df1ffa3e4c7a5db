@@ -16,6 +16,24 @@
       "message": "@dirkchen@amd.com Please add the update commands to the unit test to make sure the update works along with before and after update version changes. Refer to the Tested section in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/f730973b554c83b7a8e85232e9c730a89d5f3692 to cover the required scenarios.",
       "revId": "b10a1cb4fa16cbda11727ce02df1ffa3e4c7a5db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "611b585a_4967a9ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-18T03:38:57Z",
+      "side": 1,
+      "message": "Follow the test section and revise the commit message.\nPlease review it to see whether it meets your expectations.",
+      "parentUuid": "b59c6e39_268ee97c",
+      "revId": "b10a1cb4fa16cbda11727ce02df1ffa3e4c7a5db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

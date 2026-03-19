@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include "lattice_base_cpld.hpp"
 
 #include <algorithm>
@@ -481,8 +483,18 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::readStatusReg(uint8_t& statusReg)
 sdbusplus::async::task<bool> LatticeBaseCPLD::getVersion(std::string& version)
 {
     auto userCode = std::make_unique<uint32_t>(0);
+    bool useActive = false;
 
-    if (target.empty())
+#if CPLD_VERSION_SOURCE_ACTIVE
+    // Retrieve CPLD version from the active image (User Mode)
+    useActive = true;
+#else
+    // Retrieve CPLD version from the flash image (CFG0/CFG1) if no target is
+    // specified
+    useActive = target.empty();
+#endif
+
+    if (useActive)
     {
         if (!(co_await readUserCode(*userCode)))
         {

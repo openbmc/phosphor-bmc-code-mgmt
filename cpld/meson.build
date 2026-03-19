@@ -1,3 +1,14 @@
+conf = configuration_data()
+
+cpld_version_source_active = get_option('cpld-version-source-active')
+if cpld_version_source_active
+    conf.set('CPLD_VERSION_SOURCE_ACTIVE', '1')
+else
+    conf.set('CPLD_VERSION_SOURCE_ACTIVE', '0')
+endif
+
+configure_file(output: 'config.h', configuration: conf)
+
 cpld_src = files('cpld.cpp', 'cpld_interface.cpp', 'cpld_software_manager.cpp')
 
 cpld_vendor_src = files(

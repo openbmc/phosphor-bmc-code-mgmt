@@ -217,3 +217,10 @@ option(
     value: 60,
     description: 'Timeout for host state transition.',
 )
+
+option(
+    'cpld-version-source-active',
+    type: 'boolean',
+    value: false,
+    description: 'Retrieve CPLD version from active image (User Mode) instead of configuration flash (CFG0/CFG1).',
+)

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9e3af2_f0050b85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T22:35:20Z",
+      "side": 1,
+      "message": "Can you please update the test to show before and after the change outputs. Currently its not clear. Also, update the test to state the system booted from CFG1 since thats what you seem to be testing as per description.",
+      "revId": "8911a8cc3b9861923c9893a9a0aef60d5c5723a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8270fa25_e1da4843",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T22:35:20Z",
+      "side": 1,
+      "message": "Do we always need to update CFG0?",
+      "revId": "8911a8cc3b9861923c9893a9a0aef60d5c5723a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

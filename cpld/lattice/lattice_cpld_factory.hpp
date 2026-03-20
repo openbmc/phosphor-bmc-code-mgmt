@@ -20,7 +20,7 @@ class LatticeCPLDFactory : public CPLDInterface
     sdbusplus::async::task<bool> getVersion(std::string& version) final;
 
   private:
-    std::unique_ptr<LatticeBaseCPLD> getLatticeCPLD();
+    std::unique_ptr<LatticeBaseCPLD> getLatticeCPLD(const std::string& target);
     latticeChip chipEnum;
 };
 

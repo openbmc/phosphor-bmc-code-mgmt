@@ -16,6 +16,24 @@
       "message": "Can you please name this better to illustrate what does empty means?",
       "revId": "cca1dac4d0f50b5e1ebc89fa33ccaf87a8fc4d28",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b01c74_6f6b7fe6",
+        "filename": "common/include/gpio_controller.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-03-20T22:41:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56782710_1e2f522c",
+      "revId": "cca1dac4d0f50b5e1ebc89fa33ccaf87a8fc4d28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

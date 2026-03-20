@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de9a2429_9c265ea0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:39:55Z",
+      "side": 1,
+      "message": "Are you noticing any timeouts hence making this change?",
+      "revId": "c26030106489839874a3f5151c6a74c1093554ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc3d6125_10b6c641",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:39:55Z",
+      "side": 1,
+      "message": "Looks like there is a typo here in camelcase. Can you please fix this to busyWaitMaxRetry",
+      "revId": "c26030106489839874a3f5151c6a74c1093554ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

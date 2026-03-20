@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e1da49_c3004e15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:47:47Z",
+      "side": 1,
+      "message": "Can you please add a Tested section for this change adding details on how you verified the fix.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f11a52b_a665c422",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:47:47Z",
+      "side": 1,
+      "message": "Please make a separate patch for this addition of new type.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd41333a_736abfc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:47:47Z",
+      "side": 1,
+      "message": "Please add the tested section for this new type as in Tested section for https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/30682f7c9fe63bbe55783d67f22c84dcc35aa687.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fae4b1f_29645e52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T03:47:47Z",
+      "side": 1,
+      "message": "Please add the link to the relevant patch which adds the related types to phosphor-dbus-interfaces as in https://grok.openbmc.org/xref/openbmc/phosphor-dbus-interfaces/yaml/com/meta/Hardware/Harma.interface.yaml?r\u003dccfe006bf7b307f57296c50565adf45516cca170#35 in the new patch.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

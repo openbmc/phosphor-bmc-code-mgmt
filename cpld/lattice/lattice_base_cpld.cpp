@@ -10,7 +10,7 @@
 namespace phosphor::software::cpld
 {
 
-constexpr uint8_t busyWaitmaxRetry = 30;
+constexpr uint8_t busyWaitmaxRetry = 77; // according to LCMXO3D9400 max erase time
 constexpr uint8_t busyFlagBit = 0x80;
 
 static constexpr std::string_view tagFuseQuantity = "QF";

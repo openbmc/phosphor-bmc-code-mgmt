@@ -10,7 +10,7 @@
 namespace phosphor::software::cpld
 {
 
-constexpr uint8_t busyWaitmaxRetry = 30;
+constexpr uint8_t busyWaitMaxRetry = 77; // according to max erase cfg time
 constexpr uint8_t busyFlagBit = 0x80;
 
 static constexpr std::string_view tagFuseQuantity = "QF";
@@ -394,7 +394,7 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::waitBusyAndVerify()
 {
     uint8_t retry = 0;
 
-    while (retry <= busyWaitmaxRetry)
+    while (retry <= busyWaitMaxRetry)
     {
         uint8_t busyFlag = 0xff;
 
@@ -409,7 +409,7 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::waitBusyAndVerify()
         {
             co_await sdbusplus::async::sleep_for(ctx, waitBusyTime);
             retry++;
-            if (retry > busyWaitmaxRetry)
+            if (retry > busyWaitMaxRetry)
             {
                 lg2::error(
                     "Status Reg : Busy! Please check the I2C bus and address.");

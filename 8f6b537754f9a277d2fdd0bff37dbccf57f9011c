@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb31782_63fc3adc",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T04:04:38Z",
+      "side": 1,
+      "message": "Can you please create separate APIs for both of these digest init flows (in if else clause) and call those functions from here.",
+      "revId": "8f6b537754f9a277d2fdd0bff37dbccf57f9011c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f835b8d7_b94f0b44",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-20T04:04:38Z",
+      "side": 1,
+      "message": "Is there a related change which adds this specification to exist in MANIFEST?",
+      "revId": "8f6b537754f9a277d2fdd0bff37dbccf57f9011c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

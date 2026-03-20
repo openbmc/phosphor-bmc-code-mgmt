@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21edbd1a_9a35086d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2026-03-20T04:23:00Z",
+      "side": 1,
+      "message": "Yes, we observed timeout issues on the Yosemite5 project.\nThe erase config operation takes around 6.2 seconds, which exceeds the original 6-second timeout.\n\nWe then consulted the vendor to confirm the maximum execution time across all commands. Based on their feedback, the worst-case duration is about 7.7 seconds. Therefore, we updated the timeout accordingly in this patch to prevent such failures.",
+      "parentUuid": "de9a2429_9c265ea0",
+      "revId": "c26030106489839874a3f5151c6a74c1093554ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc3d6125_10b6c641",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-20T03:39:55Z",
       "side": 1,
       "message": "Looks like there is a typo here in camelcase. Can you please fix this to busyWaitMaxRetry",
+      "revId": "c26030106489839874a3f5151c6a74c1093554ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b076ab1_84ad81a9",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2026-03-20T04:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc3d6125_10b6c641",
       "revId": "c26030106489839874a3f5151c6a74c1093554ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

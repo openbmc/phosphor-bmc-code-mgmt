@@ -8,7 +8,7 @@
 namespace phosphor::software::cpld
 {
 
-std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD()
+std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD(const std::string& target)
 {
     if (supportedDeviceMap.find(chipEnum) == supportedDeviceMap.end())
     {
@@ -27,11 +27,11 @@ std::unique_ptr<LatticeBaseCPLD> LatticeCPLDFactory::getLatticeCPLD()
         case latticeChipFamily::XO3:
             return std::make_unique<LatticeXO3CPLD>(
                 CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
-                chipModelStr, "CFG0", false);
+                chipModelStr, target, false);
         case latticeChipFamily::XO5:
             return std::make_unique<LatticeXO5CPLD>(
                 CPLDInterface::ctx, CPLDInterface::bus, CPLDInterface::address,
-                chipModelStr, "CFG0", false);
+                chipModelStr, target, false);
         default:
             lg2::error("Unsupported Lattice CPLD chip family: {CHIPMODEL}",
                        "CHIPMODEL", chipModelStr);
@@ -44,7 +44,7 @@ sdbusplus::async::task<bool> LatticeCPLDFactory::updateFirmware(
     std::function<bool(int)> progressCallBack)
 {
     lg2::info("Updating Lattice CPLD firmware");
-    auto cpldManager = getLatticeCPLD();
+    auto cpldManager = getLatticeCPLD("CFG0");
     if (cpldManager == nullptr)
     {
         lg2::error("CPLD manager is not initialized.");
@@ -58,7 +58,7 @@ sdbusplus::async::task<bool> LatticeCPLDFactory::getVersion(
     std::string& version)
 {
     lg2::info("Getting Lattice CPLD version");
-    auto cpldManager = getLatticeCPLD();
+    auto cpldManager = getLatticeCPLD("");
     if (cpldManager == nullptr)
     {
         lg2::error("CPLD manager is not initialized.");

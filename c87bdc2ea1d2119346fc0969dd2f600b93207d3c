@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc682cc_9fdecba2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002528
+      },
+      "writtenOn": "2026-03-25T08:09:46Z",
+      "side": 1,
+      "message": "Yes. My goal is to avoid entering Program Mode to read the version, and instead directly read the currently active version.\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/bca506e6ba78c50ea91a45e727d9d776c6885dd4/cpld/lattice/lattice_base_cpld.cpp#L494\n\nThe original code hardcoded the target as CFG0, so I was looking into building a configurable target selection. However, I noticed that this commit has already addressed it by passing an empty string as the target in getVersion to read the currently active version instead.\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/commit/37e023c278bec775578d9eb5fa9f3c661a948686",
+      "parentUuid": "f7c7a297_67def4a7",
+      "revId": "c87bdc2ea1d2119346fc0969dd2f600b93207d3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1309ddac_9dcad033",

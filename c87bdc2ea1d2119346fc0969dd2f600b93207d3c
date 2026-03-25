@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d225a5f7_fdd75fd0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002528
+      },
+      "writtenOn": "2026-03-25T10:39:38Z",
+      "side": 1,
+      "message": "Sorry for the naive question — do you happen to know the historical reason why reading the version originally required entering Program Mode?\n\nAlso, would it be worth continuing to add the target property to the Entity Manager configuration to allow more flexible configuration?",
+      "parentUuid": "1fc682cc_9fdecba2",
+      "revId": "c87bdc2ea1d2119346fc0969dd2f600b93207d3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1309ddac_9dcad033",

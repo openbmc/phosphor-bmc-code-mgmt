@@ -1,0 +1,215 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3526482b_3a137751",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "```suggestion\n                chipModelStr, target, false);\n```",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d12a19_c000c604",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Can these all be static constexpr or inline constexpr?",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d825e06_6448a3e6",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Why do we have so many explicit types here?  Why are these uint8 and not size_t?\n\nI\u0027d recommend most of these constexpr variables all change from explicit types unless you have a very good reason (which is not \"optimization\").",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc0d19e0_057a083e",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Don\u0027t these need to be packed?  It seems like you use them for offset calculations later on.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6748aab_c4414212",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Why is there this explicit type?  A loop counter should be an `auto` or a `size_t`; nothing else.  There are way too many explicit types in this whole commit that don\u0027t make any sense.",
+      "range": {
+        "startLine": 271,
+        "startChar": 14,
+        "endLine": 271,
+        "endChar": 21
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54f855f4_2957cad8",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "You should never use `this_thread::sleep_for` in async code.  That means you\u0027re putting the worker thread to sleep rather than this task.\n\nAlways use `sdbusplus::async::sleep_for`.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d54f32f_a6693351",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "This is 100% an unsafe thing to do.  You\u0027re left to the whim of the compiler here as to what the struct alignment and layout is.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736794f0_a0bc536d",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Why isn\u0027t this part of the LatticeXO5DCPLD class?  Having it in the cpld namespace means it\u0027ll probably conflict sometime in the future.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cae41bf_56eadc2f",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "Why is this a `uint8_t` and not a boolean or enum?",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a91ea39_ef7158d8",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "```suggestion\n    size_t customerImageSize;\n```",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af929423_2afef65e",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-25T15:21:12Z",
+      "side": 1,
+      "message": "```suggestion\n    size_t normalKeyBlobSize;\n```",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

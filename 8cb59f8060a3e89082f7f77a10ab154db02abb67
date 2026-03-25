@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78c2a8b_21f05b3d",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-25T10:30:48Z",
+      "side": 1,
+      "message": "The macro is from `include/libpldm/firmware_update.h`\nand `pin` is our variable name, we can choose it ourselves.\n\n\n```\n  /**\n   * Declare consumer support for at most revision 1 of the firmware update\n   * package header\n   *\n   * @param name The name for the pin object\n   *\n   * The pin object must be provided to @ref decode_pldm_firmware_update_package\n   */\n  #define DEFINE_PLDM_PACKAGE_FORMAT_PIN_FR01H(name)                             \\\n  |       struct pldm_package_format_pin name \u003d { \\\n  |       |       .meta \u003d { \\\n  |       |       |       .magic \u003d ( \\\n  |       |       |       |       LIBPLDM_SIZEAT(struct pldm_package, iter) + \\\n  |       |       |       |       LIBPLDM_SIZEAT(struct pldm__package_header_information, pac  kage_version_string) + \\\n  |       |       |       |       LIBPLDM_SIZEAT(struct pldm_package_firmware_device_id_recor  d, firmware_device_package_data) + \\\n  |       |       |       |       LIBPLDM_SIZEAT(struct pldm_descriptor, descriptor_data) + \\\n  |       |       |       |       LIBPLDM_SIZEAT(struct pldm_package_component_image_informat  ion, component_version_string) \\\n  |       |       |       ), \\\n  |       |       |       .version \u003d 0u, \\\n  |       |       }, \\\n  |       |       .format \u003d { \\\n  |       |       |       .identifier \u003d PLDM_PACKAGE_HEADER_IDENTIFIER_V1_0, \\\n  |       |       |       .revision \u003d PLDM_PACKAGE_HEADER_FORMAT_REVISION_FR01H, \\\n  |       |       } \\\n  |       }\n```\n\nWe have to define the pin as it gets passed through to libpldm  functions.",
+      "parentUuid": "cd712387_b99124df",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84dddaaf_54029d7c",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-25T00:58:21Z",
       "side": 1,
       "message": "nit: drop we",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a143944c_33c3e18d",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-25T10:30:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84dddaaf_54029d7c",
       "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f670da_555a22e9",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-25T10:30:48Z",
+      "side": 1,
+      "message": "right, it does not have to be a shared pointer. Changed it to `unique_ptr`.",
+      "parentUuid": "7ff873b3_c6e48f83",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f90e2f46_ec5b544b",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-03-25T00:58:21Z",
       "side": 1,
       "message": "lets rename this to libpldmcpp_dep as its easier to interpret.",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a714f4d_3deacb13",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-03-25T10:30:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f90e2f46_ec5b544b",
       "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

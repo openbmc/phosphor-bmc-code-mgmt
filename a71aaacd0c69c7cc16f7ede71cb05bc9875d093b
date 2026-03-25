@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "320b7cfd_798809ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61e1da49_c3004e15",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f11a52b_a665c422",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-20T03:47:47Z",
       "side": 1,
       "message": "Please make a separate patch for this addition of new type.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "978c6e3b_59469a62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f11a52b_a665c422",
       "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -65,6 +101,42 @@
       "writtenOn": "2026-03-20T03:47:47Z",
       "side": 1,
       "message": "Please add the link to the relevant patch which adds the related types to phosphor-dbus-interfaces as in https://grok.openbmc.org/xref/openbmc/phosphor-dbus-interfaces/yaml/com/meta/Hardware/Harma.interface.yaml?r\u003dccfe006bf7b307f57296c50565adf45516cca170#35 in the new patch.",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec6877c5_980fab76",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd41333a_736abfc7",
+      "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "870ea2fb_2eeb6514",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:25:39Z",
+      "side": 1,
+      "message": "Merged via https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/88422.",
+      "parentUuid": "3fae4b1f_29645e52",
       "revId": "a71aaacd0c69c7cc16f7ede71cb05bc9875d093b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

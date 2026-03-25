@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd712387_b99124df",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:58:21Z",
+      "side": 1,
+      "message": "Is pin defined somewhere in lib header?",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84dddaaf_54029d7c",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:58:21Z",
+      "side": 1,
+      "message": "nit: drop we",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff873b3_c6e48f83",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:58:21Z",
+      "side": 1,
+      "message": "I am wondering if this has to be a shared_ptr? Isn\u0027t the caller suppose to extract the image out and then just let it go?",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90e2f46_ec5b544b",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-03-25T00:58:21Z",
+      "side": 1,
+      "message": "lets rename this to libpldmcpp_dep as its easier to interpret.",
+      "revId": "8cb59f8060a3e89082f7f77a10ab154db02abb67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

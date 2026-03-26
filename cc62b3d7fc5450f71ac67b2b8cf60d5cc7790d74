@@ -16,6 +16,41 @@
       "message": "Just curious what the error is? A re-upload shouldn\u0027t fail so maybe there\u0027s a bug that can be address in a different place. The id number is randomly generated so even re-uploading the same image file generates a different id/dbus object.\n\nThe reason that the Invalid dbus object is set is to communiate that a particular fw version was not able to be applied. If we remove it then that information is no longer available and from a user perspective they wouldn\u0027t have a way to see which version failed.",
       "revId": "cc62b3d7fc5450f71ac67b2b8cf60d5cc7790d74",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6417129_556dabad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001728
+      },
+      "writtenOn": "2026-03-26T06:58:07Z",
+      "side": 1,
+      "message": "Attempt 1: (Corrupted SDU Capsule)\n\n \n\nhttps://10.140.139.147/redfish/v1/UpdateService/update\n\n{\n\n    \"@odata.id\": \"/redfish/v1/TaskService/Tasks/0\",\n\n    \"@odata.type\": \"#Task.v1_4_3.Task\",\n\n    \"Id\": \"0\",\n\n    \"TaskState\": \"Running\",\n\n    \"TaskStatus\": \"OK\"\n\n}\n\n \n\nroot@bmc-mac984fee1adae6:~# journalctl -f | grep phosphor-software-manager\n\nJan 20 11:09:08 bmc-mac984fee1adae6 phosphor-software-manager[444]: Starting update for image 8\n\nJan 20 11:09:08 bmc-mac984fee1adae6 phosphor-software-manager[444]: Creating Activation object for id: 00a7fccd\n\nJan 20 11:09:08 bmc-mac984fee1adae6 phosphor-software-manager[444]: Image magic number match failed\n\nJan 20 11:09:08 bmc-mac984fee1adae6 phosphor-software-manager[444]: Error verifying uploaded image\n\n^C\n\nroot@bmc-mac984fee1adae6:~#\n\n \n\nAttempt 2: (Valid SDU Capsule)\n\n \n\nhttps://10.140.139.147/redfish/v1/UpdateService/update\n\n {\n\n    \"error\": {\n\n        \"@Message.ExtendedInfo\": [\n\n            {\n\n                \"@odata.type\": \"#Message.v1_1_1.Message\",\n\n                \"Message\": \"The request failed due to an internal service error.  The service is still operational.\",\n\n                \"MessageArgs\": [],\n\n                \"MessageId\": \"Base.1.19.InternalError\",\n\n                \"MessageSeverity\": \"Critical\",\n\n                \"Resolution\": \"Resubmit the request.  If the problem persists, consider resetting the service.\"\n\n            }\n\n        ],\n\n        \"code\": \"Base.1.19.InternalError\",\n\n        \"message\": \"The request failed due to an internal service error.  The service is still operational.\"\n\n    }\n\n}\n\n \n\nroot@bmc-mac984fee1adae6:~# journalctl -f | grep phosphor-software-manager\n\nJan 20 11:10:04 bmc-mac984fee1adae6 phosphor-software-manager[444]: Starting update for image 10\n\nJan 20 11:10:04 bmc-mac984fee1adae6 phosphor-software-manager[444]: Failed to start as update is already in progress\n\nJan 20 11:10:04 bmc-mac984fee1adae6 phosphor-software-manager[444]: The service is temporarily unavailable.\n\nJan 20 11:10:05 bmc-mac984fee1adae6 phosphor-software-manager[444]: terminate called after throwing an instance of \u0027sdbusplus::exception::SdBusError\u0027\n\nJan 20 11:10:05 bmc-mac984fee1adae6 phosphor-software-manager[444]:   what():  sd_bus_process discard: org.freedesktop.DBus.Error.Disconnected: Connection reset by peer\n\nJan 20 11:10:12 bmc-mac984fee1adae6 phosphor-software-manager[9328]: Creating Software Manager\n\n^C\n\nroot@bmc-mac984fee1adae6:~#\n\n\n\nNote - When valid SDU capsule is sent again (3rd attempt), it was accepted \u0026 processed by BMC.",
+      "parentUuid": "b6c91999_5a06a4d5",
+      "revId": "cc62b3d7fc5450f71ac67b2b8cf60d5cc7790d74",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e480daa8_299b19df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001728
+      },
+      "writtenOn": "2026-03-26T06:58:07Z",
+      "side": 1,
+      "message": "Addressed review comments",
+      "revId": "cc62b3d7fc5450f71ac67b2b8cf60d5cc7790d74",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

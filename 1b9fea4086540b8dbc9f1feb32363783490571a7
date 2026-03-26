@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb2d1a1e_652ba590",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Jagpal pointed this out before, please let me know if further changes are needed after reviewing my response below.\n\nThe second arg is the string \"target\", which is used to identify the firmware slot\nAs we knew, there are two firmware slots, CFG0 and CFG1, in Lattice XO5 and XO3 CPLDs.\nHowever, Lattice XO5-15D is a special CPLD. It also has two firmware slots, but they are represented using image IDs: image 1 and image 2.\n\nWe do not assume that the active image is always image 1 or image 2. Instead, we send the “Check Current Running Image Status” command to the CPLD to determine the active image ID dynamically.\nTherefore, we keep the existing code framework, but do not use the string \"target\", and instead determine the active image ID at runtime.\n\nExample flow\nIf the active image ID is 2:\n1.Check current image status → active image ID \u003d 2\n2. Erase image ID 1\n3. Program image ID 1\n4. Perform a dry run on image ID 1\n5. Get dry-run result\n6. Set image ID 1 as the primary image for the next power cycle\n\nThis update flow is defined by Lattice and ensures CPLD firmware redundancy.",
+      "parentUuid": "3526482b_3a137751",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d12a19_c000c604",
         "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
         "patchSetId": 14
@@ -37,6 +61,24 @@
       "writtenOn": "2026-03-25T15:21:12Z",
       "side": 1,
       "message": "Can these all be static constexpr or inline constexpr?",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "072bfd20_a8272778",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Done, and encapsulate all ESFB-specific constants and enums within the private scope of LatticeXO5DCPLD",
+      "parentUuid": "85d12a19_c000c604",
       "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff464a4_750cef03",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Done,and encapsulate all ESFB-specific constants and enums within the private scope of LatticeXO5DCPLD.\n\nThese variables remain as explicit types to meet the Lattice specification.\n\n    static constexpr uint16_t esfbFirstPacket \u003d 0x8000;\n    static constexpr uint16_t esfbLastPacket \u003d 0x4000;\n    static constexpr uint16_t esfbFirstAndLastPacket \u003d 0xC000;\n    static constexpr uint8_t dryRunResultSuccess \u003d 1;",
+      "parentUuid": "1d825e06_6448a3e6",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc0d19e0_057a083e",
@@ -77,6 +143,24 @@
       "writtenOn": "2026-03-25T15:21:12Z",
       "side": 1,
       "message": "Don\u0027t these need to be packed?  It seems like you use them for offset calculations later on.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3889765d_53e3e81f",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Fixed it and encapsulated the constants within LatticeXO5DCPLD.",
+      "parentUuid": "dc0d19e0_057a083e",
       "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -104,6 +188,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0cd1fe_1108d4b3",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "refactored length and counter variables to size_t. \nWill keep this in the future.",
+      "parentUuid": "d6748aab_c4414212",
+      "range": {
+        "startLine": 271,
+        "startChar": 14,
+        "endLine": 271,
+        "endChar": 21
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54f855f4_2957cad8",
@@ -117,6 +225,24 @@
       "writtenOn": "2026-03-25T15:21:12Z",
       "side": 1,
       "message": "You should never use `this_thread::sleep_for` in async code.  That means you\u0027re putting the worker thread to sleep rather than this task.\n\nAlways use `sdbusplus::async::sleep_for`.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ee2f1f_ac4e0e1b",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Thanks for the correction. \nI have followed your advice and revise it. \nWill keep this in mind for future async code.",
+      "parentUuid": "54f855f4_2957cad8",
       "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -138,6 +264,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db4a1075_cd49e445",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Thanks for the correction.\nI packed the struct CustomerImageStatus, and update the code to avoid alignment issue.",
+      "parentUuid": "4d54f32f_a6693351",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "736794f0_a0bc536d",
@@ -151,6 +295,24 @@
       "writtenOn": "2026-03-25T15:21:12Z",
       "side": 1,
       "message": "Why isn\u0027t this part of the LatticeXO5DCPLD class?  Having it in the cpld namespace means it\u0027ll probably conflict sometime in the future.",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8150bbc_4501d6ac",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "I have refactored the class to encapsulate all ESFB-specific constants and enums within the private scope of LatticeXO5DCPLD to prevent namespace pollution.",
+      "parentUuid": "736794f0_a0bc536d",
       "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +334,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba80c7d2_8f512fa5",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Use an ImageId enum for nonActiveImageId for better readability. \nnonActiveImageId is 1 byte of data in ESFB packets.",
+      "parentUuid": "0cae41bf_56eadc2f",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a91ea39_ef7158d8",
@@ -189,6 +369,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b5683ea_8ddbdab3",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a91ea39_ef7158d8",
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af929423_2afef65e",
@@ -202,6 +400,30 @@
       "writtenOn": "2026-03-25T15:21:12Z",
       "side": 1,
       "message": "```suggestion\n    size_t normalKeyBlobSize;\n```",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "210f16c8_2b211c19",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-03-26T15:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af929423_2afef65e",
       "range": {
         "startLine": 68,
         "startChar": 4,

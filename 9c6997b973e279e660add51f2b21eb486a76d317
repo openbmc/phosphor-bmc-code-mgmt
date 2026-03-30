@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c626fc0_fcc5c2ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-03-30T07:36:54Z",
+      "side": 1,
+      "message": "The XO5-65T use a new implementation that introduces page-level CRC check and iamge hash verification during the update flow. I rename to lattice_xo5_65t instead of cpld2.",
+      "parentUuid": "cdcd8555_5ff40200",
+      "revId": "9c6997b973e279e660add51f2b21eb486a76d317",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36433ce3_becd3209",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-20T22:47:45Z",
       "side": 1,
       "message": "Please follow lowerCamelCase for var names\n\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#naming-conventions\n\nPlease read the guidelines about and update the patch accordingly.",
+      "revId": "9c6997b973e279e660add51f2b21eb486a76d317",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e07ca4b_74ee7ae9",
+        "filename": "cpld/lattice/lattice_xo5_cpld2.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-03-30T07:36:54Z",
+      "side": 1,
+      "message": "I have updated. Thanks for your review.",
+      "parentUuid": "36433ce3_becd3209",
       "revId": "9c6997b973e279e660add51f2b21eb486a76d317",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

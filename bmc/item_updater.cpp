@@ -44,7 +44,7 @@ void ItemUpdater::createActivation(sdbusplus::message_t& msg)
     using SVersion = server::Version;
     using VersionPurpose = SVersion::VersionPurpose;
 
-    sdbusplus::message::object_path objPath;
+    sdbusplus::object_path_t objPath;
     auto purpose = VersionPurpose::Unknown;
     std::string extendedVersion;
     std::string version;

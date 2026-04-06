@@ -207,7 +207,7 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     co_return;
 }
 
-sdbusplus::message::object_path Manager::startUpdate(
+sdbusplus::object_path_t Manager::startUpdate(
     sdbusplus::message::unix_fd image,
     ApplyTimeIntf::RequestedApplyTimes applyTime)
 {
@@ -217,7 +217,7 @@ sdbusplus::message::object_path Manager::startUpdate(
     {
         error("Failed to start as update is already in progress");
         report<Unavailable>();
-        return sdbusplus::message::object_path();
+        return sdbusplus::object_path_t();
     }
     updateInProgress = true;
 
@@ -230,7 +230,7 @@ sdbusplus::message::object_path Manager::startUpdate(
     int newFd = dup(image);
     ctx.spawn(processImage(newFd, applyTime, id, objPath));
 
-    return sdbusplus::message::object_path(objPath);
+    return sdbusplus::object_path_t(objPath);
 }
 
 } // namespace phosphor::software::update

@@ -83,7 +83,7 @@ class Software : private SoftwareActivation
 
   protected:
     // object path of this software
-    const sdbusplus::message::object_path objectPath;
+    const sdbusplus::object_path_t objectPath;
 
     // @returns the version purpose
     // @returns std::nullopt in case the version has not been set

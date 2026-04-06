@@ -34,7 +34,7 @@ class SoftwareManager
         const std::vector<std::string>& configurationInterfaces);
 
     // Map of EM config object path to device.
-    std::map<sdbusplus::message::object_path, std::unique_ptr<Device>> devices;
+    std::map<sdbusplus::object_path_t, std::unique_ptr<Device>> devices;
 
   protected:
     // This function receives a dbus name and object path for a single device,
@@ -61,7 +61,7 @@ class SoftwareManager
         const std::string& interface);
 
     sdbusplus::async::task<void> handleInterfaceRemoved(
-        const sdbusplus::message::object_path& path);
+        const sdbusplus::object_path_t& path);
 
     sdbusplus::async::task<void> interfaceAddedMatch(
         std::vector<std::string> interfaces);

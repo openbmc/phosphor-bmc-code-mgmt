@@ -89,7 +89,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
 
     // Wait for PSUSensor to detect the activation signal so it can skip
     // readings from this sensor while retrieving the CRC from this device.
-    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(1000));
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(10000));
 
     uint32_t sum;
     if (!(co_await i2cDevice->getVersion(&sum)))

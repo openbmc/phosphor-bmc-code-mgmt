@@ -27,6 +27,7 @@ software_common_lib = static_library(
     'src/software_update.cpp',
     'src/host_power.cpp',
     'src/utils.cpp',
+    'src/pmbus.cpp',
     include_directories: ['.', 'include/', common_include],
     dependencies: [
         pdi_dep,

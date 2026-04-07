@@ -310,6 +310,8 @@ sdbusplus::async::task<bool> MP5998::getCRC(uint32_t* checksum)
     std::vector<uint8_t> tbuf;
     std::vector<uint8_t> rbuf;
 
+    PageGuard guard(i2cInterface);
+
     tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -406,6 +408,8 @@ bool MP5998::forcedUpdateAllowed()
 sdbusplus::async::task<bool> MP5998::updateFirmware(bool force)
 {
     (void)force;
+
+    PageGuard guard(i2cInterface);
 
     if (!co_await checkId(PMBusCmd::mfrId, configuration->vendorId))
     {

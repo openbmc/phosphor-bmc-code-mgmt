@@ -384,6 +384,8 @@ sdbusplus::async::task<bool> MP297X::getCRC(uint32_t* checksum)
         co_return false;
     }
 
+    PageGuard guard(i2cInterface);
+
     constexpr size_t crcLength = 2;
 
     std::vector<uint8_t> tbuf;
@@ -465,6 +467,8 @@ bool MP297X::forcedUpdateAllowed()
 
 sdbusplus::async::task<bool> MP297X::updateFirmware(bool force)
 {
+    PageGuard guard(i2cInterface);
+
     (void)force;
 
     auto groupedConfigData = getGroupedConfigData();

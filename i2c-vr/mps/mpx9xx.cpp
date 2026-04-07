@@ -401,6 +401,8 @@ sdbusplus::async::task<bool> MPX9XX::getCRC(uint32_t* checksum)
     std::vector<uint8_t> tbuf;
     std::vector<uint8_t> rbuf;
 
+    PageGuard guard(i2cInterface);
+
     tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -509,6 +511,8 @@ sdbusplus::async::task<bool> MPX9XX::updateFirmware(bool force)
         error("Configuration not loaded");
         co_return false;
     }
+
+    PageGuard guard(i2cInterface);
 
     if (!co_await checkId(MPX9XXCmd::vendorId, configuration->vendorId))
     {

@@ -231,6 +231,8 @@ sdbusplus::async::task<bool> MPQ87XX::getCRC(uint32_t* checksum)
     std::vector<uint8_t> tbuf;
     std::vector<uint8_t> rbuf;
 
+    PageGuard guard(i2cInterface);
+
     tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
     if (!i2cInterface.sendReceive(tbuf, rbuf))
     {
@@ -259,6 +261,8 @@ bool MPQ87XX::forcedUpdateAllowed()
 sdbusplus::async::task<bool> MPQ87XX::updateFirmware(bool force)
 {
     (void)force;
+
+    PageGuard guard(i2cInterface);
 
     auto groupedConfigData = getGroupedConfigData();
     static constexpr size_t maxRetryCount = 2;

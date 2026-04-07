@@ -33,6 +33,23 @@
       "message": "@alexander.hansen@9elements.com Looks like this patch has a dependency on https://gerrit.openbmc.org/c/openbmc/libpldm/+/88596. Can you please add the patch dependency in description section and help with merging https://gerrit.openbmc.org/c/openbmc/libpldm/+/88596 first.",
       "revId": "f904de716e17043e5814b3e4f6aca61fd34cab90",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b91166a_6c34fecf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-04-07T18:25:49Z",
+      "side": 1,
+      "message": "Waiting on https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/87564/comments/1717451e_ef63e6e3 to resolve before we do a +2.",
+      "revId": "f904de716e17043e5814b3e4f6aca61fd34cab90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

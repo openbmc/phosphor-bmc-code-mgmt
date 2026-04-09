@@ -94,7 +94,7 @@ auto USBManager::startUpdate(int fd) -> sdbusplus::async::task<bool>
     }
 
     auto updater = Updater(ctx).service(serviceName).path(paths[0]);
-    sdbusplus::message::object_path objectPath = co_await updater.start_update(
+    sdbusplus::object_path objectPath = co_await updater.start_update(
         fd, ApplyTimeIntf::RequestedApplyTimes::OnReset);
     if (objectPath.str.empty())
     {
@@ -177,7 +177,7 @@ void USBManager::updateActivation(sdbusplus::message_t& msg)
 {
     std::map<std::string, std::map<std::string, std::variant<std::string>>>
         interfaces;
-    sdbusplus::message::object_path path;
+    sdbusplus::object_path path;
     msg.read(path, interfaces);
 
     constexpr auto imageInterface = "xyz.openbmc_project.Software.Activation";

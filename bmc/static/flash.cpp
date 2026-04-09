@@ -71,7 +71,7 @@ void Activation::onStateChanges([[maybe_unused]] sdbusplus::message_t& msg)
 #ifdef BMC_STATIC_DUAL_IMAGE
     uint32_t newStateID;
     auto serviceFile = FLASH_ALT_SERVICE_TMPL + versionId + ".service";
-    sdbusplus::message::object_path newStateObjPath;
+    sdbusplus::object_path newStateObjPath;
     std::string newStateUnit{};
     std::string newStateResult{};
     msg.read(newStateID, newStateObjPath, newStateUnit, newStateResult);

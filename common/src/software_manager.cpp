@@ -205,7 +205,7 @@ sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch(
     {
         std::tuple<std::string, ConfigMap> nextResult("", {});
         nextResult = co_await configIntfAddedMatch
-                         .next<sdbusplus::message::object_path, ConfigMap>();
+                         .next<sdbusplus::object_path, ConfigMap>();
 
         auto& [objPath, interfacesMap] = nextResult;
 
@@ -228,8 +228,9 @@ sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch(
 {
     while (!ctx.stop_requested())
     {
-        auto nextResult = co_await configIntfRemovedMatch.next<
-            sdbusplus::message::object_path, std::vector<std::string>>();
+        auto nextResult =
+            co_await configIntfRemovedMatch
+                .next<sdbusplus::object_path, std::vector<std::string>>();
 
         auto& [objPath, interfacesRemoved] = nextResult;
 
@@ -249,7 +250,7 @@ sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch(
 }
 
 sdbusplus::async::task<void> SoftwareManager::handleInterfaceRemoved(
-    const sdbusplus::message::object_path& objPath)
+    const sdbusplus::object_path& objPath)
 {
     if (!devices.contains(objPath))
     {

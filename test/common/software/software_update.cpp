@@ -48,7 +48,7 @@ sdbusplus::async::task<> testSoftwareUpdateCommon(
             .service(busName)
             .path(objPathCurrentSoftware);
 
-    sdbusplus::message::object_path objPathNewSoftware =
+    sdbusplus::object_path objPathNewSoftware =
         co_await client.start_update(fd, RequestedApplyTimes::Immediate);
 
     EXPECT_NE(objPathNewSoftware, objPathCurrentSoftware);

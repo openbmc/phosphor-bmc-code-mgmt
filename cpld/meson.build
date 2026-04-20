@@ -5,6 +5,9 @@ cpld_vendor_src = files(
     'lattice/lattice_cpld_factory.cpp',
     'lattice/lattice_xo3_cpld.cpp',
     'lattice/lattice_xo5_cpld.cpp',
+    'altera/max10_base_cpld.cpp',
+    'altera/max10_cpld.cpp',
+    'altera/max10_cpld_factory.cpp',
 )
 
 exe = executable(

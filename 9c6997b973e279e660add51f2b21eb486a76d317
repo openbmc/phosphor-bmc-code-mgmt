@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30883ab1_ec80ee12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-04-20T08:27:09Z",
+      "side": 1,
+      "message": "I have folded the XO5-35T/65T support into the existing LatticeXO5CPLD class as suggested. By using an isTSeries flag, the specific command sequences for the T-Series are handled within the same flow, avoiding code duplication and the need for a new file.",
+      "parentUuid": "257156b7_dadd1710",
+      "revId": "9c6997b973e279e660add51f2b21eb486a76d317",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36433ce3_becd3209",

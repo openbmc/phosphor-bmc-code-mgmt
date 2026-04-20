@@ -1,6 +1,9 @@
 cpld_src = files('cpld.cpp', 'cpld_interface.cpp', 'cpld_software_manager.cpp')
 
 cpld_vendor_src = files(
+    'altera/max10_base_cpld.cpp',
+    'altera/max10_cpld.cpp',
+    'altera/max10_cpld_factory.cpp',
     'lattice/lattice_base_cpld.cpp',
     'lattice/lattice_cpld_factory.cpp',
     'lattice/lattice_xo3_cpld.cpp',

@@ -103,6 +103,24 @@
       "parentUuid": "04a4e35d_4bd8f613",
       "revId": "f904de716e17043e5814b3e4f6aca61fd34cab90",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e2de679_9eaf6a23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-04-30T16:37:57Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Sure, merging this. \n\nFYI: This is going to break openbmc/openbmc builds because you need to add libpldm++ dependency in https://grok.openbmc.org/xref/openbmc/openbmc/meta-phosphor/recipes-phosphor/flash/phosphor-software-manager_git.bb?r\u003d4be31c5b82af6f640fbe3cdfd669d69e9599252d#21. Please watch for the PR when the version publish gets generated in openbmc/openbmc gerrit and update the version publish to add this change.",
+      "parentUuid": "ed8d6418_55445241",
+      "revId": "f904de716e17043e5814b3e4f6aca61fd34cab90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

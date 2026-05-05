@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a34e4c_22c00bc8",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "Whats Ccitt?",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43e09b19_e01eee06",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "Lets replace macro with a relevant function.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6caf31f0_c9ddb3a3",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "This function is big and hard to read, can you please break it further.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d5bff9_191bea37",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "Please refactor/break this function further as its really big and hard to understand.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bae09dd_24d24fbd",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "Please refactor/break this function further as its really big and hard to understand.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "990fee64_ae52b0e6",
+        "filename": "cpld/lattice/lattice_xo5_cpld.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-05T07:01:51Z",
+      "side": 1,
+      "message": "Please remove _ from end to keep nomenclature consistent.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

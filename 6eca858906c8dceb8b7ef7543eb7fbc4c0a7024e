@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd527e3_42a596e8",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "\u0027CRC16-CCITT\u0027 is the standard name for the CRC algorithm using the 0x1021 polynomial, which is what this function implements.",
+      "parentUuid": "64a34e4c_22c00bc8",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43e09b19_e01eee06",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-05T07:01:51Z",
       "side": 1,
       "message": "Lets replace macro with a relevant function.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c93af48_03dd08fa",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43e09b19_e01eee06",
       "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21e83957_ccbfafca",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "Extracted CRC logic into private member functions to improve the readability of the main communication flow",
+      "parentUuid": "6caf31f0_c9ddb3a3",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4d5bff9_191bea37",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-05T07:01:51Z",
       "side": 1,
       "message": "Please refactor/break this function further as its really big and hard to understand.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2e2fa3f_befc798f",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "Refactored programCfg() by splitting the logic into two distinct implementation methods: programTSeries() and programStandard().",
+      "parentUuid": "b4d5bff9_191bea37",
       "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97724358_4756c15a",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "Refactored verifyCfg() by decoupling the hash-based verification (T-Series) and page-by-page comparison (Standard) into private member functions verifyTSeriesCfg() and verifyStandardCfg().",
+      "parentUuid": "2bae09dd_24d24fbd",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "990fee64_ae52b0e6",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-05-05T07:01:51Z",
       "side": 1,
       "message": "Please remove _ from end to keep nomenclature consistent.",
+      "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14dc431e_5374c625",
+        "filename": "cpld/lattice/lattice_xo5_cpld.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-06T06:02:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "990fee64_ae52b0e6",
       "revId": "6eca858906c8dceb8b7ef7543eb7fbc4c0a7024e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

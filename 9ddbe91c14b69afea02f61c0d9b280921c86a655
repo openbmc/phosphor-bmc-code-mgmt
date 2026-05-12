@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dc2cb1_d6c27456",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-05-12T13:54:43Z",
+      "side": 1,
+      "message": "Please fix the mode on all of the files you just added.  There is no reason for them to be marked executable.",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b2a94f_1ebeb7ba",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-05-12T13:54:43Z",
+      "side": 1,
+      "message": "Why are we doing this?  lg2 has a debug output.",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9d985a_9b2652c5",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-05-12T13:54:43Z",
+      "side": 1,
+      "message": "Why aren\u0027t you using the generated bindings to get these properties?",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc49c6e7_ac0e9ff2",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-14T10:06:36Z",
+      "side": 1,
+      "message": "The file permissions have already been corrected.",
+      "parentUuid": "60dc2cb1_d6c27456",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31b2a94f_1ebeb7ba",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b44532_4a75700a",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-14T10:06:36Z",
+      "side": 1,
+      "message": "Originally, this was added to provide more detailed debug output during development, and it could later be controlled via a #define DEBUG switch. Since the development is now complete, I have removed this part.",
+      "parentUuid": "31b2a94f_1ebeb7ba",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c9d985a_9b2652c5",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-12T13:54:43Z",
       "side": 1,
       "message": "Why aren\u0027t you using the generated bindings to get these properties?",
+      "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c86e84_47994260",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-14T10:06:36Z",
+      "side": 1,
+      "message": "I have updated the implementation to use the generated bindings to access the properties as suggested. Please let me know if further changes are needed.",
+      "parentUuid": "4c9d985a_9b2652c5",
       "revId": "9ddbe91c14b69afea02f61c0d9b280921c86a655",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6af5c44_6a169731",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-21T18:20:59Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com \nI see we already have handling for empty target field in Base CPLD code. Can you please create a followup patch which introduces a targetType enum that has CFG0, CF1, DYNAMIC as the other option and let the base code do the required handling based on that.  The way its written, its confusing and seems as if the developer missed to include the target. Please add the reference of that patch in this comment.",
+      "parentUuid": "eb2d1a1e_652ba590",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d12a19_c000c604",
         "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
         "patchSetId": 14

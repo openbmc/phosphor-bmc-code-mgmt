@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7dedcab_89b6c83d",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-21T18:11:58Z",
+      "side": 1,
+      "message": "I see lot of info level logs, can you please keep only the important one\u0027s at info and rest convert all to debug?",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25b4111c_e252f02d",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-21T18:11:58Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com Can you please use alignas(1) instead of pack(push)/pack(pop) to make code better cpp compliant.",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

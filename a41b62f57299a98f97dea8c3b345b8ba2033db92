@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed87bfc2_d7faf2cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-22T16:15:02Z",
+      "side": 1,
+      "message": "Looks good, a couple of minor things inline.\n\n\nOverall though: have you tested with other compression types? busybox tar requires different options for gzip (`-x`) vs bz2 (\u0027-j`) vs xz (`-J`), but your detection logic only adds `-x` for any of those three.\n\nOn the other hand, GNU tar does the autodetection itself, so doesn\u0027t need any `-x` option, we should check whether just using that is simpler....",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a65135a_af148586",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-22T16:15:02Z",
+      "side": 1,
+      "message": "minor nit: this doesn\u0027t really tell us that this is a compressed _tar_ file, just that it is compressed. Maybe `isCompressed()` ?",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e13b029_a2064965",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-22T16:15:02Z",
+      "side": 1,
+      "message": "You can use `pread()` to avoid the `lseek()`.",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f350077a_ec471cf1",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-22T16:15:02Z",
+      "side": 1,
+      "message": "The bzip2 and xz checks have their own check of bytesRead, why not just include this check in the gzip case too?",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62341834_f592fd9e",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-22T16:15:02Z",
+      "side": 1,
+      "message": "You could also make these three checks a little less hard-coded with an array of magic bytes that you check for; that would save the multiple-array-index checks, and make it easier to support new formats in future.\n\n\nThe downside is the complexity of the array-of-arrays-of-chars, but there can be neat ways to define that.\n\n(however, this may become preferable if we add support for `-j` / `-J` too)",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

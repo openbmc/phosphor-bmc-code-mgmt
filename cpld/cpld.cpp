@@ -1,5 +1,7 @@
 #include "cpld.hpp"
 
+#include "common/include/utils.hpp"
+
 namespace phosphor::software::cpld
 {
 
@@ -67,9 +69,11 @@ sdbusplus::async::task<bool> CPLDDevice::getVersion(std::string& version)
         co_return false;
     }
 
-    if (!(co_await cpldInterface->getVersion(version)))
+    if (!co_await asyncRetry(ctx, [this, &version]() {
+            return cpldInterface->getVersion(version);
+        }))
     {
-        lg2::error("Failed to get CPLD version");
+        lg2::error("Failed to get CPLD version after retries");
         co_return false;
     }
 

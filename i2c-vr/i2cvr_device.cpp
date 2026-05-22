@@ -1,5 +1,7 @@
 #include "i2cvr_device.hpp"
 
+#include "common/include/utils.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
@@ -38,9 +40,12 @@ sdbusplus::async::task<bool> I2CVRDevice::updateDevice(const uint8_t* image,
 sdbusplus::async::task<bool> I2CVRDevice::getVersion(uint32_t* sum) const
 {
     // NOLINTBEGIN(clang-analyzer-core.uninitialized.Branch)
-    if (!(co_await this->vrInterface->getCRC(sum)))
+    if (!co_await asyncRetry(ctx, [this, sum]() {
+            return this->vrInterface->getCRC(sum);
+        }))
     //  NOLINTEND(clang-analyzer-core.uninitialized.Branch)
     {
+        lg2::error("Failed to get VR version after retries");
         co_return false;
     }
     co_return true;

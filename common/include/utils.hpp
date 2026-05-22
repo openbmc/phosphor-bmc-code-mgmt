@@ -16,6 +16,38 @@ sdbusplus::async::task<bool> asyncSystem(
     std::optional<std::reference_wrapper<std::string>> result = std::nullopt);
 
 /**
+ * @brief  Asynchronously retry a function until success or attempts exhausted.
+ *
+ * @tparam Func Callable type
+ * @param ctx Async context for monitoring the pipe.
+ * @param func Callable returning bool when co_awaited.
+ * @param delay Delay between retry attempts (default: 100ms).
+ * @param maxRetries Maximum number of attempts (default: 3).
+ * @return sdbusplus::async::task<bool> true if successful, otherwise false.
+ */
+template <typename Func>
+sdbusplus::async::task<bool> asyncRetry(
+    sdbusplus::async::context& ctx, Func&& func,
+    std::chrono::milliseconds delay = std::chrono::milliseconds(100),
+    size_t maxRetries = 3)
+{
+    for (size_t i = 0; i < maxRetries; ++i)
+    {
+        if (co_await func())
+        {
+            co_return true;
+        }
+
+        if (i + 1 < maxRetries && delay > std::chrono::milliseconds(0))
+        {
+            co_await sdbusplus::async::sleep_for(ctx, delay);
+        }
+    }
+
+    co_return false;
+}
+
+/**
  * @brief Convert bytes to an integer of the given type.
  *
  * @tparam IntegerType Output integer type (e.g., uint16_t, uint32_t).

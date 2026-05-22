@@ -33,6 +33,7 @@ class LatticeXO5CPLD : public LatticeBaseCPLD
     sdbusplus::async::task<bool> programPage(uint8_t block, uint8_t page,
                                              const std::vector<uint8_t>& data);
     sdbusplus::async::task<bool> verifyCfg();
+    sdbusplus::async::task<bool> programDone();
     sdbusplus::async::task<bool> readPage(uint8_t block, uint8_t page,
                                           std::vector<uint8_t>& data);
 };

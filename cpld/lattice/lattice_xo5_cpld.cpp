@@ -13,6 +13,7 @@ enum class xo5Cmd : uint8_t
     sectorErase = 0xd8,
     pageProgram = 0x02,
     pageRead = 0x0b,
+    programDone = 0x5e,
     readUsercode = 0xc0
 };
 
@@ -315,6 +316,24 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::readUserCode(uint32_t& userCode)
     co_return true;
 }
 
+sdbusplus::async::task<bool> LatticeXO5CPLD::programDone()
+{
+    std::vector<uint8_t> request = {};
+    std::vector<uint8_t> response = {};
+    request.push_back(static_cast<uint8_t>(xo5Cmd::programDone));
+    request.push_back(0x0);
+    request.push_back(0x0);
+    request.push_back(0x0);
+
+    if (!i2cInterface.sendReceive(request, response))
+    {
+        lg2::error("Failed to send program done request.");
+        co_return false;
+    }
+
+    co_return true;
+}
+
 sdbusplus::async::task<bool> LatticeXO5CPLD::prepareUpdate(const uint8_t* image,
                                                            size_t imageSize)
 {
@@ -376,6 +395,13 @@ sdbusplus::async::task<bool> LatticeXO5CPLD::finishUpdate()
         lg2::error("Verify cfg data failed.");
         co_return false;
     }
+
+    if (!(co_await programDone()))
+    {
+        lg2::error("Send program done request failed.");
+        co_return false;
+    }
+
     co_return true;
 }
 

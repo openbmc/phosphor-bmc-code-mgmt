@@ -1,5 +1,8 @@
 #include "software_utils.hpp"
 
+#include <sys/wait.h>
+#include <unistd.h>
+
 #include <phosphor-logging/lg2.hpp>
 
 PHOSPHOR_LOG2_USING;
@@ -7,49 +10,32 @@ PHOSPHOR_LOG2_USING;
 namespace phosphor::software::utils
 {
 
-static bool writeToFile(int imageFd, FILE* outStream)
-{
-    const int bSize = 100;
-    ssize_t nRead = 0;
-    unsigned char buf[bSize];
-
-    while ((nRead = read(imageFd, buf, bSize)) > 0)
-    {
-        if (fwrite(buf, 1, nRead, outStream) != (size_t)nRead)
-        {
-            error("Failed to write to file");
-            return false;
-        }
-    }
-    if (nRead < 0)
-    {
-        error("Failed to read from input file");
-        return false;
-    }
-    return true;
-}
-
 bool unTar(int imageFd, const std::string& extractDirPath)
 {
-    std::string tarCmd = "tar -xf - -C " + extractDirPath + " --no-same-owner";
-    info("Executing command: {CMD}", "CMD", tarCmd);
-    FILE* outStream = popen(tarCmd.c_str(), "w");
-    if (outStream == nullptr)
+    info("Extracting archive to: {DIR}", "DIR", extractDirPath);
+
+    pid_t pid = fork();
+    if (pid < 0)
     {
-        error("Failed to open pipe to execute command: {CMD}", "CMD", tarCmd);
+        error("fork failed: {ERRNO}", "ERRNO", errno);
         return false;
     }
-
-    if (!writeToFile(imageFd, outStream))
+    if (pid == 0)
     {
-        error("Failed to write to file");
-        pclose(outStream);
-        return false;
+        dup2(imageFd, STDIN_FILENO);
+        // Pass tar arguments directly to exec to avoid any shell
+        // interpretation of extractDirPath.
+        execlp("tar", "tar", "-xf", "-", "-C", extractDirPath.c_str(),
+               "--no-same-owner", nullptr);
+        _exit(127);
     }
 
-    if (pclose(outStream) != 0)
+    int status = 0;
+    waitpid(pid, &status, 0);
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
     {
-        error("Failed to close pipe");
+        error("tar failed (status {STATUS}) extracting to {DIR}", "STATUS",
+              status, "DIR", extractDirPath);
         return false;
     }
     return true;

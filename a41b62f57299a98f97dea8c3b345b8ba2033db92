@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10824bd0_e8159d1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T05:16:26Z",
+      "side": 1,
+      "message": "You\u0027re right. Patchset #4 only supported gzip, so in patchset #5 I added support for all supported compression formats except lzma, and tested them all.\n\nAs you mentioned, the current BusyBox tar v1.37 in the OpenBMC build was compiled with CONFIG_FEATURE_TAR_AUTODETECT enabled, so compression formats are automatically detected and handled. However, the current extraction logic in this code uses a pipe, which prevents the autodetection from working.\n\nI added a more detailed explanation about the reason in the commit message, so please take a look.",
+      "parentUuid": "ed87bfc2_d7faf2cb",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a65135a_af148586",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "9a65135a_af148586",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa55c350_cdb61682",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T05:16:26Z",
+      "side": 1,
+      "message": "In patch set #5, I improved the handling logic for each compression format. Could you please take a look?",
+      "parentUuid": "24d6b144_bffd3831",
       "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +124,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bfa1de4_3f533e07",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T05:16:26Z",
+      "side": 1,
+      "message": "Yeah, that looks much cleaner. In patch set #5, I changed it to use pread().",
+      "parentUuid": "82ff070c_ad2e55bd",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f350077a_ec471cf1",
@@ -123,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de093015_ea58980d",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T05:16:26Z",
+      "side": 1,
+      "message": "I also improved this part by restructuring it to use a per-format handling table.",
+      "parentUuid": "e27e6490_84a20ec5",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62341834_f592fd9e",
@@ -136,6 +208,24 @@
       "writtenOn": "2026-05-22T16:15:02Z",
       "side": 1,
       "message": "You could also make these three checks a little less hard-coded with an array of magic bytes that you check for; that would save the multiple-array-index checks, and make it easier to support new formats in future.\n\n\nThe downside is the complexity of the array-of-arrays-of-chars, but there can be neat ways to define that.\n\n(however, this may become preferable if we add support for `-j` / `-J` too)",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e9af06_cef36f03",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T05:16:26Z",
+      "side": 1,
+      "message": "Thanks for the good suggestion. I incorporated this feedback into patch set #5 as well.",
+      "parentUuid": "62341834_f592fd9e",
       "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

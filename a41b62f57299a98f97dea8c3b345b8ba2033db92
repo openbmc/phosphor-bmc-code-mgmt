@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24d6b144_bffd3831",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-23T03:03:14Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "9a65135a_af148586",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e13b029_a2064965",
         "filename": "bmc/software_utils.cpp",
         "patchSetId": 4
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82ff070c_ad2e55bd",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-23T03:03:14Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "6e13b029_a2064965",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f350077a_ec471cf1",
         "filename": "bmc/software_utils.cpp",
         "patchSetId": 4
@@ -65,6 +101,24 @@
       "writtenOn": "2026-05-22T16:15:02Z",
       "side": 1,
       "message": "The bzip2 and xz checks have their own check of bytesRead, why not just include this check in the gzip case too?",
+      "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e27e6490_84a20ec5",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-23T03:03:14Z",
+      "side": 1,
+      "message": "+1, only gzip references first 2 bytes for now (other conditions already have size check), so better to keep it as first check for gzip.",
+      "parentUuid": "f350077a_ec471cf1",
       "revId": "a41b62f57299a98f97dea8c3b345b8ba2033db92",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

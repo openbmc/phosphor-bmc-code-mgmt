@@ -16,6 +16,23 @@
       "message": "Thanks for reviewing this and for pointing out the areas that needed fixes and improvements. I addressed all of the feedback and updated the implementation accordingly, so could you please take another look?",
       "revId": "6c64e6bf59ad59d54fafb4ab67abe4db5ddab3ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ef7875_4f5ec8ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-23T06:30:13Z",
+      "side": 1,
+      "message": "I also created another fix that approaches the problem differently:\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/90489\n\nInstead of using a pipe for the problematic tarball image, it handles the image through a seekable file descriptor and delegates the compression type autodetection to tar itself, which I think results in a cleaner implementation.",
+      "revId": "6c64e6bf59ad59d54fafb4ab67abe4db5ddab3ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

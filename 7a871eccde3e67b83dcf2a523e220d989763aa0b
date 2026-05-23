@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eca2721c_3dbb845b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-23T02:55:30Z",
+      "side": 1,
+      "message": "The current X05 file has become really big. Can you please move the X05 common code as a base class and then let the base model and T seres model extend from that.",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0df188e8_1387b6b8",
         "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
         "patchSetId": 9

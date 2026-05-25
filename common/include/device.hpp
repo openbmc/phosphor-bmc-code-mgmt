@@ -1,5 +1,6 @@
 #pragma once
 
+#include "events.hpp"
 #include "software.hpp"
 #include "software_config.hpp"
 
@@ -94,6 +95,8 @@ class Device
 
     sdbusplus::async::context& ctx;
 
+    events::Events events;
+
     bool updateInProgress = false;
 
   private:
@@ -110,6 +113,7 @@ class Device
     // @brief     extracts the information we need from the pldm package
     // @returns   true on success
     sdbusplus::async::task<bool> getImageInfo(
+        const sdbusplus::object_path& objectPath,
         std::unique_ptr<void, std::function<void(void*)>>& pldmPackage,
         size_t pldmPackageSize, uint8_t** matchingComponentImage,
         size_t* componentImageSize, std::string& componentVersion);

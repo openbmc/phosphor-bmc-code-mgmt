@@ -1,5 +1,6 @@
 #pragma once
 
+#include "events.hpp"
 #include "software.hpp"
 #include "software_config.hpp"
 
@@ -93,6 +94,8 @@ class Device
     manager::SoftwareManager* parent;
 
     sdbusplus::async::context& ctx;
+
+    events::Events events;
 
   private:
     bool updateInProgress = false;

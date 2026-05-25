@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d06e774_183a4860",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:03:42Z",
+      "side": 1,
+      "message": "But how do we ensure that this is seekable?\n\nThis seems pretty fragile; we\u0027re relying on a couple of assumptions:\n\n - that the underlying imageFd is seekable in the first place\n - that the `tar` process\u0027 `/proc/self/fd/N` aligns with the current process` fd (ie, that close on exec is not set!)\n \nIf you can guarantee the first, then you don\u0027t need the `/proc/self/fd/` facility in the first place, but just dup imageFd to tar\u0027s own stdin. `/proc/pid/fd/N` does not give you any special seek semantics, you may as well just pass the file descriptor directly.\n\nI\u0027m not too familiar with what imageFd is (or is not) guaranteed to be. If it\u0027s a regular file that the caller would have opened (ie, we can assume it is seekable), then I would suggest just setting tar\u0027s stdin directly, rather than popen().",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 61
+      },
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fee43131_88449a09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:03:42Z",
+      "side": 1,
+      "message": "OK, so that answers one of the items above, so now it\u0027s just popen() that\u0027s getting in the way.",
+      "range": {
+        "startLine": 25,
+        "startChar": 58,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "536ba9a1_1c20970c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:03:42Z",
+      "side": 1,
+      "message": "I do think this may lead to a neater approach (and avoids replicating tar\u0027s autodetection), but would need some work to properly implement. Details below.",
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5116e9b0_110e6fd8",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:03:42Z",
+      "side": 1,
+      "message": "but you\u0027re not using the created (read) pipe? May as well just fork() \u0026 exec() (or whatever higher-level process-creation facility might be available)",
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

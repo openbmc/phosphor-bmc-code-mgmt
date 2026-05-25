@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c900cf4_89233f09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:14:06Z",
+      "side": 1,
+      "message": "Thanks for reviewing both this one and the alternative approach as well.",
+      "revId": "7f357253609c98f78c56d4e233ae78a01a2d8b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

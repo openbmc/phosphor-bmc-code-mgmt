@@ -51,6 +51,24 @@
       "message": "super minor, but I\u0027d suggest splitting the arguments so you\u0027re not pasting too much together:\n\n```\n    tarCmd \u003d \"tar -x \" + (possibly -z / -j / -J / etc) + \" -f \" + filename\n\n```\n\n... but only if you\u0027re re-rolling for other reasons.",
       "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d111444e_177ba998",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:14:06Z",
+      "side": 1,
+      "message": "Yeah, this looks better. In the case of LZMA, this change still doesn’t fully cover it because of the irregular header pattern issue. However, considering that we may need to support compression types in the future that require explicit options like --lzma, I think your suggested approach is more flexible overall.\n\nI updated the implementation in patch set #8, so please take another look.",
+      "parentUuid": "c64af2d7_5da8dcf2",
+      "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

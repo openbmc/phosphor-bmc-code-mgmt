@@ -69,6 +69,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfff0833_92285e18",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T06:00:31Z",
+      "side": 1,
+      "message": "Good point. The code itself already explains that part, so there’s no need to repeat it in the comments. Also, since -xf is common across all options, it doesn’t make sense to duplicate it in the table either. I’ve cleaned all of that up in patch set #7, so please take another look.",
+      "parentUuid": "1786ae13_d7123768",
+      "revId": "6c64e6bf59ad59d54fafb4ab67abe4db5ddab3ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da7b6f71_f7f6a60a",
@@ -82,6 +100,24 @@
       "writtenOn": "2026-05-25T00:56:50Z",
       "side": 1,
       "message": "Can you tie this size to the definition of TarFormat.magic?",
+      "revId": "6c64e6bf59ad59d54fafb4ab67abe4db5ddab3ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "142febf4_bb72e57c",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T06:00:31Z",
+      "side": 1,
+      "message": "Sure. Having a separate array length member in the table was also redundant, and it felt like the kind of thing that could easily become a maintenance weak point later if someone adds an incorrect length number. I changed it to use the actual array size directly instead of a magic-number length field, and refactored it using std::vector.",
+      "parentUuid": "da7b6f71_f7f6a60a",
       "revId": "6c64e6bf59ad59d54fafb4ab67abe4db5ddab3ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dae8bf3_93846bad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T06:00:31Z",
+      "side": 1,
+      "message": "Thanks for your valuable comments. I’ve addressed all of the feedback and updated everything in patch set #7, so could you please take another look?\n\nAlso, I submitted what I think may be a cleaner alternative fix here:\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/90489\n\nCould you compare the two approaches and share your thoughts on which one looks better?",
+      "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

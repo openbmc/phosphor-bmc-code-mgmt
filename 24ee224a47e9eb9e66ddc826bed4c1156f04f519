@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ff14d24_5eb69d1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:33:07Z",
+      "side": 1,
+      "message": "Good catch — you\u0027re right on both counts. imageFd is guaranteed seekable because bmcweb writes the HTTP upload body to a temp file before calling StartUpdate, so the fd is always backed by a regular file. And your suggestion to dup it directly to tar\u0027s stdin is the cleaner fix.\n\nI\u0027ve fixed the code accordingly in patch set #4. Instead of /proc/self/fd/N via popen(), it now uses fork() + dup2(imageFd, STDIN_FILENO) + execl():\n\n```\n  pid_t pid \u003d fork();\n  if (pid \u003d\u003d 0)\n  {\n      dup2(imageFd, STDIN_FILENO);\n      execl(\"/bin/sh\", \"sh\", \"-c\", tarCmd.c_str(), nullptr);\n      _exit(127);\n  }\n```\n\nThis eliminates both concerns at once: no /proc/self/fd/ dependency, and the close-on-exec issue disappears because dup2() is called in the child before execl() — by POSIX, a fd produced by dup2() never inherits O_CLOEXEC from the source, so STDIN_FILENO always survives the exec. Since tar\u0027s stdin is now the seekable temp-file fd directly, BusyBox tar\u0027s built-in autodetect works without any magic-byte sniffing on our side with this fix.",
+      "parentUuid": "8d06e774_183a4860",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 61
+      },
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fee43131_88449a09",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-05-25T09:03:42Z",
       "side": 1,
       "message": "OK, so that answers one of the items above, so now it\u0027s just popen() that\u0027s getting in the way.",
+      "range": {
+        "startLine": 25,
+        "startChar": 58,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "178ceaf3_27a9f712",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:33:07Z",
+      "side": 1,
+      "message": "I addressed your concern in the patch set #4.",
+      "parentUuid": "fee43131_88449a09",
       "range": {
         "startLine": 25,
         "startChar": 58,
@@ -77,6 +125,24 @@
       "writtenOn": "2026-05-25T09:03:42Z",
       "side": 1,
       "message": "but you\u0027re not using the created (read) pipe? May as well just fork() \u0026 exec() (or whatever higher-level process-creation facility might be available)",
+      "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9b0c4a9_15be25e9",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:33:07Z",
+      "side": 1,
+      "message": "Agreed — the read pipe was unused. The patch has been updated to use fork() + dup2(imageFd, STDIN_FILENO) + execl() directly, dropping popen() entirely in patch set #4.",
+      "parentUuid": "5116e9b0_110e6fd8",
       "revId": "24ee224a47e9eb9e66ddc826bed4c1156f04f519",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

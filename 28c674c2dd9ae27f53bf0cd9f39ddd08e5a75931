@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99b6e74_a6c15e8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-25T22:33:07Z",
+      "side": 1,
+      "message": "Thank you for the review. I\u0027ve addressed your feedback and suggestions in patch set #4 — please take another look.",
+      "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

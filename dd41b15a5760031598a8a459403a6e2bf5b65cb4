@@ -16,6 +16,41 @@
       "message": "Thanks for your valuable comments. I’ve addressed all of the feedback and updated everything in patch set #7, so could you please take another look?\n\nAlso, I submitted what I think may be a cleaner alternative fix here:\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/90489\n\nCould you compare the two approaches and share your thoughts on which one looks better?",
       "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a5a88a_a61d5272",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:05:26Z",
+      "side": 1,
+      "message": "I like the approach of the alternative, but I think the implementation needs some changes; have commented there.",
+      "parentUuid": "0dae8bf3_93846bad",
+      "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64af2d7_5da8dcf2",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-25T09:05:26Z",
+      "side": 1,
+      "message": "super minor, but I\u0027d suggest splitting the arguments so you\u0027re not pasting too much together:\n\n```\n    tarCmd \u003d \"tar -x \" + (possibly -z / -j / -J / etc) + \" -f \" + filename\n\n```\n\n... but only if you\u0027re re-rolling for other reasons.",
+      "revId": "dd41b15a5760031598a8a459403a6e2bf5b65cb4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

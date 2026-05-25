@@ -85,6 +85,19 @@ sdbusplus::async::task<> testSoftwareUpdateCommon(
     if (expectNewVersion)
     {
         EXPECT_EQ(newVersion, exampleVersion);
+
+        // Wait for the spawned update coroutine to finish the
+        // softwareCurrent assignment, since startUpdateAsync is detached
+        // and may still be running event/cleanup co_awaits.
+        ssize_t swTimeout = 500;
+        while (device->softwareCurrent->swid != objPathNewSoftware.filename() &&
+               swTimeout > 0)
+        {
+            co_await sdbusplus::async::sleep_for(ctx,
+                                                 std::chrono::milliseconds(50));
+            swTimeout -= 50;
+        }
+
         EXPECT_EQ(device->softwareCurrent->swid, objPathNewSoftware.filename());
     }
 

@@ -37,10 +37,11 @@ Device::Device(sdbusplus::async::context& ctx, const SoftwareConfig& config,
                    {RequestedApplyTimes::Immediate,
                     RequestedApplyTimes::OnReset}) :
     allowedApplyTimes(std::move(allowedApplyTimes)), config(config),
-    parent(parent), ctx(ctx)
+    parent(parent), ctx(ctx), events(ctx)
 {}
 
 sdbusplus::async::task<bool> Device::getImageInfo(
+    const sdbusplus::object_path& objectPath,
     std::unique_ptr<void, std::function<void(void*)>>& pldmPackage,
     size_t pldmPackageSize, uint8_t** matchingComponentImage,
     size_t* componentImageSize, std::string& componentVersion)
@@ -53,8 +54,13 @@ sdbusplus::async::task<bool> Device::getImageInfo(
     if (package == nullptr)
     {
         error("could not parse PLDM package");
+        co_await events.generateVerificationFailed(objectPath, componentVersion,
+                                                   true);
         co_return false;
     }
+
+    co_await events.generateVerificationFailed(objectPath, componentVersion,
+                                               false);
 
     uint32_t componentOffset = 0;
     const int status = pldm_package_util::extractMatchingComponentImage(
@@ -93,10 +99,10 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
     size_t componentImageSize = 0;
     std::string componentVersion;
 
-    if (!co_await getImageInfo(pldm_pkg, pldm_pkg_size, &componentImage,
+    if (!co_await getImageInfo(softwarePendingIn->objectPath, pldm_pkg,
+                               pldm_pkg_size, &componentImage,
                                &componentImageSize, componentVersion))
     {
-        error("could not extract matching component image");
         softwarePendingIn->setActivation(ActivationInvalid);
         co_return false;
     }
@@ -105,6 +111,9 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
 
     softwarePending = std::move(softwarePendingIn);
     softwarePendingIn = nullptr;
+
+    co_await events.generateTargetDetermined(softwarePending->objectPath,
+                                             componentVersion);
 
     const bool success = co_await continueUpdateWithMappedPackage(
         componentImage, componentImageSize, componentVersion, applyTime);
@@ -189,6 +198,12 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     {
         softwarePending->setActivation(
             ActivationInterface::Activations::Active);
+
+        co_await events.generateActivateFailed(softwarePending->objectPath,
+                                               componentVersion, false);
+
+        co_await events.generateUpdateSuccessful(softwarePending->objectPath,
+                                                 componentVersion);
     }
 
     softwarePending->setActivationBlocksTransition(false);
@@ -199,6 +214,8 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     {
         // do not apply the update, it has failed.
         // We can delete the new software version.
+        co_await events.generateActivateFailed(softwarePending->objectPath,
+                                               componentVersion, true);
 
         co_return false;
     }
@@ -213,6 +230,9 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     }
     else
     {
+        co_await events.generateResetRequired(softwarePending->objectPath,
+                                              events::HostTransition::Reboot);
+
         co_await softwarePending->createInventoryAssociations(false);
     }
 

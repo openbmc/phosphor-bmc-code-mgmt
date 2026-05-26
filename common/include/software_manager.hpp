@@ -10,6 +10,7 @@
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/timer.hpp>
 
+#include <set>
 #include <string>
 
 using namespace phosphor::software::config;
@@ -79,6 +80,8 @@ class SoftwareManager
 
     friend Software;
     friend Device;
+
+    std::set<sdbusplus::object_path> initializingPaths;
 };
 
 }; // namespace phosphor::software::manager

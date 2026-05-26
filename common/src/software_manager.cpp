@@ -154,6 +154,14 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     const std::string& service, const std::string& path,
     const std::string& interface)
 {
+    if (devices.contains(path) || initializingPaths.contains(path))
+    {
+        debug("Skipping duplicate init for {PATH}", "PATH", path);
+        co_return;
+    }
+
+    initializingPaths.insert(path);
+
     debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",
           service, "PATH", path);
 
@@ -162,6 +170,7 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     if (!optConfig.has_value())
     {
         error("Failed to get configuration from {PATH}", "PATH", path);
+        initializingPaths.erase(path);
         co_return;
     }
 
@@ -171,6 +180,7 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     {
         error("Device configured from {PATH} is already known", "PATH",
               config.objectPath);
+        initializingPaths.erase(path);
         co_return;
     }
 
@@ -189,6 +199,7 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
         }
     }
 
+    initializingPaths.erase(path);
     co_return;
 }
 

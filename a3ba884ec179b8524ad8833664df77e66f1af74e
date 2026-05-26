@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9426b831_19ddedbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-26T04:56:57Z",
+      "side": 1,
+      "message": "Thanks for catching this. I think it’s better to catch any potential security weak points, even minor ones, so I went ahead and addressed it in the latest patch set #5. Thanks again for the review!",
+      "revId": "a3ba884ec179b8524ad8833664df77e66f1af74e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

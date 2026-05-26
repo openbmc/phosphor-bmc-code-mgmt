@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e165b6e0_d19afdcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-26T04:56:57Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "39f8b174_8900c685",
+      "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a7a2da0_9bda5842",
@@ -65,6 +83,24 @@
       "writtenOn": "2026-05-26T01:46:22Z",
       "side": 1,
       "message": "If there is any chance that the `extractDirPath` string can be controlled by an untrusted source, then we would want to pass our arguments directly to execl (or, more likely, `execlp`), rather than constructing a `sh -c` invocation.\n\nHowever: if extractDirPath is guaranteed to only contain a path with no shell escapes, we\u0027re fine. It may be worth commenting as such though.",
+      "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "855b6a79_46369e35",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-26T04:56:57Z",
+      "side": 1,
+      "message": "Good point. Switched to execlp(\"tar\", \"tar\", \"-xf\", \"-\", \"-C\", extractDirPath.c_str(), \"--no-same-owner\", nullptr) in patch set #5 so arguments are passed directly to exec — no sh -c, no shell interpretation of extractDirPath. Updated the commit message to document the security intent.",
+      "parentUuid": "4a7a2da0_9bda5842",
       "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

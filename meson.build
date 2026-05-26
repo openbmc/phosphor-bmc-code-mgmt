@@ -83,6 +83,7 @@ all_options = {
         'deps': ['libgpiod'],
     },
     'i2cvr-software-update': {'dirs': ['common/i2c', 'i2c-vr']},
+    'i2chsc-software-update': {'dirs': ['common/i2c', 'i2c-hsc']},
     'tpm-software-update': {'dirs': ['tpm']},
 }
 

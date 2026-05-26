@@ -442,8 +442,15 @@ void Activation::onStateChangesBios(sdbusplus::message_t& msg)
             activation(softwareServer::Activation::Activations::Active);
 
             info("Bios upgrade completed successfully.");
-            parent.biosVersion->version(
-                parent.versions.find(versionId)->second->version());
+            auto newVersion =
+                parent.versions.find(versionId)->second->version();
+            auto* biosVer = parent.biosVersion
+                ? parent.biosVersion.get()
+                : parent.externalBiosVersion;
+            if (biosVer)
+            {
+                biosVer->version(newVersion);
+            }
 
             // Delete the uploaded activation
             ctx.spawn([](auto self) -> sdbusplus::async::task<> {

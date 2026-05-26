@@ -10,6 +10,7 @@
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/timer.hpp>
 
+#include <set>
 #include <string>
 
 using namespace phosphor::software::config;
@@ -60,6 +61,10 @@ class SoftwareManager
         const std::string& service, const std::string& path,
         const std::string& interface);
 
+    sdbusplus::async::task<void> handleInterfaceAddedGuarded(
+        const std::string& service, const std::string& path,
+        const std::string& interface);
+
     sdbusplus::async::task<void> handleInterfaceRemoved(
         const sdbusplus::object_path& path);
 
@@ -79,6 +84,8 @@ class SoftwareManager
 
     friend Software;
     friend Device;
+
+    std::set<sdbusplus::object_path> initializingPaths;
 };
 
 }; // namespace phosphor::software::manager

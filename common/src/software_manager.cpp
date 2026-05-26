@@ -154,6 +154,21 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     const std::string& service, const std::string& path,
     const std::string& interface)
 {
+    if (devices.contains(path) || initializingPaths.contains(path))
+    {
+        debug("Skipping duplicate init for {PATH}", "PATH", path);
+        co_return;
+    }
+
+    initializingPaths.insert(path);
+    co_await handleInterfaceAddedGuarded(service, path, interface);
+    initializingPaths.erase(path);
+}
+
+sdbusplus::async::task<void> SoftwareManager::handleInterfaceAddedGuarded(
+    const std::string& service, const std::string& path,
+    const std::string& interface)
+{
     debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",
           service, "PATH", path);
 

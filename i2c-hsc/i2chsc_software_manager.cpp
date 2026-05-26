@@ -1,0 +1,112 @@
+#include "i2chsc_software_manager.hpp"
+
+#include "common/include/dbus_helper.hpp"
+#include "common/include/software_manager.hpp"
+#include "hsc.hpp"
+#include "i2chsc_device.hpp"
+
+#include <phosphor-logging/lg2.hpp>
+#include <sdbusplus/async.hpp>
+#include <sdbusplus/bus.hpp>
+#include <xyz/openbmc_project/ObjectMapper/client.hpp>
+
+#include <cstdint>
+
+PHOSPHOR_LOG2_USING;
+
+namespace HSC = phosphor::software::HSC;
+namespace I2CDevice = phosphor::software::i2c_hsc::device;
+namespace SoftwareInf = phosphor::software;
+namespace ManagerInf = phosphor::software::manager;
+
+const std::string configDBusName = "I2CHSC";
+const std::vector<std::string> emConfigTypes = {"TPS25990Firmware",
+                                                "RS31390Firmware"};
+
+I2CHSCSoftwareManager::I2CHSCSoftwareManager(sdbusplus::async::context& ctx) :
+    ManagerInf::SoftwareManager(ctx, configDBusName)
+{}
+
+void I2CHSCSoftwareManager::start()
+{
+    std::vector<std::string> configIntfs;
+    configIntfs.reserve(emConfigTypes.size());
+    for (auto& name : emConfigTypes)
+    {
+        configIntfs.push_back("xyz.openbmc_project.Configuration." + name);
+    }
+
+    ctx.spawn(initDevices(configIntfs));
+    ctx.run();
+}
+
+sdbusplus::async::task<bool> I2CHSCSoftwareManager::initDevice(
+    const std::string& service, const std::string& path,
+    SoftwareConfig& config)
+{
+    std::string configIface =
+        "xyz.openbmc_project.Configuration." + config.configType;
+
+    std::optional<uint64_t> busNum = co_await dbusGetRequiredProperty<uint64_t>(
+        ctx, service, path, configIface, "Bus");
+    std::optional<uint64_t> address =
+        co_await dbusGetRequiredProperty<uint64_t>(ctx, service, path,
+                                                   configIface, "Address");
+    std::optional<std::string> hscChipType =
+        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                      configIface, "Type");
+
+    if (!busNum.has_value() || !address.has_value() || !hscChipType.has_value())
+    {
+        error("missing config property");
+        co_return false;
+    }
+
+    HSC::HSCType hscType;
+    if (!HSC::stringToEnum(hscChipType.value(), hscType))
+    {
+        error("unknown hot swap controller type: {TYPE}", "TYPE",
+              hscChipType.value());
+        co_return false;
+    }
+
+    lg2::debug(
+        "[config] Hot swap controller device type: {TYPE} on Bus: {BUS} at Address: {ADDR}",
+        "TYPE", hscChipType.value(), "BUS", busNum.value(), "ADDR",
+        address.value());
+
+    auto i2cDevice = std::make_unique<I2CDevice::I2CHSCDevice>(
+        ctx, hscType, static_cast<uint16_t>(busNum.value()),
+        static_cast<uint16_t>(address.value()), config, this);
+
+    std::unique_ptr<SoftwareInf::Software> software =
+        std::make_unique<SoftwareInf::Software>(ctx, *i2cDevice);
+
+    uint32_t sum;
+    if (!(co_await i2cDevice->getVersion(&sum)))
+    {
+        error("unable to obtain Version/CRC from hot swap controller");
+        co_return false;
+    }
+
+    software->setVersion(std::format("{:X}", sum),
+                         SoftwareInf::SoftwareVersion::VersionPurpose::Other);
+
+    software->enableUpdate({RequestedApplyTimes::OnReset});
+
+    i2cDevice->softwareCurrent = std::move(software);
+
+    devices.insert({config.objectPath, std::move(i2cDevice)});
+
+    co_return true;
+}
+
+int main()
+{
+    sdbusplus::async::context ctx;
+
+    I2CHSCSoftwareManager i2cHSCSoftwareManager(ctx);
+
+    i2cHSCSoftwareManager.start();
+    return 0;
+}

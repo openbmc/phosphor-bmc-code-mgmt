@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff20bcdc_ae08b6bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-26T17:24:58Z",
+      "side": 1,
+      "message": "would be interesting to know in which platform you observed the issue and if it is startup related or if it can occur at any  point in time.",
+      "revId": "eabb27af714aa55c198db6fde97d60bfb49a86b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76dd22fd_967f44d8",
+        "filename": "cpld/cpld.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-26T17:24:58Z",
+      "side": 1,
+      "message": "So we hold the mux here for up to 200ms while we wait to retry. Probably not an issue, just wanted to mention it.",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "eabb27af714aa55c198db6fde97d60bfb49a86b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

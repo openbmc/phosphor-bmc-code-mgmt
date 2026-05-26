@@ -48,10 +48,9 @@ void Manager::processImageFailed(sdbusplus::message::unix_fd image,
 bool verifyImagePurpose(Version::VersionPurpose purpose,
                         ItemUpdaterIntf::UpdaterType type)
 {
-    if (purpose == Version::VersionPurpose::Host)
+    if (type == ItemUpdaterIntf::UpdaterType::BIOS)
     {
-        return (type == ItemUpdaterIntf::UpdaterType::BIOS ||
-                type == ItemUpdaterIntf::UpdaterType::ALL);
+        return (purpose == Version::VersionPurpose::Host);
     }
     return true;
 }

@@ -26,6 +26,7 @@ int main()
 #ifdef HOST_BIOS_UPGRADE
     ItemUpdaterIntf biosItemUpdater{ctx, biosPath,
                                     ItemUpdaterIntf::UpdaterType::BIOS};
+    bmcItemUpdater.externalBiosVersion = biosItemUpdater.biosVersion.get();
 #endif // HOST_BIOS_UPGRADE
     ctx.request_name(serviceName);
 

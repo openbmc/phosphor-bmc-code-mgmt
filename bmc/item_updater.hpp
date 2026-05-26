@@ -392,6 +392,9 @@ class ItemUpdater : public ItemUpdaterInherit
   public:
     /** @brief Persistent Version D-Bus object for BIOS */
     std::unique_ptr<VersionClass> biosVersion;
+
+    /** @brief Non-owning pointer to BIOS version from a sibling updater */
+    VersionClass* externalBiosVersion = nullptr;
 #endif
 
     /** @brief Get the slot number of running image */

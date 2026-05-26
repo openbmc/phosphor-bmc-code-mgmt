@@ -48,11 +48,19 @@ void Manager::processImageFailed(sdbusplus::message::unix_fd image,
 bool verifyImagePurpose(Version::VersionPurpose purpose,
                         ItemUpdaterIntf::UpdaterType type)
 {
+    if (type == ItemUpdaterIntf::UpdaterType::BIOS)
+    {
+        return (purpose == Version::VersionPurpose::Host);
+    }
+#ifndef HOST_BIOS_UPGRADE
+    // Without BIOS upgrade support compiled in, activation() has no
+    // flashWriteHost() branch, so a Host image would be written through the
+    // BMC flash path.  Reject it here to keep the clean rejection.
     if (purpose == Version::VersionPurpose::Host)
     {
-        return (type == ItemUpdaterIntf::UpdaterType::BIOS ||
-                type == ItemUpdaterIntf::UpdaterType::ALL);
+        return false;
     }
+#endif
     return true;
 }
 

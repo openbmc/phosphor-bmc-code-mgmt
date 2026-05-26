@@ -91,6 +91,13 @@ option(
     description: 'Enable TPM software update support.',
 )
 
+option(
+    'i2chsc-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable update of i2c hot swap controller.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

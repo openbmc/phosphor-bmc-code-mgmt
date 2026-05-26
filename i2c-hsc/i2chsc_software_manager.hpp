@@ -1,0 +1,20 @@
+#pragma once
+
+#include "common/include/software_manager.hpp"
+
+#include <sdbusplus/async/context.hpp>
+
+namespace ManagerInf = phosphor::software::manager;
+namespace SDBusAsync = sdbusplus::async;
+
+class I2CHSCSoftwareManager : public ManagerInf::SoftwareManager
+{
+  public:
+    I2CHSCSoftwareManager(SDBusAsync::context& ctx);
+
+    SDBusAsync::task<bool> initDevice(const std::string& service,
+                                      const sdbusplus::object_path& path,
+                                      SoftwareConfig& config) final;
+
+    void start();
+};

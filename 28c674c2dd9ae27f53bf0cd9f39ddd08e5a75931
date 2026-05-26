@@ -16,6 +16,40 @@
       "message": "Thank you for the review. I\u0027ve addressed your feedback and suggestions in patch set #4 — please take another look.",
       "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f8b174_8900c685",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-26T01:46:22Z",
+      "side": 1,
+      "message": "Nice, I like it!\n\nOne comment below that you may want to consider, but any change from that would likely be minor.",
+      "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a7a2da0_9bda5842",
+        "filename": "bmc/software_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-05-26T01:46:22Z",
+      "side": 1,
+      "message": "If there is any chance that the `extractDirPath` string can be controlled by an untrusted source, then we would want to pass our arguments directly to execl (or, more likely, `execlp`), rather than constructing a `sh -c` invocation.\n\nHowever: if extractDirPath is guaranteed to only contain a path with no shell escapes, we\u0027re fine. It may be worth commenting as such though.",
+      "revId": "28c674c2dd9ae27f53bf0cd9f39ddd08e5a75931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

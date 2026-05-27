@@ -30,7 +30,7 @@ class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
     std::unique_ptr<ExampleDevice>& getDevice();
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                            const std::string& path,
+                                            const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
     using SoftwareManager::getBusName;

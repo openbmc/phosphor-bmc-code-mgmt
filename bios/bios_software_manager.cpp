@@ -20,7 +20,8 @@ BIOSSoftwareManager::BIOSSoftwareManager(sdbusplus::async::context& ctx,
 {}
 
 sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+    const std::string& service, const sdbusplus::object_path& path,
+    SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;

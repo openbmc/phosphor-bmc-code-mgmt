@@ -10,10 +10,10 @@ PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software::config;
 
-SoftwareConfig::SoftwareConfig(const std::string& objPath, uint32_t vendorIANA,
-                               const std::string& compatible,
-                               const std::string& configType,
-                               const std::string& name) :
+SoftwareConfig::SoftwareConfig(
+    const sdbusplus::object_path& objPath, uint32_t vendorIANA,
+    const std::string& compatible, const std::string& configType,
+    const std::string& name) :
     objectPath(objPath), configName(name), configType(configType),
     vendorIANA(vendorIANA), compatibleHardware(compatible)
 {
@@ -34,8 +34,8 @@ SoftwareConfig::SoftwareConfig(const std::string& objPath, uint32_t vendorIANA,
     }
 }
 
-sdbusplus::async::task<std::string> SoftwareConfig::getInventoryItemObjectPath(
-    sdbusplus::async::context& ctx)
+sdbusplus::async::task<std::optional<sdbusplus::object_path>>
+    SoftwareConfig::getInventoryItemObjectPath(sdbusplus::async::context& ctx)
 {
     std::vector<std::string> allInterfaces = {
         "xyz.openbmc_project.Inventory.Item.Board",
@@ -53,7 +53,7 @@ sdbusplus::async::task<std::string> SoftwareConfig::getInventoryItemObjectPath(
         debug("inventory item at path {PATH}", "PATH", path);
 
         // check if their path is a parent of our path
-        if (objectPath.starts_with(path))
+        if (objectPath.str.starts_with(path))
         {
             debug("found associated inventory item for {NAME}: {PATH}", "NAME",
                   configName, "PATH", path);
@@ -64,5 +64,5 @@ sdbusplus::async::task<std::string> SoftwareConfig::getInventoryItemObjectPath(
     error("could not find associated inventory item for {NAME}", "NAME",
           configName);
 
-    co_return "";
+    co_return std::nullopt;
 }

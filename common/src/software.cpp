@@ -17,26 +17,24 @@ using namespace phosphor::software::device;
 using namespace phosphor::software::config;
 using namespace phosphor::software::update;
 
-const static std::string baseObjPathSoftware = "/xyz/openbmc_project/software/";
-
 Software::Software(sdbusplus::async::context& ctx, Device& parent) :
     Software(ctx, parent, getRandomSoftwareId(parent))
 {}
 
 Software::Software(sdbusplus::async::context& ctx, Device& parent,
                    const std::string& swid) :
-    SoftwareActivation(ctx, (baseObjPathSoftware + swid).c_str(),
-                       Activation::properties_t{Activations::NotReady,
-                                                RequestedActivations::None}),
-    parentDevice(parent), swid(swid), objectPath(baseObjPathSoftware + swid),
+    SoftwareActivation(
+        ctx, sdbusplus::object_path(SoftwareVersion::namespace_path) / swid,
+        Activation::properties_t{Activations::NotReady,
+                                 RequestedActivations::None}),
+    parentDevice(parent), swid(swid),
+    objectPath(sdbusplus::object_path(SoftwareVersion::namespace_path) / swid),
     ctx(ctx)
 {
-    std::string objPath = baseObjPathSoftware + swid;
-
     emit_added();
 
     debug("{SWID}: created dbus interfaces on path {OBJPATH}", "SWID", swid,
-          "OBJPATH", objPath);
+          "OBJPATH", objectPath);
 };
 
 long int Software::getRandomId()
@@ -57,7 +55,7 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
 {
     debug("{SWID}: setting association definitions", "SWID", swid);
 
-    std::string endpoint = "";
+    std::optional<sdbusplus::object_path> endpoint = std::nullopt;
 
     try
     {
@@ -69,16 +67,16 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
         co_return;
     }
 
-    if (endpoint.empty())
+    if (!endpoint.has_value())
     {
         co_return;
     }
 
-    createInventoryAssociation(isRunning, endpoint);
+    createInventoryAssociation(isRunning, endpoint.value());
 }
 
-void Software::createInventoryAssociation(bool isRunning,
-                                          std::string objectPath)
+void Software::createInventoryAssociation(
+    bool isRunning, const sdbusplus::object_path& objectPath)
 {
     std::vector<std::tuple<std::string, std::string, std::string>> assocs;
 
@@ -107,7 +105,7 @@ void Software::createInventoryAssociation(bool isRunning,
     {
         associationDefinitions =
             std::make_unique<SoftwareAssociationDefinitions>(
-                ctx, Software::objectPath.str.c_str(),
+                ctx, Software::objectPath,
                 SoftwareAssociationDefinitions::properties_t{assocs});
         associationDefinitions->emit_added();
     }
@@ -121,7 +119,7 @@ void Software::setVersion(const std::string& versionStr,
     if (!version)
     {
         version = std::make_unique<SoftwareVersion>(
-            ctx, objectPath.str.c_str(),
+            ctx, objectPath,
             SoftwareVersion::properties_t{versionStr, versionPurpose});
         version->emit_added();
         return;
@@ -148,9 +146,8 @@ void Software::setActivationBlocksTransition(bool enabled)
         return;
     }
 
-    std::string path = objectPath;
     activationBlocksTransition =
-        std::make_unique<SoftwareActivationBlocksTransition>(ctx, path.c_str());
+        std::make_unique<SoftwareActivationBlocksTransition>(ctx, objectPath);
 
     activationBlocksTransition->emit_added();
 }
@@ -174,6 +171,6 @@ void Software::enableUpdate(
         "[Software] enabling update of {OBJPATH} (adding the update interface)",
         "OBJPATH", objectPath);
 
-    updateIntf = std::make_unique<SoftwareUpdate>(ctx, objectPath.str.c_str(),
-                                                  *this, allowedApplyTimes);
+    updateIntf = std::make_unique<SoftwareUpdate>(ctx, objectPath, *this,
+                                                  allowedApplyTimes);
 }

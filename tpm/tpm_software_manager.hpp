@@ -16,6 +16,6 @@ class TPMSoftwareManager : public ManagerInf::SoftwareManager
     void start();
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                            const std::string& path,
+                                            const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 };

@@ -16,7 +16,7 @@ PHOSPHOR_LOG2_USING;
 using namespace phosphor::software;
 using namespace phosphor::software::example_device;
 
-constexpr const char* exampleEndpoint = "/xyz/example_endpoint";
+static const sdbusplus::object_path exampleEndpoint("/xyz/example_endpoint");
 
 class SoftwareAssocTest : public testing::Test
 {

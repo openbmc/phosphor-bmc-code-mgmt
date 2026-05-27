@@ -23,12 +23,12 @@ namespace phosphor::software::config
 class SoftwareConfig
 {
   public:
-    SoftwareConfig(const std::string& objPath, uint32_t vendorIANA,
+    SoftwareConfig(const sdbusplus::object_path& objPath, uint32_t vendorIANA,
                    const std::string& compatible, const std::string& configType,
                    const std::string& name);
 
     // The dbus object path this configuration was fetched from
-    const std::string objectPath;
+    const sdbusplus::object_path objectPath;
 
     // https://github.com/openbmc/entity-manager/blob/master/schemas/firmware.json
 
@@ -40,8 +40,8 @@ class SoftwareConfig
 
     // @returns        the object path of the inventory item which
     //                 can be associated with this device.
-    sdbusplus::async::task<std::string> getInventoryItemObjectPath(
-        sdbusplus::async::context& ctx);
+    sdbusplus::async::task<std::optional<sdbusplus::object_path>>
+        getInventoryItemObjectPath(sdbusplus::async::context& ctx);
 
   private:
     // 'VendorIANA' field from the EM config

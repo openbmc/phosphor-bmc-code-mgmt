@@ -11,7 +11,8 @@ PHOSPHOR_LOG2_USING;
 using namespace phosphor::software::cpld;
 
 sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+    const std::string& service, const sdbusplus::object_path& path,
+    SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;

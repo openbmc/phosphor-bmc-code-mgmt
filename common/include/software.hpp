@@ -97,7 +97,8 @@ class Software : private SoftwareActivation
     // yet running).
     // @param objectPath            The object path of the inventory item to
     // associate with. We only ever associate to one inventory item.
-    void createInventoryAssociation(bool isRunning, std::string objectPath);
+    void createInventoryAssociation(bool isRunning,
+                                    const sdbusplus::object_path& objectPath);
 
   private:
     Software(sdbusplus::async::context& ctx, device::Device& parent,

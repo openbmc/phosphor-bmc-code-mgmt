@@ -15,7 +15,8 @@ sdbusplus::async::task<void> init(ExampleCodeUpdater& updater)
      * calling initDevice() directly in this case.
      */
 
-    co_await updater.initDevice("", "", ExampleDevice::defaultConfig);
+    co_await updater.initDevice("", sdbusplus::object_path("/"),
+                                ExampleDevice::defaultConfig);
 
     co_return;
 }

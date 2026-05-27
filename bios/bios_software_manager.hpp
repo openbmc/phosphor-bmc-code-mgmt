@@ -15,7 +15,7 @@ class BIOSSoftwareManager : public SoftwareManager
     BIOSSoftwareManager(sdbusplus::async::context& ctx, bool isDryRun);
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                            const std::string& path,
+                                            const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
   private:

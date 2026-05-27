@@ -151,7 +151,7 @@ std::string SoftwareManager::getBusName()
 }
 
 sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
-    const std::string& service, const std::string& path,
+    const std::string& service, const sdbusplus::object_path& path,
     const std::string& interface)
 {
     debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",

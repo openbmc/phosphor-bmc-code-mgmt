@@ -13,7 +13,7 @@ class CPLDSoftwareManager : public phosphor::software::manager::SoftwareManager
     {}
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                            const std::string& path,
+                                            const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
     void start();

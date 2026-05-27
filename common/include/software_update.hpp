@@ -23,8 +23,8 @@ class SoftwareUpdate :
     SoftwareUpdate(SoftwareUpdate&&) = delete;
     SoftwareUpdate& operator=(const SoftwareUpdate&) = delete;
     SoftwareUpdate& operator=(SoftwareUpdate&&) = delete;
-    SoftwareUpdate(sdbusplus::async::context& ctx, const char* path,
-                   Software& software,
+    SoftwareUpdate(sdbusplus::async::context& ctx,
+                   const sdbusplus::object_path& path, Software& software,
                    const std::set<RequestedApplyTimes>& allowedApplyTimes);
 
     ~SoftwareUpdate();

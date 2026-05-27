@@ -78,7 +78,7 @@ std::unique_ptr<ExampleDevice>& ExampleCodeUpdater::getDevice()
 }
 
 sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
-    const std::string& /*unused*/, const std::string& /*unused*/,
+    const std::string& /*unused*/, const sdbusplus::object_path& /*unused*/,
     SoftwareConfig& /*unused*/)
 {
     auto device = std::make_unique<ExampleDevice>(ctx, this);

@@ -47,9 +47,9 @@ class SoftwareManager
     //                      Also includes the object path to fetch other
     //                      configuration properties.
     // @returns true        if the configuration was accepted
-    virtual sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                                    const std::string& path,
-                                                    SoftwareConfig& config) = 0;
+    virtual sdbusplus::async::task<bool> initDevice(
+        const std::string& service, const sdbusplus::object_path& path,
+        SoftwareConfig& config) = 0;
 
     std::string getBusName();
 
@@ -57,7 +57,7 @@ class SoftwareManager
 
   private:
     sdbusplus::async::task<void> handleInterfaceAdded(
-        const std::string& service, const std::string& path,
+        const std::string& service, const sdbusplus::object_path& path,
         const std::string& interface);
 
     sdbusplus::async::task<void> handleInterfaceRemoved(

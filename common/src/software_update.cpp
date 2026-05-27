@@ -23,7 +23,8 @@ namespace SoftwareErrors =
     sdbusplus::error::xyz::openbmc_project::software::image;
 
 SoftwareUpdate::SoftwareUpdate(
-    sdbusplus::async::context& ctx, const char* path, Software& software,
+    sdbusplus::async::context& ctx, const sdbusplus::object_path& path,
+    Software& software,
     const std::set<RequestedApplyTimes>& allowedApplyTimes) :
     sdbusplus::aserver::xyz::openbmc_project::software::Update<SoftwareUpdate>(
         ctx, path),

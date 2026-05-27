@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d15b14_378e4ef4",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-27T06:40:46Z",
+      "side": 1,
+      "message": "Agree that there needs to be some kind of mechanism to prevent concurrent initialization of the same configuration.\n\nI did not hit that issue in my testing since usually EM was already running when i tested, so there was usually only the mapper result or the match (EM restart/changes) causing this handler to be called.\n\nnitpick: since we run the same logic on every return path, we can use a wrapper function to only write it once and keep the initialization state tracking logic contained there.\n\n```suggestion\nsdbusplus::async::task\u003cvoid\u003e SoftwareManager::handleInterfaceAdded(\n    const std::string\u0026 service, const std::string\u0026 path,\n    const std::string\u0026 interface)\n{\n    if (devices.contains(path) || initializingPaths.contains(path))\n    {\n        debug(\"Skipping duplicate init for {PATH}\", \"PATH\", path);\n        co_return;\n    }\n\n    initializingPaths.insert(path);\n    co_await handleInterfaceAddedGuarded(service, path, interface);\n    initializingPaths.erase(path);\n}\n\nsdbusplus::async::task\u003cvoid\u003e SoftwareManager::handleInterfaceAddedGuarded(\n    const std::string\u0026 service, const std::string\u0026 path,\n    const std::string\u0026 interface)\n{\n   // ... same as before, besides the renaming\n}\n```",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 1
+      },
+      "revId": "7257da9132c893ec6f3e0fda2e304245c7b4e975",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

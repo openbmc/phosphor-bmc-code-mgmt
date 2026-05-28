@@ -16,6 +16,23 @@
       "message": "Thanks for catching this. I think it’s better to catch any potential security weak points, even minor ones, so I went ahead and addressed it in the latest patch set #5. Thanks again for the review!",
       "revId": "a3ba884ec179b8524ad8833664df77e66f1af74e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98e49f0a_126633f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-28T03:37:37Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com, I originally made this patch because I thought it was a better fix/replacement for https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/89543, but I just noticed that one already got merged.\n\nWould you mind taking a quick look at this patch? Do you think it’s worth reworking and resubmitting, or should I just drop it? Thanks!",
+      "revId": "a3ba884ec179b8524ad8833664df77e66f1af74e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

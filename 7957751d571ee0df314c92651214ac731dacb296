@@ -34,6 +34,24 @@
       "parentUuid": "de20ad15_2e6a0df4",
       "revId": "7957751d571ee0df314c92651214ac731dacb296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14252d07_13f88970",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T21:54:12Z",
+      "side": 1,
+      "message": "\u003e The race occurs when a configuration object appears after interfaceAddedMatch is spawned but is also returned by get_sub_tree(). In this window, both paths call handleInterfaceAdded() for the same path, and since the first call hasn\u0027t completed initDevice() yet, the second call also passes the devices.contains() check and enters initDevice().\n\n\nThanks for clarifying. How about using a async mutex https://grok.openbmc.org/xref/openbmc/sdbusplus/test/async/mutex.cpp?r\u003d540ad059e6e423141e3f31f906a81961b552a749 to guard the section starting at line 184 (before the check for \"if (devices.contains(config.objectPath)\") ?",
+      "parentUuid": "002f0253_e44f3e96",
+      "revId": "7957751d571ee0df314c92651214ac731dacb296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

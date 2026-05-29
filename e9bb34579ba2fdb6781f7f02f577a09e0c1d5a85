@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d81e4cc_33fa306e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T03:03:23Z",
+      "side": 1,
+      "message": "Please add the related PRs from EntityManager (Schema, Configuration) and phosphor-dbus-interfaces (device compatible strings) related to this addition as Related PRs section.",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef0f261_da4e88a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T03:03:23Z",
+      "side": 1,
+      "message": "Please verify and add a section stating the CPLD version update is sticking after an AC cycle",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f5e2af9_79d6075b",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T03:03:23Z",
+      "side": 1,
+      "message": "Since all these are static and private, better to move these to cpp file?",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1d499f_386bd8ff",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T03:03:23Z",
+      "side": 1,
+      "message": "why unused? i see you are using this.",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dc4f4aa_23450595",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-29T03:03:23Z",
+      "side": 1,
+      "message": "Please follow the coding conventions for variable names throughout the patch https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

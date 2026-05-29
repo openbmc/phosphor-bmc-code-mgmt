@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1d60111_8284e67d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "I have updated the commit to include the references to the respective changes for CPLD schema, PDI, and EM configurations as requested.",
+      "parentUuid": "70862e94_8f46ea5c",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45d92440_d736e3aa",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-23T02:53:35Z",
       "side": 1,
       "message": "Since you are refactoring the X05 basic as well. Please verify this change on that chip as well to make sure the change doesn\u0027t introduce any regression.",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "951a0a41_de345c1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "Updated, I add the commit about XO5-25 testing on Santabarbara.",
+      "parentUuid": "45d92440_d736e3aa",
       "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c1fcde_ad4e56f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "I have refactored the XO5 CPLD driver to improve maintainability.\n\nThe monolithic LatticeXO5CPLD class has been split into a cleaner inheritance hierarchy:\n\nLatticeXO5BaseCPLD: Handles common logic (e.g., base flow, utility interfaces).\nLatticeXO5StandardCPLD: Implements Standard-specific logic.\nLatticeXO5TSeriesCPLD: Implements T-Series specific logic (including version-specific CRC/Lock mechanisms).",
+      "parentUuid": "eca2721c_3dbb845b",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0df188e8_1387b6b8",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-23T02:53:35Z",
       "side": 1,
       "message": "Is this a new lock API. Is this needed on base model too?",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "037cf42d_29ea8c45",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "The lockI2C API is indeed specific to the T-Series CPLD (SoftIP v2.0+). I will move it exclusively to LatticeXO5TSeriesCPLD, as the Standard model does not require this locking mechanism at all. This will help keep the base class lean and focused only on the common logic shared across all XO5 variants.",
+      "parentUuid": "0df188e8_1387b6b8",
       "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33f95d4_e2af6bc3",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "Function toggleCrc16 exists in both SoftIP v1 and v2 within the T-Series. However, the lockI2C() requirement is specifically introduced in SoftIP v2.",
+      "parentUuid": "61495d77_6e018be2",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1778901_73c5e592",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-05-23T02:53:35Z",
       "side": 1,
       "message": "Is this lock needed for base model too?",
+      "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92904133_6272ca97",
+        "filename": "cpld/lattice/lattice_xo5_cpld.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-05-29T06:10:54Z",
+      "side": 1,
+      "message": "Function restoreHeader exists in both SoftIP v1 and v2 within the T-Series. However, the lockI2C() requirement is specifically introduced in SoftIP v2.",
+      "parentUuid": "d1778901_73c5e592",
       "revId": "7a871eccde3e67b83dcf2a523e220d989763aa0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

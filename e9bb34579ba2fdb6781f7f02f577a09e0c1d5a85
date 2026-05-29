@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "685b7e77_40159e01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-29T15:31:12Z",
+      "side": 1,
+      "message": "I have added the related Entity-Manager PR to the Related PRs section in the commit message.",
+      "parentUuid": "6d81e4cc_33fa306e",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ef0f261_da4e88a0",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ec12253_d6c84a70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-29T15:31:12Z",
+      "side": 1,
+      "message": "I have tested and verified that the updated CPLD version successfully persists and sticks across a full AC power cycle, and documented this in the commit message Tested section.",
+      "parentUuid": "3ef0f261_da4e88a0",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f5e2af9_79d6075b",
         "filename": "cpld/altera/max10_cpld.hpp",
         "patchSetId": 23
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-29T03:03:23Z",
       "side": 1,
       "message": "Since all these are static and private, better to move these to cpp file?",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80bf45c5_f2f77ab4",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-29T15:31:12Z",
+      "side": 1,
+      "message": "Done. I\u0027ve moved all static constexpr variables from max10_cpld.hpp into an anonymous namespace in max10_cpld.cpp.",
+      "parentUuid": "3f5e2af9_79d6075b",
       "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -82,6 +136,42 @@
       "writtenOn": "2026-05-29T03:03:23Z",
       "side": 1,
       "message": "Please follow the coding conventions for variable names throughout the patch https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0796a8f5_301d50eb",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-29T15:31:12Z",
+      "side": 1,
+      "message": "Fixed all variables throughout the patch to adhere to OpenBMC variable naming guidelines (lowerCamelCase).",
+      "parentUuid": "4dc4f4aa_23450595",
+      "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a200a04_46d90974",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-05-29T15:31:12Z",
+      "side": 1,
+      "message": "Since our design now fully relies on the upper-layer framework\u0027s MuxOutputs to automatically toggle GPIO/Mux, we no longer perform any manual D-Bus GPIO lookup inside Max10CPLD.\n\nI have completely removed the ctx_ member variable from the class. For the unused ctx parameter in the constructor, I have commented out the parameter name in max10_cpld.cpp which is the standard C++ way to suppress compilation warnings.",
+      "parentUuid": "ee1d499f_386bd8ff",
       "revId": "e9bb34579ba2fdb6781f7f02f577a09e0c1d5a85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

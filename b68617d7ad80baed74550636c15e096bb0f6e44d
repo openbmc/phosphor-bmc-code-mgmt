@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bacaebd9_98845b78",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "I dont see much difference between this code and one in X05 t series, please move this to base and provide the required args in constructor and add virtual functions which child classes can override, for example, lockI2C. I don\u0027t think we need to duplicate this code. Please follow similar pattern for other common APIs/code which can be moved to common base class.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d58d09a_982db55f",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define a constexpr for 1.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a857447_af03ea52",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Since this is static, so move it to .cpp file.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc2d1ec4_fab0de33",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define a constexpr for 0x8000 with a suitable name and do it at other places in patch as well.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8063e6_c618e3d2",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define a constexpr for 0x1021",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7666b40_6c3fca45",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define a constexpr for 2 and 1.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0d77003_2095b0bf",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define constexpr.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1059c5_5922c917",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please define constexpr for 0x20.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546dee3f_798f043a",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Don\u0027t u need to do this based on softIpVersion as u r doing at other place in code.\n\nAlso it will be good to define a static API which does the extraction.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f108c64_8f6b449d",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-05-30T01:21:40Z",
+      "side": 1,
+      "message": "Please change this to debug.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

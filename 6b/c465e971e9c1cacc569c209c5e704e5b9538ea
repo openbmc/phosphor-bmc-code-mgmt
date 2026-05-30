@@ -1,0 +1,9 @@
+Code-Review+2: Jagpal S Gill <paligill@gmail.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Jagpal S Gill <paligill@gmail.com>
+Submitted-at: Sat, 30 May 2026 00:56:28 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/90489
+Comments-Total: 16
+Comments-Unresolved: 1
+Project: openbmc/phosphor-bmc-code-mgmt
+Branch: refs/heads/master

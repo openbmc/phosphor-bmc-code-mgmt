@@ -16,6 +16,24 @@
       "message": "@jae.yoo@oss.qualcomm.com The description seems to be generated from some LLM/AI tool and is pretty verbose. Can you please make it concise for future PRs and try to include what is useful and needed.\n\nFor example, we don\u0027t need to know about archival/libarchive/get_header_tar.c and how pipe() won\u0027t allow lseek() to function or something related is good enough.",
       "revId": "df2e79378e4ec5ecdf7841d41d3b661d05d8676e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4671f2c_44c237a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-30T01:45:59Z",
+      "side": 1,
+      "message": "Thanks for the feedback. You\u0027re right, the description ended up being more detailed than necessary. I\u0027ll keep future PR descriptions more concise and focus on the problem being addressed, the root cause, and the impact of the change, without going into unnecessary implementation details.",
+      "parentUuid": "dc9ee53f_78ceb1ba",
+      "revId": "df2e79378e4ec5ecdf7841d41d3b661d05d8676e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []

@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55be6368_471a0854",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002741
+      },
+      "writtenOn": "2026-06-01T07:20:48Z",
+      "side": 1,
+      "message": "@paligill@gmail.com  It seems there is a new \"T\" series in the XO5 chip family.\nAccording to the Lattice documentation:\nLFMXO5-15D, LFMXO5-20TD/Q, LFMXO5-30TD/Q, LFMXO5-55TD, and LFMXO5-55TDQ devices are supported. It is not applicable to LFMXO5-25, LFMXO5-55T, and LFMXO5-100T devices.\n\nThe D series uses a completely different flow compared to the base and T series.\nI may keep the \"D\" series under a separate \"XO5D\" chip family. \nIn the XO5D class, I may avoid inheriting from LatticeXO5BaseCPLD and instead use LatticeBaseCPLD.\nWhat do you think? I can rebase and refactor my PR after 88229 is merged.",
+      "parentUuid": "f9b391db_a1ace67d",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7dedcab_89b6c83d",
         "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
         "patchSetId": 16

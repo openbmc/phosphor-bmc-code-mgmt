@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3227a13_4ea660f7",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. As suggested, I have moved the common logic (waitUntilReady) to the base class to remove duplication. The poll intervals are now passed via the base class constructor, and differences such as lockI2C are handled using overridden virtual functions (checkDeviceReady()).",
+      "parentUuid": "bacaebd9_98845b78",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d58d09a_982db55f",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-30T01:21:40Z",
       "side": 1,
       "message": "Please define a constexpr for 1.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d0c00a7_63484bcc",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Replaced 1 constants with pageReadDelay constexpr.",
+      "parentUuid": "3d58d09a_982db55f",
       "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9615de_2982aca5",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5a857447_af03ea52",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc2d1ec4_fab0de33",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-30T01:21:40Z",
       "side": 1,
       "message": "Please define a constexpr for 0x8000 with a suitable name and do it at other places in patch as well.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42b91e4d_5efd8ffd",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Replaced 0x8000 constants with crc16MsbMask constexpr.",
+      "parentUuid": "dc2d1ec4_fab0de33",
       "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e536821_19961d4b",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Replaced 0x1021 constants with crc16Polynomial constexpr.",
+      "parentUuid": "aa8063e6_c618e3d2",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7666b40_6c3fca45",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-05-30T01:21:40Z",
       "side": 1,
       "message": "Please define a constexpr for 2 and 1.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe436646_3bae9b9c",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Defined targetSlotCfg1 and targetSlotCfg0 to replace the hardcoded return values.",
+      "parentUuid": "e7666b40_6c3fca45",
       "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e95a4f_84d57ea9",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Defined softIpMask constexpr to replace the 0xF0.",
+      "parentUuid": "c0d77003_2095b0bf",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e1059c5_5922c917",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-05-30T01:21:40Z",
       "side": 1,
       "message": "Please define constexpr for 0x20.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28c4b1e1_20bda9e1",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. Defined softIpV2 constexpr to replace the 0xF0.",
+      "parentUuid": "9e1059c5_5922c917",
       "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc8005b4_870f4428",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done. I have extracted the parsing logic into a shared extractUint32 helper function in the base class. The endianness is now dynamically handled based to replace the hardcoded bit-shifts.ㄒ",
+      "parentUuid": "546dee3f_798f043a",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f108c64_8f6b449d",
@@ -167,6 +329,24 @@
       "writtenOn": "2026-05-30T01:21:40Z",
       "side": 1,
       "message": "Please change this to debug.",
+      "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc2684f_cc6e4567",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-06-01T05:34:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f108c64_8f6b449d",
       "revId": "b68617d7ad80baed74550636c15e096bb0f6e44d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

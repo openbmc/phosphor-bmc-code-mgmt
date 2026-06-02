@@ -52,6 +52,24 @@
       "parentUuid": "002f0253_e44f3e96",
       "revId": "7957751d571ee0df314c92651214ac731dacb296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be518db_eac41f01",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-06-02T01:27:29Z",
+      "side": 1,
+      "message": "Thanks for the suggestion.\n\nI tried the async mutex approach, and it does prevent the duplicate initDevice() issue. However, I observed intermittent delays because a single mutex serializes all device initializations within the same process, not only duplicate initialization for the same path.\n\nFor example, in the i2cvr updater, some devices had to wait for the previous initDevice() to finish before starting:\ninitDevice done for ...Yosemite5_MB_VR_VDD18_S5, took 1014ms\nlock acquired for ...Yosemite5_CXL_VR_P1V2_VDD_DDR_CH02, waited 1014ms\n\ninitDevice done for ...Yosemite5_CXL_VR_P1V2_VDD_DDR_CH02, took 1346ms\nlock acquired for ...Yosemite5_Paddle_HSC_P12V_AUX, waited 1009ms\n\ninitDevice done for ...Yosemite5_Paddle_HSC_P12V_AUX, took 2290ms\nlock acquired for ...Yosemite5_CXL_VR_P1V2_VDD_DDR_CH13, waited 982ms\n\nThe previous initializingPaths approach only suppresses concurrent initialization for the same path, which is the race condition we are trying to avoid, while still allowing different paths to initialize concurrently.\n\nDo you think the serialization overhead from the single mutex is acceptable here, or would a per-path guard such as initializingPaths be more appropriate?",
+      "parentUuid": "14252d07_13f88970",
+      "revId": "7957751d571ee0df314c92651214ac731dacb296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

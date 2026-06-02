@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81906774_305b5daf",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-02T19:02:11Z",
+      "side": 1,
+      "message": "Thanks for fixing this to async sleep.",
+      "revId": "06a1fb15595ab06eaeb2277d413b7d6f3a40a155",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb70142_7445b32f",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-02T19:02:11Z",
+      "side": 1,
+      "message": "Is this message useful for every update? if not, then lets make this debug.",
+      "revId": "06a1fb15595ab06eaeb2277d413b7d6f3a40a155",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

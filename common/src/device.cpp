@@ -71,11 +71,16 @@ sdbusplus::async::task<bool> Device::getImageInfo(
     if (status != 0)
     {
         error("could not extract matching component image");
+        co_await events.generateUpdateNotApplicable(objectPath,
+                                                    componentVersion, true);
         co_return false;
     }
 
     *matchingComponentImage =
         static_cast<uint8_t*>(pldmPackage.get()) + componentOffset;
+
+    co_await events.generateUpdateNotApplicable(objectPath, componentVersion,
+                                                false);
 
     co_return true;
 }

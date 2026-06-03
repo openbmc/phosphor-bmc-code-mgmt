@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc171ec7_4b19845a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:57:43Z",
+      "side": 1,
+      "message": "Please create a related PR section and add links to PRs for -\n- EM schema changes\n- EM Configuration changes\n- phosphor-dbus-interfaces changes for compatible strings",
+      "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4f73b3_0284589f",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:57:43Z",
+      "side": 1,
+      "message": "it can just be max10Type, isn\u0027t it?",
+      "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc3c6af_249c960e",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:57:43Z",
+      "side": 1,
+      "message": "Whats this for? As written its hard to understand whats the purpose of this. Looks like u r trying to say that some data can represent either a model or a type, if yes, then it makes sense to avoid the word String from there, isn\u0027t it?",
+      "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

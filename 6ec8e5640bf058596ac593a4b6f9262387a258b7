@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12f7a5d_d8a65c81",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-03T08:16:29Z",
+      "side": 1,
+      "message": "All your `generate*` functions take `sdbusplus::object_path` by value, is it necessary to copy-construct it again here? `softwarePending-\u003eobjectPath` already has the right type.\n\nSame comment for line 204 and line 208, 220, 238",
+      "range": {
+        "startLine": 115,
+        "startChar": 1,
+        "endLine": 117,
+        "endChar": 79
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aefe66c_f0cb4036",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-03T08:16:29Z",
+      "side": 1,
+      "message": "```suggestion\n        EventEntryIntf(ctx, path)\n```\n\nThere is an overload for constructing aserver which can directly accept object_path",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 2
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f3a1e46_5e169d53",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-03T08:16:29Z",
+      "side": 1,
+      "message": "```suggestion\n        EventServerIntf(ctx, path), ctx(ctx)\n```",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

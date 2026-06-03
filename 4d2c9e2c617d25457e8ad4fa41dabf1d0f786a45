@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27989322_d42690be",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-06-03T10:23:46Z",
+      "side": 1,
+      "message": "Doesn\u0027t this solution retain the issue that `createDevice` can run multiple times  for the same configuration object path?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 2
+      },
+      "revId": "4d2c9e2c617d25457e8ad4fa41dabf1d0f786a45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

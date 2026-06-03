@@ -169,25 +169,35 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
 
     if (devices.contains(config.objectPath))
     {
-        error("Device configured from {PATH} is already known", "PATH",
+        debug("Device configured from {PATH} is already known", "PATH",
               config.objectPath);
         co_return;
     }
 
-    const bool accepted = co_await initDevice(service, path, config);
+    auto device = co_await createDevice(service, path, config);
 
-    if (accepted && devices.contains(config.objectPath))
+    if (!device)
     {
-        auto& device = devices[config.objectPath];
-
-        if (device->softwareCurrent)
-        {
-            co_await device->softwareCurrent->createInventoryAssociations(true);
-
-            device->softwareCurrent->setActivation(
-                SoftwareActivation::Activations::Active);
-        }
+        error("Failed to create device from {PATH}", "PATH", config.objectPath);
+        co_return;
     }
+
+    if (devices.contains(config.objectPath))
+    {
+        debug("Device configured from {PATH} was added during creation", "PATH",
+              config.objectPath);
+        co_return;
+    }
+
+    if (device->softwareCurrent)
+    {
+        co_await device->softwareCurrent->createInventoryAssociations(true);
+
+        device->softwareCurrent->setActivation(
+            SoftwareActivation::Activations::Active);
+    }
+
+    devices.insert({config.objectPath, std::move(device)});
 
     co_return;
 }

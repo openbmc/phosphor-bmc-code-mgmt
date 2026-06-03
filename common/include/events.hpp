@@ -29,6 +29,10 @@ class Events
                                 std::string imageIdentifier, bool asserted)
         -> sdbusplus::async::task<>;
 
+    auto generateUpdateNotApplicable(sdbusplus::object_path targetName,
+                                     std::string imageIdentifier, bool asserted)
+        -> sdbusplus::async::task<>;
+
     auto generateTargetDetermined(sdbusplus::object_path targetName,
                                   std::string imageIdentifier)
         -> sdbusplus::async::task<>;

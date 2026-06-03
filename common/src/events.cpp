@@ -89,6 +89,14 @@ auto Events::generateActivateFailed(sdbusplus::object_path targetName,
         "ActivateFailed", targetName, imageIdentifier, asserted);
 }
 
+auto Events::generateUpdateNotApplicable(
+    sdbusplus::object_path targetName, std::string imageIdentifier,
+    bool asserted) -> sdbusplus::async::task<>
+{
+    co_await generateError<error_intf::UpdateNotApplicable>(
+        "UpdateNotApplicable", targetName, imageIdentifier, asserted);
+}
+
 template <typename EventType>
 auto Events::generateEvent(std::string_view eventName,
                            sdbusplus::object_path targetName,

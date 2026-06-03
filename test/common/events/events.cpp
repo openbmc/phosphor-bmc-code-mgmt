@@ -164,6 +164,28 @@ class FWUpdateEventsTest : public ::testing::Test
         ctx.request_stop();
     }
 
+    auto testUpdateNotApplicableAssertDeassert() -> sdbusplus::async::task<void>
+    {
+        eventServer.expectedEvent = error_intf::UpdateNotApplicable::errName;
+        co_await events.generateUpdateNotApplicable(targetObjectPath,
+                                                    imageIdentifier, true);
+
+        EXPECT_FALSE(eventServer.eventEntries.empty())
+            << "Event entry should be created after assert";
+        EXPECT_FALSE(eventServer.eventEntries.back()->isResolved)
+            << "Event should not be resolved after assert";
+
+        co_await sdbusplus::async::sleep_for(ctx, 1s);
+
+        co_await events.generateUpdateNotApplicable(targetObjectPath,
+                                                    imageIdentifier, false);
+
+        EXPECT_TRUE(eventServer.eventEntries.back()->isResolved)
+            << "Event should be resolved after deassert";
+
+        ctx.request_stop();
+    }
+
     auto testTargetDetermined() -> sdbusplus::async::task<void>
     {
         eventServer.expectedEvent = event_intf::TargetDetermined::errName;
@@ -204,6 +226,12 @@ TEST_F(FWUpdateEventsTest, TestVerificationFailedAssertDeassert)
 TEST_F(FWUpdateEventsTest, TestActivateFailedAssertDeassert)
 {
     ctx.spawn(testActivateFailedAssertDeassert());
+    ctx.run();
+}
+
+TEST_F(FWUpdateEventsTest, TestUpdateNotApplicableAssertDeassert)
+{
+    ctx.spawn(testUpdateNotApplicableAssertDeassert());
     ctx.run();
 }
 

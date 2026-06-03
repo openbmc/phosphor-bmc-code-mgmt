@@ -22,6 +22,30 @@
       },
       "revId": "4d2c9e2c617d25457e8ad4fa41dabf1d0f786a45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff9a81d3_d13ce3ac",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T23:52:39Z",
+      "side": 1,
+      "message": "Yes, createDevice can/may be called multiple times, but the other steps in caller function (inventory associations etc) will only run once now. In general, i don\u0027t see why we will have issues with it being called multiple times.\n\n@angelaptcheng@gmail.com Can you please be more specific if you were seeing any issues with calling initDevice multiple times?",
+      "parentUuid": "27989322_d42690be",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 2
+      },
+      "revId": "4d2c9e2c617d25457e8ad4fa41dabf1d0f786a45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

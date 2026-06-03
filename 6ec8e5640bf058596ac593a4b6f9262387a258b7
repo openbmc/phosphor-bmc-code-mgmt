@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9d0be3_6c6064a8",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T23:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d12f7a5d_d8a65c81",
+      "range": {
+        "startLine": 115,
+        "startChar": 1,
+        "endLine": 117,
+        "endChar": 79
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6aefe66c_f0cb4036",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4a5a72_678cf4d4",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T23:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aefe66c_f0cb4036",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 2
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f3a1e46_5e169d53",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-06-03T08:16:29Z",
       "side": 1,
       "message": "```suggestion\n        EventServerIntf(ctx, path), ctx(ctx)\n```",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "6ec8e5640bf058596ac593a4b6f9262387a258b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f4af24_bd54525a",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T23:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f3a1e46_5e169d53",
       "range": {
         "startLine": 62,
         "startChar": 0,

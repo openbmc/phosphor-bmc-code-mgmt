@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a992826_fd2de041",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-03T08:10:04Z",
+      "side": 1,
+      "message": "Thank you for the suggestion. I have applied this naming convention throughout the codebase, including the helper functions (e.g., renamed getMax10ChipStr to getMax10ChipName) and internal variables to remove redundant \u0027Str\u0027/\u0027String\u0027 suffixes and improve clarity.",
+      "parentUuid": "9a4f73b3_0284589f",
+      "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efc3c6af_249c960e",
@@ -66,6 +84,24 @@
       "writtenOn": "2026-06-03T02:57:43Z",
       "side": 1,
       "message": "Whats this for? As written its hard to understand whats the purpose of this. Looks like u r trying to say that some data can represent either a model or a type, if yes, then it makes sense to avoid the word String from there, isn\u0027t it?",
+      "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a7b1ee_32f4d704",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-03T08:10:04Z",
+      "side": 1,
+      "message": "Done. I agree that \u0027String\u0027 is redundant here. I have renamed max10StringType to max10Type and updated the enum members accordingly to keep it clean and descriptive.",
+      "parentUuid": "efc3c6af_249c960e",
       "revId": "8c6d7d05c0abdb5736e8eb49b7ec23d9878849ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

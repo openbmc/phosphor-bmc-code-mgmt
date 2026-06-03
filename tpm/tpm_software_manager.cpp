@@ -19,8 +19,10 @@ void TPMSoftwareManager::start()
     ctx.run();
 }
 
-sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    TPMSoftwareManager::createDevice(const std::string& service,
+                                     const std::string& path,
+                                     SoftwareConfig& config)
 {
     const std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
@@ -31,7 +33,7 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     if (!tpmIndex.has_value())
     {
         error("Missing property: TPMIndex");
-        co_return false;
+        co_return nullptr;
     }
 
     std::optional<std::string> type =
@@ -40,14 +42,14 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     if (!type.has_value())
     {
         error("Missing property: Type");
-        co_return false;
+        co_return nullptr;
     }
 
     TPMType tpmType;
     if (!stringToTPMType(type.value(), tpmType))
     {
         error("Invalid TPM type: {TYPE}", "TYPE", type.value());
-        co_return false;
+        co_return nullptr;
     }
 
     debug("TPM device: TPM Index={INDEX}, Type={TYPE}", "INDEX",
@@ -71,9 +73,7 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
 
     tpmDevice->softwareCurrent = std::move(software);
 
-    devices.insert({config.objectPath, std::move(tpmDevice)});
-
-    co_return true;
+    co_return std::move(tpmDevice);
 }
 
 int main()

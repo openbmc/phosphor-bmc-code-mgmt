@@ -53,7 +53,7 @@ ExampleCodeUpdater::ExampleCodeUpdater(
         "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
     auto exampleDevice = std::make_unique<ExampleDevice>(ctx, &(*this));
 
-    devices.insert({exampleInvObjPath, std::move(exampleDevice)});
+    devices[exampleInvObjPath] = std::move(exampleDevice);
 
     if (swVersion)
     {
@@ -77,9 +77,10 @@ std::unique_ptr<ExampleDevice>& ExampleCodeUpdater::getDevice()
     return reinterpret_cast<std::unique_ptr<ExampleDevice>&>(deviceRef);
 }
 
-sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
-    const std::string& /*unused*/, const std::string& /*unused*/,
-    SoftwareConfig& /*unused*/)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    ExampleCodeUpdater::createDevice(const std::string& /*unused*/,
+                                     const std::string& /*unused*/,
+                                     SoftwareConfig& /*unused*/)
 {
     auto device = std::make_unique<ExampleDevice>(ctx, this);
 
@@ -93,9 +94,7 @@ sdbusplus::async::task<bool> ExampleCodeUpdater::initDevice(
     auto applyTimes = {RequestedApplyTimes::OnReset};
     device->softwareCurrent->enableUpdate(applyTimes);
 
-    devices.insert({exampleInvObjPath, std::move(device)});
-
-    co_return true;
+    co_return std::move(device);
 }
 
 ExampleDevice::ExampleDevice(sdbusplus::async::context& ctx,

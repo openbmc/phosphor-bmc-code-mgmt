@@ -37,19 +37,18 @@ class SoftwareManager
     std::map<sdbusplus::object_path, std::unique_ptr<Device>> devices;
 
   protected:
-    // This function receives a dbus name and object path for a single device,
-    // which was configured.
-    // The component code updater overrides this function and may create a
-    // device instance internally, or reject the configuration as invalid.
+    // Creates a device instance from entity-manager configuration.
+    // Subclasses override this to create their specific device type.
+    // The base class manages insertion into the devices map.
     // @param service       The dbus name where our configuration is
-    // @param config        The common configuration properties which are shared
-    // by all devices.
-    //                      Also includes the object path to fetch other
-    //                      configuration properties.
-    // @returns true        if the configuration was accepted
-    virtual sdbusplus::async::task<bool> initDevice(const std::string& service,
-                                                    const std::string& path,
-                                                    SoftwareConfig& config) = 0;
+    // @param path          The object path to fetch other configuration
+    //                      properties.
+    // @param config        The common configuration properties which are
+    //                      shared by all devices.
+    // @returns             The created device, or nullptr if rejected.
+    virtual sdbusplus::async::task<std::unique_ptr<Device>> createDevice(
+        const std::string& service, const std::string& path,
+        SoftwareConfig& config) = 0;
 
     std::string getBusName();
 

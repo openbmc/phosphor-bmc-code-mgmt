@@ -12,9 +12,9 @@ class I2CVRSoftwareManager : public ManagerInf::SoftwareManager
   public:
     I2CVRSoftwareManager(SDBusAsync::context& ctx);
 
-    SDBusAsync::task<bool> initDevice(const std::string& service,
-                                      const std::string& path,
-                                      SoftwareConfig& config) final;
+    SDBusAsync::task<std::unique_ptr<Device>> createDevice(
+        const std::string& service, const std::string& path,
+        SoftwareConfig& config) final;
 
     void start();
 };

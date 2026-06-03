@@ -8,14 +8,18 @@ sdbusplus::async::task<void> init(ExampleCodeUpdater& updater)
 {
     /*
      * In Concrete updaters, the initDevices() function needs to be called,
-     * which in turn invokes the virtual initDevice() function implemented here.
-     * However, in ExampleUpdater, the initDevice() function is called directly
+     * which in turn invokes the virtual createDevice() function implemented
+     * here. However, in ExampleUpdater, createDevice() is called directly
      * because there is no example configuration from EM to consume, which would
-     * otherwise cause the initDevices() API to throw an error. Therefore,
-     * calling initDevice() directly in this case.
+     * otherwise cause the initDevices() API to throw an error.
      */
 
-    co_await updater.initDevice("", "", ExampleDevice::defaultConfig);
+    auto device =
+        co_await updater.createDevice("", "", ExampleDevice::defaultConfig);
+    if (device)
+    {
+        updater.devices.insert({exampleInvObjPath, std::move(device)});
+    }
 
     co_return;
 }

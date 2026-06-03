@@ -10,8 +10,10 @@ PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software::cpld;
 
-sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    CPLDSoftwareManager::createDevice(const std::string& service,
+                                      const std::string& path,
+                                      SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
@@ -29,7 +31,7 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
         !chipName.has_value())
     {
         error("missing config property");
-        co_return false;
+        co_return nullptr;
     }
 
     lg2::debug(
@@ -91,9 +93,7 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
 
     cpld->softwareCurrent = std::move(software);
 
-    devices.insert({config.objectPath, std::move(cpld)});
-
-    co_return true;
+    co_return std::move(cpld);
 }
 
 void CPLDSoftwareManager::start()

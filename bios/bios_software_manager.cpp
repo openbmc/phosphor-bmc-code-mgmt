@@ -19,8 +19,10 @@ BIOSSoftwareManager::BIOSSoftwareManager(sdbusplus::async::context& ctx,
     SoftwareManager(ctx, configTypeBIOS), dryRun(isDryRun)
 {}
 
-sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    BIOSSoftwareManager::createDevice(const std::string& service,
+                                      const std::string& path,
+                                      SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
@@ -32,7 +34,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     if (!spiControllerIndex.has_value())
     {
         error("Missing property: SPIControllerIndex");
-        co_return false;
+        co_return nullptr;
     }
 
     std::optional<uint64_t> spiDeviceIndex =
@@ -42,7 +44,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     if (!spiDeviceIndex.has_value())
     {
         error("Missing property: SPIDeviceIndex");
-        co_return false;
+        co_return nullptr;
     }
 
     enum FlashTool tool = flashToolNone;
@@ -96,7 +98,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     }
     catch (std::exception& e)
     {
-        co_return false;
+        co_return nullptr;
     }
 
     std::unique_ptr<Software> software =
@@ -113,7 +115,5 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     spiDevice->softwareCurrent->setVersion(
         SPIDevice::getVersion(), SoftwareVersion::VersionPurpose::Host);
 
-    devices.insert({config.objectPath, std::move(spiDevice)});
-
-    co_return true;
+    co_return std::move(spiDevice);
 }

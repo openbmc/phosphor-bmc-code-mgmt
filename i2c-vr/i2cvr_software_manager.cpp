@@ -43,8 +43,10 @@ void I2CVRSoftwareManager::start()
     ctx.run();
 }
 
-sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    I2CVRSoftwareManager::createDevice(const std::string& service,
+                                       const std::string& path,
+                                       SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
@@ -61,7 +63,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
     if (!busNum.has_value() || !address.has_value() || !vrChipType.has_value())
     {
         error("missing config property");
-        co_return false;
+        co_return nullptr;
     }
 
     VR::VRType vrType;
@@ -69,7 +71,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
     {
         error("unknown voltage regulator type: {TYPE}", "TYPE",
               vrChipType.value());
-        co_return false;
+        co_return nullptr;
     }
 
     lg2::debug(
@@ -88,7 +90,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
     if (!(co_await i2cDevice->getVersion(&sum)))
     {
         error("unable to obtain Version/CRC from voltage regulator");
-        co_return false;
+        co_return nullptr;
     }
 
     software->setVersion(std::format("{:X}", sum),
@@ -98,9 +100,7 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
 
     i2cDevice->softwareCurrent = std::move(software);
 
-    devices.insert({config.objectPath, std::move(i2cDevice)});
-
-    co_return true;
+    co_return std::move(i2cDevice);
 }
 
 int main()

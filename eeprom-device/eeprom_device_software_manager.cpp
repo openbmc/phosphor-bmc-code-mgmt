@@ -33,8 +33,10 @@ void EEPROMDeviceSoftwareManager::start()
     ctx.run();
 }
 
-sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
-    const std::string& service, const std::string& path, SoftwareConfig& config)
+sdbusplus::async::task<std::unique_ptr<Device>>
+    EEPROMDeviceSoftwareManager::createDevice(const std::string& service,
+                                              const std::string& path,
+                                              SoftwareConfig& config)
 {
     const std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
@@ -58,7 +60,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
         !fwDevice.has_value())
     {
         error("Missing EEPROM device config property");
-        co_return false;
+        co_return nullptr;
     }
 
     debug("EEPROM Device: Bus={BUS}, Address={ADDR}, Type={TYPE}, "
@@ -73,7 +75,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     {
         error("Failed to get version provider for chip type: {CHIP}", "CHIP",
               type.value());
-        co_return false;
+        co_return nullptr;
     }
 
     std::string version = deviceVersion->getVersion();
@@ -127,7 +129,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     if (!bus.has_value() || !address.has_value() || !type.has_value())
     {
         error("Missing EEPROM config property");
-        co_return false;
+        co_return nullptr;
     }
 
     debug("EEPROM: Bus={BUS}, Address={ADDR}, Type={TYPE}", "BUS", bus.value(),
@@ -182,9 +184,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
 
     eepromDevice->softwareCurrent = std::move(software);
 
-    devices.insert({config.objectPath, std::move(eepromDevice)});
-
-    co_return true;
+    co_return std::move(eepromDevice);
 }
 
 int main()

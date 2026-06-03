@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b292a24b_ec583a85",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25a86e3a_fc69532f",
+      "range": {
+        "startLine": 59,
+        "startChar": 52,
+        "endLine": 59,
+        "endChar": 68
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb8f0ae7_284b1f0a",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-05-29T10:00:13Z",
       "side": 1,
       "message": "Let\u0027s not store object paths in plain strings if possible.\n\n```suggestion\n        auto objectPath \u003d\n            sdbusplus::object_path(\"/xyz/openbmc_project/logging/entry\") / std::format(\"TestEvent{}\", cnt);\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 32
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54629c9b_24030ba7",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb8f0ae7_284b1f0a",
       "range": {
         "startLine": 70,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5173e87b_8774ca29",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c171fd7b_9effe501",
+      "range": {
+        "startLine": 76,
+        "startChar": 50,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf04a449_2cc097aa",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-05-29T10:00:13Z",
       "side": 1,
       "message": "```suggestion\n        co_return objectPath;\n```",
+      "range": {
+        "startLine": 78,
+        "startChar": 41,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1d0cb1d_794b4a44",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf04a449_2cc097aa",
       "range": {
         "startLine": 78,
         "startChar": 41,
@@ -116,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6243ac2_43a5639a",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Changed the type to sdbusplus::object_path and sdbusplus::object_path isn\u0027t a literal type, so it can\u0027t be constexpr, changed to static const though.",
+      "parentUuid": "0e2480ab_0482589c",
+      "range": {
+        "startLine": 112,
+        "startChar": 1,
+        "endLine": 119,
+        "endChar": 61
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57f276fa_47200ddf",
@@ -129,6 +249,30 @@
       "writtenOn": "2026-05-29T10:00:13Z",
       "side": 1,
       "message": "nit: this is just a personal preference but maybe we could reduce the indirection here by inlining the argument and duplicating `testErrorAssertDeAssert`\ninto `testErrorAssertDeAssertVerificationFailed` and `testErrorAssertDeAssertApplyFailed`.\n\nSimilar for `testEventCommit`\n\nThat then cascades into `testAssertEvent` and `testDeAssertEvent` where since the argument is known, these can also be inlined and we avoid a large switch-case and overall indirection, improving the readability of the test code since it is less longer distributed across multiple functions.",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 224,
+        "endChar": 5
+      },
+      "revId": "5ed48a901302d218d13093f7735af2a199332e36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aadcfd5_76e78d2f",
+        "filename": "test/common/events/events.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-03T02:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57f276fa_47200ddf",
       "range": {
         "startLine": 196,
         "startChar": 4,

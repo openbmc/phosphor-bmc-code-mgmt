@@ -46,6 +46,30 @@
       },
       "revId": "4d2c9e2c617d25457e8ad4fa41dabf1d0f786a45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18ca24f_24355f67",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-06-04T05:06:53Z",
+      "side": 1,
+      "message": "The issue we observed was with Yosemite5_SCM_CPLD. initDevice() was entered twice for the same configuration path before the first call completed.\n\nThe duplicated \"Missing property Name\" / \"Missing property Polarity\" messages show that the same configuration path was processed twice. Both calls then tried to set up the same GPIO mux. The first call requested DEBUG_CARD_BYPASS and continued reading the CPLD version, while the second call failed because the same GPIO line was still in use:\n```\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Missing property Name on path /xyz/openbmc_project/inventory/system/board/Yosemite5_SCM_2700/Yosemite5_SCM_CPLD, interface xyz.openbmc_project.Configuration.LatticeLCMXO3D_9400Firmware.MuxOutputs1\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Missing property Name on path /xyz/openbmc_project/inventory/system/board/Yosemite5_SCM_2700/Yosemite5_SCM_CPLD, interface xyz.openbmc_project.Configuration.LatticeLCMXO3D_9400Firmware.MuxOutputs1\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Missing property Polarity on path /xyz/openbmc_project/inventory/system/board/Yosemite5_SCM_2700/Yosemite5_SCM_CPLD, interface xyz.openbmc_project.Configuration.LatticeLCMXO3D_9400Firmware.MuxOutputs1\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Requesting chip gpiochip1, GPIO line DEBUG_CARD_BYPASS to 1\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Getting Lattice CPLD version\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Missing property Polarity on path /xyz/openbmc_project/inventory/system/board/Yosemite5_SCM_2700/Yosemite5_SCM_CPLD, interface xyz.openbmc_project.Configuration.LatticeLCMXO3D_9400Firmware.MuxOutputs1\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: GPIO line DEBUG_CARD_BYPASS was still used\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Failed to mux GPIOs\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Failed to setup mux: Failed to mux GPIOs to BMC\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Failed to get CPLD version: unable to acquire mux\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: CPLD version: 00040D04\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Requesting chip gpiochip1, GPIO line DEBUG_CARD_BYPASS to 0\nMay 18 06:05:19 bmc phosphor-cpld-software-update[1104]: Failed to get CPLD version for Yosemite5_SCM_CPLD\n```\nAs a result, the successful read returned 00040D04, but the other concurrent initialization failed and the SCM CPLD version was stored as \"unknown\".",
+      "parentUuid": "ff9a81d3_d13ce3ac",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 2
+      },
+      "revId": "4d2c9e2c617d25457e8ad4fa41dabf1d0f786a45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

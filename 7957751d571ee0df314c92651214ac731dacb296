@@ -124,6 +124,23 @@
       "parentUuid": "f9681b49_81099f45",
       "revId": "7957751d571ee0df314c92651214ac731dacb296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36146936_9b442727",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-04T18:51:47Z",
+      "side": 1,
+      "message": "Do you see any loophole in remove interface path too?",
+      "revId": "7957751d571ee0df314c92651214ac731dacb296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

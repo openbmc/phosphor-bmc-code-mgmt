@@ -141,6 +141,24 @@
       "message": "Do you see any loophole in remove interface path too?",
       "revId": "7957751d571ee0df314c92651214ac731dacb296",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d5d973_28207e54",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-06-05T03:14:36Z",
+      "side": 1,
+      "message": "I have not observed any issue from the remove interface path in the logs.\n\nFrom the current code, handleInterfaceRemoved() itself does not have any co_await, so it should not be suspended in the middle of its own removal sequence.\n\nThe only theoretical interaction I can see is between handleInterfaceAdded() and handleInterfaceRemoved(). If InterfacesRemoved is handled while handleInterfaceAdded() is suspended, for example at co_await createInventoryAssociations(), the remove path could erase the device entry while the add/init flow still expects it to exist.\n\nIn practice, I think this is unlikely during normal boot initialization. In our case, the duplicate initDevice() issue happens when the same configuration object is handled from both the ObjectMapper scan and the InterfacesAdded match. The remove-side interaction would require the same configuration object to be removed while initialization is still in progress, which I have not observed during the normal boot flow.",
+      "parentUuid": "36146936_9b442727",
+      "revId": "7957751d571ee0df314c92651214ac731dacb296",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

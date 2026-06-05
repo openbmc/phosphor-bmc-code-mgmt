@@ -68,7 +68,9 @@ sdbusplus::async::task<bool> I2C::sendReceive(
         readWriteData.msgs = msg;
         readWriteData.nmsgs = msgIndex;
 
-        if (ioctl(fd, I2C_RDWR, &readWriteData) < 0)
+        int ret = ioctl(fd, I2C_RDWR, &readWriteData);
+
+        if (ret < 0 || ret != msgIndex)
         {
             result = false;
         }
@@ -112,7 +114,9 @@ bool I2C::sendReceive(const std::vector<uint8_t>& writeData,
         readWriteData.msgs = msg;
         readWriteData.nmsgs = msgIndex;
 
-        if (ioctl(fd, I2C_RDWR, &readWriteData) < 0)
+        int ret = ioctl(fd, I2C_RDWR, &readWriteData);
+
+        if (ret < 0 || ret != msgIndex)
         {
             result = false;
         }

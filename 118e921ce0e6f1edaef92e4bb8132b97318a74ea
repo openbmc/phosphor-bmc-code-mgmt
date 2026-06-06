@@ -16,6 +16,296 @@
       "message": "I don\u0027t see any change in existing files which is hooking up altera to existing flow, why is that ?",
       "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2fc5bfd_09fa6a9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Please ignore this, i figured it out.",
+      "parentUuid": "fc441ce3_e7f25bb5",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b22bcc2_c3bd8fb0",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "How will caller handle empty string ? Do they check for it being empty?",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bee40b7_9c52c201",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Is this some data or register type if yes, then lets name it max10DataType or something like that to better reflect the intent.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1b1bf7_d9c1c281",
+        "filename": "cpld/altera/max10_base_cpld.hpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Any reason u r not defining this as a base class ?",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0155d2_2f7fb9be",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Why unused ?",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3afce644_a68c08f1",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Why not calling this openDevice to bring it in sync with closeDevice?",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d20bf7d_b3662804",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa8edf80_a91ec589",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Probably u can use lg2::hex https://grok.openbmc.org/xref/openbmc/phosphor-power/phosphor-power-supply/power_supply.cpp?r\u003dc17ae2d037d3dbe465f47fcf7eb0d40a119a4f93#247\n\nand avoid defining a local var.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c7bed1_2db67c87",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Please define a constexpr for 100, do same for all other constant values u have used in the file.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d87957_e2c4445a",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eeed289_908136d8",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1649b6f4_b4961ad3",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Probably u can use lg2::hex https://grok.openbmc.org/xref/openbmc/phosphor-power/phosphor-power-supply/power_supply.cpp?r\u003dc17ae2d037d3dbe465f47fcf7eb0d40a119a4f93#247\n\nand avoid defining a local var.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e89eece_0768bc12",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91c0d1c_2ebd72f5",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c79b879_961da721",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "no sync sleep, please change to async sleep, refer to lattice CPLD code for reference.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c28c0121_ea8ef6b5",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Whats the purpose of this comment ?",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626fc497_bcc04deb",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-06T02:10:11Z",
+      "side": 1,
+      "message": "Please don\u0027t include Meta specific comments here. This should follow standard altera spec.",
+      "revId": "118e921ce0e6f1edaef92e4bb8132b97318a74ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

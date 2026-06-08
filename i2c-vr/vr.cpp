@@ -7,6 +7,8 @@
 #include "mps/mpq87xx.hpp"
 #include "mps/mpx9xx.hpp"
 #include "tda38640a/tda38640a.hpp"
+#include "tps25990/tps25990.hpp"
+#include "tps25990/rs31390.hpp"
 #include "xdp71x/xdp71x.hpp"
 #include "xdpe1x2xx/xdpe1x2xx.hpp"
 
@@ -47,6 +49,10 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
             return std::make_unique<TDA38640A>(ctx, bus, address);
         case VRType::XDP71X:
             return std::make_unique<XDP71X>(ctx, bus, address);
+        case VRType::TPS25990:
+            return std::make_unique<TPS25990>(ctx, bus, address);
+        case VRType::RS31390:
+            return std::make_unique<RS31390>(ctx, bus, address);
         default:
             return nullptr;
     }
@@ -66,7 +72,9 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
         {"RAA22XGen2Firmware", VRType::RAA22XGen2},
         {"RAA22XGen3p5Firmware", VRType::RAA22XGen3p5},
         {"TDA38640AFirmware", VRType::TDA38640A},
-        {"XDP71XFirmware", VRType::XDP71X}};
+        {"XDP71XFirmware", VRType::XDP71X},
+        {"TPS25990Firmware", VRType::TPS25990},
+        {"RS31390Firmware", VRType::RS31390}};
 
     if (VRTypeToString.contains(vrStr))
     {

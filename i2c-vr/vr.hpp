@@ -22,7 +22,9 @@ enum class VRType
     RAA22XGen2,
     RAA22XGen3p5,
     TDA38640A,
-    XDP71X
+    XDP71X,
+    TPS25990,
+    RS31390
 };
 
 class VoltageRegulator

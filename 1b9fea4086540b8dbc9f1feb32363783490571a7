@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac443048_fa0cd07b",
+        "filename": "cpld/lattice/lattice_cpld_factory.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-06-10T06:23:38Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\nAdd targetType to identify the target.\nXO5D is using DYNAMIC, others are CFG0",
+      "parentUuid": "e6af5c44_6a169731",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "1b9fea4086540b8dbc9f1feb32363783490571a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d12a19_c000c604",
         "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
         "patchSetId": 14

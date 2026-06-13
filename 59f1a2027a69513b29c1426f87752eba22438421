@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbeada8a_2ea6b1e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-13T01:57:02Z",
+      "side": 1,
+      "message": "Please add relevant Tested section by verifying this on a i2c device and adding relevant logs.",
+      "revId": "59f1a2027a69513b29c1426f87752eba22438421",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

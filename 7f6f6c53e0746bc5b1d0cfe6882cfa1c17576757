@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2f81f6_eaf7826a",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "Whats the purpose of this ? Is this the format of a standard TPS image",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7068d804_6ef6a0ae",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "lowerCamelcase for variable naming.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca91f3e3_1e76c70a",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "If these constexpr are only being used in tpsxxx .cpp file, then better to move them there.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4085c7d4_96d3b1c2",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "Why are u adding this in tps .hpp then ? Shouldn\u0027t this be in its own file ?",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce14dc8_dbc7fe29",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "I see some definitions are static where as others are not, any reason ?",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c584ca11_7ac66626",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "Please follow lowerCamelCase https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#variables\n\nPlease fix this in whole patch.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84eb87ef_ff19d4a1",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-15T21:17:04Z",
+      "side": 1,
+      "message": "Functions should all be lowerCamelCase.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

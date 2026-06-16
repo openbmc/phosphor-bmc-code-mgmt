@@ -16,6 +16,24 @@
       "message": "doHttpUpdate flow is only targetted for BMC image updates. For any other update such as BIOS, please use Multipart form HTTP push.\n\nRefer to comment in BMCWeb -\n\n        // HTTP push only supports BMC updates (with ApplyTime as immediate) for\n        // backwards compatibility. Specific component updates will be handled\n        // through Multipart form HTTP push.",
       "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98ae771e_96f3b20b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-16T23:03:51Z",
+      "side": 1,
+      "message": "Yes, I and Ravi also tried to fix it in the webui side but we met issues in there.\n@raviteja28031990@gmail.com Can you please share the details we met while you were fixing it in webui side?",
+      "parentUuid": "beb555ba_ee494373",
+      "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

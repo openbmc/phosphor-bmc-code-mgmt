@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfe62d34_92d90517",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:54:45Z",
+      "side": 1,
+      "message": "I see this is still info, how will this log message be useful at info level ?",
+      "parentUuid": "5816b400_c3d063c0",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25b4111c_e252f02d",
         "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
         "patchSetId": 16
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "@paligill@gmail.com\nI tried alignas(1), but it doesn\u0027t work for packing, and it caused the update to fail.I switched to __attribute__((packed)) to force tight packing. The patch is updated and tested successfully",
       "parentUuid": "25b4111c_e252f02d",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13bbbb80_b2cf9622",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:54:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5342f949_7a7db0c7",
       "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

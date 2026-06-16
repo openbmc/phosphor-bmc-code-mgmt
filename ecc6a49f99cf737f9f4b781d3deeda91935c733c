@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d5c9aa_998a7343",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:54:45Z",
+      "side": 1,
+      "message": "This message is info, how often this will log as i see API getting called from multiple places ?",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34affef4_91ade2d2",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:54:45Z",
+      "side": 1,
+      "message": "Is this XO5 D series like X05 T series, if yes, then lets change the file name format to follow same as x05 t series to keep it consistent.\n\nlattice_x05_dseries_cpld",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "557422bb_0facf9a5",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:54:45Z",
+      "side": 1,
+      "message": "nit: Since these are private would it make sense to move these to .cpp instead?",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -84,6 +84,23 @@
       "message": "Whats 3 ? Please define a constexpr for it.",
       "revId": "f88edfe588f2d065042381c8978829c299ca759e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92bd1ef0_23fc0d35",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-16T21:29:41Z",
+      "side": 1,
+      "message": "Would it make sense to rename both .hpp and .ccp to max10_standard_cpld to use similar naming convention as lattice for standard versions?",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

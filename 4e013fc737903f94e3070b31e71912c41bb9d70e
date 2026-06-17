@@ -70,6 +70,24 @@
       "parentUuid": "52f70df3_0bae5508",
       "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffead835_f215135e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-17T12:37:35Z",
+      "side": 1,
+      "message": "\u003e The current WebUI uses MultipartHttpPushUri and always uploads to /redfish/v1/UpdateService/FirmwareInventory/bmc without checking the target purpose.\n\nIt\u0027s /redfish/v1/Managers/bmc actually.",
+      "parentUuid": "f99166ee_b500c2d0",
+      "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

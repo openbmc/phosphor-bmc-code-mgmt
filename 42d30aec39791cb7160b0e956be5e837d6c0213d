@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615b8fba_0e49d451",
+        "filename": "cpld/altera/max10_cpld_factory.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-17T22:23:23Z",
+      "side": 1,
+      "message": "Whats the source of the environment variables that you are trying to read here?\n\nWhy do you need this ?",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73074fc9_6dcae214",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-17T22:23:23Z",
+      "side": 1,
+      "message": "Why do u want to erase if u r going to error out on unprotectSector failure, can you please handle this flow better. As written this 0/1 logic is hard to read and understand.",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7e5b8c5_77d83009",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-17T22:23:23Z",
+      "side": 1,
+      "message": "You are checking if ret !\u003d 0, which means if either of the above 2 operations fail, i think u should do a better handling in code path above.",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

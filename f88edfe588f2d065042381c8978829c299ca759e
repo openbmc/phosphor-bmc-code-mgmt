@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8ffc70_3bbe6c74",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Done. Defined constexpr uint32_t ctrlRegOffset \u003d 0x04; to represent the Control Register offset as per the Altera specification and replaced all instances of 0x04 with this constant.",
+      "parentUuid": "9af7d041_5c3630fd",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f360f027_540d3dd1",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-16T21:27:19Z",
       "side": 1,
       "message": "Please define constexpr for 0x7U and 20 defining its purpose.\n\nPlease do same for any other such unnamed constants in the patch.",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed3d906_0858084f",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Done. Defined constexpr uint32_t sectorEraseMask \u003d 0x7U; and constexpr uint32_t sectorEraseShift \u003d 20; to clearly reflect their purpose in bitwise operations.",
+      "parentUuid": "f360f027_540d3dd1",
       "revId": "f88edfe588f2d065042381c8978829c299ca759e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22d84284_9156555d",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "7db3b869_67005a0c",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0563f330_73edfc7b",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-06-16T21:27:19Z",
       "side": 1,
       "message": "What is 4? Please define a constexpr for it.",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a16e12a_ab7f9255",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Done. The 4 represents the 4-byte word size used for writing data through the Avalon-MM bridge. I\u0027ve defined constexpr uint32_t wordSize \u003d 4; and replaced the magic numbers in the loop accordingly.",
+      "parentUuid": "0563f330_73edfc7b",
       "revId": "f88edfe588f2d065042381c8978829c299ca759e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a7a2de_b2f49bb0",
+        "filename": "cpld/altera/max10_cpld.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Done. The 3 is used for boundary checking to ensure there are enough bytes left in the buffer to form a full 4-byte word before packing. I\u0027ve replaced it with wordSize - 1 to make the logic self-explanatory.",
+      "parentUuid": "c712936d_57a3dbd2",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92bd1ef0_23fc0d35",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-06-16T21:29:41Z",
       "side": 1,
       "message": "Would it make sense to rename both .hpp and .ccp to max10_standard_cpld to use similar naming convention as lattice for standard versions?",
+      "revId": "f88edfe588f2d065042381c8978829c299ca759e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5425697b_46f427eb",
+        "filename": "cpld/altera/max10_cpld.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-17T08:10:15Z",
+      "side": 1,
+      "message": "Good point. Renamed the class to Max10StandardCPLD and the files to max10_standard_cpld.hpp/.cpp. Aligning with the Lattice CPLD naming convention avoids confusion and makes the architecture clearer.",
+      "parentUuid": "92bd1ef0_23fc0d35",
       "revId": "f88edfe588f2d065042381c8978829c299ca759e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

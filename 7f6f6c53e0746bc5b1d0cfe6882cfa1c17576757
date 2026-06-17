@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a7f912_ce6d8bf0",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "This check is needed because the TPS image begins with a comment block (/** WARNING:). Without skipping lines containing /*, the parser would try to process the comment as data.",
+      "parentUuid": "df2f81f6_eaf7826a",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7068d804_6ef6a0ae",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-15T21:17:04Z",
       "side": 1,
       "message": "lowerCamelcase for variable naming.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26e876f4_9c5511b4",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "7068d804_6ef6a0ae",
       "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c07b8721_2d00e6cd",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "ca91f3e3_1e76c70a",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4085c7d4_96d3b1c2",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-06-15T21:17:04Z",
       "side": 1,
       "message": "Why are u adding this in tps .hpp then ? Shouldn\u0027t this be in its own file ?",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24965d1e_524da241",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "4085c7d4_96d3b1c2",
       "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a478bc_4969ec0f",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "bce14dc8_dbc7fe29",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c584ca11_7ac66626",
@@ -103,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3b5c9a_b4a3c5d7",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "c584ca11_7ac66626",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84eb87ef_ff19d4a1",
@@ -116,6 +224,24 @@
       "writtenOn": "2026-06-15T21:17:04Z",
       "side": 1,
       "message": "Functions should all be lowerCamelCase.",
+      "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "545cbbdd_a51bb81f",
+        "filename": "i2c-vr/tps25990/tps25990.hpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-17T05:53:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "84eb87ef_ff19d4a1",
       "revId": "7f6f6c53e0746bc5b1d0cfe6882cfa1c17576757",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

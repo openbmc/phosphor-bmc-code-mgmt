@@ -52,6 +52,24 @@
       "parentUuid": "98ae771e_96f3b20b",
       "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f99166ee_b500c2d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-17T03:30:52Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\n\nAh, I need to fix the commit message.\n\nThe current WebUI uses MultipartHttpPushUri and always uploads to /redfish/v1/UpdateService/FirmwareInventory/bmc without checking the target purpose.  As a result, the following error occurs:\n\n```\nJun 17 02:45:08 qcom-bmc-ast2600-d6bc0bf5efe0 phosphor-software-manager[316]: Starting update for image 8\nJun 17 02:45:08 qcom-bmc-ast2600-d6bc0bf5efe0 phosphor-software-manager[316]: Creating Activation object for id: 7b2608ce\nJun 17 02:45:08 qcom-bmc-ast2600-d6bc0bf5efe0 phosphor-software-manager[316]: Extracting archive to: /tmp/images/imagewZj190\nJun 17 02:45:08 qcom-bmc-ast2600-d6bc0bf5efe0 mapperx[298]: Found invalid association on path /xyz/openbmc_project/software/7b2608ce\nJun 17 02:45:08 qcom-bmc-ast2600-d6bc0bf5efe0 mapperx[298]: Found invalid association on path /xyz/openbmc_project/software/7b2608ce\nJun 17 02:45:09 qcom-bmc-ast2600-d6bc0bf5efe0 phosphor-software-manager[316]: Purpose (xyz.openbmc_project.Software.Version.VersionPurpose.Host) is not supported\nJun 17 02:45:09 qcom-bmc-ast2600-d6bc0bf5efe0 phosphor-software-manager[316]: An error occurred processing the image.\nJun 17 02:45:09 qcom-bmc-ast2600-d6bc0bf5efe0 systemd[1]: systemd-journald.service: Sent signal SIGRTMIN+1 to main process 153 (systemd-journal) on client request.\n```\n\nFrom my testing, the issue does not occur when using Redfish multipart update directly instead of the WebUI. Uploading a BMC tarball to /redfish/v1/UpdateService/FirmwareInventory/bmc and a BIOS tarball to /redfish/v1/UpdateService/FirmwareInventory/bios_active works as expected.  This confirms that the issue is caused by the WebUI handling all tarballs the same way without distinguishing their purpose.\n\nI considered a few possible approaches to fix this.\n\nThe simplest solution would be to split the firmware update page into separate BMC and BIOS upload buttons so that the user can explicitly choose the target inventory path.  However, I thought that this breaks the current workflow where the tarball purpose is determined automatically. It would also require additional UI changes whenever new purposes (including \u0027Other\u0027) are introduced, so I ruled out this option.\n\nAnother idea was to have the WebUI frontend extract the tarball, parse the manifest file, determine the purpose, and then upload it to the appropriate inventory path.  I and Ravi experimented with this approach, but for compressed tarballs the frontend would first need to decompress the archive and inspect the manifest.  Supporting all archive formats in the frontend is not straightforward, and I am not convinced that this responsibility belongs in the frontend in the first place.\n\nFor these reasons, I concluded that the problem should be solved in the Software Manager layer, which is why I created this patch.\n\nThere may be a better or more correct approach.  I would appreciate hearing your thoughts if you have any suggestions.",
+      "parentUuid": "52f70df3_0bae5508",
+      "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

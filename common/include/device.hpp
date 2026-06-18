@@ -71,11 +71,13 @@ class Device
     // times.
     std::set<RequestedApplyTimes> allowedApplyTimes;
 
+  public:
     // software instance, identified by its swid
     // The specific derived class also owns its dbus interfaces,
     // which are destroyed when the instance is deleted.
     std::unique_ptr<Software> softwareCurrent;
 
+  protected:
     // In case of apply time == OnReset, this contains the software version
     // which has been written to the device, or should be written to it,
     // but is not active yet.

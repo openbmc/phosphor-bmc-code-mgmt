@@ -2,6 +2,7 @@
 
 #include "common/include/dbus_helper.hpp"
 #include "eeprom_device.hpp"
+#include "spi_eeprom.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
@@ -15,8 +16,8 @@ PHOSPHOR_LOG2_USING;
 
 namespace SoftwareInf = phosphor::software;
 
-const std::vector<std::string> emConfigTypes = {"PT5161LFirmware",
-                                                "PT5081LFirmware"};
+const std::vector<std::string> emConfigTypes = {
+    "PT5161LFirmware", "PT5081LFirmware", "BCM51358Firmware"};
 
 void EEPROMDeviceSoftwareManager::start()
 {
@@ -96,14 +97,25 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
             {
                 if (iface.starts_with("xyz.openbmc_project.Configuration."))
                 {
-                    bus = co_await dbusGetRequiredProperty<uint64_t>(
-                        ctx, s, p, iface, "Bus");
-
-                    address = co_await dbusGetRequiredProperty<uint64_t>(
-                        ctx, s, p, iface, "Address");
-
                     type = co_await dbusGetRequiredProperty<std::string>(
                         ctx, s, p, iface, "Type");
+
+                    if (type == "DeviceSPIFlash")
+                    {
+                        bus = co_await dbusGetRequiredProperty<uint64_t>(
+                            ctx, s, p, iface, "SPIControllerIndex");
+
+                        address = co_await dbusGetRequiredProperty<uint64_t>(
+                            ctx, s, p, iface, "SPIDeviceIndex");
+                    }
+                    else
+                    {
+                        bus = co_await dbusGetRequiredProperty<uint64_t>(
+                            ctx, s, p, iface, "Bus");
+
+                        address = co_await dbusGetRequiredProperty<uint64_t>(
+                            ctx, s, p, iface, "Address");
+                    }
                     break;
                 }
             }
@@ -155,10 +167,17 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
               "VALUE", gpioPolarities[i]);
     }
 
-    auto eepromDevice = std::make_unique<EEPROMDevice>(
-        ctx, static_cast<uint16_t>(bus.value()),
-        static_cast<uint8_t>(address.value()), type.value(), gpioLines,
-        gpioPolarities, std::move(deviceVersion), config, this);
+    std::unique_ptr<Device> eepromDevice;
+
+    if (type.value() == "DeviceSPIFlash")
+        eepromDevice = std::make_unique<SPIEEPROM>(
+            ctx, bus.value(), address.value(), gpioLines, gpioPolarities,
+            std::move(deviceVersion), config, this);
+    else
+        eepromDevice = std::make_unique<EEPROMDevice>(
+            ctx, static_cast<uint16_t>(bus.value()),
+            static_cast<uint8_t>(address.value()), type.value(), gpioLines,
+            gpioPolarities, std::move(deviceVersion), config, this);
 
     std::unique_ptr<SoftwareInf::Software> software =
         std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);

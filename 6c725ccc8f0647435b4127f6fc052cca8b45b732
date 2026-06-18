@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0405c0c_2dde315c",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-18T17:31:55Z",
+      "side": 1,
+      "message": "Is this comment relevant ? Why is this at this line?",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e79efb_d8940610",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-18T17:31:55Z",
+      "side": 1,
+      "message": "Is this comment relevant ? Why is this at this line?",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f47b5f6_de110206",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-18T17:31:55Z",
+      "side": 1,
+      "message": "Please define a constexpr for 2 and 4 as well below.",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c35473bd_7e0ced3b",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-18T17:31:55Z",
+      "side": 1,
+      "message": "Please define constexpr for std::chrono::milliseconds(500)",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e416ce5a_7d8d5252",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-18T17:31:55Z",
+      "side": 1,
+      "message": "Define a constexpr for these constants as well.\n\nPlease check the whole patch and do it at other places too to improve readability.",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

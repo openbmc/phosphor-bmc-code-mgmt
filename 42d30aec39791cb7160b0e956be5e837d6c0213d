@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "753ef773_6b5b3eeb",
+        "filename": "cpld/altera/max10_cpld_factory.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-18T07:40:21Z",
+      "side": 1,
+      "message": "Reading hardware offsets from environment variables is not a standard practice for OpenBMC daemons. Since the default profile already covers our target hardware, I have completely removed the parseEnvUnsigned and loadProfileFromEnv logic to keep it simple and clean.",
+      "parentUuid": "615b8fba_0e49d451",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73074fc9_6dcae214",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c444907c_db6d86d1",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-18T07:40:21Z",
+      "side": 1,
+      "message": "Done. You are right; attempting an erase after an unprotect failure is pointless. I have removed the cryptic 0/1 bitwise logic and replaced it with standard boolean checks (if (!(...))) to improve readability and ensure the operations are evaluated logically.",
+      "parentUuid": "73074fc9_6dcae214",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7e5b8c5_77d83009",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-17T22:23:23Z",
       "side": 1,
       "message": "You are checking if ret !\u003d 0, which means if either of the above 2 operations fail, i think u should do a better handling in code path above.",
+      "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eccb195_f08c8549",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-18T07:40:21Z",
+      "side": 1,
+      "message": "Done. I have refactored the error handling to short-circuit immediately. By using if (!(co_await unprotectSector(...)) || !(co_await eraseSector(...))), the function now logs the specific error and returns false right away upon the first failure, rather than accumulating the error state and checking it at the end of the block.",
+      "parentUuid": "a7e5b8c5_77d83009",
       "revId": "42d30aec39791cb7160b0e956be5e837d6c0213d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

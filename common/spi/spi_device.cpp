@@ -2,17 +2,15 @@
 
 #include "common/include/NotifyWatch.hpp"
 #include "common/include/device.hpp"
-#include "common/include/host_power.hpp"
+#include "common/include/gpio_controller.hpp"
 #include "common/include/software_manager.hpp"
 #include "common/include/utils.hpp"
 
-#include <gpio_controller.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
-#include <xyz/openbmc_project/State/Host/client.hpp>
 
 #include <cstddef>
 #include <fstream>
@@ -23,7 +21,8 @@ PHOSPHOR_LOG2_USING;
 using namespace std::literals;
 using namespace phosphor::software;
 using namespace phosphor::software::manager;
-using namespace phosphor::software::host_power;
+
+namespace fs = std::filesystem;
 
 static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
 {
@@ -61,12 +60,10 @@ SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
                      bool dryRun, const std::vector<std::string>& gpioLinesIn,
                      const std::vector<bool>& gpioValuesIn,
                      SoftwareConfig& config, SoftwareManager* parent,
-                     enum FlashLayout layout, enum FlashTool tool,
-                     const std::string& versionDirPath) :
+                     enum FlashLayout layout, enum FlashTool tool) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
-    NotifyWatchIntf(ctx, versionDirPath), dryRun(dryRun),
-    gpioLines(gpioLinesIn),
+    dryRun(dryRun), gpioLines(gpioLinesIn),
     gpioValues(gpioValuesIn.begin(), gpioValuesIn.end()),
     spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
     layout(layout), tool(tool)
@@ -80,8 +77,6 @@ SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
 
     spiDev = optAddr.value();
 
-    ctx.spawn(readNotifyAsync());
-
     debug(
         "SPI Device {NAME} at {CONTROLLERINDEX}:{DEVICEINDEX} initialized successfully",
         "NAME", config.configName, "CONTROLLERINDEX", spiControllerIndex,
@@ -91,48 +86,15 @@ SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
 sdbusplus::async::task<bool> SPIDevice::updateDevice(const uint8_t* image,
                                                      size_t image_size)
 {
-    // NOLINTNEXTLINE(clang-analyzer-core.uninitialized.Branch)
-    auto prevPowerstate = co_await HostPower::getState(ctx);
-
-    if (prevPowerstate != stateOn && prevPowerstate != stateOff)
-    {
-        co_return false;
-    }
-
-    bool success = co_await HostPower::setState(ctx, stateOff);
-    if (!success)
-    {
-        error("error changing host power state");
-        co_return false;
-    }
     setUpdateProgress(10);
 
-    success = co_await writeSPIFlash(image, image_size);
+    bool success = co_await writeSPIFlash(image, image_size);
 
     if (success)
     {
         setUpdateProgress(100);
     }
 
-    // lift the activation blocks transition to prevent rejection of the
-    // host power state restore request.
-    if (softwarePending)
-    {
-        softwarePending->setActivationBlocksTransition(false);
-        debug("ActivationBlocksTransition lifted for host power restore");
-    }
-
-    // restore the previous powerstate
-    const bool powerstate_restore =
-        co_await HostPower::setState(ctx, prevPowerstate);
-    if (!powerstate_restore)
-    {
-        error("error changing host power state");
-        co_return false;
-    }
-
-    // return value here is only describing if we successfully wrote to the
-    // SPI flash. Restoring powerstate can still fail.
     co_return success;
 }
 
@@ -449,49 +411,6 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(
           "PATH", devPath.value());
 
     co_return true;
-}
-
-std::string SPIDevice::getVersion()
-{
-    std::string version{};
-    try
-    {
-        std::ifstream config(biosVersionPath);
-
-        config >> version;
-    }
-    catch (std::exception& e)
-    {
-        error("Failed to get version with {ERROR}", "ERROR", e.what());
-        version = versionUnknown;
-    }
-
-    if (version.empty())
-    {
-        version = versionUnknown;
-    }
-
-    return version;
-}
-
-auto SPIDevice::processUpdate(std::string versionFileName)
-    -> sdbusplus::async::task<>
-{
-    if (biosVersionFilename != versionFileName)
-    {
-        error(
-            "Update config file name '{NAME}' (!= '{EXPECTED}') is not expected",
-            "NAME", versionFileName, "EXPECTED", biosVersionFilename);
-        co_return;
-    }
-
-    if (softwareCurrent)
-    {
-        softwareCurrent->setVersion(getVersion(),
-                                    SoftwareVersion::VersionPurpose::Host);
-    }
-
-    co_return;
 }
 
 std::optional<std::string> SPIDevice::getMTDDevicePath() const

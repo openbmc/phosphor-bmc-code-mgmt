@@ -79,7 +79,7 @@ all_options = {
         'deps': ['libgpiod'],
     },
     'eepromdevice-software-update': {
-        'dirs': ['eeprom-device'],
+        'dirs': ['common/spi', 'common/serial', 'eeprom-device'],
         'deps': ['libgpiod'],
     },
     'i2cvr-software-update': {'dirs': ['common/i2c', 'i2c-vr']},

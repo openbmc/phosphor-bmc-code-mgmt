@@ -2,7 +2,7 @@
 
 #include "common/include/dbus_helper.hpp"
 #include "common/include/software_manager.hpp"
-#include "spi_device.hpp"
+#include "spi_bios.hpp"
 
 #include <gpiod.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -91,7 +91,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     std::unique_ptr<SPIDevice> spiDevice;
     try
     {
-        spiDevice = std::make_unique<SPIDevice>(
+        spiDevice = std::make_unique<SPIBIOS>(
             ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
             names, values, config, this, layout, tool);
     }
@@ -112,7 +112,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     spiDevice->softwareCurrent = std::move(software);
 
     spiDevice->softwareCurrent->setVersion(
-        SPIDevice::getVersion(), SoftwareVersion::VersionPurpose::Host);
+        spiDevice->getVersion(), SoftwareVersion::VersionPurpose::Host);
 
     devices.insert({config.objectPath, std::move(spiDevice)});
 

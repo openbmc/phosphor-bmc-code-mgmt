@@ -1,5 +1,5 @@
 
-bios_spi_src = files('bios_software_manager.cpp', 'spi_device.cpp')
+bios_spi_src = files('bios_software_manager.cpp', 'spi_bios.cpp')
 
 bios_spi_include = include_directories('.')
 
@@ -15,8 +15,9 @@ executable(
         boost_dep,
         libgpiod_dep,
         libpldm_dep,
+        libspi_dep,
     ],
-    link_with: [libpldmutil, software_common_lib, libgpio_controller],
+    link_with: [libpldmutil, software_common_lib, libgpio_controller, libspi_dev],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )

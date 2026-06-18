@@ -17,7 +17,11 @@ executable(
         phosphor_logging_dep,
         sdbusplus_dep,
     ],
-    link_with: [software_common_lib, libpldmutil, libgpio_controller],
+    link_with: [
+        software_common_lib,
+        libpldmutil,
+        libgpio_controller
+    ],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )

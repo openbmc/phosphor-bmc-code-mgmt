@@ -1,5 +1,6 @@
 eeprom_device_version_src = files(
     'eeprom_device_version.cpp',
+    'bcm51358/bcm51358.cpp',
     'pt5161l/pt5161l.cpp',
 )
 
@@ -14,10 +15,13 @@ executable(
     dependencies: [
         libgpiod_dep,
         libpldm_dep,
+        libserial_dep,
         phosphor_logging_dep,
         sdbusplus_dep,
     ],
     link_with: [
+        libspi_dev,
+        libserial_dev,
         software_common_lib,
         libpldmutil,
         libgpio_controller

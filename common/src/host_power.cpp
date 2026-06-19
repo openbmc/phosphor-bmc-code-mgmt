@@ -16,7 +16,7 @@ PHOSPHOR_LOG2_USING;
 
 using namespace std::literals;
 
-namespace RulesIntf = sdbusplus::bus::match::rules;
+namespace RulesIntf = sdbusplus::match_rules;
 
 using StateIntf =
     sdbusplus::client::xyz::openbmc_project::state::Host<void, void>;

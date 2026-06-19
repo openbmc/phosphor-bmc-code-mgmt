@@ -14,7 +14,7 @@
 PHOSPHOR_LOG2_USING;
 
 namespace fs = std::filesystem;
-namespace MatchRules = sdbusplus::bus::match::rules;
+namespace MatchRules = sdbusplus::match_rules;
 namespace State = sdbusplus::common::xyz::openbmc_project::state;
 
 static std::string getDriverPath(const std::string& chipModel)

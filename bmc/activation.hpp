@@ -339,7 +339,7 @@ class Activation : public ActivationInherit, public Flash
     ApplyTimeIntf::RequestedApplyTimes applyTime;
 
     /** @brief Used to subscribe to dbus systemd signals **/
-    sdbusplus::bus::match_t systemdSignals;
+    sdbusplus::match systemdSignals;
 
     /** @brief Tracks whether the read-write volume has been created as
      * part of the activation process. **/

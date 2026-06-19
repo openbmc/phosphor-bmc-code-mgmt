@@ -96,7 +96,7 @@ class ItemUpdater : public ItemUpdaterInherit
     {
         if (!useUpdateDBusInterface)
         {
-            versionMatch = std::make_unique<sdbusplus::bus::match_t>(
+            versionMatch = std::make_unique<sdbusplus::match>(
                 bus,
                 MatchRules::interfacesAdded() +
                     MatchRules::path("/xyz/openbmc_project/software"),
@@ -343,7 +343,7 @@ class ItemUpdater : public ItemUpdaterInherit
     std::map<std::string, std::unique_ptr<Activation>> activations;
 
     /** @brief sdbusplus signal match for Software.Version */
-    std::unique_ptr<sdbusplus::bus::match_t> versionMatch;
+    std::unique_ptr<sdbusplus::match> versionMatch;
 
     /** @brief This entry's associations */
     AssociationList assocs;

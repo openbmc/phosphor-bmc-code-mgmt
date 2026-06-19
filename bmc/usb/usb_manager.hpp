@@ -86,7 +86,7 @@ class USBManager
     bool isUSBCodeUpdate;
 
     /** sdbusplus signal match for new image. */
-    sdbusplus::bus::match_t fwUpdateMatcher;
+    sdbusplus::match fwUpdateMatcher;
 
     /** @brief Creates an Activation D-Bus object.
      *

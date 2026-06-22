@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f48241_604936d3",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-22T10:41:22Z",
+      "side": 1,
+      "message": "This bit in regStatusMfrSpecific2 indicates whether the NVM is writable. Since the comment describes the implementation details, I moved it to where the bit is actually used.",
+      "parentUuid": "c0405c0c_2dde315c",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3e79efb_d8940610",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-18T17:31:55Z",
       "side": 1,
       "message": "Is this comment relevant ? Why is this at this line?",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa81620b_2916045e",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-22T10:41:22Z",
+      "side": 1,
+      "message": "This bit in regStatusCml indicates whether the programming succeeded. Since the comment describes the implementation details, I moved it to where the bit is actually used.",
+      "parentUuid": "d3e79efb_d8940610",
       "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9743eee6_fc36914b",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-22T10:41:22Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "4f47b5f6_de110206",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c35473bd_7e0ced3b",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfbd793_2c4338ed",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-22T10:41:22Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "c35473bd_7e0ced3b",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e416ce5a_7d8d5252",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-06-18T17:31:55Z",
       "side": 1,
       "message": "Define a constexpr for these constants as well.\n\nPlease check the whole patch and do it at other places too to improve readability.",
+      "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273ec421_98bed1a6",
+        "filename": "i2c-vr/tps25990/tps25990.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-22T10:41:22Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "e416ce5a_7d8d5252",
       "revId": "6c725ccc8f0647435b4127f6fc052cca8b45b732",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -16,6 +16,24 @@
       "message": "What Byte does this represent ? Lets name it appropriately.",
       "revId": "232450901c0734a2427cb5d760ae169112752a7c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4285469_6e41fe25",
+        "filename": "i2c-vr/tps25990/rs31390.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002793
+      },
+      "writtenOn": "2026-06-23T03:05:38Z",
+      "side": 1,
+      "message": "It represents the size of the value. I\u0027ve renamed it to ValueSize for better clarity.",
+      "parentUuid": "02b9b994_1cfd3759",
+      "revId": "232450901c0734a2427cb5d760ae169112752a7c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

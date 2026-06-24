@@ -13,7 +13,7 @@ namespace phosphor
 namespace usb
 {
 namespace fs = std::filesystem;
-namespace MatchRules = sdbusplus::bus::match::rules;
+namespace MatchRules = sdbusplus::match_rules;
 
 class USBManager
 {
@@ -86,7 +86,7 @@ class USBManager
     bool isUSBCodeUpdate;
 
     /** sdbusplus signal match for new image. */
-    sdbusplus::bus::match_t fwUpdateMatcher;
+    sdbusplus::match fwUpdateMatcher;
 
     /** @brief Creates an Activation D-Bus object.
      *

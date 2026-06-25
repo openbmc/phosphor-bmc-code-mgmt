@@ -233,8 +233,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
     }
     else
     {
-        error("No GPIO lines configured for SPI muxing");
-        co_return false;
+        info("No GPIO lines configured for SPI muxing, proceeding.");
     }
 
     bool success = co_await SPIDevice::bindSPIFlash();

@@ -233,47 +233,64 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
     }
     else
     {
-        error("No GPIO lines configured for SPI muxing");
+        info("No GPIO lines configured for SPI muxing, proceeding.");
+    }
+
+    bool success = true;
+    bool needsUnbind = false;
+
+    if (!isSPIFlashBound())
+    {
+        needsUnbind = true;
+        success = co_await SPIDevice::bindSPIFlash();
+    }
+    else
+    {
+        debug("SPI flash already bound, skipping binding step.");
+    }
+
+    if (!success)
+    {
         co_return false;
     }
 
-    bool success = co_await SPIDevice::bindSPIFlash();
-    if (success)
+    if (dryRun)
     {
-        if (dryRun)
+        info("dry run, NOT writing to the chip");
+    }
+    else
+    {
+        if (tool == flashToolFlashrom)
         {
-            info("dry run, NOT writing to the chip");
+            success = co_await SPIDevice::writeSPIFlashWithFlashrom(
+                image, image_size);
+            if (!success)
+            {
+                error(
+                    "Error writing to SPI flash {CONTROLLERINDEX}:{DEVICEINDEX}",
+                    "CONTROLLERINDEX", spiControllerIndex, "DEVICEINDEX",
+                    spiDeviceIndex);
+            }
+        }
+        else if (tool == flashToolFlashcp)
+        {
+            success =
+                co_await SPIDevice::writeSPIFlashWithFlashcp(image, image_size);
         }
         else
         {
-            if (tool == flashToolFlashrom)
-            {
-                success = co_await SPIDevice::writeSPIFlashWithFlashrom(
-                    image, image_size);
-                if (!success)
-                {
-                    error(
-                        "Error writing to SPI flash {CONTROLLERINDEX}:{DEVICEINDEX}",
-                        "CONTROLLERINDEX", spiControllerIndex, "DEVICEINDEX",
-                        spiDeviceIndex);
-                }
-            }
-            else if (tool == flashToolFlashcp)
-            {
-                success = co_await SPIDevice::writeSPIFlashWithFlashcp(
-                    image, image_size);
-            }
-            else
-            {
-                success =
-                    co_await SPIDevice::writeSPIFlashDefault(image, image_size);
-            }
+            success =
+                co_await SPIDevice::writeSPIFlashDefault(image, image_size);
         }
-
-        success = success && co_await SPIDevice::unbindSPIFlash();
     }
 
     lg2::info("Successfully updated SPI flash");
+
+    if (needsUnbind)
+    {
+        success = success && co_await SPIDevice::unbindSPIFlash();
+    }
+
     co_return success;
 }
 

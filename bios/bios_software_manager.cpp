@@ -1,6 +1,7 @@
 #include "bios_software_manager.hpp"
 
 #include "common/include/dbus_helper.hpp"
+#include "common/include/mux_helper.hpp"
 #include "common/include/software_manager.hpp"
 #include "spi_device.hpp"
 
@@ -57,31 +58,10 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         tool = flashToolFlashcp;
     }
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
+    const std::tuple<std::vector<std::string>, std::vector<bool>> muxGPIOs =
+        co_await getMuxGPIOs(ctx, service, path, configIface);
 
-    std::vector<std::string> names;
-    std::vector<bool> values;
-
-    for (size_t i = 0; true; i++)
-    {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
-        names.push_back(name.value());
-        values.push_back((polarity == "High") ? 1 : 0);
-    }
+    const auto& [names, values] = muxGPIOs;
 
     enum FlashLayout layout = flashLayoutFlat;
 

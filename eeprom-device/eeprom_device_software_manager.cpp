@@ -1,6 +1,7 @@
 #include "eeprom_device_software_manager.hpp"
 
 #include "common/include/dbus_helper.hpp"
+#include "common/include/mux_helper.hpp"
 #include "eeprom_device.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -134,30 +135,10 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     debug("EEPROM: Bus={BUS}, Address={ADDR}, Type={TYPE}", "BUS", bus.value(),
           "ADDR", address.value(), "TYPE", type.value());
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
-    std::vector<std::string> gpioLines;
-    std::vector<bool> gpioPolarities;
+    const std::tuple<std::vector<std::string>, std::vector<bool>> muxGPIOs =
+        co_await getMuxGPIOs(ctx, service, path, configIface);
 
-    for (size_t i = 0; true; i++)
-    {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
-        gpioLines.push_back(name.value());
-        gpioPolarities.push_back(polarity.value() == "High");
-    }
+    const auto& [gpioLines, gpioPolarities] = muxGPIOs;
 
     for (size_t i = 0; i < gpioLines.size(); i++)
     {

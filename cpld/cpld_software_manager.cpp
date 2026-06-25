@@ -1,6 +1,7 @@
 #include "cpld_software_manager.hpp"
 
 #include "common/include/dbus_helper.hpp"
+#include "common/include/mux_helper.hpp"
 #include "cpld.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -38,34 +39,16 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
         "TYPE", chipType.value(), "NAME", chipName.value(), "BUS",
         busNo.value(), "ADDR", address.value());
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
+    const std::tuple<std::vector<std::string>, std::vector<bool>> muxGPIOs =
+        co_await getMuxGPIOs(ctx, service, path, configIface);
 
-    std::vector<std::string> names;
-    std::vector<bool> values;
+    const auto& [names, values] = muxGPIOs;
 
-    for (size_t i = 0; true; i++)
+    for (size_t i = 0; i < names.size() && i < values.size(); i++)
     {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
         lg2::debug(
             "Found CPLD MuxOutput[{INDEX}]: Name={NAME}, Polarity={POLARITY}",
-            "INDEX", i, "NAME", name.value(), "POLARITY", polarity.value());
-
-        names.push_back(name.value());
-        values.push_back((polarity == "High") ? 1 : 0);
+            "INDEX", i, "NAME", names[i], "POLARITY", values[i]);
     }
 
     lg2::debug("Total CPLD MuxOutputs found: {COUNT}", "COUNT", names.size());

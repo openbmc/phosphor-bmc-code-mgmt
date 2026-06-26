@@ -88,6 +88,24 @@
       "parentUuid": "f99166ee_b500c2d0",
       "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1bd7622_3417d09c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-26T21:23:16Z",
+      "side": 1,
+      "message": "I think you answered your question - \n\n\u003e to split the firmware update page into separate BMC and BIOS upload buttons so that the user can explicitly choose the target inventory path.\n\nI can understand the user can provide an un targeted bundle, but the user interface shall also be able to select the right target as thats one of the expected and implemented Redfish flows.",
+      "parentUuid": "ffead835_f215135e",
+      "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

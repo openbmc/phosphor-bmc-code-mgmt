@@ -106,6 +106,24 @@
       "parentUuid": "ffead835_f215135e",
       "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "996c0514_bfc8dec9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-29T13:17:13Z",
+      "side": 1,
+      "message": "\u003e I can understand the user can provide an un targeted bundle, but the user interface shall also be able to select the right target as thats one of the expected and implemented Redfish flows.\n\nYeah. Ravi and I will try to add a dropdown in the WebUI to let users select the purpose. That way, we can reuse the existing file selector and upload button, making this a very minimal change. It would also eliminate the need to extract and inspect the manifest file from the compressed tarball just to determine the purpose.",
+      "parentUuid": "d1bd7622_3417d09c",
+      "revId": "4e013fc737903f94e3070b31e71912c41bb9d70e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

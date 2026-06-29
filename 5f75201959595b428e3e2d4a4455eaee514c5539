@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d296684f_088adf23",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-29T20:35:02Z",
+      "side": 1,
+      "message": "Please define a single chipNameMap and use it in both the APIs.",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fed421_b9de3480",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-29T20:35:02Z",
+      "side": 1,
+      "message": "Is the EM config name if yes, then lets rename this to getMax10ConfigName",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c86dc201_7418d359",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-29T20:35:02Z",
+      "side": 1,
+      "message": "nit: lets call this baseProgressPercent and rename other related vars accordingly",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

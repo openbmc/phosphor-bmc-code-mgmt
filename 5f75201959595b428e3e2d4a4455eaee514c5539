@@ -50,6 +50,40 @@
       "message": "nit: lets call this baseProgressPercent and rename other related vars accordingly",
       "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede13710_81888006",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-29T20:37:59Z",
+      "side": 1,
+      "message": "nit: rename to completeProgressPercent.\n\nBetter move these constexpr locally to that function (if they are used only in a single function). Same for others.",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221eedea_9c450cc8",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-06-29T20:37:59Z",
+      "side": 1,
+      "message": "nit: rename to progressPercent",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

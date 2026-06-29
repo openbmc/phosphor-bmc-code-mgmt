@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d83ecb_0e2acebc",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 36
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-29T09:56:46Z",
+      "side": 1,
+      "message": "Done. I agree that using a flag argument makes the API confusing. I have removed the max10DataType enum entirely and split the logic into two explicit APIs: getMax10ModuleName() and getMax10TypeName()",
+      "parentUuid": "d748a1f3_079b1c9a",
+      "revId": "e1e7624a78a944e3b855e0aead61f0a19ddcf3ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48f4012b_d2f3ccda",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a67f0a4_13b73264",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 36
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-29T09:56:46Z",
+      "side": 1,
+      "message": "Done. Defined constexpr int progressBasePct \u003d 10;, constexpr int progressProgramPct \u003d 85;, and constexpr size_t progressUpdateInterval \u003d 1024; to eliminate these magic numbers and clarify the progress calculation logic.",
+      "parentUuid": "48f4012b_d2f3ccda",
+      "revId": "e1e7624a78a944e3b855e0aead61f0a19ddcf3ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05c2c39c_e3a89662",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-26T21:04:26Z",
       "side": 1,
       "message": "Dont u need an enum for this as u have switch cases ?",
+      "revId": "e1e7624a78a944e3b855e0aead61f0a19ddcf3ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f0b4d7d_4aa19a8b",
+        "filename": "cpld/altera/max10_standard_cpld.hpp",
+        "patchSetId": 36
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-29T09:56:46Z",
+      "side": 1,
+      "message": "Done. Defined an enum class Max10ImageType : uint8_t { cfmImage1 \u003d 1, cfmImage2 \u003d 2, cfmImage3 \u003d 3 }; to ensure type safety and make the switch-case statements more readable.",
+      "parentUuid": "05c2c39c_e3a89662",
       "revId": "e1e7624a78a944e3b855e0aead61f0a19ddcf3ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

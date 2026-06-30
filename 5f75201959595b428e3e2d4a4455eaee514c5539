@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a34b105e_2162b090",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-30T08:41:32Z",
+      "side": 1,
+      "message": "Done. Extracted chipNameMap into an anonymous namespace so it is defined only once and shared by both APIs.",
+      "parentUuid": "d296684f_088adf23",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7fed421_b9de3480",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-29T20:35:02Z",
       "side": 1,
       "message": "Is the EM config name if yes, then lets rename this to getMax10ConfigName",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebea6a13_077bff44",
+        "filename": "cpld/altera/max10_base_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-30T08:41:32Z",
+      "side": 1,
+      "message": "It actually corresponds to the Type field in the Entity-Manager configuration (e.g., \"Type\": \"AlteraMAX10_10M16Firmware\"), not the Name field. To make the intent perfectly clear, I have renamed the API to getMax10ConfigType().",
+      "parentUuid": "a7fed421_b9de3480",
       "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f1ade17_e2d4c1a5",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-30T08:41:32Z",
+      "side": 1,
+      "message": "Done. Renamed progressBasePct to baseProgressPercent, progressProgramPct to programProgressPercent, progressCompletePct to completeProgressPercent, and progressUpdateInterval to updateProgressInterval to make the naming consistent and descriptive.",
+      "parentUuid": "c86dc201_7418d359",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ede13710_81888006",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6480587_7bb508ea",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-30T08:41:32Z",
+      "side": 1,
+      "message": "Done. Moved the progress-related constexpr variables locally into the programRpd() function since they are only used there. I also renamed them to baseProgressPercent, programProgressPercent, and completeProgressPercent as suggested. Furthermore, I applied the same logic to move versionReg and versionBufSize locally into getVersion().",
+      "parentUuid": "ede13710_81888006",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "221eedea_9c450cc8",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-06-29T20:37:59Z",
       "side": 1,
       "message": "nit: rename to progressPercent",
+      "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59551e5e_b462eebb",
+        "filename": "cpld/altera/max10_standard_cpld.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2026-06-30T08:41:32Z",
+      "side": 1,
+      "message": "Done. Renamed the local variable pct to progressPercent for better clarity.",
+      "parentUuid": "221eedea_9c450cc8",
       "revId": "5f75201959595b428e3e2d4a4455eaee514c5539",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

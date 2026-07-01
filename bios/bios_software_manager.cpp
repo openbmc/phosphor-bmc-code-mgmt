@@ -46,6 +46,19 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         co_return false;
     }
 
+    std::optional<std::string> partition =
+        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                      configIface, "Partition");
+
+    if (!partition.has_value())
+    {
+        error("Missing property: Partition");
+        co_return false;
+    }
+
+    // empty string means no partition configured
+    partition = (partition == "") ? std::nullopt : partition;
+
     enum FlashTool tool = flashToolNone;
 
     if (config.configType == "IntelSPIFlash")
@@ -85,15 +98,17 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
     enum FlashLayout layout = flashLayoutFlat;
 
-    debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
-          "INDEX2", spiDeviceIndex.value());
+    debug("SPI device: {INDEX1}:{INDEX2}, Partition {PARTITION}", "INDEX1",
+          spiControllerIndex.value(), "INDEX2", spiDeviceIndex.value(),
+          "PARTITION", partition.value());
 
     std::unique_ptr<SPIDevice> spiDevice;
     try
     {
         spiDevice = std::make_unique<SPIDevice>(
-            ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-            names, values, config, this, layout, tool);
+            ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
+            partition.value(), dryRun, names, values, config, this, layout,
+            tool);
     }
     catch (std::exception& e)
     {

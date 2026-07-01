@@ -45,6 +45,15 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
         co_return false;
     }
 
+    std::optional<std::string> partition =
+        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                      configIface, "Partition");
+
+    if (!partition.has_value())
+    {
+        debug("no partitions configured");
+    }
+
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 
     std::vector<std::string> names;
@@ -76,7 +85,7 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
 
     auto spiDevice = SPIFactory::instance().create(
         chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, names, values, config, this);
+        partition, dryRun, names, values, config, this);
 
     if (spiDevice == nullptr)
     {

@@ -6,6 +6,7 @@
 #include <sdbusplus/async.hpp>
 
 #include <memory>
+#include <optional>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -50,7 +51,8 @@ class SPIFactory
 
     static std::unique_ptr<SPIDevice> create(
         const std::string& chipType, sdbusplus::async::context& ctx,
-        uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
+        uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
+        const std::optional<std::string>& partition, bool dryRun,
         const std::vector<std::string>& names, const std::vector<bool>& values,
         SoftwareConfig& config, SoftwareManager* parent);
 

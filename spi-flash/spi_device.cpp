@@ -56,18 +56,18 @@ static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
     return std::nullopt;
 }
 
-SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
-                     uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                     bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                     const std::vector<bool>& gpioValuesIn,
-                     SoftwareConfig& config, SoftwareManager* parent,
-                     enum FlashLayout layout, enum FlashTool tool) :
+SPIDevice::SPIDevice(
+    sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
+    uint64_t spiDeviceIndex, const std::optional<std::string>& partition,
+    bool dryRun, const std::vector<std::string>& gpioLinesIn,
+    const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
+    SoftwareManager* parent, enum FlashLayout layout, enum FlashTool tool) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     dryRun(dryRun), gpioLines(gpioLinesIn),
     gpioValues(gpioValuesIn.begin(), gpioValuesIn.end()),
     spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
-    layout(layout), tool(tool)
+    partition(partition), layout(layout), tool(tool)
 {
     auto optAddr = getSPIDevAddr(spiControllerIndex);
 
@@ -461,6 +461,20 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(
     co_return true;
 }
 
+// @returns empty string if no name was found
+static std::string getMTDName(const std::filesystem::path& mtdPath)
+{
+    const std::filesystem::path namePath = mtdPath / "name";
+    std::string partitionName = "";
+
+    if (std::filesystem::exists(namePath))
+    {
+        std::ifstream nameFile(namePath);
+        nameFile >> partitionName;
+    }
+    return partitionName;
+}
+
 std::optional<std::string> SPIDevice::getMTDDevicePath() const
 {
     const std::string spiPath =
@@ -478,7 +492,17 @@ std::optional<std::string> SPIDevice::getMTDDevicePath() const
     {
         const std::string mtdName = entry.path().filename().string();
 
-        if (mtdName.starts_with("mtd") && !mtdName.ends_with("ro"))
+        if (!mtdName.starts_with("mtd") || mtdName.ends_with("ro"))
+        {
+            continue;
+        }
+
+        if (!partition.has_value())
+        {
+            return "/dev/" + mtdName;
+        }
+
+        if (getMTDName(entry.path()) == partition.value())
         {
             return "/dev/" + mtdName;
         }

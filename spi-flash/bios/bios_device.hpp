@@ -3,6 +3,8 @@
 #include "common/include/host_power.hpp"
 #include "spi_device.hpp"
 
+#include <optional>
+
 using namespace phosphor::software;
 using namespace phosphor::software::manager;
 using namespace phosphor::software::host_power;
@@ -11,7 +13,8 @@ class BIOSDevice : public SPIDevice
 {
   public:
     BIOSDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-               uint64_t spiDeviceIndex, bool dryRun,
+               uint64_t spiDeviceIndex,
+               const std::optional<std::string>& partition, bool dryRun,
                const std::vector<std::string>& gpioLinesIn,
                const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
                SoftwareManager* parent);

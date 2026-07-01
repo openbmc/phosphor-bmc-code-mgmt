@@ -35,7 +35,8 @@ class SPIDevice : public Device
   public:
     using Device::softwareCurrent;
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex, bool dryRun,
+              uint64_t spiDeviceIndex,
+              const std::optional<std::string>& partition, bool dryRun,
               const std::vector<std::string>& gpioLinesIn,
               const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
               SoftwareManager* parent, enum FlashLayout layout,
@@ -66,6 +67,8 @@ class SPIDevice : public Device
 
     uint64_t spiControllerIndex;
     uint64_t spiDeviceIndex;
+    // optional name of the flash partition as listed in /dev/mtd/by-name/
+    std::optional<std::string> partition;
 
     // e.g. "1e631000.spi"
     std::string spiDev;

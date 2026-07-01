@@ -17,7 +17,8 @@ class E810Device : public SPIDevice
 {
   public:
     E810Device(sdbusplus::async::context& ctx, uint64_t inSpiControllerIndex,
-               uint64_t inSpiDeviceIndex, bool inDryRun,
+               uint64_t inSpiDeviceIndex,
+               const std::optional<uint64_t>& inOffset, bool inDryRun,
                const std::vector<std::string>& inGpioLines,
                const std::vector<bool>& inGpioValues, SoftwareConfig& inConfig,
                SoftwareManager* inParent);

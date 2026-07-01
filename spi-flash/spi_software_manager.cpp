@@ -47,6 +47,14 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
         co_return false;
     }
 
+    std::optional<uint64_t> offset = co_await dbusGetRequiredProperty<uint64_t>(
+        ctx, service, path, configIface, "Offset");
+
+    if (!offset.has_value())
+    {
+        debug("No SPI partition offset configured");
+    }
+
     const std::string configIfaceMux = configIface + ".MuxOutputs";
 
     std::vector<std::string> names;
@@ -78,7 +86,7 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
 
     auto spiDevice = SPIFactory::instance().create(
         chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, names, values, config, this);
+        offset, dryRun, names, values, config, this);
 
     if (spiDevice == nullptr)
     {

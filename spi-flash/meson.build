@@ -1,6 +1,7 @@
 spi_src = files(
     'bios/bios_device.cpp',
     'e810/e810_device.cpp',
+    'mtd_utils.cpp',
     'spi_device.cpp',
     'spi_factory.cpp',
     'spi_software_manager.cpp',

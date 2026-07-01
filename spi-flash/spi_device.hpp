@@ -8,6 +8,8 @@
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/async/context.hpp>
 
+#include <cstdint>
+#include <optional>
 #include <string>
 
 class SPIDevice;
@@ -35,8 +37,8 @@ class SPIDevice : public Device
   public:
     using Device::softwareCurrent;
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex, bool dryRun,
-              const std::vector<std::string>& gpioLinesIn,
+              uint64_t spiDeviceIndex, const std::optional<uint64_t>& offset,
+              bool dryRun, const std::vector<std::string>& gpioLinesIn,
               const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
               SoftwareManager* parent, enum FlashLayout layout,
               enum FlashTool tool);
@@ -66,6 +68,8 @@ class SPIDevice : public Device
 
     uint64_t spiControllerIndex;
     uint64_t spiDeviceIndex;
+    // Optional partition start in bytes from the beginning of the SPI flash.
+    std::optional<uint64_t> offset;
 
     // e.g. "1e631000.spi"
     std::string spiDev;

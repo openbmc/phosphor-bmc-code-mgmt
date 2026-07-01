@@ -22,9 +22,9 @@ E810Device::E810Device(sdbusplus::async::context& ctx,
                        const std::vector<std::string>& inGpioLines,
                        const std::vector<bool>& inGpioValues,
                        SoftwareConfig& inConfig, SoftwareManager* inParent) :
-    SPIDevice(ctx, inSpiControllerIndex, inSpiDeviceIndex, inDryRun,
-              inGpioLines, inGpioValues, inConfig, inParent, flashLayoutFlat,
-              flashToolFlashcp),
+    SPIDevice(ctx, inSpiControllerIndex, inSpiDeviceIndex, std::nullopt,
+              inDryRun, inGpioLines, inGpioValues, inConfig, inParent,
+              flashLayoutFlat, flashToolFlashcp),
     transport(ctx)
 {
     debug("E810 device initialized");

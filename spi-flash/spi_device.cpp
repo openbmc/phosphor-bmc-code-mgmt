@@ -5,6 +5,7 @@
 #include "common/include/system_state.hpp"
 #include "common/include/utils.hpp"
 #include "flashcp_progress.hpp"
+#include "mtd_utils.hpp"
 
 #include <gpio_controller.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -59,18 +60,18 @@ static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
     return std::nullopt;
 }
 
-SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
-                     uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                     bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                     const std::vector<bool>& gpioValuesIn,
-                     SoftwareConfig& config, SoftwareManager* parent,
-                     enum FlashLayout layout, enum FlashTool tool) :
+SPIDevice::SPIDevice(
+    sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
+    uint64_t spiDeviceIndex, const std::optional<uint64_t>& offset, bool dryRun,
+    const std::vector<std::string>& gpioLinesIn,
+    const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
+    SoftwareManager* parent, enum FlashLayout layout, enum FlashTool tool) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     dryRun(dryRun), gpioLines(gpioLinesIn),
     gpioValues(gpioValuesIn.begin(), gpioValuesIn.end()),
     spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
-    layout(layout), tool(tool)
+    offset(offset), layout(layout), tool(tool)
 {
     auto optAddr = getSPIDevAddr(spiControllerIndex);
 
@@ -494,6 +495,20 @@ std::optional<std::string> SPIDevice::getMTDDevicePath() const
     {
         error("Error: SPI path not found: {PATH}", "PATH", spiPath);
         return std::nullopt;
+    }
+
+    if (offset.has_value())
+    {
+        auto device = phosphor::software::manager::findMTDPartition(
+            spiPath, offset.value());
+        if (!device.has_value())
+        {
+            error(
+                "No unique MTD partition found at offset {OFFSET} for SPI {CONTROLLERINDEX}.{DEVICEINDEX}",
+                "OFFSET", offset.value(), "CONTROLLERINDEX", spiControllerIndex,
+                "DEVICEINDEX", spiDeviceIndex);
+        }
+        return device;
     }
 
     for (const auto& entry : std::filesystem::directory_iterator(spiPath))

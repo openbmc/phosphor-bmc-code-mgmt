@@ -3,6 +3,8 @@
 #include "bios/bios_device.hpp"
 #include "e810/e810_device.hpp"
 
+#include <optional>
+
 namespace phosphor::software::manager
 {
 
@@ -14,7 +16,8 @@ SPIFactory& SPIFactory::instance()
 
 std::unique_ptr<SPIDevice> SPIFactory::create(
     const std::string& chipType, sdbusplus::async::context& ctx,
-    uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
+    uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
+    const std::optional<std::string>& partition, bool dryRun,
     const std::vector<std::string>& names, const std::vector<bool>& values,
     SoftwareConfig& config, SoftwareManager* parent)
 {
@@ -24,8 +27,8 @@ std::unique_ptr<SPIDevice> SPIFactory::create(
             chipType == getSpiTypeStr(spiChip::HOST_BIOS))
         {
             return std::make_unique<BIOSDevice>(
-                ctx, spiControllerIndex, spiDeviceIndex, dryRun, names, values,
-                config, parent);
+                ctx, spiControllerIndex, spiDeviceIndex, partition, dryRun,
+                names, values, config, parent);
         }
 
         if (chipType == getSpiTypeStr(spiChip::INTEL_E810_NIC))

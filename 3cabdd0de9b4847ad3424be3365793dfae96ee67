@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d18905_d43f147a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 42
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-02T02:30:18Z",
+      "side": 1,
+      "message": "@alex.ts.wang@fii-foxconn.com For future please use Redfish commands for your testing and add those to Tested section as mfg-tool is not an upstream utility. I am merging this PR for now.",
+      "revId": "3cabdd0de9b4847ad3424be3365793dfae96ee67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b144a9cd_2088b75f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 42
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-02T02:30:18Z",
+      "side": 1,
+      "message": "@alex.ts.wang@fii-foxconn.com After this change gets merged, please drop the related change from settingsd which exposes the SW version for this CPLD.",
+      "revId": "3cabdd0de9b4847ad3424be3365793dfae96ee67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

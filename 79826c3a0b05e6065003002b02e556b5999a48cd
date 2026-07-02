@@ -16,6 +16,24 @@
       "message": "Who is asking for this change? Is there a production case ?",
       "revId": "79826c3a0b05e6065003002b02e556b5999a48cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e749b41_9a37f06b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002321
+      },
+      "writtenOn": "2026-07-02T15:20:03Z",
+      "side": 1,
+      "message": "Yes, the HPE ProLiant Gen11 platform has one 64M (512Mb) SPI flash that contains both UEFI partitions. Still under discussion with HPE how they switch between those partitions for the host, but from what we\u0027ve been already told they copy the data between A and B in memory somehow via a `vrom`-based setup.\n\nSee https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/91736/comment/8a6ef119_4a17b58e/ for more information.",
+      "parentUuid": "ff00b7b7_8847987b",
+      "revId": "79826c3a0b05e6065003002b02e556b5999a48cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

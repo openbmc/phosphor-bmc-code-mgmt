@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff00b7b7_8847987b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-02T02:40:38Z",
+      "side": 1,
+      "message": "Who is asking for this change? Is there a production case ?",
+      "revId": "79826c3a0b05e6065003002b02e556b5999a48cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c254f997_778dbeaf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-03T08:42:25Z",
+      "side": 1,
+      "message": "\u003e If there is no gpio select then how does the Flash access gets switched between BMC and Host ?\n\nFrom my limited understanding it is not necessary to implement any extra hw logic for multiple masters to interact with a SPI flash, at least on an electrical level.\n\nAs long as the BMC and Host do not drive any shared signals at the same time, it should be fine?\n\nhttps://en.wikipedia.org/wiki/Serial_Peripheral_Interface\n\nProbably the SPI controller and driver logic have to be known on both sides w.r.t their signal behavior to safely do it like that but for HPE maybe that what they did since they design the whole platform.\n\nUnfortunately i do not have any schematics of the hw so unclear how it is wired.",
+      "parentUuid": "ade92eff_ec73c4b1",
+      "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fe8a521f_662f57ab",

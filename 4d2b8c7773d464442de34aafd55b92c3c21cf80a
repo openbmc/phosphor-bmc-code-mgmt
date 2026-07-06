@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0070febb_64ca6870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-06T17:46:22Z",
+      "side": 1,
+      "message": "@anoo@us.ibm.com It was great working with you on the project. Thanks for all your contributions.",
+      "revId": "4d2b8c7773d464442de34aafd55b92c3c21cf80a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

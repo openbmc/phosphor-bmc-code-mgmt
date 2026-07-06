@@ -33,6 +33,24 @@
       "message": "No need for TODO here, this is a fix in sdbusplus. You can fix it sdbusplus and then later update the usage.",
       "revId": "434cf9708afe6d9aa795455603a2dc27c1b1f487",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a03359_d29e7b07",
+        "filename": "common/src/dbus_helper.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-06T08:35:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feb67e80_1d6b3fb2",
+      "revId": "434cf9708afe6d9aa795455603a2dc27c1b1f487",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

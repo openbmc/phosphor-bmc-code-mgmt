@@ -1,30 +1,32 @@
-#include "bios_software_manager.hpp"
+#include "spi_software_manager.hpp"
 
 #include "common/include/dbus_helper.hpp"
-#include "common/include/software_manager.hpp"
-#include "spi_device.hpp"
+#include "spi_factory.hpp"
 
-#include <gpiod.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
-#include <sdbusplus/bus.hpp>
-#include <xyz/openbmc_project/ObjectMapper/client.hpp>
-
-using namespace phosphor::software;
 
 PHOSPHOR_LOG2_USING;
 
-BIOSSoftwareManager::BIOSSoftwareManager(sdbusplus::async::context& ctx,
-                                         bool isDryRun) :
-    SoftwareManager(ctx, configTypeBIOS), dryRun(isDryRun)
+namespace phosphor::software::manager
+{
+
+SPISoftwareManager::SPISoftwareManager(sdbusplus::async::context& ctx,
+                                       bool isDryRun) :
+    SoftwareManager(ctx, "SPIFlash"), dryRun(isDryRun)
 {}
 
-sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
+sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
     std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
+
+    auto chipType = co_await dbusGetRequiredProperty<std::string>(
+        ctx, service, path, configIface, "Type");
+    auto chipName = co_await dbusGetRequiredProperty<std::string>(
+        ctx, service, path, configIface, "Name");
 
     std::optional<uint64_t> spiControllerIndex =
         co_await dbusGetRequiredProperty<uint64_t>(
@@ -47,14 +49,18 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     }
 
     enum FlashTool tool = flashToolNone;
-
-    if (config.configType == "IntelSPIFlash")
+    if (chipType.value().find("Intel") != std::string::npos)
     {
         tool = flashToolFlashrom;
     }
-    else if (config.configType == "SPIFlash")
+    else if (chipType.value().find("SPIFlash") != std::string::npos)
     {
         tool = flashToolFlashcp;
+    }
+    else
+    {
+        lg2::warning("Unknown flash tool for type {TYPE}, defaulting to None",
+                     "TYPE", chipType.value());
     }
 
     const std::string configIfaceMux = configIface + ".MuxOutputs";
@@ -88,33 +94,47 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());
 
-    std::unique_ptr<SPIDevice> spiDevice;
-    try
+    auto spiDevice = SPIFactory::instance().create(
+        chipType.value(), ctx, spiControllerIndex.value(),
+        spiDeviceIndex.value(), dryRun, names, values, config, this, layout,
+        tool);
+
+    if (spiDevice == nullptr)
     {
-        spiDevice = std::make_unique<SPIDevice>(
-            ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-            names, values, config, this, layout, tool);
-    }
-    catch (std::exception& e)
-    {
+        lg2::error("Unsupported SPI device type: {TYPE}", "TYPE",
+                   chipType.value());
         co_return false;
     }
 
+    std::string version = spiDevice->getVersion();
     std::unique_ptr<Software> software =
         std::make_unique<Software>(ctx, *spiDevice);
+    software->setVersion(version, SoftwareVersion::VersionPurpose::Host);
 
-    // enable this software to be updated
     std::set<RequestedApplyTimes> allowedApplyTimes = {
         RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset};
-
     software->enableUpdate(allowedApplyTimes);
 
     spiDevice->softwareCurrent = std::move(software);
 
-    spiDevice->softwareCurrent->setVersion(
-        SPIDevice::getVersion(), SoftwareVersion::VersionPurpose::Host);
-
-    devices.insert({config.objectPath, std::move(spiDevice)});
+    devices.emplace(config.objectPath, std::move(spiDevice));
 
     co_return true;
 }
+
+void SPISoftwareManager::start()
+{
+    std::vector<std::string> configIntfs;
+
+    auto configs = SPIFactory::instance().getConfigs();
+    configIntfs.reserve(configs.size());
+    for (const auto& config : configs)
+    {
+        configIntfs.push_back("xyz.openbmc_project.Configuration." + config);
+    }
+
+    ctx.spawn(initDevices(configIntfs));
+    ctx.run();
+}
+
+} // namespace phosphor::software::manager

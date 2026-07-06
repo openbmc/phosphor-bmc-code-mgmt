@@ -3,21 +3,23 @@
 #include "common/include/software_manager.hpp"
 
 #include <sdbusplus/async.hpp>
-#include <sdbusplus/async/context.hpp>
 
-using namespace phosphor::software::manager;
+namespace phosphor::software::manager
+{
 
-const std::string configTypeBIOS = "BIOS";
-
-class BIOSSoftwareManager : public SoftwareManager
+class SPISoftwareManager : public SoftwareManager
 {
   public:
-    BIOSSoftwareManager(sdbusplus::async::context& ctx, bool isDryRun);
+    SPISoftwareManager(sdbusplus::async::context& ctx, bool isDryRun);
 
     sdbusplus::async::task<bool> initDevice(const std::string& service,
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
+    void start();
+
   private:
     bool dryRun;
 };
+
+} // namespace phosphor::software::manager

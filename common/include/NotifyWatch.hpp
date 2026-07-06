@@ -29,8 +29,9 @@ class NotifyWatch
     NotifyWatch(NotifyWatch&&) = delete;
     NotifyWatch& operator=(NotifyWatch&&) = delete;
 
-    explicit NotifyWatch(sdbusplus::async::context& ctx,
-                         const std::string& dir) : notifyCtx(ctx)
+    explicit NotifyWatch(sdbusplus::async::context& ctx, const std::string& dir,
+                         Instance& inInstance) :
+        notifyCtx(ctx), instance(inInstance)
     {
         std::error_code ec = {};
         fs::path dirPath(dir);
@@ -104,7 +105,7 @@ class NotifyWatch
                 auto fileName = std::string(
                     name.data(),
                     std::find(name.data(), name.data() + name.size(), '\0'));
-                co_await static_cast<Instance*>(this)->processUpdate(fileName);
+                co_await instance.processUpdate(fileName);
             }
             offset += offsetof(inotify_event, name) + len[0];
         }
@@ -116,6 +117,7 @@ class NotifyWatch
 
   private:
     sdbusplus::async::context& notifyCtx;
+    Instance& instance;
     int wd = -1;
     int fd = -1;
     std::unique_ptr<sdbusplus::async::fdio> fdioInstance;

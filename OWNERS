@@ -32,7 +32,6 @@
 # data within them will be kept sorted.
 
 owners:
-- anoo@us.ibm.com
 - gunnar@gmills.xyz
 - mine260309@gmail.com
 - paligill@gmail.com
@@ -53,9 +52,6 @@ matchers:
     - alexander.hansen@9elements.com
 
 openbmc:
-- name: Adriana Kobylak
-  email: anoo@us.ibm.com
-  discord: anoo
 - name: Alexander Hansen
   email: alexander.hansen@9elements.com
   discord: Alexander

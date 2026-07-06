@@ -71,10 +71,10 @@ option(
 )
 
 option(
-    'bios-software-update',
+    'spi-flash-software-update',
     type: 'feature',
     value: 'enabled',
-    description: 'Enable BIOS/Host firmware update',
+    description: 'Enable SPI Flash firmware update',
 )
 
 option(

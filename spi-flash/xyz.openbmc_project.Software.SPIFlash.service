@@ -1,5 +1,5 @@
 [Unit]
-Description=Host FW Code Update Daemon
+Description=SPI Flash Code Update Daemon
 Wants=xyz.openbmc_project.State.Chassis@0.service
 After=xyz.openbmc_project.State.Chassis@0.service
 Requires=xyz.openbmc_project.EntityManager.service
@@ -8,9 +8,9 @@ After=xyz.openbmc_project.EntityManager.service
 [Service]
 Restart=always
 Type=dbus
-BusName=xyz.openbmc_project.Software.BIOS
+BusName=xyz.openbmc_project.Software.SPIFlash
 RemainAfterExit=no
-ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-bios-software-update
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-spi-flash-software-update
 
 [Install]
 WantedBy=multi-user.target

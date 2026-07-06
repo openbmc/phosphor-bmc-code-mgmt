@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common/include/NotifyWatch.hpp"
 #include "common/include/device.hpp"
 #include "common/include/software.hpp"
 #include "common/include/software_manager.hpp"
@@ -15,13 +14,6 @@ class SPIDevice;
 
 using namespace phosphor::software;
 using namespace phosphor::software::manager;
-using namespace phosphor::notify::watch;
-
-using NotifyWatchIntf = phosphor::notify::watch::NotifyWatch<SPIDevice>;
-
-const std::string biosVersionDirPath = "/var/bios/";
-const std::string biosVersionFilename = "host0_bios_version.txt";
-const std::string biosVersionPath = biosVersionDirPath + biosVersionFilename;
 
 const std::string versionUnknown = "Unknown";
 
@@ -38,7 +30,7 @@ enum FlashTool
     flashToolFlashcp,
 };
 
-class SPIDevice : public Device, public NotifyWatchIntf
+class SPIDevice : public Device
 {
   public:
     using Device::softwareCurrent;
@@ -47,17 +39,23 @@ class SPIDevice : public Device, public NotifyWatchIntf
               const std::vector<std::string>& gpioLinesIn,
               const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
               SoftwareManager* parent, enum FlashLayout layout,
-              enum FlashTool tool,
-              const std::string& versionDirPath = biosVersionDirPath);
+              enum FlashTool tool);
+
+    ~SPIDevice() override = default;
+    SPIDevice(const SPIDevice&) = delete;
+    SPIDevice& operator=(const SPIDevice&) = delete;
+    SPIDevice(SPIDevice&&) = delete;
+    SPIDevice& operator=(SPIDevice&&) = delete;
 
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) final;
 
-    // @returns       the bios version which is externally provided.
-    static std::string getVersion();
+    // @returns       the version which is externally provided.
+    virtual std::string getVersion() = 0;
 
-    /** @brief Process async changes to cable configuration */
-    auto processUpdate(std::string versionFileName) -> sdbusplus::async::task<>;
+  protected:
+    virtual sdbusplus::async::task<bool> preUpdate();
+    virtual sdbusplus::async::task<bool> postUpdate();
 
   private:
     bool dryRun;

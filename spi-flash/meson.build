@@ -1,19 +1,21 @@
-
-bios_spi_src = files('bios_software_manager.cpp', 'spi_device.cpp')
-
-bios_spi_include = include_directories('.')
+spi_src = files(
+    'bios/bios_device.cpp',
+    'main.cpp',
+    'spi_device.cpp',
+    'spi_factory.cpp',
+    'spi_software_manager.cpp',
+)
 
 executable(
-    'phosphor-bios-software-update',
-    'main.cpp',
-    bios_spi_src,
-    include_directories: [common_include, bios_spi_include, gpio_inc],
+    'phosphor-spi-flash-software-update',
+    spi_src,
+    include_directories: [common_include, include_directories('.'), gpio_inc],
     dependencies: [
         sdbusplus_dep,
         phosphor_logging_dep,
+        libgpiod_dep,
         pdi_dep,
         boost_dep,
-        libgpiod_dep,
         libpldm_dep,
     ],
     link_with: [libpldmutil, software_common_lib, libgpio_controller],
@@ -22,6 +24,6 @@ executable(
 )
 
 install_data(
-    'xyz.openbmc_project.Software.BIOS.service',
+    'xyz.openbmc_project.Software.SPIFlash.service',
     install_dir: systemd_system_unit_dir,
 )

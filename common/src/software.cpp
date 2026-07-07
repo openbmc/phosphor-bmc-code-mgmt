@@ -33,6 +33,14 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
 {
     emit_added();
 
+    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
+    assocs.emplace_back("configures", "configured_by",
+                        parentDevice.config.objectPath.str);
+    associationDefinitions = std::make_unique<SoftwareAssociationDefinitions>(
+        ctx, Software::objectPath,
+        SoftwareAssociationDefinitions::properties_t{assocs});
+    associationDefinitions->emit_added();
+
     debug("{SWID}: created dbus interfaces on path {OBJPATH}", "SWID", swid,
           "OBJPATH", objectPath);
 };
@@ -78,7 +86,13 @@ sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)
 void Software::createInventoryAssociation(
     bool isRunning, const sdbusplus::object_path& objectPath)
 {
-    std::vector<std::tuple<std::string, std::string, std::string>> assocs;
+    auto assocs = associationDefinitions->associations();
+    assocs.erase(std::remove_if(assocs.begin(), assocs.end(),
+                                [](const auto& a) {
+                                    return std::get<0>(a) == "running" ||
+                                           std::get<0>(a) == "activating";
+                                }),
+                 assocs.end());
 
     if (isRunning)
     {
@@ -97,18 +111,7 @@ void Software::createInventoryAssociation(
         assocs.push_back(assocActivating);
     }
 
-    if (associationDefinitions)
-    {
-        associationDefinitions->associations(assocs);
-    }
-    else
-    {
-        associationDefinitions =
-            std::make_unique<SoftwareAssociationDefinitions>(
-                ctx, Software::objectPath,
-                SoftwareAssociationDefinitions::properties_t{assocs});
-        associationDefinitions->emit_added();
-    }
+    associationDefinitions->associations(assocs);
 }
 
 void Software::setVersion(const std::string& versionStr,

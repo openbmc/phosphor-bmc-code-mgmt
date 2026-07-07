@@ -15,48 +15,26 @@ PHOSPHOR_LOG2_USING;
 
 namespace SoftwareInf = phosphor::software;
 
-const std::vector<std::string> emConfigTypes = {"PT5161LFirmware",
-                                                "PT5081LFirmware"};
-
 void EEPROMDeviceSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs;
-    configIntfs.reserve(emConfigTypes.size());
-
-    std::transform(emConfigTypes.begin(), emConfigTypes.end(),
-                   std::back_inserter(configIntfs),
-                   [](const std::string& type) {
-                       return "xyz.openbmc_project.Configuration." + type;
-                   });
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
+}
+
+bool EEPROMDeviceSoftwareManager::isSupported(const std::string& configType)
+{
+    return ::isSupported(configType);
 }
 
 sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    const std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    auto bus = config.getProperty<uint64_t>("Bus");
+    auto address = config.getProperty<uint64_t>("Address");
+    auto fwDevice = config.getProperty<std::string>("FirmwareDevice");
 
-    std::optional<uint64_t> bus = co_await dbusGetRequiredProperty<uint64_t>(
-        ctx, service, path, configIface, "Bus");
-
-    std::optional<uint64_t> address =
-        co_await dbusGetRequiredProperty<uint64_t>(ctx, service, path,
-                                                   configIface, "Address");
-
-    std::optional<std::string> type =
-        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                      configIface, "Type");
-
-    std::optional<std::string> fwDevice =
-        co_await dbusGetRequiredProperty<std::string>(
-            ctx, service, path, configIface, "FirmwareDevice");
-
-    if (!bus.has_value() || !address.has_value() || !type.has_value() ||
-        !fwDevice.has_value())
+    if (!bus.has_value() || !address.has_value() || !fwDevice.has_value())
     {
         error("Missing EEPROM device config property");
         co_return false;
@@ -64,16 +42,16 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
 
     debug("EEPROM Device: Bus={BUS}, Address={ADDR}, Type={TYPE}, "
           "Firmware Device={DEVICE}",
-          "BUS", bus.value(), "ADDR", address.value(), "TYPE", type.value(),
-          "DEVICE", fwDevice.value());
+          "BUS", bus.value(), "ADDR", address.value(), "TYPE",
+          config.configType, "DEVICE", fwDevice.value());
 
     std::unique_ptr<DeviceVersion> deviceVersion =
-        getVersionProvider(type.value(), bus.value(), address.value());
+        getVersionProvider(config.configType, bus.value(), address.value());
 
     if (!deviceVersion)
     {
         error("Failed to get version provider for chip type: {CHIP}", "CHIP",
-              type.value());
+              config.configType);
         co_return false;
     }
 
@@ -91,7 +69,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
 
     bus.reset();
     address.reset();
-    type.reset();
+    std::optional<std::string> type;
 
     for (auto& [p, v] : res)
     {
@@ -134,7 +112,7 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     debug("EEPROM: Bus={BUS}, Address={ADDR}, Type={TYPE}", "BUS", bus.value(),
           "ADDR", address.value(), "TYPE", type.value());
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
+    const std::string configIfaceMux = config.baseInterface + ".MuxOutputs";
     std::vector<std::string> gpioLines;
     std::vector<bool> gpioPolarities;
 
@@ -142,13 +120,19 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     {
         const std::string iface = configIfaceMux + std::to_string(i);
 
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
+        auto name = config.getProperty<std::string>(iface, "Name");
+        if (!name.has_value())
+        {
+            name = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Name");
+        }
 
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
+        auto polarity = config.getProperty<std::string>(iface, "Polarity");
+        if (!polarity.has_value())
+        {
+            polarity = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Polarity");
+        }
 
         if (!name.has_value() || !polarity.has_value())
         {

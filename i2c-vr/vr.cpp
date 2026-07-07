@@ -1,87 +1,39 @@
 #include "vr.hpp"
 
-#include "isl69269/isl69269.hpp"
-#include "mps/mp297x.hpp"
-#include "mps/mp2x6xx.hpp"
-#include "mps/mp5998.hpp"
-#include "mps/mpq87xx.hpp"
-#include "mps/mpx9xx.hpp"
-#include "tda38640a/tda38640a.hpp"
-#include "tps25990/rs31390.hpp"
-#include "tps25990/tps25990.hpp"
-#include "xdp71x/xdp71x.hpp"
-#include "xdpe1x2xx/xdpe1x2xx.hpp"
-
-#include <map>
+#include <unordered_map>
 
 namespace phosphor::software::VR
 {
 
-std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
-                                         enum VRType vrType, uint16_t bus,
-                                         uint16_t address)
+namespace
 {
-    switch (vrType)
-    {
-        case VRType::XDPE1X2XX:
-            return std::make_unique<XDPE1X2XX>(ctx, bus, address);
-        case VRType::ISL69269:
-            return std::make_unique<ISL69269>(ctx, bus, address);
-        case VRType::MP2X6XX:
-            return std::make_unique<MP2X6XX>(ctx, bus, address);
-        case VRType::MP292X:
-            return std::make_unique<MP292X>(ctx, bus, address);
-        case VRType::MP297X:
-            return std::make_unique<MP297X>(ctx, bus, address);
-        case VRType::MP5998:
-            return std::make_unique<MP5998>(ctx, bus, address);
-        case VRType::MP994X:
-            return std::make_unique<MP994X>(ctx, bus, address);
-        case VRType::MPQ87XX:
-            return std::make_unique<MPQ87XX>(ctx, bus, address);
-        case VRType::RAA22XGen2:
-            return std::make_unique<ISL69269>(ctx, bus, address,
-                                              ISL69269::Gen::Gen2);
-        case VRType::RAA22XGen3p5:
-            return std::make_unique<ISL69269>(ctx, bus, address,
-                                              ISL69269::Gen::Gen3p5);
-        case VRType::TDA38640A:
-            return std::make_unique<TDA38640A>(ctx, bus, address);
-        case VRType::XDP71X:
-            return std::make_unique<XDP71X>(ctx, bus, address);
-        case VRType::TPS25990:
-            return std::make_unique<TPS25990>(ctx, bus, address);
-        case VRType::RS31390:
-            return std::make_unique<RS31390>(ctx, bus, address);
-        default:
-            return nullptr;
-    }
+std::unordered_map<std::string, VRCreator>& registry()
+{
+    static std::unordered_map<std::string, VRCreator> reg;
+    return reg;
+}
+} // namespace
+
+void registerVR(std::string_view configType, VRCreator creator)
+{
+    registry().emplace(configType, std::move(creator));
 }
 
-bool stringToEnum(std::string& vrStr, VRType& vrType)
+std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
+                                         const std::string& configType,
+                                         uint16_t bus, uint16_t address)
 {
-    std::map<std::string, enum VRType> VRTypeToString{
-        {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
-        {"ISL69269Firmware", VRType::ISL69269},
-        {"MP2X6XXFirmware", VRType::MP2X6XX},
-        {"MP292XFirmware", VRType::MP292X},
-        {"MP297XFirmware", VRType::MP297X},
-        {"MP5998Firmware", VRType::MP5998},
-        {"MP994XFirmware", VRType::MP994X},
-        {"MPQ87XXFirmware", VRType::MPQ87XX},
-        {"RAA22XGen2Firmware", VRType::RAA22XGen2},
-        {"RAA22XGen3p5Firmware", VRType::RAA22XGen3p5},
-        {"TDA38640AFirmware", VRType::TDA38640A},
-        {"XDP71XFirmware", VRType::XDP71X},
-        {"TPS25990Firmware", VRType::TPS25990},
-        {"RS31390Firmware", VRType::RS31390}};
-
-    if (VRTypeToString.contains(vrStr))
+    auto it = registry().find(configType);
+    if (it != registry().end())
     {
-        vrType = VRTypeToString[vrStr];
-        return true;
+        return (it->second)(ctx, bus, address);
     }
-    return false;
+    return nullptr;
+}
+
+bool isSupported(const std::string& configType)
+{
+    return registry().contains(configType);
 }
 
 } // namespace phosphor::software::VR

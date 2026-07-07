@@ -25,7 +25,7 @@ class SoftwareConfig
   public:
     SoftwareConfig(const sdbusplus::object_path& objPath, uint32_t vendorIANA,
                    const std::string& compatible, const std::string& configType,
-                   const std::string& name);
+                   const std::string& name, const std::string& configInterface);
 
     // The dbus object path this configuration was fetched from
     const sdbusplus::object_path objectPath;
@@ -37,6 +37,9 @@ class SoftwareConfig
 
     // 'Type' field from the EM config
     const std::string configType;
+
+    // The EM config interface (e.g., xyz.openbmc_project.Configuration.MP29612)
+    const std::string configInterface;
 
     // @returns        the object path of the inventory item which
     //                 can be associated with this device.

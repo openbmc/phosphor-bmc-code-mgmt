@@ -55,16 +55,17 @@ sdbusplus::async::task<> testSoftwareAssociationMissing(
             .service(busName)
             .path(objPathCurrentSoftware);
 
-    // by default there is no association on the software
+    // by default there is one association ("configures") on the software
     try
     {
-        co_await client.associations();
-
-        EXPECT_TRUE(false);
+        auto res = co_await client.associations();
+        EXPECT_EQ(res.size(), 1);
+        EXPECT_EQ(std::get<0>(res[0]), "configures");
     }
     catch (std::exception& e)
     {
         error(e.what());
+        EXPECT_TRUE(false);
     }
 
     ctx.request_stop();
@@ -95,9 +96,12 @@ sdbusplus::async::task<> testSoftwareAssociation(
     {
         auto res = co_await client.associations();
 
-        EXPECT_EQ(res.size(), 1);
-        EXPECT_EQ(std::get<0>(res[0]), expectAssociation);
-        EXPECT_EQ(std::get<2>(res[0]), exampleEndpoint);
+        EXPECT_EQ(res.size(), 2);
+        EXPECT_EQ(std::get<0>(res[0]), "configures");
+        EXPECT_EQ(std::get<2>(res[0]), device->config.objectPath.str);
+
+        EXPECT_EQ(std::get<0>(res[1]), expectAssociation);
+        EXPECT_EQ(std::get<2>(res[1]), exampleEndpoint);
     }
     catch (std::exception& e)
     {

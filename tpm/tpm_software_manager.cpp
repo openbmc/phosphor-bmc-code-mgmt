@@ -11,11 +11,7 @@ namespace SoftwareInf = phosphor::software;
 
 void TPMSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs = {
-        "xyz.openbmc_project.Configuration.TPM2Firmware",
-    };
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
 }
 
@@ -23,8 +19,12 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    const std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    TPMType tpmType;
+    if (!stringToTPMType(config.configType, tpmType))
+    {
+        co_return false;
+    }
+    const std::string& configIface = config.configInterface;
 
     std::optional<uint8_t> tpmIndex = co_await dbusGetRequiredProperty<uint8_t>(
         ctx, service, path, configIface, "TPMIndex");
@@ -41,13 +41,6 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     if (!type.has_value())
     {
         error("Missing property: Type");
-        co_return false;
-    }
-
-    TPMType tpmType;
-    if (!stringToTPMType(type.value(), tpmType))
-    {
-        error("Invalid TPM type: {TYPE}", "TYPE", type.value());
         co_return false;
     }
 

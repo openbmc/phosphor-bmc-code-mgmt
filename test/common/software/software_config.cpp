@@ -25,7 +25,8 @@ const std::string objPath =
 TEST(SoftwareConfig, ConfigCreate)
 {
     SoftwareConfig config(objPath, vendorIANA, compatibleHardware,
-                          exampleConfigType, exampleConfigName);
+                          exampleConfigType, exampleConfigName,
+                          "xyz.openbmc_project.Configuration.Dummy");
 
     ASSERT_EQ(config.configName, exampleConfigName);
     ASSERT_EQ(config.configType, exampleConfigType);
@@ -36,7 +37,8 @@ TEST(SoftwareConfig, FailureCompatibleNoDot)
     try
     {
         SoftwareConfig config(objPath, vendorIANA, "comexamplesamplecorp",
-                              exampleConfigType, exampleConfigName);
+                              exampleConfigType, exampleConfigName,
+                              "xyz.openbmc_project.Configuration.Dummy");
         ASSERT_FALSE(true);
     }
     catch (std::exception& /*unused*/)
@@ -49,7 +51,8 @@ TEST(SoftwareConfig, FailureCompatibleInvalidChar)
     {
         SoftwareConfig config(objPath, vendorIANA,
                               std::string(compatibleHardware) + "#",
-                              exampleConfigType, exampleConfigName);
+                              exampleConfigType, exampleConfigName,
+                              "xyz.openbmc_project.Configuration.Dummy");
         ASSERT_FALSE(true);
     }
     catch (std::exception& /*unused*/)

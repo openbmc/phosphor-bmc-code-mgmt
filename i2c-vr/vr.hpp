@@ -65,6 +65,6 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
                                          enum VRType vrType, uint16_t bus,
                                          uint16_t address);
 
-bool stringToEnum(std::string& vrStr, VRType& vrType);
+bool stringToEnum(const std::string& vrStr, VRType& vrType);
 
 } // namespace phosphor::software::VR

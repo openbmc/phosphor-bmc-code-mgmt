@@ -15,21 +15,9 @@ PHOSPHOR_LOG2_USING;
 
 namespace SoftwareInf = phosphor::software;
 
-const std::vector<std::string> emConfigTypes = {"PT5161LFirmware",
-                                                "PT5081LFirmware"};
-
 void EEPROMDeviceSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs;
-    configIntfs.reserve(emConfigTypes.size());
-
-    std::transform(emConfigTypes.begin(), emConfigTypes.end(),
-                   std::back_inserter(configIntfs),
-                   [](const std::string& type) {
-                       return "xyz.openbmc_project.Configuration." + type;
-                   });
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
 }
 
@@ -37,8 +25,11 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    const std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    if (!isSupported(config.configType))
+    {
+        co_return false;
+    }
+    const std::string& configIface = config.configInterface;
 
     std::optional<uint64_t> bus = co_await dbusGetRequiredProperty<uint64_t>(
         ctx, service, path, configIface, "Bus");

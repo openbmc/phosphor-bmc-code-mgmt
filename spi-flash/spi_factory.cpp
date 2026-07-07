@@ -1,6 +1,7 @@
 #include "spi_factory.hpp"
 
 #include "bios/bios_device.hpp"
+#include "e810/e810_device.hpp"
 
 namespace phosphor::software::manager
 {
@@ -17,20 +18,28 @@ std::unique_ptr<SPIDevice> SPIFactory::create(
     const std::vector<std::string>& names, const std::vector<bool>& values,
     SoftwareConfig& config, SoftwareManager* parent)
 {
-    if (chipType == getSpiTypeStr(spiChip::INTEL_HOST_BIOS) ||
-        chipType == getSpiTypeStr(spiChip::HOST_BIOS))
+    try
     {
-        try
+        if (chipType == getSpiTypeStr(spiChip::INTEL_HOST_BIOS) ||
+            chipType == getSpiTypeStr(spiChip::HOST_BIOS))
         {
             return std::make_unique<BIOSDevice>(
                 ctx, spiControllerIndex, spiDeviceIndex, dryRun, names, values,
                 config, parent);
         }
-        catch (const std::exception& e)
+
+        if (chipType == getSpiTypeStr(spiChip::INTEL_E810_NIC))
         {
-            error("Failed to create BIOSDevice: {ERROR}", "ERROR", e.what());
-            return nullptr;
+            return std::make_unique<E810Device>(
+                ctx, spiControllerIndex, spiDeviceIndex, dryRun, names, values,
+                config, parent);
         }
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create SPI device '{TYPE}': {ERROR}", "TYPE", chipType,
+              "ERROR", e);
+        return nullptr;
     }
 
     error("Unsupported SPI device type: {TYPE}", "TYPE", chipType);

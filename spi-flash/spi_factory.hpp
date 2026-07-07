@@ -20,19 +20,22 @@ enum class spiChip
 {
     INTEL_HOST_BIOS,
     HOST_BIOS,
+    INTEL_E810_NIC,
     UNSUPPORTED = -1,
 };
 
 const std::vector<spiChip> supportedSpiChips = {
     spiChip::INTEL_HOST_BIOS,
     spiChip::HOST_BIOS,
+    spiChip::INTEL_E810_NIC,
 };
 
 inline std::string getSpiTypeStr(spiChip chip)
 {
     static const std::unordered_map<spiChip, std::string> chipStringMap = {
         {spiChip::INTEL_HOST_BIOS, "IntelHostSPIFlash"},
-        {spiChip::HOST_BIOS, "HostSPIFlash"}};
+        {spiChip::HOST_BIOS, "HostSPIFlash"},
+        {spiChip::INTEL_E810_NIC, "IntelE810SPIFlash"}};
 
     auto it = chipStringMap.find(chip);
     if (it == chipStringMap.end())

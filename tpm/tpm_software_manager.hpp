@@ -18,4 +18,6 @@ class TPMSoftwareManager : public ManagerInf::SoftwareManager
     sdbusplus::async::task<bool> initDevice(const std::string& service,
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
+
+    bool isSupported(const std::string& configType) override;
 };

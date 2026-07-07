@@ -1,6 +1,7 @@
 #include "spi_factory.hpp"
 
 #include "bios/bios_device.hpp"
+#include "e810/e810_device.hpp"
 
 namespace phosphor::software::manager
 {
@@ -67,6 +68,11 @@ const bool vendorRegistered = [] {
                             ctx, ctrlIdx, devIdx, dryRun, names, values, config,
                             parent, flashLayoutFlat, flashToolFlashcp,
                             "/var/bios/", "host0_bios_version.txt");
+
+                    case spiChip::E810_NIC:
+                        return std::make_unique<E810Device>(
+                            ctx, ctrlIdx, devIdx, dryRun, names, values, config,
+                            parent, flashLayoutFlat, flashToolFlashcp);
 
                     default:
                         error("Unsupported SPI Chip Enum: {ENUM}", "ENUM",

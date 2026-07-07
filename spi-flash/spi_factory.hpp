@@ -19,17 +19,20 @@ namespace phosphor::software::manager
 enum class spiChip
 {
     HOST_BIOS,
+    E810_NIC,
     UNSUPPORTED = -1,
 };
 
 const std::vector<spiChip> supportedSpiChips = {
     spiChip::HOST_BIOS,
+    spiChip::E810_NIC,
 };
 
 inline std::string getSpiTypeStr(spiChip chip)
 {
     static const std::unordered_map<spiChip, std::string> chipStringMap = {
-        {spiChip::HOST_BIOS, "IntelHostSPIFlash"}};
+        {spiChip::HOST_BIOS, "IntelHostSPIFlash"},
+        {spiChip::E810_NIC, "IntelE810SPIFlash"}};
 
     auto it = chipStringMap.find(chip);
     if (it == chipStringMap.end())

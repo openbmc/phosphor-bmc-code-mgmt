@@ -18,6 +18,8 @@ class BIOSSoftwareManager : public SoftwareManager
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
+    bool isSupported(const std::string& configType) override;
+
   private:
     bool dryRun;
 };

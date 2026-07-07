@@ -460,4 +460,15 @@ sdbusplus::async::task<bool> TDA38640A::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool tda38640aRegistered = [] {
+    registerVR("TDA38640AFirmware", [](sdbusplus::async::context& ctx,
+                                       uint16_t bus, uint16_t address) {
+        return std::make_unique<TDA38640A>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

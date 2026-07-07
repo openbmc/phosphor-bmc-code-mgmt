@@ -450,4 +450,15 @@ sdbusplus::async::task<bool> MP5998::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool mp5998Registered = [] {
+    registerVR("MP5998Firmware", [](sdbusplus::async::context& ctx,
+                                    uint16_t bus, uint16_t address) {
+        return std::make_unique<MP5998>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

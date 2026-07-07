@@ -553,4 +553,19 @@ sdbusplus::async::task<bool> MPX9XX::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool mpx9xxRegistered = [] {
+    registerVR("MP292XFirmware", [](sdbusplus::async::context& ctx,
+                                    uint16_t bus, uint16_t address) {
+        return std::make_unique<MP292X>(ctx, bus, address);
+    });
+    registerVR("MP994XFirmware", [](sdbusplus::async::context& ctx,
+                                    uint16_t bus, uint16_t address) {
+        return std::make_unique<MP994X>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

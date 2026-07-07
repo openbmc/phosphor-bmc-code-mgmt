@@ -10,24 +10,19 @@ PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software::cpld;
 
+bool CPLDSoftwareManager::isSupported(const std::string& configType)
+{
+    return CPLDFactory::instance().isSupported(configType);
+}
+
 sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    auto busNo = config.getProperty<uint64_t>("Bus");
+    auto address = config.getProperty<uint64_t>("Address");
 
-    auto busNo = co_await dbusGetRequiredProperty<uint64_t>(
-        ctx, service, path, configIface, "Bus");
-    auto address = co_await dbusGetRequiredProperty<uint64_t>(
-        ctx, service, path, configIface, "Address");
-    auto chipType = co_await dbusGetRequiredProperty<std::string>(
-        ctx, service, path, configIface, "Type");
-    auto chipName = co_await dbusGetRequiredProperty<std::string>(
-        ctx, service, path, configIface, "Name");
-
-    if (!busNo.has_value() || !address.has_value() || !chipType.has_value() ||
-        !chipName.has_value())
+    if (!busNo.has_value() || !address.has_value())
     {
         error("missing config property");
         co_return false;
@@ -35,10 +30,10 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
 
     lg2::debug(
         "CPLD device type: {TYPE} - {NAME} on Bus: {BUS} at Address: {ADDR}",
-        "TYPE", chipType.value(), "NAME", chipName.value(), "BUS",
+        "TYPE", config.configType, "NAME", config.configName, "BUS",
         busNo.value(), "ADDR", address.value());
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
+    const std::string configIfaceMux = config.baseInterface + ".MuxOutputs";
 
     std::vector<std::string> names;
     std::vector<bool> values;
@@ -47,13 +42,19 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
     {
         const std::string iface = configIfaceMux + std::to_string(i);
 
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
+        auto name = config.getProperty<std::string>(iface, "Name");
+        if (!name.has_value())
+        {
+            name = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Name");
+        }
 
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
+        auto polarity = config.getProperty<std::string>(iface, "Polarity");
+        if (!polarity.has_value())
+        {
+            polarity = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Polarity");
+        }
 
         if (!name.has_value() || !polarity.has_value())
         {
@@ -71,14 +72,14 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
     lg2::debug("Total CPLD MuxOutputs found: {COUNT}", "COUNT", names.size());
 
     auto cpld = std::make_unique<CPLDDevice>(
-        ctx, chipType.value(), chipName.value(), busNo.value(), address.value(),
-        config, this, names, values);
+        ctx, config.configType, config.configName, busNo.value(),
+        address.value(), config, this, names, values);
 
     std::string version = "unknown";
     if (!(co_await cpld->getVersion(version)))
     {
         lg2::error("Failed to get CPLD version for {NAME}", "NAME",
-                   chipName.value());
+                   config.configName);
     }
 
     std::unique_ptr<Software> software = std::make_unique<Software>(ctx, *cpld);
@@ -99,15 +100,7 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
 
 void CPLDSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs;
-    auto configs = CPLDFactory::instance().getConfigs();
-    configIntfs.reserve(configs.size());
-    for (const auto& config : configs)
-    {
-        configIntfs.push_back("xyz.openbmc_project.Configuration." + config);
-    }
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
 }
 

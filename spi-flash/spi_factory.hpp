@@ -53,8 +53,6 @@ class SPIFactory
         uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
         const std::vector<std::string>& names, const std::vector<bool>& values,
         SoftwareConfig& config, SoftwareManager* parent);
-
-    static std::vector<std::string> getConfigInterfaceNames();
 };
 
 } // namespace phosphor::software::manager

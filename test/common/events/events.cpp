@@ -84,7 +84,7 @@ class TestEventServer : public EventServerIntf
                      auto /*unused*/, auto /*unused*/, auto /*unused*/)
         -> sdbusplus::async::task<create_with_ffdc_files_t::return_type>
     {
-        co_return;
+        co_return sdbusplus::object_path("/");
     }
 
     std::string expectedEvent;

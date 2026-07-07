@@ -53,7 +53,7 @@ class CPLDFactory
         const std::string& chipType, sdbusplus::async::context& ctx,
         const std::string& chipName, uint16_t bus, uint8_t address) const;
 
-    std::vector<std::string> getConfigs();
+    bool isSupported(const std::string& chipType) const;
 
   private:
     std::unordered_map<std::string, Creator> creators;

@@ -16,6 +16,8 @@ class SPISoftwareManager : public SoftwareManager
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
+    bool isSupported(const std::string& configType) override;
+
     void start();
 
   private:

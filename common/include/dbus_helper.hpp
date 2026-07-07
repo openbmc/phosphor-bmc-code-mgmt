@@ -1,5 +1,6 @@
 #pragma once
 
+#include <org/freedesktop/DBus/ObjectManager/common.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
@@ -7,6 +8,12 @@
 #include <optional>
 
 PHOSPHOR_LOG2_USING;
+
+using ObjectManagerIntf =
+    sdbusplus::common::org::freedesktop::d_bus::ObjectManager;
+using ManagedObjectType = ObjectManagerIntf::get_managed_objects_t::return_type;
+using InterfacesMap = ManagedObjectType::mapped_type;
+using DbusPropertyMap = InterfacesMap::mapped_type;
 
 template <typename T>
 sdbusplus::async::task<std::optional<T>> dbusGetRequiredProperty(

@@ -26,16 +26,9 @@ std::unique_ptr<CPLDInterface> CPLDFactory::create(
     return nullptr;
 }
 
-std::vector<std::string> CPLDFactory::getConfigs()
+bool CPLDFactory::isSupported(const std::string& chipType) const
 {
-    std::vector<std::string> configs;
-    configs.reserve(creators.size());
-
-    std::transform(creators.begin(), creators.end(),
-                   std::back_inserter(configs),
-                   [](const auto& pair) { return pair.first; });
-
-    return configs;
+    return creators.contains(chipType);
 }
 
 } // namespace phosphor::software::cpld

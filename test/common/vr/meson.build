@@ -3,6 +3,7 @@ test(
     executable(
         'xdpe1x2xx_image',
         'xdpe1x2xx_image_unittest.cpp',
+        '../../../i2c-vr/vr.cpp',
         '../../../i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp',
         include_directories: [common_include],
         dependencies: [

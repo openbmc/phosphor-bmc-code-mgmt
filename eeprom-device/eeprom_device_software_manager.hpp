@@ -19,6 +19,8 @@ class EEPROMDeviceSoftwareManager : public ManagerInf::SoftwareManager
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
+    bool isSupported(const std::string& configType) override;
+
   private:
     sdbusplus::async::task<bool> getDeviceProperties(
         const std::string& service, const std::string& path,

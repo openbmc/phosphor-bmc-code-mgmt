@@ -1,6 +1,6 @@
 #include "software_manager.hpp"
 
-#include <boost/container/flat_map.hpp>
+#include <org/freedesktop/DBus/ObjectManager/client.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/async.hpp>
@@ -8,10 +8,10 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/bus/match.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
-#include <xyz/openbmc_project/ObjectMapper/client.hpp>
 #include <xyz/openbmc_project/Software/Version/client.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
 
+#include <algorithm>
 #include <cstdint>
 
 PHOSPHOR_LOG2_USING;
@@ -25,6 +25,10 @@ static constexpr auto serviceNameEM = "xyz.openbmc_project.EntityManager";
 
 const auto matchRuleSender = RulesIntf::sender(serviceNameEM);
 const auto matchRulePath = RulesIntf::path("/xyz/openbmc_project/inventory");
+
+static constexpr std::string_view fwInfoSuffix = ".FirmwareInfo";
+static constexpr std::string_view emConfPrefix =
+    "xyz.openbmc_project.Configuration.";
 
 SoftwareManager::SoftwareManager(sdbusplus::async::context& ctx,
                                  const std::string& serviceNameSuffix) :
@@ -42,103 +46,177 @@ SoftwareManager::SoftwareManager(sdbusplus::async::context& ctx,
     debug("Initialized SoftwareManager");
 }
 
-static sdbusplus::async::task<std::optional<SoftwareConfig>> getConfig(
-    sdbusplus::async::context& ctx, const std::string& service,
-    const std::string& objectPath, const std::string& interfacePrefix)
+template <typename T>
+static std::optional<T> getProp(const DbusPropertyMap& m,
+                                const std::string& key)
 {
-    auto client = sdbusplus::async::proxy()
-                      .service(service)
-                      .path(objectPath)
-                      .interface("org.freedesktop.DBus.Properties");
+    if (auto it = m.find(key); it != m.end())
+    {
+        if (const auto* v = std::get_if<T>(&it->second))
+        {
+            return *v;
+        }
+    }
+    return std::nullopt;
+}
 
-    uint64_t vendorIANA = 0;
-    std::string compatible{};
-    std::string configType{};
-    std::string configName{};
+static bool isBaseInterface(const std::string& interfaceName)
+{
+    return interfaceName.starts_with(emConfPrefix) &&
+           interfaceName.find('.', emConfPrefix.size()) == std::string::npos;
+}
 
-    const std::string interfaceName = interfacePrefix + ".FirmwareInfo";
+static std::optional<std::string> getConfigType(const DbusPropertyMap& props)
+{
+    auto configType = getProp<std::string>(props, "FirmwareType");
+    if (!configType)
+    {
+        configType = getProp<std::string>(props, "Type");
+    }
+    return configType;
+}
 
+static std::optional<SoftwareConfig> getConfig(
+    const sdbusplus::object_path& objectPath, InterfacesMap interfacesMap,
+    const std::string& configInterface, const std::string& fwIface)
+{
+    auto baseIt = interfacesMap.find(configInterface);
+    if (baseIt == interfacesMap.end())
+    {
+        error("Base interface {IFACE} missing for {PATH}", "IFACE",
+              configInterface, "PATH", objectPath);
+        return std::nullopt;
+    }
+    const auto& baseProps = baseIt->second;
+
+    auto fwIt = interfacesMap.find(fwIface);
+    if (fwIt == interfacesMap.end())
+    {
+        error("Firmware info interface {IFACE} missing for {PATH}", "IFACE",
+              fwIface, "PATH", objectPath);
+        return std::nullopt;
+    }
+    const auto& fwInfoProps = fwIt->second;
+
+    auto vendorIANA = getProp<uint64_t>(fwInfoProps, "VendorIANA");
+    auto compatible = getProp<std::string>(fwInfoProps, "CompatibleHardware");
+    if (!vendorIANA || !compatible)
+    {
+        error("Missing or invalid VendorIANA/CompatibleHardware at {PATH}",
+              "PATH", objectPath);
+        return std::nullopt;
+    }
+
+    auto configType = getConfigType(baseProps);
+    auto configName = getProp<std::string>(baseProps, "FirmwareName");
+    if (!configName)
+    {
+        configName = getProp<std::string>(baseProps, "Name");
+    }
+
+    if (!configType || !configName)
+    {
+        error("Missing or invalid FirmwareType/Name at {PATH}", "PATH",
+              objectPath);
+        return std::nullopt;
+    }
+
+    return SoftwareConfig(objectPath, static_cast<uint32_t>(*vendorIANA),
+                          *compatible, *configType, *configName,
+                          configInterface, std::move(interfacesMap));
+}
+
+// EM signals each interface separately, in no guaranteed order
+std::optional<SoftwareConfig> SoftwareManager::processIncomingInterface(
+    const sdbusplus::object_path& objPath, const std::string& interfaceName,
+    DbusPropertyMap props)
+{
+    std::string baseIface;
+
+    if (interfaceName.ends_with(fwInfoSuffix))
+    {
+        baseIface =
+            interfaceName.substr(0, interfaceName.size() - fwInfoSuffix.size());
+    }
+    else if (isBaseInterface(interfaceName))
+    {
+        auto configType = getConfigType(props);
+        if (!configType || !isSupported(*configType))
+        {
+            pendingSignals.erase(objPath);
+            return std::nullopt;
+        }
+        baseIface = interfaceName;
+    }
+    else
+    {
+        return std::nullopt;
+    }
+
+    auto& cached = pendingSignals[objPath];
+    cached[interfaceName] = std::move(props);
+
+    std::string fwIface = baseIface + std::string(fwInfoSuffix);
+    if (cached.contains(baseIface) && cached.contains(fwIface))
+    {
+        auto optConfig =
+            getConfig(objPath, std::move(cached), baseIface, fwIface);
+        pendingSignals.erase(objPath);
+        return optConfig;
+    }
+
+    return std::nullopt;
+}
+
+sdbusplus::async::task<> SoftwareManager::initDevices()
+{
+    ctx.spawn(interfaceAddedMatch());
+    ctx.spawn(interfaceRemovedMatch());
+
+    auto client =
+        sdbusplus::client::org::freedesktop::d_bus::ObjectManager<>(ctx)
+            .service(serviceNameEM)
+            .path("/xyz/openbmc_project/inventory");
+
+    ManagedObjectType managedObjects;
     try
     {
-        {
-            auto propVendorIANA = co_await client.call<std::variant<uint64_t>>(
-                ctx, "Get", interfaceName, "VendorIANA");
-
-            vendorIANA = std::get<uint64_t>(propVendorIANA);
-        }
-        {
-            auto propCompatible =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfaceName, "CompatibleHardware");
-
-            compatible = std::get<std::string>(propCompatible);
-        }
-        {
-            auto propConfigType =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfacePrefix, "Type");
-
-            configType = std::get<std::string>(propConfigType);
-        }
-        {
-            auto propConfigName =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfacePrefix, "Name");
-
-            configName = std::get<std::string>(propConfigName);
-        }
+        managedObjects = co_await client.get_managed_objects();
     }
     catch (std::exception& e)
     {
-        error("Failed to get config with {ERROR}", "ERROR", e);
-        co_return std::nullopt;
+        error("GetManagedObjects failed: {ERROR}", "ERROR", e);
+        co_return;
     }
 
-    co_return SoftwareConfig(objectPath, vendorIANA, compatible, configType,
-                             configName);
-}
-
-sdbusplus::async::task<> SoftwareManager::initDevices(
-    const std::vector<std::string>& configurationInterfaces)
-{
-    ctx.spawn(interfaceAddedMatch(configurationInterfaces));
-    ctx.spawn(interfaceRemovedMatch(configurationInterfaces));
-
-    auto client = sdbusplus::client::xyz::openbmc_project::ObjectMapper<>(ctx)
-                      .service("xyz.openbmc_project.ObjectMapper")
-                      .path("/xyz/openbmc_project/object_mapper");
-
-    auto res = co_await client.get_sub_tree("/xyz/openbmc_project/inventory", 0,
-                                            configurationInterfaces);
-
-    for (auto& iface : configurationInterfaces)
+    for (auto& [objPath, interfacesMap] : managedObjects)
     {
-        debug("[config] looking for dbus interface {INTF}", "INTF", iface);
-    }
-
-    for (auto& [path, v] : res)
-    {
-        for (auto& [service, interfaceNames] : v)
+        auto baseIt = std::ranges::find_if(interfacesMap, [](const auto& i) {
+            return isBaseInterface(i.first);
+        });
+        if (baseIt == interfacesMap.end())
         {
-            std::string interfaceFound;
+            continue;
+        }
 
-            for (std::string& interfaceName : interfaceNames)
-            {
-                for (auto& iface : configurationInterfaces)
-                {
-                    if (interfaceName == iface)
-                    {
-                        interfaceFound = interfaceName;
-                    }
-                }
-            }
+        auto configType = getConfigType(baseIt->second);
+        if (!configType || !isSupported(*configType))
+        {
+            continue;
+        }
 
-            if (interfaceFound.empty())
-            {
-                continue;
-            }
+        const std::string baseIface = baseIt->first;
+        const std::string fwIface = baseIface + std::string(fwInfoSuffix);
+        if (!interfacesMap.contains(fwIface))
+        {
+            continue;
+        }
 
-            co_await handleInterfaceAdded(service, path, interfaceFound);
+        if (auto optConfig = getConfig(objPath, std::move(interfacesMap),
+                                       baseIface, fwIface))
+        {
+            co_await handleInterfaceAdded(serviceNameEM, objPath,
+                                          std::move(*optConfig));
         }
     }
 
@@ -152,7 +230,7 @@ std::string SoftwareManager::getBusName()
 
 sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     const std::string& service, const sdbusplus::object_path& path,
-    const std::string& interface)
+    SoftwareConfig config)
 {
     if (devices.contains(path) || initializingPaths.contains(path))
     {
@@ -161,33 +239,8 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAdded(
     }
 
     initializingPaths.insert(path);
-    co_await handleInterfaceAddedGuarded(service, path, interface);
-    initializingPaths.erase(path);
-}
-
-sdbusplus::async::task<void> SoftwareManager::handleInterfaceAddedGuarded(
-    const std::string& service, const std::string& path,
-    const std::string& interface)
-{
     debug("Found configuration interface at {SERVICE}, {PATH}", "SERVICE",
           service, "PATH", path);
-
-    auto optConfig = co_await getConfig(ctx, service, path, interface);
-
-    if (!optConfig.has_value())
-    {
-        error("Failed to get configuration from {PATH}", "PATH", path);
-        co_return;
-    }
-
-    auto& config = optConfig.value();
-
-    if (devices.contains(config.objectPath))
-    {
-        error("Device configured from {PATH} is already known", "PATH",
-              config.objectPath);
-        co_return;
-    }
 
     const bool accepted = co_await initDevice(service, path, config);
 
@@ -203,43 +256,36 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAddedGuarded(
                 SoftwareActivation::Activations::Active);
         }
     }
+    initializingPaths.erase(path);
 
     co_return;
 }
 
-using BasicVariantType =
-    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
-                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
-using InterfacesMap = boost::container::flat_map<std::string, BasicVariantType>;
-using ConfigMap = boost::container::flat_map<std::string, InterfacesMap>;
-
-sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch(
-    std::vector<std::string> interfaces)
+sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch()
 {
     while (!ctx.stop_requested())
     {
-        std::tuple<std::string, ConfigMap> nextResult("", {});
-        nextResult = co_await configIntfAddedMatch
-                         .next<sdbusplus::object_path, ConfigMap>();
+        auto nextResult = co_await configIntfAddedMatch
+                              .next<sdbusplus::object_path, InterfacesMap>();
 
         auto& [objPath, interfacesMap] = nextResult;
 
-        for (auto& interface : interfaces)
+        for (auto& [interfaceName, props] : interfacesMap)
         {
-            if (interfacesMap.contains(interface))
+            if (auto optConfig = processIncomingInterface(
+                    objPath, interfaceName, std::move(props)))
             {
                 debug("detected interface {INTF} added on {PATH}", "INTF",
-                      interface, "PATH", objPath);
-
+                      optConfig->baseInterface, "PATH", objPath);
                 co_await handleInterfaceAdded(serviceNameEM, objPath,
-                                              interface);
+                                              std::move(*optConfig));
+                break;
             }
         }
     }
 }
 
-sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch(
-    std::vector<std::string> interfaces)
+sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch()
 {
     while (!ctx.stop_requested())
     {
@@ -251,14 +297,18 @@ sdbusplus::async::task<void> SoftwareManager::interfaceRemovedMatch(
 
         debug("detected interface removed on {PATH}", "PATH", objPath);
 
-        for (auto& interface : interfaces)
+        for (const auto& interfaceName : interfacesRemoved)
         {
-            if (std::ranges::find(interfacesRemoved, interface) !=
-                interfacesRemoved.end())
+            if (interfaceName.starts_with(emConfPrefix))
             {
-                debug("detected interface {INTF} removed on {PATH}", "INTF",
-                      interface, "PATH", objPath);
-                co_await handleInterfaceRemoved(objPath);
+                pendingSignals.erase(objPath);
+                if (devices.contains(objPath))
+                {
+                    debug("detected interface {INTF} removed on {PATH}", "INTF",
+                          interfaceName, "PATH", objPath);
+                    co_await handleInterfaceRemoved(objPath);
+                }
+                break;
             }
         }
     }
@@ -279,10 +329,10 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceRemoved(
         // eventually remove the device.
         debug(
             "removal of device at {PATH} ignored because of in-progress update",
-            "PATH", objPath.str);
+            "PATH", objPath);
         co_return;
     }
 
-    debug("removing device at {PATH}", "PATH", objPath.str);
+    debug("removing device at {PATH}", "PATH", objPath);
     devices.erase(objPath);
 }

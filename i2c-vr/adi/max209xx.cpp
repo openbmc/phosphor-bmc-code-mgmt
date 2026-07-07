@@ -430,4 +430,15 @@ sdbusplus::async::task<bool> MAX209XX::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool max209xxRegistered = [] {
+    registerVR("MAX209XXFirmware", [](sdbusplus::async::context& ctx,
+                                      uint16_t bus, uint16_t address) {
+        return std::make_unique<MAX209XX>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

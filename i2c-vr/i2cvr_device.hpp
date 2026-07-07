@@ -21,14 +21,14 @@ class I2CVRDevice : public DeviceInf::Device
 {
   public:
     using DeviceInf::Device::softwareCurrent;
-    I2CVRDevice(sdbusplus::async::context& ctx, enum VRInf::VRType vrType,
+    I2CVRDevice(sdbusplus::async::context& ctx, const std::string& configType,
                 const uint16_t& bus, const uint8_t& address,
                 ConfigInf::SoftwareConfig& config,
                 ManagerInf::SoftwareManager* parent) :
         DeviceInf::Device(
             ctx, config, parent,
             {SDBusPlusSoftware::ApplyTime::RequestedApplyTimes::OnReset}),
-        vrInterface(VRInf::create(ctx, vrType, bus, address))
+        vrInterface(VRInf::create(ctx, configType, bus, address))
     {}
 
     std::unique_ptr<VRInf::VoltageRegulator> vrInterface;

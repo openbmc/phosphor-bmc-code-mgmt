@@ -12,7 +12,7 @@
 #include "xdp71x/xdp71x.hpp"
 #include "xdpe1x2xx/xdpe1x2xx.hpp"
 
-#include <map>
+#include <unordered_map>
 
 namespace phosphor::software::VR
 {
@@ -58,9 +58,9 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
     }
 }
 
-bool stringToEnum(std::string& vrStr, VRType& vrType)
+bool stringToEnum(const std::string& vrStr, VRType& vrType)
 {
-    std::map<std::string, enum VRType> VRTypeToString{
+    static const std::unordered_map<std::string, enum VRType> VRTypeToString{
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
         {"ISL69269Firmware", VRType::ISL69269},
         {"MP2X6XXFirmware", VRType::MP2X6XX},
@@ -76,9 +76,10 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
         {"TPS25990Firmware", VRType::TPS25990},
         {"RS31390Firmware", VRType::RS31390}};
 
-    if (VRTypeToString.contains(vrStr))
+    auto it = VRTypeToString.find(vrStr);
+    if (it != VRTypeToString.end())
     {
-        vrType = VRTypeToString[vrStr];
+        vrType = it->second;
         return true;
     }
     return false;

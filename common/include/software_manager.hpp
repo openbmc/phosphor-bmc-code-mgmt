@@ -29,10 +29,7 @@ class SoftwareManager
 
     // Fetches initial configuration from dbus and initializes devices.
     // This should be called once by a code updater at startup.
-    // @param configurationInterfaces    the dbus interfaces from which to fetch
-    // configuration
-    sdbusplus::async::task<> initDevices(
-        const std::vector<std::string>& configurationInterfaces);
+    sdbusplus::async::task<> initDevices();
 
     // Map of EM config object path to device.
     std::map<sdbusplus::object_path, std::unique_ptr<Device>> devices;
@@ -59,19 +56,13 @@ class SoftwareManager
   private:
     sdbusplus::async::task<void> handleInterfaceAdded(
         const std::string& service, const sdbusplus::object_path& path,
-        const std::string& interface);
-
-    sdbusplus::async::task<void> handleInterfaceAddedGuarded(
-        const std::string& service, const std::string& path,
-        const std::string& interface);
+        SoftwareConfig config);
 
     sdbusplus::async::task<void> handleInterfaceRemoved(
         const sdbusplus::object_path& path);
 
-    sdbusplus::async::task<void> interfaceAddedMatch(
-        std::vector<std::string> interfaces);
-    sdbusplus::async::task<void> interfaceRemovedMatch(
-        std::vector<std::string> interfaces);
+    sdbusplus::async::task<void> interfaceAddedMatch();
+    sdbusplus::async::task<void> interfaceRemovedMatch();
 
     // DBus matches for interfaces added and interfaces removed
     sdbusplus::async::match configIntfAddedMatch;

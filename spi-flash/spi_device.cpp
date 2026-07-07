@@ -220,7 +220,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
         }
         catch (const std::exception& e)
         {
-            error("Failed to mux GPIOs to BMC: {ERROR}", "ERROR", e.what());
+            error("Failed to mux GPIOs to BMC: {ERROR}", "ERROR", e);
             co_return false;
         }
     }

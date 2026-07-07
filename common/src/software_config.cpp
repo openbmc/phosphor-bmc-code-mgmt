@@ -13,9 +13,10 @@ using namespace phosphor::software::config;
 SoftwareConfig::SoftwareConfig(
     const sdbusplus::object_path& objPath, uint32_t vendorIANA,
     const std::string& compatible, const std::string& configType,
-    const std::string& name) :
+    const std::string& name, const std::string& configInterface) :
     objectPath(objPath), configName(name), configType(configType),
-    vendorIANA(vendorIANA), compatibleHardware(compatible)
+    configInterface(configInterface), vendorIANA(vendorIANA),
+    compatibleHardware(compatible)
 {
     std::regex reCompatible("([a-zA-Z0-9_])+(\\.([a-zA-Z0-9_])+)+");
     std::cmatch m;

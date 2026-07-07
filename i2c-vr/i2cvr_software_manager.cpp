@@ -8,7 +8,6 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/bus.hpp>
-#include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
 #include <cstdint>
 
@@ -20,12 +19,6 @@ namespace SoftwareInf = phosphor::software;
 namespace ManagerInf = phosphor::software::manager;
 
 const std::string configDBusName = "I2CVR";
-const std::vector<std::string> emConfigTypes = {
-    "XDPE1X2XXFirmware",    "ISL69269Firmware",  "MP2X6XXFirmware",
-    "MP292XFirmware",       "MP297XFirmware",    "MP5998Firmware",
-    "MPQ87XXFirmware",      "MP994XFirmware",    "RAA22XGen2Firmware",
-    "RAA22XGen3p5Firmware", "TDA38640AFirmware", "XDP71XFirmware",
-    "TPS25990Firmware",     "RS31390Firmware"};
 
 I2CVRSoftwareManager::I2CVRSoftwareManager(sdbusplus::async::context& ctx) :
     ManagerInf::SoftwareManager(ctx, configDBusName)
@@ -33,14 +26,7 @@ I2CVRSoftwareManager::I2CVRSoftwareManager(sdbusplus::async::context& ctx) :
 
 void I2CVRSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs;
-    configIntfs.reserve(emConfigTypes.size());
-    for (auto& name : emConfigTypes)
-    {
-        configIntfs.push_back("xyz.openbmc_project.Configuration." + name);
-    }
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
 }
 
@@ -48,35 +34,28 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    VR::VRType vrType;
+    if (!VR::stringToEnum(config.configType, vrType))
+    {
+        co_return false;
+    }
+    const std::string& configIface = config.configInterface;
 
     std::optional<uint64_t> busNum = co_await dbusGetRequiredProperty<uint64_t>(
         ctx, service, path, configIface, "Bus");
     std::optional<uint64_t> address =
         co_await dbusGetRequiredProperty<uint64_t>(ctx, service, path,
                                                    configIface, "Address");
-    std::optional<std::string> vrChipType =
-        co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                      configIface, "Type");
 
-    if (!busNum.has_value() || !address.has_value() || !vrChipType.has_value())
+    if (!busNum.has_value() || !address.has_value())
     {
         error("missing config property");
         co_return false;
     }
 
-    VR::VRType vrType;
-    if (!VR::stringToEnum(vrChipType.value(), vrType))
-    {
-        error("unknown voltage regulator type: {TYPE}", "TYPE",
-              vrChipType.value());
-        co_return false;
-    }
-
     lg2::debug(
         "[config] Voltage regulator device type: {TYPE} on Bus: {BUS} at Address: {ADDR}",
-        "TYPE", vrChipType.value(), "BUS", busNum.value(), "ADDR",
+        "TYPE", config.configType, "BUS", busNum.value(), "ADDR",
         address.value());
 
     auto i2cDevice = std::make_unique<I2CDevice::I2CVRDevice>(

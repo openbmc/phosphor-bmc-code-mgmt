@@ -14,8 +14,11 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    if (!CPLDFactory::instance().isSupported(config.configType))
+    {
+        co_return false;
+    }
+    const std::string& configIface = config.configInterface;
 
     auto busNo = co_await dbusGetRequiredProperty<uint64_t>(
         ctx, service, path, configIface, "Bus");
@@ -99,15 +102,7 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
 
 void CPLDSoftwareManager::start()
 {
-    std::vector<std::string> configIntfs;
-    auto configs = CPLDFactory::instance().getConfigs();
-    configIntfs.reserve(configs.size());
-    for (const auto& config : configs)
-    {
-        configIntfs.push_back("xyz.openbmc_project.Configuration." + config);
-    }
-
-    ctx.spawn(initDevices(configIntfs));
+    ctx.spawn(initDevices());
     ctx.run();
 }
 

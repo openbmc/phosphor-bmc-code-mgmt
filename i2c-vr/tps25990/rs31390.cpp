@@ -114,4 +114,15 @@ sdbusplus::async::task<bool> RS31390::parseImage(const uint8_t* image,
     co_return true;
 }
 
+namespace
+{
+const bool rs31390Registered = [] {
+    registerVR("RS31390Firmware", [](sdbusplus::async::context& ctx,
+                                     uint16_t bus, uint16_t address) {
+        return std::make_unique<RS31390>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

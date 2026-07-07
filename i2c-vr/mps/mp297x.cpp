@@ -527,4 +527,15 @@ sdbusplus::async::task<bool> MP297X::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool mp297xRegistered = [] {
+    registerVR("MP297XFirmware", [](sdbusplus::async::context& ctx,
+                                    uint16_t bus, uint16_t address) {
+        return std::make_unique<MP297X>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

@@ -778,4 +778,15 @@ bool XDPE1X2XX::forcedUpdateAllowed()
     return true;
 }
 
+namespace
+{
+const bool xdpe1x2xxRegistered = [] {
+    registerVR("XDPE1X2XXFirmware", [](sdbusplus::async::context& ctx,
+                                       uint16_t bus, uint16_t address) {
+        return std::make_unique<XDPE1X2XX>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

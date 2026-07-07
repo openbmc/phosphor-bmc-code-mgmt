@@ -3,29 +3,13 @@
 #include <sdbusplus/async.hpp>
 
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <string>
+#include <string_view>
 
 namespace phosphor::software::VR
 {
-
-enum class VRType
-{
-    XDPE1X2XX,
-    ISL69269,
-    MP2X6XX,
-    MP292X,
-    MP297X,
-    MP5998,
-    MP994X,
-    MPQ87XX,
-    RAA22XGen2,
-    RAA22XGen3p5,
-    TDA38640A,
-    XDP71X,
-    TPS25990,
-    RS31390
-};
 
 class VoltageRegulator
 {
@@ -61,10 +45,16 @@ class VoltageRegulator
     sdbusplus::async::context& ctx;
 };
 
-std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
-                                         enum VRType vrType, uint16_t bus,
-                                         uint16_t address);
+using VRCreator = std::function<std::unique_ptr<VoltageRegulator>(
+    sdbusplus::async::context& ctx, uint16_t bus, uint16_t address)>;
 
-bool stringToEnum(std::string& vrStr, VRType& vrType);
+// @brief Registers a VoltageRegulator implementation by its EM configType.
+void registerVR(std::string_view configType, VRCreator creator);
+
+std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
+                                         const std::string& configType,
+                                         uint16_t bus, uint16_t address);
+
+bool isSupported(const std::string& configType);
 
 } // namespace phosphor::software::VR

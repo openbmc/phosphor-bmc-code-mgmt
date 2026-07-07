@@ -10,14 +10,9 @@ void run(bool dryRun)
 {
     sdbusplus::async::context ctx;
 
-    std::vector<std::string> configIntfs = {
-        "xyz.openbmc_project.Configuration.IntelHostSPIFlash",
-        "xyz.openbmc_project.Configuration.HostSPIFlash"};
-
     BIOSSoftwareManager spidcu(ctx, dryRun);
 
-    ctx.spawn(spidcu.initDevices(configIntfs));
-
+    ctx.spawn(spidcu.initDevices());
     ctx.run();
 }
 

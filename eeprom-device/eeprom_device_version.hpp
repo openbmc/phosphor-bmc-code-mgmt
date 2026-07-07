@@ -39,3 +39,5 @@ class DeviceVersion
 
 std::unique_ptr<DeviceVersion> getVersionProvider(
     const std::string& chipModel, uint16_t bus, uint8_t address);
+
+bool isSupported(const std::string& chipModel);

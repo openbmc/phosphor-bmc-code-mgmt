@@ -19,27 +19,24 @@ BIOSSoftwareManager::BIOSSoftwareManager(sdbusplus::async::context& ctx,
     SoftwareManager(ctx, configTypeBIOS), dryRun(isDryRun)
 {}
 
+bool BIOSSoftwareManager::isSupported(const std::string& configType)
+{
+    return configType == "IntelHostSPIFlash" || configType == "HostSPIFlash";
+}
+
 sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
-
-    std::optional<uint64_t> spiControllerIndex =
-        co_await dbusGetRequiredProperty<uint64_t>(
-            ctx, service, path, configIface, "SPIControllerIndex");
-
+    auto spiControllerIndex =
+        config.getProperty<uint64_t>("SPIControllerIndex");
     if (!spiControllerIndex.has_value())
     {
         error("Missing property: SPIControllerIndex");
         co_return false;
     }
 
-    std::optional<uint64_t> spiDeviceIndex =
-        co_await dbusGetRequiredProperty<uint64_t>(
-            ctx, service, path, configIface, "SPIDeviceIndex");
-
+    auto spiDeviceIndex = config.getProperty<uint64_t>("SPIDeviceIndex");
     if (!spiDeviceIndex.has_value())
     {
         error("Missing property: SPIDeviceIndex");
@@ -57,7 +54,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         tool = flashToolFlashcp;
     }
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
+    const std::string configIfaceMux = config.baseInterface + ".MuxOutputs";
 
     std::vector<std::string> names;
     std::vector<bool> values;
@@ -66,13 +63,19 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     {
         const std::string iface = configIfaceMux + std::to_string(i);
 
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
+        auto name = config.getProperty<std::string>(iface, "Name");
+        if (!name.has_value())
+        {
+            name = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Name");
+        }
 
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
+        auto polarity = config.getProperty<std::string>(iface, "Polarity");
+        if (!polarity.has_value())
+        {
+            polarity = co_await dbusGetRequiredProperty<std::string>(
+                ctx, service, path.str, iface, "Polarity");
+        }
 
         if (!name.has_value() || !polarity.has_value())
         {

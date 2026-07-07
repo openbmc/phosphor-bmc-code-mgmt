@@ -766,4 +766,25 @@ sdbusplus::async::task<bool> ISL69269::updateFirmware(bool force)
     co_return true;
 }
 
+namespace
+{
+const bool isl69269Registered = [] {
+    registerVR("ISL69269Firmware", [](sdbusplus::async::context& ctx,
+                                      uint16_t bus, uint16_t address) {
+        return std::make_unique<ISL69269>(ctx, bus, address);
+    });
+    registerVR("RAA22XGen2Firmware", [](sdbusplus::async::context& ctx,
+                                        uint16_t bus, uint16_t address) {
+        return std::make_unique<ISL69269>(ctx, bus, address,
+                                          ISL69269::Gen::Gen2);
+    });
+    registerVR("RAA22XGen3p5Firmware", [](sdbusplus::async::context& ctx,
+                                          uint16_t bus, uint16_t address) {
+        return std::make_unique<ISL69269>(ctx, bus, address,
+                                          ISL69269::Gen::Gen3p5);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

@@ -30,3 +30,8 @@ std::unique_ptr<DeviceVersion> getVersionProvider(
 
     return nullptr;
 }
+
+bool isSupported(const std::string& chipModel)
+{
+    return providerMap.contains(chipModel);
+}

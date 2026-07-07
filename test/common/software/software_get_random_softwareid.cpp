@@ -36,7 +36,8 @@ TEST(SoftwareTest, testGetRandomSoftwareId)
         "/xyz/openbmc_project/inventory/system/board/ExampleBoard/ExampleDevice";
 
     SoftwareConfig config(objPath, 0x1234, "my.example.compatible", "Example",
-                          mb1ExampleComponent);
+                          mb1ExampleComponent,
+                          "xyz.openbmc_project.Configuration.Example", {});
 
     auto device = std::make_unique<ExampleDevice>(ctx, &exampleUpdater, config);
 

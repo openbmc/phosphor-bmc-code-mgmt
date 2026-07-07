@@ -158,4 +158,15 @@ sdbusplus::async::task<bool> XDP71X::updateFirmware(bool force)
     co_return false;
 }
 
+namespace
+{
+const bool xdp71xRegistered = [] {
+    registerVR("XDP71XFirmware", [](sdbusplus::async::context& ctx,
+                                    uint16_t bus, uint16_t address) {
+        return std::make_unique<XDP71X>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

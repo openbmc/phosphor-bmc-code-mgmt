@@ -33,6 +33,8 @@ class ExampleCodeUpdater : public phosphor::software::manager::SoftwareManager
                                             const sdbusplus::object_path& path,
                                             SoftwareConfig& config) final;
 
+    bool isSupported(const std::string& configType) override;
+
     using SoftwareManager::getBusName;
 
   private:

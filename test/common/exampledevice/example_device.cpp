@@ -22,9 +22,9 @@ using namespace phosphor::software::manager;
 using namespace phosphor::software::device;
 using namespace phosphor::software::example_device;
 
-SoftwareConfig ExampleDevice::defaultConfig =
-    SoftwareConfig(exampleInvObjPath, exampleVendorIANA,
-                   exampleCompatibleHardware, "Nop", exampleName);
+SoftwareConfig ExampleDevice::defaultConfig = SoftwareConfig(
+    exampleInvObjPath, exampleVendorIANA, exampleCompatibleHardware, "Nop",
+    exampleName, "xyz.openbmc_project.Configuration.Example", {});
 
 long ExampleCodeUpdater::getRandomId()
 {
@@ -62,6 +62,11 @@ ExampleCodeUpdater::ExampleCodeUpdater(
             std::make_unique<ExampleSoftware>(ctx, *device);
         device->softwareCurrent->setVersion(swVersion);
     }
+}
+
+bool ExampleCodeUpdater::isSupported(const std::string& configType)
+{
+    return configType == "Example";
 }
 
 std::unique_ptr<ExampleDevice>& ExampleCodeUpdater::getDevice()

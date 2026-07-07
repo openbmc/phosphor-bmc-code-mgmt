@@ -354,4 +354,15 @@ bool TPS25990::forcedUpdateAllowed()
     return true;
 }
 
+namespace
+{
+const bool tps25990Registered = [] {
+    registerVR("TPS25990Firmware", [](sdbusplus::async::context& ctx,
+                                      uint16_t bus, uint16_t address) {
+        return std::make_unique<TPS25990>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

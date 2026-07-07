@@ -37,15 +37,4 @@ std::unique_ptr<SPIDevice> SPIFactory::create(
     return nullptr;
 }
 
-std::vector<std::string> SPIFactory::getConfigInterfaceNames()
-{
-    std::vector<std::string> configs;
-    configs.reserve(supportedSpiChips.size());
-    for (const auto& chipEnum : supportedSpiChips)
-    {
-        configs.push_back(getSpiTypeStr(chipEnum));
-    }
-    return configs;
-}
-
 } // namespace phosphor::software::manager

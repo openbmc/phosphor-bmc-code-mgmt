@@ -2,7 +2,8 @@
 libpldmutil = static_library(
     'pldmpackageutil',
     'pldm_package_util.cpp',
-    include_directories: ['.'],
+    'firmware_parameters.cpp',
+    include_directories: ['.', '../include'],
     dependencies: [
         pdi_dep,
         phosphor_logging_dep,

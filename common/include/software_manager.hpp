@@ -16,6 +16,12 @@
 using namespace phosphor::software::config;
 using namespace phosphor::software::device;
 
+using DbusVariant =
+    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
+                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
+using DbusPropertyMap = std::map<std::string, DbusVariant>;
+using InterfacesMap = std::map<std::string, DbusPropertyMap>;
+
 namespace phosphor::software::manager
 {
 
@@ -29,10 +35,7 @@ class SoftwareManager
 
     // Fetches initial configuration from dbus and initializes devices.
     // This should be called once by a code updater at startup.
-    // @param configurationInterfaces    the dbus interfaces from which to fetch
-    // configuration
-    sdbusplus::async::task<> initDevices(
-        const std::vector<std::string>& configurationInterfaces);
+    sdbusplus::async::task<> initDevices();
 
     // Map of EM config object path to device.
     std::map<sdbusplus::object_path, std::unique_ptr<Device>> devices;
@@ -59,19 +62,17 @@ class SoftwareManager
   private:
     sdbusplus::async::task<void> handleInterfaceAdded(
         const std::string& service, const sdbusplus::object_path& path,
-        const std::string& interface);
-
-    sdbusplus::async::task<void> handleInterfaceAddedGuarded(
-        const std::string& service, const std::string& path,
-        const std::string& interface);
+        SoftwareConfig config);
 
     sdbusplus::async::task<void> handleInterfaceRemoved(
         const sdbusplus::object_path& path);
 
-    sdbusplus::async::task<void> interfaceAddedMatch(
-        std::vector<std::string> interfaces);
-    sdbusplus::async::task<void> interfaceRemovedMatch(
-        std::vector<std::string> interfaces);
+    sdbusplus::async::task<void> interfaceAddedMatch();
+    sdbusplus::async::task<void> interfaceRemovedMatch();
+
+    std::optional<SoftwareConfig> processIncomingInterface(
+        const std::string& objPathStr, const std::string& interfaceName,
+        const DbusPropertyMap& props);
 
     // DBus matches for interfaces added and interfaces removed
     sdbusplus::async::match configIntfAddedMatch;
@@ -86,6 +87,8 @@ class SoftwareManager
     friend Device;
 
     std::set<sdbusplus::object_path> initializingPaths;
+
+    std::unordered_map<std::string, InterfacesMap> pendingSignals;
 };
 
 }; // namespace phosphor::software::manager

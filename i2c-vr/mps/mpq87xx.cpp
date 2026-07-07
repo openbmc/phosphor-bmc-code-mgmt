@@ -290,4 +290,15 @@ sdbusplus::async::task<bool> MPQ87XX::updateFirmware(bool force)
     co_return false;
 }
 
+namespace
+{
+const bool mpq87xxRegistered = [] {
+    registerVR("MPQ87XXFirmware", [](sdbusplus::async::context& ctx,
+                                     uint16_t bus, uint16_t address) {
+        return std::make_unique<MPQ87XX>(ctx, bus, address);
+    });
+    return true;
+}();
+} // namespace
+
 } // namespace phosphor::software::VR

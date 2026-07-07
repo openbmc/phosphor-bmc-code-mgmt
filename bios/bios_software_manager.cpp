@@ -23,8 +23,11 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
+    if (config.configType != "IntelSPIFlash" && config.configType != "SPIFlash")
+    {
+        co_return false;
+    }
+    const std::string& configIface = config.configInterface;
 
     std::optional<uint64_t> spiControllerIndex =
         co_await dbusGetRequiredProperty<uint64_t>(

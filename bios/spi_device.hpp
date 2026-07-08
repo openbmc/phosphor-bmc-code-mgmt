@@ -126,4 +126,7 @@ class SPIDevice : public Device, public NotifyWatchIntf
 
     // @returns nullopt on error
     std::optional<std::string> getMTDDevicePath() const;
+
+    sdbusplus::async::task<bool> executeFlashcpWithProgress(
+        const std::string& imagePath, const std::string& mtdPath) const;
 };

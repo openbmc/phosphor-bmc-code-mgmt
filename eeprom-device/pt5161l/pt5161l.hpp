@@ -9,4 +9,7 @@ class PT5161LDeviceVersion : public DeviceVersion
     bool isDeviceReady() final;
     std::string getVersion() final;
     std::optional<HostPowerInf::HostState> getHostStateToQueryVersion() final;
+
+  private:
+    std::vector<std::string> getDebugFsPaths(const std::string& suffix) const;
 };

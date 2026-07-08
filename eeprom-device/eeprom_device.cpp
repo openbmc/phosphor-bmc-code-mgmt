@@ -284,6 +284,51 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
         co_return;
     }
 
+    const auto expectedHostState = State::convertForMessage(*requiredHostState);
+
+    auto handleHostState = [&](const std::string& currentHostState)
+        -> sdbusplus::async::task<void> {
+        if (currentHostState != expectedHostState)
+        {
+            co_return;
+        }
+
+        auto isDeviceReady = false;
+        debug("Host state {STATE} matches to retrieve the version", "STATE",
+              currentHostState);
+
+        for (int i = 0; i < maxRetries; ++i)
+        {
+            isDeviceReady = deviceVersion->isDeviceReady();
+            if (isDeviceReady)
+            {
+                debug("Device version is ready");
+                break;
+            }
+            co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(10));
+        }
+
+        std::string version = deviceVersion->getVersion();
+        if (isDeviceReady && !version.empty())
+        {
+            softwareCurrent->setVersion(
+                version, SoftwareInf::SoftwareVersion::VersionPurpose::Other);
+        }
+
+        co_return;
+    };
+
+    try
+    {
+        auto hostState = co_await hostPower.getState(ctx);
+        debug("Current host state is {STATE}", "STATE", hostState);
+        co_await handleHostState(State::convertForMessage(hostState));
+    }
+    catch (const std::exception& e)
+    {
+        debug("Failed to get host state: {ERR}", "ERR", e.what());
+    }
+
     while (!ctx.stop_requested())
     {
         auto nextResult = co_await hostPower.stateChangedMatch.next<
@@ -295,32 +340,7 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
         if (it != changedProperties.end())
         {
             const auto& currentHostState = std::get<std::string>(it->second);
-
-            if (currentHostState ==
-                State::convertForMessage(*requiredHostState))
-            {
-                auto isDeviceReady = false;
-                debug("Host state {STATE} matches to retrieve the version",
-                      "STATE", currentHostState);
-                for (int i = 0; i < maxRetries; ++i)
-                {
-                    isDeviceReady = deviceVersion->isDeviceReady();
-                    if (isDeviceReady)
-                    {
-                        debug("Device version is ready");
-                        break;
-                    }
-                    co_await sdbusplus::async::sleep_for(
-                        ctx, std::chrono::seconds(2));
-                }
-                std::string version = deviceVersion->getVersion();
-                if (isDeviceReady && !version.empty())
-                {
-                    softwareCurrent->setVersion(
-                        version,
-                        SoftwareInf::SoftwareVersion::VersionPurpose::Other);
-                }
-            }
+            co_await handleHostState(currentHostState);
         }
     }
 

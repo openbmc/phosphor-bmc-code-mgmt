@@ -9,9 +9,9 @@
 
 PHOSPHOR_LOG2_USING;
 
-std::string PT5161LDeviceVersion::getVersion()
+std::vector<std::string> PT5161LDeviceVersion::getDebugFsPaths(
+    const std::string& suffix) const
 {
-    std::string version;
     std::ostringstream busOss;
     std::ostringstream addrOss;
 
@@ -19,49 +19,60 @@ std::string PT5161LDeviceVersion::getVersion()
     addrOss << std::setw(4) << std::setfill('0') << std::hex << std::nouppercase
             << static_cast<int>(address);
 
-    // The PT5161L driver exposes the firmware version through the fw_ver node
-    std::string path = "/sys/kernel/debug/pt5161l/" + busOss.str() + "-" +
-                       addrOss.str() + "/fw_ver";
+    /* The PT5161L driver exposes the firmware version through the fw_ver node.
+     * The debugfs path changed starting from Linux kernel v6.18.
+     * Try the legacy path first, then fall back to the new path.
+     */
+    return {"/sys/kernel/debug/pt5161l/" + busOss.str() + "_" + addrOss.str() +
+                suffix,
 
-    std::ifstream file(path);
-    if (!file)
+            "/sys/kernel/debug/i2c/i2c-" + busOss.str() + "/" + busOss.str() +
+                "-" + addrOss.str() + suffix};
+}
+
+std::string PT5161LDeviceVersion::getVersion()
+{
+    std::string version;
+    const std::vector<std::string> paths = getDebugFsPaths("/fw_ver");
+
+    for (const auto& path : paths)
     {
-        error("Failed to get version: unable to open file: {PATH}", "PATH",
-              path);
+        std::ifstream file(path);
+
+        if (!file)
+        {
+            continue;
+        }
+
+        if (std::getline(file, version) && !version.empty())
+        {
+            return version;
+        }
+
         return version;
     }
 
-    if (!std::getline(file, version) || version.empty())
-    {
-        error("Failed to read version from file: {PATH}", "PATH", path);
-    }
-
+    error("Failed to get version: unable to find fw_ver file");
     return version;
 }
 
 bool PT5161LDeviceVersion::isDeviceReady()
 {
     std::string status;
-    std::ostringstream busOss;
-    std::ostringstream addrOss;
+    const std::vector<std::string> debugfsPaths =
+        getDebugFsPaths("/fw_load_status");
 
-    busOss << std::setw(2) << std::setfill('0') << static_cast<int>(bus);
-    addrOss << std::setw(4) << std::setfill('0') << std::hex << std::nouppercase
-            << static_cast<int>(address);
-
-    std::string fw_load_status = "/sys/kernel/debug/pt5161l/" + busOss.str() +
-                                 "-" + addrOss.str() + "/fw_load_status";
-
-    std::ifstream file(fw_load_status);
-
-    if (file && std::getline(file, status) && status == "normal")
+    for (const auto& path : debugfsPaths)
     {
-        return true;
+        std::ifstream file(path);
+
+        if (file && std::getline(file, status) && status == "normal")
+        {
+            return true;
+        }
     }
 
-    error("Status from file: {PATH} is invalid: {STATUS}", "PATH",
-          fw_load_status, "STATUS", status);
-
+    error("Failed to get status: unable to find fw_load_status file");
     return false;
 }
 

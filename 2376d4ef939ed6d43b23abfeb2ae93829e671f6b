@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7601a60f_f0cc1d66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-08T18:11:18Z",
+      "side": 1,
+      "message": "Please split this into different patches as you are doing multiple independent changes.",
+      "revId": "2376d4ef939ed6d43b23abfeb2ae93829e671f6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

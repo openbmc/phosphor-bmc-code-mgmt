@@ -19,23 +19,33 @@ std::string PT5161LDeviceVersion::getVersion()
     addrOss << std::setw(4) << std::setfill('0') << std::hex << std::nouppercase
             << static_cast<int>(address);
 
-    // The PT5161L driver exposes the firmware version through the fw_ver node
-    std::string path = "/sys/kernel/debug/pt5161l/" + busOss.str() + "-" +
-                       addrOss.str() + "/fw_ver";
+    // The PT5161L driver exposes the firmware version through the fw_ver node.
+    // Old kernel path first, then fallback to new one.
+    const std::vector<std::string> paths = {
+        "/sys/kernel/debug/pt5161l/" + busOss.str() + "-" + addrOss.str() +
+            "/fw_ver",
+        "/sys/kernel/debug/i2c/i2c-" + busOss.str() + "/" + busOss.str() + "-" +
+            addrOss.str() + "/fw_ver"};
 
-    std::ifstream file(path);
-    if (!file)
+    for (const auto& path : paths)
     {
-        error("Failed to get version: unable to open file: {PATH}", "PATH",
-              path);
+        std::ifstream file(path);
+
+        if (!file)
+        {
+            continue;
+        }
+
+        if (std::getline(file, version) && !version.empty())
+        {
+            return version;
+        }
+
+        error("Failed to read version from file: {PATH}", "PATH", path);
         return version;
     }
 
-    if (!std::getline(file, version) || version.empty())
-    {
-        error("Failed to read version from file: {PATH}", "PATH", path);
-    }
-
+    error("Failed to get version: unable to open file");
     return version;
 }
 
@@ -49,18 +59,23 @@ bool PT5161LDeviceVersion::isDeviceReady()
     addrOss << std::setw(4) << std::setfill('0') << std::hex << std::nouppercase
             << static_cast<int>(address);
 
-    std::string fw_load_status = "/sys/kernel/debug/pt5161l/" + busOss.str() +
-                                 "-" + addrOss.str() + "/fw_load_status";
+    // Old kernel path first, then fallback to new one.
+    const std::vector<std::string> debugfsPaths = {
+        "/sys/kernel/debug/pt5161l/" + busOss.str() + "-" + addrOss.str() +
+            "/fw_load_status",
+        "/sys/kernel/debug/i2c/i2c-" + busOss.str() + "/" + busOss.str() + "-" +
+            addrOss.str() + "/fw_load_status"};
 
-    std::ifstream file(fw_load_status);
-
-    if (file && std::getline(file, status) && status == "normal")
+    for (const auto& path : debugfsPaths)
     {
-        return true;
-    }
+        std::ifstream file(path);
 
-    error("Status from file: {PATH} is invalid: {STATUS}", "PATH",
-          fw_load_status, "STATUS", status);
+        if (file && std::getline(file, status) && status == "normal")
+        {
+            return true;
+        }
+        error("Status from file: {PATH} is invalid", "PATH", path);
+    }
 
     return false;
 }

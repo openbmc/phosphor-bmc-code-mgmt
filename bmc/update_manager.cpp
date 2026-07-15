@@ -214,10 +214,16 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
 
 sdbusplus::object_path Manager::startUpdate(
     sdbusplus::message::unix_fd image,
-    ApplyTimeIntf::RequestedApplyTimes applyTime)
+    ApplyTimeIntf::RequestedApplyTimes applyTime, bool forceUpdate)
 {
-    info("Starting update for image {FD}", "FD", static_cast<int>(image));
+    info("Starting update for image {FD}, ForceUpdate: {FORCE_UPDATE}", "FD",
+         static_cast<int>(image), "FORCE_UPDATE", forceUpdate);
     using sdbusplus::xyz::openbmc_project::Common::Error::Unavailable;
+    if (forceUpdate)
+    {
+        warning(
+            "ForceUpdate is not supported by the BMC updater, continuing with the update");
+    }
     if (updateInProgress)
     {
         error("Failed to start as update is already in progress");

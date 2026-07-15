@@ -24,11 +24,12 @@ namespace SoftwareErrors =
 
 SoftwareUpdate::SoftwareUpdate(
     sdbusplus::async::context& ctx, const sdbusplus::object_path& path,
-    Software& software,
-    const std::set<RequestedApplyTimes>& allowedApplyTimes) :
+    Software& software, const std::set<RequestedApplyTimes>& allowedApplyTimes,
+    bool allowedForceUpdate) :
     sdbusplus::aserver::xyz::openbmc_project::software::Update<SoftwareUpdate>(
         ctx, path),
-    software(software), allowedApplyTimes(allowedApplyTimes)
+    software(software), allowedApplyTimes(allowedApplyTimes),
+    allowedForceUpdate(allowedForceUpdate)
 {
     emit_added();
 }
@@ -39,7 +40,7 @@ SoftwareUpdate::~SoftwareUpdate()
 }
 
 auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
-                                 auto applyTime)
+                                 auto applyTime, auto forceUpdate)
     -> sdbusplus::async::task<start_update_t::return_type>
 {
     debug("Requesting Image update with {FD}", "FD", image.fd);
@@ -67,6 +68,18 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
             Argument::ARGUMENT_NAME("ApplyTime"),
             Argument::ARGUMENT_VALUE(
                 sdbusplus::message::convert_to_string(applyTime).c_str()));
+    }
+
+    // check if force update is allowed by our device
+    if (forceUpdate && !allowedForceUpdate)
+    {
+        error("force update is not allowed by the device");
+        device.updateInProgress = false;
+        using Argument =
+            phosphor::logging::xyz::openbmc_project::common::InvalidArgument;
+        elog<sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument>(
+            Argument::ARGUMENT_NAME("ForceUpdate"),
+            Argument::ARGUMENT_VALUE(forceUpdate ? "true" : "false"));
     }
 
     debug("started asynchronous update with fd {FD}", "FD", image.fd);
@@ -109,4 +122,9 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 auto SoftwareUpdate::get_property(allowed_apply_times_t /*unused*/) const
 {
     return allowedApplyTimes;
+}
+
+auto SoftwareUpdate::get_property(allowed_force_update_t /*unused*/) const
+{
+    return allowedForceUpdate;
 }

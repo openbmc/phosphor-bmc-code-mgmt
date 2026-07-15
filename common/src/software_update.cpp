@@ -39,10 +39,17 @@ SoftwareUpdate::~SoftwareUpdate()
 }
 
 auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
-                                 auto applyTime)
+                                 auto applyTime, auto forceUpdate)
     -> sdbusplus::async::task<start_update_t::return_type>
 {
-    debug("Requesting Image update with {FD}", "FD", image.fd);
+    debug("Requesting Image update with {FD}, ForceUpdate: {FORCE_UPDATE}",
+          "FD", image.fd, "FORCE_UPDATE", forceUpdate);
+
+    if (forceUpdate)
+    {
+        warning(
+            "ForceUpdate is not supported by this device, continuing with the update");
+    }
 
     Device& device = software.parentDevice;
 

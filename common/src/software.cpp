@@ -158,7 +158,8 @@ void Software::setActivation(SoftwareActivation::Activations act)
 }
 
 void Software::enableUpdate(
-    const std::set<RequestedApplyTimes>& allowedApplyTimes)
+    const std::set<RequestedApplyTimes>& allowedApplyTimes,
+    bool allowedForceUpdate)
 {
     if (updateIntf != nullptr)
     {
@@ -171,6 +172,6 @@ void Software::enableUpdate(
         "[Software] enabling update of {OBJPATH} (adding the update interface)",
         "OBJPATH", objectPath);
 
-    updateIntf = std::make_unique<SoftwareUpdate>(ctx, objectPath, *this,
-                                                  allowedApplyTimes);
+    updateIntf = std::make_unique<SoftwareUpdate>(
+        ctx, objectPath, *this, allowedApplyTimes, allowedForceUpdate);
 }

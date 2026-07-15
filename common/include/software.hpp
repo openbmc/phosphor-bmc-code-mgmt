@@ -49,7 +49,10 @@ class Software : private SoftwareActivation
     // This should populate 'softwareUpdate'
     // @param allowedApplyTimes        When updates to this Version can be
     // applied
-    void enableUpdate(const std::set<RequestedApplyTimes>& allowedApplyTimes);
+    // @param allowedForceUpdate       Whether force update (bypassing update
+    //                                 policies) is allowed for this device
+    void enableUpdate(const std::set<RequestedApplyTimes>& allowedApplyTimes,
+                      bool allowedForceUpdate = true);
 
     // This should populate 'softwareVersion'
     // @param version         the version string

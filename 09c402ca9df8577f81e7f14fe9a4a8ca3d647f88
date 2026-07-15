@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83354576_79cc5745",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:27:20Z",
+      "side": 1,
+      "message": "The intent of the change is not clear from this description. Can you please clarify and provide the clear intent in terms of usecase.",
+      "revId": "09c402ca9df8577f81e7f14fe9a4a8ca3d647f88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

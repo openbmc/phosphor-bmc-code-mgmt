@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710b1348_ed85ddb8",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:45:14Z",
+      "side": 1,
+      "message": "Can you please add around which kernel version this change happened (for context).",
+      "revId": "f7556b7e1006e40c82951aa0714c847767289b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b72846b_552023f2",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:45:14Z",
+      "side": 1,
+      "message": "Can you please add a helper API which takes the path suffix as in_arg and can be called from both line25 and line 63 to provide the file list from common place ?",
+      "revId": "f7556b7e1006e40c82951aa0714c847767289b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f9a103_e49aaa26",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:45:14Z",
+      "side": 1,
+      "message": "this is more like version file doesn\u0027t exist, isn\u0027t it ?",
+      "revId": "f7556b7e1006e40c82951aa0714c847767289b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73846646_cf88053a",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:45:14Z",
+      "side": 1,
+      "message": "U will still print this error if the first file in the list doesn\u0027t exist, i don\u0027t think we want that. Please fix this",
+      "revId": "f7556b7e1006e40c82951aa0714c847767289b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

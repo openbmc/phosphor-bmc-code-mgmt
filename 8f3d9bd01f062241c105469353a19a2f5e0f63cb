@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bf898fa_27c83cef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T09:53:16Z",
+      "side": 1,
+      "message": "Thanks for fixing this issue 👍",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b9fa75e_3b16300e",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T09:53:16Z",
+      "side": 1,
+      "message": "i would assume both of these are `std::filesystem::path`",
+      "range": {
+        "startLine": 526,
+        "startChar": 4,
+        "endLine": 526,
+        "endChar": 58
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e310c1_353b102c",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T09:53:16Z",
+      "side": 1,
+      "message": "This looks very similar to line 672, can we deduplicate that code?",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 621,
+        "endChar": 17
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c3eead6_d1a63d96",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-15T09:53:16Z",
+      "side": 1,
+      "message": "nit: this progress calculation could be extracted into it\u0027s own function",
+      "range": {
+        "startLine": 666,
+        "startChar": 1,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

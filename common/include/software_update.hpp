@@ -25,19 +25,23 @@ class SoftwareUpdate :
     SoftwareUpdate& operator=(SoftwareUpdate&&) = delete;
     SoftwareUpdate(sdbusplus::async::context& ctx,
                    const sdbusplus::object_path& path, Software& software,
-                   const std::set<RequestedApplyTimes>& allowedApplyTimes);
+                   const std::set<RequestedApplyTimes>& allowedApplyTimes,
+                   bool allowedForceUpdate);
 
     ~SoftwareUpdate();
 
-    auto method_call(start_update_t su, auto image, auto applyTime)
+    auto method_call(start_update_t su, auto image, auto applyTime,
+                     auto forceUpdate)
         -> sdbusplus::async::task<start_update_t::return_type>;
 
     auto get_property(allowed_apply_times_t aat) const;
+    auto get_property(allowed_force_update_t afu) const;
 
   private:
     Software& software;
 
     const std::set<RequestedApplyTimes> allowedApplyTimes;
+    const bool allowedForceUpdate;
 };
 
 }; // namespace phosphor::software::update

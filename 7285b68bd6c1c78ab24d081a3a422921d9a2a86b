@@ -87,6 +87,24 @@
       "message": "Both tested and reviewed on HPE hardware and the ASRR ALTRAD8UD-1L2T.",
       "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35516fa7_19349d14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:30:41Z",
+      "side": 1,
+      "message": "I didn\u0027t find any such system from HPE in the EM configurations, then whats the intent for this change ?",
+      "parentUuid": "fe8a521f_662f57ab",
+      "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

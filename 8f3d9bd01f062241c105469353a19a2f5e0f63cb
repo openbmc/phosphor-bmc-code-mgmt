@@ -134,6 +134,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d496313_f76c01dd",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:21:28Z",
+      "side": 1,
+      "message": "I think all this can be done by passing a callback to asyncSystem API which can be invoked from that API. Please look into that direction.",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12b9352f_6eb7d74c",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:21:28Z",
+      "side": 1,
+      "message": "Why i see this duplicated code on line# 672 and 605. Please add a helper.",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c3eead6_d1a63d96",
         "filename": "bios/spi_device.cpp",
         "patchSetId": 1
@@ -151,6 +185,23 @@
         "endLine": 683,
         "endChar": 21
       },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd9770ce_6005d235",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:21:28Z",
+      "side": 1,
+      "message": "Whats the purpose of this sleep?",
       "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9acdfc15_6e7da4bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-15T22:35:44Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com There are still open comments on this patch. Can you please check. Thanks",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98d5c9aa_998a7343",
         "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
         "patchSetId": 17

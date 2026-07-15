@@ -214,10 +214,23 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
 
 sdbusplus::object_path Manager::startUpdate(
     sdbusplus::message::unix_fd image,
-    ApplyTimeIntf::RequestedApplyTimes applyTime)
+    ApplyTimeIntf::RequestedApplyTimes applyTime, bool forceUpdate)
 {
     info("Starting update for image {FD}", "FD", static_cast<int>(image));
+    using sdbusplus::xyz::openbmc_project::Common::Error::InvalidArgument;
     using sdbusplus::xyz::openbmc_project::Common::Error::Unavailable;
+
+    if (forceUpdate && !allowedForceUpdate())
+    {
+        error("force update is not allowed by the BMC updater");
+        using Argument =
+            phosphor::logging::xyz::openbmc_project::common::InvalidArgument;
+        report<InvalidArgument>(
+            Argument::ARGUMENT_NAME("ForceUpdate"),
+            Argument::ARGUMENT_VALUE(forceUpdate ? "true" : "false"));
+        return sdbusplus::object_path();
+    }
+
     if (updateInProgress)
     {
         error("Failed to start as update is already in progress");

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a25e05_8eb8e7d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-07-16T02:59:39Z",
+      "side": 1,
+      "message": "@paligill@gmail.com  \nThank you for your patience.\nWe are currently working with Lattice to improve the update flow for the XO5D series and are running firmware update stress tests. Once the testing is completed and the results are verified, we will submit the code to gerrit ASAP",
+      "parentUuid": "9acdfc15_6e7da4bb",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d5c9aa_998a7343",

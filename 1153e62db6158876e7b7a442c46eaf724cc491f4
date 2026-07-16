@@ -16,6 +16,24 @@
       "message": "Before any of the major rework, i would like to see first a base patch which just updates the interfaces as per changes being made on EM side. This change is bigger and will go through more iterations. In the meantime we cannot break the existing users. So, lets have a base patch which just make those changes.",
       "revId": "1153e62db6158876e7b7a442c46eaf724cc491f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "882d7b5e_9fe551b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-07-16T02:17:18Z",
+      "side": 1,
+      "message": "I\u0027ve created the base patch to just update the interfaces without introducing the major rework.\n\nYou can review the base patch here: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/92406",
+      "parentUuid": "e5c9afa5_a7c5215d",
+      "revId": "1153e62db6158876e7b7a442c46eaf724cc491f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

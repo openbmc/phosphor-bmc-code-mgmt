@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3296a69_efefe4b2",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T11:02:32Z",
+      "side": 1,
+      "message": "```suggestion\nlibocp_fw_recovery \u003d static_library(\n```",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4f7857_a15c1e73",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T11:02:32Z",
+      "side": 1,
+      "message": "```suggestion\n    \u0027ocp_fw_recovery\u0027,\n```\n\nSince this library only implements the fw recovery protocol, should we choose a name to clarify the limited scope?\n\n`libocp` sounds very generic and non descriptive.",
+      "range": {
+        "startLine": 4,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 8
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08348dad_af5a42c1",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T11:02:32Z",
+      "side": 1,
+      "message": "my query: why do we need to override the c standard used by default?\n\nWhy do we need to force this option?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 36
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -101,7 +101,7 @@ static ssize_t create_pldm_firmware_device_descriptors_v1_0_0(
 ssize_t create_pldm_firmware_device_identification_record(
     uint8_t* b, ssize_t i, const std::optional<uint32_t>& optVendorIANA,
     const std::optional<std::string>& optCompatible,
-    uint16_t componentBitmapBitLength)
+    uint16_t componentBitmapBitLength, uint8_t applicableComponents)
 {
     const ssize_t startIndex = i;
     // RecordLength, backfill later
@@ -130,11 +130,10 @@ ssize_t create_pldm_firmware_device_identification_record(
     b[i++] = 0x0;
     b[i++] = 0x0;
 
-    // ApplicableComponents
+    // ApplicableComponents, one bit per component image
     for (int j = 0; j < (componentBitmapBitLength / 8); j++)
     {
-        b[i++] = 0x1;
-        // the first and only component image does apply to this device
+        b[i++] = (j == 0) ? applicableComponents : 0x0;
     }
 
     // ComponentSetVersionString
@@ -164,11 +163,12 @@ ssize_t create_pldm_firmware_device_identification_record(
 ssize_t create_pldm_firmware_device_identification_area_v1_0_0(
     uint8_t* b, ssize_t i, const std::optional<uint32_t>& optVendorIANA,
     const std::optional<std::string>& optCompatible,
-    uint16_t componentBitmapBitLength)
+    uint16_t componentBitmapBitLength, uint8_t applicableComponents)
 {
     // Device ID Record Count
     b[i++] = 1;
 
     return create_pldm_firmware_device_identification_record(
-        b, i, optVendorIANA, optCompatible, componentBitmapBitLength);
+        b, i, optVendorIANA, optCompatible, componentBitmapBitLength,
+        applicableComponents);
 }

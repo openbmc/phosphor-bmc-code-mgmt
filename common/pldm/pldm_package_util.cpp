@@ -16,6 +16,7 @@
 #include <cassert>
 #include <cstring>
 #include <functional>
+#include <span>
 
 PHOSPHOR_LOG2_USING;
 
@@ -243,6 +244,55 @@ int extractMatchingComponentImage(
     componentVersionOut = c.componentVersion;
 
     return EXIT_SUCCESS;
+}
+
+bool extractMatchingComponentImages(
+    const std::unique_ptr<Package>& package, const std::string& compatible,
+    uint32_t vendorIANA,
+    std::vector<phosphor::software::device::ComponentImage>& componentsOut)
+{
+    const std::vector<FirmwareDeviceIDRecord>& fwDeviceIdRecords =
+        package->firmwareDeviceIdRecords;
+
+    const ssize_t deviceDescriptorIndex = findMatchingDeviceDescriptorIndex(
+        fwDeviceIdRecords, vendorIANA, compatible);
+
+    if (deviceDescriptorIndex < 0)
+    {
+        error(
+            "did not find a matching device descriptor for {IANA}, {COMPATIBLE}",
+            "IANA", lg2::hex, vendorIANA, "COMPATIBLE", compatible);
+        return false;
+    }
+
+    const FirmwareDeviceIDRecord& descriptor =
+        fwDeviceIdRecords[deviceDescriptorIndex];
+
+    const std::vector<size_t>& ac = descriptor.applicableComponents;
+
+    if (ac.empty())
+    {
+        error("did not find an applicable component image for the device");
+        return false;
+    }
+
+    const std::vector<ComponentImageInfo>& cs =
+        package->componentImageInformation;
+
+    componentsOut.clear();
+    for (const size_t component : ac)
+    {
+        const ComponentImageInfo& c = cs[component];
+
+        // componentLocation.ptr already points into the buffer the package
+        // was parsed over, so hand it out directly as a span (no offset).
+        componentsOut.emplace_back(phosphor::software::device::ComponentImage{
+            std::span<const uint8_t>(c.componentLocation.ptr,
+                                     c.componentLocation.length),
+            c.componentVersion});
+    }
+
+    return true;
 }
 
 } // namespace pldm_package_util

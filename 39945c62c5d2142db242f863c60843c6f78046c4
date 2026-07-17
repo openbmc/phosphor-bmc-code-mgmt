@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7da8f589_6febe598",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T11:14:34Z",
+      "side": 1,
+      "message": "How can you tell these different sets of return codes apart?\n\nSome of the functions returning those only return `int` type so it\u0027s not entirely clear without inspecting the implementation detail.\n\nCan this be handled with an enum or wrapper struct? Some mechanism to ensure we are not mixing up return codes from different sets.",
+      "range": {
+        "startLine": 60,
+        "startChar": 45,
+        "endLine": 79,
+        "endChar": 44
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61bce67_1c0bdb6d",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T11:14:34Z",
+      "side": 1,
+      "message": "nit: `ocp_` prefix for a C library sounds like name collision could happen.\n\nThere is a lot of OCP specs and people writing code, what if we prefixed with\n\n`ocp_recov_` (relating to OCP fw recovery mechanism)",
+      "range": {
+        "startLine": 137,
+        "startChar": 18,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b3296a69_efefe4b2",
         "filename": "libocp/meson.build",
         "patchSetId": 1

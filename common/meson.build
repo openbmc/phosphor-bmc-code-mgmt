@@ -1,4 +1,6 @@
 
+common_headers_include = include_directories('include')
+
 subdir('pldm')
 
 conf = configuration_data()

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "component_image.hpp"
 #include "events.hpp"
 #include "software.hpp"
 #include "software_config.hpp"
@@ -10,7 +11,9 @@
 #include <xyz/openbmc_project/Software/Update/aserver.hpp>
 #include <xyz/openbmc_project/Software/Version/aserver.hpp>
 
+#include <cstdint>
 #include <string>
+#include <vector>
 
 using ActivationInterface =
     sdbusplus::common::xyz::openbmc_project::software::Activation;
@@ -46,6 +49,23 @@ class Device
     //                             on.
     virtual sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                                       size_t image_size) = 0;
+
+    // @brief                      Applies all applicable component images of
+    //                             the package to the device, in package order.
+    //                             The default implementation applies only the
+    //                             first component via updateDevice(), which is
+    //                             the correct behavior for devices whose
+    //                             packages carry a single component image.
+    //                             Override for devices that consume multiple
+    //                             component images per update (e.g. OCP
+    //                             recovery).
+    // @param components           applicable component images. Guaranteed by
+    //                             the caller to be non-empty; the framework
+    //                             fails the update before calling this if the
+    //                             package yields no applicable component.
+    // @returns                    true if the update was applied successfully
+    virtual sdbusplus::async::task<bool> updateDeviceComponents(
+        const std::vector<ComponentImage>& components);
 
     // @brief               Set the ActivationProgress properties on dbus
     // @param progress      progress value
@@ -100,14 +120,13 @@ class Device
     bool updateInProgress = false;
 
   private:
-    // @param componentImage       component image as extracted from update pkg
-    // @param componentImageSize   size of 'componentImage'
+    // @param components           applicable component images from the pkg
+    // @param componentVersion     version of the first applicable component
     // @param applyTime            when the update should be applied
-    // @param softwarePendingIn    the pending software instance
     // @returns                    the return value of the device specific
     // update function
     sdbusplus::async::task<bool> continueUpdateWithMappedPackage(
-        const uint8_t* componentImage, size_t componentImageSize,
+        const std::vector<ComponentImage>& components,
         const std::string& componentVersion, RequestedApplyTimes applyTime);
 
     // @brief     extracts the information we need from the pldm package
@@ -115,8 +134,8 @@ class Device
     sdbusplus::async::task<bool> getImageInfo(
         const sdbusplus::object_path& objectPath,
         std::unique_ptr<void, std::function<void(void*)>>& pldmPackage,
-        size_t pldmPackageSize, uint8_t** matchingComponentImage,
-        size_t* componentImageSize, std::string& componentVersion);
+        size_t pldmPackageSize, std::vector<ComponentImage>& components,
+        std::string& componentVersion);
 
     friend update::SoftwareUpdate;
     friend Software;

@@ -13,11 +13,20 @@
 #include <random>
 
 std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
-    const uint8_t* component_image, size_t component_image_size,
+    std::span<const TestComponentImage> components,
     const std::optional<uint32_t>& optVendorIANA,
     const std::optional<std::string>& optCompatible, size_t& size_out)
 {
-    const size_t size = 512 + component_image_size;
+    size_t size = 512;
+    uint8_t applicableComponents = 0;
+    for (size_t c = 0; c < components.size(); c++)
+    {
+        size += 64 + components[c].data.size();
+        if (components[c].applicable)
+        {
+            applicableComponents |= 1 << c;
+        }
+    }
     auto buffer = std::make_unique<uint8_t[]>(size);
     uint8_t* b = buffer.get();
     memset(b, 0, size);
@@ -68,12 +77,13 @@ std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
     // --- Firmware Device Identification Area 1.0.0 ---
 
     i = create_pldm_firmware_device_identification_area_v1_0_0(
-        b, i, optVendorIANA, optCompatible, componentBitmapBitLength);
+        b, i, optVendorIANA, optCompatible, componentBitmapBitLength,
+        applicableComponents);
 
     // --- Component Image Information Area 1.0.0 ---
-    size_t componentLocationOffsetIndex;
+    std::vector<size_t> componentLocationOffsetIndices;
     i = create_pldm_component_image_info_area_v1_0_0(
-        b, i, component_image_size, componentLocationOffsetIndex);
+        b, i, components, componentLocationOffsetIndices);
 
     // PackageHeaderChecksum (backfill later)
     const size_t packageHeaderChecksumOffset = i;
@@ -83,11 +93,17 @@ std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
     b[package_header_size_offset + 0] = (i >> 0) & 0xff;
     b[package_header_size_offset + 1] = (i >> 8) & 0xff;
 
-    // backfill the ComponentLocationOffset
-    b[componentLocationOffsetIndex + 0] = (i >> 0) & 0xff;
-    b[componentLocationOffsetIndex + 1] = (i >> 8) & 0xff;
-    b[componentLocationOffsetIndex + 2] = (i >> 16) & 0xff;
-    b[componentLocationOffsetIndex + 3] = (i >> 24) & 0xff;
+    // backfill the ComponentLocationOffsets, images follow the header in order
+    size_t location = i;
+    for (size_t c = 0; c < components.size(); c++)
+    {
+        const size_t index = componentLocationOffsetIndices[c];
+        b[index + 0] = (location >> 0) & 0xff;
+        b[index + 1] = (location >> 8) & 0xff;
+        b[index + 2] = (location >> 16) & 0xff;
+        b[index + 3] = (location >> 24) & 0xff;
+        location += components[c].data.size();
+    }
 
     // backfill PackageHeaderChecksum
     const uint32_t crc = pldm_edac_crc32(b, packageHeaderChecksumOffset);
@@ -95,16 +111,32 @@ std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
 
     // --- end of the package header ---
 
-    // write the component image
-    for (size_t j = 0; j < component_image_size; j++)
+    // write the component images
+    for (const TestComponentImage& component : components)
     {
-        b[i++] = component_image[j];
+        for (const uint8_t v : component.data)
+        {
+            b[i++] = v;
+        }
     }
 
     lg2::debug("wrote {NBYTES} bytes for pldm update package", "NBYTES", i);
 
     size_out = i;
     return buffer;
+}
+
+std::unique_ptr<uint8_t[]> create_pldm_package_buffer(
+    const uint8_t* component_image, size_t component_image_size,
+    const std::optional<uint32_t>& optVendorIANA,
+    const std::optional<std::string>& optCompatible, size_t& size_out)
+{
+    const std::vector<TestComponentImage> components = {
+        {std::vector<uint8_t>(component_image,
+                              component_image + component_image_size),
+         exampleVersion}};
+    return create_pldm_package_buffer(components, optVendorIANA, optCompatible,
+                                      size_out);
 }
 
 static void create_pldm_package_file(std::ofstream& of,

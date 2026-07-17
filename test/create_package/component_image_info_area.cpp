@@ -1,31 +1,22 @@
-#include "create_pldm_fw_package.hpp"
+#include "component_image_info_area.hpp"
 
 #include <inttypes.h>
 #include <unistd.h>
 
-#include <cstring>
-
-/*
- * componentLocationOffsetIndex  is for backfilling by the caller
- */
-ssize_t create_pldm_component_image_info_area_v1_0_0(
-    uint8_t* b, ssize_t i, size_t component_image_size,
-    size_t& componentLocationOffsetIndex)
+// ComponentImageInformation (Table 5) for one image
+static ssize_t create_pldm_component_image_info_v1_0_0(
+    uint8_t* b, ssize_t i, uint16_t componentIdentifier,
+    const TestComponentImage& component, size_t& componentLocationOffsetIndex)
 {
-    // Component Image Count
-    b[i++] = 0x1;
-    b[i++] = 0x0;
-
-    // ComponentImageInformation (Table 5)
-    // (1 for each image)
+    const size_t component_image_size = component.data.size();
 
     // ComponentClassification
     b[i++] = 0x1; // this is vendor selected value
     b[i++] = 0x0;
 
     // ComponentIdentifier
-    b[i++] = 0x1; // this is vendor selected value
-    b[i++] = 0x0;
+    b[i++] = (componentIdentifier >> 0) & 0xff;
+    b[i++] = (componentIdentifier >> 8) & 0xff;
 
     // ComponentComparisonStamp
     b[i++] = 0xff;
@@ -58,14 +49,35 @@ ssize_t create_pldm_component_image_info_area_v1_0_0(
     // ComponentVersionStringType
     b[i++] = 0x1; // type = Ascii
 
-    const char* buf = exampleVersion;
     // ComponentVersionStringLength
-    b[i++] = strlen(buf);
+    b[i++] = component.version.size();
 
     // ComponentVersionString
-    for (ssize_t j = 0; j < (ssize_t)strlen(buf); j++)
+    for (const char v : component.version)
     {
-        b[i++] = buf[j];
+        b[i++] = v;
+    }
+
+    return i;
+}
+
+/*
+ * componentLocationOffsetIndices is for backfilling by the caller
+ */
+ssize_t create_pldm_component_image_info_area_v1_0_0(
+    uint8_t* b, ssize_t i, std::span<const TestComponentImage> components,
+    std::vector<size_t>& componentLocationOffsetIndices)
+{
+    // Component Image Count
+    b[i++] = (components.size() >> 0) & 0xff;
+    b[i++] = (components.size() >> 8) & 0xff;
+
+    componentLocationOffsetIndices.resize(components.size());
+    for (size_t c = 0; c < components.size(); c++)
+    {
+        // ComponentIdentifier is vendor selected, keep it unique per image
+        i = create_pldm_component_image_info_v1_0_0(
+            b, i, c + 1, components[c], componentLocationOffsetIndices[c]);
     }
 
     return i;

@@ -122,7 +122,7 @@ if common_build or build_tests.allowed()
     subdir('common')
 endif
 
-if build_tests.allowed()
+if get_option('ocp-recovery-tool').allowed() or build_tests.allowed()
     add_languages('c', native: false)
     subdir('libocp')
 endif

@@ -16,6 +16,24 @@
       "message": "The intent of the change is not clear from this description. Can you please clarify and provide the clear intent in terms of usecase.",
       "revId": "09c402ca9df8577f81e7f14fe9a4a8ca3d647f88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6384fa4_e0e3e63f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-07-17T01:12:11Z",
+      "side": 1,
+      "message": "The primary intent is to establish a direct D-Bus association between a software updater object and its corresponding sensor configuration.\n\nTo achieve this while adhering to the Entity-Manager device modeling architecture advised in dbus-sensors/+/83968, devices like I2C VRs are modeled as a single top-level hardware type (e.g., `Type: MP29612`) rather than splitting them into separate sensor and firmware configs.\n\nBecause they are consolidated into a single configuration, the resulting D-Bus interface is specific to the sensor\u0027s hardware model (e.g., `xyz.openbmc_project.Configuration.MP29612`). Consequently, the Software Manager dynamically discovers these hardware-specific interfaces rather than relying on hardcoded lists.\n\nOnce discovered, the Software Manager attaches a `configures` association directly to the shared EM configuration object. This provides the critical link that allows psusensor to map sensors to its firmware updater.",
+      "parentUuid": "83354576_79cc5745",
+      "revId": "09c402ca9df8577f81e7f14fe9a4a8ca3d647f88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

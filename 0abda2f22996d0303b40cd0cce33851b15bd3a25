@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af9e9d40_e71ee8ed",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "nit: `std::span\u003cuint8_t\u003e` keeps the type, pointer and size contained in a single object.",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d13a5d_e15678ef",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "nit: please annotate here (in terms of pldm fw update spec) which version is it?\n\nThe version of the package? The component version? The existing fw version? The new fw version?",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5996c69c_42cea91f",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "nit: document pre-condition of non-empty vector.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29dbcb48_089dd9ab",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "This looks like it\u0027s validating the package and checking applicable components does not point to a nonexistent component image.\n\nBy my read this check should be part of the package parser (patch for libpldm(++)?) instead of checking it here. Otherwise that check would be duplicated across all code using pldm fw update packages.",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 288,
+        "endChar": 9
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b9499c_dacb10da",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "This is almost duplicated with your other definition\n\n```\nstruct ComponentImage\n{\n    const uint8_t* image;\n    size_t size;\n    std::string version;\n};\n```\n\nIf you need the component image you can just pass a pointer, no need for the offset?\n\nMaybe i am being dense but why do we need those 2 separate representations?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd68dc9_ff8312f5",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "This is against the existing pattern in this repo of using `bool` instead of return codes.\n\nUsing integers allows for a wide range of values which are completely unnecessary for a function that only communicates success or failure.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376f36f8_e7936a91",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "In `common/pldm/package_util.hpp` line 292 you are extracting the offset of the component image only to calculate the pointer here again.\n\nWhy not just pass around the pointer directly and avoid all these casts and pointer arithmetic?",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 5
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bb8f033_d8427bb5",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T10:14:16Z",
+      "side": 1,
+      "message": "nit: i would prefer to have a check for vector\u0027s size\n\n\u003e If empty() is true, the behavior is undefined.\n\nhttps://en.cppreference.com/cpp/container/vector/front",
+      "range": {
+        "startLine": 170,
+        "startChar": 1,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

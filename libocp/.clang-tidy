@@ -1,0 +1,8 @@
+---
+# libocp is a C library. The insecureAPI.DeprecatedOrUnsafeBufferHandling check
+# wants the C11 Annex K bounds-checked functions (memcpy_s, snprintf_s, ...),
+# which glibc does not implement, so plain memcpy/snprintf are unavoidable here.
+# Disable only that check for this directory; every other repo-root check still
+# applies.
+InheritParentConfig: true
+Checks: '-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling'

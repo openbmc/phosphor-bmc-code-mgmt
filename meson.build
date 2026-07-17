@@ -83,6 +83,7 @@ all_options = {
         'deps': ['libgpiod'],
     },
     'i2cvr-software-update': {'dirs': ['common/i2c', 'i2c-vr']},
+    'ocp-recovery-software-update': {'dirs': ['ocp-recovery']},
     'tpm-software-update': {'dirs': ['tpm']},
 }
 
@@ -114,6 +115,9 @@ if optioned_deps.contains('libgpiod')
         default_options: ['bindings=cxx'],
         version: '>=1.1.2',
     )
+else
+    # No enabled daemon needs GPIO muxing; common/ skips gpio_controller.
+    libgpiod_dep = disabler()
 endif
 
 if common_build or build_tests.allowed()
@@ -122,7 +126,9 @@ if common_build or build_tests.allowed()
     subdir('common')
 endif
 
-if get_option('ocp-recovery-tool').allowed() or build_tests.allowed()
+if get_option('ocp-recovery-software-update').allowed() or get_option(
+    'ocp-recovery-tool',
+).allowed() or build_tests.allowed()
     add_languages('c', native: false)
     subdir('libocp')
 endif

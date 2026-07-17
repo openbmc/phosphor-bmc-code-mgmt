@@ -122,6 +122,11 @@ if common_build or build_tests.allowed()
     subdir('common')
 endif
 
+if build_tests.allowed()
+    add_languages('c', native: false)
+    subdir('libocp')
+endif
+
 foreach dir : optioned_subdirs
     subdir(dir)
 endforeach

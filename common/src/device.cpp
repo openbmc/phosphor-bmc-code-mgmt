@@ -43,8 +43,8 @@ Device::Device(sdbusplus::async::context& ctx, const SoftwareConfig& config,
 sdbusplus::async::task<bool> Device::getImageInfo(
     const sdbusplus::object_path& objectPath,
     std::unique_ptr<void, std::function<void(void*)>>& pldmPackage,
-    size_t pldmPackageSize, uint8_t** matchingComponentImage,
-    size_t* componentImageSize, std::string& componentVersion)
+    size_t pldmPackageSize, std::vector<ComponentImage>& components,
+    std::string& componentVersion)
 
 {
     std::unique_ptr<pldm::fw_update::Package> package =
@@ -62,22 +62,28 @@ sdbusplus::async::task<bool> Device::getImageInfo(
     co_await events.generateVerificationFailed(objectPath, componentVersion,
                                                false);
 
-    uint32_t componentOffset = 0;
-    const int status = pldm_package_util::extractMatchingComponentImage(
+    std::vector<pldm_package_util::MatchingComponentImage> matching;
+    const int status = pldm_package_util::extractMatchingComponentImages(
         static_cast<uint8_t*>(pldmPackage.get()), package,
-        config.compatibleHardware, config.vendorIANA, &componentOffset,
-        componentImageSize, componentVersion);
+        config.compatibleHardware, config.vendorIANA, matching);
 
     if (status != 0)
     {
-        error("could not extract matching component image");
+        error("could not extract matching component images");
         co_await events.generateUpdateNotApplicable(objectPath,
                                                     componentVersion, true);
         co_return false;
     }
 
-    *matchingComponentImage =
-        static_cast<uint8_t*>(pldmPackage.get()) + componentOffset;
+    components.clear();
+    for (const auto& m : matching)
+    {
+        components.emplace_back(ComponentImage{
+            static_cast<uint8_t*>(pldmPackage.get()) + m.offset, m.size,
+            m.version});
+    }
+
+    componentVersion = components.front().version;
 
     co_await events.generateUpdateNotApplicable(objectPath, componentVersion,
                                                 false);
@@ -100,13 +106,11 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
         co_return false;
     }
 
-    uint8_t* componentImage;
-    size_t componentImageSize = 0;
+    std::vector<ComponentImage> components;
     std::string componentVersion;
 
     if (!co_await getImageInfo(softwarePendingIn->objectPath, pldm_pkg,
-                               pldm_pkg_size, &componentImage,
-                               &componentImageSize, componentVersion))
+                               pldm_pkg_size, components, componentVersion))
     {
         softwarePendingIn->setActivation(ActivationInvalid);
         co_return false;
@@ -121,7 +125,7 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
                                              componentVersion);
 
     const bool success = co_await continueUpdateWithMappedPackage(
-        componentImage, componentImageSize, componentVersion, applyTime);
+        components, componentVersion, applyTime);
 
     if (!success)
     {
@@ -161,6 +165,15 @@ sdbusplus::async::task<bool> Device::resetDevice()
     co_return true;
 }
 
+sdbusplus::async::task<bool> Device::updateDeviceComponents(
+    const std::vector<ComponentImage>& components)
+{
+    // Single-component devices consume only the first applicable
+    // component image, which preserves the previous behavior.
+    co_return co_await updateDevice(components.front().image,
+                                    components.front().size);
+}
+
 bool Device::setUpdateProgress(uint8_t progress) const
 {
     if (!softwarePending || !softwarePending->softwareActivationProgress)
@@ -174,7 +187,7 @@ bool Device::setUpdateProgress(uint8_t progress) const
 }
 
 sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
-    const uint8_t* matchingComponentImage, size_t componentImageSize,
+    const std::vector<ComponentImage>& components,
     const std::string& componentVersion, RequestedApplyTimes applyTime)
 {
     softwarePending->setActivation(ActivationInterface::Activations::Ready);
@@ -196,8 +209,7 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     softwarePending->setActivation(
         ActivationInterface::Activations::Activating);
 
-    bool success =
-        co_await updateDevice(matchingComponentImage, componentImageSize);
+    bool success = co_await updateDeviceComponents(components);
 
     if (success)
     {

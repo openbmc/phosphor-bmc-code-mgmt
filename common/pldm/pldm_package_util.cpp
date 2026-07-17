@@ -245,4 +245,56 @@ int extractMatchingComponentImage(
     return EXIT_SUCCESS;
 }
 
+int extractMatchingComponentImages(
+    const uint8_t* buf, const std::unique_ptr<Package>& package,
+    const std::string& compatible, uint32_t vendorIANA,
+    std::vector<MatchingComponentImage>& componentsOut)
+{
+    const std::vector<FirmwareDeviceIDRecord>& fwDeviceIdRecords =
+        package->firmwareDeviceIdRecords;
+
+    const ssize_t deviceDescriptorIndex = findMatchingDeviceDescriptorIndex(
+        fwDeviceIdRecords, vendorIANA, compatible);
+
+    if (deviceDescriptorIndex < 0)
+    {
+        error(
+            "did not find a matching device descriptor for {IANA}, {COMPATIBLE}",
+            "IANA", lg2::hex, vendorIANA, "COMPATIBLE", compatible);
+        return EXIT_FAILURE;
+    }
+
+    const FirmwareDeviceIDRecord& descriptor =
+        fwDeviceIdRecords[deviceDescriptorIndex];
+
+    const std::vector<size_t>& ac = descriptor.applicableComponents;
+
+    if (ac.empty())
+    {
+        error("did not find an applicable component image for the device");
+        return EXIT_FAILURE;
+    }
+
+    const std::vector<ComponentImageInfo>& cs =
+        package->componentImageInformation;
+
+    componentsOut.clear();
+    for (const size_t component : ac)
+    {
+        if (component >= cs.size())
+        {
+            error("applicable component out of bounds");
+            return EXIT_FAILURE;
+        }
+
+        const ComponentImageInfo& c = cs[component];
+
+        componentsOut.emplace_back(MatchingComponentImage{
+            static_cast<uint32_t>(c.componentLocation.ptr - buf),
+            c.componentLocation.length, c.componentVersion});
+    }
+
+    return EXIT_SUCCESS;
+}
+
 } // namespace pldm_package_util

@@ -13,3 +13,7 @@ libocp_dep = declare_dependency(
     link_with: libocp,
     include_directories: libocp_inc,
 )
+
+if get_option('ocp-recovery-tool').allowed()
+    subdir('tools')
+endif

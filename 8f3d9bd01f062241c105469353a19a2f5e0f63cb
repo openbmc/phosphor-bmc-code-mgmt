@@ -77,6 +77,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd3ff8cf_ba8343ab",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "e122de65_9395f5b7",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af90a4af_3a97ad07",
         "filename": "bios/spi_device.cpp",
         "patchSetId": 1
@@ -88,6 +106,24 @@
       "writtenOn": "2026-07-15T10:45:30Z",
       "side": 1,
       "message": "You\u0027re updating the progress on every `\\r` chunk. This could cause a massive amount of updates for the same update progress (e.g. when only a few kilobytes are updating).\n\nSuggestion: Only update when the progress really changes. Draft (written without testing it):\n\n\n```cpp\nint progress{-1);\nint lastProgress{-1};\n\nif (progress \u003e\u003d 0 \u0026\u0026 progress !\u003d lastProgress)\n{\n\tlastProgress \u003d progress;\n\tsetUpdateProgress(progress);\n}\n```",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236630ad_cc4f55c8",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "af90a4af_3a97ad07",
       "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -111,6 +147,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d157a70e_2d3beeba",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "1adaa15f_9e86f3c3",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68e310c1_353b102c",
         "filename": "bios/spi_device.cpp",
         "patchSetId": 1
@@ -122,6 +176,30 @@
       "writtenOn": "2026-07-15T09:53:16Z",
       "side": 1,
       "message": "This looks very similar to line 672, can we deduplicate that code?",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 621,
+        "endChar": 17
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cf60f8f_8a8b5d00",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "68e310c1_353b102c",
       "range": {
         "startLine": 599,
         "startChar": 1,
@@ -168,6 +246,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22b71e6a_07fa598a",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "12b9352f_6eb7d74c",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c3eead6_d1a63d96",
         "filename": "bios/spi_device.cpp",
         "patchSetId": 1
@@ -179,6 +275,30 @@
       "writtenOn": "2026-07-15T09:53:16Z",
       "side": 1,
       "message": "nit: this progress calculation could be extracted into it\u0027s own function",
+      "range": {
+        "startLine": 666,
+        "startChar": 1,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c808ea_e6e5a918",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1002705
+      },
+      "writtenOn": "2026-07-20T12:19:50Z",
+      "side": 1,
+      "message": "Acknowledged. We plan to provide the updated patch soon.",
+      "parentUuid": "5c3eead6_d1a63d96",
       "range": {
         "startLine": 666,
         "startChar": 1,

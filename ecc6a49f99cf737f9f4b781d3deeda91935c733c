@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b6e5c74_b3819e70",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-07-21T10:51:00Z",
+      "side": 1,
+      "message": "The log appears in two situations:\n\n1. During BMC boot-up\nJul 21 03:41:41 bmc phosphor-cpld-software-update[4759]: Getting Lattice CPLD version\nJul 21 03:41:41 bmc phosphor-cpld-software-update[4759]: Active image id: 1, Non-active image id: 2\nJul 21 03:41:41 bmc phosphor-cpld-software-update[4759]: CPLD version: 00010B05\n\n\n2. During a CPLD firmware update\nJul 21 03:41:53 bmc phosphor-cpld-software-update[4759]: Updating Lattice CPLD firmware\nJul 21 03:41:53 bmc phosphor-cpld-software-update[4759]: Active image id: 1, Non-active image id: 2\nJul 21 03:45:03 bmc phosphor-cpld-software-update[4759]: Successfully updated CPLD\n\nWe received feedback from an end user that they would like to know whether the active image slot has changed after a firmware update and have a way to verify it.\n\nTherefore, I kept this log message at the INFO level.",
+      "parentUuid": "98d5c9aa_998a7343",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34affef4_91ade2d2",
@@ -70,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8b31974_ba9967fc",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-07-21T10:51:00Z",
+      "side": 1,
+      "message": "follow XO5 T series, and add a XO5 D series.",
+      "parentUuid": "34affef4_91ade2d2",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "557422bb_0facf9a5",
@@ -83,6 +119,24 @@
       "writtenOn": "2026-06-16T21:54:45Z",
       "side": 1,
       "message": "nit: Since these are private would it make sense to move these to .cpp instead?",
+      "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70bed236_8258e435",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-07-21T10:51:00Z",
+      "side": 1,
+      "message": "move it to cpp file",
+      "parentUuid": "557422bb_0facf9a5",
       "revId": "ecc6a49f99cf737f9f4b781d3deeda91935c733c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

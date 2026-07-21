@@ -125,6 +125,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fcf790a_025d1535",
+        "filename": "cpld/lattice/lattice_xo5d_cpld.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-07-21T10:51:00Z",
+      "side": 1,
+      "message": "set it to debug level",
+      "parentUuid": "cfe62d34_92d90517",
+      "revId": "42bc019ea17ed5c37d34794e849b396d08804e8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25b4111c_e252f02d",

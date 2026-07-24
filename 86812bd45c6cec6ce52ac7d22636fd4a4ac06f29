@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364b023e_d778c926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-24T02:56:59Z",
+      "side": 1,
+      "message": "Will wait for https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92050/5 to get approved.",
+      "revId": "86812bd45c6cec6ce52ac7d22636fd4a4ac06f29",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

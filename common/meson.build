@@ -26,7 +26,7 @@ software_common_lib = static_library(
     'src/software_config.cpp',
     'src/software.cpp',
     'src/software_update.cpp',
-    'src/host_power.cpp',
+    'src/system_state.cpp',
     'src/utils.cpp',
     include_directories: ['.', 'include/', common_include],
     dependencies: [

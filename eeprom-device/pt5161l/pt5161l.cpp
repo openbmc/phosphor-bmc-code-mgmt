@@ -72,12 +72,18 @@ bool PT5161LDeviceVersion::isDeviceReady()
         }
     }
 
-    error("Failed to get status: unable to find fw_load_status file");
+    debug("Failed to get status: unable to find fw_load_status file");
     return false;
 }
 
-std::optional<HostPowerInf::HostState>
+std::optional<SystemStateInf::HostState>
     PT5161LDeviceVersion::getHostStateToQueryVersion()
 {
-    return HostPowerInf::HostState::Running;
+    return SystemStateInf::HostState::Running;
+}
+
+std::optional<SystemStateInf::OsState>
+    PT5161LDeviceVersion::getOsStateToQueryVersion()
+{
+    return SystemStateInf::OsState::Standby;
 }

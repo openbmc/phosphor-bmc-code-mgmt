@@ -1,5 +1,6 @@
 #include "vr.hpp"
 
+#include "adi/max209xx.hpp"
 #include "isl69269/isl69269.hpp"
 #include "mps/mp297x.hpp"
 #include "mps/mp2x6xx.hpp"
@@ -27,6 +28,8 @@ std::unique_ptr<VoltageRegulator> create(sdbusplus::async::context& ctx,
             return std::make_unique<XDPE1X2XX>(ctx, bus, address);
         case VRType::ISL69269:
             return std::make_unique<ISL69269>(ctx, bus, address);
+        case VRType::MAX209XX:
+            return std::make_unique<MAX209XX>(ctx, bus, address);
         case VRType::MP2X6XX:
             return std::make_unique<MP2X6XX>(ctx, bus, address);
         case VRType::MP292X:
@@ -63,6 +66,7 @@ bool stringToEnum(std::string& vrStr, VRType& vrType)
     std::map<std::string, enum VRType> VRTypeToString{
         {"XDPE1X2XXFirmware", VRType::XDPE1X2XX},
         {"ISL69269Firmware", VRType::ISL69269},
+        {"MAX209XXFirmware", VRType::MAX209XX},
         {"MP2X6XXFirmware", VRType::MP2X6XX},
         {"MP292XFirmware", VRType::MP292X},
         {"MP297XFirmware", VRType::MP297X},

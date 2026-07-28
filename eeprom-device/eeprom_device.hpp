@@ -1,9 +1,9 @@
 #pragma once
 
 #include "common/include/device.hpp"
-#include "common/include/host_power.hpp"
 #include "common/include/software.hpp"
 #include "common/include/software_manager.hpp"
+#include "common/include/system_state.hpp"
 #include "eeprom_device_version.hpp"
 
 #include <sdbusplus/async/context.hpp>
@@ -13,7 +13,7 @@
 
 namespace SoftwareInf = phosphor::software;
 namespace ManagerInf = SoftwareInf::manager;
-namespace HostPowerInf = SoftwareInf::host_power;
+namespace SystemStateInf = SoftwareInf::system_state;
 
 class EEPROMDevice : public Device
 {
@@ -33,11 +33,12 @@ class EEPROMDevice : public Device
   private:
     uint16_t bus;
     uint8_t address;
+    bool isDeviceReady = false;
     std::string chipModel;
     std::vector<std::string> gpioLines;
     std::vector<bool> gpioPolarities;
     std::unique_ptr<DeviceVersion> deviceVersion;
-    HostPowerInf::HostPower hostPower;
+    SystemStateInf::SystemState systemState;
 
     /**
      * @brief Binds the EEPROM device driver to the I2C device.
@@ -70,4 +71,14 @@ class EEPROMDevice : public Device
      *  @brief Handle async host state change signal and updates the version.
      */
     sdbusplus::async::task<> processHostStateChange();
+
+    /**
+     *  @brief Handle async OS state change signal and updates the version.
+     */
+    sdbusplus::async::task<> processOsStateChange();
+
+    /**
+     *  @brief Retrieve the firmware version
+     */
+    sdbusplus::async::task<> updateFirmwareVersion();
 };

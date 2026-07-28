@@ -24,7 +24,7 @@ class DeviceVersion
     virtual std::string getVersion() = 0;
     virtual std::optional<HostPowerInf::HostState>
         getHostStateToQueryVersion() = 0;
-
+    virtual std::optional<HostPowerInf::OsState> getOsStateToQueryVersion() = 0;
     virtual ~DeviceVersion() = default;
     DeviceVersion(const DeviceVersion&) = delete;
     DeviceVersion& operator=(const DeviceVersion&) = delete;

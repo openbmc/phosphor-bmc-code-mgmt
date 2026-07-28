@@ -33,6 +33,7 @@ class EEPROMDevice : public Device
   private:
     uint16_t bus;
     uint8_t address;
+    bool isDeviceReady = false;
     std::string chipModel;
     std::vector<std::string> gpioLines;
     std::vector<bool> gpioPolarities;
@@ -70,4 +71,9 @@ class EEPROMDevice : public Device
      *  @brief Handle async host state change signal and updates the version.
      */
     sdbusplus::async::task<> processHostStateChange();
+
+    /**
+     *  @brief Handle async OS state change signal and updates the version.
+     */
+    sdbusplus::async::task<> processOsStateChange();
 };

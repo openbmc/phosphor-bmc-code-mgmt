@@ -13,6 +13,7 @@ enum class VRType
 {
     XDPE1X2XX,
     ISL69269,
+    MAX209XX,
     MP2X6XX,
     MP292X,
     MP297X,

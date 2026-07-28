@@ -1,6 +1,7 @@
 i2cvr_src = files('i2cvr_device.cpp', 'i2cvr_software_manager.cpp', 'vr.cpp')
 
 regulators_src = files(
+    'adi/max209xx.cpp',
     'isl69269/isl69269.cpp',
     'mps/mp297x.cpp',
     'mps/mp2x6xx.cpp',

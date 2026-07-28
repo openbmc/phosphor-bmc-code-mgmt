@@ -1,8 +1,8 @@
 #include "spi_device.hpp"
 
 #include "common/include/device.hpp"
-#include "common/include/host_power.hpp"
 #include "common/include/software_manager.hpp"
+#include "common/include/system_state.hpp"
 #include "common/include/utils.hpp"
 
 #include <gpio_controller.hpp>
@@ -22,7 +22,7 @@ PHOSPHOR_LOG2_USING;
 using namespace std::literals;
 using namespace phosphor::software;
 using namespace phosphor::software::manager;
-using namespace phosphor::software::host_power;
+using namespace phosphor::software::system_state;
 namespace fs = std::filesystem;
 
 static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)

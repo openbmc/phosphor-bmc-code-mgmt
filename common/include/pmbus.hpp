@@ -6,6 +6,7 @@ enum class PMBusCmd : uint8_t
 {
     page = 0x00,
     writeProtect = 0x10,
+    storeUserAll = 0x15,
     restoreUserAll = 0x16,
     storeUserCode = 0x17,
     statusCML = 0x7E,

@@ -305,7 +305,7 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
                 debug("Device version is ready");
                 break;
             }
-            co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(2));
+            co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(10));
         }
 
         std::string version = deviceVersion->getVersion();

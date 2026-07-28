@@ -1,11 +1,11 @@
 #pragma once
 #include "common/include/NotifyWatch.hpp"
-#include "common/include/host_power.hpp"
+#include "common/include/system_state.hpp"
 #include "spi_device.hpp"
 
 using namespace phosphor::software;
 using namespace phosphor::software::manager;
-using namespace phosphor::software::host_power;
+using namespace phosphor::software::system_state;
 
 class BIOSDevice : public SPIDevice
 {
@@ -29,5 +29,5 @@ class BIOSDevice : public SPIDevice
 
   private:
     phosphor::notify::watch::NotifyWatch<BIOSDevice> versionWatch;
-    HostState prevPowerstate;
+    HostState prevHostState;
 };

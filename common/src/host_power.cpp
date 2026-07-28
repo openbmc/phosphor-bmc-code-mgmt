@@ -21,6 +21,9 @@ namespace RulesIntf = sdbusplus::match_rules;
 using StateIntf =
     sdbusplus::client::xyz::openbmc_project::state::Host<void, void>;
 
+using OsStateIntf =
+    sdbusplus::common::xyz::openbmc_project::state::operating_system::Status;
+
 const auto transitionOn =
     sdbusplus::client::xyz::openbmc_project::state::Host<>::Transition::On;
 const auto transitionOff =
@@ -37,7 +40,9 @@ constexpr const char* service = "xyz.openbmc_project.State.Host";
 
 HostPower::HostPower(sdbusplus::async::context& ctx) :
     stateChangedMatch(ctx, RulesIntf::propertiesChanged(host0ObjectPath,
-                                                        StateIntf::interface))
+                                                        StateIntf::interface)),
+    osStateChangedMatch(ctx, RulesIntf::propertiesChanged(
+                                 host0ObjectPath, OsStateIntf::interface))
 {}
 
 sdbusplus::async::task<bool> HostPower::setState(sdbusplus::async::context& ctx,

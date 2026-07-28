@@ -70,4 +70,9 @@ class EEPROMDevice : public Device
      *  @brief Handle async host state change signal and updates the version.
      */
     sdbusplus::async::task<> processHostStateChange();
+
+    /**
+     *  @brief Handle async OS state change signal and updates the version.
+     */
+    sdbusplus::async::task<> processOsStateChange();
 };

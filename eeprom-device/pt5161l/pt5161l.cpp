@@ -81,3 +81,9 @@ std::optional<HostPowerInf::HostState>
 {
     return HostPowerInf::HostState::Running;
 }
+
+std::optional<HostPowerInf::OsState>
+    PT5161LDeviceVersion::getOsStateToQueryVersion()
+{
+    return HostPowerInf::OsState::Standby;
+}

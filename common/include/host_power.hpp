@@ -3,6 +3,7 @@
 #include <sdbusplus/async/context.hpp>
 #include <sdbusplus/async/match.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
+#include <xyz/openbmc_project/State/OperatingSystem/Status/common.hpp>
 
 namespace phosphor::software::host_power
 {
@@ -14,6 +15,9 @@ const auto stateOff =
 
 using HostState =
     sdbusplus::client::xyz::openbmc_project::state::Host<>::HostState;
+
+using OsState = sdbusplus::common::xyz::openbmc_project::state::
+    operating_system::Status::OSStatus;
 
 class HostPower
 {
@@ -30,6 +34,7 @@ class HostPower
         sdbusplus::async::context& ctx);
 
     sdbusplus::async::match stateChangedMatch;
+    sdbusplus::async::match osStateChangedMatch;
 };
 
 }; // namespace phosphor::software::host_power

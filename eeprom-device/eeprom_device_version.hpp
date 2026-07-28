@@ -1,13 +1,13 @@
 #pragma once
 
-#include "common/include/host_power.hpp"
+#include "common/include/system_state.hpp"
 
 #include <cstdint>
 #include <memory>
 #include <optional>
 #include <string>
 
-namespace HostPowerInf = phosphor::software::host_power;
+namespace SystemStateInf = phosphor::software::system_state;
 
 class DeviceVersion
 {
@@ -22,9 +22,10 @@ class DeviceVersion
         return true;
     }
     virtual std::string getVersion() = 0;
-    virtual std::optional<HostPowerInf::HostState>
+    virtual std::optional<SystemStateInf::HostState>
         getHostStateToQueryVersion() = 0;
-
+    virtual std::optional<SystemStateInf::OsState>
+        getOsStateToQueryVersion() = 0;
     virtual ~DeviceVersion() = default;
     DeviceVersion(const DeviceVersion&) = delete;
     DeviceVersion& operator=(const DeviceVersion&) = delete;

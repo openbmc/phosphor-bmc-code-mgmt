@@ -62,13 +62,14 @@ EEPROMDevice::EEPROMDevice(
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     bus(bus), address(address), chipModel(chipModel), gpioLines(gpioLines),
     gpioPolarities(gpioPolarities), deviceVersion(std::move(deviceVersion)),
-    hostPower(ctx)
+    systemState(ctx)
 {
     // Some EEPROM devices require the host to be in a specific state before
     // retrieving the version. To handle this, set up a match to listen for
     // property changes on the host state. Once the host reaches the required
     // condition, the version can be updated accordingly.
     ctx.spawn(processHostStateChange());
+    ctx.spawn(processOsStateChange());
 
     debug("Initialized EEPROM device instance on dbus");
 }
@@ -273,9 +274,54 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
     co_return success;
 }
 
-sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
+sdbusplus::async::task<> EEPROMDevice::updateFirmwareVersion()
 {
     constexpr int maxRetries = 15;
+
+    for (int i = 0; i < maxRetries; ++i)
+    {
+        isDeviceReady = deviceVersion->isDeviceReady();
+
+        if (isDeviceReady)
+        {
+            debug("Device version is ready");
+            break;
+        }
+
+        co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(2));
+    }
+
+    const auto version = deviceVersion->getVersion();
+
+    if (isDeviceReady && !version.empty())
+    {
+        softwareCurrent->setVersion(
+            version, SoftwareInf::SoftwareVersion::VersionPurpose::Other);
+    }
+
+    co_return;
+}
+
+sdbusplus::async::task<> EEPROMDevice::processOsStateChange()
+{
+    auto requiredOsState = deviceVersion->getOsStateToQueryVersion();
+
+    if (!requiredOsState)
+    {
+        error("Failed to get required OperatingSystemState");
+        co_return;
+    }
+
+    co_await systemState.watchOsState(
+        *requiredOsState, [this]() -> sdbusplus::async::task<> {
+            co_await updateFirmwareVersion();
+        });
+
+    co_return;
+}
+
+sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
+{
     auto requiredHostState = deviceVersion->getHostStateToQueryVersion();
 
     if (!requiredHostState)
@@ -284,45 +330,10 @@ sdbusplus::async::task<> EEPROMDevice::processHostStateChange()
         co_return;
     }
 
-    while (!ctx.stop_requested())
-    {
-        auto nextResult = co_await hostPower.stateChangedMatch.next<
-            std::string, std::map<std::string, std::variant<std::string>>>();
-
-        const auto& [interfaceName, changedProperties] = nextResult;
-
-        auto it = changedProperties.find("CurrentHostState");
-        if (it != changedProperties.end())
-        {
-            const auto& currentHostState = std::get<std::string>(it->second);
-
-            if (currentHostState ==
-                State::convertForMessage(*requiredHostState))
-            {
-                auto isDeviceReady = false;
-                debug("Host state {STATE} matches to retrieve the version",
-                      "STATE", currentHostState);
-                for (int i = 0; i < maxRetries; ++i)
-                {
-                    isDeviceReady = deviceVersion->isDeviceReady();
-                    if (isDeviceReady)
-                    {
-                        debug("Device version is ready");
-                        break;
-                    }
-                    co_await sdbusplus::async::sleep_for(
-                        ctx, std::chrono::seconds(2));
-                }
-                std::string version = deviceVersion->getVersion();
-                if (isDeviceReady && !version.empty())
-                {
-                    softwareCurrent->setVersion(
-                        version,
-                        SoftwareInf::SoftwareVersion::VersionPurpose::Other);
-                }
-            }
-        }
-    }
+    co_await systemState.watchHostState(
+        *requiredHostState, [this]() -> sdbusplus::async::task<> {
+            co_await updateFirmwareVersion();
+        });
 
     co_return;
 }

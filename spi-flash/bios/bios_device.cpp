@@ -9,7 +9,7 @@
 PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software;
-using namespace phosphor::software::host_power;
+using namespace phosphor::software::system_state;
 
 namespace
 {
@@ -95,14 +95,14 @@ std::string BIOSDevice::getVersion()
 
 sdbusplus::async::task<bool> BIOSDevice::preUpdate()
 {
-    prevPowerstate = co_await HostPower::getState(ctx);
+    prevHostState = co_await SystemState::getHostState(ctx);
 
-    if (prevPowerstate != stateOn && prevPowerstate != stateOff)
+    if (prevHostState != stateOn && prevHostState != stateOff)
     {
         co_return false;
     }
 
-    bool success = co_await HostPower::setState(ctx, stateOff);
+    bool success = co_await SystemState::setHostState(ctx, stateOff);
     if (!success)
     {
         error("error changing host power state");
@@ -115,7 +115,7 @@ sdbusplus::async::task<bool> BIOSDevice::preUpdate()
 sdbusplus::async::task<bool> BIOSDevice::postUpdate()
 {
     const bool powerstateRestored =
-        co_await HostPower::setState(ctx, prevPowerstate);
+        co_await SystemState::setHostState(ctx, prevHostState);
     if (!powerstateRestored)
     {
         error("error restoring host power state");

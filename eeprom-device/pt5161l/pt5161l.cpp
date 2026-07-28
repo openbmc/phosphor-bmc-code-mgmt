@@ -76,8 +76,14 @@ bool PT5161LDeviceVersion::isDeviceReady()
     return false;
 }
 
-std::optional<HostPowerInf::HostState>
+std::optional<SystemStateInf::HostState>
     PT5161LDeviceVersion::getHostStateToQueryVersion()
 {
-    return HostPowerInf::HostState::Running;
+    return SystemStateInf::HostState::Running;
+}
+
+std::optional<SystemStateInf::OsState>
+    PT5161LDeviceVersion::getOsStateToQueryVersion()
+{
+    return SystemStateInf::OsState::Standby;
 }

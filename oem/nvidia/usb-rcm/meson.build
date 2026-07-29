@@ -14,3 +14,19 @@ usb_rcm_dep = declare_dependency(
     include_directories: include_directories('.'),
     dependencies: [libgpiod_dep, libusb_dep],
 )
+
+if get_option('usb-rcm-recovery-tool').allowed()
+    if cpp.has_header('CLI/CLI.hpp')
+        cli11_dep = declare_dependency()
+    else
+        cli11_dep = dependency('CLI11')
+    endif
+
+    executable(
+        'nvidia-usb-rcm-recovery-tool',
+        'usb_rcm_tool.cpp',
+        dependencies: [usb_rcm_dep, cli11_dep],
+        install: true,
+        install_dir: get_option('bindir'),
+    )
+endif

@@ -1,0 +1,14 @@
+[Unit]
+Description=NVIDIA USB RCM Firmware Recovery Update Daemon
+After=xyz.openbmc_project.ObjectMapper.service
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=always
+Type=dbus
+BusName=xyz.openbmc_project.Software.USBRCMRecovery
+RemainAfterExit=no
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-usb-rcm-recovery-software-update
+
+[Install]
+WantedBy=multi-user.target

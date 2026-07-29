@@ -98,6 +98,27 @@ option(
     description: 'Build the standalone OCP Secure Firmware Recovery CLI tool.',
 )
 
+option(
+    'oem-nvidia',
+    type: 'feature',
+    value: 'disabled',
+    description: 'Enable NVIDIA OEM extensions (oem/nvidia).',
+)
+
+option(
+    'usb-rcm-recovery-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable NVIDIA USB RCM (Vera CPU) firmware recovery update support. Requires oem-nvidia.',
+)
+
+option(
+    'usb-rcm-recovery-tool',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Build the NVIDIA USB RCM recovery CLI bring-up tool. Requires oem-nvidia.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

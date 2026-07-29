@@ -23,6 +23,12 @@ add_project_arguments(
     language: 'cpp',
 )
 
+# Must precede any build target: NVIDIA OEM extensions (oem/nvidia) are
+# compiled in when enabled.
+if get_option('oem-nvidia').allowed()
+    add_project_arguments('-DOEM_NVIDIA', language: 'cpp')
+endif
+
 cpp = meson.get_compiler('cpp')
 
 boost_dep = dependency('boost')
@@ -108,7 +114,15 @@ foreach option_name, option_settings : all_options
     endif
 endforeach
 
-if optioned_deps.contains('libgpiod')
+# The NVIDIA OEM subtree (oem/nvidia) builds on the common SoftwareManager
+# framework and needs GPIO (SMA recovery-mode entry), so building it implies
+# the common build and a real libgpiod dependency.
+build_oem_nvidia = get_option('oem-nvidia').allowed()
+if build_oem_nvidia
+    common_build = true
+endif
+
+if optioned_deps.contains('libgpiod') or build_oem_nvidia
     libgpiod_dep = dependency(
         'libgpiodcxx',
         default_options: ['bindings=cxx'],
@@ -124,6 +138,13 @@ endif
 
 if get_option('ocp-recovery-tool').allowed() or build_tests.allowed()
     subdir('libocp')
+endif
+
+if build_oem_nvidia
+    # libusb backs the SMA USB transport and is only needed by NVIDIA OEM code;
+    # resolve it here so no non-OEM build pulls it in.
+    libusb_dep = dependency('libusb-1.0')
+    subdir('oem/nvidia')
 endif
 
 foreach dir : optioned_subdirs

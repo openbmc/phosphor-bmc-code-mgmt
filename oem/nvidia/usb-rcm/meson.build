@@ -30,3 +30,29 @@ if get_option('usb-rcm-recovery-tool').allowed()
         install_dir: get_option('bindir'),
     )
 endif
+
+if get_option('usb-rcm-recovery-software-update').allowed()
+    executable(
+        'phosphor-usb-rcm-recovery-software-update',
+        'usb_rcm_software_manager.cpp',
+        'usb_rcm_device.cpp',
+        include_directories: [common_include],
+        dependencies: [
+            sdbusplus_dep,
+            phosphor_logging_dep,
+            pdi_dep,
+            boost_dep,
+            libpldm_dep,
+            usb_rcm_dep,
+            dependency('threads'),
+        ],
+        link_with: [software_common_lib, libpldmutil],
+        install: true,
+        install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
+    )
+
+    install_data(
+        'xyz.openbmc_project.Software.USBRCMRecovery.service',
+        install_dir: systemd_system_unit_dir,
+    )
+endif

@@ -29,6 +29,9 @@ constexpr uint8_t isReady = 0;
 constexpr uint8_t busyOrReadyBit = 4;
 constexpr uint8_t failOrOKBit = 5;
 
+constexpr int progressEraseDone = 70;
+constexpr int progressUpdateDone = 90;
+
 static uint8_t reverse_bit(uint8_t b)
 {
     b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
@@ -47,9 +50,9 @@ std::string LatticeBaseCPLD::uint32ToHexStr(uint32_t value)
 
 sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
     const uint8_t* image, size_t imageSize,
-    std::function<bool(int)> progressCallBack)
+    std::function<bool(int)> progressCallBackIn)
 {
-    if (progressCallBack == nullptr)
+    if (progressCallBackIn == nullptr)
     {
         lg2::error("Error: progressCallBack is null.");
         co_return false;
@@ -60,6 +63,9 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
         lg2::error("Error: image is null.");
         co_return false;
     }
+
+    progressCallBack = std::move(progressCallBackIn);
+    lastReportedProgress = -1;
 
     lg2::debug("CPLD image size: {IMAGESIZE}", "IMAGESIZE", imageSize);
     auto result = co_await prepareUpdate(image, imageSize);
@@ -78,7 +84,7 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
         co_return false;
     }
     lg2::debug("Do erase success");
-    progressCallBack(70);
+    progressCallBack(progressEraseDone);
 
     result = co_await doUpdate();
     if (!result)
@@ -87,7 +93,7 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
         co_return false;
     }
     lg2::debug("Do update success");
-    progressCallBack(90);
+    progressCallBack(progressUpdateDone);
 
     result = co_await finishUpdate();
     if (!result)
@@ -99,6 +105,26 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
     progressCallBack(100);
 
     co_return true;
+}
+
+void LatticeBaseCPLD::reportPageProgress(size_t offset, size_t totalSize)
+{
+    if (!progressCallBack || totalSize == 0)
+    {
+        return;
+    }
+
+    int progress = progressEraseDone +
+                   static_cast<int>((progressUpdateDone - progressEraseDone) *
+                                    (double(offset) / double(totalSize)));
+
+    // Avoid firing a redundant D-Bus PropertiesChanged when the percentage
+    // hasn't moved.
+    if (progress >= 0 && progress != lastReportedProgress)
+    {
+        lastReportedProgress = progress;
+        progressCallBack(progress);
+    }
 }
 
 bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)

@@ -47,9 +47,9 @@ std::string LatticeBaseCPLD::uint32ToHexStr(uint32_t value)
 
 sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
     const uint8_t* image, size_t imageSize,
-    std::function<bool(int)> progressCallBack)
+    std::function<bool(int)> progressCallBackIn)
 {
-    if (progressCallBack == nullptr)
+    if (progressCallBackIn == nullptr)
     {
         lg2::error("Error: progressCallBack is null.");
         co_return false;
@@ -60,6 +60,9 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
         lg2::error("Error: image is null.");
         co_return false;
     }
+
+    progressCallBack = std::move(progressCallBackIn);
+    lastReportedProgress = -1;
 
     lg2::debug("CPLD image size: {IMAGESIZE}", "IMAGESIZE", imageSize);
     auto result = co_await prepareUpdate(image, imageSize);
@@ -99,6 +102,25 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::updateFirmware(
     progressCallBack(100);
 
     co_return true;
+}
+
+void LatticeBaseCPLD::reportPageProgress(size_t offset, size_t totalSize,
+                                         int rangeStart, int rangeEnd)
+{
+    if (!progressCallBack || totalSize == 0)
+    {
+        return;
+    }
+
+    int progress = rangeStart +
+                   static_cast<int>((rangeEnd - rangeStart) *
+                                    (double(offset) / double(totalSize)));
+
+    if (progress >= 0 && progress != lastReportedProgress)
+    {
+        lastReportedProgress = progress;
+        progressCallBack(progress);
+    }
 }
 
 bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)

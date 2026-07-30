@@ -124,6 +124,9 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programCfg(
     const auto totalBytes = cfgData.size();
     size_t bytesWritten = 0;
 
+    constexpr int progressRangeStart = 70;
+    constexpr int progressRangeEnd = 90;
+
     for (size_t block = startBlock; block < endBlock; ++block)
     {
         for (size_t page = 0; page < xo5Cfg::pagesPerBlock; ++page)
@@ -132,6 +135,9 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programCfg(
             {
                 co_return true;
             }
+
+            reportPageProgress(bytesWritten, totalBytes, progressRangeStart,
+                               progressRangeEnd);
 
             auto offset = static_cast<diff_t>(bytesWritten);
             auto remaining = static_cast<diff_t>(totalBytes - bytesWritten);

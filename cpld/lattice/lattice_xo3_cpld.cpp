@@ -120,13 +120,15 @@ sdbusplus::async::task<bool> LatticeXO3CPLD::writeProgramPage()
     */
     size_t iterSize = 16;
 
+    constexpr int progressRangeStart = 70;
+    constexpr int progressRangeEnd = 90;
+
     for (size_t i = 0; (i * iterSize) < fwInfo.cfgData.size(); i++)
     {
         size_t byteOffset = i * iterSize;
-        double progressRate =
-            ((double(byteOffset) / double(fwInfo.cfgData.size())) * 100);
-        std::cout << "Update :" << std::fixed << std::dec
-                  << std::setprecision(2) << progressRate << "% \r";
+
+        reportPageProgress(byteOffset, fwInfo.cfgData.size(),
+                           progressRangeStart, progressRangeEnd);
 
         uint8_t len = ((byteOffset + iterSize) < fwInfo.cfgData.size())
                           ? iterSize

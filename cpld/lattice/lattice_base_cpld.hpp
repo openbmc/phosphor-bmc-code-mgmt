@@ -4,6 +4,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <chrono>
+#include <functional>
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -181,6 +182,8 @@ class LatticeBaseCPLD
     bool isLCMXO3D = false;
     bool debugMode = false;
     phosphor::i2c::I2C i2cInterface;
+    std::function<bool(int)> progressCallBack;
+    int lastReportedProgress = -1;
 
     virtual sdbusplus::async::task<bool> prepareUpdate(const uint8_t*,
                                                        size_t) = 0;
@@ -195,6 +198,9 @@ class LatticeBaseCPLD
     sdbusplus::async::task<bool> programDone();
     sdbusplus::async::task<bool> disableConfigInterface();
     sdbusplus::async::task<bool> waitBusyAndVerify();
+
+    void reportPageProgress(size_t offset, size_t totalSize, int rangeStart,
+                            int rangeEnd);
 
   private:
     virtual sdbusplus::async::task<bool> readUserCode(uint32_t&) = 0;

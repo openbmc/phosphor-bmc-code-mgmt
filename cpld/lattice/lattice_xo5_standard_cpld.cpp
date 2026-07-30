@@ -133,6 +133,8 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programCfg(
                 co_return true;
             }
 
+            reportPageProgress(bytesWritten, totalBytes);
+
             auto offset = static_cast<diff_t>(bytesWritten);
             auto remaining = static_cast<diff_t>(totalBytes - bytesWritten);
             const auto chunkSize =

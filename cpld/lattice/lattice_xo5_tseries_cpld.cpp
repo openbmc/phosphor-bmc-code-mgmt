@@ -513,6 +513,8 @@ sdbusplus::async::task<bool> LatticeXO5TSeriesCPLD::programCfg(
     unsigned int i = 0;
     for (size_t offset = 0; offset < totalBytes; offset += chunkSize)
     {
+        reportPageProgress(offset, totalBytes);
+
         std::vector<uint8_t> chunk = {static_cast<uint8_t>(xo5Cmd::programIncr),
                                       0x0, 0x0, 0x0};
         auto startIdx = static_cast<std::ptrdiff_t>(offset);

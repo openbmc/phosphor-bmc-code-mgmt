@@ -27,7 +27,7 @@ xyz.openbmc_project.Configuration.SPIFlash
     "VendorIANA": "6653",
     "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host"
   },
-  "Type": "SPIFlash"
+  "Type": "HostSPIFlash"
 }
 ```
 

@@ -14,6 +14,7 @@ regulators_src = files(
     'tps25990/tps25990.cpp',
     'xdp71x/xdp71x.cpp',
     'xdpe1x2xx/xdpe1x2xx.cpp',
+    'tps544x27/tps544x27.cpp',
 )
 
 i2cvr_include = include_directories('.')

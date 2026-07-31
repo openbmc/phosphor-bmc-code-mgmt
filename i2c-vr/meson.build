@@ -12,6 +12,7 @@ regulators_src = files(
     'tda38640a/tda38640a.cpp',
     'tps25990/rs31390.cpp',
     'tps25990/tps25990.cpp',
+    'tps544x27/tps544x27.cpp',
     'xdp71x/xdp71x.cpp',
     'xdpe1x2xx/xdpe1x2xx.cpp',
 )

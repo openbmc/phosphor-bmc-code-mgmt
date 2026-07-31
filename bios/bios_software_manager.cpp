@@ -48,13 +48,11 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
 
     enum FlashTool tool = flashToolNone;
 
-    if (config.configType == "IntelSPIFlash" ||
-        config.configType == "IntelHostSPIFlash")
+    if (config.configType == "IntelHostSPIFlash")
     {
         tool = flashToolFlashrom;
     }
-    else if (config.configType == "SPIFlash" ||
-             config.configType == "HostSPIFlash")
+    else if (config.configType == "HostSPIFlash")
     {
         tool = flashToolFlashcp;
     }

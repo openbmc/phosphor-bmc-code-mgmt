@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df211d1_63a0ae5b",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:03:51Z",
+      "side": 1,
+      "message": "Ack, each return code is now its own C enum",
+      "parentUuid": "7da8f589_6febe598",
+      "range": {
+        "startLine": 60,
+        "startChar": 45,
+        "endLine": 79,
+        "endChar": 44
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e61bce67_1c0bdb6d",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-07-17T11:14:34Z",
       "side": 1,
       "message": "nit: `ocp_` prefix for a C library sounds like name collision could happen.\n\nThere is a lot of OCP specs and people writing code, what if we prefixed with\n\n`ocp_recov_` (relating to OCP fw recovery mechanism)",
+      "range": {
+        "startLine": 137,
+        "startChar": 18,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "843c0bc7_f9b7c147",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:03:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e61bce67_1c0bdb6d",
       "range": {
         "startLine": 137,
         "startChar": 18,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e7e32b_fc7c2447",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:03:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b3296a69_efefe4b2",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d4f7857_a15c1e73",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfbc6af9_9ebc8c0b",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:03:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8d4f7857_a15c1e73",
+      "range": {
+        "startLine": 4,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 8
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08348dad_af5a42c1",
@@ -106,6 +202,30 @@
       "writtenOn": "2026-07-17T11:02:32Z",
       "side": 1,
       "message": "my query: why do we need to override the c standard used by default?\n\nWhy do we need to force this option?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 36
+      },
+      "revId": "39945c62c5d2142db242f863c60843c6f78046c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "918b6950_ca2a837a",
+        "filename": "libocp/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:03:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "08348dad_af5a42c1",
       "range": {
         "startLine": 8,
         "startChar": 0,

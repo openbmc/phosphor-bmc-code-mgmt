@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bed7c6b_c949e5fb",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "af9e9d40_e71ee8ed",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d13a5d_e15678ef",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-07-17T10:14:16Z",
       "side": 1,
       "message": "nit: please annotate here (in terms of pldm fw update spec) which version is it?\n\nThe version of the package? The component version? The existing fw version? The new fw version?",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89c7fa5_a1e48cb0",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a9d13a5d_e15678ef",
       "range": {
         "startLine": 33,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c074eec_73be1d4e",
+        "filename": "common/include/device.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5996c69c_42cea91f",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29dbcb48_089dd9ab",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-07-17T10:14:16Z",
       "side": 1,
       "message": "This looks like it\u0027s validating the package and checking applicable components does not point to a nonexistent component image.\n\nBy my read this check should be part of the package parser (patch for libpldm(++)?) instead of checking it here. Otherwise that check would be duplicated across all code using pldm fw update packages.",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 288,
+        "endChar": 9
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "155c0635_c186758c",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Agreed, I\u0027ve kept the check here for now but will remove it in a follow up patch after fixing libpldm++",
+      "parentUuid": "29dbcb48_089dd9ab",
       "range": {
         "startLine": 284,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0ab3ab_92aa95f2",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Agreed, this was unnecessary",
+      "parentUuid": "13b9499c_dacb10da",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fd68dc9_ff8312f5",
@@ -129,6 +249,30 @@
       "writtenOn": "2026-07-17T10:14:16Z",
       "side": 1,
       "message": "This is against the existing pattern in this repo of using `bool` instead of return codes.\n\nUsing integers allows for a wide range of values which are completely unnecessary for a function that only communicates success or failure.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 2
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afda4e21_bca476c6",
+        "filename": "common/pldm/pldm_package_util.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0fd68dc9_ff8312f5",
       "range": {
         "startLine": 65,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1921ce02_e1280e06",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "376f36f8_e7936a91",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 5
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bb8f033_d8427bb5",
@@ -175,6 +343,30 @@
       "writtenOn": "2026-07-17T10:14:16Z",
       "side": 1,
       "message": "nit: i would prefer to have a check for vector\u0027s size\n\n\u003e If empty() is true, the behavior is undefined.\n\nhttps://en.cppreference.com/cpp/container/vector/front",
+      "range": {
+        "startLine": 170,
+        "startChar": 1,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56b83c7_efe60c7d",
+        "filename": "common/src/device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-07-31T09:23:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5bb8f033_d8427bb5",
       "range": {
         "startLine": 170,
         "startChar": 1,

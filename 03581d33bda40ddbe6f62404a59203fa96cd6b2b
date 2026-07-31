@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bdd3526_d1ea3917",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-07-31T16:39:01Z",
+      "side": 1,
+      "message": "@Kyle.Hsieh@quantatw.com Looks like https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/ddcb405bd6c79e64f99fbe52b8ed9dd092cd82ab wasn\u0027t full proof. Wasn\u0027t that change properly tested ?",
+      "revId": "03581d33bda40ddbe6f62404a59203fa96cd6b2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

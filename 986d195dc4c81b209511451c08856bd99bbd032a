@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d77be3_21783f24",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T11:02:31Z",
+      "side": 1,
+      "message": "```suggestion\n */\n\n#pragma once\n```\n\nnit, i find this is cleaner and more compact",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90dcead1_9caf903f",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T11:02:31Z",
+      "side": 1,
+      "message": "`bus` is an unsigned quantity, right?\n\nCan we pass it as `size_t` or similar unsigned type?",
+      "range": {
+        "startLine": 166,
+        "startChar": 66,
+        "endLine": 166,
+        "endChar": 73
+      },
+      "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c04d3bd_8e6ef916",
+        "filename": "test/ocp/test_ocp_recovery.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T11:02:31Z",
+      "side": 1,
+      "message": "nit: i would prefer `MockTransport` as separate source and header file as it looks like a reusable component.",
+      "range": {
+        "startLine": 14,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 1
+      },
+      "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2389cbb_ba357e0a",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-03T21:30:59Z",
+      "side": 1,
+      "message": "Why r u not doing this in spi updater common logic  and then call postUpdate after that ?",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d504468e_abd200fb",
         "filename": "spi-flash/main.cpp",
         "patchSetId": 7
@@ -14,6 +31,74 @@
       "writtenOn": "2026-08-03T20:52:10Z",
       "side": 1,
       "message": "Please fold this into spi_software_manager.cpp as i don\u0027t see a reason to have a new file just for this.",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fb73ea2_83f123c2",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-03T21:30:59Z",
+      "side": 1,
+      "message": "I see only this file calling it? Shouldn\u0027t this be private then and also would it make sense to fold this into create API itself ?",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c8c305_f708cda9",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-03T21:30:59Z",
+      "side": 1,
+      "message": "This is wrong API Name, as i read you are trying to get the Config InterfaceNames which this service can request/watch from EM. Please change the API name accordingly to clear the intent.\n\ngetConfigInterfaceNames()",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "154d2052_355a0abf",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-03T21:30:59Z",
+      "side": 1,
+      "message": "Why can\u0027t we have all this logic as part of create function itself ?",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c669f25_b3f8a8b5",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-03T21:30:59Z",
+      "side": 1,
+      "message": "This kind of information should still be with the BIOS file itself, so factory can just create the required type based on chipType.",
       "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5482f316_5bf0c963",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T13:48:11Z",
+      "side": 1,
+      "message": "based on your EM config type, is it an upstream config? I only found things for GB200, which EM config is used to reproduce your results here?",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "2b21d3d44fdf3df785441e337f28ab2af25c06f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13c6167a_1abdf8ac",
+        "filename": "ocp-recovery/ocp_recovery_software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T13:48:11Z",
+      "side": 1,
+      "message": "This requires EM schema changes, right? Did you push those somewhere?\n\nwould be nice to have a link in commit message or a gerrit topic including that change.",
+      "range": {
+        "startLine": 20,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "2b21d3d44fdf3df785441e337f28ab2af25c06f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "171cea21_845095a4",
+        "filename": "ocp-recovery/ocp_recovery_software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T13:48:11Z",
+      "side": 1,
+      "message": "This looks like a common code fix. It\u0027s unspecific to OCP recovery software manager.",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "2b21d3d44fdf3df785441e337f28ab2af25c06f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c5b02c_8928f12e",
+        "filename": "ocp-recovery/ocp_recovery_software_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-03T13:48:11Z",
+      "side": 1,
+      "message": "you only have one entry in the vector you are iterating here, why not directly hardcode or append the interface?\n\nIt would be clearer and less indirection.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "2b21d3d44fdf3df785441e337f28ab2af25c06f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

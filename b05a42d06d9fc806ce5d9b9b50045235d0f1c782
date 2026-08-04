@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8cc541_db5d5e07",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "Got it, I will remove the duplicated ActivationBlocksTransition logic from BIOSDevice::postUpdate().",
+      "parentUuid": "d2389cbb_ba357e0a",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d504468e_abd200fb",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-03T20:52:10Z",
       "side": 1,
       "message": "Please fold this into spi_software_manager.cpp as i don\u0027t see a reason to have a new file just for this.",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "519cad13_6d758b7e",
+        "filename": "spi-flash/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "I will fold main.cpp into spi_software_manager.cpp and update meson.build accordingly in the next patchset.",
+      "parentUuid": "d504468e_abd200fb",
       "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed24efce_98e8fff1",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "I will make registerSPI private to better encapsulate the factory logic.",
+      "parentUuid": "1fb73ea2_83f123c2",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78c8c305_f708cda9",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-03T21:30:59Z",
       "side": 1,
       "message": "This is wrong API Name, as i read you are trying to get the Config InterfaceNames which this service can request/watch from EM. Please change the API name accordingly to clear the intent.\n\ngetConfigInterfaceNames()",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb8b7ca_228aeb52",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "I will update the API name in the next patchset.",
+      "parentUuid": "78c8c305_f708cda9",
       "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10bf57f5_fcc74747",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "I will simplify this and move the logic directly into create().",
+      "parentUuid": "154d2052_355a0abf",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c669f25_b3f8a8b5",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-03T21:30:59Z",
       "side": 1,
       "message": "This kind of information should still be with the BIOS file itself, so factory can just create the required type based on chipType.",
+      "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6a2795_12ed8300",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-04T08:49:05Z",
+      "side": 1,
+      "message": "I will refactor this so that BIOSDevice inherently manages its own tool types and specific file paths internally.",
+      "parentUuid": "2c669f25_b3f8a8b5",
       "revId": "b05a42d06d9fc806ce5d9b9b50045235d0f1c782",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

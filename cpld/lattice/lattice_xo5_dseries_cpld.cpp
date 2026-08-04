@@ -54,7 +54,7 @@ uint8_t LatticeXO5DSeriesCPLD::checkSum(const std::vector<uint8_t>& vec)
 /*
  * Request packet format:
  * |1 byte|1 byte|   2 bytes   |1 byte|max 245 bytes| 1 byte |
- * |Header|Cmd id|Fragment flag|Lenght|     Data    |Checksum|
+ * |Header|Cmd id|Fragment flag|Length|     Data    |Checksum|
  */
 sdbusplus::async::task<bool> LatticeXO5DSeriesCPLD::esfbWrite(
     uint16_t fragmentFlag, uint8_t cmdId, std::vector<uint8_t>& data)
@@ -92,7 +92,7 @@ sdbusplus::async::task<bool> LatticeXO5DSeriesCPLD::esfbWrite(
 /*
  * Response packet format:
  * |1 byte|1 byte|   2 bytes   |1 byte|1 byte|1 byte|2 bytes| 1 byte |
- * |Header|Cmd id|Fragment flag|Lenght| Type |status|  Data |Checksum|
+ * |Header|Cmd id|Fragment flag|Length| Type |status|  Data |Checksum|
  */
 sdbusplus::async::task<bool> LatticeXO5DSeriesCPLD::esfbReadStatus(
     uint8_t cmdId, LatticeXO5DSeriesCPLD::EsfbStatus& status, uint16_t& data)
@@ -150,7 +150,7 @@ sdbusplus::async::task<bool> LatticeXO5DSeriesCPLD::esfbReadStatus(
 /*
  * Response packet format:
  * |1 byte|1 byte|   2 bytes   |1 byte|1 byte|max 245 bytes| 1 byte |
- * |Header|Cmd id|Fragment flag|Lenght| Type |     Data    |Checksum|
+ * |Header|Cmd id|Fragment flag|Length| Type |     Data    |Checksum|
  */
 sdbusplus::async::task<bool> LatticeXO5DSeriesCPLD::esfbReadData(
     uint8_t cmdId, std::vector<uint8_t>& data)

@@ -248,7 +248,7 @@ sdbusplus::async::task<bool> MPX9XX::disableStoreFaultTriggering()
         co_return false;
     }
 
-    debug("Disabled store fault triggerring");
+    debug("Disabled store fault triggering");
 
     co_return true;
 }

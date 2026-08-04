@@ -390,7 +390,7 @@ sdbusplus::async::task<bool> XDPE1X2XX::program(bool force)
             size = 0;
         }
 
-        // programm into scratchpad
+        // program into scratchpad
         for (int j = 0; j < sect->dataCnt; j++)
         {
             tBuf[0] = IFXMFRRegWrite;

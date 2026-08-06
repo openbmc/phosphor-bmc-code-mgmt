@@ -105,6 +105,24 @@
       "parentUuid": "fe8a521f_662f57ab",
       "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "295b4540_b095808b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-06T14:51:04Z",
+      "side": 1,
+      "message": "existing config for the ASRock Rack ALTRAD8\n\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/asrock/altrad8.json\n\nPR for the HPE system\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/92628",
+      "parentUuid": "35516fa7_19349d14",
+      "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -241,7 +241,7 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
     }
     const std::string path =
         "/tmp/eeprom-image-" +
-        std::to_string(SoftwareInf::Software::getRandomId()) + ".bin";
+        std::to_string(SoftwareInf::Software::getNextId()) + ".bin";
 
     int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
     if (fd < 0)

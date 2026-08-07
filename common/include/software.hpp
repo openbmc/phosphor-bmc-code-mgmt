@@ -79,7 +79,7 @@ class Software : private SoftwareActivation
                         ActivationProgress<Software>>
         softwareActivationProgress = nullptr;
 
-    static long int getRandomId();
+    static long int getNextId();
 
   protected:
     // object path of this software
@@ -89,8 +89,8 @@ class Software : private SoftwareActivation
     // @returns std::nullopt in case the version has not been set
     std::optional<SoftwareVersion::VersionPurpose> getPurpose();
 
-    // @returns        a random software id (swid) for that device
-    static std::string getRandomSoftwareId(device::Device& parent);
+    // @returns        a unique software id (swid) for that device
+    static std::string getSoftwareId(device::Device& parent);
 
     // @param isRunning             if the software version is currently running
     // on the device. Otherwise the software is assumed to be activating (not

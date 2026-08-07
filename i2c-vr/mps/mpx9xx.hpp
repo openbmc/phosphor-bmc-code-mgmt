@@ -39,7 +39,6 @@ class MPX9XX : public MPSVoltageRegulator
         const std::vector<MPSData>& gdata);
     sdbusplus::async::task<bool> programAllRegisters();
     sdbusplus::async::task<bool> storeDataIntoMTP();
-    sdbusplus::async::task<bool> restoreDataFromNVM();
     sdbusplus::async::task<bool> checkMTPCRC();
 
   protected:

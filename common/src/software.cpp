@@ -18,7 +18,7 @@ using namespace phosphor::software::config;
 using namespace phosphor::software::update;
 
 Software::Software(sdbusplus::async::context& ctx, Device& parent) :
-    Software(ctx, parent, getRandomSoftwareId(parent))
+    Software(ctx, parent, getSoftwareId(parent))
 {}
 
 Software::Software(sdbusplus::async::context& ctx, Device& parent,
@@ -37,18 +37,16 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
           "OBJPATH", objectPath);
 };
 
-long int Software::getRandomId()
+long int Software::getNextId()
 {
-    struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
-    unsigned int seed = ts.tv_nsec ^ getpid();
-    srandom(seed);
-    return random() % 10000;
+    static long int counter = 0;
+
+    return counter++;
 }
 
-std::string Software::getRandomSoftwareId(Device& parent)
+std::string Software::getSoftwareId(Device& parent)
 {
-    return std::format("{}_{}", parent.config.configName, getRandomId());
+    return std::format("{}_{}", parent.config.configName, getNextId());
 }
 
 sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)

@@ -19,15 +19,15 @@ using namespace phosphor::software::example_device;
 class TestSoftware : public Software
 {
   public:
-    static std::string wrapGetRandomSoftwareId(Device& parent)
+    static std::string wrapGetSoftwareId(Device& parent)
     {
-        return Software::getRandomSoftwareId(parent);
+        return Software::getSoftwareId(parent);
     };
 };
 
 constexpr const char* mb1ExampleComponent = "MB1ExampleComponent";
 
-TEST(SoftwareTest, testGetRandomSoftwareId)
+TEST(SoftwareTest, testGetSoftwareId)
 {
     sdbusplus::async::context ctx;
     ExampleCodeUpdater exampleUpdater(ctx);
@@ -40,7 +40,7 @@ TEST(SoftwareTest, testGetRandomSoftwareId)
 
     auto device = std::make_unique<ExampleDevice>(ctx, &exampleUpdater, config);
 
-    std::string swid = TestSoftware::wrapGetRandomSoftwareId(*device);
+    std::string swid = TestSoftware::wrapGetSoftwareId(*device);
     debug("{SWID}", "SWID", swid);
 
     std::regex re("[a-zA-Z0-9]+_[0-9]+");

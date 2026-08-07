@@ -330,74 +330,6 @@ sdbusplus::async::task<bool> MP5998::getCRC(uint32_t* checksum)
     co_return true;
 }
 
-sdbusplus::async::task<bool> MP5998::sendRestoreMTPCommand()
-{
-    std::vector<uint8_t> tbuf;
-    std::vector<uint8_t> rbuf;
-
-    tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to set page 0 for MTP restore");
-        co_return false;
-    }
-
-    tbuf = buildByteVector(PMBusCmd::restoreUserAll);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to send RESTORE_ALL command");
-        co_return false;
-    }
-
-    co_return true;
-}
-
-sdbusplus::async::task<bool> MP5998::checkEEPROMFaultAfterRestore()
-{
-    std::vector<uint8_t> tbuf;
-    std::vector<uint8_t> rbuf;
-
-    tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to set page 0 for EEPROM fault check");
-        co_return false;
-    }
-
-    tbuf = buildByteVector(PMBusCmd::statusCML);
-    rbuf.resize(1);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to read STATUS_CML register");
-        co_return false;
-    }
-
-    bool eepromFault = (rbuf[0] & eepromFaultBit) != 0;
-
-    co_return !eepromFault;
-}
-
-sdbusplus::async::task<bool> MP5998::restoreMTPAndVerify()
-{
-    constexpr uint16_t mtpRestoreWait = 1600;
-
-    if (!co_await sendRestoreMTPCommand())
-    {
-        error("Failed to send RESTORE_ALL command");
-        co_return false;
-    }
-
-    co_await sdbusplus::async::sleep_for(
-        ctx, std::chrono::microseconds(mtpRestoreWait));
-    if (!co_await checkEEPROMFaultAfterRestore())
-    {
-        error("EEPROM fault detected after MTP restore");
-        co_return false;
-    }
-
-    co_return true;
-}
-
 bool MP5998::forcedUpdateAllowed()
 {
     return true;
@@ -438,11 +370,6 @@ sdbusplus::async::task<bool> MP5998::updateFirmware(bool force)
     }
 
     if (!co_await verifyCRC())
-    {
-        co_return false;
-    }
-
-    if (!co_await restoreMTPAndVerify())
     {
         co_return false;
     }

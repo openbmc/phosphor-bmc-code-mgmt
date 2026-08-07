@@ -280,9 +280,9 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     const uint8_t* image, size_t image_size) const
 {
-    // randomize the name to enable parallel updates
+    // use a unique name to enable parallel updates
     const std::string path = "/tmp/spi-device-image-" +
-                             std::to_string(Software::getRandomId()) + ".bin";
+                             std::to_string(Software::getNextId()) + ".bin";
 
     int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
     if (fd < 0)
@@ -350,9 +350,9 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     const uint8_t* image, size_t image_size) const
 {
-    // randomize the name to enable parallel updates
+    // use a unique name to enable parallel updates
     const std::string path = "/tmp/spi-device-image-" +
-                             std::to_string(Software::getRandomId()) + ".bin";
+                             std::to_string(Software::getNextId()) + ".bin";
 
     int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
     if (fd < 0)

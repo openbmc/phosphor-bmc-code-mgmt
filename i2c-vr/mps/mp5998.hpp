@@ -26,9 +26,6 @@ class MP5998 : public MPSVoltageRegulator
     sdbusplus::async::task<bool> unlockWriteProtection();
     sdbusplus::async::task<bool> storeMTP();
     sdbusplus::async::task<bool> waitForMTPComplete();
-    sdbusplus::async::task<bool> sendRestoreMTPCommand();
-    sdbusplus::async::task<bool> restoreMTPAndVerify();
-    sdbusplus::async::task<bool> checkEEPROMFaultAfterRestore();
     sdbusplus::async::task<bool> verifyCRC();
     sdbusplus::async::task<bool> programAllRegisters();
 };

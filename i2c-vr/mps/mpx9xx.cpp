@@ -423,61 +423,6 @@ sdbusplus::async::task<bool> MPX9XX::getCRC(uint32_t* checksum)
     co_return true;
 }
 
-sdbusplus::async::task<bool> MPX9XX::restoreDataFromNVM()
-{
-    static constexpr size_t nvmPmbusCtrlDataLength = 2;
-    static constexpr uint16_t enableRestoreDataFromMTPMask = 0x0008;
-
-    std::vector<uint8_t> tbuf;
-    std::vector<uint8_t> rbuf;
-
-    // enable restore data from MTP
-    tbuf = buildByteVector(PMBusCmd::page, MPSPage::page2);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to set page 2 to enable restore data from MTP");
-        co_return false;
-    }
-
-    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl);
-    rbuf.resize(nvmPmbusCtrlDataLength);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to read NVM PMBUS Ctrl register");
-        co_return false;
-    }
-
-    uint16_t data = ((rbuf[1] << 8) | rbuf[0]) | enableRestoreDataFromMTPMask;
-    tbuf = buildByteVector(MPX9XXCmd::mfrNVMPmbusCtrl, data);
-    rbuf.clear();
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to enable restore data from MTP");
-        co_return false;
-    }
-
-    // restore data from NVM
-    tbuf = buildByteVector(PMBusCmd::page, MPSPage::page0);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to set page 0 for restore MTP and verify");
-    }
-
-    tbuf = buildByteVector(PMBusCmd::restoreUserAll);
-    if (!i2cInterface.sendReceive(tbuf, rbuf))
-    {
-        error("Failed to restore data from NVM");
-        co_return false;
-    }
-
-    // wait restore data
-    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(500));
-
-    debug("Restored data from NVM success");
-
-    co_return true;
-}
-
 sdbusplus::async::task<bool> MPX9XX::checkMTPCRC()
 {
     uint32_t crc = 0;
@@ -536,11 +481,6 @@ sdbusplus::async::task<bool> MPX9XX::updateFirmware(bool force)
     }
 
     if (!co_await programAllRegisters())
-    {
-        co_return false;
-    }
-
-    if (!co_await restoreDataFromNVM())
     {
         co_return false;
     }

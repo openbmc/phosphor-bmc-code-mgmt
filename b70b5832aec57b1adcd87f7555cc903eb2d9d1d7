@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b587e80a_fa44f6d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T23:02:55Z",
+      "side": 1,
+      "message": "Has the addition of this protocol discussed somewhere (discord/mail etc) ?\nAlso is there a relevant design document update or any documentation that explains how the recovery flow will get managed along with the existing infrastructure. This flow carries a special meaning as its for recovery path, so we need to understand how this would differ in various aspects via Redfish, for example, exposing versions, firmware update, EM configurations etc.",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92fdd14_e2d3ada0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T23:02:55Z",
+      "side": 1,
+      "message": "Please add a link to the related specification in message description references.",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b6d3191_f9c63632",
         "filename": "libocp/include/ocp/ocp_recovery.h",
         "patchSetId": 4

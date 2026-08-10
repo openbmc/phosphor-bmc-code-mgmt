@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cf5b1d0_1a119462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2026-08-10T21:29:49Z",
+      "side": 1,
+      "message": "Why is this a C library? Every consumer in-tree is C++ (daemon, tool) and kernel uapi headers work from C++",
+      "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55d77be3_21783f24",
         "filename": "libocp/include/ocp/ocp_recovery.h",
         "patchSetId": 3
@@ -91,6 +108,23 @@
         "endLine": 166,
         "endChar": 73
       },
+      "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "228fda8d_76acb1c7",
+        "filename": "libocp/src/ocp_recovery.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1002325
+      },
+      "writtenOn": "2026-08-10T21:29:49Z",
+      "side": 1,
+      "message": "This check sits after *status and *ack are assigned, so an -EPROTO return leaves the caller\u0027s variables half-written. Can we validate the length up front ?",
       "revId": "986d195dc4c81b209511451c08856bd99bbd032a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

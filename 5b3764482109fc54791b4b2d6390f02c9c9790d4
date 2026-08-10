@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b5d9f40_2f45d7c4",
+        "filename": "bmc/update_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T00:49:22Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "f3bf146c_93ad88a6",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f25e5743_92e86844",
         "filename": "common/src/software_update.cpp",
         "patchSetId": 4
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f27f48be_20c883a1",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T00:49:22Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "f25e5743_92e86844",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec17f206_468fc2e5",
         "filename": "common/src/software_update.cpp",
         "patchSetId": 4
@@ -65,6 +101,41 @@
       "writtenOn": "2026-08-09T17:32:41Z",
       "side": 1,
       "message": "I don\u0027t think this check should be present in the base class",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f03aa038_b719af40",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T00:49:22Z",
+      "side": 1,
+      "message": "Please add a allowedForceUpdate property to SoftwareUpdate class, which will be set via enableUpdate flow. You can pass the default as true for now (from all devices) so the behavior doesn\u0027t change with this patch. Later on depending on device this particular option can be turned off.\n\nCompare the passed in forceUpdate against allowedForceUpdate (if passed in arg is true) and fail the flow like in allowedApplyTimes at line# 65.\n\nAlso, lets move this check closer to line# 65 as well.",
+      "parentUuid": "ec17f206_468fc2e5",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af1145b_b995fe7f",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-10T00:49:22Z",
+      "side": 1,
+      "message": "Refer to my comment above, this will change to something like line#68.",
       "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -10,6 +10,7 @@ executable(
     'phosphor-eepromdevice-software-update',
     'eeprom_device_software_manager.cpp',
     'eeprom_device.cpp',
+    'spi_eeprom.cpp',
     eeprom_device_version_src,
     include_directories: [common_include, eeprom_device_include, gpio_inc],
     dependencies: [

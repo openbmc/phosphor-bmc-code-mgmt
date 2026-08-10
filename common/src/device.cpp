@@ -1,12 +1,14 @@
 #include "device.hpp"
 
 #include "common/pldm/pldm_package_util.hpp"
+#include "gpio_controller.hpp"
 #include "software.hpp"
 #include "software_manager.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/async/context.hpp>
+#include <sdbusplus/async/timer.hpp>
 #include <sdbusplus/bus.hpp>
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationProgress/aserver.hpp>
@@ -32,12 +34,12 @@ const auto ActivationInvalid = ActivationInterface::Activations::Invalid;
 const auto ActivationFailed = ActivationInterface::Activations::Failed;
 
 Device::Device(sdbusplus::async::context& ctx, const SoftwareConfig& config,
-               manager::SoftwareManager* parent,
+               manager::SoftwareManager* parent, GPIOGroup&& reset,
                std::set<RequestedApplyTimes> allowedApplyTimes =
                    {RequestedApplyTimes::Immediate,
                     RequestedApplyTimes::OnReset}) :
     allowedApplyTimes(std::move(allowedApplyTimes)), config(config),
-    parent(parent), ctx(ctx), events(ctx)
+    parent(parent), ctx(ctx), events(ctx), resetGPIO(std::move(reset))
 {}
 
 sdbusplus::async::task<bool> Device::getImageInfo(
@@ -156,8 +158,27 @@ std::string Device::getEMConfigType() const
 
 sdbusplus::async::task<bool> Device::resetDevice()
 {
-    debug("Default implementation for device reset");
+    std::optional<ScopedBmcMux> guard;
 
+    if (resetGPIO.hasGPIOs())
+    {
+        debug("[gpio] resetting the device via gpios");
+
+        try
+        {
+            guard.emplace(resetGPIO);
+        }
+        catch (const std::exception& e)
+        {
+            error("Failed to reset device via GPIOs: {ERROR}", "ERROR",
+                  e.what());
+            co_return false;
+        }
+
+        co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(1));
+    }
+
+    // Absence of reset lines is not an error, just NOP.
     co_return true;
 }
 

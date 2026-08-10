@@ -21,6 +21,7 @@ class EEPROMDevice : public Device
   public:
     EEPROMDevice(sdbusplus::async::context& ctx, uint16_t bus, uint8_t address,
                  const std::string& chipModel, GPIOGroup&& muxGPIO,
+                 GPIOGroup&& resetGPIO,
                  std::unique_ptr<DeviceVersion> deviceVersion,
                  SoftwareConfig& config, ManagerInf::SoftwareManager* parent);
 

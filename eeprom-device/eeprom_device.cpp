@@ -54,10 +54,10 @@ static std::string getEEPROMPath(const uint16_t bus, const uint8_t address)
 
 EEPROMDevice::EEPROMDevice(
     sdbusplus::async::context& ctx, const uint16_t bus, const uint8_t address,
-    const std::string& chipModel, GPIOGroup&& mux,
+    const std::string& chipModel, GPIOGroup&& mux, GPIOGroup&& reset,
     std::unique_ptr<DeviceVersion> deviceVersion, SoftwareConfig& config,
     ManagerInf::SoftwareManager* parent) :
-    Device(ctx, config, parent,
+    Device(ctx, config, parent, std::move(reset),
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     bus(bus), address(address), chipModel(chipModel), muxGPIO(std::move(mux)),
     deviceVersion(std::move(deviceVersion)), hostPower(ctx)

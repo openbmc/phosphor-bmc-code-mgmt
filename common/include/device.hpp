@@ -1,6 +1,7 @@
 #pragma once
 
 #include "events.hpp"
+#include "gpio_controller.hpp"
 #include "software.hpp"
 #include "software_config.hpp"
 
@@ -29,6 +30,7 @@ class Device
     Device(sdbusplus::async::context& ctx,
            const phosphor::software::config::SoftwareConfig& deviceConfig,
            phosphor::software::manager::SoftwareManager* parent,
+           GPIOGroup&& resetGPIO,
            std::set<RequestedApplyTimes> allowedApplyTimes);
 
     virtual ~Device() = default;
@@ -100,6 +102,8 @@ class Device
     events::Events events;
 
     bool updateInProgress = false;
+
+    GPIOGroup resetGPIO;
 
   private:
     // @param componentImage       component image as extracted from update pkg

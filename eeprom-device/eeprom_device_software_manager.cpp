@@ -139,17 +139,21 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     GPIOGroup muxGPIO = co_await dbusGetGPIOs(
         ctx, service, path, configIface + ".MuxOutputs", "Mux");
 
+    GPIOGroup resetGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".ResetOutputs", "Reset");
+
     std::unique_ptr<Device> eepromDevice;
 
     if (type.value() == "DeviceSPIFlash")
         eepromDevice = std::make_unique<SPIEEPROM>(
             ctx, bus.value(), address.value(), std::move(muxGPIO),
-            std::move(deviceVersion), config, this);
+            std::move(resetGPIO), std::move(deviceVersion), config, this);
     else
         eepromDevice = std::make_unique<EEPROMDevice>(
             ctx, static_cast<uint16_t>(bus.value()),
             static_cast<uint8_t>(address.value()), type.value(),
-            std::move(muxGPIO), std::move(deviceVersion), config, this);
+            std::move(muxGPIO), std::move(resetGPIO), std::move(deviceVersion),
+            config, this);
 
     std::unique_ptr<SoftwareInf::Software> software =
         std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);

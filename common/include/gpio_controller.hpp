@@ -15,6 +15,7 @@ std::vector<std::unique_ptr<::gpiod::line_bulk>> requestMuxGPIOs(
 class GPIOGroup
 {
   public:
+    GPIOGroup() = default;
     GPIOGroup(std::vector<std::string> lines, std::vector<bool> polarities);
 
     ~GPIOGroup();

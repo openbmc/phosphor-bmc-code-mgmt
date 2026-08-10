@@ -36,7 +36,8 @@ class SPIDevice : public Device
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
               uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
               SoftwareConfig& config, SoftwareManager* parent,
-              enum FlashLayout layout, enum FlashTool tool);
+              enum FlashLayout layout, enum FlashTool tool,
+              GPIOGroup resetGPIO = GPIOGroup());
 
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) override;

@@ -54,15 +54,13 @@ static std::string getEEPROMPath(const uint16_t bus, const uint8_t address)
 
 EEPROMDevice::EEPROMDevice(
     sdbusplus::async::context& ctx, const uint16_t bus, const uint8_t address,
-    const std::string& chipModel, const std::vector<std::string>& gpioLines,
-    const std::vector<bool>& gpioPolarities,
+    const std::string& chipModel, GPIOGroup&& mux,
     std::unique_ptr<DeviceVersion> deviceVersion, SoftwareConfig& config,
     ManagerInf::SoftwareManager* parent) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
-    bus(bus), address(address), chipModel(chipModel), gpioLines(gpioLines),
-    gpioPolarities(gpioPolarities), deviceVersion(std::move(deviceVersion)),
-    hostPower(ctx)
+    bus(bus), address(address), chipModel(chipModel), muxGPIO(std::move(mux)),
+    deviceVersion(std::move(deviceVersion)), hostPower(ctx)
 {
     // Some EEPROM devices require the host to be in a specific state before
     // retrieving the version. To handle this, set up a match to listen for
@@ -76,9 +74,8 @@ EEPROMDevice::EEPROMDevice(
 sdbusplus::async::task<bool> EEPROMDevice::updateDevice(const uint8_t* image,
                                                         size_t image_size)
 {
-    GPIOGroup muxGPIO(gpioLines, gpioPolarities);
     std::optional<ScopedBmcMux> guard;
-    if (!gpioLines.empty())
+    if (muxGPIO.hasGPIOs())
     {
         try
         {

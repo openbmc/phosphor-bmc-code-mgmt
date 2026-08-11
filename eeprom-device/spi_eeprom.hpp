@@ -7,13 +7,11 @@ class SPIEEPROM : public SPIDevice
 {
   public:
     SPIEEPROM(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex,
-              const std::vector<std::string>& gpioLinesIn,
-              const std::vector<bool>& gpioValuesIn,
+              uint64_t spiDeviceIndex, GPIOGroup&& muxGPIO,
               std::unique_ptr<DeviceVersion> deviceVersion,
               SoftwareConfig& config, SoftwareManager* parent) :
-        SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, false, gpioLinesIn,
-                  gpioValuesIn, config, parent, flashLayoutFlat,
+        SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, false,
+                  std::move(muxGPIO), config, parent, flashLayoutFlat,
                   flashToolFlashcp),
         deviceVersion(std::move(deviceVersion))
     {}

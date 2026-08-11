@@ -136,48 +136,20 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     debug("EEPROM: Bus={BUS}, Address={ADDR}, Type={TYPE}", "BUS", bus.value(),
           "ADDR", address.value(), "TYPE", type.value());
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
-    std::vector<std::string> gpioLines;
-    std::vector<bool> gpioPolarities;
-
-    for (size_t i = 0; true; i++)
-    {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
-        gpioLines.push_back(name.value());
-        gpioPolarities.push_back(polarity.value() == "High");
-    }
-
-    for (size_t i = 0; i < gpioLines.size(); i++)
-    {
-        debug("Mux gpio {NAME} polarity = {VALUE}", "NAME", gpioLines[i],
-              "VALUE", gpioPolarities[i]);
-    }
+    GPIOGroup muxGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".MuxOutputs", "Mux");
 
     std::unique_ptr<Device> eepromDevice;
 
     if (type.value() == "DeviceSPIFlash")
         eepromDevice = std::make_unique<SPIEEPROM>(
-            ctx, bus.value(), address.value(), gpioLines, gpioPolarities,
+            ctx, bus.value(), address.value(), std::move(muxGPIO),
             std::move(deviceVersion), config, this);
     else
         eepromDevice = std::make_unique<EEPROMDevice>(
             ctx, static_cast<uint16_t>(bus.value()),
-            static_cast<uint8_t>(address.value()), type.value(), gpioLines,
-            gpioPolarities, std::move(deviceVersion), config, this);
+            static_cast<uint8_t>(address.value()), type.value(),
+            std::move(muxGPIO), std::move(deviceVersion), config, this);
 
     std::unique_ptr<SoftwareInf::Software> software =
         std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);

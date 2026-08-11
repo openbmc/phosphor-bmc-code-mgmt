@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common/include/device.hpp"
+#include "common/include/gpio_controller.hpp"
 #include "common/include/software.hpp"
 #include "common/include/software_manager.hpp"
 
@@ -33,11 +34,9 @@ class SPIDevice : public Device
   public:
     using Device::softwareCurrent;
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex, bool dryRun,
-              const std::vector<std::string>& gpioLinesIn,
-              const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
-              SoftwareManager* parent, enum FlashLayout layout,
-              enum FlashTool tool);
+              uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
+              SoftwareConfig& config, SoftwareManager* parent,
+              enum FlashLayout layout, enum FlashTool tool);
 
     sdbusplus::async::task<bool> updateDevice(const uint8_t* image,
                                               size_t image_size) override;
@@ -48,9 +47,7 @@ class SPIDevice : public Device
   private:
     bool dryRun;
 
-    std::vector<std::string> gpioLines;
-
-    std::vector<bool> gpioValues;
+    GPIOGroup muxGPIO;
 
     uint64_t spiControllerIndex;
     uint64_t spiDeviceIndex;

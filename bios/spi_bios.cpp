@@ -12,13 +12,12 @@ PHOSPHOR_LOG2_USING;
 using namespace phosphor::software::host_power;
 
 SPIBIOS::SPIBIOS(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-                 uint64_t spiDeviceIndex, bool dryRun,
-                 const std::vector<std::string>& gpioLinesIn,
-                 const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
-                 SoftwareManager* parent, enum FlashLayout layout,
-                 enum FlashTool tool, const std::string& versionDirPath) :
-    SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, dryRun, gpioLinesIn,
-              gpioValuesIn, config, parent, layout, tool),
+                 uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
+                 SoftwareConfig& config, SoftwareManager* parent,
+                 enum FlashLayout layout, enum FlashTool tool,
+                 const std::string& versionDirPath) :
+    SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, dryRun,
+              std::move(muxGPIO), config, parent, layout, tool),
     NotifyWatchIntf(ctx, versionDirPath)
 {
     ctx.spawn(readNotifyAsync());

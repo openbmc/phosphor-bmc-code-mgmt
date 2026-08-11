@@ -57,31 +57,8 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         tool = flashToolFlashcp;
     }
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
-
-    std::vector<std::string> names;
-    std::vector<bool> values;
-
-    for (size_t i = 0; true; i++)
-    {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
-        names.push_back(name.value());
-        values.push_back((polarity == "High") ? 1 : 0);
-    }
+    GPIOGroup muxGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".MuxOutputs", "Mux");
 
     enum FlashLayout layout = flashLayoutFlat;
 
@@ -93,7 +70,7 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
     {
         spiDevice = std::make_unique<SPIBIOS>(
             ctx, spiControllerIndex.value(), spiDeviceIndex.value(), dryRun,
-            names, values, config, this, layout, tool);
+            std::move(muxGPIO), config, this, layout, tool);
     }
     catch (std::exception& e)
     {

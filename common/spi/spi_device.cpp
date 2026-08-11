@@ -57,14 +57,12 @@ static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
 
 SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
                      uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                     bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                     const std::vector<bool>& gpioValuesIn,
-                     SoftwareConfig& config, SoftwareManager* parent,
-                     enum FlashLayout layout, enum FlashTool tool) :
+                     bool dryRun, GPIOGroup&& mux, SoftwareConfig& config,
+                     SoftwareManager* parent, enum FlashLayout layout,
+                     enum FlashTool tool) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
-    dryRun(dryRun), gpioLines(gpioLinesIn),
-    gpioValues(gpioValuesIn.begin(), gpioValuesIn.end()),
+    dryRun(dryRun), muxGPIO(std::move(mux)),
     spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
     layout(layout), tool(tool)
 {
@@ -179,9 +177,8 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
 {
     debug("[gpio] requesting gpios to mux SPI to BMC");
 
-    GPIOGroup muxGPIO(gpioLines, gpioValues);
     std::optional<ScopedBmcMux> guard;
-    if (!gpioLines.empty())
+    if (muxGPIO.hasGPIOs())
     {
         try
         {

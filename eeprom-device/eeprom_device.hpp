@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common/include/device.hpp"
+#include "common/include/gpio_controller.hpp"
 #include "common/include/host_power.hpp"
 #include "common/include/software.hpp"
 #include "common/include/software_manager.hpp"
@@ -19,9 +20,7 @@ class EEPROMDevice : public Device
 {
   public:
     EEPROMDevice(sdbusplus::async::context& ctx, uint16_t bus, uint8_t address,
-                 const std::string& chipModel,
-                 const std::vector<std::string>& gpioLines,
-                 const std::vector<bool>& gpioPolarities,
+                 const std::string& chipModel, GPIOGroup&& muxGPIO,
                  std::unique_ptr<DeviceVersion> deviceVersion,
                  SoftwareConfig& config, ManagerInf::SoftwareManager* parent);
 
@@ -34,8 +33,7 @@ class EEPROMDevice : public Device
     uint16_t bus;
     uint8_t address;
     std::string chipModel;
-    std::vector<std::string> gpioLines;
-    std::vector<bool> gpioPolarities;
+    GPIOGroup muxGPIO;
     std::unique_ptr<DeviceVersion> deviceVersion;
     HostPowerInf::HostPower hostPower;
 

@@ -40,3 +40,41 @@ template sdbusplus::async::task<std::optional<std::string>>
         sdbusplus::async::context& ctx, const std::string& service,
         const std::string& path, const std::string& intf,
         const std::string& property);
+
+sdbusplus::async::task<GPIOGroup> dbusGetGPIOs(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const std::string& path, const std::string& configIface,
+    const std::string& what)
+{
+    std::vector<std::string> gpioLines;
+    std::vector<bool> gpioPolarities;
+
+    for (size_t i = 0; true; i++)
+    {
+        const std::string iface = configIface + std::to_string(i);
+
+        std::optional<std::string> name =
+            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                          iface, "Name");
+
+        std::optional<std::string> polarity =
+            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
+                                                          iface, "Polarity");
+
+        if (!name.has_value() || !polarity.has_value())
+        {
+            break;
+        }
+
+        gpioLines.push_back(name.value());
+        gpioPolarities.push_back(polarity.value() == "High");
+    }
+
+    for (size_t i = 0; i < gpioLines.size(); i++)
+    {
+        debug("{WHAT} gpio {NAME} polarity = {VALUE}", "WHAT", what, "NAME",
+              gpioLines[i], "VALUE", gpioPolarities[i]);
+    }
+
+    co_return GPIOGroup(gpioLines, gpioPolarities);
+}

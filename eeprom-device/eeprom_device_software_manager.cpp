@@ -40,13 +40,6 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     const std::string configIface =
         "xyz.openbmc_project.Configuration." + config.configType;
 
-    std::optional<uint64_t> bus = co_await dbusGetRequiredProperty<uint64_t>(
-        ctx, service, path, configIface, "Bus");
-
-    std::optional<uint64_t> address =
-        co_await dbusGetRequiredProperty<uint64_t>(ctx, service, path,
-                                                   configIface, "Address");
-
     std::optional<std::string> type =
         co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
                                                       configIface, "Type");
@@ -55,20 +48,17 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
         co_await dbusGetRequiredProperty<std::string>(
             ctx, service, path, configIface, "FirmwareDevice");
 
-    if (!bus.has_value() || !address.has_value() || !type.has_value() ||
-        !fwDevice.has_value())
+    if (!type.has_value() || !fwDevice.has_value())
     {
         error("Missing EEPROM device config property");
         co_return false;
     }
 
-    debug("EEPROM Device: Bus={BUS}, Address={ADDR}, Type={TYPE}, "
-          "Firmware Device={DEVICE}",
-          "BUS", bus.value(), "ADDR", address.value(), "TYPE", type.value(),
-          "DEVICE", fwDevice.value());
+    debug("EEPROM Device: Type={TYPE}, Firmware Device={DEVICE}", "TYPE",
+          type.value(), "DEVICE", fwDevice.value());
 
-    std::unique_ptr<DeviceVersion> deviceVersion =
-        getVersionProvider(type.value(), bus.value(), address.value());
+    std::unique_ptr<DeviceVersion> deviceVersion = co_await getVersionProvider(
+        ctx, service, path, configIface, type.value());
 
     if (!deviceVersion)
     {
@@ -89,8 +79,8 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
     auto res =
         co_await mapper.get_sub_tree("/xyz/openbmc_project/inventory", 0, {});
 
-    bus.reset();
-    address.reset();
+    std::optional<uint64_t> bus, address;
+
     type.reset();
 
     for (auto& [p, v] : res)

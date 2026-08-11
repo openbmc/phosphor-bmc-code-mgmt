@@ -37,5 +37,7 @@ class DeviceVersion
     uint8_t address;
 };
 
-std::unique_ptr<DeviceVersion> getVersionProvider(
-    const std::string& chipModel, uint16_t bus, uint8_t address);
+sdbusplus::async::task<std::unique_ptr<DeviceVersion>> getVersionProvider(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const std::string& path, const std::string& configIface,
+    const std::string& chipModel);

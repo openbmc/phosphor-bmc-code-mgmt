@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0886bb58_f373bd4d",
+        "filename": "common/src/pmbus.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-11T09:27:41Z",
+      "side": 1,
+      "message": "nit, would be nice to have a debug log here\n```suggestion\n        originalPage \u003d rbuf[0];\n        lg2::debug(\"PageGuard: current Page {PAGE} stored\", \"PAGE\", originalPage.value());\n```",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 31
+      },
+      "revId": "323875ed14c84da0714a58f27d0b4f13c157bcc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db976f5_702da0fe",
+        "filename": "common/src/pmbus.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-11T09:27:41Z",
+      "side": 1,
+      "message": "nit, since this has effects on sensor readings, it would be good to have at least some debug log as to which page was set even when the command was successful.",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "323875ed14c84da0714a58f27d0b4f13c157bcc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

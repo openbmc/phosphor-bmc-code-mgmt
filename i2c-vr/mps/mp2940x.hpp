@@ -1,0 +1,46 @@
+#pragma once
+
+#include "common/include/pmbus.hpp"
+#include "mps.hpp"
+
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
+namespace phosphor::software::VR
+{
+
+class MP2940X : public MPSVoltageRegulator
+{
+  public:
+    MP2940X(sdbusplus::async::context& ctx, uint16_t bus, uint16_t address) :
+        MPSVoltageRegulator(ctx, bus, address)
+    {}
+
+    sdbusplus::async::task<bool> verifyImage(const uint8_t* image,
+                                             size_t imageSize) final;
+    sdbusplus::async::task<bool> updateFirmware(bool force) final;
+    sdbusplus::async::task<bool> getCRC(uint32_t* checksum) final;
+    sdbusplus::async::task<bool> parseDeviceConfiguration() final;
+    bool forcedUpdateAllowed() final;
+
+  private:
+    bool usePEC = false;
+    size_t expectedConfigRowCount = 0;
+
+    sdbusplus::async::task<bool> parseConfigRows(size_t& configRowCount);
+    bool isConfigurationDataRow(const MPSData& data) const;
+    std::vector<uint8_t> buildConfigurationWriteBuffer(
+        const MPSData& data) const;
+    sdbusplus::async::task<bool> detectPECMode();
+    sdbusplus::async::task<bool> programConfigurationData();
+
+    sdbusplus::async::task<bool> setPage(MPSPage page, bool withPEC);
+    sdbusplus::async::task<bool> readByte(uint8_t command, uint8_t& value,
+                                          bool withPEC);
+    sdbusplus::async::task<bool> readWord(uint8_t command, uint16_t& value,
+                                          bool withPEC);
+    sdbusplus::async::task<bool> readCRCMulti(uint8_t index, uint16_t& value);
+};
+
+} // namespace phosphor::software::VR

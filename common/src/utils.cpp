@@ -11,9 +11,17 @@ sdbusplus::async::task<bool> asyncSystem(
     int exitPipefd[2];
     int resultPipefd[2];
 
-    if (pipe(exitPipefd) == -1 || (result && pipe(resultPipefd) == -1))
+    if (pipe(exitPipefd) == -1)
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
+        co_return false;
+    }
+
+    if (result && pipe(resultPipefd) == -1)
+    {
+        error("Failed to create pipe for command: {CMD}", "CMD", cmd);
+        close(exitPipefd[0]);
+        close(exitPipefd[1]);
         co_return false;
     }
 

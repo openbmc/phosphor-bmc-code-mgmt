@@ -284,8 +284,6 @@ bool extractMatchingComponentImages(
     {
         const ComponentImageInfo& c = cs[component];
 
-        // componentLocation.ptr already points into the buffer the package
-        // was parsed over, so hand it out directly as a span (no offset).
         componentsOut.emplace_back(phosphor::software::device::ComponentImage{
             std::span<const uint8_t>(c.componentLocation.ptr,
                                      c.componentLocation.length),

@@ -25,6 +25,7 @@ enum class VRType
     TDA38640A,
     XDP71X,
     TPS25990,
+    TPS544X27,
     RS31390
 };
 

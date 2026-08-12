@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "434d8b99_854d8417",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002605
+      },
+      "writtenOn": "2026-08-12T19:10:02Z",
+      "side": 1,
+      "message": "CI is passing now. The failure was a valgrind timeout which was unrelated to my changes.",
+      "parentUuid": "4636cce0_1313eddb",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3bf146c_93ad88a6",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "f3bf146c_93ad88a6",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "facd7aad_e32fa9c1",
+        "filename": "bmc/update_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1002605
+      },
+      "writtenOn": "2026-08-12T19:10:02Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2b5d9f40_2f45d7c4",
       "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +124,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4390b5a4_3d6d89be",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002605
+      },
+      "writtenOn": "2026-08-12T19:10:02Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f27f48be_20c883a1",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec17f206_468fc2e5",
@@ -123,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f126ec_3dca1d90",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002605
+      },
+      "writtenOn": "2026-08-12T19:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f03aa038_b719af40",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1af1145b_b995fe7f",
@@ -136,6 +208,24 @@
       "writtenOn": "2026-08-10T00:49:22Z",
       "side": 1,
       "message": "Refer to my comment above, this will change to something like line#68.",
+      "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de12374_db0035e1",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002605
+      },
+      "writtenOn": "2026-08-12T19:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1af1145b_b995fe7f",
       "revId": "5b3764482109fc54791b4b2d6390f02c9c9790d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

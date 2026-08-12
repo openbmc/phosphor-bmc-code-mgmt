@@ -2,6 +2,11 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <algorithm>
+#include <cctype>
+#include <iomanip>
+#include <sstream>
+
 PHOSPHOR_LOG2_USING;
 
 sdbusplus::async::task<bool> asyncSystem(
@@ -111,4 +116,118 @@ sdbusplus::async::task<bool> asyncSystem(
         }
         co_return false;
     }
+}
+
+std::string trim(const std::string& s)
+{
+    size_t b = 0;
+    while (b < s.size() && std::isspace(static_cast<unsigned char>(s[b])))
+    {
+        ++b;
+    }
+
+    size_t e = s.size();
+    while (e > b && std::isspace(static_cast<unsigned char>(s[e - 1])))
+    {
+        --e;
+    }
+
+    return s.substr(b, e - b);
+}
+
+bool parseHexByte(const std::string& input, uint8_t& value)
+{
+    std::string s = trim(input);
+
+    if (s.rfind("0x", 0) == 0 || s.rfind("0X", 0) == 0)
+    {
+        s = s.substr(2);
+    }
+
+    if (s.empty() || s.size() > 2)
+    {
+        return false;
+    }
+
+    unsigned int v = 0;
+    std::stringstream ss;
+    ss << std::hex << s;
+    ss >> v;
+
+    if (ss.fail() || v > 0xFF)
+    {
+        return false;
+    }
+
+    value = static_cast<uint8_t>(v);
+    return true;
+}
+
+bool parseHexBytes(const std::string& input, std::vector<uint8_t>& out)
+{
+    std::string s = trim(input);
+
+    if (s.rfind("0x", 0) == 0 || s.rfind("0X", 0) == 0)
+    {
+        s = s.substr(2);
+    }
+
+    s.erase(std::remove_if(s.begin(), s.end(),
+                           [](unsigned char c) { return std::isspace(c); }),
+            s.end());
+
+    if (s.empty() || (s.size() % 2) != 0)
+    {
+        return false;
+    }
+
+    out.clear();
+
+    for (size_t i = 0; i < s.size(); i += 2)
+    {
+        std::string byteStr = s.substr(i, 2);
+
+        unsigned int v = 0;
+        std::stringstream ss;
+        ss << std::hex << byteStr;
+        ss >> v;
+
+        if (ss.fail() || v > 0xFF)
+        {
+            return false;
+        }
+
+        out.push_back(static_cast<uint8_t>(v));
+    }
+
+    return true;
+}
+
+std::string byteToHex(uint8_t b)
+{
+    std::ostringstream oss;
+    oss << "0x" << std::uppercase << std::hex << std::setw(2)
+        << std::setfill('0') << static_cast<int>(b);
+    return oss.str();
+}
+
+std::string bytesToHex(const std::vector<uint8_t>& bytes)
+{
+    if (bytes.empty())
+    {
+        return "-";
+    }
+
+    std::ostringstream oss;
+    for (size_t i = 0; i < bytes.size(); ++i)
+    {
+        if (i != 0)
+        {
+            oss << " ";
+        }
+
+        oss << byteToHex(bytes[i]);
+    }
+
+    return oss.str();
 }

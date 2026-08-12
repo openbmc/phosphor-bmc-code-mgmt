@@ -2,8 +2,17 @@
 
 #include <sdbusplus/async.hpp>
 
+#include <algorithm>
+#include <chrono>
+#include <cstddef>
+#include <cstdint>
 #include <functional>
+#include <initializer_list>
 #include <optional>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
 /**
  * @brief Asynchronously executes a shell command.
@@ -135,3 +144,13 @@ std::vector<uint8_t> buildByteVector(Args&&... args)
 
     return buf;
 }
+
+std::string trim(const std::string& input);
+
+bool parseHexByte(const std::string& input, uint8_t& value);
+
+bool parseHexBytes(const std::string& input, std::vector<uint8_t>& output);
+
+std::string byteToHex(uint8_t value);
+
+std::string bytesToHex(const std::vector<uint8_t>& bytes);

@@ -123,6 +123,7 @@ auto USBManager::run() -> sdbusplus::async::task<void>
     }
 
     co_await startUpdate(fd);
+    close(fd);
 
     ctx.request_stop();
 

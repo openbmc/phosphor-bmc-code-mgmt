@@ -3,19 +3,25 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 #include <sdbusplus/async/context.hpp>
+#include <sdbusplus/message/native_types.hpp>
 
 #include <optional>
 
 PHOSPHOR_LOG2_USING;
 
+// Fetch an optional EM configuration property; absence is not an error.
+// The failure reason is kept at debug level since the Get call can also
+// fail for reasons other than an absent property.
 template <typename T>
-sdbusplus::async::task<std::optional<T>> dbusGetRequiredProperty(
+sdbusplus::async::task<std::optional<T>> dbusGetOptionalProperty(
     sdbusplus::async::context& ctx, const std::string& service,
-    const std::string& path, const std::string& intf,
+    const sdbusplus::object_path& path, const std::string& intf,
     const std::string& property)
 {
+    // proxy() stores string_views, so keep the path string alive locally.
+    const std::string pathStr = path.string();
     auto client =
-        sdbusplus::async::proxy().service(service).path(path).interface(
+        sdbusplus::async::proxy().service(service).path(pathStr).interface(
             "org.freedesktop.DBus.Properties");
 
     std::optional<T> opt = std::nullopt;
@@ -26,10 +32,27 @@ sdbusplus::async::task<std::optional<T>> dbusGetRequiredProperty(
 
         opt = std::get<T>(result);
     }
-    catch (std::exception& e)
+    catch (const std::exception& e)
+    {
+        debug("Optional property {PROPERTY} not set on path {PATH}: {ERROR}",
+              "PROPERTY", property, "PATH", pathStr, "ERROR", e.what());
+    }
+    co_return opt;
+}
+
+template <typename T>
+sdbusplus::async::task<std::optional<T>> dbusGetRequiredProperty(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const sdbusplus::object_path& path, const std::string& intf,
+    const std::string& property)
+{
+    std::optional<T> opt =
+        co_await dbusGetOptionalProperty<T>(ctx, service, path, intf, property);
+
+    if (!opt.has_value())
     {
         error("Missing property {PROPERTY} on path {PATH}, interface {INTF}",
-              "PROPERTY", property, "PATH", path, "INTF", intf);
+              "PROPERTY", property, "PATH", path.string(), "INTF", intf);
     }
     co_return opt;
 }

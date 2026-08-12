@@ -1,0 +1,14 @@
+[Unit]
+Description=OCP Secure Firmware Recovery Update Daemon
+After=xyz.openbmc_project.ObjectMapper.service
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=always
+Type=dbus
+BusName=xyz.openbmc_project.Software.OCPRecovery
+RemainAfterExit=no
+ExecStart=/usr/libexec/phosphor-code-mgmt/phosphor-ocp-recovery-software-update
+
+[Install]
+WantedBy=multi-user.target

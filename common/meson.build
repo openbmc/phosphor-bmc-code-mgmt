@@ -13,12 +13,15 @@ configure_file(output: 'common_config.h', configuration: conf)
 
 gpio_inc = include_directories('include')
 
-libgpio_controller = static_library(
-    'gpio_controller',
-    'src/gpio_controller.cpp',
-    include_directories: ['.', 'include', common_include],
-    dependencies: [libgpiod_dep, phosphor_logging_dep],
-)
+libgpio_controller = disabler()
+if libgpiod_dep.found()
+    libgpio_controller = static_library(
+        'gpio_controller',
+        'src/gpio_controller.cpp',
+        include_directories: ['.', 'include', common_include],
+        dependencies: [libgpiod_dep, phosphor_logging_dep],
+    )
+endif
 
 software_common_lib = static_library(
     'software_common_lib',
@@ -35,7 +38,6 @@ software_common_lib = static_library(
         pdi_dep,
         phosphor_logging_dep,
         sdbusplus_dep,
-        libgpiod_dep,
         libpldm_dep,
         libpldmcpp_dep,
     ],

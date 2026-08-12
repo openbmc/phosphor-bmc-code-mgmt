@@ -92,6 +92,13 @@ option(
 )
 
 option(
+    'ocp-recovery-software-update',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Enable OCP Secure Firmware Recovery based update support.',
+)
+
+option(
     'ocp-recovery-tool',
     type: 'feature',
     value: 'enabled',

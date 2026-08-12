@@ -91,6 +91,13 @@ option(
     description: 'Enable TPM software update support.',
 )
 
+option(
+    'ocp-recovery-tool',
+    type: 'feature',
+    value: 'enabled',
+    description: 'Build the standalone OCP Secure Firmware Recovery CLI tool.',
+)
+
 # Variables
 option(
     'active-bmc-max-allowed',

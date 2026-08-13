@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46181fba_c3b69097",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:26:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d92fdd14_e2d3ada0",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b6d3191_f9c63632",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-08-10T21:29:49Z",
       "side": 1,
       "message": "Can we create similar enums for Protocol error and Recovery reason code ?",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "953dcd5c_b985fd12",
+        "filename": "libocp/include/ocp/ocp_recovery.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:26:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b6d3191_f9c63632",
       "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc4159e1_9e12207a",
+        "filename": "libocp/src/ocp_recovery.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:26:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3bb2b56b_9b8def10",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0903b8a6_185433df",
@@ -82,6 +136,24 @@
       "writtenOn": "2026-08-10T21:29:49Z",
       "side": 1,
       "message": "Why is this set to 25 ?",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "047b162a_7213fb37",
+        "filename": "libocp/src/ocp_recovery.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:26:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0903b8a6_185433df",
       "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

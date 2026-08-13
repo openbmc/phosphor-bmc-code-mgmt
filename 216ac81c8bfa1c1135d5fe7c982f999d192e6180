@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aa3df28_a3d8cba2",
+        "filename": "ocp-recovery/ocp_recovery_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-13T09:59:15Z",
+      "side": 1,
+      "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\ncan you for example break out the per-component look as a separate function, e.g. `stageComponents(...)`",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "216ac81c8bfa1c1135d5fe7c982f999d192e6180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

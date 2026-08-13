@@ -16,6 +16,24 @@
       "message": "Could we add a retry (or delayed re-query) when the initial hostPower.getState(ctx) call fails? If this startup query fails once and no further host-state transition occurs, version retrieval may still be skipped in the same race scenario this patch is addressing.",
       "revId": "b62e6193aaaedb8871f01772f146672901a82150",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "958637ae_ae6f4907",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-08-13T09:27:55Z",
+      "side": 1,
+      "message": "Thanks for your review.\nI can add a one-time delayed re-query to cover this case.\nIf it still fails, we\u0027ll wait for a subsequent host-state transition; otherwise, we\u0027ll just let it fail.\nDoes this plan sound good to you?",
+      "parentUuid": "4bf8866e_83e710a4",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

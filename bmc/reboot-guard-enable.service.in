@@ -1,8 +1,0 @@
-[Unit]
-Description=Enable a guard that blocks BMC reboot
-Before=reboot-guard-disable.service
-
-[Service]
-Type=oneshot
-RemainAfterExit=no
-ExecStart=/usr/bin/obmc-flash-bmc rebootguardenable

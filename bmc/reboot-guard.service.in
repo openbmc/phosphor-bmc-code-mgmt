@@ -1,0 +1,11 @@
+[Unit]
+Description=Guard that blocks BMC reboot during activation
+PartOf=@REBOOT_GUARD_OWNER_SERVICE@
+BindsTo=@REBOOT_GUARD_OWNER_SERVICE@
+After=@REBOOT_GUARD_OWNER_SERVICE@
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/obmc-flash-bmc rebootguardenable
+ExecStop=/usr/bin/obmc-flash-bmc rebootguarddisable

@@ -345,7 +345,7 @@ void ActivationBlocksTransition::enableRebootGuard()
 
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
-    method.append("reboot-guard-enable.service", "replace");
+    method.append("reboot-guard.service", "replace");
     bus.call_noreply(method);
 }
 
@@ -354,8 +354,8 @@ void ActivationBlocksTransition::disableRebootGuard()
     info("BMC activation has ended - BMC reboots are re-enabled.");
 
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
-                                      SYSTEMD_INTERFACE, "StartUnit");
-    method.append("reboot-guard-disable.service", "replace");
+                                      SYSTEMD_INTERFACE, "StopUnit");
+    method.append("reboot-guard.service", "replace");
     bus.call_noreply(method);
 }
 

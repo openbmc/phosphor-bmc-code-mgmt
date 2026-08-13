@@ -95,10 +95,23 @@ endif
 
 configure_file(output: 'config.h', configuration: conf)
 
+# reboot-guard.service needs its own conf to avoid polluting config.h with a string define
+reboot_guard_owner_service = 'xyz.openbmc_project.Software.BMC.Updater.service'
+if get_option('software-update-dbus-interface').allowed()
+    reboot_guard_owner_service = 'xyz.openbmc_project.Software.Manager.service'
+endif
+reboot_guard_conf = configuration_data()
+reboot_guard_conf.set('REBOOT_GUARD_OWNER_SERVICE', reboot_guard_owner_service)
+configure_file(
+    input: 'reboot-guard.service.in',
+    output: 'reboot-guard.service',
+    configuration: reboot_guard_conf,
+    install: true,
+    install_dir: systemd_system_unit_dir,
+)
+
 unit_files = [
     'obmc-flash-bmc-setenv@.service.in',
-    'reboot-guard-disable.service.in',
-    'reboot-guard-enable.service.in',
     'force-reboot.service.in',
     'usr-local.mount.in',
     'xyz.openbmc_project.Software.Download.service.in',

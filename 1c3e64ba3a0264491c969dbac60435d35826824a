@@ -16,6 +16,24 @@
       "message": "Increasing the poll interval from 2s to 10s also increases the worst-case readiness wait from 30s to 150s with the current retry count (maxRetries \u003d 15). Is that total timeout increases intentional across all platforms, or should retry count be adjusted to keep a similar overall timeout?",
       "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8148891_bb53e833",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-08-13T09:43:54Z",
+      "side": 1,
+      "message": "The increase in the overall timeout is intentional. This polling is effectively waiting for the retimer driver to become ready.\nFor retimer readiness, we depend on BIOS POST completion:\n\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/meta/anacapa/anacapa_bridge_l.json#L56\n\nSince BIOS POST duration can vary significantly across platforms, the previous 30-second timeout was not always sufficient in our testing. Therefore, I intentionally extended the maximum wait time to 150 seconds by increasing the polling interval to 10 seconds and keeping the retry count unchanged.",
+      "parentUuid": "3e516922_864b6421",
+      "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

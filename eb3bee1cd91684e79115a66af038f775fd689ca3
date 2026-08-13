@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63381eaa_a8baeba2",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-13T08:49:50Z",
+      "side": 1,
+      "message": "see\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand please let\u0027s refactor this function before bolting on further error handling for bugs that likely never actually happened.\n\nFor instance you could separate the caller and callee side process after fork into separate functions",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "eb3bee1cd91684e79115a66af038f775fd689ca3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

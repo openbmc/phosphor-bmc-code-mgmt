@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a31085f8_75f6fd09",
+        "filename": "ocp-recovery/ocp_recovery_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:27:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "59511cfc_a34ff68f",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "8a8c897b33cd1983bebf4a7a0e4946c96952e81c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f1e452c_704a57e4",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-10T10:20:57Z",
       "side": 1,
       "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nthis is slightly over, can we break out e.g. the retry loop.",
+      "range": {
+        "startLine": 267,
+        "startChar": 1,
+        "endLine": 332,
+        "endChar": 19
+      },
+      "revId": "8a8c897b33cd1983bebf4a7a0e4946c96952e81c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604cbe8c_18182523",
+        "filename": "ocp-recovery/ocp_recovery_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:27:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8f1e452c_704a57e4",
       "range": {
         "startLine": 267,
         "startChar": 1,

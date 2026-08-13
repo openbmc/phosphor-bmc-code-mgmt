@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46f2211_07fb1223",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-13T09:37:48Z",
+      "side": 1,
+      "message": "```suggestion\n              \"PROPERTY\", property, \"PATH\", path.string(), \"INTF\", intf);\n```\n\ndirect `.str` member access is deprecated as this property should be encapsulated in the future. \n\nsee https://github.com/openbmc/sdbusplus/blob/db6db4bcbb2296081de40a8b877b5d975ac3f01e/include/sdbusplus/message/native_types.hpp#L88",
+      "range": {
+        "startLine": 55,
+        "startChar": 49,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "93fec93caf310caf721ef0423cd742189b9b6c9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b8c7516_ed1373d9",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:27:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8ef645f6_29cd570b",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 29
+      },
+      "revId": "9baa2cb8be831b1caeb024c1e6b3ef7fb3d91ae9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdc2171a_9ef9d1f7",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-10T10:04:01Z",
       "side": 1,
       "message": "at the point where the error log is printed here the debug log from `dbusGetOptionalProperty` would already have been printed, possibly creating confusion about the property, since we are fetching it as required but getting a log saying that it\u0027s optional.\n\nWould you consider introducing a parameter `printLog` to `dbusGetOptionalProperty` and default it to `true` in order to avoid this log when calling from `dbusGetRequiredProperty` ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 64
+      },
+      "revId": "9baa2cb8be831b1caeb024c1e6b3ef7fb3d91ae9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23591cae_8a01c6fa",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-08-13T06:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc2171a_9ef9d1f7",
       "range": {
         "startLine": 50,
         "startChar": 8,

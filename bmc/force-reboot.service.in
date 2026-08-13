@@ -1,9 +1,10 @@
 [Unit]
 Description=Force reboot of the BMC
-Requires=reboot-guard-disable.service
-After=reboot-guard-disable.service
+After=reboot-guard.service
 
 [Service]
 Type=oneshot
 RemainAfterExit=no
+# ensure guard is cleared before reboot even if activation didn't clean it up
+ExecStartPre=-/bin/systemctl stop reboot-guard.service
 ExecStart=/sbin/reboot

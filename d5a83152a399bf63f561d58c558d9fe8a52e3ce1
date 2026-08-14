@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e25022d5_73f62b75",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "I suppose we can always make versionDirPath and versionFilename as constexpr since their value is fixed ?",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdeb47db_21b94e05",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "lets rename config to versionFile",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2b19e4_535f4bff",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "its already initialized at line# 37, so won\u0027t need this.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "375dc273_cdf5606a",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "its already initialized at line# 37, isn\u0027t?",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6783a1_d0f54eb3",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "can u rename in arg with in prefix its really hard to read this code.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ece5fc8_4ffafd2b",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "reword config -\u003e version",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "439157bd_77b6cce9",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "use lower camelcase for var name",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96156f91_f93b3630",
+        "filename": "spi-flash/bios/bios_device.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:28:19Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to inherit from NotifyWatchIntf, it can be a var in BIOSDevice class and follow the composite pattern.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

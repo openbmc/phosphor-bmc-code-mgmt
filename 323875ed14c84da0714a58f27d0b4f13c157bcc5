@@ -45,6 +45,30 @@
       },
       "revId": "323875ed14c84da0714a58f27d0b4f13c157bcc5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "641cc0ce_dc177a50",
+        "filename": "common/src/pmbus.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-08-14T07:27:55Z",
+      "side": 1,
+      "message": "Add log at patch 8.\nIt will show the log when it succfully update.\n\nThe log as below:\n```\nAug 14 00:18:33 bmc phosphor-i2cvr-software-update[1411]: PageGuard: current Page 0 stored\nAug 14 00:18:33 bmc phosphor-i2cvr-software-update[1411]: PageGuard: restored page 0x0\nAug 14 00:18:33 bmc phosphor-i2cvr-software-update[1411]: PageGuard: restored page 0x0\nAug 14 00:18:33 bmc phosphor-i2cvr-software-update[1411]: Successfully updated VR Santabarbara_MB_VR_XX_XX\n```",
+      "parentUuid": "1db976f5_702da0fe",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "323875ed14c84da0714a58f27d0b4f13c157bcc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

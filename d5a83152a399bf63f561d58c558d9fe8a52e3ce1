@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f97ebbf_70796913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-14T04:29:41Z",
+      "side": 1,
+      "message": "Please update the Unit Test to cover before version, after version, after AC cycle version.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e25022d5_73f62b75",
         "filename": "spi-flash/bios/bios_device.cpp",
         "patchSetId": 8

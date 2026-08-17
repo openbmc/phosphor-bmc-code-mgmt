@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c2f438_864c9046",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "Please define constexpr for this and use them here and in reportPageProgress.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e37dda_13445587",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "Please define constexpr for this and use them here and in reportPageProgress.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d9e7b7_ee22db82",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "Use constexpr rather than passing in in_arg here.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc873c8_6a063760",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "Why do you need lastReportedProgress ? Isn\u0027t your iteration logic yielding you a different value every time or am i missing something ?",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec155db_ce908545",
+        "filename": "cpld/lattice/lattice_base_cpld.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "Please have this API locally derive the rangeStart and rangeEnd locally rather than passing it from caller as base cpld very well knows what are these ranges.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b80bcd_741b3516",
+        "filename": "cpld/lattice/lattice_xo3_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "No need to define these as reportPageProgress can do this locally in base cpld. Refer to my comment in base cpld.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b2be2e_da10c5bd",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "No need to define these as reportPageProgress can do this locally in base cpld. Refer to my comment in base cpld.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c6e9763_4fd0bdf5",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-17T18:27:12Z",
+      "side": 1,
+      "message": "No need to define these as reportPageProgress can do this locally in base cpld. Refer to my comment in base cpld.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

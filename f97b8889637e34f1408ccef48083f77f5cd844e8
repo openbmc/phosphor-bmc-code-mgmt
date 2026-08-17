@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a98c6b_1d55fe92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-17T11:58:46Z",
+      "side": 1,
+      "message": "from a quick grep, i don\u0027t see any tests covering this function `asyncSystem`.\n\n```\n[alexander@alexanderarchlinux phosphor-bmc-code-mgmt]$ rg asyncSystem\ncommon/src/utils.cpp\n7:sdbusplus::async::task\u003cbool\u003e asyncSystem(\n\ncommon/include/utils.hpp\n14:sdbusplus::async::task\u003cbool\u003e asyncSystem(\n\ntpm/tpm2/tpm2.cpp\n48:    if (!co_await asyncSystem(ctx, cmd, output))\n\neeprom-device/eeprom_device.cpp\n269:    auto success \u003d co_await asyncSystem(ctx, cmd);\n\nbios/spi_device.cpp\n343:    auto success \u003d co_await asyncSystem(ctx, cmd);\n389:    auto success \u003d co_await asyncSystem(ctx, cmd);\n```\n\nIt should be pretty simple to add a short unit test calling something like `echo test` or some other command to see the function is working correctly and returning correct stdout result and correct error code in both success/failure cases and with/without \u0027result\u0027 set.\n\nIMO that will be better than manual testing as it would allow for easier future changes.",
+      "revId": "f97b8889637e34f1408ccef48083f77f5cd844e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

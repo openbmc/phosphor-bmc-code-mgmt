@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "637e5cbf_016235da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Done, add the pre change, post change test and version show",
+      "parentUuid": "3f97ebbf_70796913",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e25022d5_73f62b75",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-14T04:28:19Z",
       "side": 1,
       "message": "I suppose we can always make versionDirPath and versionFilename as constexpr since their value is fixed ?",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b85b5cd2_c1cab34c",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Done — moved both to constexpr",
+      "parentUuid": "e25022d5_73f62b75",
       "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a144325_df8a37f7",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "cdeb47db_21b94e05",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b2b19e4_535f4bff",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-14T04:28:19Z",
       "side": 1,
       "message": "its already initialized at line# 37, so won\u0027t need this.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e4ada2b_c6800803",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Right, removed both.",
+      "parentUuid": "9b2b19e4_535f4bff",
       "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e428730_44b0d0a7",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Right, removed both",
+      "parentUuid": "375dc273_cdf5606a",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be6783a1_d0f54eb3",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-14T04:28:19Z",
       "side": 1,
       "message": "can u rename in arg with in prefix its really hard to read this code.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226bd480_a717bcb5",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Done, renamed to inVersionFilename.",
+      "parentUuid": "be6783a1_d0f54eb3",
       "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42ef353_b3df2b95",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "9ece5fc8_4ffafd2b",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "439157bd_77b6cce9",
@@ -137,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8938fb5b_63b0fd13",
+        "filename": "spi-flash/bios/bios_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "439157bd_77b6cce9",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96156f91_f93b3630",
@@ -150,6 +294,24 @@
       "writtenOn": "2026-08-14T04:28:19Z",
       "side": 1,
       "message": "I don\u0027t think we need to inherit from NotifyWatchIntf, it can be a var in BIOSDevice class and follow the composite pattern.",
+      "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b27976c_4dfaa66a",
+        "filename": "spi-flash/bios/bios_device.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-17T04:51:23Z",
+      "side": 1,
+      "message": "Done — switched to composition. NotifyWatch\u003cT\u003e is CRTP, so a plain member would break its static_cast\u003cT*\u003e(this); the nested VersionWatch holds that relationship and forwards to BIOSDevice.",
+      "parentUuid": "96156f91_f93b3630",
       "revId": "d5a83152a399bf63f561d58c558d9fe8a52e3ce1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

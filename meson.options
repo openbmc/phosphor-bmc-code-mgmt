@@ -217,3 +217,11 @@ option(
     value: 60,
     description: 'Timeout for host state transition.',
 )
+
+option(
+    'swid-collision-retries',
+    type: 'integer',
+    min: 1,
+    value: 3,
+    description: 'Maximum retries when generated SWID collides with current SWID.',
+)

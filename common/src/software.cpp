@@ -1,5 +1,6 @@
 #include "software.hpp"
 
+#include "common_config.h"
 #include "device.hpp"
 #include "software_update.hpp"
 
@@ -9,6 +10,8 @@
 #include <xyz/openbmc_project/Software/Activation/aserver.hpp>
 #include <xyz/openbmc_project/Software/Update/aserver.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
+
+#include <stdexcept>
 
 PHOSPHOR_LOG2_USING;
 
@@ -39,16 +42,50 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
 
 long int Software::getRandomId()
 {
-    struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
-    unsigned int seed = ts.tv_nsec ^ getpid();
-    srandom(seed);
+    static bool seeded = false;
+    if (!seeded)
+    {
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        unsigned int seed = ts.tv_nsec ^ getpid();
+        srandom(seed);
+        seeded = true;
+    }
+
     return random() % 10000;
 }
 
 std::string Software::getRandomSoftwareId(Device& parent)
 {
-    return std::format("{}_{}", parent.config.configName, getRandomId());
+    std::optional<std::string> currentSwid = std::nullopt;
+    if (parent.softwareCurrent)
+    {
+        currentSwid = parent.softwareCurrent->swid;
+    }
+
+    for (int attempt = 0; attempt < SWID_COLLISION_RETRIES; attempt++)
+    {
+        std::string swid =
+            std::format("{}_{}", parent.config.configName, getRandomId());
+
+        if (!currentSwid.has_value() || swid != currentSwid.value())
+        {
+            debug("Selected software id {SWID}", "SWID", swid);
+            return swid;
+        }
+
+        warning(
+            "SWID collision for component {COMPONENT} on attempt {ATTEMPT}: candidate={CANDIDATE_SWID}, current={CURRENT_SWID}",
+            "COMPONENT", parent.config.configName, "ATTEMPT", attempt + 1,
+            "CANDIDATE_SWID", swid, "CURRENT_SWID", currentSwid.value());
+    }
+
+    error(
+        "Failed to generate SWID after {RETRY_COUNT} retries for component {COMPONENT}, currentSwid={CURRENT_SWID}",
+        "RETRY_COUNT", SWID_COLLISION_RETRIES, "COMPONENT",
+        parent.config.configName, "CURRENT_SWID",
+        currentSwid.value_or("<none>"));
+    throw std::runtime_error("software id collision retry exhausted");
 }
 
 sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)

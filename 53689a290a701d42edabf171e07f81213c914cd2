@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b65fec8_cb49b066",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, added constexpr progressEraseDone\u003d70 / progressUpdateDone\u003d90, shared.",
+      "parentUuid": "52c2f438_864c9046",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8e37dda_13445587",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-17T18:27:12Z",
       "side": 1,
       "message": "Please define constexpr for this and use them here and in reportPageProgress.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45b113e8_3c9e5eed",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, added constexpr progressEraseDone\u003d70 / progressUpdateDone\u003d90, shared.",
+      "parentUuid": "c8e37dda_13445587",
       "revId": "53689a290a701d42edabf171e07f81213c914cd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecccb081_f9eecd42",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, follows from the above.",
+      "parentUuid": "d5d9e7b7_ee22db82",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cc873c8_6a063760",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-17T18:27:12Z",
       "side": 1,
       "message": "Why do you need lastReportedProgress ? Isn\u0027t your iteration logic yielding you a different value every time or am i missing something ?",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faafcc49_675f0ac4",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Needed. progress is an int over only a 70-90 range, but this is called once per page (16B for XO3, 256B for XO5), so many consecutive calls compute the same truncated value. Without the guard, every one of those redundant calls would fire a PropertiesChanged signal.",
+      "parentUuid": "7cc873c8_6a063760",
       "revId": "53689a290a701d42edabf171e07f81213c914cd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccae2c1f_ba6142a8",
+        "filename": "cpld/lattice/lattice_base_cpld.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, range moved into reportPageProgress() as constexpr.",
+      "parentUuid": "4ec155db_ce908545",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86b80bcd_741b3516",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-17T18:27:12Z",
       "side": 1,
       "message": "No need to define these as reportPageProgress can do this locally in base cpld. Refer to my comment in base cpld.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d67a870_08bf1483",
+        "filename": "cpld/lattice/lattice_xo3_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, removed",
+      "parentUuid": "86b80bcd_741b3516",
       "revId": "53689a290a701d42edabf171e07f81213c914cd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e18bd9_9bb37223",
+        "filename": "cpld/lattice/lattice_xo5_standard_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, removed",
+      "parentUuid": "86b2be2e_da10c5bd",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c6e9763_4fd0bdf5",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-08-17T18:27:12Z",
       "side": 1,
       "message": "No need to define these as reportPageProgress can do this locally in base cpld. Refer to my comment in base cpld.",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed18b4c_c3822776",
+        "filename": "cpld/lattice/lattice_xo5_tseries_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-18T02:48:52Z",
+      "side": 1,
+      "message": "Done, removed",
+      "parentUuid": "5c6e9763_4fd0bdf5",
       "revId": "53689a290a701d42edabf171e07f81213c914cd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

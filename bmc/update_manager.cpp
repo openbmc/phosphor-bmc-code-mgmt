@@ -3,6 +3,9 @@
 #include "item_updater.hpp"
 #include "software_utils.hpp"
 #include "version.hpp"
+#ifdef WANT_SIGNATURE_VERIFY
+#include "image_verify.hpp"
+#endif
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -186,6 +189,22 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     imageDirPath /= id;
     fs::rename(tmpDirPath, imageDirPath, ec);
     tmpDirToRemove.path.clear();
+
+#ifdef WANT_SIGNATURE_VERIFY
+    // Verify image signatures before marking as Ready.
+    using Signature = phosphor::software::image::Signature;
+    Signature signature(imageDirPath, SIGNED_IMAGE_CONF_PATH);
+    if (!signature.verify())
+    {
+        error("Image signature verification failed");
+        fs::remove_all(imageDirPath, ec);
+        processImageFailed(image, id);
+        report<SoftwareErrors::ImageFailure>(
+            ImageFail::FAIL("Signature verification failed"),
+            ImageFail::PATH(imageDirPath.c_str()));
+        co_return;
+    }
+#endif
 
     auto filePath = imageDirPath.string();
     // Create Version object

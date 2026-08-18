@@ -6,6 +6,7 @@ conf.set(
     'HOST_STATE_TRANSITION_TIMEOUT',
     get_option('host-state-transition-timeout'),
 )
+conf.set('SWID_COLLISION_RETRIES', get_option('swid-collision-retries'))
 
 configure_file(output: 'common_config.h', configuration: conf)
 

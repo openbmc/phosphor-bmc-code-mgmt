@@ -189,6 +189,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d65570cd_17e45ab8",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-18T16:04:03Z",
+      "side": 1,
+      "message": "Since there was no patch in 2 weeks i assumed there was no time to send it and created it here:\n\nhttps://gerrit.openbmc.org/c/openbmc/libpldm/+/93676\n\nKindly review it if you find the time to see if it helps.",
+      "parentUuid": "155c0635_c186758c",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 288,
+        "endChar": 9
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13b9499c_dacb10da",

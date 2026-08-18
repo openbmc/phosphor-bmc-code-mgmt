@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7f12f41_acec1c94",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-18T21:23:22Z",
+      "side": 1,
+      "message": "Have you tested and confirmed that the signals are being emitted multiple times when same value is being written?  If not, Can you please test and confirm you theory ?\n\nI don\u0027t see the generated PDI bindings generate the signal in case value is same.\n\nSync bindings -\n```\nauto ActivationProgress::progress(uint8_t value,\n                                         bool skipSignal) -\u003e\n        uint8_t\n{\n    if (_progress !\u003d value)\n    {\n        _progress \u003d value;\n        if (!skipSignal)\n        {\n            _xyz_openbmc_project_software_ActivationProgress_interface.property_changed(\"Progress\");\n        }\n    }\n\n    return _progress;\n}\n```\n\nAsync Bindings -\n```\n    template \u003cbool EmitSignal \u003d true, typename Arg \u003d uint8_t\u003e\n    void progress(Arg\u0026\u0026 new_value)\n        requires server_details::has_set_property_nomsg\u003cprogress_t, Instance,\n                                                        uint8_t\u003e\n    {       \n        bool changed \u003d static_cast\u003cInstance*\u003e(this)-\u003eset_property(\n            progress_t{}, std::forward\u003cArg\u003e(new_value));\n            \n        if (changed \u0026\u0026 EmitSignal)\n        {       \n            _xyz_openbmc_project_software_ActivationProgress_interface.property_changed(\"Progress\");\n        }\n    }   \n```\n\nhttps://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/common/src/device.cpp?r\u003d3a8a55ef4a92f05c6ad33bfa86c8ab98c238c8a5",
+      "parentUuid": "faafcc49_675f0ac4",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ec155db_ce908545",
         "filename": "cpld/lattice/lattice_base_cpld.hpp",
         "patchSetId": 2

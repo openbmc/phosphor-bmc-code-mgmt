@@ -16,6 +16,24 @@
       "message": "You added another redirection here which doesn\u0027t seem much useful. Lets directly use NotifyWatch as a class var in BIOSDevice and keep it simple.",
       "revId": "b209559fbd27ccb4af9e6c0447676d6c7b66c445",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f0fbc2_5f40d21e",
+        "filename": "spi-flash/bios/bios_device.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-19T09:25:10Z",
+      "side": 1,
+      "message": "Done — BIOSDevice now holds NotifyWatch\u003cBIOSDevice\u003e as a class var and implements processUpdate() itself; the nested VersionWatch and the refreshVersion() hop are both gone.\n\nTo make that possible I switched common/include/NotifyWatch.hpp from CRTP to composition: the ctor now takes Instance\u0026 and dispatches through a stored reference instead of static_cast\u003cInstance*\u003e(this), which only compiles when the owner derives from NotifyWatch.",
+      "parentUuid": "b9e5eb00_e7da9bda",
+      "revId": "b209559fbd27ccb4af9e6c0447676d6c7b66c445",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

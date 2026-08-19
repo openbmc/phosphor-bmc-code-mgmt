@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6994988a_8edf06b1",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-19T11:56:51Z",
+      "side": 1,
+      "message": "Can we make this retry bound configurable or at least document why 3 is sufficient? With only 10,000 IDs, short retry bounds can still fail under unlucky collisions and currently end in exception.",
+      "revId": "3892e24ddece737ed364e959aeed909e99e92aef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97309524_15ba0f5c",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-19T11:56:51Z",
+      "side": 1,
+      "message": "The retry loop calls getRandomId() repeatedly, but getRandomId() reseeds RNG on each call using time+pid. In a tight loop this can reduce entropy and may repeat values. Please consider seeding once (or using a persistent RNG) so retries are statistically independent.",
+      "revId": "3892e24ddece737ed364e959aeed909e99e92aef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a2d6f7_85cbc197",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-19T11:56:51Z",
+      "side": 1,
+      "message": "nit:This warning is useful. Consider adding the component name in the collision warning log too (not only in the final error) to make triage easier when multiple devices update concurrently.",
+      "revId": "3892e24ddece737ed364e959aeed909e99e92aef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae7d4e74_46c9cbd1",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-19T11:56:51Z",
+      "side": 1,
+      "message": "Throwing here changes behavior from always returning a SWID to failing constructor flow. Can we avoid throwing from this helper (for example, fall back to a deterministic unique suffix), or ensure all constructor call sites handle this exception and clean up update state/resources? Right now, this can propagate into update flow unexpectedly.",
+      "revId": "3892e24ddece737ed364e959aeed909e99e92aef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

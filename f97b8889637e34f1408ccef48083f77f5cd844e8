@@ -16,6 +16,24 @@
       "message": "from a quick grep, i don\u0027t see any tests covering this function `asyncSystem`.\n\n```\n[alexander@alexanderarchlinux phosphor-bmc-code-mgmt]$ rg asyncSystem\ncommon/src/utils.cpp\n7:sdbusplus::async::task\u003cbool\u003e asyncSystem(\n\ncommon/include/utils.hpp\n14:sdbusplus::async::task\u003cbool\u003e asyncSystem(\n\ntpm/tpm2/tpm2.cpp\n48:    if (!co_await asyncSystem(ctx, cmd, output))\n\neeprom-device/eeprom_device.cpp\n269:    auto success \u003d co_await asyncSystem(ctx, cmd);\n\nbios/spi_device.cpp\n343:    auto success \u003d co_await asyncSystem(ctx, cmd);\n389:    auto success \u003d co_await asyncSystem(ctx, cmd);\n```\n\nIt should be pretty simple to add a short unit test calling something like `echo test` or some other command to see the function is working correctly and returning correct stdout result and correct error code in both success/failure cases and with/without \u0027result\u0027 set.\n\nIMO that will be better than manual testing as it would allow for easier future changes.",
       "revId": "f97b8889637e34f1408ccef48083f77f5cd844e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e0e2c95_b71a6659",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-19T07:16:52Z",
+      "side": 1,
+      "message": "Thanks for pointing this out. I have added unit test coverage for asyncSystem and wired it into Meson so it is part of the regular test suite.\n\nAdded coverage:\nsuccess path without result buffer\nfailure path without result buffer\nsuccess path with result buffer and stdout capture\n\nValidation:\nConfirmed the new test target is registered in Meson\nRan the new target in the Yocto build environment\nResult: pass, 1/1 target OK, 3/3 test cases passed\nThis now gives automated coverage for asyncSystem instead of relying on manual testing.",
+      "parentUuid": "d8a98c6b_1d55fe92",
+      "revId": "f97b8889637e34f1408ccef48083f77f5cd844e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

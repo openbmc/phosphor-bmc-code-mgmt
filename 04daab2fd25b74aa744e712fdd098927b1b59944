@@ -22,6 +22,30 @@
       },
       "revId": "04daab2fd25b74aa744e712fdd098927b1b59944",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ff6be1_74a54d50",
+        "filename": "meson.options",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-20T10:10:55Z",
+      "side": 1,
+      "message": "I completely agree with what you said, but I keep coming back to @mahalakshmik@ami.com point about \"at least document why 3 is sufficient.\" The thing is, I can\u0027t think of any research showing that 3 times or any higher count is definitively enough, because in theory there\u0027s still an extremely small probability of collision, even though you\u0027d never hit it in practice.",
+      "parentUuid": "cb38c5d0_8b5d9e78",
+      "range": {
+        "startLine": 219,
+        "startChar": 1,
+        "endLine": 227,
+        "endChar": 1
+      },
+      "revId": "04daab2fd25b74aa744e712fdd098927b1b59944",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

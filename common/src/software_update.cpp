@@ -82,8 +82,19 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 
     debug("starting async update with FD: {FD}\n", "FD", imageDup);
 
-    std::unique_ptr<Software> softwareInstance =
-        std::make_unique<Software>(ctx, device);
+    std::unique_ptr<Software> softwareInstance;
+    try
+    {
+        softwareInstance = std::make_unique<Software>(ctx, device);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create software object during update: {ERROR}",
+              "ERROR", e);
+        device.updateInProgress = false;
+        close(imageDup);
+        co_return software.objectPath;
+    }
 
     softwareInstance->setActivation(ActivationInterface::Activations::NotReady);
 

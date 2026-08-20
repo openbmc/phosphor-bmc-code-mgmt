@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9b9a969_230827c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Added the related Entity Manager and phosphor-dbus-interfaces changes that add support for the MP2940x VR type to the commit description.",
+      "parentUuid": "55a6fd08_1f9d9ce6",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfa7a83e_ab115da3",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-19T02:25:19Z",
       "side": 1,
       "message": "Please refer to previous related patches in the repo and provide full Tested section logs via Redfish covering all the steps, for example, https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/9882c2dc1e54f5c0b2c4aded39f6b4d21c086493 .",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0230b4_858854f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Updated the Tested section with the complete Redfish firmware update procedure.",
+      "parentUuid": "dfa7a83e_ab115da3",
       "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f300a028_45681f3d",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "The MPS vendor requires the host to be powered off to ensure that update successfully. Therefore, the update is blocked if the host is powered on.",
+      "parentUuid": "4af79548_1e45dee7",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39edd03_daf342dd",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-19T02:25:19Z",
       "side": 1,
       "message": "Please make this debug.",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbfca335_fd1b6983",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done, Changed the log level from info to debug.",
+      "parentUuid": "f39edd03_daf342dd",
       "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a393ba3d_7f4d33bd",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done, Changed the log level from info to debug.",
+      "parentUuid": "baa9775d_e44c088c",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "814482d4_d7461279",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-19T02:25:19Z",
       "side": 1,
       "message": "Please combine both info logs into one with only relevant properties and make it debug.",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a77365f1_1edfb9e5",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done, combine it and Changed the log level from info to debug.",
+      "parentUuid": "814482d4_d7461279",
       "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f650aa61_8ab7f1c0",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done, Changed the log level from info to debug.",
+      "parentUuid": "5b26738b_cf7f7caf",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7464b2f_2122d5d5",
@@ -137,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abcf256c_f3fb033b",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done, Changed the log level from info to debug.",
+      "parentUuid": "a7464b2f_2122d5d5",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "723b8f58_8f0c8377",
@@ -150,6 +294,24 @@
       "writtenOn": "2026-08-19T02:25:19Z",
       "side": 1,
       "message": "Lets move this to .cpp file as its static.",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eb120b0_f1e395aa",
+        "filename": "i2c-vr/mps/mp2940x.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:16Z",
+      "side": 1,
+      "message": "Done. Moved firstConfigRows from the header file to mp2940x.cpp.",
+      "parentUuid": "723b8f58_8f0c8377",
       "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

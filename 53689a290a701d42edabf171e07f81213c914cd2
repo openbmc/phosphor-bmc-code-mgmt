@@ -159,6 +159,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "625b357a_2621d64f",
+        "filename": "cpld/lattice/lattice_base_cpld.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-20T02:10:07Z",
+      "side": 1,
+      "message": "Thanks for pointing this out, you\u0027re right. We didn\u0027t check the generated progress() setter before adding this dedup, turns out it already guards on \u0027_progress !\u003d value\u0027, so no duplicate signal regardless of how many times we call in. Tested on hw with the guard removed: 2816 calls into reportPageProgress(), Redfish task progress still clean, no dupes. Removed.",
+      "parentUuid": "e7f12f41_acec1c94",
+      "revId": "53689a290a701d42edabf171e07f81213c914cd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ec155db_ce908545",

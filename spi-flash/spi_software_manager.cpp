@@ -6,6 +6,8 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 
+#include <exception>
+
 PHOSPHOR_LOG2_USING;
 
 namespace phosphor::software::manager
@@ -85,8 +87,17 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
     }
 
     std::string version = spiDevice->getVersion();
-    std::unique_ptr<Software> software =
-        std::make_unique<Software>(ctx, *spiDevice);
+    std::unique_ptr<Software> software;
+    try
+    {
+        software = std::make_unique<Software>(ctx, *spiDevice);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create software object for SPI device: {ERROR}",
+              "ERROR", e);
+        co_return false;
+    }
     software->setVersion(version, SoftwareVersion::VersionPurpose::Host);
 
     std::set<RequestedApplyTimes> allowedApplyTimes = {

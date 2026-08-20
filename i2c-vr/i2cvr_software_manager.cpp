@@ -11,6 +11,7 @@
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
 #include <cstdint>
+#include <exception>
 
 PHOSPHOR_LOG2_USING;
 
@@ -83,8 +84,17 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
         ctx, vrType, static_cast<uint16_t>(busNum.value()),
         static_cast<uint16_t>(address.value()), config, this);
 
-    std::unique_ptr<SoftwareInf::Software> software =
-        std::make_unique<SoftwareInf::Software>(ctx, *i2cDevice);
+    std::unique_ptr<SoftwareInf::Software> software;
+    try
+    {
+        software = std::make_unique<SoftwareInf::Software>(ctx, *i2cDevice);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object for I2C-VR device: {ERROR}",
+              "ERROR", e.what());
+        co_return false;
+    }
 
     uint32_t sum;
     if (!(co_await i2cDevice->getVersion(&sum)))

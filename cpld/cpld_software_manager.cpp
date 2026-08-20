@@ -6,6 +6,8 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 
+#include <exception>
+
 PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software::cpld;
@@ -81,7 +83,17 @@ sdbusplus::async::task<bool> CPLDSoftwareManager::initDevice(
                    chipName.value());
     }
 
-    std::unique_ptr<Software> software = std::make_unique<Software>(ctx, *cpld);
+    std::unique_ptr<Software> software;
+    try
+    {
+        software = std::make_unique<Software>(ctx, *cpld);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object for CPLD device: {ERROR}",
+              "ERROR", e.what());
+        co_return false;
+    }
 
     software->setVersion(version, SoftwareVersion::VersionPurpose::Other);
 

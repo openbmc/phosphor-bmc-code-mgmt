@@ -46,6 +46,30 @@
       },
       "revId": "04daab2fd25b74aa744e712fdd098927b1b59944",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19f55e5_bdc3e1ef",
+        "filename": "meson.options",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:38:56Z",
+      "side": 1,
+      "message": "\u003e The thing is, I can\u0027t think of any research showing that 3 times or \nany higher count is definitively enough, because in theory there\u0027s still\n an extremely small probability of collision, even though you\u0027d never \nhit it in practice.\n\nExactly. If you cannot think of any \u0027correct\u0027 number then how would anyone possibly configure this option?\n\nYou found this bug and fixed it and chose a retry number that made sense to you, based on your calculation of the probabilities involved.\n\nLet\u0027s drop this option and @mahalakshmik@ami.com can come back with his own calculation as to what value he would choose and why, and until then we could go with the value you came up with.\n\nIf he cannot provide any calculation or find any retry bound then he does not need the ability to configure it.\n\nAnd if he can show a better retry bound bound based on his calculations then we can go with that.\n\nIn both cases we do not need the option.",
+      "parentUuid": "83ff6be1_74a54d50",
+      "range": {
+        "startLine": 219,
+        "startChar": 1,
+        "endLine": 227,
+        "endChar": 1
+      },
+      "revId": "04daab2fd25b74aa744e712fdd098927b1b59944",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab8c3e8_bd89149b",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:07:53Z",
+      "side": 1,
+      "message": "Can we put the csv parsing logic in a common code CSV util file?\n\nIt looks unspecific to the hardware being supported here and more like a file format parser.",
+      "range": {
+        "startLine": 24,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 1
+      },
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e247484a_9d92d4dc",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:07:53Z",
+      "side": 1,
+      "message": "can we handle this with a lookup table? It looks more like data rather than code.\n\nCould also use that data structure then for the function immediately above this one.",
+      "range": {
+        "startLine": 420,
+        "startChar": 1,
+        "endLine": 476,
+        "endChar": 1
+      },
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98dfae27_28587ebe",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:07:53Z",
+      "side": 1,
+      "message": "please look into https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nand separate this mega function into separate named functions for the various things it is doing. For example the parsing loop or per-command parsing dispatch",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46bf8328_8ce77447",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:07:53Z",
+      "side": 1,
+      "message": "kindly see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\n please extract some functions here to align with these guidelines and create named functions for the commands being implemented",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311d15a6_80dfb5b4",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-20T10:07:53Z",
+      "side": 1,
+      "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nplease split some things out into separate functions to keep it readable",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

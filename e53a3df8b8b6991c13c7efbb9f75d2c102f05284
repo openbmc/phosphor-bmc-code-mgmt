@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82945246_204ab061",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:26Z",
+      "side": 1,
+      "message": "Added the related Entity Manager and phosphor-dbus-interfaces changes that add support for the \nTPS544X27 VR type to the commit description.",
+      "parentUuid": "26ff2251_98c70cb4",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df41db72_62a77b2c",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-19T02:30:52Z",
       "side": 1,
       "message": "Please refer to previous related patches in the repo and provide full Tested section logs via Redfish covering all the steps, for example, https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/9882c2dc1e54f5c0b2c4aded39f6b4d21c086493 .",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04be633a_c75e410e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:26Z",
+      "side": 1,
+      "message": "Updated the Tested section with the complete Redfish firmware update procedure.",
+      "parentUuid": "df41db72_62a77b2c",
       "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8df45188_e10ec343",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:26Z",
+      "side": 1,
+      "message": "Done. Moved the generic string and hexadecimal utility functions to the common utilities for reuse.",
+      "parentUuid": "3e41d3d7_03cbcebe",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ed48e46_1beb0a51",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64676ce7_048b0147",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:26Z",
+      "side": 1,
+      "message": "Done, change all info level logs to debug or error level.",
+      "parentUuid": "4ed48e46_1beb0a51",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b374f87_a119180b",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-08-19T02:30:52Z",
       "side": 1,
       "message": "Please make all these enums and structs private as they are only used in the private section.",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6debba05_9627f420",
+        "filename": "i2c-vr/tps544x27/tps544x27.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-20T07:05:26Z",
+      "side": 1,
+      "message": "Done, move them to private section.",
+      "parentUuid": "0b374f87_a119180b",
       "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -12,6 +12,8 @@
 PHOSPHOR_LOG2_USING;
 
 using Unavailable = sdbusplus::xyz::openbmc_project::Common::Error::Unavailable;
+using InternalFailure =
+    sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 using namespace phosphor::logging;
 using namespace phosphor::software::update;
@@ -82,8 +84,19 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
 
     debug("starting async update with FD: {FD}\n", "FD", imageDup);
 
-    std::unique_ptr<Software> softwareInstance =
-        std::make_unique<Software>(ctx, device);
+    std::unique_ptr<Software> softwareInstance;
+    try
+    {
+        softwareInstance = std::make_unique<Software>(ctx, device);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object during update: {ERROR}",
+              "ERROR", e.what());
+        device.updateInProgress = false;
+        close(imageDup);
+        elog<InternalFailure>();
+    }
 
     softwareInstance->setActivation(ActivationInterface::Activations::NotReady);
 

@@ -7,6 +7,7 @@
 #include <sdbusplus/async.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
+#include <exception>
 #include <fstream>
 #include <optional>
 #include <sstream>
@@ -170,8 +171,17 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
         static_cast<uint8_t>(address.value()), type.value(), gpioLines,
         gpioPolarities, std::move(deviceVersion), config, this);
 
-    std::unique_ptr<SoftwareInf::Software> software =
-        std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);
+    std::unique_ptr<SoftwareInf::Software> software;
+    try
+    {
+        software = std::make_unique<SoftwareInf::Software>(ctx, *eepromDevice);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object for EEPROM device: {ERROR}",
+              "ERROR", e.what());
+        co_return false;
+    }
 
     software->setVersion(version.empty() ? "Unknown" : version,
                          SoftwareInf::SoftwareVersion::VersionPurpose::Other);

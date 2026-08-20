@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "760461b6_054750af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-20T21:10:11Z",
+      "side": 1,
+      "message": "Please also add the before and after version.\nAlso after ac cycle version.\nPlease add all the steps in  https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/9882c2dc1e54f5c0b2c4aded39f6b4d21c086493",
+      "parentUuid": "9d0230b4_858854f3",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4af79548_1e45dee7",
         "filename": "i2c-vr/mps/mp2940x.cpp",
         "patchSetId": 1

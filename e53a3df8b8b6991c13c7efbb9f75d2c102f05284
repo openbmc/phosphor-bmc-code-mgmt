@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cf89b1a_4820593c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-20T21:11:13Z",
+      "side": 1,
+      "message": "You are still missing steps. Please cover \u0026 add output for all the steps for Tested section in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/9882c2dc1e54f5c0b2c4aded39f6b4d21c086493",
+      "parentUuid": "04be633a_c75e410e",
+      "revId": "e53a3df8b8b6991c13c7efbb9f75d2c102f05284",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e41d3d7_03cbcebe",
         "filename": "i2c-vr/tps544x27/tps544x27.cpp",
         "patchSetId": 1

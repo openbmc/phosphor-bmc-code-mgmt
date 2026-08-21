@@ -34,6 +34,24 @@
       "parentUuid": "3e516922_864b6421",
       "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a798b5_dc047536",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-21T10:42:55Z",
+      "side": 1,
+      "message": "Thanks for the clarification. I understand that changing the polling interval from 2 seconds to 10 seconds intentionally increases the maximum readiness wait from approximately 30 seconds to 150 seconds, since this polling waits for BIOS POST and retimer driver initialization to complete.\n\nKeeping maxRetries unchanged is reasonable because the previous 30-second timeout was insufficient in testing. This addresses my concern. Resolving the comment.",
+      "parentUuid": "b8148891_bb53e833",
+      "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

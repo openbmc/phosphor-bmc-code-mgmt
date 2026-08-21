@@ -34,6 +34,24 @@
       "parentUuid": "4bf8866e_83e710a4",
       "revId": "b62e6193aaaedb8871f01772f146672901a82150",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a62e94b_c74e00b8",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-21T10:46:02Z",
+      "side": 1,
+      "message": "Thanks for the response. A one-time delayed re-query after the initial getState() failure sounds reasonable and should cover the startup case where no subsequent host-state transition occurs.\n\nIf the delayed query also fails, waiting for a later host-state transition is acceptable, provided the failure is logged and the device is left in a consistent state. Please include this in the next patchset; I will re-review the implementation then.",
+      "parentUuid": "958637ae_ae6f4907",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

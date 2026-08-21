@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df90d32_c54978c5",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T22:28:58Z",
+      "side": 1,
+      "message": "Please break this function into smaller units.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dffa71b_e6110b71",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T22:28:58Z",
+      "side": 1,
+      "message": "Please break up this function into smaller units.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b33257d_86538855",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T22:28:58Z",
+      "side": 1,
+      "message": "please extract this block got if elses into smaller function.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d92f279_b6ff499c",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T22:28:58Z",
+      "side": 1,
+      "message": "The logic seems same for this and next set. Please extract this into a common function and use it by passing required args.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

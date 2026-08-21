@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e0ce3a_4d1a68e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "Please add the related patches from EntityManager and PDI for this change.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06865769_7c4e5b16",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "Why do we need this ?",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a9d2d3_5ef08037",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "Please change to debug.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f9533d_4ed0b2d4",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "please use async APIs rather than blocking sync APIs.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf7034cf_d4bbe888",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "What if MCTP endpoint doesn\u0027t get discovered before this service runs, it will always return \"Unknown\", how do u plan to handle that?",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44641357_1057d45a",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-21T18:49:29Z",
+      "side": 1,
+      "message": "Please change to debug.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

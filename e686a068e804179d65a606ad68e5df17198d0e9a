@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf05008f_81ab28e1",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "Lets try to avoid this error as i don\u0027t think its much useful.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a29dd46_716d7048",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112a158e_1ff7d991",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "Lets drop this elog.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366f25e8_c647890e",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "nit: change Software to software\n\nDo it at other places too.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de55bb0e_9c2296f6",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9f51ff_b484b350",
+        "filename": "eeprom-device/eeprom_device_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4056cc2e_3a441f83",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87716040_6aa9dc65",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ec6359_2ff7ccc8",
+        "filename": "tpm/tpm_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:47:08Z",
+      "side": 1,
+      "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

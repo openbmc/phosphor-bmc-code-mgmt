@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdea0c54_61811c15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "Added links to the commit message",
+      "parentUuid": "56e0ce3a_4d1a68e0",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06865769_7c4e5b16",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-21T18:49:29Z",
       "side": 1,
       "message": "Why do we need this ?",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49f9a281_98c8a5dc",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "Dropped it. The #ifndef MCTP_MSG_TYPE_PLDM fallback was replaced with a local constexpr uint8_t mctpMsgTypePldm \u003d 1 documented against DSP0245.",
+      "parentUuid": "06865769_7c4e5b16",
       "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17ff89f3_9c34bd1d",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "Done, both switched to debug",
+      "parentUuid": "e1a9d2d3_5ef08037",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12f9533d_4ed0b2d4",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-21T18:49:29Z",
       "side": 1,
       "message": "please use async APIs rather than blocking sync APIs.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c223f90b_2b8a0d65",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "Done. Endpoint lookup now uses sdbusplus::async::proxy for the mapper call.",
+      "parentUuid": "12f9533d_4ed0b2d4",
       "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13eff0b8_bd7ab27b",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "getVersion() no longer queries anything — it just returns a cached value. The constructor spawns refreshVersion(), which watches InterfacesAdded and retries whenever a new MCTP endpoint appears, then publishes the version through softwareCurrent-\u003esetVersion().",
+      "parentUuid": "cf7034cf_d4bbe888",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44641357_1057d45a",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-21T18:49:29Z",
       "side": 1,
       "message": "Please change to debug.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "888ef33a_a381d423",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-24T06:21:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44641357_1057d45a",
       "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

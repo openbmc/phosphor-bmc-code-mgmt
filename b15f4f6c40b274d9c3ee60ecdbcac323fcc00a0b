@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96ba197_ba2875c6",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:03:46Z",
+      "side": 1,
+      "message": "Please use auto generated defintions from PDI wherever possible rather than hardcoding https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/ObjectMapper.interface.yaml",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c33f87_e94d9679",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:03:46Z",
+      "side": 1,
+      "message": "Please use auto generated defintions from PDI wherever possible rather than hardcoding https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/ObjectMapper.interface.yaml",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40518fab_840a3317",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:03:46Z",
+      "side": 1,
+      "message": "Please use PDI generated definitions https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/MCTP/Endpoint.interface.yaml",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b845d409_3b1153df",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:03:46Z",
+      "side": 1,
+      "message": "Please use PDI generated definitions\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Common/UUID.interface.yaml",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a503d032_62a48e0e",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:03:46Z",
+      "side": 1,
+      "message": "Lets refactor all the logic to interface with MCTP into a different file into common layer, so any other device can use it as well. Anything which is specific to E810 like its UUID and stuff you can keep in this file.",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

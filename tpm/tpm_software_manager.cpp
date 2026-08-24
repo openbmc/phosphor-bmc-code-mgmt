@@ -5,6 +5,8 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <exception>
+
 PHOSPHOR_LOG2_USING;
 
 namespace SoftwareInf = phosphor::software;
@@ -57,8 +59,17 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     auto tpmDevice = std::make_unique<TPMDevice>(ctx, tpmType, tpmIndex.value(),
                                                  config, this);
 
-    std::unique_ptr<SoftwareInf::Software> software =
-        std::make_unique<SoftwareInf::Software>(ctx, *tpmDevice);
+    std::unique_ptr<SoftwareInf::Software> software;
+    try
+    {
+        software = std::make_unique<SoftwareInf::Software>(ctx, *tpmDevice);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object for TPM device: {ERROR}",
+              "ERROR", e.what());
+        co_return false;
+    }
 
     software->setVersion(co_await tpmDevice->getVersion());
 

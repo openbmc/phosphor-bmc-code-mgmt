@@ -10,6 +10,8 @@
 #include <sdbusplus/bus.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
+#include <exception>
+
 using namespace phosphor::software;
 
 PHOSPHOR_LOG2_USING;
@@ -100,8 +102,17 @@ sdbusplus::async::task<bool> BIOSSoftwareManager::initDevice(
         co_return false;
     }
 
-    std::unique_ptr<Software> software =
-        std::make_unique<Software>(ctx, *spiDevice);
+    std::unique_ptr<Software> software;
+    try
+    {
+        software = std::make_unique<Software>(ctx, *spiDevice);
+    }
+    catch (const std::exception& e)
+    {
+        error("Failed to create Software object for BIOS device: {ERROR}",
+              "ERROR", e.what());
+        co_return false;
+    }
 
     // enable this software to be updated
     std::set<RequestedApplyTimes> allowedApplyTimes = {

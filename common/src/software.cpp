@@ -10,6 +10,8 @@
 #include <xyz/openbmc_project/Software/Update/aserver.hpp>
 #include <xyz/openbmc_project/State/Host/client.hpp>
 
+#include <stdexcept>
+
 PHOSPHOR_LOG2_USING;
 
 using namespace phosphor::software;
@@ -48,7 +50,36 @@ long int Software::getRandomId()
 
 std::string Software::getRandomSoftwareId(Device& parent)
 {
-    return std::format("{}_{}", parent.config.configName, getRandomId());
+    constexpr long int maxCollisionRetries = 3;
+    std::optional<std::string> currentSwid = std::nullopt;
+    if (parent.softwareCurrent)
+    {
+        currentSwid = parent.softwareCurrent->swid;
+    }
+
+    for (int attempt = 0; attempt < maxCollisionRetries; attempt++)
+    {
+        std::string swid =
+            std::format("{}_{}", parent.config.configName, getRandomId());
+
+        if (!currentSwid.has_value() || swid != currentSwid.value())
+        {
+            debug("Selected software id {SWID}", "SWID", swid);
+            return swid;
+        }
+
+        warning(
+            "SWID collision on attempt {ATTEMPT}: candidate={CANDIDATE_SWID}, current={CURRENT_SWID}",
+            "ATTEMPT", attempt + 1, "CANDIDATE_SWID", swid, "CURRENT_SWID",
+            currentSwid.value());
+    }
+
+    error(
+        "Failed to generate SWID after {RETRY_COUNT} retries for component {COMPONENT}, currentSwid={CURRENT_SWID}",
+        "RETRY_COUNT", maxCollisionRetries, "COMPONENT",
+        parent.config.configName, "CURRENT_SWID",
+        currentSwid.value_or("<none>"));
+    throw std::runtime_error("software id collision retry exhausted");
 }
 
 sdbusplus::async::task<> Software::createInventoryAssociations(bool isRunning)

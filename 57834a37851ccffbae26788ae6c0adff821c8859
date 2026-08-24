@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f8575ca_ac5e4a43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T22:53:10Z",
+      "side": 1,
+      "message": "Please update the Tested section with complete set of logs, you can refer to Tested section in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/9882c2dc1e54f5c0b2c4aded39f6b4d21c086493 for example.",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06865769_7c4e5b16",
         "filename": "spi-flash/e810/e810_device.cpp",
         "patchSetId": 6
@@ -172,6 +189,24 @@
       "side": 1,
       "message": "getVersion() no longer queries anything — it just returns a cached value. The constructor spawns refreshVersion(), which watches InterfacesAdded and retries whenever a new MCTP endpoint appears, then publishes the version through softwareCurrent-\u003esetVersion().",
       "parentUuid": "cf7034cf_d4bbe888",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115990e1_4e3d23a5",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T22:53:10Z",
+      "side": 1,
+      "message": "How about if the MCTPEndpoint already exist before this service came up? I suppose you will never get a notification then? Hence you need to support both get and notification (via matcher) paths, isn\u0027t it ?",
+      "parentUuid": "13eff0b8_bd7ab27b",
       "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

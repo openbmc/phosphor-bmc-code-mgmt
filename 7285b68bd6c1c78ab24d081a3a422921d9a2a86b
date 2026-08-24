@@ -123,6 +123,24 @@
       "parentUuid": "35516fa7_19349d14",
       "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "490c7bb4_ebfacd05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-24T16:19:03Z",
+      "side": 1,
+      "message": "HPE config has been merged.",
+      "parentUuid": "295b4540_b095808b",
+      "revId": "7285b68bd6c1c78ab24d081a3a422921d9a2a86b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

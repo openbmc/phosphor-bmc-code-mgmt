@@ -52,6 +52,24 @@
       "parentUuid": "b8148891_bb53e833",
       "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a4a546_c66d1497",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-24T23:10:49Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com Do you need to rely on a better signal here probably checking if the Host state is ready/running ? That way you can also add matchers for that?",
+      "parentUuid": "b8148891_bb53e833",
+      "revId": "1c3e64ba3a0264491c969dbac60435d35826824a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c581eac9_ea89d70b",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:44Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\nMoved splitCsvLine() to the common utility code.",
+      "parentUuid": "cab8c3e8_bd89149b",
+      "range": {
+        "startLine": 24,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 1
+      },
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e247484a_9d92d4dc",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-20T10:07:53Z",
       "side": 1,
       "message": "can we handle this with a lookup table? It looks more like data rather than code.\n\nCould also use that data structure then for the function immediately above this one.",
+      "range": {
+        "startLine": 420,
+        "startChar": 1,
+        "endLine": 476,
+        "endChar": 1
+      },
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d62a246_e85b1a40",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:44Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\nChanged the CSV operation mapping to a shared lookup table. Both parseCsvOp() and csvOpToString() now use the same data structure.",
+      "parentUuid": "e247484a_9d92d4dc",
       "range": {
         "startLine": 420,
         "startChar": 1,
@@ -64,6 +112,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba85db0_3d1f8b1b",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:44Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\nSplit parseImage() into separate helpers for the CSV line parsing loop and per-command parsing dispatch. parseImage() now only validates the input and delegates parsing to parseCsvLines() and parseCsvCommand().",
+      "parentUuid": "98dfae27_28587ebe",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46bf8328_8ce77447",
@@ -81,6 +147,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2cc7b9a_f8e21ced",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:44Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\nSplit executeCsvCommandNoStore() into named per-command execution helpers for WriteByte, ReadByte, WriteWord, ReadWord, BlockWrite, BlockRead, and BlockProcessCall. The dispatcher now only selects the appropriate command implementation.",
+      "parentUuid": "46bf8328_8ce77447",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "311d15a6_80dfb5b4",
@@ -94,6 +178,24 @@
       "writtenOn": "2026-08-20T10:07:53Z",
       "side": 1,
       "message": "see https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nplease split some things out into separate functions to keep it readable",
+      "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a18bb3e0_de20e5ef",
+        "filename": "i2c-vr/tps544x27/tps544x27.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:44Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\nSplit STORE delay handling and pre-STORE command execution into getStoreDelay() and executeCommandsBeforeStore() to keep executeParsedImage() focused on the overall update flow.",
+      "parentUuid": "311d15a6_80dfb5b4",
       "revId": "745965223d8deaa9d64f2e157c46ada62c8b48c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

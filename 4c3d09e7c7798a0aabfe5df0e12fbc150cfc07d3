@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68e0e147_c8e90b5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:39Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\n\nI updated the Tested section to include the before version, Redfish update\nsteps, TaskService result, after-update version, and the version after AC\ncycle.",
+      "parentUuid": "760461b6_054750af",
+      "revId": "4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af79548_1e45dee7",

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "789d70b4_907cd367",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:39Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\n\nI split the configuration row parsing loop out of parseDeviceConfiguration()\ninto parseConfigRows()",
+      "parentUuid": "2df90d32_c54978c5",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dffa71b_e6110b71",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-21T22:28:58Z",
       "side": 1,
       "message": "Please break up this function into smaller units.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a4645f_2f3aafae",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:39Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\n\nI split the configuration row filtering and PMBus write buffer construction\nout of programConfigurationData() into helper functions.",
+      "parentUuid": "3dffa71b_e6110b71",
       "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92f3a043_8fc8a808",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:39Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\n\nI extracted the CRC field update logic into updateExpectedCRC().",
+      "parentUuid": "2b33257d_86538855",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d92f279_b6ff499c",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-21T22:28:58Z",
       "side": 1,
       "message": "The logic seems same for this and next set. Please extract this into a common function and use it by passing required args.",
+      "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ac61e46_98396853",
+        "filename": "i2c-vr/mps/mp2940x.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-24T08:53:39Z",
+      "side": 1,
+      "message": "Done in Patch Set 7.\n\nCRC_USER and CRC_Multi use different read sequences. CRC_USER reads 0x61 from\nPage2 directly, while CRC_Multi requires selecting an index through 0x03 on\nPage3 before reading 0x41.\n\nTherefore, I extracted the common CRC_Multi read sequence into readCRCMulti()\nand reused it for CRC_Multi_1 and CRC_Multi_2 by passing the required index.",
+      "parentUuid": "6d92f279_b6ff499c",
       "revId": "648b9b8b3ec6f9047f3a1ecc4bc967dd3a726a5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

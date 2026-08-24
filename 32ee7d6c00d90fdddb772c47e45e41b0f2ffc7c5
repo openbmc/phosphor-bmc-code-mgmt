@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef2af542_6a940191",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-24T15:37:43Z",
+      "side": 1,
+      "message": "Is it possible to make a unit test for the custom parser implemented as part of this patch based on this fw image file?\n\nOtherwise it could be tough for people in the community to refactor the parser logic in the future if they do not have access to any of these images or hw for manual testing.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "32ee7d6c00d90fdddb772c47e45e41b0f2ffc7c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9958f93_469c1a46",
+        "filename": "i2c-vr/tps544x27/tps544x27.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-24T15:37:43Z",
+      "side": 1,
+      "message": "it seems to be that this class is really 2 classes in one.\n\nA parser for a custom CSV based format and a VR Code Updater.\n\nWould you agree it can be separated in 2 classes as per SR principle?",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 137,
+        "endChar": 1
+      },
+      "revId": "32ee7d6c00d90fdddb772c47e45e41b0f2ffc7c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

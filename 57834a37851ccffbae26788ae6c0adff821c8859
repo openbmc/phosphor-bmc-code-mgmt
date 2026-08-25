@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cd1003_2aa943a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Updated the Tested section.",
+      "parentUuid": "0f8575ca_ac5e4a43",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06865769_7c4e5b16",
@@ -207,6 +225,24 @@
       "side": 1,
       "message": "How about if the MCTPEndpoint already exist before this service came up? I suppose you will never get a notification then? Hence you need to support both get and notification (via matcher) paths, isn\u0027t it ?",
       "parentUuid": "13eff0b8_bd7ab27b",
+      "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88fc3a21_a63283e8",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Right, waitForEndpoint() subscribes to InterfacesAdded before enumerating via the mapper, so both the already-present and the late-discovery cases are covered with no gap between the two steps. getVersion() just returns a cached value now; the constructor spawns the lookup in the background.",
+      "parentUuid": "115990e1_4e3d23a5",
       "revId": "57834a37851ccffbae26788ae6c0adff821c8859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

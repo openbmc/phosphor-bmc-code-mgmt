@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f31f0004_6d85829b",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b96ba197_ba2875c6",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65c33f87_e94d9679",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-24T23:03:46Z",
       "side": 1,
       "message": "Please use auto generated defintions from PDI wherever possible rather than hardcoding https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/ObjectMapper.interface.yaml",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a24f21_40be2e8f",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "65c33f87_e94d9679",
       "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab6d9c4_e53e4b2b",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "40518fab_840a3317",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b845d409_3b1153df",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a9ff90d_be9166d5",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b845d409_3b1153df",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a503d032_62a48e0e",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-08-24T23:03:46Z",
       "side": 1,
       "message": "Lets refactor all the logic to interface with MCTP into a different file into common layer, so any other device can use it as well. Anything which is specific to E810 like its UUID and stuff you can keep in this file.",
+      "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "164cb6b3_90c58ebd",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-08-25T03:02:46Z",
+      "side": 1,
+      "message": "Done. Added common/include/mctp/endpoint.hpp + common/src/mctp/endpoint.cpp with findEndpoint(), waitForEndpoint() and sendReceive(), reusable by any device. The PLDM message type constant moved there too since it isn\u0027t E810 specific — e810_device.cpp now only holds the E810 UUID and the PLDM encode/decode.\n\nThe sync version had a 3s poll() timeout that I didn\u0027t want to silently drop, so sendReceive() takes a timeout (default 3s).",
+      "parentUuid": "a503d032_62a48e0e",
       "revId": "b15f4f6c40b274d9c3ee60ecdbcac323fcc00a0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

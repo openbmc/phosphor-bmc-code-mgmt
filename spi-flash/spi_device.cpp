@@ -289,7 +289,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     if (fd < 0)
     {
         error("Failed to open file: {PATH}", "PATH", path);
-        co_return 1;
+        co_return false;
     }
 
     const ssize_t bytesWritten = write(fd, image, image_size);
@@ -301,7 +301,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     if (bytesWritten < 0 || static_cast<size_t>(bytesWritten) != image_size)
     {
         error("Failed to write image to file");
-        co_return 1;
+        co_return false;
     }
 
     debug("wrote {SIZE} bytes to {PATH}", "SIZE", bytesWritten, "PATH", path);
@@ -310,7 +310,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
 
     if (!devPath.has_value())
     {
-        co_return 1;
+        co_return false;
     }
 
     size_t devNum = 0;
@@ -323,7 +323,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     {
         error("could not parse mtd device number from {STR}: {ERROR}", "STR",
               devPath.value(), "ERROR", e);
-        co_return 1;
+        co_return false;
     }
 
     std::string cmd = "flashrom -p linux_mtd:dev=" + std::to_string(devNum);
@@ -336,7 +336,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     {
         error("unsupported flash layout");
 
-        co_return 1;
+        co_return false;
     }
 
     debug("[flashrom] running {CMD}", "CMD", cmd);
@@ -359,7 +359,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     if (fd < 0)
     {
         error("Failed to open file: {PATH}", "PATH", path);
-        co_return 1;
+        co_return false;
     }
 
     const ssize_t bytesWritten = write(fd, image, image_size);
@@ -371,7 +371,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     if (bytesWritten < 0 || static_cast<size_t>(bytesWritten) != image_size)
     {
         error("Failed to write image to file");
-        co_return 1;
+        co_return false;
     }
 
     debug("wrote {SIZE} bytes to {PATH}", "SIZE", bytesWritten, "PATH", path);
@@ -380,7 +380,7 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
 
     if (!devPath.has_value())
     {
-        co_return 1;
+        co_return false;
     }
 
     std::string cmd = std::format("flashcp -v {} {}", path, devPath.value());

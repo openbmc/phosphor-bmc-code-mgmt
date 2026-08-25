@@ -16,6 +16,24 @@
       "message": "@kevin.tung.openbmc@gmail.com I am wondering that rather than dropping this functionality if we move this to Immediate apply time handling, wouldn\u0027t that be better ? Or Do you see any issue with this handling in general ?",
       "revId": "5cb7ec7a245564264e1b329c9286fbb89e6d5d88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866ef9a9_393b66c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-08-25T01:40:00Z",
+      "side": 1,
+      "message": "@paligill@gmail.com On YV5, we currently don\u0027t see any issues, but I\u0027m not sure whether move to Immediate apply time handling could cause issues on other platforms.",
+      "parentUuid": "c75ad68c_c8802209",
+      "revId": "5cb7ec7a245564264e1b329c9286fbb89e6d5d88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

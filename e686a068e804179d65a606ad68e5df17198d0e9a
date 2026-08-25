@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a6975c1_1469d8b2",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done, delete it.",
+      "parentUuid": "cf05008f_81ab28e1",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a29dd46_716d7048",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-24T23:47:08Z",
       "side": 1,
       "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79b7258f_d0c4472e",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a29dd46_716d7048",
       "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c289f5fe_e880cf74",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "112a158e_1ff7d991",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "366f25e8_c647890e",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-24T23:47:08Z",
       "side": 1,
       "message": "nit: change Software to software\n\nDo it at other places too.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45e5c507_6091e93e",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366f25e8_c647890e",
       "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "219bdc53_d5ac9b46",
+        "filename": "cpld/cpld_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de55bb0e_9c2296f6",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f9f51ff_b484b350",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-24T23:47:08Z",
       "side": 1,
       "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf7d5f92_8d92b23f",
+        "filename": "eeprom-device/eeprom_device_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f9f51ff_b484b350",
       "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2796daf7_5b15376d",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4056cc2e_3a441f83",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87716040_6aa9dc65",
@@ -137,6 +263,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b78d2c_4eceeb37",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87716040_6aa9dc65",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91ec6359_2ff7ccc8",
@@ -150,6 +294,24 @@
       "writtenOn": "2026-08-24T23:47:08Z",
       "side": 1,
       "message": "No need to use e.what(), just e works fine.",
+      "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3755c92_19e04123",
+        "filename": "tpm/tpm_software_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ec6359_2ff7ccc8",
       "revId": "e686a068e804179d65a606ad68e5df17198d0e9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

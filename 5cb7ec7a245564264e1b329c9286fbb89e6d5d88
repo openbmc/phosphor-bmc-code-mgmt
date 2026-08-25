@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c75ad68c_c8802209",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:31:42Z",
+      "side": 1,
+      "message": "@kevin.tung.openbmc@gmail.com I am wondering that rather than dropping this functionality if we move this to Immediate apply time handling, wouldn\u0027t that be better ? Or Do you see any issue with this handling in general ?",
+      "revId": "5cb7ec7a245564264e1b329c9286fbb89e6d5d88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Does the page switch only happens from the update/crc read flow and not from the sensor read path ?",
       "revId": "043fb56e05ba60845bf8b5e9296fe4257fe2a88c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25655d6a_2c090c4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-08-25T06:54:15Z",
+      "side": 1,
+      "message": "Sensor polling may also switch pages. However, sensor polling alone does not cause an issue because it switches to the required page before reading the sensor value.\n\nThe problem may occur during update or CRC access. At the beginning of the update or CRC read flow, the code also switches the device to the target page and then starts the update or CRC operation. However, sensor polling is still running at the same time. As a result, sensor polling may switch the page away from the page being used for the update or CRC read, which can cause the update to fail or the CRC value to be read incorrectly.",
+      "parentUuid": "af9b441d_efc68bfb",
+      "revId": "043fb56e05ba60845bf8b5e9296fe4257fe2a88c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

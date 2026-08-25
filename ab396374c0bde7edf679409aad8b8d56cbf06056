@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "987c00da_5a5bb8b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "Please add the Related Patches section with commits from EM and PDI which adds the relevant changes for this new type.",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6433f2a_64194084",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "Please add all the Tested sections as listed in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/2ba5357f7ec499e1913d8b07f5bbc83bddc6174d",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47b6171_c1987f0b",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats ll?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afec260c_9d608d0e",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats aaaa?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7833520_69c851fc",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats aaaa?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "450a6016_762896cc",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats tt?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f80c0a9c_d44be7d7",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats dd ?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f910e967_55ac93af",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "whats ll ?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c941021_011aa7b5",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "Would it be possible to move line 163 - 197 to a separate function or any other possible arrangement which you think is better. As written this loop and function is pretty big.",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74902e0f_9146fc20",
+        "filename": "i2c-vr/adi/max209xx.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "Please move all the definitions used in private section under there.",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e2f3c1_424739f9",
+        "filename": "i2c-vr/adi/max209xx.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:43:11Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

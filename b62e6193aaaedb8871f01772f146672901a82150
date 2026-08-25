@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38aeae5d_221d0e1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T00:37:13Z",
+      "side": 1,
+      "message": "The version shall have come from https://grok.openbmc.org/xref/openbmc/phosphor-bmc-code-mgmt/eeprom-device/pt5161l/pt5161l.cpp?r\u003d7039f01acd12dd0add9e9878385ac2c329262801#33 . Why that one didn\u0027t give the right version ?",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615f0b97_c042e274",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T00:37:13Z",
+      "side": 1,
+      "message": "Lets debug this appropriately and try to understand the right root cause. FYI: there are 2 flows -\n1. Get flow via getVersion.\n2. Notification flow via HostState change.\n\nSo, in other words both paths are covered. We need to understand whats the gap here ?",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bf8866e_83e710a4",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 1

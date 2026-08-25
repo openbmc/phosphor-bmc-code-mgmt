@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1f6ce04_622fdaf5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-25T08:17:42Z",
+      "side": 1,
+      "message": "Done in Patch Set 9.\nAdded unit tests for the separated TPS544X27 image parser in test/i2c-vr/tps544x27/csv_parser.cpp, using representative content based on the firmware image format and covering the supported image operations.",
+      "parentUuid": "ef2af542_6a940191",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "32ee7d6c00d90fdddb772c47e45e41b0f2ffc7c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a4b6565_c0eac8bd",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0826377f_9e92c98d",
+        "filename": "common/include/utils.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-25T08:17:42Z",
+      "side": 1,
+      "message": "Done in Patch Set 9.\nAdded unit tests for `trim()`, `parseHexByte()`, `parseHexBytes()`,\n`byteToHex()`, `bytesToHex()`, and `splitCsvLine()` in\n`test/common/utils/utils.cpp`, with the test target added in\n`test/common/utils/meson.build`.",
+      "parentUuid": "3a4b6565_c0eac8bd",
+      "revId": "32ee7d6c00d90fdddb772c47e45e41b0f2ffc7c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9958f93_469c1a46",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-08-24T15:37:43Z",
       "side": 1,
       "message": "it seems to be that this class is really 2 classes in one.\n\nA parser for a custom CSV based format and a VR Code Updater.\n\nWould you agree it can be separated in 2 classes as per SR principle?",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 137,
+        "endChar": 1
+      },
+      "revId": "32ee7d6c00d90fdddb772c47e45e41b0f2ffc7c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c1ca607_ca063cbf",
+        "filename": "i2c-vr/tps544x27/tps544x27.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-25T08:17:42Z",
+      "side": 1,
+      "message": "Agreed. Done in Patch Set 9.\nMoved the CSV parser into a dedicated `CsvParser` class in\n`i2c-vr/tps544x27/csv_parser.hpp` and\n`i2c-vr/tps544x27/csv_parser.cpp`.\n`TPS544X27` now focuses on the VR update and command execution flow.",
+      "parentUuid": "a9958f93_469c1a46",
       "range": {
         "startLine": 68,
         "startChar": 7,

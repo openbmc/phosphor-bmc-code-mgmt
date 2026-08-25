@@ -18,6 +18,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54631ef8_fb1c2bdd",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:39:16Z",
+      "side": 1,
+      "message": "Done, thanks! This is a new one for me",
+      "parentUuid": "35e9d89b_55af37c6",
+      "revId": "98603bad9393347ca5a48c1757370c6de89ee30c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "751b4a98_dcbf5376",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:39:16Z",
+      "side": 1,
+      "message": "Done, thanks! This is a new one for me",
+      "parentUuid": "35e9d89b_55af37c6",
+      "revId": "98603bad9393347ca5a48c1757370c6de89ee30c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03a79caf_6c629418",
@@ -31,6 +67,24 @@
       "writtenOn": "2026-08-24T23:37:45Z",
       "side": 1,
       "message": "Lets drop this warning as error message will itself state the number of retries, so thats sufficient.",
+      "revId": "98603bad9393347ca5a48c1757370c6de89ee30c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbbce91d_c036bf69",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-08-25T01:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03a79caf_6c629418",
       "revId": "98603bad9393347ca5a48c1757370c6de89ee30c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af9b441d_efc68bfb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-25T01:13:56Z",
+      "side": 1,
+      "message": "Does the page switch only happens from the update/crc read flow and not from the sensor read path ?",
+      "revId": "043fb56e05ba60845bf8b5e9296fe4257fe2a88c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

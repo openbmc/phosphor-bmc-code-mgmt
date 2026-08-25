@@ -16,6 +16,24 @@
       "message": "Please add relevant Tested section by verifying this on a i2c device and adding relevant logs.",
       "revId": "59f1a2027a69513b29c1426f87752eba22438421",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e74da57b_fceefc24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2026-08-25T14:45:20Z",
+      "side": 1,
+      "message": "Hi Jagpal,\nThanks for the review. I have verified this change on a real I2C device on Yv5 T22 and updated the commit message with a Tested section and the relevant logs in patchset 2.",
+      "parentUuid": "dbeada8a_2ea6b1e8",
+      "revId": "59f1a2027a69513b29c1426f87752eba22438421",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

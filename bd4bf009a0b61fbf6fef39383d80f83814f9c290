@@ -16,6 +16,24 @@
       "message": "notify needs rebasing due to merge conflict",
       "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ece67d_88d90985",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-26T00:07:51Z",
+      "side": 1,
+      "message": "This change is based on 88986 and 93437, and one of them is not owned by me. Rebasing the dependency chain onto the latest master now would modify both 88986 and 93437 and create new patch sets for them.\n\nWould you recommend waiting for both changes to be merged and then rebasing this change to resolve the conflict, or is there a better approach you would suggest?",
+      "parentUuid": "0a1406be_1ff9da5c",
+      "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

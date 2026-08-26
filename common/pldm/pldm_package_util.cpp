@@ -223,19 +223,7 @@ int extractMatchingComponentImage(
         return EXIT_FAILURE;
     }
 
-    // component is 0 based index
-    const size_t component = ac[0];
-
-    const std::vector<ComponentImageInfo>& cs =
-        package->componentImageInformation;
-
-    if (component >= cs.size())
-    {
-        error("applicable component out of bounds");
-        return EXIT_FAILURE;
-    }
-
-    const ComponentImageInfo& c = cs[component];
+    const ComponentImageInfo& c = package->componentImageInformation[ac[0]];
 
     // calculate component offset with pointer arithmetic
     *componentOffsetOut = c.componentLocation.ptr - buf;

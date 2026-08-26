@@ -34,6 +34,24 @@
       "parentUuid": "0a1406be_1ff9da5c",
       "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e9f626_3e19756f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-08-26T00:20:00Z",
+      "side": 1,
+      "message": "Just to add, rebasing onto the latest master would change the parent commits of both 88986 and 93437, resulting in new patch sets being created for both changes.",
+      "parentUuid": "79ece67d_88d90985",
+      "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

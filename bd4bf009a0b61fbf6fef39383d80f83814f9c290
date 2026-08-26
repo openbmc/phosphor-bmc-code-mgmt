@@ -52,6 +52,24 @@
       "parentUuid": "79ece67d_88d90985",
       "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7333f755_3aca0ffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-08-26T11:07:15Z",
+      "side": 1,
+      "message": "\u003e Would you recommend waiting for both changes to be merged and then \nrebasing this change to resolve the conflict, or is there a better \napproach you would suggest?\n\nsounds good to me either way, i just wanted to notify about this since gerrit does not send emails on merge conflict.\n\nTo me it looks like you are based on \n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/93437/1\nwith commit 4c3d09e7c7798a0aabfe5df0e12fbc150cfc07d3\n\nbut \nhttps://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/93437/7\nwith commit fd406aa243c02b492492753992e16ccdaa161bec\n\nis the latest revision of that patch.\nSo if you rebased on top of that one (not on master)\nit should avoid creating new patchsets on other changes since the commits are the same.\n\nNot sure if that would already resolve the merge conflict but it might.\n\nThis is probably also why gerrit shows the parent change of this patch as \u0027not current\u0027 in the relation chain.\n\nhttps://gerrit-review.googlesource.com/Documentation/user-review-ui.html#related-changes",
+      "parentUuid": "26e9f626_3e19756f",
+      "revId": "bd4bf009a0b61fbf6fef39383d80f83814f9c290",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcaf07b3_850a8605",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "Done. Added a Related Patches section linking  EM (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/92860) and PDI (https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/92809).",
+      "parentUuid": "987c00da_5a5bb8b9",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6433f2a_64194084",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-25T01:43:11Z",
       "side": 1,
       "message": "Please add all the Tested sections as listed in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/2ba5357f7ec499e1913d8b07f5bbc83bddc6174d",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5c5cc0e_cbc15d07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "Done. Added it.",
+      "parentUuid": "d6433f2a_64194084",
       "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93182864_3839360a",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "c47b6171_c1987f0b",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afec260c_9d608d0e",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-25T01:43:11Z",
       "side": 1,
       "message": "whats aaaa?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3793400_c6bf8b37",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "afec260c_9d608d0e",
       "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b13f2a0_938c8f71",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "d7833520_69c851fc",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "450a6016_762896cc",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-08-25T01:43:11Z",
       "side": 1,
       "message": "whats tt?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e04bf78_980b47f1",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "450a6016_762896cc",
       "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4039d5d_8801357a",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "f80c0a9c_d44be7d7",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f910e967_55ac93af",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-08-25T01:43:11Z",
       "side": 1,
       "message": "whats ll ?",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cb30278_40f16555",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "These are Intel HEX record fields; moved the format reference to the IntelHexRecord comment above (https://developer.arm.com/documentation/ka003292/latest/).",
+      "parentUuid": "f910e967_55ac93af",
       "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54064a2e_2899d31d",
+        "filename": "i2c-vr/adi/max209xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "Done. Extracted into a `nextLine()`helper function.",
+      "parentUuid": "4c941021_011aa7b5",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74902e0f_9146fc20",
@@ -171,6 +333,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d4b2409_923dc26f",
+        "filename": "i2c-vr/adi/max209xx.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "Done. Moved into MAX209XX\u0027s private section.",
+      "parentUuid": "74902e0f_9146fc20",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2e2f3c1_424739f9",
@@ -184,6 +364,24 @@
       "writtenOn": "2026-08-25T01:43:11Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f551ea_29e6ee42",
+        "filename": "i2c-vr/adi/max209xx.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-08-26T17:53:53Z",
+      "side": 1,
+      "message": "Done. Moved into MAX209XX\u0027s private section.",
+      "parentUuid": "a2e2f3c1_424739f9",
       "revId": "ab396374c0bde7edf679409aad8b8d56cbf06056",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

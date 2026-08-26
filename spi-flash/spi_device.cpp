@@ -266,7 +266,15 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlash(const uint8_t* image,
         success = success && co_await SPIDevice::unbindSPIFlash();
     }
 
-    lg2::info("Successfully updated SPI flash");
+    if (success)
+    {
+        lg2::info("Successfully updated SPI flash");
+    }
+    else
+    {
+        lg2::error("Failed to update SPI flash");
+    }
+
     co_return success;
 }
 

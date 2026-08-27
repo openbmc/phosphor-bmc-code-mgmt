@@ -72,7 +72,17 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
     }
     else if (pid > 0)
     {
-        waitpid(pid, &status, 0);
+        if (waitpid(pid, &status, 0) < 0)
+        {
+            error("Error ({ERRNO}) occurred during waitpid", "ERRNO", errno);
+            return -1;
+        }
+
+        if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
+        {
+            error("rsync failed for {PATH}", "PATH", entryPath);
+            return -1;
+        }
     }
     else
     {

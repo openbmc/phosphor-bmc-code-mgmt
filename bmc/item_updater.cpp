@@ -158,7 +158,7 @@ void ItemUpdater::createActivationWithApplyTime(
 ActivationIntf::Activations ItemUpdater::verifyAndCreateObjects(
     std::string& id, std::string& path, std::string& version,
     VersionClass::VersionPurpose purpose, std::string& extendedVersion,
-    std ::string& filePath, std::vector<std::string>& compatibleNames)
+    std::string& filePath, std::vector<std::string>& compatibleNames)
 {
     // Determine the Activation state by processing the given image dir.
     auto activationState = server::Activation::Activations::Invalid;

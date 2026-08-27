@@ -6,6 +6,7 @@
 #include <sdbusplus/async/fdio.hpp>
 #include <sdbusplus/async/task.hpp>
 
+#include <algorithm>
 #include <array>
 #include <cerrno>
 #include <cstddef>
@@ -77,7 +78,24 @@ class NotifyWatch
         auto bytes = read(fd, buffer.data(), maxBytes);
         if (0 > bytes)
         {
-            throw std::system_error(errno, std::system_category(),
+            const int error = errno;
+            bool retry = (error == EAGAIN) || (error == EINTR);
+#ifdef EWOULDBLOCK
+            if constexpr (EWOULDBLOCK != EAGAIN)
+            {
+                retry = retry || (error == EWOULDBLOCK);
+            }
+#endif
+            if (retry)
+            {
+                if (!notifyCtx.stop_requested())
+                {
+                    notifyCtx.spawn(readNotifyAsync());
+                }
+                co_return;
+            }
+
+            throw std::system_error(error, std::system_category(),
                                     "Failed to read notify event");
         }
         auto offset = 0;

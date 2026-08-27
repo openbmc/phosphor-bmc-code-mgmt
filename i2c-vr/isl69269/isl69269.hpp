@@ -6,6 +6,8 @@
 #include <sdbusplus/async.hpp>
 
 #include <cstdint>
+#include <span>
+#include <string_view>
 
 namespace phosphor::software::VR
 {
@@ -32,6 +34,8 @@ class ISL69269 : public VoltageRegulator
     bool forcedUpdateAllowed() final;
 
   private:
+    static constexpr size_t maxDataRecords = 1024;
+
     struct Data
     {
         uint8_t len;
@@ -50,7 +54,7 @@ class ISL69269 : public VoltageRegulator
         uint32_t devIdExp;
         uint32_t devRevExp;
         uint32_t crcExp;
-        struct Data pData[1024];
+        struct Data pData[maxDataRecords];
     };
     sdbusplus::async::task<bool> dmaReadWrite(uint8_t* reg, uint8_t* resp);
     sdbusplus::async::task<bool> getRemainingWrites(uint8_t* remain);
@@ -63,6 +67,13 @@ class ISL69269 : public VoltageRegulator
 
     bool parseImage(const uint8_t* image, size_t imageSize);
     bool checkImage();
+    bool decodeRecordLine(std::string_view rawLine, uint8_t& type,
+                          Data& record);
+    static bool decodeHexLine(std::string_view rawLine,
+                              std::span<uint8_t> sepLineOut,
+                              size_t& decodedByteCount);
+    bool handleHeaderRecord(const Data& record);
+    bool handleDataRecord(int dcnt, const Data& record);
 
     phosphor::i2c::I2C i2cInterface;
     Gen generation;

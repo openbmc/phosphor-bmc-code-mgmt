@@ -295,6 +295,17 @@ if build_tests.allowed()
             dependencies: [deps, gtest, include_srcs, ssl_dep],
         ),
     )
+
+    test(
+        'sync-manager-test',
+        executable(
+            'sync-manager-test',
+            './test/sync_manager_test.cpp',
+            'sync_manager.cpp',
+            dependencies: [deps, gtest],
+            link_args: ['-Wl,--wrap=fork', '-Wl,--wrap=waitpid'],
+        ),
+    )
 endif
 
 if get_option('usb-code-update').allowed()

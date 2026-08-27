@@ -1,6 +1,9 @@
 #pragma once
 #include "version.hpp"
 
+#include <sys/types.h>
+#include <sys/wait.h>
+
 #include <sdbusplus/server.hpp>
 
 #include <chrono>
@@ -13,6 +16,16 @@ namespace software
 {
 namespace manager
 {
+
+namespace internal
+{
+
+inline bool isTarChildStatusValid(pid_t waitResult, int status)
+{
+    return waitResult >= 0 && WIFEXITED(status) && WEXITSTATUS(status) == 0;
+}
+
+} // namespace internal
 
 /** @class Manager
  *  @brief Contains a map of Version dbus objects.

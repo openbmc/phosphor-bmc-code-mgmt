@@ -32,6 +32,8 @@ class ISL69269 : public VoltageRegulator
     bool forcedUpdateAllowed() final;
 
   private:
+    static constexpr size_t maxDataRecords = 1024;
+
     struct Data
     {
         uint8_t len;
@@ -50,7 +52,7 @@ class ISL69269 : public VoltageRegulator
         uint32_t devIdExp;
         uint32_t devRevExp;
         uint32_t crcExp;
-        struct Data pData[1024];
+        struct Data pData[maxDataRecords];
     };
     sdbusplus::async::task<bool> dmaReadWrite(uint8_t* reg, uint8_t* resp);
     sdbusplus::async::task<bool> getRemainingWrites(uint8_t* remain);

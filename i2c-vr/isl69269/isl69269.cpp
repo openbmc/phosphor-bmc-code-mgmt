@@ -4,6 +4,7 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <span>
 #include <string>
 
 PHOSPHOR_LOG2_USING;
@@ -43,6 +44,24 @@ constexpr uint8_t pmBusDeviceRev = 0xAE;
 // Config file constants
 constexpr char recordTypeData = 0x00;
 constexpr char recordTypeHeader = 0x49;
+
+// Byte offsets within a decoded hex-file record line
+struct RecordField
+{
+    enum : size_t
+    {
+        Type = 0,
+        Length = 1,
+        Address = 2,
+        Command = 3,
+        DataStart = 4,
+    };
+};
+
+constexpr size_t headerSize = 2;
+constexpr size_t addressSize = 1;
+constexpr size_t commandSize = 1;
+constexpr size_t pecSize = 1;
 
 constexpr uint8_t defaultBufferSize = 16;
 constexpr uint8_t programBufferSize = 32;
@@ -329,7 +348,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                 return false;
             }
             std::memcpy(line, image + nextLineStart, lineLen);
-            int k = 0;
+            size_t k = 0;
             size_t j = 0;
             for (k = 0, j = 0; j < lineLen; k++, j += 2)
             {
@@ -338,23 +357,50 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                 sepLine[k] = (uint8_t)std::strtol(xdigit, NULL, 16);
             }
 
-            if (sepLine[0] == recordTypeHeader)
+            const uint8_t lineType = sepLine[RecordField::Type];
+            const uint8_t payloadSize = sepLine[RecordField::Length];
+            const uint8_t address = sepLine[RecordField::Address];
+            const uint8_t command = sepLine[RecordField::Command];
+
+            if (k != headerSize + payloadSize ||
+                payloadSize < addressSize + commandSize + pecSize)
             {
-                if (sepLine[3] == pmBusDeviceId)
+                error(
+                    "parseImage failed. Record line length does not match declared size.");
+                return false;
+            }
+
+            const size_t dataSize =
+                payloadSize - addressSize - commandSize - pecSize;
+
+            const std::span<const uint8_t> data{
+                sepLine + RecordField::DataStart, dataSize};
+
+            const uint8_t pec = sepLine[RecordField::DataStart + dataSize];
+
+            if (lineType == recordTypeHeader)
+            {
+                if (data.size() < sizeof(configuration.devIdExp))
                 {
-                    shiftLeftFromMSB(sepLine + 4, &configuration.devIdExp);
+                    error("parseImage failed. Header record line too short.");
+                    return false;
+                }
+
+                if (command == pmBusDeviceId)
+                {
+                    shiftLeftFromMSB(data.data(), &configuration.devIdExp);
                     debug("device id from configuration: {ID}", "ID", lg2::hex,
                           configuration.devIdExp);
                     // GEN3p5 IC_DEVICE_ID Byte ID[1]
-                    if (generation == Gen::Gen3p5 && sepLine[6] >= 0xBA)
+                    if (generation == Gen::Gen3p5 && data[2] >= 0xBA)
                     {
                         debug("Gen3p5 hex file format recognized");
                         configuration.mode = gen3p5;
                     }
                 }
-                else if (sepLine[3] == pmBusDeviceRev)
+                else if (command == pmBusDeviceRev)
                 {
-                    shiftLeftFromMSB(sepLine + 4, &configuration.devRevExp);
+                    shiftLeftFromMSB(data.data(), &configuration.devRevExp);
                     debug("device revision from config: {ID}", "ID", lg2::hex,
                           configuration.devRevExp);
 
@@ -375,18 +421,19 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                         }
                     }
                 }
-                else if (sepLine[3] == hexFileRev)
+                else if (command == hexFileRev)
                 {
                     debug("Gen2 hex file format recognized");
                     configuration.mode = gen2Hex;
                 }
             }
-            else if (sepLine[0] == recordTypeData)
+            else if (lineType == recordTypeData)
             {
-                if (((sepLine[1] + 2) >= (uint8_t)sizeof(sepLine)))
+                if (static_cast<size_t>(dcnt) >= maxDataRecords)
                 {
-                    dcnt = 0;
-                    break;
+                    error(
+                        "parseImage failed. Image contains too many data records.");
+                    return false;
                 }
                 // According to documentation:
                 // 00 05 C2 E7 08 00 F6
@@ -397,19 +444,19 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                 //  |  |  - Address
                 //  |  - Size of data (including Addr, Cmd, CRC8)
                 //  - Line type (0x00 - Data, 0x49 header information)
-                configuration.pData[dcnt].len = sepLine[1] - 2;
-                configuration.pData[dcnt].pec =
-                    sepLine[3 + configuration.pData[dcnt].len];
-                configuration.pData[dcnt].addr = sepLine[2];
-                configuration.pData[dcnt].cmd = sepLine[3];
-                std::memcpy(configuration.pData[dcnt].data, sepLine + 2,
-                            configuration.pData[dcnt].len + 1);
+                configuration.pData[dcnt].len = data.size() + commandSize;
+                configuration.pData[dcnt].pec = pec;
+                configuration.pData[dcnt].addr = address;
+                configuration.pData[dcnt].cmd = command;
+                std::memcpy(configuration.pData[dcnt].data,
+                            sepLine + RecordField::Address,
+                            configuration.pData[dcnt].len + addressSize);
                 switch (dcnt)
                 {
                     case cfgId:
                         if (configuration.mode != gen3p5)
                         {
-                            configuration.cfgId = sepLine[4] & 0x0F;
+                            configuration.cfgId = data[0] & 0x0F;
                             debug("Config ID: {ID}", "ID", lg2::hex,
                                   configuration.cfgId);
                         }
@@ -417,7 +464,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     case gen3p5cfgId:
                         if (configuration.mode == gen3p5)
                         {
-                            configuration.cfgId = sepLine[4];
+                            configuration.cfgId = data[0];
                             debug("Config ID: {ID}", "ID", lg2::hex,
                                   configuration.cfgId);
                         }
@@ -425,7 +472,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     case gen3LegacyCRC:
                         if (configuration.mode == gen3Legacy)
                         {
-                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                            std::memcpy(&configuration.crcExp, data.data(),
                                         checksumLen);
                             debug("Config Legacy CRC: {CRC}", "CRC", lg2::hex,
                                   configuration.crcExp);
@@ -434,7 +481,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     case gen3ProductionCRC:
                         if (configuration.mode == gen3Production)
                         {
-                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                            std::memcpy(&configuration.crcExp, data.data(),
                                         checksumLen);
                             debug("Config Production CRC: {CRC}", "CRC",
                                   lg2::hex, configuration.crcExp);
@@ -443,7 +490,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     case gen2CRC:
                         if (configuration.mode == gen2Hex)
                         {
-                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                            std::memcpy(&configuration.crcExp, data.data(),
                                         checksumLen);
                             debug("Config Gen2 CRC: {CRC}", "CRC", lg2::hex,
                                   configuration.crcExp);
@@ -452,7 +499,7 @@ bool ISL69269::parseImage(const uint8_t* image, size_t imageSize)
                     case gen3p5CRC:
                         if (configuration.mode == gen3p5)
                         {
-                            std::memcpy(&configuration.crcExp, &sepLine[4],
+                            std::memcpy(&configuration.crcExp, data.data(),
                                         checksumLen);
                             debug("Config Gen3p5 CRC: {CRC}", "CRC", lg2::hex,
                                   configuration.crcExp);
@@ -481,7 +528,7 @@ bool ISL69269::checkImage()
     for (int i = 0; i < configuration.wrCnt; i++)
     {
         crc8 = calcCRC8(configuration.pData[i].data,
-                        configuration.pData[i].len + 1);
+                        configuration.pData[i].len + addressSize);
         if (crc8 != configuration.pData[i].pec)
         {
             debug(
@@ -503,7 +550,7 @@ sdbusplus::async::task<bool> ISL69269::program()
 
     for (int i = 0; i < configuration.wrCnt; i++)
     {
-        std::memcpy(tbuf, configuration.pData[i].data + 1,
+        std::memcpy(tbuf, configuration.pData[i].data + addressSize,
                     configuration.pData[i].len);
 
         if (!(co_await i2cInterface.sendReceive(

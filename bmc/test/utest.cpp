@@ -1,11 +1,13 @@
 #include "config.h"
 
+#include "image_manager.hpp"
 #include "image_verify.hpp"
 #include "utils.hpp"
 #include "version.hpp"
 
 #include <openssl/evp.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 #include <filesystem>
 #include <fstream>
@@ -20,6 +22,19 @@ using namespace phosphor::software::manager;
 using namespace phosphor::software::image;
 
 namespace fs = std::filesystem;
+
+TEST(TarChildStatusTest, WaitpidFailureIsRejected)
+{
+    EXPECT_FALSE(internal::isTarChildStatusValid(-1, 0));
+}
+
+TEST(TarChildStatusTest, SignaledChildIsRejected)
+{
+    const int signaledStatus = SIGTERM;
+
+    EXPECT_TRUE(WIFSIGNALED(signaledStatus));
+    EXPECT_FALSE(internal::isTarChildStatusValid(123, signaledStatus));
+}
 
 class VersionTest : public testing::Test
 {

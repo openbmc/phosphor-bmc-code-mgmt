@@ -454,7 +454,7 @@ std::optional<std::string> SPIDevice::getMTDDevicePath() const
     if (!std::filesystem::exists(spiPath))
     {
         error("Error: SPI path not found: {PATH}", "PATH", spiPath);
-        return "";
+        return std::nullopt;
     }
 
     for (const auto& entry : std::filesystem::directory_iterator(spiPath))

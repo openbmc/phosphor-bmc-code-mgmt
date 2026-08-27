@@ -6,6 +6,8 @@
 #include <chrono>
 #include <random>
 #include <string>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 namespace phosphor
 {
@@ -13,6 +15,16 @@ namespace software
 {
 namespace manager
 {
+
+namespace internal
+{
+
+inline bool isTarChildStatusValid(pid_t waitResult, int status)
+{
+  return waitResult >= 0 && WIFEXITED(status) && WEXITSTATUS(status) == 0;
+}
+
+} // namespace internal
 
 /** @class Manager
  *  @brief Contains a map of Version dbus objects.

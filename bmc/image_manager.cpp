@@ -291,8 +291,8 @@ int Manager::unTar(const std::string& tarFilePath,
     }
     else if (pid > 0)
     {
-        waitpid(pid, &status, 0);
-        if (WEXITSTATUS(status))
+        if (!internal::isTarChildStatusValid(waitpid(pid, &status, 0),
+                                             status))
         {
             error("Failed ({STATUS}) to untar file {PATH}", "STATUS", status,
                   "PATH", tarFilePath);

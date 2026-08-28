@@ -60,7 +60,8 @@ sdbusplus::async::task<bool> TPMSoftwareManager::initDevice(
     std::unique_ptr<SoftwareInf::Software> software =
         std::make_unique<SoftwareInf::Software>(ctx, *tpmDevice);
 
-    software->setVersion(co_await tpmDevice->getVersion());
+    software->setVersion(co_await tpmDevice->getVersion(),
+                         SoftwareInf::SoftwareVersion::VersionPurpose::Other);
 
     if (tpmDevice->isUpdateSupported())
     {

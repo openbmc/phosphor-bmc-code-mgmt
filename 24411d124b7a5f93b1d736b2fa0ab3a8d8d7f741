@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d1b263_bc6ec934",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-08-28T05:12:54Z",
+      "side": 1,
+      "message": "Could we add focused test coverage for the transient read-error paths, especially EAGAIN and EINTR, to verify that the inotify watch is re-armed and that fatal read errors still propagate? The implementation looks correct, but these paths are not covered by the current change.",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

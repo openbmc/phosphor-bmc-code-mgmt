@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d39503c_0f0e3f4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-08-31T22:15:50Z",
+      "side": 1,
+      "message": "@dirkchen@amd.com If you add \"Notification flow via OperatingSystemState change\" then why would you need \"Notification flow via HostState change\" ? Isn\u0027t OS state change riding on top of HostState change and more granular ?\n\nOr is it you don\u0027t know if it dropping \"Notification flow via HostState change\" will break anything ?",
+      "parentUuid": "879f00eb_dffcef6c",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bf8866e_83e710a4",
         "filename": "eeprom-device/eeprom_device.cpp",
         "patchSetId": 1

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "602bba1d_15ad003d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-08-31T07:04:48Z",
+      "side": 1,
+      "message": "@paligill@gmail.com  Because the PT5161 driver is not ready (bound) when the EEPROM service starts, it cannot retrieve the version at that point. \nIt waits for the notification flow triggered by a HostState change.",
+      "parentUuid": "38aeae5d_221d0e1c",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "615f0b97_c042e274",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-25T00:37:13Z",
       "side": 1,
       "message": "Lets debug this appropriately and try to understand the right root cause. FYI: there are 2 flows -\n1. Get flow via getVersion.\n2. Notification flow via HostState change.\n\nSo, in other words both paths are covered. We need to understand whats the gap here ?",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "879f00eb_dffcef6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-08-31T07:04:48Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\n\nThe issue can occur during the transition from Step 1 to Step 2.\nIf the HostState changes before the matching task is registered, the notification may be missed.\n\nFor example, on Anacapa, there are two PT5161 retimers. When the system powers on from AC:\n\n1. Get flow via getVersion.\n   When the EEPROM service starts, the PT5161 driver may not be bound yet. In that case, the version cannot be retrieved, and the flow falls back to Step 2.\n\n2. Notification flow via HostState change.\n   Before the matching task is registered, there is a possibility that the HostState has already transitioned to Running.\n\nAs a result, after the matching task is registered, the notification is never received, and the version cannot be retrieved, even if the PT5161 driver is already bound at that point.\n\nThis issue occurs intermittently.\n\nSince version retrieval depends on the PT5161 driver being available, it is difficult to determine how long we should wait for the driver to be properly bound across all platforms.\n\nAccording to feedback from Astera Labs FAE, the ideal solution is to poll the retimer-ready signal (GPIO0) to ensure that the retimer is ready, rather than relying on HostState.\n\nAs an alternative solution, monitoring post completed may be more reliable: \nOperatingSystemState \u003d \"xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Standby\"\n\nCould we add a matching mechanism for OperatingSystemState?\nThis would provide 3 possible flows for retrieving the retimer version:\n1. Get flow via getVersion.\n2. Notification flow via HostState change.\n3. Notification flow via OperatingSystemState change.",
+      "parentUuid": "615f0b97_c042e274",
       "revId": "b62e6193aaaedb8871f01772f146672901a82150",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

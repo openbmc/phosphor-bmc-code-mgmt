@@ -40,6 +40,12 @@ void storePriority(const std::string& flashId, uint8_t priority)
     path = path / priorityName;
 
     std::ofstream os(path.c_str());
+    if (!os)
+    {
+        error("Failed to open file for writing priority: {PATH}", "PATH",
+              path);
+        return;
+    }
     cereal::JSONOutputArchive oarchive(os);
     oarchive(cereal::make_nvp(priorityName, priority));
 }
@@ -61,6 +67,11 @@ void storePurpose(const std::string& flashId, VersionPurpose purpose)
     path = path / purposeName;
 
     std::ofstream os(path.c_str());
+    if (!os)
+    {
+        error("Failed to open file for writing purpose: {PATH}", "PATH", path);
+        return;
+    }
     cereal::JSONOutputArchive oarchive(os);
     oarchive(cereal::make_nvp(purposeName, purpose));
 }
@@ -72,6 +83,12 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
     if (fs::exists(path, ec))
     {
         std::ifstream is(path.c_str(), std::ios::in);
+        if (!is)
+        {
+            error("Failed to open priority file for reading: {PATH}", "PATH",
+                  path);
+            return false;
+        }
         try
         {
             cereal::JSONInputArchive iarchive(is);
@@ -86,6 +103,11 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
 
     // Find the mtd device "u-boot-env" to retrieve the environment variables
     std::ifstream mtdDevices("/proc/mtd");
+    if (!mtdDevices)
+    {
+        error("Failed to open /proc/mtd for reading");
+        return false;
+    }
     std::string device;
     std::string devicePath;
 
@@ -103,6 +125,12 @@ bool restorePriority(const std::string& flashId, uint8_t& priority)
         if (!devicePath.empty())
         {
             std::ifstream input(devicePath.c_str());
+            if (!input)
+            {
+                error("Failed to open u-boot-env device: {PATH}", "PATH",
+                      devicePath);
+                return false;
+            }
             std::string envVars;
             std::getline(input, envVars);
 
@@ -134,6 +162,12 @@ bool restorePurpose(const std::string& flashId, VersionPurpose& purpose)
     if (fs::exists(path, ec))
     {
         std::ifstream is(path.c_str(), std::ios::in);
+        if (!is)
+        {
+            error("Failed to open purpose file for reading: {PATH}", "PATH",
+                  path);
+            return false;
+        }
         try
         {
             cereal::JSONInputArchive iarchive(is);

@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "226c7d9e_68ea4d9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-09-01T06:53:45Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\n\nThere are three test cases for checking the component firmware version:\n\n1. System power-on or after an AC power cycle.\n2. DC power cycle while the BMC remains running.\n3. BMC warm reboot while the host remains running.\n\nIf we monitor only OperatingSystemState, it can cause an issue in case 3.\n\n\nPlease refer to the timeline below. In case 3, the OperatingSystemState change signal cannot be received because it is emitted before the EEPROM service starts. Therefore, in this scenario, the firmware version retrieval depends on receiving the HostState signal.\n\nAlthough the HostState signal can be received, the same race condition may still occur. \n\nFor example, in the timeline below, if the HostState signal is received at Aug 31 23:18:27, the second retimer may not receive the property change notification because its initialization starts after 23:18:28.\n\nThis is why we need to keep the notification flow based on HostState changes, and also check the current HostState before registering the match handler. This ensures that components which start after the signal has already been emitted can still retrieve the firmware version correctly.\n\nAdding monitoring for OperatingSystemState covers test cases 1 and 2, and does not require extending the delay time because the PT5161 driver should already be ready after POST completes.\n\nTimeline: \n//\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d OperatingSystemState is set to Standby because the  host is already running \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nAug 31 23:17:52 bmc systemd[1]: Starting multi-gpiosinit.service...\nAug 31 23:17:53 bmc systemd[1]: multi-gpios-sys-init.service: Deactivated successfully.\nAug 31 23:17:54 bmc systemd[1]: Finished multi-gpios-sys-init.ce.\n\n//\u003d\u003d\u003d\u003d\u003d\u003d\u003d EEPROM service starts \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nAug 31 23:18:21 bmc phosphor-eepromdevice-software-update[770]: Failed to get version: unable to find fw_ver file\nAug 31 23:18:26 bmc phosphor-eepromdevice-software-update[770]: Missing property Name on path /xyz/openbmc_project/inventory/system/board/BRB_L/Anacapa_LBB_Retimer, interface xyz.openbmc_project.Configurati\non.PT5081LFirmware.MuxOutputs1\nAug 31 23:18:26 bmc phosphor-eepromdevice-software-update[770]: Missing property Polarity on path /xyz/openbmc_project/inventory/system/board/BRB_L/Anacapa_LBB_Retimer, interface xyz.openbmc_project.Configu\nration.PT5081LFirmware.MuxOutputs1\nAug 31 23:18:28 bmc phosphor-eepromdevice-software-update[770]: Failed to get version: unable to find fw_ver file\nAug 31 23:18:28 bmc phosphor-eepromdevice-software-update[770]: Missing property Name on path /xyz/openbmc_project/inventory/system/board/BRB_R/Anacapa_RBB_Retimer, interface xyz.openbmc_project.Configurati\non.PT5081LFirmware.MuxOutputs1\nAug 31 23:18:28 bmc phosphor-eepromdevice-software-update[770]: Missing property Polarity on path /xyz/openbmc_project/inventory/system/board/BRB_R/Anacapa_RBB_Retimer, interface xyz.openbmc_project.Configu\nration.PT5081LFirmware.MuxOutputs1\n\n\n//\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d HostState signal received \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nAug 31 23:18:27 bmc phosphor-host-state-manager[927]: Host0 state transition request of xyz.openbmc_project.State.Host.Transition.On\nAug 31 23:18:28 bmc phosphor-host-state-manager[927]: Change to Host0 State: xyz.openbmc_project.State.Host.HostState.TransitioningToRunning\nAug 31 23:18:30 bmc phosphor-host-state-manager[927]: Received signal that host is running\nAug 31 23:18:30 bmc phosphor-host-state-manager[927]: Change to Host0 State: xyz.openbmc_project.State.Host.HostState.Running\n\n//\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d PT5161 driver initializes \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nAug 31 23:18:40 bmc kernel: i2c i2c-37: new_device: Instantiated device pt5161l at 0x20\nAug 31 23:18:40 bmc kernel: i2c i2c-49: new_device: Instantiated device pt5161l at 0x20",
+      "parentUuid": "5d39503c_0f0e3f4d",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bf8866e_83e710a4",

@@ -3,8 +3,11 @@
 // errors can be resolved via lg2::resolve when deasserted.
 #include "common/include/events.hpp"
 
+#include <fcntl.h>
+
 #include <sdbusplus/async.hpp>
 #include <xyz/openbmc_project/Logging/Create/aserver.hpp>
+#include <xyz/openbmc_project/Logging/Create/client.hpp>
 #include <xyz/openbmc_project/Logging/Entry/aserver.hpp>
 #include <xyz/openbmc_project/Software/Update/event.hpp>
 
@@ -31,7 +34,7 @@ class TestEventEntry : public EventEntryIntf
   public:
     TestEventEntry(sdbusplus::async::context& ctx,
                    const sdbusplus::object_path& path) :
-        EventEntryIntf(ctx, path)
+        EventEntryIntf(ctx, path), objectPath(path)
     {}
 
     static auto method_call(get_entry_t /*unused*/)
@@ -49,6 +52,7 @@ class TestEventEntry : public EventEntryIntf
     }
 
     bool isResolved = false;
+    sdbusplus::object_path objectPath;
 };
 
 // Mock logging service that implements xyz.openbmc_project.Logging.Create
@@ -80,15 +84,19 @@ class TestEventServer : public EventServerIntf
         co_return objectPath;
     }
 
-    auto method_call(create_with_ffdc_files_t /*unused*/, auto /*unused*/,
-                     auto /*unused*/, auto /*unused*/, auto /*unused*/)
+    auto method_call(create_with_ffdc_files_t /*unused*/, auto message,
+                     auto severity, auto additionalData, auto ffdc)
         -> sdbusplus::async::task<create_with_ffdc_files_t::return_type>
     {
-        co_return;
+        ffdcFileCount = ffdc.size();
+        co_return co_await method_call(create_t{}, std::move(message),
+                                       std::move(severity),
+                                       std::move(additionalData));
     }
 
     std::string expectedEvent;
     std::vector<std::unique_ptr<TestEventEntry>> eventEntries;
+    size_t ffdcFileCount = 0;
 
   private:
     sdbusplus::async::context& ctx;
@@ -212,6 +220,49 @@ class FWUpdateEventsTest : public ::testing::Test
 
         ctx.request_stop();
     }
+
+    auto testCreateWithFFDCFiles() -> sdbusplus::async::task<void>
+    {
+        using CreateClient =
+            sdbusplus::client::xyz::openbmc_project::logging::Create<>;
+        using LevelIntf =
+            sdbusplus::common::xyz::openbmc_project::logging::Entry::Level;
+
+        eventServer.expectedEvent = event_intf::UpdateSuccessful::errName;
+
+        // A single FFDC file, so the descriptor is actually marshalled.
+        int fd = ::open("/dev/null", O_RDONLY);
+        EXPECT_NE(fd, -1) << "Failed to open FFDC file";
+        if (fd == -1)
+        {
+            ctx.request_stop();
+            co_return;
+        }
+
+        auto entry =
+            co_await CreateClient(ctx)
+                .service(serviceName)
+                .path(loggingPath.str)
+                .create_with_ffdc_files(eventServer.expectedEvent,
+                                        LevelIntf::Informational, {},
+                                        {{CreateClient::FFDCFormat::Text, 0, 0,
+                                          sdbusplus::message::unix_fd(fd)}});
+
+        ::close(fd);
+
+        EXPECT_EQ(eventServer.ffdcFileCount, 1)
+            << "FFDC file descriptor was not delivered";
+        EXPECT_FALSE(eventServer.eventEntries.empty())
+            << "Event entry should be created for an FFDC event";
+        if (!eventServer.eventEntries.empty())
+        {
+            EXPECT_EQ(entry.str,
+                      eventServer.eventEntries.back()->objectPath.str)
+                << "Returned path should name the created entry";
+        }
+
+        ctx.request_stop();
+    }
 };
 
 const sdbusplus::object_path FWUpdateEventsTest::loggingPath =
@@ -250,5 +301,11 @@ TEST_F(FWUpdateEventsTest, TestUpdateSuccessful)
 TEST_F(FWUpdateEventsTest, TestResetRequired)
 {
     ctx.spawn(testResetRequired());
+    ctx.run();
+}
+
+TEST_F(FWUpdateEventsTest, TestCreateWithFFDCFiles)
+{
+    ctx.spawn(testCreateWithFFDCFiles());
     ctx.run();
 }

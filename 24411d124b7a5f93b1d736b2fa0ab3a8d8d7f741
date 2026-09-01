@@ -16,6 +16,24 @@
       "message": "Could we add focused test coverage for the transient read-error paths, especially EAGAIN and EINTR, to verify that the inotify watch is re-armed and that fatal read errors still propagate? The implementation looks correct, but these paths are not covered by the current change.",
       "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb2b2c97_ba54728f",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-09-01T11:46:06Z",
+      "side": 1,
+      "message": "Thanks, I agree these paths would be useful to cover.\n\nThe difficulty is that the current implementation calls read() directly on a\nnon-blocking inotify fd. Reproducing EAGAIN or EINTR deterministically would\nrequire controlling the result of that read() call. Without adding a test seam\naround read(), the test would need to rely on scheduler timing/races, which\nwould be flaky and not suitable for upstream CI.\n\nI can add coverage if introducing a small test-only seam is acceptable, for\nexample by injecting a read function with ::read as the production default, or\nby factoring the transient errno classification into a helper. However, adding\nthat extra production surface only for this error path may be a larger change\nthan the fix itself.\n\nDo you think adding such a seam here is appropriate, or would you prefer to keep\nthis patch scoped to handling the transient errno values directly?",
+      "parentUuid": "30d1b263_bc6ec934",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

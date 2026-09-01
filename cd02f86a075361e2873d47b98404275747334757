@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "750c2c71_8a544470",
+        "filename": "bmc/sync_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003102
+      },
+      "writtenOn": "2026-09-01T05:05:44Z",
+      "side": 1,
+      "message": "This correctly handles waitpid failures and abnormal child termination before trusting WEXITSTATUS(). Please add a regression test covering the signal/non-zero-exit paths so this stays protected.",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "cd02f86a075361e2873d47b98404275747334757",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

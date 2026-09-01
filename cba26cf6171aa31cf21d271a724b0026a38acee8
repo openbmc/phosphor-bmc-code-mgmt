@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d377479_69be87e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-01T18:31:24Z",
+      "side": 1,
+      "message": "There are CI failures, can you please address those -\n\n../i2c-vr/isl69269/isl69269.cpp:371:16: error: method \u0027decodeRecordLine\u0027 can be made static [readability-convert-member-functions-to-static,-warnings-as-errors]\n  371 | bool ISL69269::decodeRecordLine(std::string_view rawLine, uint8_t\u0026 type,\n      |",
+      "revId": "cba26cf6171aa31cf21d271a724b0026a38acee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c5f0a5_54b4c4d4",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-01T18:31:24Z",
+      "side": 1,
+      "message": "I think u r doing this for implicit integer conversion? Can we follow a better cpp method, for example as under ?\n\nnamespace RecordField {\n    inline constexpr size_t Type      \u003d 0;\n    inline constexpr size_t Length    \u003d 1;\n    inline constexpr size_t Address   \u003d 2;\n    inline constexpr size_t Command   \u003d 3;\n    inline constexpr size_t DataStart \u003d 4;\n}",
+      "revId": "cba26cf6171aa31cf21d271a724b0026a38acee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -108,11 +108,19 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
         int status;
         if (waitpid(pid, &status, 0) < 0)
         {
-            error("Error ({ERRNO}) occurred during waitpid", "ERRNO", errno);
+            int savedErrno = errno;
+            error("Error ({ERRNO}) occurred during waitpid: {ERR}", "ERRNO",
+                  savedErrno, "ERR", std::strerror(savedErrno));
         }
-        else if (WEXITSTATUS(status) != 0)
+        else if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
         {
-            error("Failed ({STATUS}) to launch tftp", "STATUS", status);
+            error("Failed ({STATUS}) to launch tftp", "STATUS",
+                  WEXITSTATUS(status));
+        }
+        else if (WIFSIGNALED(status))
+        {
+            error("tftp process terminated by signal {SIGNAL}", "SIGNAL",
+                  WTERMSIG(status));
         }
     }
 

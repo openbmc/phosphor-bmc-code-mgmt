@@ -16,6 +16,24 @@
       "message": "setActivation(Activating) is an expected state transition, but this is logged with error(). Could we use info() (or debug()) here instead? Logging normal transitions as errors can create noisy/false alerts. Same applies to the setActivation(Active) log below.",
       "revId": "fa8950e8187360250f0733e27836acfdf124f876",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74b20e4_a568e5bf",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-09-01T12:46:15Z",
+      "side": 1,
+      "message": "Agree. These are expected state transitions used to signal sensor read pause during CRC retrieval, so error severity is misleading. I’ll change both logs to info/debug and keep only actual CRC retrieval failures as error.\nHowever, it looks like there is an issue at `../test/common/events/events.cpp:87`.\n\nAfter this issue is fixed, I will rebase this commit again.",
+      "parentUuid": "e289dcef_e2173aab",
+      "revId": "fa8950e8187360250f0733e27836acfdf124f876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

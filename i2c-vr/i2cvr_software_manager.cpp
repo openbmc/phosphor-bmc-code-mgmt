@@ -96,12 +96,23 @@ sdbusplus::async::task<bool> I2CVRSoftwareManager::initDevice(
         co_return false;
     }
 
+    software->setActivation(ActivationInterface::Activations::Activating);
+    info("Set software ID {SWID} to Activating.", "SWID", software->swid);
+
+    // Wait for PSUSensor to detect the activation signal so it can skip
+    // readings from this sensor while retrieving the CRC from this device.
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::milliseconds(1000));
+
     uint32_t sum;
     if (!(co_await i2cDevice->getVersion(&sum)))
     {
         error("unable to obtain Version/CRC from voltage regulator");
+        software->setActivation(ActivationInterface::Activations::Failed);
         co_return false;
     }
+
+    software->setActivation(ActivationInterface::Activations::Active);
+    info("Set software ID {SWID} to Active.", "SWID", software->swid);
 
     software->setVersion(std::format("{:X}", sum),
                          SoftwareInf::SoftwareVersion::VersionPurpose::Other);

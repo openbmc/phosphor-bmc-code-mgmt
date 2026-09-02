@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4925d0_e86bd7bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-09-02T16:00:00Z",
+      "side": 1,
+      "message": "are these luns just convention or the only possible values?\n\n\nwhy do the 4MB values take an argument that is smaller nummerically?   is the unit for boot and lun implicitly different?",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c54417c_13b40888",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-09-02T16:00:00Z",
+      "side": 1,
+      "message": "how have you tested any of these error paths ? possibly just by removing the special device in /dev ?",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "018b2a53_35733e73",
@@ -14,6 +48,57 @@
       "writtenOn": "2026-09-02T01:34:49Z",
       "side": 1,
       "message": "@patrick@stwcx.xyz, @mdmii@outlook.com, gentle ping. Could you please review the latest patchset? Thanks!",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7afdf6d_dd876d77",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-09-02T16:00:00Z",
+      "side": 1,
+      "message": "these find and exec and basename are computationally expeensive\n\nthe script should assume the existance of one entry in the directory, and use shell variable match to remove the path components ${fullpath%%*/}",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eb7fa26_39f23a4d",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-09-02T16:00:00Z",
+      "side": 1,
+      "message": "this abstraction seems to be of little value.   it seems it should be called inline",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e818fbbd_e1857a01",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-09-02T16:00:00Z",
+      "side": 1,
+      "message": "instead of combining both into one variable to parse it apart here, make a function that returns the first or second name and call it twice storing the names directly in the partiton and alt-partition variables.\n\nthe following test becomes verifying both are files or special devicces",
       "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

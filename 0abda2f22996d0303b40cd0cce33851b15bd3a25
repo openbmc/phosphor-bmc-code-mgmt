@@ -237,6 +237,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "046b8e11_6193c9c9",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-09-02T20:59:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "06defb31_281d36e9",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 288,
+        "endChar": 9
+      },
+      "revId": "0abda2f22996d0303b40cd0cce33851b15bd3a25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13b9499c_dacb10da",

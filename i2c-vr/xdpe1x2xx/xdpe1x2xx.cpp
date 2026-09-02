@@ -483,7 +483,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
     char line[maxLineLength];
     char* token = NULL;
     bool isData = false;
-    char delim = ' ';
+    char delim[] = " ";
     uint16_t offset;
     uint8_t sectType = 0x0;
     uint32_t dWord;
@@ -527,7 +527,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
             else if (isData)
             {
                 char* tokenList[8] = {0};
-                int tokenSize = lineSplit(tokenList, line, &delim);
+                int tokenSize = lineSplit(tokenList, line, delim);
                 if (tokenSize < 1)
                 {
                     start = i + 1;
@@ -559,6 +559,18 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
                         configuration.section[sectIndex].type = sectType;
                         configuration.sectCnt = sectIndex + 1;
                         dataCnt = 0;
+                    }
+
+                    if (sectIndex < 0)
+                    {
+                        error("VR image: data before section header");
+                        return false;
+                    }
+
+                    if (sectIndex < 0)
+                    {
+                        error("VR image: data before section header");
+                        return false;
                     }
 
                     if (dataCnt >= MaxSectDataCnt)

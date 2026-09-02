@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "018b2a53_35733e73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-02T01:34:49Z",
+      "side": 1,
+      "message": "@patrick@stwcx.xyz, @mdmii@outlook.com, gentle ping. Could you please review the latest patchset? Thanks!",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

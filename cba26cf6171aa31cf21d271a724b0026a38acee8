@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa84f6e1_abf8074d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-09-02T07:21:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d377479_69be87e3",
+      "revId": "cba26cf6171aa31cf21d271a724b0026a38acee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75c5f0a5_54b4c4d4",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-01T18:31:24Z",
       "side": 1,
       "message": "I think u r doing this for implicit integer conversion? Can we follow a better cpp method, for example as under ?\n\nnamespace RecordField {\n    inline constexpr size_t Type      \u003d 0;\n    inline constexpr size_t Length    \u003d 1;\n    inline constexpr size_t Address   \u003d 2;\n    inline constexpr size_t Command   \u003d 3;\n    inline constexpr size_t DataStart \u003d 4;\n}",
+      "revId": "cba26cf6171aa31cf21d271a724b0026a38acee8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57fdc988_d381b279",
+        "filename": "i2c-vr/isl69269/isl69269.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-09-02T07:21:01Z",
+      "side": 1,
+      "message": "Sure, updated.",
+      "parentUuid": "75c5f0a5_54b4c4d4",
       "revId": "cba26cf6171aa31cf21d271a724b0026a38acee8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

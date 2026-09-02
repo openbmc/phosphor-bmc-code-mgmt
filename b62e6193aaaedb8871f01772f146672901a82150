@@ -107,6 +107,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e271b3ae_788ff90c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-02T17:55:46Z",
+      "side": 1,
+      "message": "\u003e this would provide 3 possible flows for retrieving the retimer version:\n\n\u003e Get flow via getVersion.\n\u003e Notification flow via HostState change.\n\u003e Notification flow via OperatingSystemState change.\n\n@dirkchen@amd.com Please go ahead and add the above flows as they seem better as compared to random waits.",
+      "parentUuid": "226c7d9e_68ea4d9c",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bf8866e_83e710a4",

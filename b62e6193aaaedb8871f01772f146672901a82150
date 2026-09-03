@@ -125,6 +125,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "828eecd8_4546d0f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-09-03T10:42:16Z",
+      "side": 1,
+      "message": "@paligill@gmail.com\nThanks for the comments. Please help review the latest update when you have a chance.",
+      "parentUuid": "e271b3ae_788ff90c",
+      "revId": "b62e6193aaaedb8871f01772f146672901a82150",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bf8866e_83e710a4",

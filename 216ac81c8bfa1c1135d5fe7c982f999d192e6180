@@ -22,6 +22,30 @@
       },
       "revId": "216ac81c8bfa1c1135d5fe7c982f999d192e6180",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4437f5d9_a38e9af2",
+        "filename": "ocp-recovery/ocp_recovery_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-09-03T09:56:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aa3df28_a3d8cba2",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "216ac81c8bfa1c1135d5fe7c982f999d192e6180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

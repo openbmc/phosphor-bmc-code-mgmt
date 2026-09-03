@@ -84,7 +84,17 @@ class TestEventServer : public EventServerIntf
                      auto /*unused*/, auto /*unused*/, auto /*unused*/)
         -> sdbusplus::async::task<create_with_ffdc_files_t::return_type>
     {
-        co_return;
+        static int cnt = 100;
+        cnt++;
+
+        auto objectPath =
+            sdbusplus::object_path("/xyz/openbmc_project/logging/entry") /
+            std::format("TestEvent{}", cnt);
+
+        eventEntries.emplace_back(
+            std::make_unique<TestEventEntry>(ctx, objectPath));
+
+        co_return objectPath;
     }
 
     std::string expectedEvent;

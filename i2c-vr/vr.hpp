@@ -18,6 +18,7 @@ enum class VRType
     MP297X,
     MP5998,
     MP994X,
+    MPQ82D00,
     MPQ87XX,
     RAA22XGen2,
     RAA22XGen3p5,

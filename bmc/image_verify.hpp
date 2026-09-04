@@ -102,7 +102,10 @@ struct CustomMap
 
     ~CustomMap()
     {
-        munmap(addr, length);
+        if (addr != MAP_FAILED)
+        {
+            munmap(addr, length);
+        }
     }
 
     void* operator()() const

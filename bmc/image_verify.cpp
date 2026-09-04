@@ -16,6 +16,7 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cassert>
+#include <cerrno>
 #include <fstream>
 #include <set>
 #include <system_error>
@@ -506,6 +507,12 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
 
     // Hash the data file and update the verification context
     auto size = fs::file_size(file, ec);
+    if (ec)
+    {
+        error("Failed to get size of {PATH}: {ERROR_MSG}", "PATH", file,
+              "ERROR_MSG", ec.message());
+        elog<InternalFailure>();
+    }
     auto dataPtr = mapFile(file, size);
 
     result = EVP_DigestVerifyUpdate(verifyCtx.get(), dataPtr(), size);
@@ -518,6 +525,12 @@ bool Signature::verifyFile(const fs::path& file, const fs::path& sigFile,
 
     // Verify the data with signature.
     size = fs::file_size(sigFile, ec);
+    if (ec)
+    {
+        error("Failed to get size of {PATH}: {ERROR_MSG}", "PATH", sigFile,
+              "ERROR_MSG", ec.message());
+        elog<InternalFailure>();
+    }
     auto signature = mapFile(sigFile, size);
 
     result = EVP_DigestVerifyFinal(
@@ -544,6 +557,12 @@ inline EVP_PKEY_Ptr Signature::createPublicKey(const fs::path& publicKey)
 {
     std::error_code ec;
     auto size = fs::file_size(publicKey, ec);
+    if (ec)
+    {
+        error("Failed to get size of {PATH}: {ERROR_MSG}", "PATH", publicKey,
+              "ERROR_MSG", ec.message());
+        elog<InternalFailure>();
+    }
 
     // Read public key file
     auto data = mapFile(publicKey, size);
@@ -562,9 +581,20 @@ inline EVP_PKEY_Ptr Signature::createPublicKey(const fs::path& publicKey)
 CustomMap Signature::mapFile(const fs::path& path, size_t size)
 {
     CustomFd fd(open(path.c_str(), O_RDONLY));
+    if (fd() < 0)
+    {
+        error("Failed to open {PATH}: {ERRNO}", "PATH", path, "ERRNO", errno);
+        elog<InternalFailure>();
+    }
 
-    return CustomMap(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd(), 0),
-                     size);
+    auto addr = mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd(), 0);
+    if (addr == MAP_FAILED)
+    {
+        error("Failed to mmap {PATH}: {ERRNO}", "PATH", path, "ERRNO", errno);
+        elog<InternalFailure>();
+    }
+
+    return CustomMap(addr, size);
 }
 
 bool Signature::checkAndVerifyImage(

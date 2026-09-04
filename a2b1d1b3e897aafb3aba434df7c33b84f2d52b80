@@ -105,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54e890ce_e8eb5f52",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T05:16:57Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e7afdf6d_dd876d77",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eb7fa26_39f23a4d",
@@ -122,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e3950b0_f34e67f7",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T05:16:57Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8eb7fa26_39f23a4d",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e818fbbd_e1857a01",
@@ -135,6 +171,24 @@
       "writtenOn": "2026-09-02T16:00:00Z",
       "side": 1,
       "message": "instead of combining both into one variable to parse it apart here, make a function that returns the first or second name and call it twice storing the names directly in the partiton and alt-partition variables.\n\nthe following test becomes verifying both are files or special devicces",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "801730e5_679ec00d",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 16
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T05:16:57Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e818fbbd_e1857a01",
       "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

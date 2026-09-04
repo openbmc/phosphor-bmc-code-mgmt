@@ -73,6 +73,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2aedf488_3a4ee95a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T07:04:50Z",
+      "side": 1,
+      "message": "I tested this by temporarily removing /dev/${bootPartition} and confirmed that the update stops as expected when the boot partition device is not available.\n\n```\nSep 04 06:59:12 ast2700-ufs obmc-flash-bmc[1288]: Failed to resolve boot partition for mode ufs\nSep 04 06:59:12 ast2700-ufs systemd[1]: obmc-flash-mmc@ac55e26a.service: Main process exited, code\u003dexited, status\u003d1/FAILURE\nSep 04 06:59:12 ast2700-ufs systemd[1]: obmc-flash-mmc@ac55e26a.service: Failed with result \u0027exit-code\u0027.\nSep 04 06:59:12 ast2700-ufs systemd[1]: Failed to start Write image ac55e26a to BMC storage.\n```",
+      "parentUuid": "eaac0ae7_48ae005a",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "018b2a53_35733e73",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 16

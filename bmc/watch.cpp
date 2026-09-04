@@ -60,6 +60,8 @@ Watch::Watch(sd_event* loop, std::function<int(std::string&)> imageCallback) :
     auto rc = sd_event_add_io(loop, nullptr, fd, EPOLLIN, callback, this);
     if (0 > rc)
     {
+        inotify_rm_watch(fd, wd);
+        close(fd);
         throw std::runtime_error(
             "failed to add to event loop, rc="s + std::strerror(-rc));
     }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1359b65_5d67f5b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T05:05:31Z",
+      "side": 1,
+      "message": "These ufs create commands are just examples for the AST2700 EVB partition layout, not the only possible values.\n\nWe use LUN0 as the user area, similar to the eMMC user area, and LUN1/LUN2 as the two boot areas, similar to the eMMC boot partitions.\n\nThe 4 MB boot area size is an AST2700 platform choice. We allocate 4 MB for each boot area because the AST2700 SPI flash layout also reserves 4 MB for the U-Boot image.\n\nThe size argument format is defined by the ASPEED U-Boot ufs create implementation, so the numeric values are not directly byte sizes.",
+      "parentUuid": "8e4925d0_e86bd7bd",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c54417c_13b40888",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-02T16:00:00Z",
       "side": 1,
       "message": "how have you tested any of these error paths ? possibly just by removing the special device in /dev ?",
+      "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaac0ae7_48ae005a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-09-04T05:05:31Z",
+      "side": 1,
+      "message": "I haven\u0027t explicitly tested these error paths yet. I\u0027ll test them by making the corresponding device unavailable as you suggested and verify that the error is handled correctly.",
+      "parentUuid": "7c54417c_13b40888",
       "revId": "a2b1d1b3e897aafb3aba434df7c33b84f2d52b80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

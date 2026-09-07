@@ -237,7 +237,7 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
     {
         error("EEPROM file not found for device: {DEVICE}", "DEVICE",
               getI2CDeviceId(bus, address));
-        co_return -1;
+        co_return false;
     }
     const std::string path =
         "/tmp/eeprom-image-" +
@@ -247,7 +247,7 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
     if (fd < 0)
     {
         error("Failed to open file: {PATH}", "PATH", path);
-        co_return -1;
+        co_return false;
     }
 
     const ssize_t bytesWritten = write(fd, image, image_size);
@@ -257,7 +257,7 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
     if (bytesWritten < 0 || static_cast<size_t>(bytesWritten) != image_size)
     {
         error("Failed to write image to file");
-        co_return -1;
+        co_return false;
     }
 
     debug("Wrote {SIZE} bytes to {PATH}", "SIZE", bytesWritten, "PATH", path);

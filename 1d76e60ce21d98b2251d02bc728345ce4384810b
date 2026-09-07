@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19bf37e_415e702a",
+        "filename": "libocp/tools/ocp_recovery_tool.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000941
+      },
+      "writtenOn": "2026-09-07T03:18:02Z",
+      "side": 1,
+      "message": "I\u0027m curious how the 30-second budget (forceRecoveryTimeoutSec) for the device\nto reach recoveryMode after DEVICE_RESET was arrived at — is it based on an\nobserved reboot time on the GB202 target mentioned in the commit\u0027s Tested\nsection, or more of a conservative round-number default? Trying to understand\nwhether this is expected to hold across other recovery-capable devices as\nwell, or whether it might need to be tunable per-device down the line (e.g., via an additional CLI option or configuration file)?",
+      "revId": "1d76e60ce21d98b2251d02bc728345ce4384810b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <algorithm>
+#include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <string>
@@ -86,17 +87,17 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
             // execl only returns on fail
             error("Error ({ERRNO}) occurred during the TFTP call", "ERRNO",
                   errno);
-            elog<InternalFailure>();
+            _exit(EXIT_FAILURE);
         }
         else if (nextPid < 0)
         {
             error("Error ({ERRNO}) occurred during fork", "ERRNO", errno);
-            elog<InternalFailure>();
+            _exit(EXIT_FAILURE);
         }
         // do nothing as parent if all is going well
         // when parent exits, child will be reparented under init
         // and then be reaped properly
-        exit(0);
+        _exit(EXIT_SUCCESS);
     }
     else if (pid < 0)
     {

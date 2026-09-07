@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290ba9e4_304be11f",
+        "filename": "libocp/src/ocp_recovery.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002109
+      },
+      "writtenOn": "2026-09-07T03:41:02Z",
+      "side": 1,
+      "message": "Hi Arun,\n\nThe OCP Secure Firmware Recovery specification supports multiple physical interfaces, including SMBus, I3C, and USB. The byte-count/length field preceding the payload differs depending on the interface. For example, SMBus uses a 1-byte count field, as defined by SMBus 3.1 Block Write/Read, while I3C uses a 2-byte length field.\n\nIn this patch, Target::command() and Target::commandRead() assume the SMBus 1-byte count convention, and this logic is shared by all Transport implementations regardless of the underlying interface.\n\nThis makes it difficult to add a transport whose framing differs from SMBus. For example, an I3C transport cannot cleanly fit into the existing Transport interface because the common protocol layer would still encode and decode the length field according to the SMBus convention.\n\nWould you be open to moving the byte-count/length handling into the transport layer instead?\n\nFor writes, Target could pass each Transport a clean [command, payload] without an embedded length field, and each transport could construct the appropriate wire framing for its interface, including the length field and PEC.\n\nFor reads, Transport::transfer() could report the actual number of valid payload bytes back to Target, so that Target would not need to assume a fixed-size leading count field.\n\nThis would keep the common protocol layer independent of the underlying physical interface and allow each transport to handle its own framing convention, which also seems more consistent with how the specification defines the framing for each interface.",
+      "revId": "cc4866d6ddd54e53da1723bfa2777fae8240a357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

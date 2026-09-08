@@ -489,6 +489,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
     uint32_t dWord;
     int dataCnt = 0;
     int sectIndex = -1;
+    bool hasEndTag = false;
 
     for (size_t i = 0; i < image_size; i++)
     {
@@ -522,6 +523,7 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
             {
                 debug("Parsing: {OBJ}", "OBJ",
                       reinterpret_cast<const char*>(line));
+                hasEndTag = true;
                 break;
             }
             else if (isData)
@@ -614,6 +616,12 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
     if (sectIndex < 0)
     {
         error("VR image: no section header found");
+        return false;
+    }
+
+    if (!hasEndTag)
+    {
+        error("VR image: missing end configuration marker");
         return false;
     }
 

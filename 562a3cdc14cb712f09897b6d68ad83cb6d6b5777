@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b964f78c_7bb8f545",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000941
+      },
+      "writtenOn": "2026-09-08T01:48:31Z",
+      "side": 1,
+      "message": "Should we include e.what() in this debug log?\n\nCurrently, the underlying exception is swallowed. Since this call can fail for reasons other than an absent property.\n\n(Note that dbusGetRequiredProperty also loses this context since it only gets a std::optional back.) Do you think it\u0027s worth addressing here?",
+      "revId": "562a3cdc14cb712f09897b6d68ad83cb6d6b5777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

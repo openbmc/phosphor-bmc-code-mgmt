@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a85c134_943aea18",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-11T07:31:57Z",
+      "side": 1,
+      "message": "The socket is non-blocking and the wait goes through sdbusplus::async::fdio, so the coroutine suspends instead of blocking the thread, and discovery is spawned in the background from the constructor — neither startup nor getVersion() ever waits on MCTP. Added comments in both places to make that explicit.",
+      "parentUuid": "c1f33c67_f1282e8d",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a1cf22_1d41cfa3",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "039a280c_08f3870b",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-11T07:31:57Z",
+      "side": 1,
+      "message": "The device reports the version in a fixed-length field padded with NULs and whitespace, so that line was trimming the trailing padding. Rewrote it with a string_view character set plus a comment, and it now returns nullopt instead of an empty string when the field is all padding.",
+      "parentUuid": "c0a1cf22_1d41cfa3",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "562c98ce_64535aa0",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-09-10T16:50:53Z",
       "side": 1,
       "message": "You don\u0027t need to use e.what(), just e is good enough as logging API takes care of it.",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b25ab11a_b25005d3",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-11T07:31:57Z",
+      "side": 1,
+      "message": "Done — dropped .what()",
+      "parentUuid": "562c98ce_64535aa0",
       "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

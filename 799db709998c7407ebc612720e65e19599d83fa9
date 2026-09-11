@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c47a1f48_fda35821",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-09-11T06:57:15Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com, could you help review this patch? Any feedback is appreciated.",
+      "revId": "799db709998c7407ebc612720e65e19599d83fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

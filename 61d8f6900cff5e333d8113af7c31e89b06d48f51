@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60894e5_4ab109cf",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-11T07:34:46Z",
+      "side": 1,
+      "message": "The socket is non-blocking and the wait goes through sdbusplus::async::fdio, so the coroutine suspends instead of blocking the thread, and discovery is spawned in the background from the constructor — neither startup nor getVersion() ever waits on MCTP. Added comments in both places to make that explicit.",
+      "parentUuid": "5a85c134_943aea18",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a1cf22_1d41cfa3",

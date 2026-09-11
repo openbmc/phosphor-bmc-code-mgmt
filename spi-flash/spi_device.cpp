@@ -383,11 +383,10 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
         co_return 1;
     }
 
-    std::string cmd = std::format("flashcp -v {} {}", path, devPath.value());
+    debug("Running flashcp {PATH} {DEVPATH} with progress monitor", "PATH",
+          path, "DEVPATH", devPath.value());
 
-    debug("running {CMD}", "CMD", cmd);
-
-    auto success = co_await asyncSystem(ctx, cmd);
+    bool success = co_await executeFlashcpWithProgress(path, devPath.value());
 
     std::filesystem::remove(path);
 
@@ -479,4 +478,191 @@ std::optional<std::string> SPIDevice::getMTDDevicePath() const
           "CONTROLLERINDEX", spiControllerIndex, "DEVICEINDEX", spiDeviceIndex);
 
     return std::nullopt;
+}
+
+std::optional<unsigned> parseFlashcpProgress(std::string_view line)
+{
+    auto left = line.find('(');
+    auto right = line.find('%');
+
+    if (left == std::string_view::npos || right == std::string_view::npos ||
+        right <= left)
+    {
+        return std::nullopt;
+    }
+
+    int percent = 0;
+
+    try
+    {
+        percent = std::stoi(
+            std::string(line.substr(left + 1, right - left - 1)));
+    }
+    catch (...)
+    {
+        return std::nullopt;
+    }
+
+    if (percent < 0 || percent > 100)
+    {
+        return std::nullopt;
+    }
+
+    if (line.starts_with("Erasing block"))
+    {
+        return 30U + static_cast<unsigned>(percent) * 15U / 100U;
+    }
+
+    if (line.starts_with("Writing kb"))
+    {
+        return 45U + static_cast<unsigned>(percent) * 35U / 100U;
+    }
+
+    if (line.starts_with("Verifying kb"))
+    {
+        return 80U + static_cast<unsigned>(percent) * 10U / 100U;
+    }
+
+    return std::nullopt;
+}
+
+sdbusplus::async::task<bool> SPIDevice::executeFlashcpWithProgress(
+    const std::filesystem::path& imagePath, const std::filesystem::path& mtdPath) const
+{
+    int pipefd[2];
+
+    if (pipe(pipefd) < 0)
+    {
+        error("Failed to create pipe");
+        co_return false;
+    }
+
+    pid_t pid = fork();
+
+    if (pid == 0)
+    {
+        close(pipefd[0]);
+
+        dup2(pipefd[1], STDOUT_FILENO);
+        dup2(pipefd[1], STDERR_FILENO);
+
+        close(pipefd[1]);
+
+        execlp("flashcp", "flashcp", "-v", imagePath.c_str(), mtdPath.c_str(),
+               nullptr);
+
+        perror("execlp flashcp");
+        _exit(EXIT_FAILURE);
+    }
+
+    if (pid < 0)
+    {
+        error("Failed to fork flashcp");
+
+        close(pipefd[0]);
+        close(pipefd[1]);
+
+        co_return false;
+    }
+
+    close(pipefd[1]);
+
+    fcntl(pipefd[0], F_SETFL, O_NONBLOCK);
+
+    std::string pending;
+
+    unsigned lastProgress = std::numeric_limits<unsigned>::max();
+
+    bool exited = false;
+    int status = 0;
+
+    while (true)
+    {
+        char buf[512];
+
+        ssize_t n = read(pipefd[0], buf, sizeof(buf));
+
+        if (n > 0)
+        {
+            pending.append(buf, n);
+
+            size_t pos;
+
+            while ((pos = pending.find('\r')) != std::string::npos)
+            {
+                std::string line = pending.substr(0, pos);
+
+                pending.erase(0, pos + 1);
+
+                auto progress = parseFlashcpProgress(line);
+
+                if (!progress)
+                {
+                    continue;
+                }
+
+                if (*progress != lastProgress)
+                {
+                    lastProgress = *progress;
+                    setUpdateProgress(*progress);
+                }
+            }
+        }
+
+        if (!exited)
+        {
+            pid_t ret = waitpid(pid, &status, WNOHANG);
+
+            if (ret == pid)
+            {
+                exited = true;
+            }
+        }
+
+        if (exited)
+        {
+            while (true)
+            {
+                char drain[512];
+
+                ssize_t n = read(pipefd[0], drain, sizeof(drain));
+
+                if (n <= 0)
+                {
+                    break;
+                }
+
+                pending.append(drain, n);
+
+                size_t pos;
+
+                while ((pos = pending.find('\r')) != std::string::npos)
+                {
+                    std::string line = pending.substr(0, pos);
+
+                    pending.erase(0, pos + 1);
+
+                    auto progress = parseFlashcpProgress(line);
+
+                    if (!progress)
+                    {
+                        continue;
+                    }
+
+                    if (*progress != lastProgress)
+                    {
+                        lastProgress = *progress;
+                        setUpdateProgress(*progress);
+                    }
+                }
+            }
+
+            close(pipefd[0]);
+
+            co_return WIFEXITED(status) && WEXITSTATUS(status) == 0;
+        }
+
+        co_await sdbusplus::async::sleep_for(ctx,
+                                             std::chrono::milliseconds(50));
+    }
 }

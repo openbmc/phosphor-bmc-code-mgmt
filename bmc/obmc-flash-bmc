@@ -593,14 +593,14 @@ function mmc_update() {
     zstd -d -c "${imgpath}"/"${version}"/image-kernel | dd of="/dev/disk/by-partlabel/boot-${label}"
     number="$(readlink -f /dev/disk/by-partlabel/boot-"${label}")"
     number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":boot-"${label}" /dev/mmcblk0 1>/dev/null
+    sfdisk --part-label /dev/mmcblk0 "${number}" boot-"${label}" 1>/dev/null
 
     zstd -d -c "${imgpath}"/"${version}"/image-rofs | dd of="/dev/disk/by-partlabel/rofs-${label}"
     number="$(readlink -f /dev/disk/by-partlabel/rofs-"${label}")"
     number="${number##*mmcblk0p}"
-    sgdisk --change-name="${number}":rofs-"${label}" /dev/mmcblk0 1>/dev/null
+    sfdisk --part-label /dev/mmcblk0 "${number}" rofs-"${label}" 1>/dev/null
 
-    # Run this after sgdisk for labels to take effect.
+    # Run this after sfdisk for labels to take effect.
     partprobe
 
     # Update hostfw. The remove function doesn't touch the hostfw image, so

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac2635d_e5248a1e",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T22:26:04Z",
+      "side": 1,
+      "message": "This conditional block is almost same between Host and OS state change, please move this to a common API and reuse it.",
+      "revId": "5c5e4d0ccfcfafeac5a40108997289ddd5a92959",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0aea9f4_ebe08bea",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T22:26:04Z",
+      "side": 1,
+      "message": "Do you need to do a similar check for OSState as well before subscribing to event ?",
+      "revId": "5c5e4d0ccfcfafeac5a40108997289ddd5a92959",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

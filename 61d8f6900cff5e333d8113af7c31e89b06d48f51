@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9d197de_297364b4",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T22:09:19Z",
+      "side": 1,
+      "message": "How is your sendto call non-blocking?\n\nI don\u0027t see any co_await in here which will make any co-routine to suspend ?",
+      "parentUuid": "c60894e5_4ab109cf",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0a1cf22_1d41cfa3",
         "filename": "spi-flash/e810/e810_device.cpp",
         "patchSetId": 8

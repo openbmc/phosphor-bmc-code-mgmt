@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4339d760_995318b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T23:41:33Z",
+      "side": 1,
+      "message": "Also we need to really careful while making these kind of changes to understand if something was being done explicitly that way for some historical reasons.\n\n@gunnar@gmills.xyz Do you see any issue with moving this verify check early ?\n\n(CC @anoo@us.ibm.com )",
+      "revId": "a578593eb69384bec8332e5e4a88078f4f14268e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86643bc0_7fd913b6",
+        "filename": "bmc/update_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T23:41:33Z",
+      "side": 1,
+      "message": "I don\u0027t see you dropping later check for image verify from below -\n\n```\nauto Activation::activation(Activations value) -\u003e Activations\n```\n\nwhereas you did add an early check for Image Verify. Why is that ?",
+      "revId": "a578593eb69384bec8332e5e4a88078f4f14268e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ece98ee_bc53122b",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-14T22:41:18Z",
+      "side": 1,
+      "message": "I am thinking if a better pattern would be just have a \n\n    while (!ctx.stop_requested())\n    {\n        co_await fdioInstance-\u003enext();\n        ....\n    }\n    \nand do a continue in case of error handling, that way rather than having multiple spawn statements, all these logic can be handled by single while loop ? What do you think ?",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d1b263_bc6ec934",
         "filename": "common/include/NotifyWatch.hpp",
         "patchSetId": 1

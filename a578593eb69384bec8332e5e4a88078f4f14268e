@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d086ab5_64959397",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-09-15T19:26:18Z",
+      "side": 1,
+      "message": "For this case there wasn\u0027t a particular reason to have the signature validation during the activation step instead of the upload step. Just all checks were original added to activation since that\u0027s when the action of writing to flash would start.\n\nIf we were to move it I\u0027d say then move it even earlier, right after untar, line 96, before data from the MANIFEST is read and checked.\nBut don\u0027t see a reason to move it.\nThe reason is that I don\u0027t think the issue is the location where it is currently. If the signature validation fails, AND field mode is enabled, then the code update is aborted, and no files are written to flash, no corruption should occur.\n\nI noticed the new proposed change does not have the field mode check (we\u0027d need to add it). So I\u0027m suspecting that perhaps the issue is that this system does not have field mode enabled, and therefore the original signature validation check does not stop the activation. And adding a new signature validation check (but without the field mode check) it\u0027s stopping the update as desired.\n\nCould you check that when fieldmode is enabled, then activation stops due to signature error and there\u0027s no corruption?\n\nTo enable field mode:\nhttps://github.com/openbmc/docs/blob/f5a34e78837e099e539c9ff5d020fd2d1db513bb/REST-cheatsheet.md?plain\u003d1#L270",
+      "parentUuid": "4339d760_995318b7",
+      "revId": "a578593eb69384bec8332e5e4a88078f4f14268e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "86643bc0_7fd913b6",
         "filename": "bmc/update_manager.cpp",
         "patchSetId": 1

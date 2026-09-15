@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e20ca67_c6d72a14",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-15T21:20:58Z",
+      "side": 1,
+      "message": "Refer to my comment about using timed fdio instead.",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbec095c_26ef1ee3",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-15T21:20:58Z",
+      "side": 1,
+      "message": "Do you really need to create a socket for every sendReceive ? Any reason you are not doing this in a constructor ?",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a0b439_f7b8ccbe",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-15T21:20:58Z",
+      "side": 1,
+      "message": "You can create a timed fdio by passing in a timeout value to the fdio instance, you don\u0027t need a separate way to handle it via timeoutWatchdog.",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529d4a25_e0958866",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-15T21:20:58Z",
+      "side": 1,
+      "message": "Most of the logic in this function is common PLDM way to query the firmware parameters, so lets have it in some common piece of code.",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

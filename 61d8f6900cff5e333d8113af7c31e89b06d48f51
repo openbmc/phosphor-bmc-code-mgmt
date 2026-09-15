@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29f859c3_30c22cd8",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-15T00:50:05Z",
+      "side": 1,
+      "message": "The socket is created with SOCK_NONBLOCK, so sendto returns immediately rather than blocking the thread. There\u0027s no co_await on the send path because there\u0027s nothing to wait for — the datagram goes straight into the kernel queue; the suspend happens on the receive side at line 188, via co_await fdio.next().\n\nVerified on hardware too: with a request outstanding, a 1s heartbeat coroutine logged for ~50s without a gap, /proc/\u003cpid\u003e/wchan stayed in do_epoll_wait rather than any socket call, and busctl introspect / GetManagedObjects / the Redfish FirmwareInventory GET all returned in milliseconds throughout.",
+      "parentUuid": "b9d197de_297364b4",
+      "revId": "61d8f6900cff5e333d8113af7c31e89b06d48f51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a1cf22_1d41cfa3",

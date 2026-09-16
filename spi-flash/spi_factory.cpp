@@ -11,24 +11,44 @@ SPIFactory& SPIFactory::instance()
     return factory;
 }
 
+static std::unique_ptr<SPIDevice> createBIOSDevice(
+    sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
+    uint64_t spiDeviceIndex, bool dryRun, const std::vector<std::string>& names,
+    const std::vector<bool>& values, SoftwareConfig& config,
+    SoftwareManager* parent)
+{
+    return std::make_unique<BIOSDevice>(ctx, spiControllerIndex, spiDeviceIndex,
+                                        dryRun, names, values, config, parent);
+}
+
+static const std::unordered_map<
+    std::string,
+    std::function<std::unique_ptr<SPIDevice>(
+        sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
+        uint64_t spiDeviceIndex, bool dryRun,
+        const std::vector<std::string>& names, const std::vector<bool>& values,
+        SoftwareConfig& config, SoftwareManager* parent)>>
+    supportedSpiChips = {{"IntelHostSPIFlash", createBIOSDevice},
+                         {"HostSPIFlash", createBIOSDevice}};
+
 std::unique_ptr<SPIDevice> SPIFactory::create(
     const std::string& chipType, sdbusplus::async::context& ctx,
     uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
     const std::vector<std::string>& names, const std::vector<bool>& values,
     SoftwareConfig& config, SoftwareManager* parent)
 {
-    if (chipType == getSpiTypeStr(spiChip::INTEL_HOST_BIOS) ||
-        chipType == getSpiTypeStr(spiChip::HOST_BIOS))
+    const auto it = supportedSpiChips.find(chipType);
+    if (it != supportedSpiChips.end())
     {
         try
         {
-            return std::make_unique<BIOSDevice>(
-                ctx, spiControllerIndex, spiDeviceIndex, dryRun, names, values,
-                config, parent);
+            return it->second(ctx, spiControllerIndex, spiDeviceIndex, dryRun,
+                              names, values, config, parent);
         }
         catch (const std::exception& e)
         {
-            error("Failed to create BIOSDevice: {ERROR}", "ERROR", e.what());
+            error("Failed to create {TYPE}: {ERROR}", "TYPE", chipType, "ERROR",
+                  e.what());
             return nullptr;
         }
     }
@@ -43,7 +63,7 @@ std::vector<std::string> SPIFactory::getConfigInterfaceNames()
     configs.reserve(supportedSpiChips.size());
     for (const auto& chipEnum : supportedSpiChips)
     {
-        configs.push_back(getSpiTypeStr(chipEnum));
+        configs.push_back(chipEnum.first);
     }
     return configs;
 }

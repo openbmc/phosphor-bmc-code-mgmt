@@ -16,6 +16,24 @@
       "message": "Do you see any edge cases being skipped if we drop the \u003c 0 check?\nI am wondering if it makes sense to have both size and return value less than 0 check ?",
       "revId": "32d573942f8dfe786e0b5428baf21779502357b6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a84fe4c_ecf88e4a",
+        "filename": "common/i2c/i2c.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2026-09-16T10:52:25Z",
+      "side": 1,
+      "message": "Hi Jagpal,\n\nThanks for the suggestion! I double-checked the kernel path to be sure. Since I2C_RDWR returns -errno on failure and exactly nmsgs on success, and msgIndex is always positive, any negative return inherently fails the !\u003d msgIndex check. So in practice, the new condition covers everything \u003c 0 did, while also catching the non-negative mismatch case.\n\nThat said, I completely agree that keeping the explicit \u003c 0 check reads better and makes the intent obvious. I\u0027ve updated the logic to ret \u003c 0 || ret !\u003d msgIndex.",
+      "parentUuid": "191445ef_dd25a8f4",
+      "revId": "32d573942f8dfe786e0b5428baf21779502357b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

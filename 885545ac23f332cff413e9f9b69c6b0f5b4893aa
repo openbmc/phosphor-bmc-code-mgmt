@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1d8d778_80b2b1c1",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-16T05:10:10Z",
+      "side": 1,
+      "message": "Dropped TimeoutState and timeoutWatchdog. The fdio is now constructed with the timeout and the expiry comes back as fdio_timeout_exception.",
+      "parentUuid": "1e20ca67_c6d72a14",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbec095c_26ef1ee3",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-15T21:20:58Z",
       "side": 1,
       "message": "Do you really need to create a socket for every sendReceive ? Any reason you are not doing this in a constructor ?",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfe75491_1a53e122",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-16T05:10:10Z",
+      "side": 1,
+      "message": "Moved it into a mctp::Transport class that owns the socket and fdio for its lifetime; E810Device holds one and creates it once, so there\u0027s no per-request socket setup any more.",
+      "parentUuid": "cbec095c_26ef1ee3",
       "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8605ac67_3b71a361",
+        "filename": "common/src/mctp/endpoint.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-16T05:10:10Z",
+      "side": 1,
+      "message": "Thanks, I have dropped TimeoutState and timeoutWatchdog. The fdio is now constructed with the timeout and the expiry comes back as fdio_timeout_exception.",
+      "parentUuid": "86a0b439_f7b8ccbe",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "529d4a25_e0958866",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-09-15T21:20:58Z",
       "side": 1,
       "message": "Most of the logic in this function is common PLDM way to query the firmware parameters, so lets have it in some common piece of code.",
+      "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acef085_5880ab8a",
+        "filename": "spi-flash/e810/e810_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-16T05:10:10Z",
+      "side": 1,
+      "message": "Moved the GetFirmwareParameters encode/decode and the version trimming into common/pldm/firmware_parameters.{hpp,cpp} as getActiveFirmwareVersion().",
+      "parentUuid": "529d4a25_e0958866",
       "revId": "885545ac23f332cff413e9f9b69c6b0f5b4893aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

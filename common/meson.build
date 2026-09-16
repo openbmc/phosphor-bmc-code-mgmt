@@ -27,6 +27,7 @@ software_common_lib = static_library(
     'src/software.cpp',
     'src/software_update.cpp',
     'src/host_power.cpp',
+    'src/dbus_helper.cpp',
     'src/utils.cpp',
     'src/mctp/endpoint.cpp',
     include_directories: ['.', 'include/', common_include],

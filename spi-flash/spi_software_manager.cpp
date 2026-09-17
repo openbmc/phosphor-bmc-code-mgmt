@@ -76,9 +76,9 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());
 
-    auto spiDevice = SPIFactory::instance().create(
+    auto spiDevice = co_await SPIFactory::instance().create(
         chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, names, values, config, this);
+        dryRun, names, values, config, this, service, path, configIface);
 
     if (spiDevice == nullptr)
     {

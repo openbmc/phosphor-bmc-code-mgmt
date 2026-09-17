@@ -11,10 +11,8 @@ class BIOSDevice : public SPIDevice
 {
   public:
     BIOSDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-               uint64_t spiDeviceIndex, bool dryRun,
-               const std::vector<std::string>& gpioLinesIn,
-               const std::vector<bool>& gpioValuesIn, SoftwareConfig& config,
-               SoftwareManager* parent);
+               uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
+               SoftwareConfig& config, SoftwareManager* parent);
 
     std::string getVersion() override;
 

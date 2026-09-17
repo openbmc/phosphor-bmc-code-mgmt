@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gpio_controller.hpp"
 #include "spi_device.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -54,8 +55,7 @@ class SPIFactory
     static std::unique_ptr<SPIDevice> create(
         const std::string& chipType, sdbusplus::async::context& ctx,
         uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
-        const std::vector<std::string>& names, const std::vector<bool>& values,
-        SoftwareConfig& config, SoftwareManager* parent);
+        GPIOGroup&& muxGPIO, SoftwareConfig& config, SoftwareManager* parent);
 
     static std::vector<std::string> getConfigInterfaceNames();
 };

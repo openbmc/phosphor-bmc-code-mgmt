@@ -1,5 +1,7 @@
 #pragma once
 
+#include "dbus_helper.hpp"
+
 #include <gpiod.hpp>
 
 #include <string>
@@ -61,3 +63,8 @@ class ScopedBmcMux
   private:
     GPIOGroup& gpioGroup;
 };
+
+sdbusplus::async::task<GPIOGroup> dbusGetGPIOs(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const std::string& path, const std::string& configIface,
+    const std::string& what);

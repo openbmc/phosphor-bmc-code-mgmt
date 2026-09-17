@@ -30,11 +30,10 @@ enum FlashTool getBiosFlashTool(const std::string& configType)
 
 BIOSDevice::BIOSDevice(sdbusplus::async::context& ctx,
                        uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                       bool dryRun, const std::vector<std::string>& gpioLinesIn,
-                       const std::vector<bool>& gpioValuesIn,
-                       SoftwareConfig& config, SoftwareManager* parent) :
-    SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, dryRun, gpioLinesIn,
-              gpioValuesIn, config, parent, flashLayoutFlat,
+                       bool dryRun, GPIOGroup&& muxGPIO, SoftwareConfig& config,
+                       SoftwareManager* parent) :
+    SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, dryRun,
+              std::move(muxGPIO), config, parent, flashLayoutFlat,
               getBiosFlashTool(config.configType)),
     versionWatch(ctx, biosVersionDirPath, *this)
 {

@@ -16,19 +16,20 @@ SPIFactory& SPIFactory::instance()
 static sdbusplus::async::task<std::unique_ptr<SPIDevice>> createBIOSDevice(
     sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
     uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-    SoftwareConfig& config, SoftwareManager* parent, const std::string&,
-    const sdbusplus::object_path&, const std::string&)
+    GPIOGroup&& resetGPIO, SoftwareConfig& config, SoftwareManager* parent,
+    const std::string&, const sdbusplus::object_path&, const std::string&)
 {
     co_return std::make_unique<BIOSDevice>(
         ctx, spiControllerIndex, spiDeviceIndex, dryRun, std::move(muxGPIO),
-        config, parent);
+        std::move(resetGPIO), config, parent);
 }
 
 static sdbusplus::async::task<std::unique_ptr<SPIDevice>> createBCM51358Device(
     sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
     uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-    SoftwareConfig& config, SoftwareManager* parent, const std::string& service,
-    const sdbusplus::object_path& path, const std::string& iface)
+    GPIOGroup&& resetGPIO, SoftwareConfig& config, SoftwareManager* parent,
+    const std::string& service, const sdbusplus::object_path& path,
+    const std::string& iface)
 {
     std::optional<std::string> port =
         co_await dbusGetRequiredProperty<std::string>(ctx, service, path, iface,
@@ -45,7 +46,7 @@ static sdbusplus::async::task<std::unique_ptr<SPIDevice>> createBCM51358Device(
 
     co_return std::make_unique<BCM51358Device>(
         ctx, spiControllerIndex, spiDeviceIndex, dryRun, std::move(muxGPIO),
-        config, parent, port.value(), baud.value());
+        std::move(resetGPIO), config, parent, port.value(), baud.value());
 }
 
 static const std::unordered_map<
@@ -53,7 +54,7 @@ static const std::unordered_map<
     std::function<sdbusplus::async::task<std::unique_ptr<SPIDevice>>(
         sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
         uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-        SoftwareConfig& config, SoftwareManager* parent,
+        GPIOGroup&& resetGPIO, SoftwareConfig& config, SoftwareManager* parent,
         const std::string& service, const sdbusplus::object_path& path,
         const std::string& iface)>>
     supportedSpiChips = {{"IntelHostSPIFlash", createBIOSDevice},
@@ -63,9 +64,9 @@ static const std::unordered_map<
 sdbusplus::async::task<std::unique_ptr<SPIDevice>> SPIFactory::create(
     const std::string& chipType, sdbusplus::async::context& ctx,
     uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
-    GPIOGroup&& muxGPIO, SoftwareConfig& config, SoftwareManager* parent,
-    const std::string& service, const sdbusplus::object_path& path,
-    const std::string& iface)
+    GPIOGroup&& muxGPIO, GPIOGroup&& resetGPIO, SoftwareConfig& config,
+    SoftwareManager* parent, const std::string& service,
+    const sdbusplus::object_path& path, const std::string& iface)
 {
     const auto it = supportedSpiChips.find(chipType);
     if (it != supportedSpiChips.end())
@@ -74,7 +75,8 @@ sdbusplus::async::task<std::unique_ptr<SPIDevice>> SPIFactory::create(
         {
             co_return co_await it->second(
                 ctx, spiControllerIndex, spiDeviceIndex, dryRun,
-                std::move(muxGPIO), config, parent, service, path, iface);
+                std::move(muxGPIO), std::move(resetGPIO), config, parent,
+                service, path, iface);
         }
         catch (const std::exception& e)
         {

@@ -37,8 +37,9 @@ class SPIDevice : public Device
     using Device::softwareCurrent;
     SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
               uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-              SoftwareConfig& config, SoftwareManager* parent,
-              enum FlashLayout layout, enum FlashTool tool);
+              GPIOGroup&& resetGPIO, SoftwareConfig& config,
+              SoftwareManager* parent, enum FlashLayout layout,
+              enum FlashTool tool);
 
     ~SPIDevice() override = default;
     SPIDevice(const SPIDevice&) = delete;

@@ -12,9 +12,6 @@ constexpr uint8_t regWriteProtect = 0xF8;
 constexpr uint8_t regStatusMfrSpecific2 = 0xF3;
 constexpr uint8_t regStoreUserAll = 0x15;
 constexpr uint8_t regStatusCml = 0x7E;
-constexpr uint8_t regGPIOConfig12 = 0xE1;
-constexpr uint8_t regGPIOConfig34 = 0xE2;
-constexpr uint8_t maskGPIOConfig = 0xEE;
 constexpr uint8_t lockWriteProtectData = 0x00;
 constexpr uint8_t unlockWriteProtectData = 0xA2;
 constexpr uint8_t configNVMStatBit = 0x01;
@@ -318,17 +315,7 @@ sdbusplus::async::task<bool> TPS25990::getCheckSum(uint32_t* sum)
             co_return false;
         }
 
-        // Bit 0 and Bit 4 of regGPIOConfig12 and regGPIOConfig34
-        // are held by GPIO and may not match the image values.
-        // Use a mask to exclude Bit 0 and Bit 4 during verification.
-        if (data == regGPIOConfig12 || data == regGPIOConfig34)
-        {
-            checksum ^= rbuf[0] & maskGPIOConfig;
-        }
-        else
-        {
-            checksum ^= rbuf[0];
-        }
+        checksum ^= rbuf[0];
 
         // Calculate CRC-8 checksum.
         for (int j = 0; j < 8; j++)

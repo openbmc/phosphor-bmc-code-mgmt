@@ -49,13 +49,16 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
 
     GPIOGroup muxGPIO = co_await dbusGetGPIOs(
         ctx, service, path, configIface + ".MuxOutputs", "Mux");
+    GPIOGroup resetGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".ResetOutputs", "Reset");
 
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());
 
     auto spiDevice = co_await SPIFactory::instance().create(
         chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, std::move(muxGPIO), config, this, service, path, configIface);
+        dryRun, std::move(muxGPIO), std::move(resetGPIO), config, this, service,
+        path, configIface);
 
     if (spiDevice == nullptr)
     {

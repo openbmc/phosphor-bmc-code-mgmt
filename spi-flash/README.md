@@ -1,8 +1,9 @@
 # SPI Device Update Daemon
 
-This daemon is for updating SPI flash chips commonly used for Host Bios.
+This daemon is for updating SPI flash chips. Commonly used for Host Bios, but
+also for some on-board controllers.
 
-## Configuration Example 1 (Tyan S8030)
+## Configuration Example 1 (host BIOS on Tyan S8030)
 
 This is an example EM Exposes record which can appear on dbus as
 
@@ -28,6 +29,41 @@ xyz.openbmc_project.Configuration.SPIFlash
     "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host"
   },
   "Type": "HostSPIFlash"
+}
+```
+
+## Configuration example 2 (BCM51358 Ethenet switch)
+
+This is an example EM Exposes record which can appear on dbus as
+
+```text
+xyz.openbmc_project.Configuration.BCM51358Firmware
+```
+
+```json
+{
+  "Name": "BCM_Network",
+  "SPIControllerIndex": 1,
+  "SPIDeviceIndex": 0,
+  "SerialPort": "/dev/ttyS1",
+  "SerialBaudRate": 9600,
+  "MuxOutputs": [
+    {
+      "Name": "BCM_ROM_SEL",
+      "Polarity": "High"
+    }
+  ],
+  "ResetOutputs": [
+    {
+      "Name": "BCM1_RST",
+      "Polarity": "Low"
+    }
+  ],
+  "FirmwareInfo": {
+    "VendorIANA": 7154,
+    "CompatibleHardware": "tech.design.Hardware.bcm51358"
+  },
+  "Type": "BCM51358Firmware"
 }
 ```
 

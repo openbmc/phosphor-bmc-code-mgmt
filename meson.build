@@ -73,7 +73,10 @@ subdir('bmc')
 
 
 all_options = {
-    'spi-flash-software-update': {'dirs': ['spi-flash'], 'deps': ['libgpiod']},
+    'spi-flash-software-update': {
+      'dirs': ['common/serial', 'spi-flash'],
+      'deps': ['libgpiod'],
+    },
     'cpld-software-update': {
         'dirs': ['common/i2c', 'cpld'],
         'deps': ['libgpiod'],

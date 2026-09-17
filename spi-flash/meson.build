@@ -1,5 +1,6 @@
 spi_src = files(
     'bios/bios_device.cpp',
+    'devices/bcm51358.cpp',
     'spi_device.cpp',
     'spi_factory.cpp',
     'spi_software_manager.cpp',
@@ -13,11 +14,17 @@ executable(
         sdbusplus_dep,
         phosphor_logging_dep,
         libgpiod_dep,
+        libserial_dep,
         pdi_dep,
         boost_dep,
         libpldm_dep,
     ],
-    link_with: [libpldmutil, software_common_lib, libgpio_controller],
+    link_with: [
+      libpldmutil,
+      software_common_lib,
+      libgpio_controller,
+      libserial_dev,
+    ],
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',
 )

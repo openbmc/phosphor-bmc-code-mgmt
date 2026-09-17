@@ -17,10 +17,8 @@ class E810Device : public SPIDevice
 {
   public:
     E810Device(sdbusplus::async::context& ctx, uint64_t inSpiControllerIndex,
-               uint64_t inSpiDeviceIndex, bool inDryRun,
-               const std::vector<std::string>& inGpioLines,
-               const std::vector<bool>& inGpioValues, SoftwareConfig& inConfig,
-               SoftwareManager* inParent);
+               uint64_t inSpiDeviceIndex, bool inDryRun, GPIOGroup&& muxGPIO,
+               SoftwareConfig& inConfig, SoftwareManager* inParent);
 
     /** @brief Returns the cached version, 'Unknown' until the endpoint has
      *         been discovered and queried.

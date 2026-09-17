@@ -18,12 +18,10 @@ constexpr auto e810UUID = "5af04860-05df-11e4-af79-000100000000";
 
 E810Device::E810Device(sdbusplus::async::context& ctx,
                        uint64_t inSpiControllerIndex, uint64_t inSpiDeviceIndex,
-                       bool inDryRun,
-                       const std::vector<std::string>& inGpioLines,
-                       const std::vector<bool>& inGpioValues,
+                       bool inDryRun, GPIOGroup&& muxGPIO,
                        SoftwareConfig& inConfig, SoftwareManager* inParent) :
     SPIDevice(ctx, inSpiControllerIndex, inSpiDeviceIndex, inDryRun,
-              inGpioLines, inGpioValues, inConfig, inParent, flashLayoutFlat,
+              std::move(muxGPIO), inConfig, inParent, flashLayoutFlat,
               flashToolFlashcp),
     transport(ctx)
 {

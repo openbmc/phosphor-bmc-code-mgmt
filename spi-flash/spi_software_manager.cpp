@@ -47,38 +47,15 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
         co_return false;
     }
 
-    const std::string configIfaceMux = configIface + ".MuxOutputs";
-
-    std::vector<std::string> names;
-    std::vector<bool> values;
-
-    for (size_t i = 0; true; i++)
-    {
-        const std::string iface = configIfaceMux + std::to_string(i);
-
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
-        {
-            break;
-        }
-
-        names.push_back(name.value());
-        values.push_back((polarity == "High") ? 1 : 0);
-    }
+    GPIOGroup muxGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".MuxOutputs", "Mux");
 
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());
 
     auto spiDevice = co_await SPIFactory::instance().create(
         chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, names, values, config, this, service, path, configIface);
+        dryRun, std::move(muxGPIO), config, this, service, path, configIface);
 
     if (spiDevice == nullptr)
     {

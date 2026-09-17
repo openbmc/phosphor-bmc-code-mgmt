@@ -23,9 +23,9 @@ class SPIFactory
     static sdbusplus::async::task<std::unique_ptr<SPIDevice>> create(
         const std::string& chipType, sdbusplus::async::context& ctx,
         uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
-        GPIOGroup&& muxGPIO, SoftwareConfig& config, SoftwareManager* parent,
-        const std::string& service, const sdbusplus::object_path& path,
-        const std::string& iface);
+        GPIOGroup&& muxGPIO, GPIOGroup&& resetGPIO, SoftwareConfig& config,
+        SoftwareManager* parent, const std::string& service,
+        const sdbusplus::object_path& path, const std::string& iface);
 
     static std::vector<std::string> getConfigInterfaceNames();
 };

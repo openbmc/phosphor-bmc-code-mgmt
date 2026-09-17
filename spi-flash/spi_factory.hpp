@@ -20,11 +20,13 @@ class SPIFactory
   public:
     static SPIFactory& instance();
 
-    static std::unique_ptr<SPIDevice> create(
+    static sdbusplus::async::task<std::unique_ptr<SPIDevice>> create(
         const std::string& chipType, sdbusplus::async::context& ctx,
         uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
         const std::vector<std::string>& names, const std::vector<bool>& values,
-        SoftwareConfig& config, SoftwareManager* parent);
+        SoftwareConfig& config, SoftwareManager* parent,
+        const std::string& service, const sdbusplus::object_path& path,
+        const std::string& iface);
 
     static std::vector<std::string> getConfigInterfaceNames();
 };

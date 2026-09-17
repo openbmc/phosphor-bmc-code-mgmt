@@ -137,11 +137,13 @@ sdbusplus::async::task<bool> EEPROMDeviceSoftwareManager::initDevice(
 
     GPIOGroup muxGPIO = co_await dbusGetGPIOs(
         ctx, service, path, configIface + ".MuxOutputs", "Mux");
+    GPIOGroup resetGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".ResetOutputs", "Reset");
 
     auto eepromDevice = std::make_unique<EEPROMDevice>(
         ctx, static_cast<uint16_t>(bus.value()),
         static_cast<uint8_t>(address.value()), type.value(), std::move(muxGPIO),
-        std::move(deviceVersion), config, this);
+        std::move(resetGPIO), std::move(deviceVersion), config, this);
 
     std::unique_ptr<SoftwareInf::Software> software;
     try

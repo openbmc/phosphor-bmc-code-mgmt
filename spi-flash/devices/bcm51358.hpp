@@ -10,11 +10,12 @@ class BCM51358Device : public SPIDevice, public SerialTerminal
   public:
     BCM51358Device(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
                    uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-                   SoftwareConfig& config, SoftwareManager* parent,
-                   const std::string& port, const uint32_t baud) :
+                   GPIOGroup&& resetGPIO, SoftwareConfig& config,
+                   SoftwareManager* parent, const std::string& port,
+                   const uint32_t baud) :
         SPIDevice(ctx, spiControllerIndex, spiDeviceIndex, dryRun,
-                  std::move(muxGPIO), config, parent, flashLayoutFlat,
-                  flashToolFlashcp),
+                  std::move(muxGPIO), std::move(resetGPIO), config, parent,
+                  flashLayoutFlat, flashToolFlashcp),
         SerialTerminal(config.configType, port, baud, "CMD> ")
     {}
 

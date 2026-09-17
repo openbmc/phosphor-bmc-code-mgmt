@@ -12,9 +12,6 @@ constexpr uint8_t regWriteProtect = 0xF8;
 constexpr uint8_t regStatusMfrSpecific2 = 0xF3;
 constexpr uint8_t regStoreUserAll = 0x15;
 constexpr uint8_t regStatusCml = 0x7E;
-constexpr uint8_t regGPIOConfig12 = 0xE1;
-constexpr uint8_t regGPIOConfig34 = 0xE2;
-constexpr uint8_t maskGPIOConfig = 0xEE;
 constexpr uint8_t lockWriteProtectData = 0x00;
 constexpr uint8_t unlockWriteProtectData = 0xA2;
 constexpr uint8_t configNVMStatBit = 0x01;
@@ -27,10 +24,9 @@ constexpr size_t hexDigitPerTwoByte = 4;
 
 constexpr std::chrono::milliseconds storeOperationLatency{500};
 
-constexpr std::array<uint8_t, 28> TPS25990checksum_registers = {
-    0x58, 0x59, 0x57, 0x55, 0x43, 0x5F, 0x51, 0x4F, 0x6B, 0x5D,
-    0xE0, 0xE1, 0xE2, 0xDB, 0xE3, 0xE4, 0xE5, 0xE6, 0xE7, 0xE8,
-    0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xF0, 0xF1, 0xF9};
+constexpr std::array<uint8_t, 13> TPS25990checksum_registers = {
+    0x59, 0x55, 0x5F, 0x4F, 0xE0, 0xE3, 0xE4,
+    0xE5, 0xE7, 0xEB, 0xF0, 0xF1, 0xF9};
 
 sdbusplus::async::task<bool> TPS25990::parseImage(const uint8_t* image,
                                                   size_t imageSize)
@@ -318,17 +314,7 @@ sdbusplus::async::task<bool> TPS25990::getCheckSum(uint32_t* sum)
             co_return false;
         }
 
-        // Bit 0 and Bit 4 of regGPIOConfig12 and regGPIOConfig34
-        // are held by GPIO and may not match the image values.
-        // Use a mask to exclude Bit 0 and Bit 4 during verification.
-        if (data == regGPIOConfig12 || data == regGPIOConfig34)
-        {
-            checksum ^= rbuf[0] & maskGPIOConfig;
-        }
-        else
-        {
-            checksum ^= rbuf[0];
-        }
+        checksum ^= rbuf[0];
 
         // Calculate CRC-8 checksum.
         for (int j = 0; j < 8; j++)

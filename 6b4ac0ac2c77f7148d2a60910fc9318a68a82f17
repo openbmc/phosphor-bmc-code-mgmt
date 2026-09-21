@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee9a2081_7a586964",
+        "filename": "common/include/mctp/endpoint.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-21T17:11:55Z",
+      "side": 1,
+      "message": "Does this have to be in the header file ? I see the only user is endpoint.cpp, if thats true, can we move this .cpp file instead ?",
+      "revId": "6b4ac0ac2c77f7148d2a60910fc9318a68a82f17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cc2b629_a2386c09",
+        "filename": "common/pldm/firmware_parameters.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-21T17:11:55Z",
+      "side": 1,
+      "message": "typo: NULL",
+      "revId": "6b4ac0ac2c77f7148d2a60910fc9318a68a82f17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

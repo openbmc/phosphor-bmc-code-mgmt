@@ -16,6 +16,24 @@
       "message": "@patrick@stwcx.xyz I forgot to ask this -\nDoes the util-linux-sfdisk package needs to be explicitly included for sfdisk ?",
       "revId": "6a193f9d6179679f9d5c1b07b7c1b8afa9dc6614",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa21a14_a256f67d",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 2
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-09-21T16:43:04Z",
+      "side": 1,
+      "message": "I\u0027ll get that added to the recipe, yes.  I think it is implied right now from some other things but we\u0027ll add it explicitly.",
+      "parentUuid": "ea3d51b9_32b8fa13",
+      "revId": "6a193f9d6179679f9d5c1b07b7c1b8afa9dc6614",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

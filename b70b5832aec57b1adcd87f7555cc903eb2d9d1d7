@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f95c730_8427496d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-21T22:57:56Z",
+      "side": 1,
+      "message": "Left bunch of comments on https://gerrit.openbmc.org/c/openbmc/docs/+/94093. Lets keep this comment open until we have a alignment on design PR.",
+      "parentUuid": "575b6660_8152c699",
+      "revId": "b70b5832aec57b1adcd87f7555cc903eb2d9d1d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d92fdd14_e2d3ada0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4

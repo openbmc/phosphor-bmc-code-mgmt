@@ -33,6 +33,24 @@
       "message": "Does this mean we look for the first such entry ?",
       "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be5bd09_bc6c0506",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-22T18:36:25Z",
+      "side": 1,
+      "message": "Looks like that. Can we clean this up a little, so double lookup is avoided. Same for the other use case.\n\nauto it \u003d desc.find(PLDM_FWUP_VENDOR_DEFINED);\nif (it \u003d\u003d desc.end())\n{\n    return false;\n}\n\nauto\u0026 v \u003d it-\u003esecond;\n\nif (!v-\u003evendorDefinedDescriptorTitle.has_value())\n{\n...",
+      "parentUuid": "60f88f2e_e71e97d1",
+      "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bdb4854_b52382ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2026-09-22T19:22:52Z",
+      "side": 1,
+      "message": "Also can I ask, what is the general idea here to support PLDM FW Capable devices? Shoudn\u0027t they be updated via pldmd fw-update https://github.com/openbmc/pldm/tree/master/fw-update?",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1440aa29_445334fe",
         "filename": "common/pldm/firmware_parameters.cpp",
         "patchSetId": 11

@@ -16,6 +16,23 @@
       "message": "I don\u0027t think we have to wait for the libpldm change here as `find` is available on both map and multimap.\n\nhttps://en.cppreference.com/cpp/container/map/find\nhttps://en.cppreference.com/cpp/container/multimap/find",
       "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f88f2e_e71e97d1",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-22T18:31:12Z",
+      "side": 1,
+      "message": "Does this mean we look for the first such entry ?",
+      "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

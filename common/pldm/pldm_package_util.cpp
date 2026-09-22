@@ -122,7 +122,7 @@ bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
         return false;
     }
 
-    auto& v = desc.at(PLDM_FWUP_VENDOR_DEFINED);
+    auto& v = desc.find(PLDM_FWUP_VENDOR_DEFINED)->second;
 
     if (!v->vendorDefinedDescriptorTitle.has_value())
     {
@@ -151,7 +151,7 @@ bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
         return false;
     }
 
-    auto& viana = desc.at(PLDM_FWUP_IANA_ENTERPRISE_ID);
+    auto& viana = desc.find(PLDM_FWUP_IANA_ENTERPRISE_ID)->second;
 
     const DescriptorData& dd = *viana;
 

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7b9474_117b21d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2026-09-22T19:12:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this patchset be splitted to the general PLDM update part and E810 specific part? Looks like most of this changes can be utilized by other PLDM FW Update capable devices",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d8e67c_54cd7473",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2026-09-22T19:12:41Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem relevant to the patch changes",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

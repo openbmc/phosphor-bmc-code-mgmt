@@ -112,17 +112,16 @@ bool fwDeviceIDRecordMatchesCompatible(const FirmwareDeviceIDRecord& record,
                                        const std::string& compatible)
 {
     const auto& desc = record.recordDescriptors;
-    if (desc.empty())
+
+    const auto it = desc.lower_bound(PLDM_FWUP_VENDOR_DEFINED);
+
+    if (it == desc.end() || it->first != PLDM_FWUP_VENDOR_DEFINED)
     {
+        debug("did not find a vendor defined descriptor");
         return false;
     }
 
-    if (!desc.contains(PLDM_FWUP_VENDOR_DEFINED))
-    {
-        return false;
-    }
-
-    auto& v = desc.at(PLDM_FWUP_VENDOR_DEFINED);
+    const auto& v = it->second;
 
     if (!v->vendorDefinedDescriptorTitle.has_value())
     {
@@ -140,20 +139,15 @@ bool fwDeviceIDRecordMatchesIANA(const FirmwareDeviceIDRecord& record,
 {
     const auto& desc = record.recordDescriptors;
 
-    if (desc.empty())
-    {
-        return false;
-    }
+    const auto it = desc.lower_bound(PLDM_FWUP_IANA_ENTERPRISE_ID);
 
-    if (!desc.contains(PLDM_FWUP_IANA_ENTERPRISE_ID))
+    if (it == desc.end() || it->first != PLDM_FWUP_IANA_ENTERPRISE_ID)
     {
         error("did not find iana enterprise id");
         return false;
     }
 
-    auto& viana = desc.at(PLDM_FWUP_IANA_ENTERPRISE_ID);
-
-    const DescriptorData& dd = *viana;
+    const DescriptorData& dd = *(it->second);
 
     if (dd.data.size() != 4)
     {

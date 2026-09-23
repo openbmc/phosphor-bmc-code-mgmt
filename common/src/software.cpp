@@ -30,13 +30,12 @@ Software::Software(sdbusplus::async::context& ctx, Device& parent,
     SoftwareActivation(
         ctx, sdbusplus::object_path(SoftwareVersion::namespace_path) / swid,
         Activation::properties_t{Activations::NotReady,
-                                 RequestedActivations::None}),
+                                 RequestedActivations::None},
+        SoftwareActivation::signal_action::emit_interface_added),
     parentDevice(parent), swid(swid),
     objectPath(sdbusplus::object_path(SoftwareVersion::namespace_path) / swid),
     ctx(ctx)
 {
-    emit_added();
-
     debug("{SWID}: created dbus interfaces on path {OBJPATH}", "SWID", swid,
           "OBJPATH", objectPath);
 };
@@ -140,8 +139,9 @@ void Software::createInventoryAssociation(
         associationDefinitions =
             std::make_unique<SoftwareAssociationDefinitions>(
                 ctx, Software::objectPath,
-                SoftwareAssociationDefinitions::properties_t{assocs});
-        associationDefinitions->emit_added();
+                SoftwareAssociationDefinitions::properties_t{assocs},
+                SoftwareAssociationDefinitions::signal_action::
+                    emit_interface_added);
     }
 }
 
@@ -154,8 +154,8 @@ void Software::setVersion(const std::string& versionStr,
     {
         version = std::make_unique<SoftwareVersion>(
             ctx, objectPath,
-            SoftwareVersion::properties_t{versionStr, versionPurpose});
-        version->emit_added();
+            SoftwareVersion::properties_t{versionStr, versionPurpose},
+            SoftwareVersion::signal_action::emit_interface_added);
         return;
     }
 
@@ -181,9 +181,10 @@ void Software::setActivationBlocksTransition(bool enabled)
     }
 
     activationBlocksTransition =
-        std::make_unique<SoftwareActivationBlocksTransition>(ctx, objectPath);
-
-    activationBlocksTransition->emit_added();
+        std::make_unique<SoftwareActivationBlocksTransition>(
+            ctx, objectPath,
+            SoftwareActivationBlocksTransition::signal_action::
+                emit_interface_added);
 }
 
 void Software::setActivation(SoftwareActivation::Activations act)

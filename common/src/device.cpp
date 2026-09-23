@@ -187,9 +187,8 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 
     softwarePending->softwareActivationProgress =
         std::make_unique<SoftwareActivationProgress>(
-            ctx, objPath.c_str(), SoftwareActivationProgressProperties{0});
-
-    softwarePending->softwareActivationProgress->emit_added();
+            ctx, objPath.c_str(), SoftwareActivationProgressProperties{0},
+            SoftwareActivationProgress::signal_action::emit_interface_added);
 
     softwarePending->setActivationBlocksTransition(true);
 

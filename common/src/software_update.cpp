@@ -27,15 +27,10 @@ SoftwareUpdate::SoftwareUpdate(
     Software& software,
     const std::set<RequestedApplyTimes>& allowedApplyTimes) :
     sdbusplus::aserver::xyz::openbmc_project::software::Update<SoftwareUpdate>(
-        ctx, path),
+        ctx, path, signal_action::defer_emit),
     software(software), allowedApplyTimes(allowedApplyTimes)
 {
-    emit_added();
-}
-
-SoftwareUpdate::~SoftwareUpdate()
-{
-    emit_removed();
+    emit_interfaces_added();
 }
 
 auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,

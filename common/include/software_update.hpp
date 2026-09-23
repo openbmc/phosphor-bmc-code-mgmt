@@ -27,7 +27,7 @@ class SoftwareUpdate :
                    const sdbusplus::object_path& path, Software& software,
                    const std::set<RequestedApplyTimes>& allowedApplyTimes);
 
-    ~SoftwareUpdate();
+    ~SoftwareUpdate() = default;
 
     auto method_call(start_update_t su, auto image, auto applyTime)
         -> sdbusplus::async::task<start_update_t::return_type>;

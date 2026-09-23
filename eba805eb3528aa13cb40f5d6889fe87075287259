@@ -51,6 +51,24 @@
       "parentUuid": "60f88f2e_e71e97d1",
       "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d771cb_60e5dcb1",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-23T10:18:00Z",
+      "side": 1,
+      "message": "sure, changed it to avoid double lookup and also to avoid `find` since that does not guarantee which entry would be returned in a multimap. New patchset uses `lower_bound` which guarantees the order.",
+      "parentUuid": "0be5bd09_bc6c0506",
+      "revId": "eba805eb3528aa13cb40f5d6889fe87075287259",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

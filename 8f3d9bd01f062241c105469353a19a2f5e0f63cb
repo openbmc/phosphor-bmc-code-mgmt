@@ -347,6 +347,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33fd82a1_8aa18f03",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:41:55Z",
+      "side": 1,
+      "message": "I cann\u0027t change the process with asyncSystem, It would change the other function which call asyncSystem.",
+      "parentUuid": "2d496313_f76c01dd",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12b9352f_6eb7d74c",

@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d46296_1e83684d",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b9fa75e_3b16300e",
+      "range": {
+        "startLine": 526,
+        "startChar": 4,
+        "endLine": 526,
+        "endChar": 58
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c8cf48f_08061d14",
@@ -54,6 +78,24 @@
       "writtenOn": "2026-07-15T10:45:30Z",
       "side": 1,
       "message": "A lot of the code in here is just `asyncSystem` from `common/src/utils.cpp`. Wouldn\u0027t it make sense to change `asyncSystem` to accept callbacks for `stdout`/`stderr` from the process?",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f3c725_f9eae133",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "I cann\u0027t change the process with asyncSystem, It would change the other function which call asyncSystem.",
+      "parentUuid": "5c8cf48f_08061d14",
       "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -93,6 +135,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9e163e_a317291d",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd3ff8cf_ba8343ab",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af90a4af_3a97ad07",
@@ -128,6 +188,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f3180f_ecfc3d1e",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "236630ad_cc4f55c8",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1adaa15f_9e86f3c3",
@@ -159,6 +237,24 @@
       "side": 1,
       "message": "Acknowledged. We plan to provide the updated patch soon.",
       "parentUuid": "1adaa15f_9e86f3c3",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edab6a2c_22a1671f",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d157a70e_2d3beeba",
       "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -200,6 +296,30 @@
       "side": 1,
       "message": "Acknowledged. We plan to provide the updated patch soon.",
       "parentUuid": "68e310c1_353b102c",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 621,
+        "endChar": 17
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a79ede2a_7f497269",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cf60f8f_8a8b5d00",
       "range": {
         "startLine": 599,
         "startChar": 1,
@@ -262,6 +382,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e531b972_f79b11e9",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22b71e6a_07fa598a",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c3eead6_d1a63d96",
@@ -299,6 +437,30 @@
       "side": 1,
       "message": "Acknowledged. We plan to provide the updated patch soon.",
       "parentUuid": "5c3eead6_d1a63d96",
+      "range": {
+        "startLine": 666,
+        "startChar": 1,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dff77ee2_3f7ef3fd",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c808ea_e6e5a918",
       "range": {
         "startLine": 666,
         "startChar": 1,

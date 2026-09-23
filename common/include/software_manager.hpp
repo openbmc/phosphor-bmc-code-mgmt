@@ -34,6 +34,12 @@ class SoftwareManager
     sdbusplus::async::task<> initDevices(
         const std::vector<std::string>& configurationInterfaces);
 
+    // Used by initDevices() and queries the ObjectMapper for currently 
+    // known devices exposing any of configurationInterfaces and initializes
+    // any that are not yet known.
+    sdbusplus::async::task<> scanDevices(
+        const std::vector<std::string>& configurationInterfaces);
+
     // Map of EM config object path to device.
     std::map<sdbusplus::object_path, std::unique_ptr<Device>> devices;
 

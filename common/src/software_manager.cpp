@@ -98,12 +98,9 @@ static sdbusplus::async::task<std::optional<SoftwareConfig>> getConfig(
                              configName);
 }
 
-sdbusplus::async::task<> SoftwareManager::initDevices(
+sdbusplus::async::task<> SoftwareManager::scanDevices(
     const std::vector<std::string>& configurationInterfaces)
 {
-    ctx.spawn(interfaceAddedMatch(configurationInterfaces));
-    ctx.spawn(interfaceRemovedMatch(configurationInterfaces));
-
     auto client = sdbusplus::client::xyz::openbmc_project::ObjectMapper<>(ctx)
                       .service("xyz.openbmc_project.ObjectMapper")
                       .path("/xyz/openbmc_project/object_mapper");
@@ -141,6 +138,23 @@ sdbusplus::async::task<> SoftwareManager::initDevices(
             co_await handleInterfaceAdded(service, path, interfaceFound);
         }
     }
+}
+
+sdbusplus::async::task<> SoftwareManager::initDevices(
+    const std::vector<std::string>& configurationInterfaces)
+{
+    ctx.spawn(interfaceAddedMatch(configurationInterfaces));
+    ctx.spawn(interfaceRemovedMatch(configurationInterfaces));
+
+    co_await scanDevices(configurationInterfaces);
+
+    // Catch-up pass for an EntityManager/ObjectMapper startup race.
+    // A device can be missed if EntityManager publishes it after the
+    // initial GetSubTree() scan but before this daemon starts receiving
+    // InterfacesAdded notifications. Re-scan after ObjectMapper has had
+    // time to catch up.
+    co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(10));
+    co_await scanDevices(configurationInterfaces);
 
     debug("Done with initial configuration");
 }

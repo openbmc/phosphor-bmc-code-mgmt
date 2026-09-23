@@ -504,6 +504,24 @@
       "message": "Whats the purpose of this sleep?",
       "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ec8c607_f426543c",
+        "filename": "bios/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-09-23T08:48:16Z",
+      "side": 1,
+      "message": "The pipe is non-blocking, so when no output is available, read() may return EAGAIN. The sleep prevents the loop from busy-polling the pipe and consuming CPU while waiting for more flashcp output.\n50 ms is sufficient for progress reporting while keeping the polling overhead low.",
+      "parentUuid": "cd9770ce_6005d235",
+      "revId": "8f3d9bd01f062241c105469353a19a2f5e0f63cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

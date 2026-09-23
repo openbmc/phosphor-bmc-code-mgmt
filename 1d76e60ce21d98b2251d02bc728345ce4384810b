@@ -34,6 +34,24 @@
       "parentUuid": "d19bf37e_415e702a",
       "revId": "1d76e60ce21d98b2251d02bc728345ce4384810b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "420970d7_75ff337d",
+        "filename": "libocp/tools/ocp_recovery_tool.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-09-23T11:26:07Z",
+      "side": 1,
+      "message": "Resolving comment, please re open if you would like any changes",
+      "parentUuid": "b0ce6c84_e0cca58f",
+      "revId": "1d76e60ce21d98b2251d02bc728345ce4384810b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

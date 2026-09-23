@@ -16,6 +16,24 @@
       "message": "Why is this dropped? Doesn\u0027t seem relevant to the patch changes",
       "revId": "147d0f7c325d08f9a0cd0e21d5a9d0cebba4a50f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f29b9644_83b1b645",
+        "filename": "spi-flash/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-23T01:52:44Z",
+      "side": 0,
+      "message": "It became unused in this patch — the PLDM encode/decode moved out of e810_device.cpp into common/pldm/, so nothing under spi-flash includes libpldm headers any more.",
+      "parentUuid": "55cc3f65_91348832",
+      "revId": "147d0f7c325d08f9a0cd0e21d5a9d0cebba4a50f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df72c50d_87c603ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-23T01:52:44Z",
+      "side": 1,
+      "message": "The E810 doesn\u0027t support firmware update over MCTP/I2C — Intel has confirmed that\u0027s not a supported path on this device. PLDM firmware update via pldmd therefore isn\u0027t an option for us.\n\nTo do OOB updates we go over the physical SPI line instead: E810Device derives from SPIDevice and writes the flash directly with flashcp through the BMC\u0027s SPI mux. PLDM is only used here to read the running version via `GetFirmwareParameters`, which the device does support over MCTP.",
+      "parentUuid": "0bdb4854_b52382ef",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1440aa29_445334fe",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3a90fe7_b0817e57",
+        "filename": "common/pldm/firmware_parameters.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-23T01:52:44Z",
+      "side": 1,
+      "message": "Switched to libpldm\u0027s shared instance ID database (pldm_instance_id_alloc/free) so IDs are coordinated with pldmd.",
+      "parentUuid": "1440aa29_445334fe",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8d8e67c_54cd7473",
@@ -65,6 +101,24 @@
       "writtenOn": "2026-09-22T19:12:41Z",
       "side": 1,
       "message": "Doesn\u0027t seem relevant to the patch changes",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "704f0fff_c3913bd6",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-09-23T01:52:44Z",
+      "side": 1,
+      "message": "Right, that one was unrelated scope creep — reverted.",
+      "parentUuid": "f8d8e67c_54cd7473",
       "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

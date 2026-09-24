@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "774805f2_35192879",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-24T21:18:03Z",
+      "side": 1,
+      "message": "```\n  ssize_t findMatchingDeviceDescriptorIndex(\n      const std::vector\u003cFirmwareDeviceIDRecord\u003e\u0026 records, uint32_t vendorIANA,\n      const std::string\u0026 compatible)\n  {\n      for (size_t i \u003d 0; i \u003c records.size(); i++)\n      {\n          const FirmwareDeviceIDRecord\u0026 record \u003d records[i];\n          if (fwDeviceIDRecordMatches(record, vendorIANA, compatible))\n          {\n              return (ssize_t)i;\n          }\n      }\n      return -1;\n  }               \n\n\n  bool fwDeviceIDRecordMatches(const FirmwareDeviceIDRecord\u0026 record,\n                               uint32_t vendorIANA, const std::string\u0026 compatible)\n  {\n      return fwDeviceIDRecordMatchesIANA(record, vendorIANA) \u0026\u0026\n             fwDeviceIDRecordMatchesCompatible(record, compatible);\n  }\n\n // find fw descriptor matching vendor iana and compatible\n      ssize_t deviceDescriptorIndex \u003d findMatchingDeviceDescriptorIndex(\n          fwDeviceIdRecords, vendorIANA, compatible);\n  \n      if (deviceDescriptorIndex \u003c 0)\n      {\n          error(\n              \"did not find a matching device descriptor for {IANA}, {COMPATIBLE}\",\n              \"IANA\", lg2::hex, vendorIANA, \"COMPATIBLE\", compatible);\n          return EXIT_FAILURE;\n      }\n```\n\nthese checks are only per descriptor so if one descriptor does not match then there could be another descriptor which will match.\n\nIf we make this an error then every package with multiple distinct descriptors would print errors.\n\nIs this the intended behavior, that PLDM fw update packages for this code should only have one descriptor and one component image?",
+      "parentUuid": "595bfbf1_e6e6c443",
+      "revId": "036e00f4634be6d4e6705c5022b8dd810cdafcc4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8041871b_a155e11e",
         "filename": "common/pldm/pldm_package_util.cpp",
         "patchSetId": 3

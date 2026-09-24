@@ -311,6 +311,35 @@ class Activation : public ActivationInherit, public Flash
      **/
     void rebootBmc();
 
+    /**
+     * @brief Check whether another firmware update is still in progress.
+     *
+     * Queries the mapper for any other object exposing
+     * xyz.openbmc_project.Software.ActivationBlocksTransition - the interface
+     * an updater exposes while its update must block state transitions
+     * (including a BMC reboot). Our own object is ignored.
+     *
+     * @return true if another update is blocking transitions
+     **/
+    bool otherUpdateInProgress();
+
+    /**
+     * @brief Defer the BMC reboot until no other update is in progress.
+     *
+     * Watches for the other updates' ActivationBlocksTransition interfaces to
+     * be removed and reboots once none remain, bounded by a timeout so a stuck
+     * peer update cannot defer the reboot forever.
+     **/
+    void deferRebootUntilOtherUpdatesComplete();
+
+    /** @brief Reboot if a reboot is pending and no other update is in
+     *         progress. Invoked from the InterfacesRemoved watch. */
+    void rebootIfUpdatesComplete();
+
+    /** @brief Bounded fallback that reboots even if a peer update never
+     *         completes. */
+    sdbusplus::async::task<> rebootAfterTimeout();
+
     /** @brief D-Bus context */
     sdbusplus::async::context& ctx;
 
@@ -340,6 +369,12 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Used to subscribe to dbus systemd signals **/
     sdbusplus::match systemdSignals;
+
+    /** @brief Watches for other updates completing while a reboot is deferred.
+     *         Its presence marks a reboot as deferred and not yet issued (reset
+     *         when the reboot is triggered), so the watch and the timeout
+     *         together issue exactly one reboot. */
+    std::unique_ptr<sdbusplus::bus::match_t> otherUpdatesDoneMatch;
 
     /** @brief Tracks whether the read-write volume has been created as
      * part of the activation process. **/

@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab41f89b_026b55f1",
+        "filename": "common/pldm/firmware_parameters.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-09-24T19:53:00Z",
+      "side": 1,
+      "message": "I see pldm calls https://grok.openbmc.org/xref/openbmc/pldm/common/instance_id.hpp?r\u003d7656b6575447d80c46fbd08d367dd516f350ba98#84, which is the default constructor and in that case libpldm will use the default path for instance DB https://grok.openbmc.org/xref/openbmc/libpldm/src/requester/instance-id.c?r\u003dbd309767beb6f32e9380b3f259566c1c804b1326#87 which is read only. In this case how will the instance id allocation be co-ordinated - Do you need to make any change to pldmd to use a common path for such co-ordination for a platform ?",
+      "parentUuid": "a3a90fe7_b0817e57",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8d8e67c_54cd7473",
         "filename": "spi-flash/spi_device.cpp",
         "patchSetId": 11

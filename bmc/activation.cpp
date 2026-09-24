@@ -14,6 +14,12 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
 
+#include <chrono>
+#include <map>
+#include <string>
+#include <variant>
+#include <vector>
+
 #ifdef WANT_SIGNATURE_VERIFY
 #include "image_verify.hpp"
 #endif
@@ -209,8 +215,17 @@ void Activation::onFlashWriteSuccess()
 
     if (Activation::checkApplyTimeImmediate())
     {
-        info("Image Active and ApplyTime is immediate; rebooting BMC.");
-        Activation::rebootBmc();
+        if (otherUpdateInProgress())
+        {
+            info("Another firmware update is in progress; deferring the BMC "
+                 "reboot until it completes.");
+            deferRebootUntilOtherUpdatesComplete();
+        }
+        else
+        {
+            info("Image Active and ApplyTime is immediate; rebooting BMC.");
+            Activation::rebootBmc();
+        }
     }
     else
     {
@@ -481,6 +496,86 @@ void Activation::rebootBmc()
               "ERROR", e);
         report<InternalFailure>();
     }
+}
+
+bool Activation::otherUpdateInProgress()
+{
+    constexpr auto activationIface = "xyz.openbmc_project.Software.Activation";
+    constexpr auto activatingState =
+        "xyz.openbmc_project.Software.Activation.Activations.Activating";
+
+    auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
+                                      MAPPER_BUSNAME, "GetSubTree");
+    method.append("/xyz/openbmc_project/software", 0,
+                  std::vector<std::string>{activationIface});
+
+    std::map<std::string, std::map<std::string, std::vector<std::string>>>
+        subtree;
+    try
+    {
+        bus.call(method).read(subtree);
+    }
+    catch (const sdbusplus::exception_t& e)
+    {
+        error("Failed to query Activation objects: {ERROR}", "ERROR", e);
+        return false;
+    }
+
+    for (const auto& [objPath, services] : subtree)
+    {
+        if (objPath == path)
+        {
+            continue; // don't count our own activation
+        }
+        for (const auto& [service, ifaces] : services)
+        {
+            auto get = bus.new_method_call(service.c_str(), objPath.c_str(),
+                                           dbusPropIntf, "Get");
+            get.append(activationIface, "Activation");
+            try
+            {
+                std::variant<std::string> value;
+                bus.call(get).read(value);
+                if (std::get<std::string>(value) == activatingState)
+                {
+                    return true;
+                }
+            }
+            catch (const sdbusplus::exception_t&)
+            {
+                // Ignore objects whose Activation we cannot read.
+            }
+        }
+    }
+    return false;
+}
+
+void Activation::deferRebootUntilOtherUpdatesComplete()
+{
+    ctx.spawn(waitForOtherUpdatesThenReboot());
+}
+
+sdbusplus::async::task<> Activation::waitForOtherUpdatesThenReboot()
+{
+    // Bounded wait so a stuck peer update cannot block the BMC reboot forever.
+    constexpr auto pollInterval = std::chrono::seconds(5);
+    constexpr auto maxWait = std::chrono::minutes(30);
+    std::chrono::seconds waited{0};
+
+    while (otherUpdateInProgress())
+    {
+        if (waited >= maxWait)
+        {
+            warning("Timed out waiting for other updates to finish; "
+                    "rebooting BMC.");
+            break;
+        }
+        co_await sdbusplus::async::sleep_for(ctx, pollInterval);
+        waited += pollInterval;
+    }
+
+    rebootBmc();
+    co_return;
 }
 
 } // namespace updater

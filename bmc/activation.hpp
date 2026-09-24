@@ -311,6 +311,28 @@ class Activation : public ActivationInherit, public Flash
      **/
     void rebootBmc();
 
+    /**
+     * @brief Check whether another firmware update is still in progress.
+     *
+     * Queries the mapper for every xyz.openbmc_project.Software.Activation
+     * object (other than this one) and returns true if any is still in the
+     * non-terminal Activating state.
+     *
+     * @return true if another update is Activating
+     **/
+    bool otherUpdateInProgress();
+
+    /**
+     * @brief Defer the BMC reboot until no other update is in progress.
+     *
+     * Spawns waitForOtherUpdatesThenReboot() on the async context so the BMC
+     * reboot does not interrupt an in-flight update to another device.
+     **/
+    void deferRebootUntilOtherUpdatesComplete();
+
+    /** @brief Async body of deferRebootUntilOtherUpdatesComplete(). */
+    sdbusplus::async::task<> waitForOtherUpdatesThenReboot();
+
     /** @brief D-Bus context */
     sdbusplus::async::context& ctx;
 

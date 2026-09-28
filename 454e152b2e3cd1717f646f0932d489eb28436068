@@ -106,6 +106,24 @@
       "parentUuid": "7e9bd4d8_7566c6c1",
       "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8d53b2_68880b79",
+        "filename": "spi-flash/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-09-28T16:11:14Z",
+      "side": 1,
+      "message": "The issue is trivial, i compiled without unit tests and forgot that i may need to update them because i changed Device ctor.\nNevertheless, if the whole patchset doesn\u0027t come in, the offending change (https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/94969?usp\u003dsubmitted-together) also gets left out. We will prepare a reduced patchset tomorrow.",
+      "parentUuid": "a79d3077_7a4e193c",
+      "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

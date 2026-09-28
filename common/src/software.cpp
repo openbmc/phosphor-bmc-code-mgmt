@@ -189,6 +189,14 @@ void Software::setActivationBlocksTransition(bool enabled)
 void Software::setActivation(SoftwareActivation::Activations act)
 {
     activation(act);
+
+    // The 'Activation' interface is a base of Software and is registered at
+    // construction, but aserver interfaces are not announced on D-Bus
+    // (InterfacesAdded) until emitted explicitly. Announce it so ObjectMapper
+    // records 'xyz.openbmc_project.Software.Activation' for this object.
+    // emit_added() is idempotent (guarded internally by the aserver), so
+    // calling it on every set emits the signal only once.
+    this->SoftwareActivation::emit_added();
 }
 
 void Software::enableUpdate(

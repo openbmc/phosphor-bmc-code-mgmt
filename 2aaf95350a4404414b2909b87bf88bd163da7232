@@ -22,6 +22,30 @@
       },
       "revId": "2aaf95350a4404414b2909b87bf88bd163da7232",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1697ce30_4388dc8d",
+        "filename": "common/include/software.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-28T08:54:31Z",
+      "side": 1,
+      "message": "Agreed. removed the redundant guard. setActivation() now just calls emit_added(), which self-guards via sdbusplus_async_iface_added.",
+      "parentUuid": "49029f32_960e7a05",
+      "range": {
+        "startLine": 110,
+        "startChar": 1,
+        "endLine": 116,
+        "endChar": 35
+      },
+      "revId": "2aaf95350a4404414b2909b87bf88bd163da7232",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

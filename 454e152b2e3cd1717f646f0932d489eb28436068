@@ -34,6 +34,24 @@
       "parentUuid": "933b62df_5b7ba2af",
       "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad09486_473e10d9",
+        "filename": "spi-flash/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-09-28T13:04:50Z",
+      "side": 1,
+      "message": "@pointbazaar Hello everyone! Two points here:\n\n\u003e why do we need to document it here\n\nBecause others already did. There\u0027s an example of host BIOS configuration, i have added another one. We are new here, so following existing rules assuming they are valid.\n\n\u003e will this config record not be in entity-manager repo already?\n\nSorry, no, because of our client\u0027s NDA policy. They don\u0027t want to publicly display full constitution of their hardware.\n\nWe do have some more sub-components here relying on these changes, we are only uptreaming changes, which affect the code, which is already present in the repo (i. e. spi-flash sub-component), so that it can be used as a framework. We believe it\u0027s useful for others because:\n1. There are more chips out there, which use serial interface with text-based console.\n2. Someone else is probably using Broadcom switches on their CMC boards.",
+      "parentUuid": "0b8a0c38_6151b33d",
+      "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

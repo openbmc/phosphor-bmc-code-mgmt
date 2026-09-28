@@ -16,6 +16,24 @@
       "message": "Hi, Alexander! Recently you asked [why we need to document it here](https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/93842/comment/a9c22be6_7d84ca91/) in an adjacent PR. I\u0027m new to Gerrit, so I made some mistakes and abandoned the PR, sorry for a little chaos\n\nI\u0027m repeating your question:\n\n\u003e why do we need to document it here, will this config record not be in entity-manager repo already?\n\u003e IMO the best example config is one that is actually used and working on hardware .\n\u003e If it\u0027s already in EM repo you can just link to it here?\n\nI\u0027ll ask my colleague to answer the question.",
       "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b8a0c38_6151b33d",
+        "filename": "spi-flash/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003074
+      },
+      "writtenOn": "2026-09-28T10:53:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "933b62df_5b7ba2af",
+      "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

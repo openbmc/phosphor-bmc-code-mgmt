@@ -88,6 +88,24 @@
       "parentUuid": "307ed2b1_d3de1eb9",
       "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a79d3077_7a4e193c",
+        "filename": "spi-flash/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T15:52:19Z",
+      "side": 1,
+      "message": "I don\u0027t see any issue with refactoring, i did not look into those patches for now because they are failing CI.",
+      "parentUuid": "7e9bd4d8_7566c6c1",
+      "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

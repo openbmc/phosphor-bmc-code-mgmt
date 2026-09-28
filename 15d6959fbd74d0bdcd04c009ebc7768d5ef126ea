@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe4d5568_3743d9d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-28T10:42:34Z",
+      "side": 1,
+      "message": "Thanks! I switched to watching xyz.openbmc_project.Software.ActivationBlocksTransition via GetSubTreePaths and made the wait event-driven off InterfacesRemoved rather than polling, which avoids a sync bus.call() on the async bus.\n\nTo clarify on preventing new updates: this logic defers past active updates up to a timeout rather than rejecting them. Whether we need a full interlock is noted as an open option in the commit message.\n\nI looked into using the existing systemd reboot-guard unit instead, but skipped it because it isn\u0027t ref-counted (one finished update disarms it for all), the BMC updater disarms it prior to self-reboot, and blocked reboots fail instead of retrying. Using ActivationBlocksTransition felt like the cleanest route, though I\u0027m open to moving the check into a shared \"update in progress\" view if preferred.",
+      "parentUuid": "f31f225a_43823b74",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "15d6959fbd74d0bdcd04c009ebc7768d5ef126ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b4e3beee_a63ccfe8",

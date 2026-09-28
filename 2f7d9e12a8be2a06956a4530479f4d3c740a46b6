@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a70c37a1_f9f12bd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T12:02:14Z",
+      "side": 1,
+      "message": "please link your EM schema change implementing these additional properties either here in the commit message or as gerrit topic.",
+      "revId": "2f7d9e12a8be2a06956a4530479f4d3c740a46b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c0e13f3_7ee88423",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T12:02:14Z",
+      "side": 1,
+      "message": "please provide concrete example of a device where this is needed.",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 1
+      },
+      "revId": "2f7d9e12a8be2a06956a4530479f4d3c740a46b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

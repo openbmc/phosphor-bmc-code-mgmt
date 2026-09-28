@@ -189,6 +189,10 @@ void Software::setActivationBlocksTransition(bool enabled)
 void Software::setActivation(SoftwareActivation::Activations act)
 {
     activation(act);
+
+    // Announce the Activation interface so ObjectMapper records it.
+    // emit_added() is idempotent, so calling it on every set is safe.
+    this->SoftwareActivation::emit_added();
 }
 
 void Software::enableUpdate(

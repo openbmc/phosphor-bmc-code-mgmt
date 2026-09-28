@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1397a99c_04ac82a9",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-28T15:49:19Z",
+      "side": 1,
+      "message": "Done, now uses sdbusplus::common::xyz::openbmc_project::software::ActivationBlocksTransition::interface instead of re-defining the string.",
+      "parentUuid": "d93ee49f_56940eaf",
+      "range": {
+        "startLine": 503,
+        "startChar": 1,
+        "endLine": 505,
+        "endChar": 66
+      },
+      "revId": "180c44d1b2ede84b4925e310e12e7bdd4e73eff1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9122e63_b89bee64",
@@ -84,6 +108,30 @@
       "writtenOn": "2026-09-28T14:50:06Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "f9122e63_b89bee64",
+      "range": {
+        "startLine": 372,
+        "startChar": 1,
+        "endLine": 378,
+        "endChar": 31
+      },
+      "revId": "180c44d1b2ede84b4925e310e12e7bdd4e73eff1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61bdcf02_3ebaca86",
+        "filename": "bmc/activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-28T15:49:19Z",
+      "side": 1,
+      "message": "Good point, dropped rebootPending, the code now branches on otherUpdatesDoneMatch being set (its presence marks the reboot as deferred, it\u0027s reset when the reboot is issued, so the watch and timeout still fire exactly one reboot).",
       "parentUuid": "f9122e63_b89bee64",
       "range": {
         "startLine": 372,

@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c4bd6f_d719a1af",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T14:50:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d93ee49f_56940eaf",
+      "range": {
+        "startLine": 503,
+        "startChar": 1,
+        "endLine": 505,
+        "endChar": 66
+      },
+      "revId": "180c44d1b2ede84b4925e310e12e7bdd4e73eff1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9122e63_b89bee64",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-09-28T11:46:27Z",
       "side": 1,
       "message": "do we need both of these members or can we simply branch on the `otherUpdatesDoneMatch` being set instead of using a separate boolean?",
+      "range": {
+        "startLine": 372,
+        "startChar": 1,
+        "endLine": 378,
+        "endChar": 31
+      },
+      "revId": "180c44d1b2ede84b4925e310e12e7bdd4e73eff1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84c45e54_b1954387",
+        "filename": "bmc/activation.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T14:50:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9122e63_b89bee64",
       "range": {
         "startLine": 372,
         "startChar": 1,

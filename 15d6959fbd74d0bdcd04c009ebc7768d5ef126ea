@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31f225a_43823b74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T08:24:42Z",
+      "side": 1,
+      "message": "Hi, thanks for tackling this edge case,\n\nis there any reason for not watching `xyz.openbmc_project.Software.ActivationBlocksTransition` interface instead?\n\nIt\u0027s the interface already used to prevent host power state transition in case of an update and as per it\u0027s interface description is not limited to the managed host.\n\nAlso another question for my understanding, how are you preventing other device updates from being started while we are waiting for the existing ones to finish, is this already handled somewhere?",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "15d6959fbd74d0bdcd04c009ebc7768d5ef126ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e3beee_a63ccfe8",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T08:24:42Z",
+      "side": 1,
+      "message": "any reason this was not inlined, one line method with only a single call site",
+      "range": {
+        "startLine": 552,
+        "startChar": 1,
+        "endLine": 556,
+        "endChar": 1
+      },
+      "revId": "15d6959fbd74d0bdcd04c009ebc7768d5ef126ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

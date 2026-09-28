@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "607c8807_251245e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-28T11:48:46Z",
+      "side": 1,
+      "message": "\u003e To clarify on preventing new updates: this logic defers past active updates up to a timeout rather than rejecting them. Whether we need a full interlock is noted as an open option in the commit message.\n\nidk if we are on the same page, with `other device updates` i meant updates to other devices such as VR or CPLD. How can we prevent new updates from being started while we are waiting for existing updates to finish so the BMC can reboot.",
+      "parentUuid": "fe4d5568_3743d9d2",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "15d6959fbd74d0bdcd04c009ebc7768d5ef126ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b4e3beee_a63ccfe8",

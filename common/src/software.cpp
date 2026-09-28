@@ -188,7 +188,19 @@ void Software::setActivationBlocksTransition(bool enabled)
 
 void Software::setActivation(SoftwareActivation::Activations act)
 {
+    const bool emitSignal = !activationEmitted;
+
     activation(act);
+
+    if (emitSignal)
+    {
+        // The 'Activation' interface is constructed with the Software object
+        // but aserver interfaces must be announced explicitly. Emit
+        // InterfacesAdded once so ObjectMapper (and therefore bmcweb/Redfish)
+        // records 'xyz.openbmc_project.Software.Activation' for this object.
+        this->SoftwareActivation::emit_added();
+        activationEmitted = true;
+    }
 }
 
 void Software::enableUpdate(

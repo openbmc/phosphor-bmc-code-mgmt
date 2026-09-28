@@ -108,6 +108,13 @@ class Software : private SoftwareActivation
     std::unique_ptr<SoftwareActivationBlocksTransition>
         activationBlocksTransition = nullptr;
 
+    // The 'Activation' interface is a base of Software and is created together
+    // with the object, but aserver interfaces are not announced on D-Bus
+    // (InterfacesAdded) until explicitly emitted. This tracks whether that
+    // emit has happened so setActivation() announces the interface exactly
+    // once; without it, ObjectMapper never caches Activation for this object.
+    bool activationEmitted = false;
+
     // The software update dbus interface is not always present.
     // It is constructed if the software version is able to be updated.
     // For the new software version, this interface is constructed after the

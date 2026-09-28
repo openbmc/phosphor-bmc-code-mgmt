@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2f2c1f_1772a81a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-09-28T13:11:11Z",
+      "side": 1,
+      "message": "You\u0027re right — this patch only defers past the updates already in progress (timeout-bounded); it doesn\u0027t stop a new VR/CPLD update from starting during the wait. Preventing that needs a shared \"BMC reboot pending\" state every updater checks before starting — a cross-updater interlock that doesn\u0027t exist today. Options: (1) add that interlock (stack-wide change), (2) reject a BMC Immediate update while other updates are active (no wait window; reboot later when idle), or\n(3) treat defer+timeout as best-effort (this patch). Given the interlock is a bigger design, I lean toward (2) as the smaller, race-free option — but happy to follow your preference.",
+      "parentUuid": "607c8807_251245e8",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "15d6959fbd74d0bdcd04c009ebc7768d5ef126ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b4e3beee_a63ccfe8",

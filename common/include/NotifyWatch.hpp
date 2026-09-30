@@ -6,6 +6,7 @@
 #include <sdbusplus/async/fdio.hpp>
 #include <sdbusplus/async/task.hpp>
 
+#include <algorithm>
 #include <array>
 #include <cerrno>
 #include <cstddef>
@@ -71,47 +72,61 @@ class NotifyWatch
     }
     sdbusplus::async::task<> readNotifyAsync()
     {
-        co_await fdioInstance->next();
-        constexpr size_t maxBytes = 1024;
-        std::array<uint8_t, maxBytes> buffer{};
-        auto bytes = read(fd, buffer.data(), maxBytes);
-        if (0 > bytes)
+        while (!notifyCtx.stop_requested())
         {
-            throw std::system_error(errno, std::system_category(),
-                                    "Failed to read notify event");
-        }
-        auto offset = 0;
-        while (offset < bytes)
-        {
-            // NOLINTBEGIN(cppcoreguidelines-pro-type-reinterpret-cast)
-            std::span<uint32_t> mask{
-                reinterpret_cast<uint32_t*>(
-                    buffer.data() + offset + offsetof(inotify_event, mask)),
-                1};
-            std::span<uint32_t> len{
-                reinterpret_cast<uint32_t*>(
-                    buffer.data() + offset + offsetof(inotify_event, len)),
-                1};
-            // NOLINTEND(cppcoreguidelines-pro-type-reinterpret-cast)
-            if (((mask[0] & IN_CLOSE_WRITE) != 0U) &&
-                ((mask[0] & IN_ISDIR) == 0U))
+            co_await fdioInstance->next();
+
+            constexpr size_t maxBytes = 1024;
+            std::array<uint8_t, maxBytes> buffer{};
+            auto bytes = read(fd, buffer.data(), maxBytes);
+            if (0 > bytes)
+            {
+                const int error = errno;
+                bool retry = (error == EAGAIN) || (error == EINTR);
+#ifdef EWOULDBLOCK
+                if constexpr (EWOULDBLOCK != EAGAIN)
+                {
+                    retry = retry || (error == EWOULDBLOCK);
+                }
+#endif
+                if (retry)
+                {
+                    continue;
+                }
+
+                throw std::system_error(error, std::system_category(),
+                                        "Failed to read notify event");
+            }
+            auto offset = 0;
+            while (offset < bytes)
             {
                 // NOLINTBEGIN(cppcoreguidelines-pro-type-reinterpret-cast)
-                std::span<char> name{
-                    reinterpret_cast<char*>(
-                        buffer.data() + offset + offsetof(inotify_event, name)),
-                    len[0]};
+                std::span<uint32_t> mask{
+                    reinterpret_cast<uint32_t*>(
+                        buffer.data() + offset + offsetof(inotify_event, mask)),
+                    1};
+                std::span<uint32_t> len{
+                    reinterpret_cast<uint32_t*>(
+                        buffer.data() + offset + offsetof(inotify_event, len)),
+                    1};
                 // NOLINTEND(cppcoreguidelines-pro-type-reinterpret-cast)
-                auto fileName = std::string(
-                    name.data(),
-                    std::find(name.data(), name.data() + name.size(), '\0'));
-                co_await instance.processUpdate(fileName);
+                if (((mask[0] & IN_CLOSE_WRITE) != 0U) &&
+                    ((mask[0] & IN_ISDIR) == 0U))
+                {
+                    // NOLINTBEGIN(cppcoreguidelines-pro-type-reinterpret-cast)
+                    std::span<char> name{
+                        reinterpret_cast<char*>(buffer.data() + offset +
+                                                offsetof(inotify_event, name)),
+                        len[0]};
+                    // NOLINTEND(cppcoreguidelines-pro-type-reinterpret-cast)
+                    auto fileName =
+                        std::string(name.data(),
+                                    std::find(name.data(),
+                                              name.data() + name.size(), '\0'));
+                    co_await instance.processUpdate(fileName);
+                }
+                offset += offsetof(inotify_event, name) + len[0];
             }
-            offset += offsetof(inotify_event, name) + len[0];
-        }
-        if (!notifyCtx.stop_requested())
-        {
-            notifyCtx.spawn(readNotifyAsync());
         }
     }
 

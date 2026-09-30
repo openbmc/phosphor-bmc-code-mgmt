@@ -6,6 +6,7 @@
 #include <sdbusplus/async/fdio.hpp>
 #include <sdbusplus/async/task.hpp>
 
+#include <algorithm>
 #include <array>
 #include <cerrno>
 #include <cstddef>
@@ -13,6 +14,7 @@
 #include <cstring>
 #include <filesystem>
 #include <memory>
+#include <optional>
 #include <span>
 #include <string>
 #include <system_error>
@@ -71,17 +73,62 @@ class NotifyWatch
     }
     sdbusplus::async::task<> readNotifyAsync()
     {
-        co_await fdioInstance->next();
         constexpr size_t maxBytes = 1024;
         std::array<uint8_t, maxBytes> buffer{};
-        auto bytes = read(fd, buffer.data(), maxBytes);
-        if (0 > bytes)
+
+        while (!notifyCtx.stop_requested())
         {
-            throw std::system_error(errno, std::system_category(),
-                                    "Failed to read notify event");
+            co_await fdioInstance->next();
+
+            auto bytes = readNotifyEvents(buffer);
+            if (!bytes)
+            {
+                continue;
+            }
+
+            co_await processNotifyEvents(
+                std::span<uint8_t>(buffer.data(), *bytes));
         }
-        auto offset = 0;
-        while (offset < bytes)
+    }
+
+  private:
+    static bool isTransientReadError(int error)
+    {
+        if ((error == EAGAIN) || (error == EINTR))
+        {
+            return true;
+        }
+#ifdef EWOULDBLOCK
+        if constexpr (EWOULDBLOCK != EAGAIN)
+        {
+            return error == EWOULDBLOCK;
+        }
+#endif
+        return false;
+    }
+
+    std::optional<size_t> readNotifyEvents(std::span<uint8_t> buffer)
+    {
+        auto bytes = read(fd, buffer.data(), buffer.size());
+        if (bytes >= 0)
+        {
+            return static_cast<size_t>(bytes);
+        }
+
+        const int error = errno;
+        if (isTransientReadError(error))
+        {
+            return std::nullopt;
+        }
+
+        throw std::system_error(error, std::system_category(),
+                                "Failed to read notify event");
+    }
+
+    sdbusplus::async::task<> processNotifyEvents(std::span<uint8_t> buffer)
+    {
+        size_t offset = 0;
+        while (offset < buffer.size())
         {
             // NOLINTBEGIN(cppcoreguidelines-pro-type-reinterpret-cast)
             std::span<uint32_t> mask{
@@ -109,13 +156,10 @@ class NotifyWatch
             }
             offset += offsetof(inotify_event, name) + len[0];
         }
-        if (!notifyCtx.stop_requested())
-        {
-            notifyCtx.spawn(readNotifyAsync());
-        }
+
+        co_return;
     }
 
-  private:
     sdbusplus::async::context& notifyCtx;
     Instance& instance;
     int wd = -1;

@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6ecc301_c583edc6",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-09-30T13:55:40Z",
+      "side": 1,
+      "message": "Thanks, I agree. I updated the patch to use a single while (!notifyCtx.stop_requested()) loop and continue on transient read errors instead of re-spawning readNotifyAsync(). This keeps the watcher logic in one coroutine and preserves the existing normal event handling flow.",
+      "parentUuid": "0ece98ee_bc53122b",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d1b263_bc6ec934",
         "filename": "common/include/NotifyWatch.hpp",
         "patchSetId": 1

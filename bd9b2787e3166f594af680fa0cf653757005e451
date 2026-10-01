@@ -106,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40627bee_48061f27",
+        "filename": "common/pldm/firmware_parameters.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002484
+      },
+      "writtenOn": "2026-10-01T02:01:40Z",
+      "side": 1,
+      "message": "The read only DB is intended — libpldm opens it O_RDONLY and coordinates via OFD record locks on the inode, never writing to the file, so a read-only mount doesn\u0027t block allocation. InstanceIdDb\u0027s default constructor calls pldm_instance_db_init_default() too, so pldmd and this daemon share the same inode and the kernel makes the locks mutually visible — no pldmd change needed.",
+      "parentUuid": "ab41f89b_026b55f1",
+      "revId": "bd9b2787e3166f594af680fa0cf653757005e451",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8d8e67c_54cd7473",

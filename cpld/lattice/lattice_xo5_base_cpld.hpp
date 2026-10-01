@@ -40,6 +40,7 @@ struct xo5Cfg
     static constexpr size_t pageSize = 256;
     static constexpr size_t pagesPerBlock = 256;
     static constexpr size_t blocksPerCfg = 11;
+    static constexpr size_t blocksPerUfm = 4;
 
     static constexpr size_t incrDataSize = 128;
     static constexpr size_t retryMax = 3;

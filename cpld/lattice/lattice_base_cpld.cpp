@@ -22,7 +22,9 @@ static constexpr std::string_view tagChecksum = "C";
 static constexpr std::string_view tagUserCode = "NOTE User Electronic";
 static constexpr std::string_view tagEbrInitData = "NOTE EBR_INIT DATA";
 static constexpr std::string_view tagEndConfig = "NOTE END CONFIG DATA";
+static constexpr std::string_view tagEndConfigXO5 = "NOTE END OF CFG";
 static constexpr std::string_view tagDevName = "NOTE DEVICE NAME";
+static constexpr std::string_view tagEndBitstream = "NOTE END OF BITSTREAM";
 
 constexpr uint8_t isOK = 0;
 constexpr uint8_t isReady = 0;
@@ -192,13 +194,14 @@ bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)
             state = ParseState::cfg;
             continue;
         }
-        else if (line.starts_with(tagEndConfig))
+        else if (line.starts_with(tagEndConfig) ||
+                 line.starts_with(tagEndBitstream))
         {
             state = ParseState::endCfg;
             continue;
         }
         else if (line.starts_with(tagUserFlashMemory) ||
-                 line.starts_with(tagData))
+                 line.starts_with(tagData) || line.starts_with(tagEndConfigXO5))
         {
             state = ParseState::ufm;
             continue;

@@ -53,7 +53,8 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::eraseCfg(
         lg2::error("Error: invalid cfg index.");
         co_return false;
     }
-    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg;
+    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg +
+        (!fwInfo.ufmData.empty() ? xo5Cfg::blocksPerUfm : 0);
 
     auto eraseBlock = [this](uint8_t block) -> sdbusplus::async::task<bool> {
         std::vector<uint8_t> request;
@@ -119,7 +120,8 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::programCfg(
         lg2::error("Error: invalid cfg index.");
         co_return false;
     }
-    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg;
+    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg +
+        (!fwInfo.ufmData.empty() ? xo5Cfg::blocksPerUfm : 0);
     const auto& cfgData = fwInfo.cfgData;
     const auto totalBytes = cfgData.size();
     size_t bytesWritten = 0;
@@ -210,7 +212,8 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::verifyCfg()
         lg2::error("Error: invalid cfg index.");
         co_return false;
     }
-    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg;
+    const auto endBlock = startBlock + xo5Cfg::blocksPerCfg +
+        (!fwInfo.ufmData.empty() ? xo5Cfg::blocksPerUfm : 0);
     const auto& cfgData = fwInfo.cfgData;
     const auto totalBytes = cfgData.size();
     uint8_t readBuffer[1 + xo5Cfg::pageSize];
@@ -323,6 +326,14 @@ sdbusplus::async::task<bool> LatticeXO5StandardCPLD::prepareUpdate(
         co_return false;
     }
     lg2::debug("JED file parsing success");
+
+    if (!fwInfo.ufmData.empty())
+    {
+        fwInfo.cfgData.insert(fwInfo.cfgData.end(),
+                              fwInfo.ufmData.begin(),
+                              fwInfo.ufmData.end());
+        lg2::debug("JED includes UFM; UFM sector after {TARGET} will be programmed together.\n", "TARGET", target);
+    }
 
     if (!(co_await waitUntilReady(readyTimeout)))
     {

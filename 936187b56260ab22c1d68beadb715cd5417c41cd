@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d189489_82e33f92",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-01T23:20:48Z",
+      "side": 1,
+      "message": "Most of the code here is almost same as asyncSystem. Lets update that flow by passing some sort of API/callback which can be called and do these kind of on demand operations rather than re-writing the whole flow again.",
+      "revId": "936187b56260ab22c1d68beadb715cd5417c41cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

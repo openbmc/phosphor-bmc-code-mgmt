@@ -28,26 +28,52 @@ PHOSPHOR_LOG2_USING;
 static sdbusplus::async::task<bool> runParent(
     sdbusplus::async::context& ctx, pid_t pid, int exitReadFd, int resultReadFd,
     std::optional<std::reference_wrapper<std::string>> result,
-    const std::string& cmd)
+    const std::string& cmd, AsyncSystemOutputCallback outputCallback)
 {
-    auto fdio = std::make_unique<sdbusplus::async::fdio>(ctx, exitReadFd);
-    co_await fdio->next();
-
     if (result)
     {
-        auto& resStr = result->get();
-        resStr.clear();
-        char buffer[1024];
-        ssize_t n;
-        while ((n = read(resultReadFd, buffer, sizeof(buffer))) > 0)
+        result->get().clear();
+    }
+
+    if (resultReadFd != -1)
+    {
+        auto resultFdio =
+            std::make_unique<sdbusplus::async::fdio>(ctx, resultReadFd);
+
+        while (true)
         {
-            resStr.append(buffer, n);
+            co_await resultFdio->next();
+
+            char buffer[1024];
+            ssize_t n = read(resultReadFd, buffer, sizeof(buffer));
+
+            if (n <= 0)
+            {
+                break;
+            }
+
+            if (result)
+            {
+                result->get().append(buffer, n);
+            }
+
+            if (outputCallback)
+            {
+                outputCallback(std::string_view(buffer, n));
+            }
         }
+
+        resultFdio.reset();
         close(resultReadFd);
     }
 
+    auto exitFdio = std::make_unique<sdbusplus::async::fdio>(ctx, exitReadFd);
+
+    co_await exitFdio->next();
+
     int exitCode = -1;
-    fdio.reset();
+    exitFdio.reset();
+
     ssize_t bytesRead = read(exitReadFd, &exitCode, sizeof(exitCode));
     close(exitReadFd);
 
@@ -78,7 +104,8 @@ static sdbusplus::async::task<bool> runParent(
 
 sdbusplus::async::task<bool> asyncSystem(
     sdbusplus::async::context& ctx, const std::string& cmd,
-    std::optional<std::reference_wrapper<std::string>> result)
+    std::optional<std::reference_wrapper<std::string>> result,
+    AsyncSystemOutputCallback outputCallback)
 {
     int exitPipefd[2];
     if (pipe(exitPipefd) == -1)
@@ -87,8 +114,11 @@ sdbusplus::async::task<bool> asyncSystem(
         co_return false;
     }
 
+    const bool captureOutput =
+        result.has_value() || static_cast<bool>(outputCallback);
+
     int resultPipefd[2] = {-1, -1};
-    if (result && pipe(resultPipefd) == -1)
+    if (captureOutput && pipe(resultPipefd) == -1)
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
         close(exitPipefd[0]);
@@ -97,33 +127,42 @@ sdbusplus::async::task<bool> asyncSystem(
     }
 
     pid_t pid = fork();
+
     if (pid == 0)
     {
         close(exitPipefd[0]);
-        if (result)
+
+        if (captureOutput)
         {
             close(resultPipefd[0]);
         }
-        runChild(exitPipefd[1], result ? resultPipefd[1] : -1, cmd);
+
+        runChild(exitPipefd[1], captureOutput ? resultPipefd[1] : -1, cmd);
     }
     else if (pid < 0)
     {
         error("Fork failed for command: {CMD}", "CMD", cmd);
+
         close(exitPipefd[0]);
         close(exitPipefd[1]);
-        if (result)
+
+        if (captureOutput)
         {
             close(resultPipefd[0]);
             close(resultPipefd[1]);
         }
+
         co_return false;
     }
 
     close(exitPipefd[1]);
-    if (result)
+
+    if (captureOutput)
     {
         close(resultPipefd[1]);
     }
+
     co_return co_await runParent(ctx, pid, exitPipefd[0],
-                                 result ? resultPipefd[0] : -1, result, cmd);
+                                 captureOutput ? resultPipefd[0] : -1, result,
+                                 cmd, std::move(outputCallback));
 }

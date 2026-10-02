@@ -124,6 +124,24 @@
       "parentUuid": "a79d3077_7a4e193c",
       "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ab97d6_abe4f677",
+        "filename": "spi-flash/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-02T08:21:07Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Hello! If, so please consider https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/95100 instead. At least for the beginning.\n\nThe goal of that change is to restructure code in such a way that vendor-specific code is easier to patch in.",
+      "parentUuid": "eb8d53b2_68880b79",
+      "revId": "454e152b2e3cd1717f646f0932d489eb28436068",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

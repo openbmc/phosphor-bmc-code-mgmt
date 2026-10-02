@@ -1,4 +1,5 @@
 #include "spi_device.hpp"
+#include "flashcp_progress.hpp"
 
 #include "common/include/device.hpp"
 #include "common/include/software_manager.hpp"
@@ -15,6 +16,8 @@
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
+#include <functional>
+#include <limits>
 #include <random>
 
 PHOSPHOR_LOG2_USING;
@@ -403,11 +406,19 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
         co_return false;
     }
 
-    std::string cmd = std::format("flashcp -v {} {}", path, devPath.value());
+    debug("Running flashcp {PATH} {DEVPATH} with progress monitor", "PATH",
+          path, "DEVPATH", devPath.value());
 
-    debug("running {CMD}", "CMD", cmd);
+    std::string pending;
+    unsigned lastProgress = std::numeric_limits<unsigned>::max();
 
-    auto success = co_await asyncSystem(ctx, cmd);
+    auto outputCallback =
+        std::bind_front(&SPIDevice::processFlashcpOutput, this,
+                        std::ref(pending), std::ref(lastProgress));
+
+    std::string cmd = "flashcp -v " + path + " " + devPath.value();
+
+    bool success = co_await asyncSystem(ctx, cmd, std::nullopt, outputCallback);
 
     std::filesystem::remove(path);
 
@@ -499,4 +510,24 @@ std::optional<std::string> SPIDevice::getMTDDevicePath() const
           "CONTROLLERINDEX", spiControllerIndex, "DEVICEINDEX", spiDeviceIndex);
 
     return std::nullopt;
+}
+
+void SPIDevice::processFlashcpOutput(
+    std::string& pending, unsigned& lastProgress, std::string_view output) const
+{
+    pending.append(output);
+
+    size_t pos = 0;
+    while ((pos = pending.find('\r')) != std::string::npos)
+    {
+        std::string line = pending.substr(0, pos);
+        pending.erase(0, pos + 1);
+
+        auto progress = parseFlashcpProgress(line);
+        if (progress && *progress != lastProgress)
+        {
+            lastProgress = *progress;
+            setUpdateProgress(*progress);
+        }
+    }
 }

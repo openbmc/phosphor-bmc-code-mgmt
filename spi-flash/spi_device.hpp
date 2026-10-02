@@ -9,6 +9,7 @@
 #include <sdbusplus/async/context.hpp>
 
 #include <string>
+#include <string_view>
 
 class SPIDevice;
 
@@ -124,4 +125,14 @@ class SPIDevice : public Device
 
     // @returns nullopt on error
     std::optional<std::string> getMTDDevicePath() const;
+
+    /**
+     * @brief Process flashcp output and update the flash progress.
+     *
+     * @param output Newly available output from flashcp.
+     * @param pending Buffer for incomplete flashcp output.
+     * @param lastProgress Last reported progress value.
+     */
+    void processFlashcpOutput(std::string& pending, unsigned& lastProgress,
+                              std::string_view output) const;
 };

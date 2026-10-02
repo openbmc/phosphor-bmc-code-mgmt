@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ba7c8cb_79c84a73",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-10-02T07:15:13Z",
+      "side": 1,
+      "message": "Done. I refactored the read/error handling out of readNotifyAsync() into readNotifyEvents(), and added isTransientReadError() for the transient errno checks.",
+      "parentUuid": "b944ac59_afb30357",
+      "revId": "5fc5e7a235099f0b632e3c283fd8909294376c72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad82eb0a_7a364f35",
         "filename": "common/include/NotifyWatch.hpp",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2026-10-01T23:15:40Z",
       "side": 1,
       "message": "Similarly this one can be refactored into a function of its own.",
+      "revId": "5fc5e7a235099f0b632e3c283fd8909294376c72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6852fc1e_918b98f7",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-10-02T07:15:13Z",
+      "side": 1,
+      "message": "Done. The inotify parsing and processUpdate() dispatch logic is now in processNotifyEvents().",
+      "parentUuid": "ad82eb0a_7a364f35",
       "revId": "5fc5e7a235099f0b632e3c283fd8909294376c72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

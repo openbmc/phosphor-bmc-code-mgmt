@@ -50,6 +50,24 @@
       "message": "@kevin.tung.openbmc@gmail.com Any concerns on this change ?",
       "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c0ba53_59665968",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2026-10-02T09:43:03Z",
+      "side": 1,
+      "message": "@paligill@gmail.com No concerns from me, as this does not affect the FW update flow.\n\nSeems the change is needed because the registers currently used to calculate the CRC include both non-volatile and volatile registers. The values of the volatile registers can change after an AC cycle, causing the calculated CRC to differ after system resets.\n\nThis change uses only non-volatile registers to calculate the CRC, ensuring that the CRC remains consistent across system resets.",
+      "parentUuid": "641fcb29_cb5493ae",
+      "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3d3018a_fe902cbf",
+        "filename": "common/include/serial/serial_port.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-02T08:23:37Z",
+      "side": 1,
+      "message": "Hello! Since we are not submitting EM JSONs, you said this is dead code. So we keep it internally as vendor-specific, a pity. Please consider https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/95100 instead.",
+      "parentUuid": "cd055ec4_a3677f72",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "58959011d6f577e8b5f9f5067118b749df867919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "397155cd_0ba27dd6",
         "filename": "common/serial/serial_port.cpp",
         "patchSetId": 2

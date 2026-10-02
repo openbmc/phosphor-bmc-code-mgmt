@@ -4,16 +4,27 @@
 
 #include <functional>
 #include <optional>
+#include <string>
+#include <string_view>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
 /**
  * @brief Asynchronously executes a shell command.
+ *
  * @param ctx Async context for monitoring the pipe.
  * @param cmd Shell command to execute.
+ * @param result Optional string to store the command output.
+ * @param outputCallback Optional callback invoked when command output becomes
+ *        available.
  * @return Task resolving to true on success (exit code 0), false otherwise.
  */
+using AsyncSystemOutputCallback = std::function<void(std::string_view)>;
 sdbusplus::async::task<bool> asyncSystem(
     sdbusplus::async::context& ctx, const std::string& cmd,
-    std::optional<std::reference_wrapper<std::string>> result = std::nullopt);
+    std::optional<std::reference_wrapper<std::string>> result = std::nullopt,
+    AsyncSystemOutputCallback outputCallback = {});
 
 /**
  * @brief  Asynchronously retry a function until success or attempts exhausted.

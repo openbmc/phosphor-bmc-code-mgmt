@@ -348,6 +348,52 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     co_return success;
 }
 
+std::optional<unsigned> parseFlashcpProgress(std::string_view line)
+{
+    auto left = line.find('(');
+    auto right = line.find('%');
+
+    if (left == std::string_view::npos || right == std::string_view::npos ||
+        right <= left)
+    {
+        return std::nullopt;
+    }
+
+    int percent = 0;
+
+    try
+    {
+        percent =
+            std::stoi(std::string(line.substr(left + 1, right - left - 1)));
+    }
+    catch (...)
+    {
+        return std::nullopt;
+    }
+
+    if (percent < 0 || percent > 100)
+    {
+        return std::nullopt;
+    }
+
+    if (line.starts_with("Erasing block"))
+    {
+        return 30U + static_cast<unsigned>(percent) * 15U / 100U;
+    }
+
+    if (line.starts_with("Writing kb"))
+    {
+        return 45U + static_cast<unsigned>(percent) * 35U / 100U;
+    }
+
+    if (line.starts_with("Verifying kb"))
+    {
+        return 80U + static_cast<unsigned>(percent) * 10U / 100U;
+    }
+
+    return std::nullopt;
+}
+
 sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     const uint8_t* image, size_t image_size) const
 {
@@ -383,11 +429,35 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
         co_return false;
     }
 
-    std::string cmd = std::format("flashcp -v {} {}", path, devPath.value());
+    debug("Running flashcp {PATH} {DEVPATH} with progress monitor", "PATH",
+          path, "DEVPATH", devPath.value());
 
-    debug("running {CMD}", "CMD", cmd);
+    std::string pending;
+    unsigned lastProgress = std::numeric_limits<unsigned>::max();
 
-    auto success = co_await asyncSystem(ctx, cmd);
+    auto outputCallback =
+        [this, &pending, &lastProgress](std::string_view output) {
+            pending.append(output);
+
+            size_t pos = 0;
+            while ((pos = pending.find('\r')) != std::string::npos)
+            {
+                std::string line = pending.substr(0, pos);
+                pending.erase(0, pos + 1);
+
+                auto progress = parseFlashcpProgress(line);
+                if (progress && *progress != lastProgress)
+                {
+                    lastProgress = *progress;
+                    setUpdateProgress(*progress);
+                }
+            }
+        };
+
+    std::string cmd = "flashcp -v " + path + " " + devPath.value();
+
+    bool success =
+        co_await asyncSystem(ctx, cmd, std::nullopt, std::move(outputCallback));
 
     std::filesystem::remove(path);
 

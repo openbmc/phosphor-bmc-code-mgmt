@@ -7,3 +7,5 @@ subdir('common')
 if get_option('cpld-software-update').allowed()
     subdir('cpld')
 endif
+
+subdir('spi-flash')

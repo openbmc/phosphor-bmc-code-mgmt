@@ -109,7 +109,7 @@ sdbusplus::async::task<uint8_t> waitForEndpoint(sdbusplus::async::context& ctx,
     // Subscribe before enumerating, otherwise an endpoint appearing between
     // the two steps would be missed.
     sdbusplus::async::match endpointAdded(
-        ctx, sdbusplus::bus::match::rules::interfacesAdded());
+        ctx, sdbusplus::match_rules::interfacesAdded());
 
     while (!ctx.stop_requested())
     {

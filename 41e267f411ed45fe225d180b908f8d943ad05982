@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16bcb47d_0d719f22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-10-05T07:12:54Z",
+      "side": 1,
+      "message": "No. This only changes how the BMC reads and computes the CRC, it doesn\u0027t touch NVM programming or any register writes. The CRC is read live from the device on every daemon start, so existing boards don\u0027t need reprogramming; the reported \"Version\" will just now match TI\u0027s GUI/dongle value instead of a mismatched one.\n\nPlease raise any concerns if you have them.\ncc @Jackson.Liu@quantatw.com @kevin.tung.openbmc@gmail.com @Daniel-Hsu@quantatw.com",
+      "parentUuid": "c80a984e_565fd717",
+      "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2993e39_3585db12",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-01T23:06:12Z",
       "side": 1,
       "message": "Please define the intent for the change as its not clear from the message.",
+      "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4f8198_ae63d922",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002581
+      },
+      "writtenOn": "2026-10-05T07:12:54Z",
+      "side": 1,
+      "message": "Updated the commit message to clarify the intent, thanks.",
+      "parentUuid": "c2993e39_3585db12",
       "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

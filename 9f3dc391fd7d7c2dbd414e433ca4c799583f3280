@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf1f802_523b1f36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-05T19:02:17Z",
+      "side": 1,
+      "message": "Why are these errors showing up ?",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "581ce27f_b5d2deff",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-05T19:02:17Z",
+      "side": 1,
+      "message": "Please define a constexpr for this 2 defining its meaning.",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0170567_9eb7c9a9",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-05T19:02:17Z",
+      "side": 1,
+      "message": "Why standby state ? Don\u0027t we need running here ?",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

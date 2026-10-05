@@ -34,6 +34,24 @@
       "parentUuid": "e937b18f_17a25287",
       "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd1cb548_79e33c70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-05T19:10:12Z",
+      "side": 1,
+      "message": "\u003e Thanks for your review, I checked into both:\n\u003e \n\u003e 1. Force-reboot vs. reboot-guard: You\u0027re right. force-reboot.service has Requires\u003dreboot-guard-disable.service and After\u003dreboot-guard-disable.service before running ExecStart\u003d/sbin/reboot, so it runs reboot-guard-disable first and disarms the guard prior to rebooting. The guard can\u0027t stop this reboot path.\n\u003e \n\u003e 2. Do other update services arm the guard? No. The reboot-guard is only armed by the BMC image updater (bmc/ActivationBlocksTransition::enableRebootGuard()). The common/ device-update framework (VR, CPLD, etc.) never touches it — it only exposes the xyz.openbmc_project.Software.ActivationBlocksTransition D-Bus interface (set around the write in Device::startUpdateAsync()).\n\u003e \n\u003e Because device updates don\u0027t arm the guard and force-reboot disarms it anyway, the systemd guard doesn\u0027t cover concurrent updates today.\n\nIts good to add this to device updates. @alexander.hansen@9elements.com Can you please look into this.\n\n\u003e \n\u003e A guard-based fix would require reworking common updaters to arm it and altering rebootBmc(). But because reboot-guard is a single non-ref-counted toggle, one update finishing would disarm it for all others, creating race conditions.\n\nThe rebootBMC() code only gets mostly used for BMC and some old BIOS related updates. So, i think it should be fine.\n\n\u003e \n\u003e Keying off the ActivationBlocksTransition D-Bus marker avoids these limitations entirely and gives us clean \"defer until peers finish\" semantics. Given these constraints, the D-Bus marker is the robust path here.\n\nPlease refer to my comments above.",
+      "parentUuid": "7c12d3ed_1ce7b343",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

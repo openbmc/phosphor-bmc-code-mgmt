@@ -220,8 +220,8 @@ bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)
             lg2::debug("{DEVNAME}", "DEVNAME", line);
             if (line.find(chip) == std::string::npos)
             {
-                lg2::debug("STOP UPDATING: The image does not match the chip.");
-                return -1;
+                lg2::error("STOP UPDATING: The image does not match the chip.");
+                return false;
             }
         }
 
@@ -245,8 +245,8 @@ bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)
                         static_cast<ssize_t>(line.find('C')) - 1;
                     if (numberSize <= 0)
                     {
-                        lg2::debug("Error in parsing checksum");
-                        return -1;
+                        lg2::error("Error in parsing checksum");
+                        return false;
                     }
                     static constexpr auto start = tagChecksum.length();
                     std::istringstream iss(line.substr(start, numberSize));
@@ -264,8 +264,8 @@ bool LatticeBaseCPLD::jedFileParser(const uint8_t* image, size_t imageSize)
                         static_cast<ssize_t>(line.find('H')) - 1;
                     if (numberSize <= 0)
                     {
-                        lg2::debug("Error in parsing usercode");
-                        return -1;
+                        lg2::error("Error in parsing usercode");
+                        return false;
                     }
                     std::istringstream iss(
                         line.substr(tagUserCodeHex.length(), numberSize));

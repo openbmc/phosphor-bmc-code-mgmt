@@ -16,6 +16,24 @@
       "message": "My understanding is the underlying issue might be different here -\n1. The reboot API uses a force-reboot which might be blowing away reboot guard. Did you look into that ?\n2. Also did you check if other update services were enabling the reboot guard before starting the update process?",
       "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c12d3ed_1ce7b343",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-10-05T04:46:21Z",
+      "side": 1,
+      "message": "Thanks for your review, I checked into both:\n\n1. Force-reboot vs. reboot-guard: You\u0027re right. force-reboot.service has Requires\u003dreboot-guard-disable.service and After\u003dreboot-guard-disable.service before running ExecStart\u003d/sbin/reboot, so it runs reboot-guard-disable first and disarms the guard prior to rebooting. The guard can\u0027t stop this reboot path.\n\n2. Do other update services arm the guard? No. The reboot-guard is only armed by the BMC image updater (bmc/ActivationBlocksTransition::enableRebootGuard()). The common/ device-update framework (VR, CPLD, etc.) never touches it — it only exposes the xyz.openbmc_project.Software.ActivationBlocksTransition D-Bus interface (set around the write in Device::startUpdateAsync()).\n\nBecause device updates don\u0027t arm the guard and force-reboot disarms it anyway, the systemd guard doesn\u0027t cover concurrent updates today.\n\nA guard-based fix would require reworking common updaters to arm it and altering rebootBmc(). But because reboot-guard is a single non-ref-counted toggle, one update finishing would disarm it for all others, creating race conditions.\n\nKeying off the ActivationBlocksTransition D-Bus marker avoids these limitations entirely and gives us clean \"defer until peers finish\" semantics. Given these constraints, the D-Bus marker is the robust path here.",
+      "parentUuid": "e937b18f_17a25287",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

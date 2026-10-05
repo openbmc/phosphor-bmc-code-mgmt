@@ -16,6 +16,24 @@
       "message": "Any reason for deferring here ?",
       "revId": "eee1f18c7c39bfaf3665bb09f57ddfe63c0b2568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cb800bd_f411c605",
+        "filename": "common/src/software_update.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-10-05T16:06:45Z",
+      "side": 1,
+      "message": "Yes... `software` and `allowedAllowedApplyTimes` are initialized later.  If we send the signals immediately they will contain uninitialized values for those members.",
+      "parentUuid": "d2d7b51e_ab9d2b05",
+      "revId": "eee1f18c7c39bfaf3665bb09f57ddfe63c0b2568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -16,6 +16,24 @@
       "message": "@dirkchen@amd.com Please add the Tested Section via Redfish for this patch.",
       "revId": "22a03b4cac44a79107926678e472b970ef45649f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ff4cba_c327db0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-10-05T10:27:30Z",
+      "side": 1,
+      "message": "@paligill@gmail.com  Add the Tested section.",
+      "parentUuid": "a286e8a7_723051e2",
+      "revId": "22a03b4cac44a79107926678e472b970ef45649f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -52,6 +52,24 @@
       "parentUuid": "7c12d3ed_1ce7b343",
       "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec6801d7_fe8cb9ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-06T14:04:34Z",
+      "side": 1,
+      "message": "\u003e Its good to add this to device updates.  Can you please look into this.\n\ni evaluated the existing guard and also it\u0027s `TODO` comment about systemd inhibitor locks in the old issue https://github.com/systemd/systemd/issues/949\n\nhttps://systemd.io/INHIBITOR_LOCKS/\n\ni believe it\u0027s not suitable to our solution because it\u0027s a special purpose thing that depends on a specific configuration of systemd and logind that openbmc does not have.\n\nFor openbmc, reboots are not coming from random places but only through defined code paths so we need not go through systemd to implement it.\n\nEven if we were able to pull in systemd-logind it would still be inconsistent to how we currently inhibit state transitions for the host with the `ActivationsBlocksTransition` interface.\n\nSo my preferred approach would be to go a similar route with the BMC as we did with the host.\n\nFor example with `Software.RebootBlocksNewUpdates` and `Software.UpdateBlocksReboot` we could make the updater watch for reboots and the reboot code path watch for updates.\n\n\n\n\u003e A guard-based fix would require reworking common updaters to arm it and altering rebootBmc(). But because reboot-guard is a single non-ref-counted toggle, one update finishing would disarm it for all others, creating race conditions\n\ni believe this is correct. We could evaluate placing multiple `reboot-guard-${name}.conf` files to have a per-update guard but that is not a clean approach compared to holding an interface. There is numerous ways to collide and D-Bus interfaces are the preferred approach.\n\n#### example approach\n\n(please let me know if you find any race/flaw here)\n\nHave a centralized lock for reboots and updates. A singleton D-Bus interface providing methods:\n`RequestDeviceUpdate()` and `RequestBMCReboot()`.\n\n#### bmc updater / reboot perspective\n\nThe service  creates its `RebootBlocksNewUpdates` interface  \n\nThe service wanting to reboot calls `RequestBMCReboot()` and PSM returns true/false.\n\nif false, the service occasionally re-requests the reboot until it is granted. No new updates can be started so eventually it will be granted.\n\n#### device code updater perspective\n\nA code updater calls `RequestDeviceUpdate()` and PSM returns true/false.\n\nIf true, service then creates its `UpdateBlocksReboot` interface and PSM can deny any `RequestBMCReboot()` request until all those interfaces have been removed.\n\nThe code updaters must also watch for `RebootBlocksNewUpdates` to reject new incoming updates in case a service wants to reboot.\n\n\n#### why should we not re-use ActivationBlocksTransition ?\n\nThe design does not intend for us to create this interface from the very start, it only comes later in the flow. With a pending reboot we can directly reject any update request.\n\nAlso the interface description specifically talks about a managed element. With a reboot it may be different because it\u0027s the BMC itself. So the services listening for this interface can avoid additional logic if we have a special purpose interface.",
+      "parentUuid": "dd1cb548_79e33c70",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

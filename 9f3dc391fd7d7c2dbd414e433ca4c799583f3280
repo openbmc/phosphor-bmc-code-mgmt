@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa6a1f9_e12664ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-10-06T03:58:08Z",
+      "side": 1,
+      "message": "This is the existing design in pt5161l.cpp. When the HostState signal is received, the task starts polling fw_load_status every 2 seconds.\n\nI changed the log level to debug() and removed the related log from the commit message since it is no longer shown.",
+      "parentUuid": "5bf1f802_523b1f36",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "581ce27f_b5d2deff",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03756ea9_c066247a",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-10-06T03:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "581ce27f_b5d2deff",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0170567_9eb7c9a9",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-05T19:02:17Z",
       "side": 1,
       "message": "Why standby state ? Don\u0027t we need running here ?",
+      "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127118b3_7b3ef97e",
+        "filename": "eeprom-device/pt5161l/pt5161l.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-10-06T03:58:08Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/OperatingSystem/Status.interface.yaml\n\nIt follows the definition and means the BIOS is ready. (Post completed)",
+      "parentUuid": "d0170567_9eb7c9a9",
       "revId": "9f3dc391fd7d7c2dbd414e433ca4c799583f3280",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

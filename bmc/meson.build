@@ -284,7 +284,13 @@ if build_tests.allowed()
         required: build_tests,
     )
     include_srcs = declare_dependency(
-        sources: ['utils.cpp', 'image_verify.cpp', 'images.cpp', 'version.cpp'],
+        sources: [
+            'utils.cpp',
+            'image_verify.cpp',
+            'images.cpp',
+            'sync_manager.cpp',
+            'version.cpp',
+        ],
     )
 
     test(

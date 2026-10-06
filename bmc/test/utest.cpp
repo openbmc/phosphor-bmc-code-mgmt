@@ -1,17 +1,23 @@
 #include "config.h"
 
 #include "image_verify.hpp"
+#include "sync_manager.hpp"
 #include "utils.hpp"
 #include "version.hpp"
 
+#include <fcntl.h>
 #include <openssl/evp.h>
 #include <stdlib.h>
+#include <sys/inotify.h>
+#include <unistd.h>
 
+#include <array>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <vector>
 
 #include <gtest/gtest.h>
@@ -428,6 +434,72 @@ TEST_F(FileTest, TestMergeFiles)
     std::string ssRetFile = readFile(fs::path(retFile));
     std::string ssDstFile = readFile(fs::path(dstFile));
     ASSERT_EQ(ssRetFile, ssDstFile);
+}
+
+namespace
+{
+
+struct ProcessEntryResult
+{
+    int rc;
+    bool childReturned;
+};
+
+// A forked child that returns from processEntry() reports itself via a pipe.
+ProcessEntryResult runProcessEntry(int mask, const fs::path& path)
+{
+    std::array<int, 2> fds{};
+    if (pipe2(fds.data(), O_CLOEXEC) != 0)
+    {
+        throw std::system_error(errno, std::generic_category(), "pipe2");
+    }
+
+    const pid_t parent = getpid();
+    const int rc = Sync::processEntry(mask, path);
+
+    if (getpid() != parent)
+    {
+        const char c = 'x';
+        [[maybe_unused]] auto n = write(fds[1], &c, 1);
+        _exit(0)
+    }
+
+    close(fds[1]);
+    char c{};
+    const auto bytes = read(fds[0], &c, 1);
+    close(fds[0]);
+
+    return {rc, bytes > 0};
+}
+
+} // namespace
+
+TEST(SyncTest, UnhandledMaskIsIgnored)
+{
+    const fs::path path{"/nonexistent/sync-test-entry"};
+
+    for (const int mask : {0, static_cast<int>(IN_Q_OVERFLOW),
+                           static_cast<int>(IN_UNMOUNT),
+                           static_cast<int>(IN_IGNORED),
+                           static_cast<int>(IN_ATTRIB)})
+    {
+        const auto result = runProcessEntry(mask, path);
+        EXPECT_EQ(result.rc, 0) << "mask " << mask;
+        EXPECT_FALSE(result.childReturned) << "mask " << mask;
+    }
+}
+
+TEST(SyncTest, ChildNeverReturnsOnDelete)
+{
+    const fs::path path{"/nonexistent/sync-test-entry"};
+
+    for (const int mask : {static_cast<int>(IN_DELETE),
+                           static_cast<int>(IN_DELETE | IN_ISDIR)})
+    {
+        const auto result = runProcessEntry(mask, path);
+        EXPECT_EQ(result.rc, 0) << "mask " << mask;
+        EXPECT_FALSE(result.childReturned) << "mask " << mask;
+    }
 }
 
 TEST(ExecTest, TestConstructArgv)

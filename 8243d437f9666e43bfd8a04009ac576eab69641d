@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75509bc5_0ca365d9",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-06T22:30:19Z",
+      "side": 1,
+      "message": "Why are you basing this on capture output and output callback ?",
+      "revId": "8243d437f9666e43bfd8a04009ac576eab69641d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

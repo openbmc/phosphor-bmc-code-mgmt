@@ -8,6 +8,7 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <cstdlib>
 #include <filesystem>
 #include <system_error>
 
@@ -23,6 +24,13 @@ namespace fs = std::filesystem;
 
 int Sync::processEntry(int mask, const fs::path& entryPath)
 {
+    if (!(mask & (IN_CLOSE_WRITE | IN_DELETE)))
+    {
+        debug("Ignoring inotify mask {MASK} for {PATH}", "MASK", lg2::hex,
+              mask, "PATH", entryPath);
+        return 0;
+    }
+
     int status{};
     pid_t pid = fork();
 
@@ -53,22 +61,17 @@ int Sync::processEntry(int mask, const fs::path& entryPath)
 
             execl("/usr/bin/rsync", "rsync", "-aI", entryPath.c_str(),
                   dst.c_str(), nullptr);
-
-            // execl only returns on fail
-            error("Error ({ERRNO}) occurred during the rsync call on {PATH}",
-                  "ERRNO", errno, "PATH", entryPath);
-            return -1;
         }
         else if (mask & IN_DELETE)
         {
             execl("/usr/bin/rsync", "rsync", "-a", "--delete",
                   entryPath.c_str(), dst.c_str(), nullptr);
-            // execl only returns on fail
-            error(
-                "Error ({ERRNO}) occurred during the rsync delete call on {PATH}",
-                "ERRNO", errno, "PATH", entryPath);
-            return -1;
         }
+
+        // execl only returns on fail; a forked child must never return.
+        error("Error ({ERRNO}) occurred during rsync on {PATH}, mask {MASK}",
+              "ERRNO", errno, "PATH", entryPath, "MASK", lg2::hex, mask);
+        _exit(EXIT_FAILURE);
     }
     else if (pid > 0)
     {

@@ -14,6 +14,8 @@ regulators_src = files(
     'tps25990/tps25990.cpp',
     'tps544x27/tps544x27.cpp',
     'tps544x27/csv_parser.cpp',
+    'tps544b28/tps544b28.cpp',
+    'tps544b28/csv_parser.cpp',
     'xdp71x/xdp71x.cpp',
     'xdpe1x2xx/xdpe1x2xx.cpp',
 )

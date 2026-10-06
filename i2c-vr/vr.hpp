@@ -26,6 +26,7 @@ enum class VRType
     XDP71X,
     TPS25990,
     TPS544X27,
+    TPS544B28,
     RS31390
 };
 

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a16376_147ee55d",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-06T10:04:20Z",
+      "side": 1,
+      "message": "```suggestion\n    const sdbusplus::object_path\u0026 path, const std::string\u0026 configIface,\n```",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "818da990a264c1db441b74905cdd4f533b429f36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

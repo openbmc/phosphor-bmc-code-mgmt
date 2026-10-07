@@ -16,6 +16,8 @@
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include <filesystem>
+#include <memory>
+#include <set>
 #endif
 
 namespace phosphor
@@ -219,6 +221,22 @@ class Activation : public ActivationInherit, public Flash
         emit_object_added();
     }
 
+    ~Activation() override
+    {
+        // A deferred-reboot timeout task may still be sleeping while holding a
+        // copy of the shared alive flag; mark this object gone so it does not
+        // resume onto freed memory.
+        if (rebootDeferralAlive)
+        {
+            *rebootDeferralAlive = false;
+        }
+    }
+
+    Activation(const Activation&) = delete;
+    Activation& operator=(const Activation&) = delete;
+    Activation(Activation&&) = delete;
+    Activation& operator=(Activation&&) = delete;
+
     /** @brief Overloaded Activation property setter function
      *
      * @param[in] value - One of Activation::Activations
@@ -311,6 +329,46 @@ class Activation : public ActivationInherit, public Flash
      **/
     void rebootBmc();
 
+    /**
+     * @brief Snapshot the object paths currently exposing
+     *        xyz.openbmc_project.Software.ActivationBlocksTransition - the
+     *        interface an updater exposes while its update must block state
+     *        transitions (including a BMC reboot). Our own object is excluded.
+     *
+     * @return the set of peer-update object paths in progress right now
+     **/
+    std::set<std::string> activeBlockerPaths();
+
+    /** @brief True if another firmware update is blocking transitions now. */
+    bool otherUpdateInProgress();
+
+    /**
+     * @brief Defer the BMC reboot until no other update is in progress.
+     *
+     * Subscribes to InterfacesAdded/Removed under the software namespace and
+     * tracks the set of peer updates exposing ActivationBlocksTransition
+     * purely from the signal payloads, rebooting once the set is empty. Bounded
+     * by a timeout so a stuck peer update cannot defer the reboot forever.
+     **/
+    void deferRebootUntilOtherUpdatesComplete();
+
+    /** @brief InterfacesAdded handler: track a peer update that starts while
+     *         the reboot is deferred, so the reboot keeps waiting for it. */
+    void onBlockerAdded(sdbusplus::message_t& msg);
+
+    /** @brief InterfacesRemoved handler: drop a completed peer update and
+     *         issue the reboot once none remain. */
+    void onBlockerRemoved(sdbusplus::message_t& msg);
+
+    /** @brief Tear down the watches and marker and issue the deferred reboot,
+     *         exactly once. */
+    void issueDeferredReboot();
+
+    /** @brief Bounded fallback that reboots even if a peer update never
+     *         completes. Holds a shared "alive" flag so it never touches this
+     *         Activation after it has been destroyed. */
+    sdbusplus::async::task<> rebootAfterTimeout(std::shared_ptr<bool> alive);
+
     /** @brief D-Bus context */
     sdbusplus::async::context& ctx;
 
@@ -340,6 +398,33 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Used to subscribe to dbus systemd signals **/
     sdbusplus::match systemdSignals;
+
+    /** @brief Peer-update object paths (exposing ActivationBlocksTransition)
+     *         still blocking this deferred reboot. The reboot is issued once
+     *         this becomes empty. */
+    std::set<std::string> pendingBlockers;
+
+    /** @brief True only while the pending set is being seeded, so the watch
+     *         callbacks do not issue a reboot before the initial set is known.
+     */
+    bool deferralSeeding = false;
+
+    /** @brief Watches for ActivationBlocksTransition objects appearing while a
+     *         reboot is deferred, so a peer update that starts mid-wait keeps
+     *         the reboot deferred. */
+    std::unique_ptr<sdbusplus::bus::match_t> blockerAddedMatch;
+
+    /** @brief Watches for ActivationBlocksTransition objects disappearing, so
+     *         the reboot is issued once the last peer update completes. */
+    std::unique_ptr<sdbusplus::bus::match_t> blockerRemovedMatch;
+
+    /** @brief One-shot guard so exactly one reboot is issued, no matter whether
+     *         the watch callback or the timeout gets there first. */
+    bool rebootIssued = false;
+
+    /** @brief Shared "still alive" flag for the detached timeout task, so it
+     *         never touches this Activation after it has been destroyed. */
+    std::shared_ptr<bool> rebootDeferralAlive;
 
     /** @brief Tracks whether the read-write volume has been created as
      * part of the activation process. **/

@@ -140,6 +140,24 @@
       "parentUuid": "e3de646d_b3adc621",
       "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8e5374_7385fa88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2026-10-07T07:39:48Z",
+      "side": 1,
+      "message": "Yes, we have already discussed this with the HSC vendor and agreed on the checksum calculation method. The specification clarification will take some time to be added, but the checksum method itself has been confirmed.",
+      "parentUuid": "db920282_244b0a6d",
+      "revId": "41e267f411ed45fe225d180b908f8d943ad05982",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

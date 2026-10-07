@@ -88,6 +88,74 @@
       "parentUuid": "ec6801d7_fe8cb9ba",
       "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdd47ac5_8730d1ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-07T11:20:57Z",
+      "side": 1,
+      "message": "Thanks for working on this. I left a few questions on the event handling and on the lifetime of the timeout coroutine; the overall approach makes sense to me.",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "906b398d_4832bb8b",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-07T11:20:57Z",
+      "side": 1,
+      "message": "This matches every InterfacesRemoved on the system bus, and each one triggers a blocking mapper call in otherUpdateInProgress(). Could it be narrowed, e.g. sdbusRule::interfacesRemoved() + sdbusRule::argNpath(0, \"/xyz/openbmc_project/software/\"), and only re-check when the removed interfaces in the message include ActivationBlocksTransition?",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19e568d_ff84dbe1",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-07T11:20:57Z",
+      "side": 1,
+      "message": "rebootAfterTimeout() is a member coroutine that uses this after sleeping 30 minutes. If this Activation is destroyed during that window (e.g. the Version is deleted over D-Bus and ItemUpdater::erase() removes the activation), the coroutine would resume on a freed object.\n\notherUpdatesDoneMatch is a member, so it\u0027s cleaned up safely, but the spawned task isn\u0027t tied to the object\u0027s lifetime. Could this check a stop token or a lifetime guard after the sleep_for?",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3349bce_edbea05f",
+        "filename": "bmc/activation.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-07T11:20:57Z",
+      "side": 1,
+      "message": "This handler runs on InterfacesRemoved and immediately queries the mapper via GetSubTreePaths. ObjectMapper processes the same InterfacesRemoved signal asynchronously, so could it still return the path whose ActivationBlocksTransition was just removed? In that case the reboot would wait for an unrelated later InterfacesRemoved, or the full 30-minute timeout.\n\nWould it be more reliable to take the set of blocking paths once in deferRebootUntilOtherUpdatesComplete(), then remove entries by reading the object path and interface list from the InterfacesRemoved message itself, rebooting when the set becomes empty?",
+      "revId": "07b8738c5fb4e136f9489c69fabbc2ecd4800ed0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

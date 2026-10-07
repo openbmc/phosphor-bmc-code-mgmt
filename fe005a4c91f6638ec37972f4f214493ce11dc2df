@@ -86,6 +86,30 @@
       },
       "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d8125e_eeaee52b",
+        "filename": "spi-flash/spi_factory.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-07T10:04:01Z",
+      "side": 1,
+      "message": "Does it make sense to roll the `dryRun` parameter also into `SPIDevParams`?\n\nSince we have `SoftwareConfig` and `SPIDevice` already, would a name like `SPIDeviceConfig`  work as well? \n\nOverall i cannot say if it\u0027s the right design (would have to wait for Jagpal\u0027s feedback) but it looks better than passing 11 parameters.",
+      "parentUuid": "c74436f1_56aaef9c",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

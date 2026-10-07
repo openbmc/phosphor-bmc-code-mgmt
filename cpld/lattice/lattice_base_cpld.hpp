@@ -197,12 +197,12 @@ class LatticeBaseCPLD
     sdbusplus::async::task<bool> programDone();
     sdbusplus::async::task<bool> disableConfigInterface();
     sdbusplus::async::task<bool> waitBusyAndVerify();
+    sdbusplus::async::task<bool> readBusyFlag(uint8_t& busyFlag);
 
     void reportPageProgress(size_t offset, size_t totalSize);
 
   private:
     virtual sdbusplus::async::task<bool> readUserCode(uint32_t&) = 0;
-    sdbusplus::async::task<bool> readBusyFlag(uint8_t& busyFlag);
     sdbusplus::async::task<bool> readStatusReg(uint8_t& statusReg);
     static std::string uint32ToHexStr(uint32_t value);
 };

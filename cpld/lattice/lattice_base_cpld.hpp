@@ -54,12 +54,13 @@ inline std::string getLatticeChipStr(latticeChip chip,
         {latticeChip::LFMXO5_65T, "LFMXO5_65T"},
         {latticeChip::LFMXO5_15D, "LFMXO5_15D"},
     };
-    auto chipString = chipStringMap.at(chip);
-    if (chipStringMap.find(chip) == chipStringMap.end())
+    auto it = chipStringMap.find(chip);
+    if (it == chipStringMap.end())
     {
         lg2::error("Unsupported chip enum: {CHIPENUM}", "CHIPENUM", chip);
         return "";
     }
+    auto chipString = it->second;
 
     switch (stringType)
     {

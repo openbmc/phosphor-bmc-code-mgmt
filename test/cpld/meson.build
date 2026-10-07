@@ -1,4 +1,4 @@
-testcases = ['lattice_chip_str']
+testcases = ['lattice_chip_str', 'lattice_busy_flag']
 
 foreach t : testcases
     test(
@@ -6,6 +6,7 @@ foreach t : testcases
         executable(
             t,
             f'@t@.cpp',
+            '../../cpld/lattice/lattice_base_cpld.cpp',
             include_directories: [common_include],
             dependencies: [
                 libi2c_dep,

@@ -62,6 +62,30 @@
       },
       "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74436f1_56aaef9c",
+        "filename": "spi-flash/spi_factory.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-07T08:50:34Z",
+      "side": 1,
+      "message": "Hello! I also thought about that and perfectly agree. In fact this function already gets DBus parameters (service, path, ifact), so it can query the rest by itself. So, i would encapsulate SPI parameters into a struct, like:\n  \nstruct SPIDevParams\n{\n    uint64_t spiControllerIndex;\n    uint64_t spiDeviceIndex;\n\n};\n\n  \nAnd implement one function, like getSPIParameters(service, path, configIface) which fills it in. This would also get rid of unused params in createBIOSDevice(). So the device creation code would look like:\n\nstatic sdbusplus::async::task\u003cstd::unique_ptr\u003cSPIDevice\u003e\u003e createBIOSDevice(\n    sdbusplus::async::context\u0026 ctx\u003e, bool dryRun, GPIOGroup\u0026\u0026 muxGPIO,\n    SoftwareConfig\u0026 config,\n    SoftwareManager* parent, const std::string\u0026 service,\n    const sdbusplus::object_path\u0026 path, const std::string\u0026 configIFace)\n{\n    auto spi_params \u003d co_await getSPIDevParameters(service, path, configIFace);\n\n    co_return std::make_unique\u003cBIOSDevice\u003e(\n        ctx, spi_params, dryRun, names, values, config,\n        parent);\n}\n\nstatic sdbusplus::async::task\u003cstd::unique_ptr\u003cSPIDevice\u003e\u003e createMyFancyVendorSpecificDevice(\n    sdbusplus::async::context\u0026 ctx\u003e, bool dryRun, GPIOGroup\u0026\u0026 muxGPIO,\n    SoftwareConfig\u0026 config,\n    SoftwareManager* parent, const std::string\u0026 service,\n    const sdbusplus::object_path\u0026 path, const std::string\u0026 configIFace)\n{\n    auto spi_params \u003d co_await getSPIDevParameters(service, path, configIFace);\n    auto my_extra_params \u003d co_await getMyFancyParameters(service, path, configIFace);\n  \n    co_return std::make_unique\u003cMyVendorSpecificDevice\u003e(\n        ctx, spi_params, extra_params, dryRun, muxGPIO, config,\n        parent);\n}\n\nWould such design be okay for you ?",
+      "parentUuid": "0d88ee66_c10bd818",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

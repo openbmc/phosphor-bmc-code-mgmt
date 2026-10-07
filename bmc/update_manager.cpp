@@ -185,6 +185,14 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     fs::path imageDirPath = std::string{IMG_UPLOAD_DIR};
     imageDirPath /= id;
     fs::rename(tmpDirPath, imageDirPath, ec);
+    if (ec)
+    {
+        error("Failed to rename {SRC} to {DST}: {ERROR}", "SRC", tmpDirPath,
+              "DST", imageDirPath, "ERROR", ec.message());
+        processImageFailed(image, id);
+        report<SoftwareErrors::InternalFailure>(InternalFail::FAIL("rename"));
+        co_return;
+    }
     tmpDirToRemove.path.clear();
 
     auto filePath = imageDirPath.string();

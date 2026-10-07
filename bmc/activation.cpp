@@ -14,6 +14,15 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
 
+#include <algorithm>
+#include <chrono>
+#include <map>
+#include <memory>
+#include <set>
+#include <string>
+#include <variant>
+#include <vector>
+
 #ifdef WANT_SIGNATURE_VERIFY
 #include "image_verify.hpp"
 #endif
@@ -209,8 +218,17 @@ void Activation::onFlashWriteSuccess()
 
     if (Activation::checkApplyTimeImmediate())
     {
-        info("Image Active and ApplyTime is immediate; rebooting BMC.");
-        Activation::rebootBmc();
+        if (otherUpdateInProgress())
+        {
+            info("Another firmware update is in progress; deferring the BMC "
+                 "reboot until it completes.");
+            deferRebootUntilOtherUpdatesComplete();
+        }
+        else
+        {
+            info("Image Active and ApplyTime is immediate; rebooting BMC.");
+            Activation::rebootBmc();
+        }
     }
     else
     {
@@ -481,6 +499,205 @@ void Activation::rebootBmc()
               "ERROR", e);
         report<InternalFailure>();
     }
+}
+
+std::set<std::string> Activation::activeBlockerPaths()
+{
+    using ActivationBlocksTransitionIntf = sdbusplus::common::xyz::
+        openbmc_project::software::ActivationBlocksTransition;
+
+    auto method = bus.new_method_call(MAPPER_BUSNAME, MAPPER_PATH,
+                                      MAPPER_BUSNAME, "GetSubTreePaths");
+    method.append(
+        "/xyz/openbmc_project/software", 0,
+        std::vector<std::string>{ActivationBlocksTransitionIntf::interface});
+
+    std::vector<std::string> paths;
+    try
+    {
+        bus.call(method).read(paths);
+    }
+    catch (const sdbusplus::exception_t& e)
+    {
+        error("Failed to query ActivationBlocksTransition objects: {ERROR}",
+              "ERROR", e);
+        return {};
+    }
+
+    // Any such object other than our own is a peer update in progress.
+    std::set<std::string> blockers;
+    for (const auto& p : paths)
+    {
+        if (p != path)
+        {
+            blockers.insert(p);
+        }
+    }
+    return blockers;
+}
+
+bool Activation::otherUpdateInProgress()
+{
+    return !activeBlockerPaths().empty();
+}
+
+void Activation::deferRebootUntilOtherUpdatesComplete()
+{
+    // Subscribe before taking the snapshot so a completion that happens between
+    // the two is still observed. The matches are narrowed to the software
+    // namespace so we are not woken for unrelated object changes on the bus,
+    // and the pending set is driven purely from the signal payloads - never
+    // from a fresh mapper query, which can still report an object whose removal
+    // we are currently handling.
+    deferralSeeding = true;
+    blockerRemovedMatch = std::make_unique<sdbusplus::bus::match_t>(
+        bus,
+        sdbusRule::interfacesRemovedAtPath("/xyz/openbmc_project/software/"),
+        [this](sdbusplus::message_t& msg) { onBlockerRemoved(msg); });
+    blockerAddedMatch = std::make_unique<sdbusplus::bus::match_t>(
+        bus, sdbusRule::interfacesAddedAtPath("/xyz/openbmc_project/software/"),
+        [this](sdbusplus::message_t& msg) { onBlockerAdded(msg); });
+
+    // Seed the pending set, unioning with anything the watches recorded while
+    // the snapshot was in flight so a peer update is never dropped.
+    for (const auto& p : activeBlockerPaths())
+    {
+        pendingBlockers.insert(p);
+    }
+    deferralSeeding = false;
+
+    if (pendingBlockers.empty())
+    {
+        // Everything already completed during setup; reboot now.
+        info("No other firmware updates remain; issuing the deferred BMC "
+             "reboot.");
+        issueDeferredReboot();
+        return;
+    }
+
+    // Bounded fallback so a stuck peer update cannot defer the reboot forever.
+    // The task holds a copy of the shared alive flag, so it is safe even if
+    // this Activation is destroyed while it sleeps.
+    rebootDeferralAlive = std::make_shared<bool>(true);
+    ctx.spawn(rebootAfterTimeout(rebootDeferralAlive));
+}
+
+void Activation::onBlockerAdded(sdbusplus::message_t& msg)
+{
+    using ActivationBlocksTransitionIntf = sdbusplus::common::xyz::
+        openbmc_project::software::ActivationBlocksTransition;
+    using BasicVariant =
+        std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
+                     double, int32_t, uint32_t, int16_t, uint16_t, uint8_t,
+                     bool>;
+    using InterfacesMap =
+        std::map<std::string, std::map<std::string, BasicVariant>>;
+
+    if (rebootIssued)
+    {
+        return;
+    }
+
+    sdbusplus::message::object_path objPath;
+    InterfacesMap interfaces;
+    try
+    {
+        msg.read(objPath, interfaces);
+    }
+    catch (const sdbusplus::exception_t& e)
+    {
+        error("Failed to parse InterfacesAdded: {ERROR}", "ERROR", e);
+        return;
+    }
+
+    if (objPath.str == path ||
+        !interfaces.contains(ActivationBlocksTransitionIntf::interface))
+    {
+        return;
+    }
+
+    // A peer update started while our reboot is deferred; keep deferring.
+    pendingBlockers.insert(objPath.str);
+}
+
+void Activation::onBlockerRemoved(sdbusplus::message_t& msg)
+{
+    using ActivationBlocksTransitionIntf = sdbusplus::common::xyz::
+        openbmc_project::software::ActivationBlocksTransition;
+
+    if (rebootIssued)
+    {
+        return;
+    }
+
+    sdbusplus::message::object_path objPath;
+    std::vector<std::string> interfaces;
+    try
+    {
+        msg.read(objPath, interfaces);
+    }
+    catch (const sdbusplus::exception_t& e)
+    {
+        error("Failed to parse InterfacesRemoved: {ERROR}", "ERROR", e);
+        return;
+    }
+
+    if (std::ranges::find(interfaces,
+                          ActivationBlocksTransitionIntf::interface) ==
+        interfaces.end())
+    {
+        return;
+    }
+
+    pendingBlockers.erase(objPath.str);
+
+    if (!deferralSeeding && pendingBlockers.empty())
+    {
+        info("Other firmware updates finished; issuing the deferred BMC "
+             "reboot.");
+        issueDeferredReboot();
+    }
+}
+
+void Activation::issueDeferredReboot()
+{
+    // Guard so exactly one reboot is issued; this runs both from a watch
+    // callback and from the timeout. The watches are deliberately left in place
+    // - destroying a match from inside its own callback is unsafe - and are
+    // torn down when this Activation is destroyed; the rebootIssued flag makes
+    // any further callbacks no-ops. Clearing the alive flag makes a
+    // still-sleeping timeout task a no-op too.
+    if (rebootIssued)
+    {
+        return;
+    }
+    rebootIssued = true;
+
+    if (rebootDeferralAlive)
+    {
+        *rebootDeferralAlive = false;
+    }
+
+    rebootBmc();
+}
+
+sdbusplus::async::task<> Activation::rebootAfterTimeout(
+    std::shared_ptr<bool> alive)
+{
+    constexpr auto maxWait = std::chrono::minutes(30);
+
+    co_await sdbusplus::async::sleep_for(ctx, maxWait);
+
+    // This Activation may have been destroyed while we slept. Only touch it if
+    // the shared flag still says it is alive; the short-circuit guarantees we
+    // never dereference a member on a freed object.
+    if (*alive && !rebootIssued)
+    {
+        warning("Timed out waiting for other updates to finish; issuing the "
+                "BMC reboot.");
+        issueDeferredReboot();
+    }
+    co_return;
 }
 
 } // namespace updater

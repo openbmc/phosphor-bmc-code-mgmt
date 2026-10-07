@@ -13,6 +13,7 @@
 #include <xyz/openbmc_project/Software/Activation/server.hpp>
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
 #include <xyz/openbmc_project/Software/ApplyTime/common.hpp>
+#include <xyz/openbmc_project/Software/RebootBlocksNewUpdates/server.hpp>
 
 #ifdef WANT_SIGNATURE_VERIFY
 #include <filesystem>
@@ -43,6 +44,8 @@ using RedundancyPriorityInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::RedundancyPriority>;
 using ActivationProgressInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::ActivationProgress>;
+using RebootBlocksNewUpdatesInherit = sdbusplus::server::object_t<
+    sdbusplus::server::xyz::openbmc_project::software::RebootBlocksNewUpdates>;
 using ApplyTimeIntf =
     sdbusplus::common::xyz::openbmc_project::software::ApplyTime;
 
@@ -425,6 +428,11 @@ class Activation : public ActivationInherit, public Flash
     /** @brief Shared "still alive" flag for the detached timeout task, so it
      *         never touches this Activation after it has been destroyed. */
     std::shared_ptr<bool> rebootDeferralAlive;
+
+    /** @brief While a reboot is deferred, exposes RebootBlocksNewUpdates so
+     *         other updaters refuse to start new updates until the pending BMC
+     *         reboot has happened. Reset when the reboot is issued. */
+    std::unique_ptr<RebootBlocksNewUpdatesInherit> rebootBlocksNewUpdates;
 
     /** @brief Tracks whether the read-write volume has been created as
      * part of the activation process. **/

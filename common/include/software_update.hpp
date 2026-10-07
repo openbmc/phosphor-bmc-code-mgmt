@@ -35,6 +35,8 @@ class SoftwareUpdate :
     auto get_property(allowed_apply_times_t aat) const;
 
   private:
+    sdbusplus::async::context& ctx;
+
     Software& software;
 
     const std::set<RequestedApplyTimes> allowedApplyTimes;

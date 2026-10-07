@@ -7,7 +7,12 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async/context.hpp>
+#include <xyz/openbmc_project/ObjectMapper/client.hpp>
+#include <xyz/openbmc_project/Software/RebootBlocksNewUpdates/common.hpp>
 #include <xyz/openbmc_project/Software/Update/aserver.hpp>
+
+#include <string>
+#include <vector>
 
 PHOSPHOR_LOG2_USING;
 
@@ -28,7 +33,7 @@ SoftwareUpdate::SoftwareUpdate(
     const std::set<RequestedApplyTimes>& allowedApplyTimes) :
     sdbusplus::aserver::xyz::openbmc_project::software::Update<SoftwareUpdate>(
         ctx, path),
-    software(software), allowedApplyTimes(allowedApplyTimes)
+    ctx(ctx), software(software), allowedApplyTimes(allowedApplyTimes)
 {
     emit_added();
 }
@@ -50,6 +55,35 @@ auto SoftwareUpdate::method_call(start_update_t /*unused*/, auto image,
     {
         error("An update is already in progress, cannot update.");
         elog<Unavailable>();
+    }
+
+    // Refuse to start a new update while a BMC reboot is pending. An updater
+    // exposes Software.RebootBlocksNewUpdates while its reboot is deferred;
+    // starting new updates now could keep extending that wait.
+    {
+        using RebootBlocksNewUpdates = sdbusplus::common::xyz::openbmc_project::
+            software::RebootBlocksNewUpdates;
+        auto mapper =
+            sdbusplus::client::xyz::openbmc_project::ObjectMapper<>(ctx)
+                .service("xyz.openbmc_project.ObjectMapper")
+                .path("/xyz/openbmc_project/object_mapper");
+        std::vector<std::string> blockers;
+        try
+        {
+            blockers = co_await mapper.get_sub_tree_paths(
+                "/xyz/openbmc_project/software", 0,
+                {RebootBlocksNewUpdates::interface});
+        }
+        catch (const sdbusplus::exception_t&)
+        {
+            // The mapper returns an error when no object implements the
+            // interface; that just means nothing is blocking, so proceed.
+        }
+        if (!blockers.empty())
+        {
+            error("A BMC reboot is pending; refusing to start a new update.");
+            elog<Unavailable>();
+        }
     }
 
     device.updateInProgress = true;

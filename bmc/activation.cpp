@@ -543,6 +543,13 @@ bool Activation::otherUpdateInProgress()
 
 void Activation::deferRebootUntilOtherUpdatesComplete()
 {
+    // Expose RebootBlocksNewUpdates so other updaters refuse to start new
+    // updates while this reboot is pending; otherwise a steady stream of new
+    // updates could keep extending the wait up to the timeout.
+    rebootBlocksNewUpdates = std::make_unique<RebootBlocksNewUpdatesInherit>(
+        bus, path.c_str(),
+        RebootBlocksNewUpdatesInherit::action::emit_interface_added);
+
     // Subscribe before taking the snapshot so a completion that happens between
     // the two is still observed. The matches are narrowed to the software
     // namespace so we are not woken for unrelated object changes on the bus,
@@ -673,6 +680,7 @@ void Activation::issueDeferredReboot()
     }
     rebootIssued = true;
 
+    rebootBlocksNewUpdates.reset();
     if (rebootDeferralAlive)
     {
         *rebootDeferralAlive = false;

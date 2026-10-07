@@ -480,8 +480,9 @@ sdbusplus::async::task<bool> LatticeBaseCPLD::readBusyFlag(uint8_t& busyFlag)
     std::vector<uint8_t> response(resSize, 0);
 
     auto success = i2cInterface.sendReceive(request, response);
-    if (!success && response.size() != resSize)
+    if (!success)
     {
+        lg2::error("Failed to send read busy flag request.");
         co_return false;
     }
     busyFlag = response.at(0);

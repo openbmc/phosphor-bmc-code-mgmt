@@ -565,6 +565,13 @@ bool Activation::otherUpdateInProgress()
 
 void Activation::deferRebootUntilOtherUpdatesComplete()
 {
+    // Expose RebootBlocksNewUpdates so other updaters refuse to start new
+    // updates while this reboot is pending; otherwise a steady stream of new
+    // updates could keep extending the wait up to the timeout.
+    rebootBlocksNewUpdates = std::make_unique<RebootBlocksNewUpdatesInherit>(
+        bus, path.c_str(),
+        RebootBlocksNewUpdatesInherit::action::emit_interface_added);
+
     // Subscribe before taking the snapshot so a removal that happens during the
     // (synchronous) snapshot below is not lost: sd-bus queues it and delivers
     // it to the watch once we return to the event loop. The matches are
@@ -722,6 +729,7 @@ void Activation::issueDeferredReboot()
     // further callbacks no-ops. Clearing the alive flag makes a still-sleeping
     // timeout task a no-op too.
     rebootIssued = true;
+    rebootBlocksNewUpdates.reset();
     if (rebootDeferralAlive)
     {
         *rebootDeferralAlive = false;

@@ -31,14 +31,20 @@ enum FlashTool
     flashToolFlashcp,
 };
 
+struct SPIDeviceConfig
+{
+    uint64_t spiControllerIndex;
+    uint64_t spiDeviceIndex;
+};
+
 class SPIDevice : public Device
 {
   public:
     using Device::softwareCurrent;
-    SPIDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-              uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-              SoftwareConfig& config, SoftwareManager* parent,
-              enum FlashLayout layout, enum FlashTool tool);
+    SPIDevice(sdbusplus::async::context& ctx, const SPIDeviceConfig& spiConfig,
+              bool dryRun, GPIOGroup&& muxGPIO, SoftwareConfig& config,
+              SoftwareManager* parent, enum FlashLayout layout,
+              enum FlashTool tool);
 
     ~SPIDevice() override = default;
     SPIDevice(const SPIDevice&) = delete;

@@ -57,15 +57,15 @@ static std::optional<std::string> getSPIDevAddr(uint64_t spiControllerIndex)
 }
 
 SPIDevice::SPIDevice(sdbusplus::async::context& ctx,
-                     uint64_t spiControllerIndex, uint64_t spiDeviceIndex,
-                     bool dryRun, GPIOGroup&& mux, SoftwareConfig& config,
+                     const SPIDeviceConfig& spiConfig, bool dryRun,
+                     GPIOGroup&& mux, SoftwareConfig& config,
                      SoftwareManager* parent, enum FlashLayout layout,
                      enum FlashTool tool) :
     Device(ctx, config, parent,
            {RequestedApplyTimes::Immediate, RequestedApplyTimes::OnReset}),
     dryRun(dryRun), muxGPIO(std::move(mux)),
-    spiControllerIndex(spiControllerIndex), spiDeviceIndex(spiDeviceIndex),
-    layout(layout), tool(tool)
+    spiControllerIndex(spiConfig.spiControllerIndex),
+    spiDeviceIndex(spiConfig.spiDeviceIndex), layout(layout), tool(tool)
 {
     auto optAddr = getSPIDevAddr(spiControllerIndex);
 

@@ -159,7 +159,7 @@ class ItemUpdater : public ItemUpdaterInherit
     ActivationIntf::Activations verifyAndCreateObjects(
         std::string& id, std::string& path, std::string& version,
         VersionClass::VersionPurpose purpose, std::string& extendedVersion,
-        std ::string& filePath, std::vector<std::string>& compatibleNames);
+        std::string& filePath, std::vector<std::string>& compatibleNames);
 
     /**
      * @brief Creates the activation object

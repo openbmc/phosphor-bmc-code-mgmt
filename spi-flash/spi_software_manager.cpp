@@ -22,44 +22,11 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
     const std::string& service, const sdbusplus::object_path& path,
     SoftwareConfig& config)
 {
-    std::string configIface =
-        "xyz.openbmc_project.Configuration." + config.configType;
-
-    const std::string& chipType = config.configType;
-
-    std::optional<uint64_t> spiControllerIndex =
-        co_await dbusGetRequiredProperty<uint64_t>(
-            ctx, service, path, configIface, "SPIControllerIndex");
-
-    if (!spiControllerIndex.has_value())
-    {
-        error("Missing property: SPIControllerIndex");
-        co_return false;
-    }
-
-    std::optional<uint64_t> spiDeviceIndex =
-        co_await dbusGetRequiredProperty<uint64_t>(
-            ctx, service, path, configIface, "SPIDeviceIndex");
-
-    if (!spiDeviceIndex.has_value())
-    {
-        error("Missing property: SPIDeviceIndex");
-        co_return false;
-    }
-
-    GPIOGroup muxGPIO = co_await dbusGetGPIOs(
-        ctx, service, path, configIface + ".MuxOutputs", "Mux");
-
-    debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
-          "INDEX2", spiDeviceIndex.value());
-
-    auto spiDevice = SPIFactory::instance().create(
-        chipType, ctx, spiControllerIndex.value(), spiDeviceIndex.value(),
-        dryRun, std::move(muxGPIO), config, this);
+    auto spiDevice = co_await SPIFactory::instance().create(
+        ctx, service, path, dryRun, config, this);
 
     if (spiDevice == nullptr)
     {
-        error("Unsupported SPI device type: {TYPE}", "TYPE", chipType);
         co_return false;
     }
 

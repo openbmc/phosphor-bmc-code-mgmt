@@ -10,9 +10,9 @@ using namespace phosphor::software::system_state;
 class BIOSDevice : public SPIDevice
 {
   public:
-    BIOSDevice(sdbusplus::async::context& ctx, uint64_t spiControllerIndex,
-               uint64_t spiDeviceIndex, bool dryRun, GPIOGroup&& muxGPIO,
-               SoftwareConfig& config, SoftwareManager* parent);
+    BIOSDevice(sdbusplus::async::context& ctx, const SPIDeviceConfig& spiConfig,
+               bool dryRun, GPIOGroup&& muxGPIO, SoftwareConfig& config,
+               SoftwareManager* parent);
 
     std::string getVersion() override;
 

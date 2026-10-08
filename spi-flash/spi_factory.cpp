@@ -12,37 +12,99 @@ SPIFactory& SPIFactory::instance()
     return factory;
 }
 
-std::unique_ptr<SPIDevice> SPIFactory::create(
-    const std::string& chipType, sdbusplus::async::context& ctx,
-    uint64_t spiControllerIndex, uint64_t spiDeviceIndex, bool dryRun,
-    GPIOGroup&& muxGPIO, SoftwareConfig& config, SoftwareManager* parent)
+static sdbusplus::async::task<std::optional<SPIDeviceConfig>>
+    getSPIDeviceConfig(sdbusplus::async::context& ctx,
+                       const std::string& service,
+                       const sdbusplus::object_path& path,
+                       const std::string& configIface)
 {
-    try
+    std::optional<uint64_t> spiControllerIndex =
+        co_await dbusGetRequiredProperty<uint64_t>(
+            ctx, service, path, configIface, "SPIControllerIndex");
+
+    if (!spiControllerIndex.has_value())
     {
-        if (chipType == getSpiTypeStr(spiChip::INTEL_HOST_BIOS) ||
-            chipType == getSpiTypeStr(spiChip::HOST_BIOS))
+        error("Missing property: SPIControllerIndex");
+        co_return std::nullopt;
+    }
+
+    std::optional<uint64_t> spiDeviceIndex =
+        co_await dbusGetRequiredProperty<uint64_t>(
+            ctx, service, path, configIface, "SPIDeviceIndex");
+
+    if (!spiDeviceIndex.has_value())
+    {
+        error("Missing property: SPIDeviceIndex");
+        co_return std::nullopt;
+    }
+
+    debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
+          "INDEX2", spiDeviceIndex.value());
+
+    co_return SPIDeviceConfig{spiControllerIndex.value(),
+                              spiDeviceIndex.value()};
+}
+
+template <class T>
+static sdbusplus::async::task<std::unique_ptr<SPIDevice>>
+    createGenericSPIDevice(sdbusplus::async::context& ctx,
+                           const std::string& service,
+                           const sdbusplus::object_path& path, bool dryRun,
+                           SoftwareConfig& config, SoftwareManager* parent)
+{
+    std::string configIface =
+        "xyz.openbmc_project.Configuration." + config.configType;
+    std::optional<SPIDeviceConfig> spiConfig =
+        co_await getSPIDeviceConfig(ctx, service, path, configIface);
+
+    if (!spiConfig.has_value())
+    {
+        co_return nullptr;
+    }
+
+    GPIOGroup muxGPIO = co_await dbusGetGPIOs(
+        ctx, service, path, configIface + ".MuxOutputs", "Mux");
+
+    co_return std::make_unique<T>(ctx, spiConfig.value(), dryRun,
+                                  std::move(muxGPIO), config, parent);
+}
+
+static const std::unordered_map<
+    std::string,
+    std::function<sdbusplus::async::task<std::unique_ptr<SPIDevice>>(
+        sdbusplus::async::context& ctx, const std::string& service,
+        const sdbusplus::object_path& path, bool dryRun, SoftwareConfig& config,
+        SoftwareManager* parent)>>
+    supportedSpiChips = {
+        {"IntelHostSPIFlash", createGenericSPIDevice<BIOSDevice>},
+        {"HostSPIFlash", createGenericSPIDevice<BIOSDevice>},
+        {"IntelE810SPIFlash", createGenericSPIDevice<E810Device>}};
+
+sdbusplus::async::task<std::unique_ptr<SPIDevice>> SPIFactory::create(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const sdbusplus::object_path& path, bool dryRun, SoftwareConfig& config,
+    SoftwareManager* parent)
+{
+    const std::string& chipType = config.configType;
+    const auto it = supportedSpiChips.find(chipType);
+    if (it != supportedSpiChips.end())
+    {
+        try
         {
-            return std::make_unique<BIOSDevice>(
-                ctx, spiControllerIndex, spiDeviceIndex, dryRun,
-                std::move(muxGPIO), config, parent);
+            co_return co_await it->second(ctx, service, path, dryRun, config,
+                                          parent);
         }
 
-        if (chipType == getSpiTypeStr(spiChip::INTEL_E810_NIC))
+        catch (const std::exception& e)
         {
-            return std::make_unique<E810Device>(
-                ctx, spiControllerIndex, spiDeviceIndex, dryRun,
-                std::move(muxGPIO), config, parent);
+            error("Failed to create {TYPE}: {ERROR}", "TYPE", chipType, "ERROR",
+                  e.what());
+            co_return nullptr;
         }
-    }
-    catch (const std::exception& e)
-    {
-        error("Failed to create SPI device '{TYPE}': {ERROR}", "TYPE", chipType,
-              "ERROR", e);
-        return nullptr;
     }
 
     error("Unsupported SPI device type: {TYPE}", "TYPE", chipType);
-    return nullptr;
+    co_return nullptr;
 }
 
 std::vector<std::string> SPIFactory::getConfigInterfaceNames()
@@ -51,7 +113,7 @@ std::vector<std::string> SPIFactory::getConfigInterfaceNames()
     configs.reserve(supportedSpiChips.size());
     for (const auto& chipEnum : supportedSpiChips)
     {
-        configs.push_back(getSpiTypeStr(chipEnum));
+        configs.push_back(chipEnum.first);
     }
     return configs;
 }

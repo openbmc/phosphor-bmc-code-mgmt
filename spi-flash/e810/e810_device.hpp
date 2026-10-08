@@ -16,9 +16,9 @@ using namespace phosphor::software::manager;
 class E810Device : public SPIDevice
 {
   public:
-    E810Device(sdbusplus::async::context& ctx, uint64_t inSpiControllerIndex,
-               uint64_t inSpiDeviceIndex, bool inDryRun, GPIOGroup&& muxGPIO,
-               SoftwareConfig& inConfig, SoftwareManager* inParent);
+    E810Device(sdbusplus::async::context& ctx, const SPIDeviceConfig& spiConfig,
+               bool inDryRun, GPIOGroup&& muxGPIO, SoftwareConfig& inConfig,
+               SoftwareManager* inParent);
 
     /** @brief Returns the cached version, 'Unknown' until the endpoint has
      *         been discovered and queried.

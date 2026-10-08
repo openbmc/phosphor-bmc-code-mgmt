@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c008de39_1783092a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003117
+      },
+      "writtenOn": "2026-10-08T05:11:41Z",
+      "side": 1,
+      "message": "I have updated the patch set with the following improvements:\n\nSignal-based tracking: active updates are tracked directly from InterfacesAdded/InterfacesRemoved under/xyz/openbmc_project/software/ instead of polling the mapper,less bus traffic, no race. The reboot fires once the tracked set is clear. (As a safety net, an update that appears while we\u0027re waiting is tracked too; preventing new updates from starting during the pending reboot is 95330\u0027s job.)\n\n\nSafer Error Handling: If the mapper returns \"no objects\" (ResourceNotFound), we know it is safe to proceed. Any other mapper error is treated cautiously to defer the reboot instead of guessing.\n\nObject Liveness \u0026 Memory Safety: Added a shared liveness flag so background timeout tasks never access an Activation object after it has been destroyed. We also use a one-shot flag to prevent deleting match objects from inside their own callbacks.\n\nReboot Retries: If a reboot request fails, we keep the deferral active so future signals or the timeout can try again.",
+      "revId": "ef223dda266ca345721fceaf78da219bfea9d6eb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

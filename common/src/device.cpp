@@ -200,14 +200,20 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 
     if (success)
     {
-        softwarePending->setActivation(
-            ActivationInterface::Activations::Active);
-
         co_await events.generateActivateFailed(softwarePending->objectPath,
                                                componentVersion, false);
 
         co_await events.generateUpdateSuccessful(softwarePending->objectPath,
                                                  componentVersion);
+
+        if (applyTime != applyTimeImmediate)
+        {
+            co_await events.generateResetRequired(
+                softwarePending->objectPath, events::HostTransition::Reboot);
+        }
+
+        softwarePending->setActivation(
+            ActivationInterface::Activations::Active);
     }
 
     softwarePending->setActivationBlocksTransition(false);
@@ -235,9 +241,6 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     else
     {
         co_await softwarePending->createInventoryAssociations(false);
-
-        co_await events.generateResetRequired(softwarePending->objectPath,
-                                              events::HostTransition::Reboot);
     }
 
     co_return true;

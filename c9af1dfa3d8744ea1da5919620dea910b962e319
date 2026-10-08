@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8e6b95_6c36cb03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-08T21:46:43Z",
+      "side": 1,
+      "message": "@patrick@stwcx.xyz Its failing the CI \n\n\n--- a/bmc/utils.cpp\n+++ b/bmc/utils.cpp\n@@ -94,7 +94,7 @@ static std::string buildCommandStr(char** args)\n     for (int i \u003d 0; args[i]; i++)\n     {\n         command +\u003d args[i];\n-        command +\u003d \" \";\n+        command +\u003d \u0027 \u0027;\n     }\n     return command;\n }\ndiff --git a/i2c-vr/mps/mps.cpp b/i2c-vr/mps/mps.cpp\nindex a82d5a6..2541867 100644\n--- a/i2c-vr/mps/mps.cpp\n+++ b/i2c-vr/mps/mps.cpp\n@@ -58,7 +58,7 @@ MPSData MPSImageParser::extractType1Data(\n     auto cmdType \u003d getVal\u003cstd::string\u003e(tokens, ATE::writeType);\n     int blockDataBytes \u003d 0;\n \n-    if (cmdType.starts_with(\"P\"))\n+    if (cmdType.starts_with(\u0027P\u0027))\n     {\n         // Check if these tokens represent a P1 or P2 process call.\n         // The upper byte of \u0027addr\u0027 is the command code, and the lower byte\n@@ -72,7 +72,7 @@ MPSData MPSImageParser::extractType1Data(\n         data.length \u003d 2;\n         return data;\n     }\n-    else if (cmdType.starts_with(\"B\"))\n+    else if (cmdType.starts_with(\u0027B\u0027))\n     {",
+      "revId": "c9af1dfa3d8744ea1da5919620dea910b962e319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

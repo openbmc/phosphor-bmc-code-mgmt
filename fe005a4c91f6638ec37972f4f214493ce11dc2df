@@ -110,6 +110,30 @@
       },
       "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e99afd6_e21b706b",
+        "filename": "spi-flash/spi_factory.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-08T11:20:54Z",
+      "side": 1,
+      "message": "\u003e Does it make sense to roll the dryRun parameter also into SPIDevParams?\n\nNot really because it\u0027s still passed from outside.\n\n\u003e Since we have SoftwareConfig and SPIDevice already, would a name like SPIDeviceConfig  work as well? \n\nNo problem, will use this one.\n\n\u003e Overall i cannot say if it\u0027s the right design (would have to wait for Jagpal\u0027s feedback)\n\nOkay, we\u0027ll roll out next version, thank you for your feedback.",
+      "parentUuid": "86d8125e_eeaee52b",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -16,6 +16,24 @@
       "message": "Please add a positive test for isTarChildStatusValid as well.",
       "revId": "5e1501c4025d421a066d232b07a44a24881474b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c31e752_43558d79",
+        "filename": "bmc/test/utest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-08T04:44:19Z",
+      "side": 1,
+      "message": "Done. Added TarChildStatusTest.NormalExitWithZeroStatusIsAccepted, which verifies isTarChildStatusValid() accepts a normally exited child with status 0.",
+      "parentUuid": "d116510d_a512ead1",
+      "revId": "5e1501c4025d421a066d232b07a44a24881474b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

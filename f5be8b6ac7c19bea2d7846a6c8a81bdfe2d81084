@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a91ecc8_b322aa35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-09T08:33:12Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Done, PTAL.",
+      "revId": "f5be8b6ac7c19bea2d7846a6c8a81bdfe2d81084",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -134,6 +134,30 @@
       },
       "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eaed438_a526c994",
+        "filename": "spi-flash/spi_factory.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-09T08:15:14Z",
+      "side": 1,
+      "message": "the things from this discussion thread are no longer part of this patch, marking this as resolved.",
+      "parentUuid": "7e99afd6_e21b706b",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "fe005a4c91f6638ec37972f4f214493ce11dc2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

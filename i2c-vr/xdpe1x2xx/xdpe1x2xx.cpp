@@ -561,6 +561,12 @@ bool XDPE1X2XX::parseImage(const uint8_t* image, size_t image_size)
                         dataCnt = 0;
                     }
 
+                    if (sectIndex < 0)
+                    {
+                        error("VR image: data before section header");
+                        return false;
+                    }
+
                     if (dataCnt >= MaxSectDataCnt)
                     {
                         return false;

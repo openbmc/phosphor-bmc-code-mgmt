@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de172a10_de2f8f9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-12T09:07:26Z",
+      "side": 1,
+      "message": "Could you add a Tested line to the commit message describing how this was verified? Also, the Signed-off-by name (\"Yu Chen\") doesn\u0027t match the Gerrit owner/display name (\"Alex Chen\") — worth confirming that\u0027s intentional for DCO purposes.",
+      "revId": "e9f095389e200442dfcfeae59084308a51f2149c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6f52247_973b3b20",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-12T09:07:26Z",
+      "side": 1,
+      "message": "Good catch — \u0026delim on a bare char had no guaranteed trailing NUL, so strtok() could read past it into stack residue (matches the EA5DABB8 corruption described). char delim[] \u003d \" \"; is the correct fix.",
+      "revId": "e9f095389e200442dfcfeae59084308a51f2149c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

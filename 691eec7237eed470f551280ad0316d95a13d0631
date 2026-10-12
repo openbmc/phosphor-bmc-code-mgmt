@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be43f85e_ff9f009a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-12T12:25:20Z",
+      "side": 1,
+      "message": "Verified the refactor is applied consistently across all 14 touched files — BIOSDevice, E810Device, SPIDevice, SPIFactory, and both software managers all follow the identical GPIOGroup\u0026\u0026 move-construction pattern, and the copy-pasted D-Bus enumeration loop in both initDevice() methods is now replaced by the same single dbusGetGPIOs() call. No behavioral divergence found.",
+      "revId": "691eec7237eed470f551280ad0316d95a13d0631",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce6d1302_68a80146",
+        "filename": "eeprom-device/eeprom_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-12T12:25:20Z",
+      "side": 1,
+      "message": "Minor naming inconsistency: the header declares this parameter as muxGPIO (see eeprom_device.hpp line 23), but the constructor definition here names it mux. Harmless (parameter names don\u0027t need to match between declaration/definition), but worth aligning for readability/consistency with the rest of the file, which otherwise calls it muxGPIO everywhere (including the member it\u0027s stored into).",
+      "revId": "691eec7237eed470f551280ad0316d95a13d0631",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

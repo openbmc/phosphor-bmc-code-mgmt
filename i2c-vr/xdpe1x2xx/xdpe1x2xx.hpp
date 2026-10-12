@@ -72,7 +72,7 @@ class XDPE1X2XX : public VoltageRegulator
     phosphor::i2c::I2C i2cInterface;
 
     struct deviceInfo info;
-    struct xdpe1x2xxConfig configuration;
+    struct xdpe1x2xxConfig configuration{};
 };
 
 } // namespace phosphor::software::VR

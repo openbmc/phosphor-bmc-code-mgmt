@@ -16,6 +16,24 @@
       "message": "Makes sense given the coroutine/ODR linker issue — explicit instantiation in a single TU is the right fix. \nMinor suggestion: since this now only supports the types instantiated in dbus_helper.cpp (uint8_t, uint64_t, std::string), could you add a short comment here pointing there? A future caller adding a new T will otherwise hit an undefined-reference linker error instead of a clear compile-time message.",
       "revId": "ff4eeca12487df85567f4c9fd2324c87100b74a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c8a2a4_5c754dc1",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-12T14:53:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4085850e_3bc4ed3b",
+      "revId": "ff4eeca12487df85567f4c9fd2324c87100b74a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

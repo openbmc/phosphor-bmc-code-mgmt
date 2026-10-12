@@ -69,6 +69,24 @@
       "parentUuid": "30d1b263_bc6ec934",
       "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884fe41c_65737f52",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-12T07:08:51Z",
+      "side": 1,
+      "message": "Thanks — I think patchset 3 already solves this. isTransientReadError() is static and stateless (int in, bool out), so it\u0027s directly unit-testable without mocking read():\n\nEXPECT_TRUE(NotifyWatch\u003cT\u003e::isTransientReadError(EAGAIN));\nEXPECT_FALSE(NotifyWatch\u003cT\u003e::isTransientReadError(EIO));\n\n\nCould you make it public (or a free function) so a gtest in test/common/ can reach it? That covers the EAGAIN/EINTR classification I originally asked about, with no read() seam needed. Agreed the full re-arm/propagation path would need real fd mocking — fine to skip that and rely on review + your QEMU testing for now.",
+      "parentUuid": "eb2b2c97_ba54728f",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

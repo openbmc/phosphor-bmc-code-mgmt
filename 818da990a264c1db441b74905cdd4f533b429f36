@@ -46,6 +46,30 @@
       },
       "revId": "818da990a264c1db441b74905cdd4f533b429f36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d1c501e_2a2aeef8",
+        "filename": "common/src/gpio_controller.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1003094
+      },
+      "writtenOn": "2026-10-12T13:58:55Z",
+      "side": 1,
+      "message": "I remember seeing it briefly, but later it got \"resolved\" and disappeared. Perhaps due to update. Anyways, done.",
+      "parentUuid": "2122eb5c_28e5bfbb",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "818da990a264c1db441b74905cdd4f533b429f36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

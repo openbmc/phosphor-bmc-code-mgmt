@@ -1,5 +1,6 @@
 #include "common/include/utils.hpp"
 
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -67,8 +68,9 @@ static sdbusplus::async::task<bool> runParent(
 
     if (exitCode != 0)
     {
+        int code = WIFEXITED(exitCode) ? WEXITSTATUS(exitCode) : exitCode;
         error("Command {CMD} exited with code {CODE}", "CMD", cmd, "CODE",
-              exitCode);
+              code);
         co_return false;
     }
 
@@ -81,14 +83,14 @@ sdbusplus::async::task<bool> asyncSystem(
     std::optional<std::reference_wrapper<std::string>> result)
 {
     int exitPipefd[2];
-    if (pipe(exitPipefd) == -1)
+    if (pipe2(exitPipefd, O_CLOEXEC) == -1)
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
         co_return false;
     }
 
     int resultPipefd[2] = {-1, -1};
-    if (result && pipe(resultPipefd) == -1)
+    if (result && pipe2(resultPipefd, O_CLOEXEC) == -1)
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
         close(exitPipefd[0]);

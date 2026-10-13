@@ -217,7 +217,21 @@ int extractMatchingComponentImage(
         return EXIT_FAILURE;
     }
 
+    if (ac[0] >= package->componentImageInformation.size())
+    {
+        error("applicable component index {INDEX} is out of bounds ({TOTAL})",
+              "INDEX", ac[0], "TOTAL",
+              package->componentImageInformation.size());
+        return EXIT_FAILURE;
+    }
+
     const ComponentImageInfo& c = package->componentImageInformation[ac[0]];
+
+    if (c.componentLocation.ptr < buf)
+    {
+        error("component location pointer is invalid");
+        return EXIT_FAILURE;
+    }
 
     // calculate component offset with pointer arithmetic
     *componentOffsetOut = c.componentLocation.ptr - buf;

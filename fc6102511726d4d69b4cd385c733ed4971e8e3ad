@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccb31440_a47d26f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T13:53:17Z",
+      "side": 1,
+      "message": "impressive! looking forward to the fix and reproducer in libpldm repo.",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "fc6102511726d4d69b4cd385c733ed4971e8e3ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6406c25e_9f0e1c5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T13:53:17Z",
+      "side": 1,
+      "message": "the tests are always run by CI, no need to mention.",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 1
+      },
+      "revId": "fc6102511726d4d69b4cd385c733ed4971e8e3ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c597b2ba_6c2eb4e7",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T13:53:17Z",
+      "side": 1,
+      "message": "This applicable component OOB check should already be part of libpldm++, see\n\nhttps://github.com/openbmc/libpldm/blob/a4f7c1d6ece828264ca691c951981e95ac68232d/bindings/cpp/firmware_update.cpp#L398\n\n```\n\n\tfor (const auto \u0026fw : fwDeviceIDRecords) {\n\t\tfor (const size_t ac : fw.applicableComponents) {\n\t\t\tif (ac \u003c componentImageInfos.size()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tstd::string msg \u003d \"applicable component index \" +\n\t\t\t\t\t  std::to_string(ac) +\n\t\t\t\t\t  \" is out of bounds\";\n\t\t\treturn std::unexpected(PackageParserError(msg));\n\t\t}\n\t}\n```",
+      "range": {
+        "startLine": 219,
+        "startChar": 1,
+        "endLine": 226,
+        "endChar": 5
+      },
+      "revId": "fc6102511726d4d69b4cd385c733ed4971e8e3ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68fb5882_8edac05b",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-13T13:53:17Z",
+      "side": 1,
+      "message": "IMO libpldm(++) should check that the component location is pointing inside the buffer. The library is responsible for ensuring all it\u0027s outputs are correct.\n\nIf you are convinced there\u0027s a check missing please send a patch for libpldm(++) instead of fixing it in user code.",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 5
+      },
+      "revId": "fc6102511726d4d69b4cd385c733ed4971e8e3ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

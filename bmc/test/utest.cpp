@@ -151,6 +151,11 @@ TEST_F(VersionTest, TestGetId)
     std::string hexId = std::string(mdString);
     hexId = hexId.substr(0, 8);
     EXPECT_EQ(Version::getId(version), hexId);
+
+    std::string versionWithNull = version;
+    versionWithNull.push_back('\0');
+    versionWithNull += "ignored";
+    EXPECT_EQ(Version::getId(versionWithNull), Version::getId(version));
 }
 
 TEST_F(VersionTest, TestGetExtendedVersion)

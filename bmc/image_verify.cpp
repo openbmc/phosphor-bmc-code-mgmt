@@ -15,7 +15,6 @@
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
-#include <cassert>
 #include <cerrno>
 #include <fstream>
 #include <set>
@@ -238,6 +237,8 @@ bool Signature::verify()
         std::vector<std::string> imageUpdateList = {bmcFullImages};
         valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
                                     imageUpdateList, bmcFilesFound, hashType);
+        debug("Full BMC image verification: found={FOUND}, valid={VALID}",
+              "FOUND", bmcFilesFound, "VALID", valid);
         if (bmcFilesFound && !valid)
         {
             return false;
@@ -251,6 +252,8 @@ bool Signature::verify()
             valid =
                 checkAndVerifyImage(imageDirPath, publicKeyFile,
                                     imageUpdateList, bmcFilesFound, hashType);
+            debug("BMC partition verification: found={FOUND}, valid={VALID}",
+                  "FOUND", bmcFilesFound, "VALID", valid);
 
             if (bmcFilesFound && valid)
             {
@@ -332,8 +335,14 @@ bool Signature::verify()
             return false;
         }
 
-        // Either BMC images or optional images shall be valid
-        assert(valid || optionalImagesValid);
+        if (!valid && !optionalImagesValid)
+        {
+            error(
+                "Neither BMC image nor optional images are valid: bmcFilesFound={BMC_FOUND}, valid={VALID}, optionalFilesFound={OPTIONAL_FOUND}, optionalImagesValid={OPTIONAL_VALID}",
+                "BMC_FOUND", bmcFilesFound, "VALID", valid, "OPTIONAL_FOUND",
+                optionalFilesFound, "OPTIONAL_VALID", optionalImagesValid);
+            return false;
+        }
 
         debug("Successfully completed Signature validation.");
         return true;

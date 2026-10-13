@@ -9,6 +9,7 @@
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -112,10 +113,23 @@ std::string Version::getId(const std::string& version)
 
     std::array<unsigned char, EVP_MAX_MD_SIZE> digest{};
     EVP_MD_CTX_Ptr ctx(EVP_MD_CTX_new(), &::EVP_MD_CTX_free);
+    if (!ctx)
+    {
+        error("Failed to create EVP_MD_CTX for version id");
+        elog<InternalFailure>();
+    }
 
-    EVP_DigestInit(ctx.get(), EVP_sha512());
-    EVP_DigestUpdate(ctx.get(), version.c_str(), strlen(version.c_str()));
-    EVP_DigestFinal(ctx.get(), digest.data(), nullptr);
+    constexpr int evpFailure = 0;
+    if (EVP_DigestInit(ctx.get(), EVP_sha512()) <= evpFailure ||
+        EVP_DigestUpdate(ctx.get(), version.c_str(),
+                         std::strlen(version.c_str())) <=
+            evpFailure ||
+        EVP_DigestFinal(ctx.get(), digest.data(), nullptr) <= evpFailure)
+    {
+        error("Failed to compute SHA-512 digest for version: {VERSION}",
+              "VERSION", version);
+        elog<InternalFailure>();
+    }
 
     // We are only using the first 8 characters.
     char mdString[9];

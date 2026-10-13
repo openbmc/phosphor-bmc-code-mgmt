@@ -1,6 +1,7 @@
 #include "config.h"
 
 #include "image_verify.hpp"
+#include "images.hpp"
 #include "utils.hpp"
 #include "version.hpp"
 
@@ -292,6 +293,40 @@ TEST_F(SignatureTest, TestCorruptSignatureFile)
     // corrupt the image-kernel.sig file and ensure that verification fails
     std::string kernelFile = extractPath.string() + "/" + "image-kernel";
     command("echo \"dummy data\" > " + kernelFile + ".sig ");
+    EXPECT_FALSE(signature->verify());
+}
+
+TEST_F(SignatureTest, TestInvalidBMCImageWithoutOptionalImages)
+{
+    ASSERT_FALSE(fs::exists(extractPath / bmcFullImages));
+    for (const auto& image : getOptionalImages())
+    {
+        ASSERT_FALSE(fs::exists(extractPath / image));
+    }
+    ASSERT_TRUE(signature->verify());
+
+    // Keep the signatures intact so full-image verification still succeeds.
+    std::ofstream kernelFile(extractPath / "image-kernel", std::ios::app);
+    ASSERT_TRUE(kernelFile.is_open());
+    kernelFile << "corrupted image data\n";
+    kernelFile.close();
+    ASSERT_TRUE(kernelFile.good());
+
+    EXPECT_FALSE(signature->verify());
+}
+
+TEST_F(SignatureTest, TestIncompleteBMCImagesWithoutOptionalImages)
+{
+    ASSERT_FALSE(fs::exists(extractPath / bmcFullImages));
+    for (const auto& image : getOptionalImages())
+    {
+        ASSERT_FALSE(fs::exists(extractPath / image));
+    }
+    ASSERT_TRUE(signature->verify());
+
+    // Leave a valid first partition and all signatures, but omit a later image.
+    ASSERT_TRUE(fs::remove(extractPath / "image-rofs"));
+
     EXPECT_FALSE(signature->verify());
 }
 

@@ -332,8 +332,11 @@ bool Signature::verify()
             return false;
         }
 
-        // Either BMC images or optional images shall be valid
-        assert(valid || optionalImagesValid);
+        if (!valid && !optionalImagesValid)
+        {
+            error("Neither BMC image nor optional images are valid");
+            return false;
+        }
 
         debug("Successfully completed Signature validation.");
         return true;

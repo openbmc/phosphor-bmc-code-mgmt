@@ -243,23 +243,33 @@ bool Signature::verify()
             return false;
         }
 
-        if (!valid)
+        // Validate the partition images whether or not a valid full image
+        // was found: a package must not mix a signed image-bmc with
+        // partition images whose signatures are never checked.
         {
-            // Validate bmcImages
-            imageUpdateList.clear();
             imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
-            valid =
-                checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                    imageUpdateList, bmcFilesFound, hashType);
+            bool partitionFilesFound = false;
+            bool partitionsValid = checkAndVerifyImage(
+                imageDirPath, publicKeyFile, imageUpdateList,
+                partitionFilesFound, hashType);
 
-            if (bmcFilesFound && valid)
+            if (partitionFilesFound && !partitionsValid)
             {
+                error("Image file Signature Validation failed");
+                return false;
+            }
+
+            if (partitionFilesFound && partitionsValid)
+            {
+                bmcFilesFound = true;
                 if (!verifyPQSignatures(bmcImages))
                 {
                     error("PQ image signature verification failed");
                     return false;
                 }
             }
+
+            valid = valid || partitionsValid;
         }
 
         // Validate the optional image files.

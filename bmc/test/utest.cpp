@@ -286,6 +286,64 @@ TEST_F(SignatureTest, TestSignatureVerify)
     EXPECT_TRUE(signature->verify());
 }
 
+/**
+ * @brief Test failure scenario for corrupted partition content behind a
+ *        valid full image.
+ *
+ * A package with a valid image-bmc used to skip the bmcImages branch
+ * entirely once the full image verified, so for a non-BMC purpose
+ * (verifyFullImage() skipped) corrupted partition content was never
+ * detected and verify() returned true.
+ */
+TEST_F(SignatureTest, TestCorruptPartitionBehindValidFullImage)
+{
+    // Switch the purpose so verifyFullImage() is skipped.
+    std::string manifestFile = extractPath.string() + "/MANIFEST";
+    command("sed -i 's/VersionPurpose.BMC/VersionPurpose.Host/' " +
+            manifestFile);
+    // Re-sign the manifest so systemLevelVerify() still passes.
+    std::string pkeyFile = extractPath.string() + "/private.pem";
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+    // Add a valid image-bmc so the full-image branch succeeds.
+    std::string bmcFile = extractPath.string() + "/image-bmc";
+    command("echo \"full image content\" > " + bmcFile);
+    command(opensslCmd + pkeyFile + " -out " + bmcFile + ".sig " + bmcFile);
+    // Corrupt the image-kernel content while keeping its .sig intact.
+    command("echo \"CORRUPTED KERNEL\" > " + extractPath.string() +
+            "/image-kernel");
+    // The purpose is read at construction, so rebuild the object.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_FALSE(signature->verify());
+}
+
+/**
+ * @brief Test failure scenario for a corrupted partition image signature
+ *        when the image purpose is not BMC.
+ *
+ * verifyFullImage() only runs for the BMC purpose, so a non-BMC package
+ * with a corrupted image signature previously fell through the bmcImages
+ * branch without returning false and tripped the (NDEBUG-stripped)
+ * invariant assert at the end of verify().
+ */
+TEST_F(SignatureTest, TestCorruptSignatureFileNonBMCPurpose)
+{
+    // Switch the purpose so verifyFullImage() is skipped.
+    std::string manifestFile = extractPath.string() + "/MANIFEST";
+    command("sed -i 's/VersionPurpose.BMC/VersionPurpose.Host/' " +
+            manifestFile);
+    // Re-sign the manifest so systemLevelVerify() still passes.
+    std::string pkeyFile = extractPath.string() + "/private.pem";
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+    // Corrupt the image-kernel signature.
+    std::string kernelFile = extractPath.string() + "/image-kernel";
+    command("echo \"dummy data\" > " + kernelFile + ".sig ");
+    // The purpose is read at construction, so rebuild the object.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_FALSE(signature->verify());
+}
+
 /** @brief Test failure scenario with corrupted signature file*/
 TEST_F(SignatureTest, TestCorruptSignatureFile)
 {

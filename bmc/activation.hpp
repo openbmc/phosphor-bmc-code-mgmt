@@ -14,6 +14,8 @@
 #include <xyz/openbmc_project/Software/ActivationBlocksTransition/server.hpp>
 #include <xyz/openbmc_project/Software/ApplyTime/common.hpp>
 
+#include <vector>
+
 #ifdef WANT_SIGNATURE_VERIFY
 #include <filesystem>
 #endif
@@ -325,6 +327,9 @@ class Activation : public ActivationInherit, public Flash
 
     /** @brief Version id */
     std::string versionId;
+
+    /** @brief BMC image files validated for this version */
+    std::vector<std::string> imageUpdateList;
 
     /** @brief Persistent ActivationBlocksTransition dbus object */
     std::unique_ptr<ActivationBlocksTransition> activationBlocksTransition;

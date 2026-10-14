@@ -163,9 +163,10 @@ ActivationIntf::Activations ItemUpdater::verifyAndCreateObjects(
     // Determine the Activation state by processing the given image dir.
     auto activationState = server::Activation::Activations::Invalid;
     ItemUpdater::ActivationStatus result;
+    std::vector<std::string> imageList;
     if (purpose == VersionPurpose::BMC || purpose == VersionPurpose::System)
     {
-        result = ItemUpdater::validateSquashFSImage(filePath);
+        result = ItemUpdater::validateSquashFSImage(filePath, imageList);
     }
     else
     {
@@ -194,14 +195,18 @@ ActivationIntf::Activations ItemUpdater::verifyAndCreateObjects(
     auto activation = activations.find(id);
     if (activation == activations.end())
     {
-        activations.insert(std::make_pair(
-            id, std::make_unique<Activation>(ctx, path, *this, id,
-                                             activationState, associations)));
+        activation =
+            activations
+                .insert(std::make_pair(id, std::make_unique<Activation>(
+                                               ctx, path, *this, id,
+                                               activationState, associations)))
+                .first;
     }
     else
     {
         activation->second->activation(activationState);
     }
+    activation->second->imageUpdateList = std::move(imageList);
     return activationState;
 }
 
@@ -581,19 +586,19 @@ void ItemUpdater::deleteAll()
 }
 
 ItemUpdater::ActivationStatus ItemUpdater::validateSquashFSImage(
-    const std::string& filePath)
+    const std::string& filePath, std::vector<std::string>& imageList)
 {
     bool valid = true;
 
     // Record the images which are being updated
     // First check for the fullimage, then check for images with partitions
-    imageUpdateList.push_back(bmcFullImages);
-    valid = checkImage(filePath, imageUpdateList);
+    imageList.push_back(bmcFullImages);
+    valid = checkImage(filePath, imageList);
     if (!valid)
     {
-        imageUpdateList.clear();
-        imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
-        valid = checkImage(filePath, imageUpdateList);
+        imageList.clear();
+        imageList.assign(bmcImages.begin(), bmcImages.end());
+        valid = checkImage(filePath, imageList);
         if (!valid)
         {
             error("Failed to find the needed BMC images.");

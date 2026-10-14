@@ -105,6 +105,24 @@
       "parentUuid": "884fe41c_65737f52",
       "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6cb93e6_65fca589",
+        "filename": "common/include/NotifyWatch.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-14T04:37:39Z",
+      "side": 1,
+      "message": "Confirmed — exactly what I had in mind. isTransientReadError() is public and the two tests correctly verify EAGAIN/EINTR/EWOULDBLOCK as transient vs. EIO as fatal. Thanks for adding this, no read() seam needed.",
+      "parentUuid": "f24dbbb7_9f6d2a2b",
+      "revId": "24411d124b7a5f93b1d736b2fa0ab3a8d8d7f741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

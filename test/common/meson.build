@@ -1,5 +1,6 @@
 subdir('exampledevice')
 subdir('device')
 subdir('events')
+subdir('notify')
 subdir('software')
 subdir('utils')

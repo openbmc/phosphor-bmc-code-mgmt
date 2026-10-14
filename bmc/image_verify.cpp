@@ -243,23 +243,49 @@ bool Signature::verify()
             return false;
         }
 
-        if (!valid)
+        // Validate the partition images whether or not a valid full image
+        // was found: a package must not mix a signed image-bmc with
+        // partition images whose signatures are never checked. Each
+        // partition that is present must verify — checkAndVerifyImage()
+        // stops at the first missing entry, so a package with a missing
+        // image-kernel and a present image-rofs would otherwise leave the
+        // later partitions unchecked.
         {
-            // Validate bmcImages
-            imageUpdateList.clear();
-            imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
-            valid =
-                checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                    imageUpdateList, bmcFilesFound, hashType);
-
-            if (bmcFilesFound && valid)
+            bool partitionFilesFound = false;
+            for (const auto& partition : bmcImages)
             {
+                fs::path file(imageDirPath);
+                file /= partition;
+
+                std::error_code ec;
+                if (!fs::exists(file, ec))
+                {
+                    continue;
+                }
+                partitionFilesFound = true;
+
+                fs::path sigFile(file);
+                sigFile += SIGNATURE_FILE_EXT;
+
+                if (!verifyFile(file, sigFile, publicKeyFile, hashType))
+                {
+                    error("Image file Signature Validation failed on {PATH}",
+                          "PATH", partition);
+                    return false;
+                }
+            }
+
+            if (partitionFilesFound)
+            {
+                bmcFilesFound = true;
                 if (!verifyPQSignatures(bmcImages))
                 {
                     error("PQ image signature verification failed");
                     return false;
                 }
             }
+
+            valid = valid || partitionFilesFound;
         }
 
         // Validate the optional image files.

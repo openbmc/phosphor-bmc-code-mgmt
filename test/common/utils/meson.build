@@ -14,3 +14,21 @@ test(
         ],
     ),
 )
+
+test(
+    'utils_temp_image_file',
+    executable(
+        'utils_temp_image_file',
+        'utils_temp_image_file.cpp',
+        include_directories: [common_include],
+        dependencies: [
+            sdbusplus_dep,
+            phosphor_logging_dep,
+            gtest,
+            gtest_main,
+        ],
+        link_with: [
+            software_common_lib,
+        ],
+    ),
+)

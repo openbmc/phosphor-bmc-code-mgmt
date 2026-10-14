@@ -240,36 +240,26 @@ sdbusplus::async::task<bool> EEPROMDevice::writeEEPROM(const uint8_t* image,
               getI2CDeviceId(bus, address));
         co_return false;
     }
-    const std::string path =
-        "/tmp/eeprom-image-" +
-        std::to_string(SoftwareInf::Software::getRandomId()) + ".bin";
-
-    int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
-    if (fd < 0)
+    auto tmp = TempImageFile::create("eeprom-image");
+    if (!tmp)
     {
-        error("Failed to open file: {PATH}", "PATH", path);
         co_return false;
     }
+    const std::string path = tmp->path();
 
-    const ssize_t bytesWritten = write(fd, image, image_size);
-
-    close(fd);
-
-    if (bytesWritten < 0 || static_cast<size_t>(bytesWritten) != image_size)
+    if (!tmp->writeAndClose(image, image_size))
     {
         error("Failed to write image to file");
         co_return false;
     }
 
-    debug("Wrote {SIZE} bytes to {PATH}", "SIZE", bytesWritten, "PATH", path);
+    debug("Wrote {SIZE} bytes to {PATH}", "SIZE", image_size, "PATH", path);
 
     std::string cmd = "dd if=" + path + " of=" + eepromPath + " bs=1k";
 
     debug("Running {CMD}", "CMD", cmd);
 
     auto success = co_await asyncSystem(ctx, cmd);
-
-    std::filesystem::remove(path);
 
     co_return success;
 }

@@ -285,7 +285,8 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashrom(
     const std::string path = "/tmp/spi-device-image-" +
                              std::to_string(Software::getRandomId()) + ".bin";
 
-    int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    int fd = open(path.c_str(),
+                  O_CREAT | O_EXCL | O_NOFOLLOW | O_WRONLY | O_CLOEXEC, 0600);
     if (fd < 0)
     {
         error("Failed to open file: {PATH}", "PATH", path);
@@ -355,7 +356,8 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashWithFlashcp(
     const std::string path = "/tmp/spi-device-image-" +
                              std::to_string(Software::getRandomId()) + ".bin";
 
-    int fd = open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    int fd = open(path.c_str(),
+                  O_CREAT | O_EXCL | O_NOFOLLOW | O_WRONLY | O_CLOEXEC, 0600);
     if (fd < 0)
     {
         error("Failed to open file: {PATH}", "PATH", path);

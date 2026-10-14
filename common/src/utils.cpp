@@ -6,9 +6,102 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <cerrno>
 #include <cstdlib>
+#include <cstring>
+#include <filesystem>
 
 PHOSPHOR_LOG2_USING;
+
+std::optional<TempImageFile> TempImageFile::create(const std::string& prefix)
+{
+    constexpr size_t suffixLen = 4; // ".bin"
+    const std::filesystem::path tempDir = "/tmp";
+    std::string tmpl = (tempDir / (prefix + "-XXXXXX.bin")).string();
+
+    int fd = mkostemps(tmpl.data(), suffixLen, O_CLOEXEC);
+    if (fd < 0)
+    {
+        error("Failed to create temporary file {PATH}: {ERROR}", "PATH", tmpl,
+              "ERROR", std::strerror(errno));
+        return std::nullopt;
+    }
+
+    return TempImageFile(fd, std::move(tmpl));
+}
+
+bool TempImageFile::writeAndClose(const uint8_t* data, size_t size)
+{
+    bool success = true;
+    size_t totalBytesWritten = 0;
+
+    while (totalBytesWritten < size)
+    {
+        ssize_t bytesWritten =
+            write(fd, data + totalBytesWritten, size - totalBytesWritten);
+        if (bytesWritten < 0 && errno == EINTR)
+        {
+            continue;
+        }
+        if (bytesWritten <= 0)
+        {
+            error("Failed to write to {PATH}: {ERROR}", "PATH", filePath,
+                  "ERROR", std::strerror(errno));
+            success = false;
+            break;
+        }
+        totalBytesWritten += static_cast<size_t>(bytesWritten);
+    }
+
+    if (close(fd) < 0 && success)
+    {
+        error("Failed to close {PATH}: {ERROR}", "PATH", filePath, "ERROR",
+              std::strerror(errno));
+        success = false;
+    }
+    fd = -1;
+
+    return success;
+}
+
+void TempImageFile::release() noexcept
+{
+    if (fd >= 0)
+    {
+        close(fd);
+        fd = -1;
+    }
+    if (!filePath.empty())
+    {
+        unlink(filePath.c_str());
+        filePath.clear();
+    }
+}
+
+TempImageFile::~TempImageFile()
+{
+    release();
+}
+
+TempImageFile::TempImageFile(TempImageFile&& other) noexcept :
+    fd(other.fd), filePath(std::move(other.filePath))
+{
+    other.fd = -1;
+    other.filePath.clear();
+}
+
+TempImageFile& TempImageFile::operator=(TempImageFile&& other) noexcept
+{
+    if (this != &other)
+    {
+        release();
+        fd = other.fd;
+        filePath = std::move(other.filePath);
+        other.fd = -1;
+        other.filePath.clear();
+    }
+    return *this;
+}
 
 [[noreturn]] static void runChild(int exitWriteFd, int resultWriteFd,
                                   const std::string& cmd)

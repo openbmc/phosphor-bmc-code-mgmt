@@ -2,6 +2,8 @@
 
 #include <sdbusplus/async.hpp>
 
+#include <cstddef>
+#include <cstdint>
 #include <functional>
 #include <optional>
 #include <string>
@@ -9,6 +11,50 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+
+/**
+ * @brief Unique, owner-only temporary image file removed on destruction.
+ *
+ * The file is created in /tmp with mkostemps(), which uses O_CREAT | O_EXCL,
+ * mode 0600 and never follows a pre-existing symlink. O_CLOEXEC keeps the
+ * descriptor from leaking into child processes.
+ */
+class TempImageFile
+{
+  public:
+    /**
+     * @brief Create a new temporary file named /tmp/<prefix>-XXXXXX.bin.
+     * @return The file, or std::nullopt if it could not be created.
+     */
+    static std::optional<TempImageFile> create(const std::string& prefix);
+
+    /**
+     * @brief Write the whole buffer and close the descriptor.
+     * @return true if all bytes were written.
+     */
+    bool writeAndClose(const uint8_t* data, size_t size);
+
+    const std::string& path() const
+    {
+        return filePath;
+    }
+
+    ~TempImageFile();
+
+    TempImageFile(TempImageFile&& other) noexcept;
+    TempImageFile& operator=(TempImageFile&& other) noexcept;
+    TempImageFile(const TempImageFile&) = delete;
+    TempImageFile& operator=(const TempImageFile&) = delete;
+
+  private:
+    TempImageFile(int fd, std::string path) : fd(fd), filePath(std::move(path))
+    {}
+
+    void release() noexcept;
+
+    int fd = -1;
+    std::string filePath;
+};
 
 /**
  * @brief Asynchronously executes a shell command.

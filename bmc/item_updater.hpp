@@ -267,9 +267,6 @@ class ItemUpdater : public ItemUpdaterInherit
      * version id */
     std::map<std::string, std::unique_ptr<VersionClass>> versions;
 
-    /** @brief Vector of needed BMC images in the tarball*/
-    std::vector<std::string> imageUpdateList;
-
     /** @brief The slot of running BMC image */
     uint32_t runningImageSlot = 0;
 
@@ -297,7 +294,8 @@ class ItemUpdater : public ItemUpdaterInherit
      *                         active if image is the current version.
      *
      */
-    ActivationStatus validateSquashFSImage(const std::string& filePath);
+    ActivationStatus validateSquashFSImage(
+        const std::string& filePath, std::vector<std::string>& imageList);
 
     /** @brief BMC factory reset - marks the read-write partition for
      * recreation upon reboot. */

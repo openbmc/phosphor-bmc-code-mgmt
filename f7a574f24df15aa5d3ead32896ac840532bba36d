@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cddfe82_8a707867",
+        "filename": "bmc/sync_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-14T17:21:20Z",
+      "side": 1,
+      "message": "Is it possible to use a standard macro instead of 0 here ?",
+      "revId": "f7a574f24df15aa5d3ead32896ac840532bba36d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

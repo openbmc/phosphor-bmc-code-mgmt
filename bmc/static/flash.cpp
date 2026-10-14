@@ -51,7 +51,7 @@ void Activation::flashWrite()
     fs::path uploadDir(IMG_UPLOAD_DIR);
     fs::path toPath(PATH_INITRAMFS);
 
-    for (const auto& bmcImage : parent.imageUpdateList)
+    for (const auto& bmcImage : imageUpdateList)
     {
         std::error_code ec;
         fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,

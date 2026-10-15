@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9c50dd_a028338d",
+        "filename": "i2c-vr/xdpe1x2xx/xdpe1x2xx.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003113
+      },
+      "writtenOn": "2026-10-15T18:10:48Z",
+      "side": 1,
+      "message": "Kevin reviewed and confirmed above — tested on a XDPE1X2XX VR on YV5 and working correctly. Marking resolved.",
+      "parentUuid": "1b13b7c4_b73df52d",
+      "revId": "53363abb6e46a3ad7ae646bb47131c1da1a259e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b13b7c4_b73df52d",

@@ -37,7 +37,7 @@ sdbusplus::async::task<bool> I2C::sendReceive(
 {
     bool result = true;
 
-    if (fd <= 0)
+    if (fd < 0)
     {
         result = false;
     }
@@ -83,7 +83,7 @@ bool I2C::sendReceive(const std::vector<uint8_t>& writeData,
 {
     bool result = true;
 
-    if (fd <= 0)
+    if (fd < 0)
     {
         return false;
     }

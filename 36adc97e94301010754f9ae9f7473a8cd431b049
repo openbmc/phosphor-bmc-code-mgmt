@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab989060_7d05d508",
+        "filename": "bmc/download_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-15T17:38:09Z",
+      "side": 1,
+      "message": "Please use defined macro instead of 0 here.",
+      "revId": "36adc97e94301010754f9ae9f7473a8cd431b049",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Please use defined macro instead of 0 here.",
       "revId": "36adc97e94301010754f9ae9f7473a8cd431b049",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af30112_f5f347aa",
+        "filename": "bmc/download_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-15T17:54:47Z",
+      "side": 1,
+      "message": "Done. The exit-status check now uses EXIT_SUCCESS instead of 0.",
+      "parentUuid": "ab989060_7d05d508",
+      "revId": "36adc97e94301010754f9ae9f7473a8cd431b049",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

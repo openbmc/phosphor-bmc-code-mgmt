@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a4efce_9f46ae6c",
+        "filename": "common/pldm/pldm_package_util.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1003102
+      },
+      "writtenOn": "2026-10-16T10:29:03Z",
+      "side": 1,
+      "message": "Could you add a unit test with multiple applicable component indexes and assert that the extracted images and versions are returned in package order? This loop implements the new multi-image behavior, but the patch adds no tests for it.",
+      "revId": "9a61839f90cff260a6236d7fc9b5c23d3c4823bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

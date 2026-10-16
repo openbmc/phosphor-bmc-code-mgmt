@@ -1,5 +1,6 @@
 #include "common/include/utils.hpp"
 
+#include <cerrno>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -20,7 +21,11 @@ PHOSPHOR_LOG2_USING;
     }
 
     int exitCode = std::system(cmd.c_str());
-    ssize_t n = write(exitWriteFd, &exitCode, sizeof(exitCode));
+    ssize_t n;
+    do
+    {
+        n = write(exitWriteFd, &exitCode, sizeof(exitCode));
+    } while (n < 0 && errno == EINTR);
     close(exitWriteFd);
     _exit((n == sizeof(exitCode)) ? 0 : 1);
 }
@@ -30,38 +35,73 @@ static sdbusplus::async::task<bool> runParent(
     std::optional<std::reference_wrapper<std::string>> result,
     const std::string& cmd)
 {
-    auto fdio = std::make_unique<sdbusplus::async::fdio>(ctx, exitReadFd);
-    co_await fdio->next();
-
     if (result)
     {
         auto& resStr = result->get();
         resStr.clear();
         char buffer[1024];
-        ssize_t n;
-        while ((n = read(resultReadFd, buffer, sizeof(buffer))) > 0)
+        auto resultFdio =
+            std::make_unique<sdbusplus::async::fdio>(ctx, resultReadFd);
+        while (true)
         {
-            resStr.append(buffer, n);
+            co_await resultFdio->next();
+            ssize_t bytesRead = read(resultReadFd, buffer, sizeof(buffer));
+            if (bytesRead > 0)
+            {
+                resStr.append(buffer, bytesRead);
+                continue;
+            }
+            if (bytesRead == 0)
+            {
+                break;
+            }
+            if (errno == EINTR)
+            {
+                continue;
+            }
+
+            error("Failed to read command output {CMD}: {ERRNO}", "CMD", cmd,
+                  "ERRNO", errno);
+            resultFdio.reset();
+            close(resultReadFd);
+            close(exitReadFd);
+            while (waitpid(pid, nullptr, 0) < 0 && errno == EINTR)
+            {}
+            co_return false;
         }
+        resultFdio.reset();
         close(resultReadFd);
+    }
+    else
+    {
+        auto fdio = std::make_unique<sdbusplus::async::fdio>(ctx, exitReadFd);
+        co_await fdio->next();
     }
 
     int exitCode = -1;
-    fdio.reset();
-    ssize_t bytesRead = read(exitReadFd, &exitCode, sizeof(exitCode));
+    ssize_t bytesRead;
+    do
+    {
+        bytesRead = read(exitReadFd, &exitCode, sizeof(exitCode));
+    } while (bytesRead < 0 && errno == EINTR);
     close(exitReadFd);
+
+    pid_t waitResult;
+    do
+    {
+        waitResult = waitpid(pid, nullptr, 0);
+    } while (waitResult < 0 && errno == EINTR);
+
+    if (waitResult < 0)
+    {
+        error("waitpid failed for PID {PID} for command {CMD}", "PID", pid,
+              "CMD", cmd);
+        co_return false;
+    }
 
     if (bytesRead != sizeof(exitCode))
     {
         error("Failed to read exit code from command {CMD}", "CMD", cmd);
-        waitpid(pid, nullptr, WNOHANG);
-        co_return false;
-    }
-
-    if (waitpid(pid, nullptr, 0) < 0)
-    {
-        error("waitpid failed for PID {PID} for command {CMD}", "PID", pid,
-              "CMD", cmd);
         co_return false;
     }
 

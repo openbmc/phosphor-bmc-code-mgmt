@@ -33,6 +33,10 @@ class ISL69269 : public VoltageRegulator
 
     bool forcedUpdateAllowed() final;
 
+  protected:
+    bool parseImage(const uint8_t* image, size_t imageSize);
+    bool checkImage();
+
   private:
     static constexpr size_t maxDataRecords = 1024;
 
@@ -65,8 +69,6 @@ class ISL69269 : public VoltageRegulator
     sdbusplus::async::task<bool> getProgStatus();
     sdbusplus::async::task<bool> restoreCfg();
 
-    bool parseImage(const uint8_t* image, size_t imageSize);
-    bool checkImage();
     static bool decodeRecordLine(std::string_view rawLine, uint8_t& type,
                                  Data& record);
     static bool decodeHexLine(std::string_view rawLine,

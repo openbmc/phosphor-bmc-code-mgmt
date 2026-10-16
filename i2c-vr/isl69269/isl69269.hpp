@@ -34,6 +34,8 @@ class ISL69269 : public VoltageRegulator
     bool forcedUpdateAllowed() final;
 
   private:
+    friend struct ISL69269TestAccess;
+
     static constexpr size_t maxDataRecords = 1024;
 
     struct Data

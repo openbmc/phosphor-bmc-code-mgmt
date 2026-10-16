@@ -66,3 +66,12 @@ TEST_F(AsyncSystemTest, CapturesOutputOnFailureWhenRequested)
     EXPECT_FALSE(runCommand("echo fail; exit 7", output));
     EXPECT_EQ(output, "fail\n");
 }
+
+TEST_F(AsyncSystemTest, CapturesOutputLargerThanPipeCapacity)
+{
+    std::string output;
+    EXPECT_TRUE(runCommand(
+        "head -c 1048576 /dev/zero; head -c 1048576 /dev/zero >&2", output));
+    EXPECT_EQ(output.size(), 2 * 1024 * 1024);
+    EXPECT_EQ(output.find_first_not_of('\0'), std::string::npos);
+}

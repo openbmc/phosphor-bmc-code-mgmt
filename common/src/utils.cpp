@@ -6,6 +6,7 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <cerrno>
 #include <cstdlib>
 
 PHOSPHOR_LOG2_USING;
@@ -21,7 +22,11 @@ PHOSPHOR_LOG2_USING;
     }
 
     int exitCode = std::system(cmd.c_str());
-    ssize_t n = write(exitWriteFd, &exitCode, sizeof(exitCode));
+    ssize_t n;
+    do
+    {
+        n = write(exitWriteFd, &exitCode, sizeof(exitCode));
+    } while (n < 0 && errno == EINTR);
     close(exitWriteFd);
     _exit((n == sizeof(exitCode)) ? 0 : 1);
 }
@@ -48,22 +53,37 @@ static sdbusplus::async::task<bool> runParent(
             char buffer[1024];
             ssize_t n = read(resultReadFd, buffer, sizeof(buffer));
 
-            if (n <= 0)
+            if (n > 0)
+            {
+                if (result)
+                {
+                    result->get().append(buffer, n);
+                }
+
+                if (outputCallback)
+                {
+                    outputCallback(std::string_view(buffer, n));
+                }
+                continue;
+            }
+            if (n == 0)
             {
                 break;
             }
-
-            if (result)
+            if (errno == EINTR)
             {
-                result->get().append(buffer, n);
+                continue;
             }
 
-            if (outputCallback)
-            {
-                outputCallback(std::string_view(buffer, n));
-            }
+            error("Failed to read command output {CMD}: {ERRNO}", "CMD", cmd,
+                  "ERRNO", errno);
+            resultFdio.reset();
+            close(resultReadFd);
+            close(exitReadFd);
+            while (waitpid(pid, nullptr, 0) < 0 && errno == EINTR)
+            {}
+            co_return false;
         }
-
         resultFdio.reset();
         close(resultReadFd);
     }
@@ -75,20 +95,29 @@ static sdbusplus::async::task<bool> runParent(
     int exitCode = -1;
     exitFdio.reset();
 
-    ssize_t bytesRead = read(exitReadFd, &exitCode, sizeof(exitCode));
+    ssize_t bytesRead;
+    do
+    {
+        bytesRead = read(exitReadFd, &exitCode, sizeof(exitCode));
+    } while (bytesRead < 0 && errno == EINTR);
     close(exitReadFd);
+
+    pid_t waitResult;
+    do
+    {
+        waitResult = waitpid(pid, nullptr, 0);
+    } while (waitResult < 0 && errno == EINTR);
+
+    if (waitResult < 0)
+    {
+        error("waitpid failed for PID {PID} for command {CMD}", "PID", pid,
+              "CMD", cmd);
+        co_return false;
+    }
 
     if (bytesRead != sizeof(exitCode))
     {
         error("Failed to read exit code from command {CMD}", "CMD", cmd);
-        waitpid(pid, nullptr, WNOHANG);
-        co_return false;
-    }
-
-    if (waitpid(pid, nullptr, 0) < 0)
-    {
-        error("waitpid failed for PID {PID} for command {CMD}", "PID", pid,
-              "CMD", cmd);
         co_return false;
     }
 

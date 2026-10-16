@@ -13,4 +13,5 @@ test(
             software_common_lib,
         ],
     ),
+    timeout: 15,
 )

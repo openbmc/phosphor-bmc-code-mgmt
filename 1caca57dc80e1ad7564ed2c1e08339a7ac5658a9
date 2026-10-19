@@ -16,6 +16,24 @@
       "message": "If getVersion() fails here, setActivation() is never called again, and software (a local unique_ptr, never moved into devices) gets destructed on this return path — presumably removing the Activation D-Bus object entirely rather than leaving it in Activating. Does PSUSensor\u0027s counterpart logic (83968) correctly treat a removed/absent Activation object as \"resume reads,\" or could a CRC failure leave sensor reads skipped until a BMC restart? Worth confirming this interacts correctly with 83968\u0027s detection logic.",
       "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d56ee2_2de346aa",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-10-19T01:46:50Z",
+      "side": 1,
+      "message": "If getVersion() fails after publishing Activating, I plan to explicitly set the Activation state to Failed before returning. This will notify PSUSensor through Activation.PropertiesChanged and allow sensor polling to resume before the local Software object is destroyed. The object-removal handling in dbus-sensors change 83968 would remain a fallback for abnormal termination paths.\nWould this behavior meet your expectation?",
+      "parentUuid": "5c45e3ef_7c8887f7",
+      "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

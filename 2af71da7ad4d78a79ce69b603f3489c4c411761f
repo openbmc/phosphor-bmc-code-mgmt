@@ -34,6 +34,23 @@
       "parentUuid": "44b63dc0_72518a67",
       "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04bd7278_4d7043d2",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1003207
+      },
+      "writtenOn": "2026-10-20T23:16:12Z",
+      "side": 0,
+      "message": "Could we add a regression test for this branch, BMC image is present but fails signature validation and there are no valid optional images? \n\nThe test should verify that Signature::verify() returns false. This would protect against accidentally accepting the image when assertions are disabled in release builds.",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

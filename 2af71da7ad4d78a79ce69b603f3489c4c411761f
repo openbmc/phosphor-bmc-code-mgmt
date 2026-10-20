@@ -16,6 +16,24 @@
       "message": "@anoo@us.ibm.com Any specific reason to have this assert in original code ? Wondering if these are disabled somehow and adding this change will change the behavior ?",
       "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ff4586_1eba4ce7",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-10-20T21:40:52Z",
+      "side": 0,
+      "message": "It\u0027s an assurance that the verification was done correctly. If \u0027!valid\u0027, then the code would had returned false above starting in line 241, so the assert should not be triggered.\nTagging @mine260309@gmail.com for additional comments if needed. Original change: https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/43392\n\nMaybe @mahalakshmik@ami.com if you could provide more details on the failure, perhaps even adding some debug traces to keep track of the \u0027valid\u0027 value up to the assert step.",
+      "parentUuid": "44b63dc0_72518a67",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

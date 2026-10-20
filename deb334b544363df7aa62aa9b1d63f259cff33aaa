@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be3f9677_447fc215",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-20T21:27:54Z",
+      "side": 1,
+      "message": "Why don\u0027t we unbind in this case ?",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9c60a9_b35483b8",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-20T21:27:54Z",
+      "side": 1,
+      "message": "I think its better to move this to line# 238 by directly checking result of bind and returning there.",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008b4dff_b7bb557b",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-20T21:27:54Z",
+      "side": 1,
+      "message": "Lets add _ before INDEX both these args.",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

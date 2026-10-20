@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39181b66_faf14cd7",
+        "filename": "common/include/dbus_helper.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-20T16:41:35Z",
+      "side": 1,
+      "message": "Just e is good instead of e.what().",
+      "revId": "e70b338532b38763c4ff20b26a29c5d9e09dc859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

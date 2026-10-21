@@ -87,6 +87,24 @@
       "parentUuid": "09ff4586_1eba4ce7",
       "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15a7022e_b35caf72",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2026-10-21T13:26:31Z",
+      "side": 0,
+      "message": "Done. Great, thank you for your analysis and updating the test cases.\nThis is an interesting scenario you uncovered. There problaby should had been an extra check for \u0027!valid\u0027 in line 265 to catch it, but with your change it should be caught as well, so probably it\u0027s ok to not keep the assert.",
+      "parentUuid": "705aeee4_9411e7f9",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

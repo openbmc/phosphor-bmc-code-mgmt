@@ -51,6 +51,42 @@
       "message": "Could we add a regression test for this branch, BMC image is present but fails signature validation and there are no valid optional images? \n\nThe test should verify that Signature::verify() returns false. This would protect against accidentally accepting the image when assertions are disabled in release builds.",
       "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71268580_c4f4ce91",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-21T05:46:37Z",
+      "side": 0,
+      "message": "Thanks for the suggestion. Added a regression test that modifies the kernel image contents after signing, with no optional images present, and checks that Signature::verify() returns false.\n\nThe test leaves all signature files unchanged so that full-image signature verification can succeed, allowing it to exercise the final validity check. Also added a test for a missing later BMC partition while the first partition remains valid.\n\nRan all signature tests through the Meson QEMU wrapper with signature verification enabled: all 9 tests passed, including both new regression tests.",
+      "parentUuid": "04bd7278_4d7043d2",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705aeee4_9411e7f9",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-21T05:46:37Z",
+      "side": 0,
+      "message": "Thanks for the clarification. After tracing the control flow, I found that the early return at line 241 checks the result of verifying image-bmc only.\n\nIf image-bmc is absent, verification falls back to the individual BMC partitions. A partition signature failure makes checkAndVerifyImage() return false, but Signature::verify() does not immediately return false after this second call.\n\nFor example, modifying the kernel contents while keeping its original signature leaves bmcFilesFound\u003dtrue and valid\u003dfalse. Full-image verification can still succeed because it verifies the concatenated signature files, which remain unchanged. With no optional images present, execution then reaches the final assertion.\n\nWhen assertions are enabled, the old code aborts on this path; when disabled through NDEBUG, it falls through to return true. The explicit check intentionally rejects the image in both configurations.\n\nAdded debug traces to record the full-image and partition verification results, along with regression coverage. All 9 signature tests passed with signature verification enabled.",
+      "parentUuid": "09ff4586_1eba4ce7",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

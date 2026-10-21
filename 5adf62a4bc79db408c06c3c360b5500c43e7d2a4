@@ -16,6 +16,24 @@
       "message": "Please define a constexpr for 0 above and use it at all places.",
       "revId": "5adf62a4bc79db408c06c3c360b5500c43e7d2a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0e1e34c_6f125ff1",
+        "filename": "bmc/version.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-21T06:36:48Z",
+      "side": 1,
+      "message": "Yes. In Version::getId(), I\u0027ve replaced the 0 threshold in all three EVP checks: EVP_DigestInit, EVP_DigestUpdate, and EVP_DigestFinal. Each now compares against evpFailure. The unit test passed.",
+      "parentUuid": "f1caa8d8_c1478db8",
+      "revId": "5adf62a4bc79db408c06c3c360b5500c43e7d2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

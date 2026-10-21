@@ -30,8 +30,11 @@ class SyncWatch
      *  @param[in] loop - sd-event object
      *  @param[in] syncCallback - The callback function for processing
      *                            files
+     *  @param[in] syncListPath - File listing the paths to watch; the
+     *                            configured sync list is used if empty
      */
-    SyncWatch(sd_event& loop, std::function<int(int, fs::path&)> syncCallback);
+    SyncWatch(sd_event& loop, std::function<int(int, fs::path&)> syncCallback,
+              const fs::path& syncListPath = {});
 
     SyncWatch(const SyncWatch&) = delete;
     SyncWatch& operator=(const SyncWatch&) = delete;

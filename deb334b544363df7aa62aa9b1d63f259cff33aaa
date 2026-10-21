@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31ea4678_d87bdb2e",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-21T13:56:05Z",
+      "side": 1,
+      "message": "if a driver is already bound then the fw update service does not own that and does not need to unbind it.\n\nIf we bind it - we unbind it. If we did not bind it then we have no ownership there and no need to unbind.\n\nSince in our use-case the SPI flash is not behind a mux the compatible can already be configured in the devicetree.",
+      "parentUuid": "be3f9677_447fc215",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da9c60a9_b35483b8",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "625e6af1_d9e5e07c",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-21T13:56:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da9c60a9_b35483b8",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "008b4dff_b7bb557b",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-20T21:27:54Z",
       "side": 1,
       "message": "Lets add _ before INDEX both these args.",
+      "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc4e243d_197e7026",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-21T13:56:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "008b4dff_b7bb557b",
       "revId": "deb334b544363df7aa62aa9b1d63f259cff33aaa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

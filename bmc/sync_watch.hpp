@@ -32,6 +32,8 @@ class SyncWatch
      *                            files
      */
     SyncWatch(sd_event& loop, std::function<int(int, fs::path&)> syncCallback);
+    SyncWatch(sd_event& loop, std::function<int(int, fs::path&)> syncCallback,
+              const fs::path& syncListPath);
 
     SyncWatch(const SyncWatch&) = delete;
     SyncWatch& operator=(const SyncWatch&) = delete;

@@ -306,6 +306,16 @@ if build_tests.allowed()
             link_args: ['-Wl,--wrap=fork', '-Wl,--wrap=waitpid'],
         ),
     )
+    test(
+        'sync_watch',
+        executable(
+            'sync_watch',
+            'test/sync_watch_test.cpp',
+            'sync_watch.cpp',
+            dependencies: [deps, gtest, systemd_dep],
+        ),
+        timeout: 10,
+    )
 endif
 
 if get_option('usb-code-update').allowed()

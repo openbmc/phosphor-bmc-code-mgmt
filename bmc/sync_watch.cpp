@@ -36,6 +36,13 @@ void SyncWatch::addInotifyWatch(const fs::path& path)
 
 SyncWatch::SyncWatch(sd_event& loop,
                      std::function<int(int, fs::path&)> syncCallback) :
+    SyncWatch(loop, std::move(syncCallback),
+              fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME)
+{}
+
+SyncWatch::SyncWatch(sd_event& loop,
+                     std::function<int(int, fs::path&)> syncCallback,
+                     const fs::path& syncListPath) :
     inotifyFd(-1), syncCallback(std::move(syncCallback))
 {
     auto fd = inotify_init1(IN_NONBLOCK);
@@ -54,11 +61,10 @@ SyncWatch::SyncWatch(sd_event& loop,
     }
 
     std::error_code ec;
-    auto syncfile = fs::path(SYNC_LIST_DIR_PATH) / SYNC_LIST_FILE_NAME;
-    if (fs::exists(syncfile, ec))
+    if (fs::exists(syncListPath, ec))
     {
         std::string line;
-        std::ifstream file(syncfile.c_str());
+        std::ifstream file(syncListPath.c_str());
         while (std::getline(file, line))
         {
             addInotifyWatch(line);
@@ -100,16 +106,24 @@ int SyncWatch::callback(sd_event_source* /* s */, int fd, uint32_t revents,
         if (event->mask & IN_IGNORED)
         {
             std::error_code ec;
-            if (fs::exists(syncWatch->fileMap[event->wd], ec))
+            auto it = syncWatch->fileMap.find(event->wd);
+            if (it != syncWatch->fileMap.end())
             {
-                syncWatch->addInotifyWatch(syncWatch->fileMap[event->wd]);
+                auto path = it->second;
+                syncWatch->fileMap.erase(it);
+                if (fs::exists(path, ec))
+                {
+                    syncWatch->addInotifyWatch(path);
+                }
+                else
+                {
+                    info("The inotify watch on {PATH} was removed", "PATH",
+                         path);
+                }
             }
-            else
-            {
-                info("The inotify watch on {PATH} was removed", "PATH",
-                     syncWatch->fileMap[event->wd]);
-            }
-            return 0;
+
+            offset += offsetof(inotify_event, name) + event->len;
+            continue;
         }
 
         // fileMap<wd, path>

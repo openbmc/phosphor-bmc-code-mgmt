@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <set>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -464,4 +465,19 @@ TEST(ExecTest, TestConstructArgv)
     EXPECT_EQ(charArray[1], arg1);
     EXPECT_EQ(charArray[2], arg2);
     EXPECT_EQ(charArray[3], nullptr);
+}
+
+TEST(VersionPriorityCompareTest, KeepsEqualPrioritiesInDeterministicOrder)
+{
+    const std::set<VersionPriority, VersionPriorityCompare> versions{
+        {"version-b", 5},
+        {"version-a", 5},
+        {"version-low", 2},
+    };
+
+    ASSERT_EQ(versions.size(), 3);
+    auto version = versions.begin();
+    EXPECT_EQ(*version++, (VersionPriority{"version-low", 2}));
+    EXPECT_EQ(*version++, (VersionPriority{"version-a", 5}));
+    EXPECT_EQ(*version, (VersionPriority{"version-b", 5}));
 }

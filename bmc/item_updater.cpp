@@ -627,19 +627,10 @@ void ItemUpdater::freePriority(uint8_t value, const std::string& versionId)
         }
     }
 
-    // Lambda function to compare 2 priority values, use <= to allow duplicates
-    typedef std::function<bool(std::pair<std::string, uint8_t>,
-                               std::pair<std::string, uint8_t>)>
-        cmpPriority;
-    cmpPriority cmpPriorityFunc =
-        [](const std::pair<std::string, uint8_t>& priority1,
-           const std::pair<std::string, uint8_t>& priority2) {
-            return priority1.second <= priority2.second;
-        };
-
     // Sort versions by ascending priority
-    std::set<std::pair<std::string, uint8_t>, cmpPriority> prioritySet(
-        priorityMap.begin(), priorityMap.end(), cmpPriorityFunc);
+    std::set<phosphor::software::manager::VersionPriority,
+             phosphor::software::manager::VersionPriorityCompare>
+        prioritySet(priorityMap.begin(), priorityMap.end());
 
     auto freePriorityValue = value;
     for (auto& element : prioritySet)

@@ -8,8 +8,10 @@
 
 #include <sdbusplus/bus.hpp>
 
+#include <cstdint>
 #include <functional>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace phosphor
@@ -20,6 +22,21 @@ namespace manager
 {
 
 typedef std::function<void(std::string)> eraseFunc;
+
+using VersionPriority = std::pair<std::string, std::uint8_t>;
+
+struct VersionPriorityCompare
+{
+    bool operator()(const VersionPriority& left,
+                    const VersionPriority& right) const
+    {
+        if (left.second != right.second)
+        {
+            return left.second < right.second;
+        }
+        return left.first < right.first;
+    }
+};
 
 using VersionInherit = sdbusplus::server::object_t<
     sdbusplus::server::xyz::openbmc_project::software::ExtendedVersion,

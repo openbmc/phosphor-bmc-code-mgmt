@@ -84,6 +84,20 @@ void mergeFiles(const std::vector<std::string>& srcFiles,
     outFile.close();
 }
 
+std::string sanitizeFileName(std::string fileName)
+{
+    std::erase(fileName, '/');
+
+    // A name made only of dots (or empty after removing '/') has no usable
+    // part, and substr(npos) would throw std::out_of_range.
+    auto first = fileName.find_first_not_of('.');
+    if (first == std::string::npos)
+    {
+        return {};
+    }
+    return fileName.substr(first);
+}
+
 namespace internal
 {
 

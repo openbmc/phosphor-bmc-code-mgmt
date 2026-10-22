@@ -197,6 +197,7 @@ executable(
     'phosphor-download-manager',
     'download_manager.cpp',
     'download_manager_main.cpp',
+    'utils.cpp',
     dependencies: deps,
     install: true,
     install_dir: get_option('libexecdir') / 'phosphor-code-mgmt',

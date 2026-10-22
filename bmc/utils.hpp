@@ -75,6 +75,14 @@ void setProperty(sdbusplus::bus_t& bus, const std::string& objectPath,
 void mergeFiles(const std::vector<std::string>& srcFiles,
                 const std::string& dstFile);
 
+/**
+ * @brief Remove path separators and leading dots from a file name
+ *
+ * @param[in] fileName - The requested file name
+ * @return The sanitized name, empty if nothing usable remains
+ **/
+std::string sanitizeFileName(std::string fileName);
+
 namespace internal
 {
 

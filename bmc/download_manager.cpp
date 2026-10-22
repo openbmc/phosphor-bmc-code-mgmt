@@ -2,6 +2,7 @@
 
 #include "download_manager.hpp"
 
+#include "utils.hpp"
 #include "xyz/openbmc_project/Common/error.hpp"
 
 #include <sys/wait.h>
@@ -18,6 +19,7 @@
 #include <iostream>
 #include <string>
 #include <system_error>
+#include <utility>
 
 namespace phosphor
 {
@@ -36,12 +38,7 @@ void Download::downloadViaTFTP(std::string fileName, std::string serverAddress)
     using Argument = xyz::openbmc_project::common::InvalidArgument;
 
     // Sanitize the fileName string
-    if (!fileName.empty())
-    {
-        fileName.erase(std::remove(fileName.begin(), fileName.end(), '/'),
-                       fileName.end());
-        fileName = fileName.substr(fileName.find_first_not_of('.'));
-    }
+    fileName = utils::sanitizeFileName(std::move(fileName));
 
     if (fileName.empty())
     {

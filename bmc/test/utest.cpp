@@ -465,3 +465,18 @@ TEST(ExecTest, TestConstructArgv)
     EXPECT_EQ(charArray[2], arg2);
     EXPECT_EQ(charArray[3], nullptr);
 }
+
+TEST(SanitizeFileNameTest, StripsSlashesAndLeadingDots)
+{
+    EXPECT_EQ(utils::sanitizeFileName("image.tar"), "image.tar");
+    EXPECT_EQ(utils::sanitizeFileName("../../etc/passwd"), "etcpasswd");
+    EXPECT_EQ(utils::sanitizeFileName(".hidden.tar"), "hidden.tar");
+}
+
+TEST(SanitizeFileNameTest, ReturnsEmptyWithoutUsableName)
+{
+    EXPECT_EQ(utils::sanitizeFileName(""), "");
+    EXPECT_EQ(utils::sanitizeFileName("..."), "");
+    EXPECT_EQ(utils::sanitizeFileName("///"), "");
+    EXPECT_EQ(utils::sanitizeFileName("../.."), "");
+}

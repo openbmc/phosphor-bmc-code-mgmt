@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89c95bc_c7986553",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-22T17:35:48Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Can you please raise a patch adding a error log inside unbindSPIFlash if unbind fails, right now i don\u0027t see any error log in this path.",
+      "revId": "948778f8bbd0c530f1475fb7c824bf5a3321b392",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

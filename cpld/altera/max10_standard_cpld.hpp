@@ -41,7 +41,7 @@ class Max10StandardCPLD
                       const std::string& configType,
                       const Max10Profile& profile);
 
-    ~Max10StandardCPLD();
+    virtual ~Max10StandardCPLD();
 
     Max10StandardCPLD(const Max10StandardCPLD&) = delete;
     Max10StandardCPLD& operator=(const Max10StandardCPLD&) = delete;
@@ -54,17 +54,20 @@ class Max10StandardCPLD
 
     sdbusplus::async::task<bool> getVersion(std::string& version);
 
+  protected:
+    // Register access is virtual so unit tests can replace the I2C transport.
+    virtual sdbusplus::async::task<bool> readReg(uint32_t reg, uint32_t& value);
+    virtual sdbusplus::async::task<bool> writeReg(uint32_t reg, uint32_t value);
+    sdbusplus::async::task<bool> protectSectors();
+
   private:
     bool openDevice();
     void closeDevice();
 
     // All hardware I/O and polling functions converted to async tasks
-    sdbusplus::async::task<bool> readReg(uint32_t reg, uint32_t& value);
-    sdbusplus::async::task<bool> writeReg(uint32_t reg, uint32_t value);
     sdbusplus::async::task<bool> readStatus(uint32_t& status);
 
     bool validateProfile() const;
-    sdbusplus::async::task<bool> protectSectors();
     sdbusplus::async::task<bool> unprotectSector(int sectorId);
     sdbusplus::async::task<bool> eraseSector(int sectorId);
     sdbusplus::async::task<bool> waitEraseDone(

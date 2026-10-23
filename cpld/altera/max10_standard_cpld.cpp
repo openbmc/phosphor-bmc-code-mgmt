@@ -48,8 +48,6 @@ constexpr uint32_t ctrlRegOffset = 0x04;
 constexpr uint32_t sectorEraseMask = 0x7U;
 constexpr uint32_t sectorEraseShift = 20;
 constexpr uint32_t wordSize = 4;
-constexpr uint32_t protectAllMask = 0x1F;
-constexpr uint32_t protectAllShift = 5;
 constexpr uint32_t unprotectAllMask = 0xFFFFFFFF;
 
 // Delay and retry constants
@@ -250,7 +248,7 @@ sdbusplus::async::task<bool> Max10StandardCPLD::protectSectors()
     {
         co_return false;
     }
-    ctrl |= (protectAllMask << protectAllShift);
+    ctrl |= protectSec1 | protectSec2 | protectSec3 | protectSec4 | protectSec5;
     co_return co_await writeReg(profile.csrBase + ctrlRegOffset, ctrl);
 }
 

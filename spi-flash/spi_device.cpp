@@ -186,7 +186,13 @@ sdbusplus::async::task<bool> SPIDevice::unbindSPIFlash()
     // wait for kernel
     co_await sdbusplus::async::sleep_for(ctx, std::chrono::seconds(2));
 
-    co_return !isSPIFlashBound();
+    if (isSPIFlashBound())
+    {
+        error("failed to unbind spi flash (spi-nor driver)");
+        co_return false;
+    }
+
+    co_return true;
 }
 
 bool SPIDevice::isSPIControllerBound()

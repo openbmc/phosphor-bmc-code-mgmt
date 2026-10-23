@@ -16,3 +16,18 @@ foreach t : testcases
         ),
     )
 endforeach
+
+test(
+    'max10_test',
+    executable(
+        'max10_test',
+        'max10_test.cpp',
+        '../../cpld/altera/max10_standard_cpld.cpp',
+        include_directories: [common_include],
+        dependencies: [
+            phosphor_logging_dep,
+            sdbusplus_dep,
+            gtest,
+        ],
+    ),
+)

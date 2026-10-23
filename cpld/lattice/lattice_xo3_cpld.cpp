@@ -242,7 +242,11 @@ sdbusplus::async::task<bool> LatticeXO3CPLD::prepareUpdate(const uint8_t* image,
 
 sdbusplus::async::task<bool> LatticeXO3CPLD::doErase()
 {
-    co_await waitBusyAndVerify();
+    if (!(co_await waitBusyAndVerify()))
+    {
+        lg2::error("Wait busy and verify failed before erase.");
+        co_return false;
+    }
 
     if (!(co_await enableProgramMode()))
     {

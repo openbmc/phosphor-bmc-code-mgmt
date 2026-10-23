@@ -34,6 +34,24 @@
       "parentUuid": "5c45e3ef_7c8887f7",
       "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9cd8da4_122162d7",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-23T12:36:45Z",
+      "side": 1,
+      "message": "Thanks, setting the Activation state to Failed before returning sounds like the right approach. Could you confirm that PSUSensor treats Failed as a signal to resume polling, and add or point to a test covering the getVersion() failure path? The object-removal handling in change 83968 would then remain a useful fallback.",
+      "parentUuid": "94d56ee2_2de346aa",
+      "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

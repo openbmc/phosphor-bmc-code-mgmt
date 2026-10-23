@@ -193,11 +193,11 @@ class LatticeBaseCPLD
 
     bool jedFileParser(const uint8_t* image, size_t imageSize);
     bool verifyChecksum();
-    sdbusplus::async::task<bool> enableProgramMode();
+    virtual sdbusplus::async::task<bool> enableProgramMode();
     sdbusplus::async::task<bool> resetConfigFlash();
     sdbusplus::async::task<bool> programDone();
     sdbusplus::async::task<bool> disableConfigInterface();
-    sdbusplus::async::task<bool> waitBusyAndVerify();
+    virtual sdbusplus::async::task<bool> waitBusyAndVerify();
 
     void reportPageProgress(size_t offset, size_t totalSize);
 

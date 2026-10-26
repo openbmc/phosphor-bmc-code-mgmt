@@ -22,6 +22,30 @@
       },
       "revId": "1f78aff61f3d06bb42f0dfdfebe7032a14e11e51",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2b5ab74_8bce92c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-26T12:54:02Z",
+      "side": 1,
+      "message": "imageUpdateList was shared by ItemUpdater, although the selected image files belong to a specific version. Validating another archive could modify that shared list—by appending filenames or replacing the list during fallback—before the first version was staged for flashing. Since staging reads the list alongside that version’s upload directory, it could use the wrong filenames or image set or fail to find the files. Storing the validated list on each Activation keeps it associated with the version it belongs to.\n\nThe test confirmed that two archive layouts could both reach Ready; it did not test activation or flashing because the archives contained placeholder images.",
+      "parentUuid": "dd214cc0_39e2739e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "1f78aff61f3d06bb42f0dfdfebe7032a14e11e51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

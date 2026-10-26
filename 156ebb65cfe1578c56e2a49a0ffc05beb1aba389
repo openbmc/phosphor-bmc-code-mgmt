@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d36daf93_e01a2d0a",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-26T09:36:23Z",
+      "side": 1,
+      "message": "This is different than the variant type used by bmcweb\n\nhttps://github.com/openbmc/bmcweb/blob/63a18f4e6188a77b713a8b22c8a95ab3d6c5a718/include/dbus_utility.hpp#L34-L63\n\nand since we are using the same interface `org.freedesktop.DBus.ObjectManager` can we use a common variant type defined in sdbusplus / PDI ?\n\nOtherwise if someone wants to use a new property type they have to go into many repositories to update each definition of the variant type.",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 78
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3fa93e_086be83b",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-26T09:36:23Z",
+      "side": 1,
+      "message": "should we move this to a different file?\n\nThese are D-Bus API types which are not specific to software config but rather describe the `org.freedesktop.DBus.ObjectManager` interface and  `GetManagedObjects`. Maybe something like a dbus util header to define these.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9123d853_8912434b",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-26T09:36:23Z",
+      "side": 1,
+      "message": "```suggestion\n    std::unordered_map\u003csdbusplus::object_path, InterfacesMap\u003e pendingSignals;\n```\n\nis it possible to do it like this?\n\ni saw one place where you did `pendingSignals.erase(objPath.str);`, to me this means we are probably storing an object path as key and could use the intended type to represent it.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 2
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69779b75_9bed540e",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-26T09:36:23Z",
+      "side": 1,
+      "message": "```suggestion\n                        parentDevice.config.objectPath.string());\n```\n\n`.str` direct access is deprecated.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 2
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

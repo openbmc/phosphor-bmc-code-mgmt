@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0b9986c_9cb95d39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-26T20:08:35Z",
+      "side": 1,
+      "message": "Please have this tested and verified on a actual MAX10 hardware.",
+      "revId": "0b300ef0c2ea720652834d3c78c48ba16889e528",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0579335f_b435b419",
+        "filename": "test/cpld/max10_protect_sectors.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-26T20:08:35Z",
+      "side": 1,
+      "message": "Please have a file which can be used by other max10 test as well.",
+      "revId": "0b300ef0c2ea720652834d3c78c48ba16889e528",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -104,7 +104,7 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
     size_t componentImageSize = 0;
     std::string componentVersion;
 
-    if (!co_await getImageInfo(softwarePendingIn->objectPath, pldm_pkg,
+    if (!co_await getImageInfo(softwareCurrent->objectPath, pldm_pkg,
                                pldm_pkg_size, &componentImage,
                                &componentImageSize, componentVersion))
     {
@@ -117,7 +117,7 @@ sdbusplus::async::task<bool> Device::startUpdateAsync(
     softwarePending = std::move(softwarePendingIn);
     softwarePendingIn = nullptr;
 
-    co_await events.generateTargetDetermined(softwarePending->objectPath,
+    co_await events.generateTargetDetermined(softwareCurrent->objectPath,
                                              componentVersion);
 
     const bool success = co_await continueUpdateWithMappedPackage(
@@ -200,16 +200,16 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
 
     if (success)
     {
-        co_await events.generateActivateFailed(softwarePending->objectPath,
+        co_await events.generateActivateFailed(softwareCurrent->objectPath,
                                                componentVersion, false);
 
-        co_await events.generateUpdateSuccessful(softwarePending->objectPath,
+        co_await events.generateUpdateSuccessful(softwareCurrent->objectPath,
                                                  componentVersion);
 
         if (applyTime != applyTimeImmediate)
         {
             co_await events.generateResetRequired(
-                softwarePending->objectPath, events::HostTransition::Reboot);
+                softwareCurrent->objectPath, events::HostTransition::Reboot);
         }
 
         softwarePending->setActivation(
@@ -224,7 +224,7 @@ sdbusplus::async::task<bool> Device::continueUpdateWithMappedPackage(
     {
         // do not apply the update, it has failed.
         // We can delete the new software version.
-        co_await events.generateActivateFailed(softwarePending->objectPath,
+        co_await events.generateActivateFailed(softwareCurrent->objectPath,
                                                componentVersion, true);
 
         co_return false;

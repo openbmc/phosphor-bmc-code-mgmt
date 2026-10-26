@@ -51,6 +51,24 @@
       "parentUuid": "86301829_f71b3f32",
       "revId": "10209b96a99c902a001c36561760a19994c99e32",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1dbcee4_0e515632",
+        "filename": "bmc/mmc/obmc-flash-mmc-mount.service.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-26T20:59:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51a07626_f8fac2eb",
+      "revId": "10209b96a99c902a001c36561760a19994c99e32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

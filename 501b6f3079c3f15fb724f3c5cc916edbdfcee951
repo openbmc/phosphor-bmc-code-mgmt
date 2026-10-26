@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3773a95_1ef1425c",
+        "filename": "test/cpld/lattice_jed_parser.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-26T20:23:44Z",
+      "side": 1,
+      "message": "Please add a generic file so other tests can be added in future.",
+      "revId": "501b6f3079c3f15fb724f3c5cc916edbdfcee951",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

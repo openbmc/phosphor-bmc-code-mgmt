@@ -98,6 +98,12 @@ sdbusplus::async::task<bool> TPS25990::parseImage(const uint8_t* image,
         }
     }
 
+    if (configuration.offsets.empty())
+    {
+        error("parseImage failed. No register data found.");
+        co_return false;
+    }
+
     if (configuration.offsets.size() != configuration.data.size())
     {
         error("parseImage failed. Data line mismatch.");

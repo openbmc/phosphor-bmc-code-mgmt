@@ -1,6 +1,6 @@
 #include "software_manager.hpp"
 
-#include <boost/container/flat_map.hpp>
+#include <org/freedesktop/DBus/ObjectManager/common.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/async.hpp>
@@ -207,11 +207,8 @@ sdbusplus::async::task<void> SoftwareManager::handleInterfaceAddedGuarded(
     co_return;
 }
 
-using BasicVariantType =
-    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
-                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
-using InterfacesMap = boost::container::flat_map<std::string, BasicVariantType>;
-using ConfigMap = boost::container::flat_map<std::string, InterfacesMap>;
+using ConfigMap = sdbusplus::common::org::freedesktop::d_bus::ObjectManager::
+    get_managed_objects_t::return_type::mapped_type;
 
 sdbusplus::async::task<void> SoftwareManager::interfaceAddedMatch(
     std::vector<std::string> interfaces)

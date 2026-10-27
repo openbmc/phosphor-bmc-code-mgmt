@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdaba872_dc277836",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-27T11:03:21Z",
+      "side": 1,
+      "message": "Thanks for asking. I don’t currently have hardware measurements to estimate how often this occurs. This check is a defensive safeguard: if device readiness can’t be confirmed, erase is aborted before program mode is entered.",
+      "parentUuid": "d135ec7c_8af243da",
+      "revId": "7a89c2be7133938a5568c740cbc0c4fe0768c308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a115f8d_4ba48b28",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-26T20:13:28Z",
       "side": 1,
       "message": "Please have a generic file which can be used for other tests as well.",
+      "revId": "7a89c2be7133938a5568c740cbc0c4fe0768c308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5389f6f_fc200816",
+        "filename": "test/cpld/lattice_xo3_ready_check.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-27T11:03:21Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I moved the test into lattice_cpld_test.cpp and updated the Meson target, so additional Lattice CPLD tests can be added to the same test file. The existing case remains specifically named for XO3 readiness",
+      "parentUuid": "2a115f8d_4ba48b28",
       "revId": "7a89c2be7133938a5568c740cbc0c4fe0768c308",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

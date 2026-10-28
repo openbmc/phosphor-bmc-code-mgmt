@@ -12,6 +12,7 @@
 #include <xyz/openbmc_project/Association/Definitions/server.hpp>
 #include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
+#include <cerrno>
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
@@ -447,7 +448,10 @@ sdbusplus::async::task<bool> SPIDevice::writeSPIFlashDefault(
 
         if (written < 0)
         {
-            error("Failed to write to device");
+            const int savedErrno = errno;
+            close(fd);
+            error("Failed to write to device {PATH}: {ERRNO}", "PATH",
+                  devPath.value(), "ERRNO", savedErrno);
             co_return false;
         }
 

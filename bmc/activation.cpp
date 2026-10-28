@@ -451,12 +451,12 @@ void Activation::onStateChangesBios(sdbusplus::message_t& msg)
                 co_return;
             }(this));
         }
-        else if (newStateResult == "failed")
+        else
         {
             // Set Activation value to Failed
             activation(softwareServer::Activation::Activations::Failed);
 
-            error("Bios upgrade failed.");
+            error("Bios upgrade failed: {RESULT}", "RESULT", newStateResult);
         }
     }
 

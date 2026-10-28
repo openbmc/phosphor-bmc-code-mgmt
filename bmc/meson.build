@@ -297,6 +297,15 @@ if build_tests.allowed()
     )
 
     test(
+        'image-purpose-test',
+        executable(
+            'image-purpose-test',
+            './test/image_purpose_test.cpp',
+            dependencies: [deps, gtest, ssl_dep],
+        ),
+    )
+
+    test(
         'sync-manager-test',
         executable(
             'sync-manager-test',

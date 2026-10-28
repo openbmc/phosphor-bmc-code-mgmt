@@ -45,17 +45,6 @@ void Manager::processImageFailed(sdbusplus::message::unix_fd image,
     }
 }
 
-bool verifyImagePurpose(Version::VersionPurpose purpose,
-                        ItemUpdaterIntf::UpdaterType type)
-{
-    if (purpose == Version::VersionPurpose::Host)
-    {
-        return (type == ItemUpdaterIntf::UpdaterType::BIOS ||
-                type == ItemUpdaterIntf::UpdaterType::ALL);
-    }
-    return true;
-}
-
 auto Manager::processImage(sdbusplus::message::unix_fd image,
                            ApplyTimeIntf::RequestedApplyTimes applyTime,
                            std::string id, std::string objPath)
@@ -162,7 +151,7 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
     }
     auto purpose = convertedPurpose.value_or(Version::VersionPurpose::Unknown);
 
-    if (!verifyImagePurpose(purpose, itemUpdater.type))
+    if (!ItemUpdaterIntf::verifyImagePurpose(purpose, itemUpdater.type))
     {
         error("Purpose ({PURPOSE}) is not supported", "PURPOSE", purpose);
         processImageFailed(image, id);

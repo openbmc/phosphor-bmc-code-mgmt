@@ -82,6 +82,22 @@ class ItemUpdater : public ItemUpdaterInherit
         ALL
     };
 
+    /** @brief Check whether an image purpose matches the updater target. */
+    static constexpr bool verifyImagePurpose(
+        VersionClass::VersionPurpose purpose, UpdaterType type)
+    {
+        if (purpose == VersionClass::VersionPurpose::Host)
+        {
+            return type == UpdaterType::BIOS || type == UpdaterType::ALL;
+        }
+        if (purpose == VersionClass::VersionPurpose::BMC ||
+            purpose == VersionClass::VersionPurpose::System)
+        {
+            return type == UpdaterType::BMC || type == UpdaterType::ALL;
+        }
+        return true;
+    }
+
     /** @brief Constructs ItemUpdater
      *
      * @param[in] bus    - The D-Bus bus object

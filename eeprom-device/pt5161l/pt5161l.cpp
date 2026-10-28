@@ -18,6 +18,7 @@ std::vector<std::string> PT5161LDeviceVersion::getDebugFsPaths(
     busOss << std::setw(2) << std::setfill('0') << static_cast<int>(bus);
     addrOss << std::setw(4) << std::setfill('0') << std::hex << std::nouppercase
             << static_cast<int>(address);
+    const auto busNumber = std::to_string(bus);
 
     /* The PT5161L driver exposes the firmware version through the fw_ver node.
      * The debugfs path changed starting from Linux kernel v6.18.
@@ -26,7 +27,7 @@ std::vector<std::string> PT5161LDeviceVersion::getDebugFsPaths(
     return {"/sys/kernel/debug/pt5161l/" + busOss.str() + "_" + addrOss.str() +
                 suffix,
 
-            "/sys/kernel/debug/i2c/i2c-" + busOss.str() + "/" + busOss.str() +
+            "/sys/kernel/debug/i2c/i2c-" + busNumber + "/" + busNumber +
                 "-" + addrOss.str() + suffix};
 }
 

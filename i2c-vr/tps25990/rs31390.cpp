@@ -70,6 +70,12 @@ sdbusplus::async::task<bool> RS31390::parseImage(const uint8_t* image,
             cols.push_back(field);
         }
 
+        if (cols.size() <= static_cast<size_t>(RS31390Img::value))
+        {
+            error("parseImage failed. Incomplete configuration row.");
+            co_return false;
+        }
+
         uint8_t reg = static_cast<uint8_t>(std::stoul(
             cols[static_cast<size_t>(RS31390Img::commandCode)], nullptr, 16));
 

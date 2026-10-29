@@ -13,3 +13,19 @@ test(
         ],
     ),
 )
+test(
+    'rs31390_image',
+    executable(
+        'rs31390_image',
+        'rs31390_image_unittest.cpp',
+        '../../../i2c-vr/tps25990/rs31390.cpp',
+        '../../../i2c-vr/tps25990/tps25990.cpp',
+        include_directories: [common_include],
+        dependencies: [
+            libi2c_dep,
+            sdbusplus_dep,
+            phosphor_logging_dep,
+            gtest,
+        ],
+    ),
+)

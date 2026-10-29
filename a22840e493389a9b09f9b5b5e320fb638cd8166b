@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834b7d21_6230e63b",
+        "filename": "libocp/tools/ocp_recovery_tool.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1003195
+      },
+      "writtenOn": "2026-10-29T16:54:12Z",
+      "side": 1,
+      "message": "Should we guard against total \u003d\u003d 0 here? readImage() currently rejects empty images, but adding a defensive check would avoid a potential divide-by-zero if writeImage() ever invokes the progress callback with a zero-sized transfer.",
+      "revId": "a22840e493389a9b09f9b5b5e320fb638cd8166b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

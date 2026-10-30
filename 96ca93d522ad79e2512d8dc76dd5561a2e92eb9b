@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f5b278_f3d875dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-30T18:55:11Z",
+      "side": 1,
+      "message": "Do you see a use case in existing framework where this will be true ?",
+      "revId": "96ca93d522ad79e2512d8dc76dd5561a2e92eb9b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

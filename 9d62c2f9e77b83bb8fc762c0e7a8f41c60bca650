@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad868c5_f108c08d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-30T18:52:54Z",
+      "side": 1,
+      "message": "Please have a tested section by testing with eeprom and spi updaters to make sure you don\u0027t introduce any regressions here.",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c659ae0a_e37b4b60",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-30T18:52:54Z",
+      "side": 1,
+      "message": "Why changing 0644 to 0600 ?",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0fdb4d_f70e3046",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-10-30T18:52:54Z",
+      "side": 1,
+      "message": "Please have a common define for flags and permissions so it can be used at both the places.",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

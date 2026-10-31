@@ -16,6 +16,24 @@
       "message": "Do you see a use case in existing framework where this will be true ?",
       "revId": "96ca93d522ad79e2512d8dc76dd5561a2e92eb9b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756d3753_a9221e0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-10-31T16:38:25Z",
+      "side": 1,
+      "message": "No. The only caller that captures output today is TPM2Interface::getProperty (tpm2_getcap properties-fixed | grep -A1 ...). It returns a few lines, so nothing in the current framework reaches the 64 KiB pipe limit. This is hardening of the shared asyncSystem API: its result parameter is public, and with the old ordering (wait for the exit notification, then read the output) any future caller capturing more than 64 KiB would hang. Reworded the commit message in PS3 to say it is a latent issue and not an observed failure.",
+      "parentUuid": "88f5b278_f3d875dc",
+      "revId": "96ca93d522ad79e2512d8dc76dd5561a2e92eb9b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

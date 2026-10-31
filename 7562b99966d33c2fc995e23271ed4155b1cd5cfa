@@ -16,6 +16,24 @@
       "message": "checkAndVerifyImage() stops at the first missing entry, so when image-kernel is absent but a later partition exists, partitionFilesFound remains false and this guard is bypassed. With a valid image-bmc and a non-BMC purpose, verify() can accept the package without checking that partition. Could we detect partition presence independently and reject incomplete sets or verify every present partition?",
       "revId": "7562b99966d33c2fc995e23271ed4155b1cd5cfa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2891af6d_f612042d",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1003113
+      },
+      "writtenOn": "2026-10-31T16:01:59Z",
+      "side": 1,
+      "message": "Done in patch set 2: verify() now checks every partition file that is present, whichever ones are missing, so a missing image-kernel no longer lets a later partition go unchecked. TestPresentPartitionAfterMissingNotSkipped covers this case. I did not reject incomplete sets, because a package with a valid image-bmc and no partitions at all is still valid.",
+      "parentUuid": "21fffba7_f6bbdfff",
+      "revId": "7562b99966d33c2fc995e23271ed4155b1cd5cfa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

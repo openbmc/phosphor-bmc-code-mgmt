@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bc3b053_bd43885f",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-10-31T00:12:04Z",
+      "side": 1,
+      "message": "Done, the types are now derived from the org.freedesktop.DBus.ObjectManager interface in PDI.",
+      "parentUuid": "d36daf93_e01a2d0a",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 78
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e3fa93e_086be83b",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-10-26T09:36:23Z",
       "side": 1,
       "message": "should we move this to a different file?\n\nThese are D-Bus API types which are not specific to software config but rather describe the `org.freedesktop.DBus.ObjectManager` interface and  `GetManagedObjects`. Maybe something like a dbus util header to define these.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f8b29c6_7f63c3d4",
+        "filename": "common/include/software_config.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-10-31T00:12:04Z",
+      "side": 1,
+      "message": "Done, moved to dbus_helper.hpp.",
+      "parentUuid": "9e3fa93e_086be83b",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a0f16d3_3e324f34",
+        "filename": "common/include/software_manager.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-10-31T00:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9123d853_8912434b",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 2
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69779b75_9bed540e",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-10-26T09:36:23Z",
       "side": 1,
       "message": "```suggestion\n                        parentDevice.config.objectPath.string());\n```\n\n`.str` direct access is deprecated.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 2
+      },
+      "revId": "156ebb65cfe1578c56e2a49a0ffc05beb1aba389",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b69dda_972552f8",
+        "filename": "common/src/software.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001127
+      },
+      "writtenOn": "2026-10-31T00:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69779b75_9bed540e",
       "range": {
         "startLine": 42,
         "startChar": 0,

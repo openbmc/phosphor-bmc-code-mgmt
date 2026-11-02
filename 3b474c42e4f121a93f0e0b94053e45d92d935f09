@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00fabc0_a81fba13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-02T10:43:49Z",
+      "side": 1,
+      "message": "FYI, the MPQ82D00 hwmon driver is already available in upstream Linux, but it has not been backported to openbmc/linux (dev-6.18) yet.\n\nA backport request was submitted to the OpenBMC mailing list on 2026-09-11:\nhttps://lore.kernel.org/r/20260911-backport-mpq82d00-dev-6-18-v1-1-6a3f5eb7532b@gmail.com",
+      "revId": "3b474c42e4f121a93f0e0b94053e45d92d935f09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

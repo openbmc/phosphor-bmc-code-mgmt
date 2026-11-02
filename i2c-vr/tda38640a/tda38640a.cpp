@@ -167,66 +167,92 @@ bool TDA38640A::parseImage(const uint8_t* image, size_t imageSize)
     configuration.clear();
 
     bool inConfigData = false;
-    while (std::getline(imageStream, line))
+    try
     {
-        if (line.find("Part Number :") != std::string::npos)
+        while (std::getline(imageStream, line))
         {
-            if (line.back() == '\r')
+            if (line.find("Part Number :") != std::string::npos)
             {
-                line.pop_back();
-            }
-            std::string s(1, line.back());
-            configuration.rev =
-                static_cast<uint8_t>(std::stoul(s, nullptr, 16));
-        }
-
-        if (line.find("Configuration Checksum :") != std::string::npos)
-        {
-            size_t pos = line.find("0x");
-            if (pos != std::string::npos)
-            {
-                std::string hexStr = line.substr(pos + 2);
-                configuration.checksum = std::stoul(hexStr, nullptr, 16);
-            }
-        }
-
-        if (line.find("[Configuration Data]") != std::string::npos)
-        {
-            inConfigData = true;
-            continue;
-        }
-        if (line.find("[End Configuration Data]") != std::string::npos)
-        {
-            break;
-        }
-        if (inConfigData && !line.empty())
-        {
-            std::istringstream lineStream(line);
-            std::string seg;
-            std::vector<uint8_t> dataVector;
-            while (lineStream >> seg)
-            {
-                if (seg.length() == 2)
+                if (line.back() == '\r')
                 {
-                    uint8_t data =
-                        static_cast<uint8_t>(std::stoi(seg, nullptr, 16));
-                    dataVector.push_back(data);
+                    line.pop_back();
                 }
-                else
+                std::string s(1, line.back());
+                configuration.rev =
+                    static_cast<uint8_t>(std::stoul(s, nullptr, 16));
+            }
+
+            if (line.find("Configuration Checksum :") != std::string::npos)
+            {
+                size_t pos = line.find("0x");
+                if (pos != std::string::npos)
                 {
-                    uint16_t offset =
-                        static_cast<uint16_t>(std::stoi(seg, nullptr, 16));
-                    configuration.offsets.push_back(offset);
+                    std::string hexStr = line.substr(pos + 2);
+                    configuration.checksum = std::stoul(hexStr, nullptr, 16);
                 }
             }
-            configuration.data.push_back(dataVector);
+
+            if (line.find("[Configuration Data]") != std::string::npos)
+            {
+                inConfigData = true;
+                continue;
+            }
+            if (line.find("[End Configuration Data]") != std::string::npos)
+            {
+                break;
+            }
+            if (inConfigData && !line.empty())
+            {
+                std::istringstream lineStream(line);
+                std::string seg;
+                std::vector<uint8_t> dataVector;
+                while (lineStream >> seg)
+                {
+                    if (seg.length() == 2)
+                    {
+                        uint8_t data =
+                            static_cast<uint8_t>(std::stoi(seg, nullptr, 16));
+                        dataVector.push_back(data);
+                    }
+                    else
+                    {
+                        uint16_t offset =
+                            static_cast<uint16_t>(std::stoi(seg, nullptr, 16));
+                        configuration.offsets.push_back(offset);
+                    }
+                }
+                configuration.data.push_back(dataVector);
+            }
         }
+    }
+    catch (const std::exception& e)
+    {
+        error("parseImage failed. Exception: {ERROR}", "ERROR", e);
+        return false;
     }
 
     if (configuration.offsets.size() != configuration.data.size())
     {
         error("parseImage failed. Data line mismatch.");
         return false;
+    }
+
+    // program() reads data[i][0..15] for every OTP register in the line.
+    for (size_t i = 0; i < configuration.offsets.size(); i++)
+    {
+        for (uint8_t bias = 0; bias < 16; bias++)
+        {
+            uint16_t fullAddr = configuration.offsets[i] + bias;
+            if (user_section_otp_register.contains(fullAddr) &&
+                bias >= configuration.data[i].size())
+            {
+                error(
+                    "parseImage failed. Line {LINE} has {SIZE} data bytes, register {ADDR} needs more.",
+                    "LINE", i, "SIZE", configuration.data[i].size(), "ADDR",
+                    lg2::hex, fullAddr);
+                return false;
+            }
+        }
     }
 
     return true;

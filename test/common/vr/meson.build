@@ -13,3 +13,19 @@ test(
         ],
     ),
 )
+
+test(
+    'tda38640a_image',
+    executable(
+        'tda38640a_image',
+        'tda38640a_image_unittest.cpp',
+        '../../../i2c-vr/tda38640a/tda38640a.cpp',
+        include_directories: [common_include],
+        dependencies: [
+            libi2c_dep,
+            sdbusplus_dep,
+            phosphor_logging_dep,
+            gtest,
+        ],
+    ),
+)

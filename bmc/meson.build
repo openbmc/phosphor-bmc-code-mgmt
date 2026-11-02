@@ -306,6 +306,17 @@ if build_tests.allowed()
             link_args: ['-Wl,--wrap=fork', '-Wl,--wrap=waitpid'],
         ),
     )
+
+    test(
+        'software-utils-test',
+        executable(
+            'software-utils-test',
+            './test/software_utils_test.cpp',
+            'software_utils.cpp',
+            dependencies: [deps, gtest],
+            link_args: ['-Wl,--wrap=fork', '-Wl,--wrap=waitpid'],
+        ),
+    )
 endif
 
 if get_option('usb-code-update').allowed()

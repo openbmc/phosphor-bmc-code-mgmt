@@ -5,6 +5,8 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <cerrno>
+
 PHOSPHOR_LOG2_USING;
 
 namespace phosphor::software::utils
@@ -22,7 +24,10 @@ bool unTar(int imageFd, const std::string& extractDirPath)
     }
     if (pid == 0)
     {
-        dup2(imageFd, STDIN_FILENO);
+        if (dup2(imageFd, STDIN_FILENO) < 0)
+        {
+            _exit(126);
+        }
         // Pass tar arguments directly to exec to avoid any shell
         // interpretation of extractDirPath.
         execlp("tar", "tar", "-xf", "-", "-C", extractDirPath.c_str(),
@@ -31,7 +36,18 @@ bool unTar(int imageFd, const std::string& extractDirPath)
     }
 
     int status = 0;
-    waitpid(pid, &status, 0);
+    pid_t waited = 0;
+    do
+    {
+        waited = waitpid(pid, &status, 0);
+    } while (waited < 0 && errno == EINTR);
+
+    if (waited < 0)
+    {
+        error("waitpid failed for tar: {ERRNO}", "ERRNO", errno);
+        return false;
+    }
+
     if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
     {
         error("tar failed (status {STATUS}) extracting to {DIR}", "STATUS",

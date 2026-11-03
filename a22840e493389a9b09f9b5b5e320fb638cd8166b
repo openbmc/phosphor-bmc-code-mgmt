@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d136698_235fe53b",
+        "filename": "libocp/tools/ocp_recovery_tool.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-11-03T19:07:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "834b7d21_6230e63b",
+      "revId": "a22840e493389a9b09f9b5b5e320fb638cd8166b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c568e71e_93805716",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-03T07:50:45Z",
       "side": 1,
       "message": "Could activation happen after all images are staged? This loop reuses the selected CMS and activates each image before processing the next one. The OCP recovery daemon stages components into separate CMS windows and activates only once; it notes that activation leaves the device’s awaiting-image state, so later INDIRECT_DATA writes are rejected. Please stage the complete set in distinct CMS windows and activate once, or reject multiple -i arguments if this tool supports only one CMS image.",
+      "revId": "a22840e493389a9b09f9b5b5e320fb638cd8166b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20750e8b_6484e659",
+        "filename": "libocp/tools/ocp_recovery_tool.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-11-03T19:07:01Z",
+      "side": 1,
+      "message": "Ack, the tool now sends a single activation command after all the images have been transferred",
+      "parentUuid": "c568e71e_93805716",
       "revId": "a22840e493389a9b09f9b5b5e320fb638cd8166b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

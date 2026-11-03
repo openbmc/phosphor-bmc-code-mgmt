@@ -297,6 +297,16 @@ if build_tests.allowed()
     )
 
     test(
+        'msl-verify-test',
+        executable(
+            'msl-verify-test',
+            './test/msl_verify_test.cpp',
+            'msl_verify.cpp',
+            dependencies: [deps, gtest],
+        ),
+    )
+
+    test(
         'sync-manager-test',
         executable(
             'sync-manager-test',

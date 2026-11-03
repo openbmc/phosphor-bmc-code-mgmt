@@ -9,9 +9,9 @@ namespace minimum_ship_level
 /** @brief Version components */
 struct Version
 {
-    uint8_t major;
-    uint8_t minor;
-    uint8_t rev;
+    uint32_t major;
+    uint32_t minor;
+    uint32_t rev;
 };
 
 /** @brief Verify if the current BMC version meets the min ship level
@@ -28,6 +28,16 @@ bool verify(const std::string& versionStr);
  * @param[out] version    - The version struct to be populated
  */
 void parse(const std::string& versionStr, Version& version);
+
+/** @brief Parse the version components using an explicit regex
+ *  @param[in]  versionStr - The version string to be parsed
+ *  @param[in]  pattern    - POSIX extended regex; groups 2, 3 and 4 hold the
+ *                           major, minor and rev numbers
+ *  @param[out] version    - The parsed version, {0, 0, 0} on failure
+ *  @return true if all three components were parsed, false otherwise
+ */
+bool parse(const std::string& versionStr, const std::string& pattern,
+           Version& version);
 
 /** @brief Compare the versions provided
  *  @param[in] a - The first version to compare

@@ -9,9 +9,22 @@
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Software/Version/error.hpp>
 
+#include <charconv>
 #include <regex>
 
 PHOSPHOR_LOG2_USING;
+
+namespace
+{
+
+bool toNumber(const std::string& text, uint32_t& value)
+{
+    const char* end = text.data() + text.size();
+    auto [ptr, ec] = std::from_chars(text.data(), end, value);
+    return ec == std::errc{} && ptr == end;
+}
+
+} // namespace
 
 int minimum_ship_level::compare(const Version& versionToCompare,
                                 const Version& mslVersion)
@@ -52,20 +65,45 @@ int minimum_ship_level::compare(const Version& versionToCompare,
 void minimum_ship_level::parse(const std::string& inpVersion,
                                Version& outVersion)
 {
-    std::smatch match;
+    parse(inpVersion, std::string{REGEX_BMC_MSL}, outVersion);
+}
+
+bool minimum_ship_level::parse(const std::string& inpVersion,
+                               const std::string& pattern, Version& outVersion)
+{
     outVersion = {0, 0, 0};
 
-    std::regex rx{REGEX_BMC_MSL, std::regex::extended};
-
-    if (!std::regex_search(inpVersion, match, rx))
+    std::smatch match;
+    try
     {
-        error("Unable to parse BMC version: {VERSION}", "VERSION", inpVersion);
-        return;
+        std::regex rx{pattern, std::regex::extended};
+
+        if (!std::regex_search(inpVersion, match, rx) || match.size() < 5)
+        {
+            error("Unable to parse BMC version: {VERSION}", "VERSION",
+                  inpVersion);
+            return false;
+        }
+    }
+    catch (const std::regex_error& e)
+    {
+        error("Invalid version regex {REGEX}: {ERROR}", "REGEX", pattern,
+              "ERROR", e);
+        return false;
     }
 
-    outVersion.major = std::stoi(match[2]);
-    outVersion.minor = std::stoi(match[3]);
-    outVersion.rev = std::stoi(match[4]);
+    Version parsed{0, 0, 0};
+    if (!toNumber(match[2].str(), parsed.major) ||
+        !toNumber(match[3].str(), parsed.minor) ||
+        !toNumber(match[4].str(), parsed.rev))
+    {
+        error("BMC version component is not a valid number: {VERSION}",
+              "VERSION", inpVersion);
+        return false;
+    }
+
+    outVersion = parsed;
+    return true;
 }
 
 bool minimum_ship_level::verify(const std::string& versionManifest)

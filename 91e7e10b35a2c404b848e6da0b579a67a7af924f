@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82233e67_70e43bb4",
+        "filename": "tpm/tpm_software_manager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-03T05:57:38Z",
+      "side": 1,
+      "message": "Could this keep the existing uint8_t type? Before this change, TPMIndex was fetched as std::variant\u003cuint8_t\u003e. SoftwareConfig::getProperty\u003cT\u003e() uses exact variant matching, so existing byte-valued properties will return nullopt when requested as uint64_t, causing TPM initialization to fail. Please match the wire type or explicitly convert it, and add a regression test.",
+      "revId": "91e7e10b35a2c404b848e6da0b579a67a7af924f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

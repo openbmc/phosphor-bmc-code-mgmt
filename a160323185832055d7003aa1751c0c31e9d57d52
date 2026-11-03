@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "458d470e_df1fec1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-03T11:36:30Z",
+      "side": 1,
+      "message": "@alex_chen@supermicro.com - Thanks for the review.\n\nI took the mkostemps() option. Patch set 2 adds a TempImageFile helper in\ncommon/include/utils.hpp that creates /tmp/\u003cprefix\u003e-XXXXXX.bin with\nmkostemps() (suffix length 4, O_CLOEXEC), so:\n- names are unique and no longer limited to getRandomId() 0..9999, so a\n  leftover file can\u0027t make a later update fail with EEXIST;\n- the file is created O_EXCL with mode 0600, and an existing symlink is\n  not followed, so I dropped the explicit O_NOFOLLOW as you suggested;\n- the destructor unlinks the file, so all the early returns you listed\n  (flashrom, flashcp and EEPROM paths) now clean up as well.\n\nBoth SPI write paths and the EEPROM write path use the helper, and I\nadded unit tests (test/common/utils/utils_temp_image_file.cpp). I also\nran the EEPROM updater and the SPI updater (flashcp path) on QEMU\nast2600-evb; the results are in the commit message.",
+      "revId": "a160323185832055d7003aa1751c0c31e9d57d52",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe64928_53fa9a3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-03T11:36:30Z",
+      "side": 1,
+      "message": "Done. The commit message now has a Tested section. I ran the EEPROM\nupdater and the SPI updater (flashcp path, IntelE810SPIFlash type) on\nQEMU ast2600-evb: the update succeeded, the temp file was created with\nmode 0600 and removed afterwards, and the flash/EEPROM contents matched\nthe payload. I did not run the flashrom path or real SPI hardware. If\nyou or someone else can run it on a board, that would be great.",
+      "parentUuid": "aad868c5_f108c08d",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c659ae0a_e37b4b60",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1950c756_7e95d01c",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-03T11:36:30Z",
+      "side": 1,
+      "message": "The temporary file holds a firmware image, which does not need to be\nreadable by other local users. Only the updater (which creates and\nwrites the file) and the flashrom/flashcp/dd processes it starts need\nit, and those run as the same user. The mode is now set in one place by\nmkostemps() (0600), and I have added this reasoning to the commit\nmessage.",
+      "parentUuid": "c659ae0a_e37b4b60",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f0fdb4d_f70e3046",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-30T18:52:54Z",
       "side": 1,
       "message": "Please have a common define for flags and permissions so it can be used at both the places.",
+      "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18662ec9_76b53050",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-03T11:36:30Z",
+      "side": 1,
+      "message": "Done. The open flags and mode are no longer duplicated. A new\nTempImageFile helper in common/include/utils.hpp creates the file with\nmkostemps() (O_EXCL semantics, mode 0600, O_CLOEXEC, no symlink\nfollowing), and both SPI write paths and the EEPROM write path use it.\nThe helper has unit tests (test/common/utils/utils_temp_image_file.cpp).",
+      "parentUuid": "7f0fdb4d_f70e3046",
       "revId": "9d62c2f9e77b83bb8fc762c0e7a8f41c60bca650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

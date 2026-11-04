@@ -16,6 +16,24 @@
       "message": "Any such changes needs proper Unit Testing involving xdpe VR hardware via Redfish end2end. You can refer to Tested section in https://github.com/openbmc/phosphor-bmc-code-mgmt/commit/14a40becebbacce152f5be450ca2e1baa345cdff as an example.\nPlease include that into the Tested section.",
       "revId": "1b15e4079930dce81aef6265deef6f23a0a66678",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb6ab4f_158850d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-04T10:05:56Z",
+      "side": 1,
+      "message": "Thanks for the review. I don\u0027t have access to XDPE1x2xx hardware, so I can\u0027t\nprovide an end-to-end Redfish test on a real VR.\n\nThe change is limited to parseImage(), which runs in verifyImage() before any\nI2C write. It now returns false when the \"[End Configuration Data]\" marker is\nmissing or no configuration sections were parsed. Valid images follow the same\npath as before.\n\nCould someone with an XDPE platform run the Redfish update with:\n 1. a valid config image: update succeeds, as before\n 2. an image with \"[End Configuration Data]\" removed: update fails with\n    \"Failed to parse a complete XDPE configuration image\", VR version unchanged\n 3. an image with no configuration data rows: same failure, version unchanged\n\nIf hardware testing isn\u0027t possible, I can add a unit test for parseImage()\ncovering valid, truncated and empty images.",
+      "parentUuid": "bbcd7ec3_d42c0fa8",
+      "revId": "1b15e4079930dce81aef6265deef6f23a0a66678",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

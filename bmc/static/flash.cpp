@@ -10,6 +10,7 @@
 
 #include <filesystem>
 #include <system_error>
+#include <vector>
 
 namespace
 {
@@ -29,7 +30,7 @@ PHOSPHOR_LOG2_USING;
 namespace fs = std::filesystem;
 using namespace phosphor::software::image;
 
-void Activation::flashWrite()
+bool Activation::flashWrite()
 {
 #ifdef BMC_STATIC_DUAL_IMAGE
     if (parent.runningImageSlot != 0)
@@ -42,7 +43,7 @@ void Activation::flashWrite()
         auto serviceFile = FLASH_ALT_SERVICE_TMPL + versionId + ".service";
         method.append(serviceFile, "replace");
         bus.call_noreply(method);
-        return;
+        return true;
     }
 #endif
     // For static layout code update, just put images in /run/initramfs.
@@ -51,19 +52,59 @@ void Activation::flashWrite()
     fs::path uploadDir(IMG_UPLOAD_DIR);
     fs::path toPath(PATH_INITRAMFS);
 
+    std::vector<fs::path> staged;
+    auto stage = [&](const std::string& image, bool optional) {
+        const fs::path from = uploadDir / versionId / image;
+        std::error_code ec;
+        if (optional && !fs::exists(from, ec))
+        {
+            return true;
+        }
+
+        staged.push_back(toPath / image);
+        fs::copy_file(from, toPath / image,
+                      fs::copy_options::overwrite_existing, ec);
+        if (ec)
+        {
+            error("Failed to stage {IMAGE} to {DIR}: {ERROR}", "IMAGE", image,
+                  "DIR", toPath, "ERROR", ec.message());
+            return false;
+        }
+        return true;
+    };
+
+    bool success = true;
     for (const auto& bmcImage : parent.imageUpdateList)
     {
-        std::error_code ec;
-        fs::copy_file(uploadDir / versionId / bmcImage, toPath / bmcImage,
-                      fs::copy_options::overwrite_existing, ec);
+        if (!stage(bmcImage, false))
+        {
+            success = false;
+            break;
+        }
     }
-    for (const auto& optionalImaage : getOptionalImages())
+    if (success)
     {
-        std::error_code ec;
-        fs::copy_file(uploadDir / versionId / optionalImaage,
-                      toPath / optionalImaage,
-                      fs::copy_options::overwrite_existing, ec);
+        for (const auto& optionalImage : getOptionalImages())
+        {
+            if (!stage(optionalImage, true))
+            {
+                success = false;
+                break;
+            }
+        }
     }
+
+    if (!success)
+    {
+        // Do not leave a partial set of images for the updater script.
+        for (const auto& path : staged)
+        {
+            std::error_code ec;
+            fs::remove(path, ec);
+        }
+    }
+
+    return success;
 }
 
 void Activation::onStateChanges([[maybe_unused]] sdbusplus::message_t& msg)

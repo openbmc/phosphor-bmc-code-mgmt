@@ -14,13 +14,15 @@ namespace updater
 
 namespace softwareServer = sdbusplus::server::xyz::openbmc_project::software;
 
-void Activation::flashWrite()
+bool Activation::flashWrite()
 {
     auto method = bus.new_method_call(SYSTEMD_BUSNAME, SYSTEMD_PATH,
                                       SYSTEMD_INTERFACE, "StartUnit");
     auto serviceFile = "obmc-flash-mmc@" + versionId + ".service";
     method.append(serviceFile, "replace");
     bus.call_noreply(method);
+
+    return true;
 }
 
 void Activation::onStateChanges(sdbusplus::message_t& msg)

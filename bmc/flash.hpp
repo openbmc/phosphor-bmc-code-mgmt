@@ -29,8 +29,11 @@ class Flash
 
     /**
      * @brief Writes the image file(s) to flash
+     *
+     * @return false if writing could not be started or the images could not
+     *         be staged, true otherwise
      */
-    virtual void flashWrite() = 0;
+    virtual bool flashWrite() = 0;
 
     /**
      * @brief Takes action when the state of the activation service file changes

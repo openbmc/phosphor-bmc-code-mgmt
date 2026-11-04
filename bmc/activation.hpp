@@ -240,7 +240,7 @@ class Activation : public ActivationInherit, public Flash
         RequestedActivations value) override;
 
     /** @brief Overloaded write flash function */
-    void flashWrite() override;
+    bool flashWrite() override;
 
     /**
      * @brief Handle the success of the flashWrite() function

@@ -148,7 +148,12 @@ auto Activation::activation(Activations value) -> Activations
         // Enable systemd signals
         Activation::subscribeToSystemdSignals();
 
-        flashWrite();
+        if (!flashWrite())
+        {
+            Activation::unsubscribeFromSystemdSignals();
+            return Activation::activation(
+                softwareServer::Activation::Activations::Failed);
+        }
 
 #if defined UBIFS_LAYOUT || defined MMC_LAYOUT
 

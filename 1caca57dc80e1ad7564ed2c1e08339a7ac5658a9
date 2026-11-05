@@ -52,6 +52,24 @@
       "parentUuid": "94d56ee2_2de346aa",
       "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "478877ad_2bb10f56",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2026-11-05T13:28:19Z",
+      "side": 1,
+      "message": "Confirmed on hardware by running the real getVersion()/getCRC() operation and then forcing the failure-handling path immediately afterward.\nWhile Activation was Activating, PSUSensor stopped polling and reported NaN with Available\u003dfalse. After Activation was set to Failed, polling resumed, and the sensor returned to a valid value with Available\u003dtrue.\nThe Software object was subsequently removed when initDevice() returned. This confirms that explicitly setting Activation to Failed before returning allows PSUSensor to resume polling, while the object-removal handling in change 83968 remains a fallback for abnormal termination paths.\nThe failure-handling path has therefore been verified through hardware testing.\nDoes this address your concern?",
+      "parentUuid": "e9cd8da4_122162d7",
+      "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

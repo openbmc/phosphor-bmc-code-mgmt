@@ -35,7 +35,7 @@ void Manager::processImageFailed(sdbusplus::message::unix_fd image,
                                  std::string& id)
 {
     close(image);
-    updateInProgress = false;
+    *updateInProgress = false;
     if (itemUpdater.updateActivationStatus(
             id, ActivationIntf::Activations::Invalid))
     {
@@ -209,13 +209,17 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
             ImageFail::PATH(filePath.c_str()));
         co_return;
     }
+
+    // Activation can evict the version that owns this Manager, so hold the
+    // flag via shared ownership and do not touch any member afterwards.
+    auto inProgress = updateInProgress;
     if (applyTime == ApplyTimeIntf::RequestedApplyTimes::Immediate ||
         applyTime == ApplyTimeIntf::RequestedApplyTimes::OnReset)
     {
         itemUpdater.requestActivation(id);
     }
 
-    updateInProgress = false;
+    *inProgress = false;
     close(image);
     co_return;
 }
@@ -226,13 +230,13 @@ sdbusplus::object_path Manager::startUpdate(
 {
     info("Starting update for image {FD}", "FD", static_cast<int>(image));
     using sdbusplus::xyz::openbmc_project::Common::Error::Unavailable;
-    if (updateInProgress)
+    if (*updateInProgress)
     {
         error("Failed to start as update is already in progress");
         report<Unavailable>();
         return sdbusplus::object_path();
     }
-    updateInProgress = true;
+    *updateInProgress = true;
 
     auto id = Version::getId(std::to_string(randomGen()));
     auto objPath = std::string{SOFTWARE_OBJPATH} + '/' + id;

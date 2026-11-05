@@ -209,14 +209,18 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
             ImageFail::PATH(filePath.c_str()));
         co_return;
     }
+
+    // Activation can evict the version that owns this Manager, so do not touch
+    // any member after requestActivation().
+    updateInProgress = false;
+    close(image);
+
     if (applyTime == ApplyTimeIntf::RequestedApplyTimes::Immediate ||
         applyTime == ApplyTimeIntf::RequestedApplyTimes::OnReset)
     {
         itemUpdater.requestActivation(id);
     }
 
-    updateInProgress = false;
-    close(image);
     co_return;
 }
 

@@ -5,6 +5,7 @@
 #include <sdbusplus/async.hpp>
 #include <xyz/openbmc_project/Software/Update/server.hpp>
 
+#include <memory>
 #include <random>
 #include <string>
 #include <tuple>
@@ -70,7 +71,7 @@ class Manager : public UpdateIntf
     /** @brief item_updater reference */
     ItemUpdaterIntf& itemUpdater;
     /** @brief State whether update is in progress */
-    bool updateInProgress = false;
+    std::shared_ptr<bool> updateInProgress = std::make_shared<bool>(false);
 };
 
 } // namespace phosphor::software::update

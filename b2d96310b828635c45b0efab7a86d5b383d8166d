@@ -50,6 +50,41 @@
       "message": "nit: it would be easy to add a unit test for this feature.",
       "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82b8f820_b9a69cc3",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T04:02:11Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "18e08909_12c476e7",
+      "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe04c574_3fd2ee69",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T04:02:11Z",
+      "side": 1,
+      "message": "Can you please add a comment showing what an example string for such progress can look like. It will help to understand what is being parsed here.",
+      "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

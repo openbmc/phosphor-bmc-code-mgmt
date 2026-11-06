@@ -100,7 +100,7 @@ class RedundancyPriority : public RedundancyPriorityInherit
      */
     uint8_t priority(uint8_t value) override;
 
-    /** @brief Non-Overriden Priority property set function
+    /** @brief Non-Overridden Priority property set function
      *
      *  @param[in] value - uint8_t
      *

@@ -62,7 +62,7 @@ static ssize_t create_pldm_firmware_device_descriptors_v1_0_0(
     uint8_t* b, ssize_t i, const std::optional<uint32_t>& optVendorIANA,
     const std::optional<std::string>& optCompatible, size_t* actual_count)
 {
-    // RecordDescriptiors. The initial descriptor is restricted.
+    // RecordDescriptors. The initial descriptor is restricted.
     // In our case we use iana for the first descriptor.
 
     std::vector<uint8_t> descriptorData = {0xaf, 0xaf, 0xaf, 0xaf};
@@ -143,7 +143,7 @@ ssize_t create_pldm_firmware_device_identification_record(
         b[i++] = str[j];
     }
 
-    // RecordDescriptiors. The initial descriptor is restricted.
+    // RecordDescriptors. The initial descriptor is restricted.
     size_t actual_count = 0;
     i = create_pldm_firmware_device_descriptors_v1_0_0(
         b, i, optVendorIANA, optCompatible, &actual_count);

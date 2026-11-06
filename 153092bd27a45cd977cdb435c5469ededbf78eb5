@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f192c93_13610602",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T03:25:39Z",
+      "side": 1,
+      "message": "Please make sure the latest version of the patch is tested on hardware and related Redfish logs are added. Probably you can test for BIOS FW update.",
+      "revId": "153092bd27a45cd977cdb435c5469ededbf78eb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d53becfb_4d1fbdb8",
@@ -49,6 +66,23 @@
       "writtenOn": "2026-11-04T16:08:45Z",
       "side": 1,
       "message": "looks fine to me",
+      "revId": "153092bd27a45cd977cdb435c5469ededbf78eb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c126bebd_1c79848b",
+        "filename": "spi-flash/spi_factory.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T03:25:39Z",
+      "side": 1,
+      "message": "No need to add what(), only e is good enough.",
       "revId": "153092bd27a45cd977cdb435c5469ededbf78eb5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

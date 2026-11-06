@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae215610_2f7379de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T03:45:27Z",
+      "side": 1,
+      "message": "Can you please the related patches for EM configuration and the related hardware additions in phosphor-dbus-interfaces.",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "053f2726_5c791365",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -14,6 +31,40 @@
       "writtenOn": "2026-11-06T03:32:55Z",
       "side": 1,
       "message": "@angelaptcheng@gmail.com I see the related patches in commit description are still WIP. Can you please open those for review.",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0a9273f_f8156557",
+        "filename": "i2c-vr/mps/mpq82d00.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T03:45:27Z",
+      "side": 1,
+      "message": "What does 1 and 4 mean there? Would it be better to add a constexpr for these.",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c8a85c_fe0efd6e",
+        "filename": "i2c-vr/mps/mpq82d00.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T03:45:27Z",
+      "side": 1,
+      "message": "Please change the log level to debug.",
       "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

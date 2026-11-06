@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "accf6965_0b051c11",
+        "filename": "bmc/update_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-06T02:15:53Z",
+      "side": 1,
+      "message": "In which situation the eviction can happen, does it depend on apply time?\n\nPS: We cannot mark this flag false until current update is finished.",
+      "revId": "76afab8ed7f89d6553b6e0b8280e7b9e6489453f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -70,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c2c3ca0_d19f02e7",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-11-09T07:01:38Z",
+      "side": 1,
+      "message": "Added unit tests for flashcp progress parsing. All 5 tests passed locally.",
+      "parentUuid": "82b8f820_b9a69cc3",
+      "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe04c574_3fd2ee69",
@@ -83,6 +101,24 @@
       "writtenOn": "2026-11-06T04:02:11Z",
       "side": 1,
       "message": "Can you please add a comment showing what an example string for such progress can look like. It will help to understand what is being parsed here.",
+      "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1f8239_e9f04166",
+        "filename": "spi-flash/spi_device.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1002715
+      },
+      "writtenOn": "2026-11-09T07:01:38Z",
+      "side": 1,
+      "message": "Added a comment with an example of the flashcp progress output to clarify the expected input format and how the percentage is parsed.",
+      "parentUuid": "fe04c574_3fd2ee69",
       "revId": "b2d96310b828635c45b0efab7a86d5b383d8166d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

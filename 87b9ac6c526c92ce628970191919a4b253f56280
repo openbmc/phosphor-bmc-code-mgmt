@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f78e3b6f_e101c8a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-09T04:56:26Z",
+      "side": 1,
+      "message": "Thanks for the review. I’ve added the related entity-manager configuration ([4]) and the phosphor-dbus-interfaces definitions ([3]) to the commit message, alongside the existing entity-manager schema ([1]) and dbus-sensors ([2]) changes.",
+      "parentUuid": "ae215610_2f7379de",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "053f2726_5c791365",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-06T03:32:55Z",
       "side": 1,
       "message": "@angelaptcheng@gmail.com I see the related patches in commit description are still WIP. Can you please open those for review.",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a435abd3_0b820b7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-09T04:56:26Z",
+      "side": 1,
+      "message": "Thanks for pointing this out. The related changes are no longer WIP and are open for review: entity-manager [1] and [4], dbus-sensors [2], and phosphor-dbus-interfaces [3].",
+      "parentUuid": "053f2726_5c791365",
       "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee88294d_da9c5efe",
+        "filename": "i2c-vr/mps/mpq82d00.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-09T04:56:26Z",
+      "side": 1,
+      "message": "Thanks for the suggestion.\n1 skips the one-byte SMBus block count at the start of the response, and 4 is the length of the model prefix we compare against (“MPQ8”). I’ve replaced them with blockCountLen and mfrModelPrefixLen, and used blockCountLen for the MFR_ID subspan(1) as well.",
+      "parentUuid": "e0a9273f_f8156557",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1c8a85c_fe0efd6e",
         "filename": "i2c-vr/mps/mpq82d00.cpp",
         "patchSetId": 8
@@ -65,6 +119,24 @@
       "writtenOn": "2026-11-06T03:45:27Z",
       "side": 1,
       "message": "Please change the log level to debug.",
+      "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14ffb287_5817b54d",
+        "filename": "i2c-vr/mps/mpq82d00.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-09T04:56:26Z",
+      "side": 1,
+      "message": "Done, changed to debug.",
+      "parentUuid": "d1c8a85c_fe0efd6e",
       "revId": "87b9ac6c526c92ce628970191919a4b253f56280",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

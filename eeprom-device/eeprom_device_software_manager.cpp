@@ -16,8 +16,8 @@ PHOSPHOR_LOG2_USING;
 
 namespace SoftwareInf = phosphor::software;
 
-const std::vector<std::string> emConfigTypes = {"PT5161LFirmware",
-                                                "PT5081LFirmware"};
+const std::vector<std::string> emConfigTypes = {
+    "PT5161LFirmware", "PT5081LFirmware", "KB9002Firmware"};
 
 void EEPROMDeviceSoftwareManager::start()
 {

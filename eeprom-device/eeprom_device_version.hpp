@@ -33,6 +33,20 @@ class DeviceVersion
     DeviceVersion& operator=(DeviceVersion&&) = delete;
 
   protected:
+    static std::string buildI2CDebugFsPath(uint16_t bus, uint8_t address,
+                                           const std::string& suffix)
+    {
+        char path[256] = {};
+        static constexpr auto i2cDebugFsPath =
+            "/sys/kernel/debug/i2c/i2c-%02u/%02u-%04x%s";
+
+        std::snprintf(path, sizeof(path), i2cDebugFsPath,
+                      static_cast<unsigned>(bus), static_cast<unsigned>(bus),
+                      static_cast<unsigned>(address), suffix.c_str());
+
+        return std::string(path);
+    }
+
     std::string chipModel;
     uint16_t bus;
     uint8_t address;

@@ -662,7 +662,7 @@ function mmc_mirroruboot() {
     checksum_UBoot="$(md5sum "${devUBoot}")"
     checksum_UBoot="${checksum_UBoot% *}"
     checksum_alt_UBoot="$(md5sum "${alt_devUBoot}")"
-    checksum_alt_UBoot="${checksum_alt% *}"
+    checksum_alt_UBoot="${checksum_alt_UBoot% *}"
 
     if [[ "${checksum_UBoot}" != "${checksum_alt_UBoot}" ]]; then
         echo "Mirroring U-boot to alt chip"

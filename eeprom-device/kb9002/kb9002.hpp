@@ -1,0 +1,16 @@
+#pragma once
+
+#include "eeprom-device/eeprom_device_version.hpp"
+
+class KB9002DeviceVersion : public DeviceVersion
+{
+  public:
+    using DeviceVersion::DeviceVersion;
+    bool isDeviceReady() final;
+    std::string getVersion() final;
+    std::optional<SystemStateInf::HostState> getHostStateToQueryVersion() final;
+    std::optional<SystemStateInf::OsState> getOsStateToQueryVersion() final;
+
+  private:
+    std::vector<std::string> getDebugFsPaths(const std::string& suffix) const;
+};

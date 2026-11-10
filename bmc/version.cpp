@@ -138,8 +138,11 @@ std::string Version::getBMCMachine(const std::string& releaseFilePath)
         if (line.substr(0, machineKey.size()).find(machineKey) !=
             std::string::npos)
         {
-            std::size_t pos = line.find_first_of('"') + 1;
-            machine = line.substr(pos, line.find_last_of('"') - pos);
+            // Support quoted and unquoted values, same as getBMCVersion().
+            auto machineValue = line.substr(machineKey.size());
+            std::size_t pos = machineValue.find_first_of('"') + 1;
+            machine =
+                machineValue.substr(pos, machineValue.find_last_of('"') - pos);
             break;
         }
     }

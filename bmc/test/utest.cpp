@@ -152,6 +152,36 @@ TEST_F(VersionTest, TestGetVersionWithoutQuotes)
     EXPECT_EQ(Version::getBMCVersion(releasePath), version);
 }
 
+TEST_F(VersionTest, TestGetMachineWithQuotes)
+{
+    auto releasePath = _directory + "/" + "os-release";
+    auto machine = "test-machine";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "OPENBMC_TARGET_MACHINE=\"" << machine << "\"\n";
+    file.close();
+
+    EXPECT_EQ(Version::getBMCMachine(releasePath), machine);
+}
+
+TEST_F(VersionTest, TestGetMachineWithoutQuotes)
+{
+    auto releasePath = _directory + "/" + "os-release";
+    auto machine = "test-machine";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "OPENBMC_TARGET_MACHINE=" << machine << "\n";
+    file.close();
+
+    EXPECT_EQ(Version::getBMCMachine(releasePath), machine);
+}
+
 /** @brief Make sure we correctly get the Id from getId()*/
 TEST_F(VersionTest, TestGetId)
 {

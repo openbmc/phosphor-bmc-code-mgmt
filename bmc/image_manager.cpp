@@ -286,8 +286,7 @@ int Manager::unTar(const std::string& tarFilePath,
               extractDirPath.c_str(), (char*)0);
         // execl only returns on fail
         error("Failed to execute untar on {PATH}", "PATH", tarFilePath);
-        report<UnTarFailure>(UnTarFail::PATH(tarFilePath.c_str()));
-        return -1;
+        _exit(EXIT_FAILURE);
     }
     else if (pid > 0)
     {

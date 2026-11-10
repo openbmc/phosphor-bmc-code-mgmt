@@ -25,9 +25,7 @@ std::vector<std::string> PT5161LDeviceVersion::getDebugFsPaths(
      */
     return {"/sys/kernel/debug/pt5161l/" + busOss.str() + "_" + addrOss.str() +
                 suffix,
-
-            "/sys/kernel/debug/i2c/i2c-" + busOss.str() + "/" + busOss.str() +
-                "-" + addrOss.str() + suffix};
+            buildI2CDebugFsPath(bus, address, suffix)};
 }
 
 std::string PT5161LDeviceVersion::getVersion()

@@ -1,5 +1,6 @@
 eeprom_device_version_src = files(
     'eeprom_device_version.cpp',
+    'kb9002/kb9002.cpp',
     'pt5161l/pt5161l.cpp',
 )
 

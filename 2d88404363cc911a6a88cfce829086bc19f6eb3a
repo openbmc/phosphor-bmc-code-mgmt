@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4082a9b_6b07c542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T05:04:40Z",
+      "side": 1,
+      "message": "Nit: the subject could use a component prefix, as other changes in this repo do,\ne.g. \"bmc: fix alternate U-Boot checksum in mmc_mirroruboot\". Otherwise LGTM.",
+      "revId": "2d88404363cc911a6a88cfce829086bc19f6eb3a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

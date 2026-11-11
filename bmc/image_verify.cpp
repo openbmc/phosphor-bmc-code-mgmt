@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <openssl/err.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -17,6 +18,7 @@
 
 #include <cassert>
 #include <cerrno>
+#include <cstdlib>
 #include <fstream>
 #include <set>
 #include <system_error>
@@ -165,8 +167,12 @@ bool Signature::verifyFullImage()
         fs::path(imageDirPath) / "publickey.sig"};
 
     // Merge files
-    std::string tmpFullFile = "/tmp/image-full";
-    utils::mergeFiles(fullImages, tmpFullFile);
+    auto mergedFile = utils::mergeToTempFile(fullImages);
+    if (!mergedFile)
+    {
+        return false;
+    }
+    std::string tmpFullFile = *mergedFile;
 
     // Validate the full image files
     fs::path pkeyFullFile(tmpFullFile);

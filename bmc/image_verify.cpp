@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <openssl/err.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
@@ -17,6 +18,7 @@
 
 #include <cassert>
 #include <cerrno>
+#include <cstdlib>
 #include <fstream>
 #include <set>
 #include <system_error>
@@ -165,7 +167,17 @@ bool Signature::verifyFullImage()
         fs::path(imageDirPath) / "publickey.sig"};
 
     // Merge files
-    std::string tmpFullFile = "/tmp/image-full";
+    // A fixed name in /tmp could be a symlink planted by another local user.
+    char tmpFullTemplate[] = "/tmp/image-fullXXXXXX";
+    int tmpFullFd = mkstemp(tmpFullTemplate);
+    if (tmpFullFd < 0)
+    {
+        error("Failed to create temporary file for full image: {ERRNO}",
+              "ERRNO", errno);
+        return false;
+    }
+    close(tmpFullFd);
+    std::string tmpFullFile = tmpFullTemplate;
     utils::mergeFiles(fullImages, tmpFullFile);
 
     // Validate the full image files

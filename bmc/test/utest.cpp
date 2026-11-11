@@ -372,6 +372,28 @@ TEST_F(SignatureTest, TestNoFullSignatureForBIOS)
     signature = std::make_unique<Signature>(extractPath, signedConfPath);
     EXPECT_TRUE(signature->verify());
 }
+
+/** @brief The merged full image data must not be written through a symlink */
+TEST_F(SignatureTest, TestFullImageTmpFileNotSymlinkFollowed)
+{
+    std::string victim = std::string(testPath) + "/victim";
+    command("echo victim > " + victim);
+
+    std::error_code ec;
+    fs::path link("/tmp/image-full");
+    fs::remove(link, ec);
+    fs::create_symlink(victim, link, ec);
+    ASSERT_FALSE(ec);
+
+    EXPECT_TRUE(signature->verify());
+
+    std::ifstream f(victim);
+    std::string content;
+    std::getline(f, content);
+    EXPECT_EQ(content, "victim");
+
+    fs::remove(link, ec);
+}
 #endif
 
 class FileTest : public testing::Test

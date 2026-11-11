@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81f5e9c7_7c811056",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T06:03:35Z",
+      "side": 1,
+      "message": "\"This change adds the compatible hardware strings in [3]\" is inaccurate. [3] adds them in phosphor-dbus-interfaces; this change adds the KB9002Firmware config type and version provider. [2] (entity-manager 96001) and [3] (phosphor-dbus-interfaces 96972) are also still open, so please note the merge-order dependency.",
+      "revId": "2f7f67352fc6ab0d419cc870c11d8ff8c725634f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf29c74_857cb56d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T06:03:35Z",
+      "side": 1,
+      "message": "This line has an internal IP (10.44.176.228) where the rest of the log uses \u003cbmc_ip\u003e. Please redact it. The stray triple-quote line at line 20 should go as well, and the log could be trimmed (for example the repeated task-progress messages).",
+      "revId": "2f7f67352fc6ab0d419cc870c11d8ff8c725634f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8715e90_55891d7d",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T06:03:35Z",
+      "side": 1,
+      "message": "\u003calgorithm\u003e is unused.",
+      "revId": "2f7f67352fc6ab0d419cc870c11d8ff8c725634f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca427b8_93c5937f",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T06:03:35Z",
+      "side": 1,
+      "message": "getDebugFsPaths() returns a single path, so the vector and the for loops in getVersion() (L31-46) and isDeviceReady() (L58-66) are redundant. PT5161L needs the list because its debugfs path changed in kernel 6.18. Could this return one std::string and drop the loops? The rest of the file is a near-verbatim copy of pt5161l.cpp, so sharing the helper would avoid the duplication.",
+      "revId": "2f7f67352fc6ab0d419cc870c11d8ff8c725634f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

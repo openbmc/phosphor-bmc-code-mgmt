@@ -4,6 +4,9 @@
 
 #include <phosphor-logging/lg2.hpp>
 
+#include <cerrno>
+#include <cstdlib>
+
 namespace utils
 {
 
@@ -82,6 +85,25 @@ void mergeFiles(const std::vector<std::string>& srcFiles,
         inFile.close();
     }
     outFile.close();
+}
+
+std::optional<std::string> mergeToTempFile(
+    const std::vector<std::string>& srcFiles)
+{
+    // A fixed name in /tmp could be a symlink planted by another local user.
+    char tmpTemplate[] = "/tmp/image-fullXXXXXX";
+    int fd = mkstemp(tmpTemplate);
+    if (fd < 0)
+    {
+        error("Failed to create temporary file for full image: {ERRNO}",
+              "ERRNO", errno);
+        return std::nullopt;
+    }
+    close(fd);
+
+    std::string tmpFile = tmpTemplate;
+    mergeFiles(srcFiles, tmpFile);
+    return tmpFile;
 }
 
 namespace internal

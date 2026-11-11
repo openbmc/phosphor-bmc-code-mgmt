@@ -4,7 +4,9 @@
 
 #include <fstream>
 #include <map>
+#include <optional>
 #include <string>
+#include <vector>
 
 namespace utils
 {
@@ -74,6 +76,16 @@ void setProperty(sdbusplus::bus_t& bus, const std::string& objectPath,
  **/
 void mergeFiles(const std::vector<std::string>& srcFiles,
                 const std::string& dstFile);
+
+/**
+ * @brief Merge files into a newly created unique temporary file
+ *
+ * @param[in] srcFiles - source files
+ * @return path of the temporary file, or std::nullopt if it could not be
+ *         created. The caller is responsible for removing it.
+ **/
+std::optional<std::string> mergeToTempFile(
+    const std::vector<std::string>& srcFiles);
 
 namespace internal
 {

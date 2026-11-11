@@ -70,6 +70,24 @@
       "parentUuid": "e9cd8da4_122162d7",
       "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22a97ed3_a23b461d",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-11T09:49:42Z",
+      "side": 1,
+      "message": "Thanks for confirming on hardware. Setting Activation to Failed before returning\nin the getVersion() failure path (as in patchset 6) addresses my concern:\nPSUSensor resumes polling on Failed, and the object-removal handling in 83968\nremains the fallback for abnormal termination.\n\nOne request: the verification currently only lives in this thread. Could you add\na Tested section to the commit message, covering the normal CRC read and the\nforced getVersion() failure (polling paused while Activating, resumed after\nFailed), and mention that Activation is set to Failed on failure? Resolving this\nthread.",
+      "parentUuid": "478877ad_2bb10f56",
+      "revId": "1caca57dc80e1ad7564ed2c1e08339a7ac5658a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

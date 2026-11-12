@@ -209,14 +209,17 @@ auto Manager::processImage(sdbusplus::message::unix_fd image,
             ImageFail::PATH(filePath.c_str()));
         co_return;
     }
+
+    updateInProgress = false;
+    close(image);
+
+    // Activation can erase the version this Update object belongs to, and the
+    // object with it, so nothing here may touch a member after this call.
     if (applyTime == ApplyTimeIntf::RequestedApplyTimes::Immediate ||
         applyTime == ApplyTimeIntf::RequestedApplyTimes::OnReset)
     {
         itemUpdater.requestActivation(id);
     }
-
-    updateInProgress = false;
-    close(image);
     co_return;
 }
 

@@ -81,7 +81,8 @@ TEST_F(SoftwareAssocTest, TestSoftwareAssociationMissing)
 sdbusplus::async::task<> testSoftwareAssociation(
     sdbusplus::async::context& ctx, std::unique_ptr<ExampleDevice>& device,
     const std::string& objPathCurrentSoftware, const std::string& busName,
-    bool createRunningAssoc, std::string expectAssociation)
+    bool createRunningAssoc, std::string expectAssociation,
+    std::string expectReverseAssociation)
 {
     auto client =
         sdbusplus::client::xyz::openbmc_project::association::Definitions<>(ctx)
@@ -97,6 +98,7 @@ sdbusplus::async::task<> testSoftwareAssociation(
 
         EXPECT_EQ(res.size(), 1);
         EXPECT_EQ(std::get<0>(res[0]), expectAssociation);
+        EXPECT_EQ(std::get<1>(res[0]), expectReverseAssociation);
         EXPECT_EQ(std::get<2>(res[0]), exampleEndpoint);
     }
     catch (std::exception& e)
@@ -112,13 +114,14 @@ sdbusplus::async::task<> testSoftwareAssociation(
 TEST_F(SoftwareAssocTest, TestSoftwareAssociationRunning)
 {
     ctx.spawn(testSoftwareAssociation(ctx, device, objPathCurrentSoftware,
-                                      busName, true, "running"));
+                                      busName, true, "ran_on", "running"));
     ctx.run();
 }
 
 TEST_F(SoftwareAssocTest, TestSoftwareAssociationActivating)
 {
-    ctx.spawn(testSoftwareAssociation(ctx, device, objPathCurrentSoftware,
-                                      busName, false, "activating"));
+    ctx.spawn(
+        testSoftwareAssociation(ctx, device, objPathCurrentSoftware, busName,
+                                false, "activated_on", "activating"));
     ctx.run();
 }

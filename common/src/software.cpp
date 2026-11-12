@@ -115,18 +115,18 @@ void Software::createInventoryAssociation(
 
     if (isRunning)
     {
-        debug("{SWID}: creating 'running' association to {OBJPATH}", "SWID",
+        debug("{SWID}: creating 'ran_on' association to {OBJPATH}", "SWID",
               swid, "OBJPATH", objectPath);
         std::tuple<std::string, std::string, std::string> assocRunning = {
-            "running", "ran_on", objectPath};
+            "ran_on", "running", objectPath};
         assocs.push_back(assocRunning);
     }
     else
     {
-        debug("{SWID}: creating 'activating' association to {OBJPATH}", "SWID",
-              swid, "OBJPATH", objectPath);
+        debug("{SWID}: creating 'activated_on' association to {OBJPATH}",
+              "SWID", swid, "OBJPATH", objectPath);
         std::tuple<std::string, std::string, std::string> assocActivating = {
-            "activating", "activated_on", objectPath};
+            "activated_on", "activating", objectPath};
         assocs.push_back(assocActivating);
     }
 

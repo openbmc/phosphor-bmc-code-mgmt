@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9462a8_031bec73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-14T00:13:53Z",
+      "side": 1,
+      "message": "I only see the version read support, where is the logic for update? Is it common/same as base class ?",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01eb8bef_688183d5",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-14T00:13:53Z",
+      "side": 1,
+      "message": "Most of these lines 17 - 21 are common with some filename suffix. Seems like a good candidate for refactoring into common function.",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c0c728_b8ac2579",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-14T00:13:53Z",
+      "side": 1,
+      "message": "Please define a constexpr for this path and use it at all places.",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

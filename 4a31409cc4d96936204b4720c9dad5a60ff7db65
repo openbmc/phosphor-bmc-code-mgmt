@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80245732_dbb97e67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-14T00:33:39Z",
+      "side": 1,
+      "message": "Can you add a reference to the documentation stating this fact ?",
+      "revId": "4a31409cc4d96936204b4720c9dad5a60ff7db65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Lets extract this into a another small function, otherwise current function will keep on growing.",
       "revId": "eeeeaf448c6084eb7e2078115ea6806e980fbb8c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fddf7b54_e515081b",
+        "filename": "bmc/image_verify.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-16T11:46:18Z",
+      "side": 1,
+      "message": "Done. Extracted the temp file creation and merge into utils::mergeToTempFile() in utils.cpp/utils.hpp, so verifyFullImage() just calls it and bails out if it fails. Tested on AST2600 EVB with -Dverify-signature\u003denabled: SignatureTest cases (including the /tmp/image-full symlink test) pass.",
+      "parentUuid": "854fb408_2dbd814a",
+      "revId": "eeeeaf448c6084eb7e2078115ea6806e980fbb8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

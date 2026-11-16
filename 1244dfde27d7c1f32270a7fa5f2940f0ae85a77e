@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b654ae9_d75cdaf4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-11-16T15:19:42Z",
+      "side": 1,
+      "message": "@paligill@gmail.com Yes, it uses the same EEPROM programming logic as the AsteraLabs PT5161L.",
+      "parentUuid": "3b9462a8_031bec73",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01eb8bef_688183d5",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56de45ab_5eb859a0",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-11-16T15:19:42Z",
+      "side": 1,
+      "message": "Refactored the common I2C debugfs path construction into a helper function in the DeviceVersion class.\nThe legacy debugfs path in PT5161L is kept for backward compatibility.",
+      "parentUuid": "01eb8bef_688183d5",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56c0c728_b8ac2579",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-14T00:13:53Z",
       "side": 1,
       "message": "Please define a constexpr for this path and use it at all places.",
+      "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4c1507_6b8bf250",
+        "filename": "eeprom-device/kb9002/kb9002.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002744
+      },
+      "writtenOn": "2026-11-16T15:19:42Z",
+      "side": 1,
+      "message": "Define it in DeviceVersion class.\n\nstatic constexpr auto i2cDebugFsPath \u003d\n        \"/sys/kernel/debug/i2c/i2c-%02u/%02u-%04x%s\";",
+      "parentUuid": "56c0c728_b8ac2579",
       "revId": "1244dfde27d7c1f32270a7fa5f2940f0ae85a77e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

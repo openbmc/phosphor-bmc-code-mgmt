@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf7938b_ee4c1e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-16T09:33:58Z",
+      "side": 1,
+      "message": "Update to my earlier note: the MPQ82D00 hwmon driver is now applied to openbmc/linux dev-6.18 as commit [f27ba9b499d4] (\"hwmon: (pmbus) Add MPQ82D00 driver\").\n\n[f27ba9b499d4]: https://github.com/openbmc/linux/commit/f27ba9b499d44c99140257fef458f8e22a553242",
+      "parentUuid": "f00fabc0_a81fba13",
+      "revId": "3b474c42e4f121a93f0e0b94053e45d92d935f09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce421afd_1ee4f7d8",

@@ -16,6 +16,24 @@
       "message": "Can you add a reference to the documentation stating this fact ?",
       "revId": "4a31409cc4d96936204b4720c9dad5a60ff7db65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7343f17_00aac459",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-17T05:14:55Z",
+      "side": 1,
+      "message": "Done. Added a reference to os-release(5) in the commit message. It says values only need quotes if they contain spaces, semicolons or other special characters outside A-Z, a-z, 0-9, and that quoting is optional otherwise:\nhttps://www.freedesktop.org/software/systemd/man/latest/os-release.html",
+      "parentUuid": "80245732_dbb97e67",
+      "revId": "4a31409cc4d96936204b4720c9dad5a60ff7db65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

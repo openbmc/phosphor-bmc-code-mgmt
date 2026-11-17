@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ee6e2ba_197e8513",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002589
+      },
+      "writtenOn": "2026-11-17T07:00:07Z",
+      "side": 1,
+      "message": "Hi @paligill@gmail.com and @suvedhab@ami.com, just a friendly ping on this change. I\u0027ve addressed all the comments in Patch Set 9. Could you please take another look when you have a moment? Thanks!",
+      "revId": "ed8cb123afa0c6c55b7adc535931c7bfbcf0a9ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

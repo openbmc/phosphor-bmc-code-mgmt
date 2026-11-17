@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b012079_fd6fa170",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-17T20:25:07Z",
+      "side": 1,
+      "message": "Can you please add a concrete usecase where you have or will hit this and what actually will break in production environment because of this ?",
+      "revId": "9ae2d98046e3432d9c2a1cb250cfe94aadfe550b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a2e197_32eb4130",
+        "filename": "bmc/sync_watch.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-17T20:25:07Z",
+      "side": 1,
+      "message": "Why do you need a new constructor ? Can\u0027t you update the existing constructor and provide a default value for last arg if not given ?",
+      "revId": "9ae2d98046e3432d9c2a1cb250cfe94aadfe550b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2b3d39_86a07a2f",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-17T20:17:50Z",
+      "side": 1,
+      "message": "I would prefer not to add this kind of friend logic for Tests into production code. Can you please look into the existing tests for common and use some related pattern ?",
+      "revId": "794907885f91c895b9b7513f63c9a89ec60b5f39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

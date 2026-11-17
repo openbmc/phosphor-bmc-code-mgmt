@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7ef7acc_caceaabb",
+        "filename": "bmc/version.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-17T20:13:13Z",
+      "side": 0,
+      "message": "Probably strlen(version.c_str()) was being used earlier to skip \u0027\\0\u0027 chars or treat \u0027\\0\u0027 as the delimiter? Did you look into possibility of that ?",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

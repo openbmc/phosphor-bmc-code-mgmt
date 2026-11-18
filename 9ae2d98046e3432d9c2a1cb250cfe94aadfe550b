@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c694a2_d4b9c71b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-18T11:01:44Z",
+      "side": 1,
+      "message": "Done in the latest patchset. I\u0027ve added a concrete scenario to the commit message: two files from the sync list change together, one is replaced via rename() (which queues IN_IGNORED) and the other is written (IN_CLOSE_WRITE) in the same read() batch. The old early return dropped the second event, so the alternate side kept a stale copy until the file changed again. I also reproduced this on an AST2600 EVB: with the old binary the appended file was not synced, with the fixed binary it was. The regression test covers the same sequence.",
+      "parentUuid": "7b012079_fd6fa170",
+      "revId": "9ae2d98046e3432d9c2a1cb250cfe94aadfe550b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62a2e197_32eb4130",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-17T20:25:07Z",
       "side": 1,
       "message": "Why do you need a new constructor ? Can\u0027t you update the existing constructor and provide a default value for last arg if not given ?",
+      "revId": "9ae2d98046e3432d9c2a1cb250cfe94aadfe550b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "994adbf4_ee3c8b24",
+        "filename": "bmc/sync_watch.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-18T11:01:44Z",
+      "side": 1,
+      "message": "Done. I\u0027ve removed the second constructor and added const fs::path\u0026 syncListPath \u003d {} to the existing one. An empty path falls back to SYNC_LIST_DIR_PATH/SYNC_LIST_FILE_NAME inside the .cpp, because the header doesn\u0027t include config.h. The existing caller in sync_manager_main.cpp is unchanged.",
+      "parentUuid": "62a2e197_32eb4130",
       "revId": "9ae2d98046e3432d9c2a1cb250cfe94aadfe550b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

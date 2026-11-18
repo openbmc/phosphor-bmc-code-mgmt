@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc4ed14_923ccde4",
+        "filename": "test/i2c-vr/isl69269.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-18T19:28:27Z",
+      "side": 1,
+      "message": "What are these hex numbers? Same goes for all the above. Can you please add some comments and description for these?",
+      "revId": "f196100c945ec702b203f25c59d2f34669c0d5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

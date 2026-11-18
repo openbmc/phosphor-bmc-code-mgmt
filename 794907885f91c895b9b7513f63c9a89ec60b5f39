@@ -16,6 +16,24 @@
       "message": "I would prefer not to add this kind of friend logic for Tests into production code. Can you please look into the existing tests for common and use some related pattern ?",
       "revId": "794907885f91c895b9b7513f63c9a89ec60b5f39",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4fe220_ab7132c0",
+        "filename": "i2c-vr/isl69269/isl69269.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-18T11:50:22Z",
+      "side": 1,
+      "message": "Done. Removed the friend struct ISL69269TestAccess from the production header. parseImage() and checkImage() are now protected, and the test uses a small derived class (TestISL69269) to expose them. This is the same pattern test/common uses, e.g. ExampleSoftware and ExampleDevice in example_device.hpp. No other members changed visibility, and there\u0027s no runtime behavior change. All 7 tests pass locally.",
+      "parentUuid": "9d2b3d39_86a07a2f",
+      "revId": "794907885f91c895b9b7513f63c9a89ec60b5f39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

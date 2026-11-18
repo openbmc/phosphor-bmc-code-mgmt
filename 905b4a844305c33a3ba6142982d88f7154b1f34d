@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29fb392_b7b0b399",
+        "filename": "eeprom-device/eeprom_device_version.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2026-11-18T21:15:05Z",
+      "side": 1,
+      "message": "Can you please move this local to buildI2CDebugFsPath .",
+      "revId": "905b4a844305c33a3ba6142982d88f7154b1f34d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

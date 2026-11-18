@@ -244,24 +244,39 @@ bool Signature::verify()
             return false;
         }
 
-        if (!valid)
+        bool partitionFilesFound = false;
+        for (const auto& partition : bmcImages)
+        {
+            std::error_code ec;
+            if (fs::exists(imageDirPath / partition, ec) || ec)
+            {
+                partitionFilesFound = true;
+                break;
+            }
+        }
+
+        if (partitionFilesFound)
         {
             // Validate bmcImages
+            bool partitionCheckFound = false;
             imageUpdateList.clear();
             imageUpdateList.assign(bmcImages.begin(), bmcImages.end());
-            valid =
-                checkAndVerifyImage(imageDirPath, publicKeyFile,
-                                    imageUpdateList, bmcFilesFound, hashType);
+            valid = checkAndVerifyImage(imageDirPath, publicKeyFile,
+                                        imageUpdateList, partitionCheckFound,
+                                        hashType);
+            bmcFilesFound = true;
             debug("BMC partition verification: found={FOUND}, valid={VALID}",
                   "FOUND", bmcFilesFound, "VALID", valid);
 
-            if (bmcFilesFound && valid)
+            if (!valid)
             {
-                if (!verifyPQSignatures(bmcImages))
-                {
-                    error("PQ image signature verification failed");
-                    return false;
-                }
+                return false;
+            }
+
+            if (!verifyPQSignatures(bmcImages))
+            {
+                error("PQ image signature verification failed");
+                return false;
             }
         }
 

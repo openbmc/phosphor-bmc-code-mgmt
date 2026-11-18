@@ -353,6 +353,95 @@ TEST_F(SignatureTest, TestIncompleteBMCImagesWithoutOptionalImages)
     EXPECT_FALSE(signature->verify());
 }
 
+/**
+ * @brief Test failure scenario when the first partition (image-kernel) is
+ *        missing and a later partition is present behind a valid full image
+ *        (reviewer finding on PS1).
+ *
+ * checkAndVerifyImage stops at the first missing entry and only sets its
+ * fileFound flag after checking image-kernel, so detecting partition
+ * presence via checkAndVerifyImage left the flag false when image-kernel
+ * was absent; with a valid image-bmc and a non-BMC purpose, verify()
+ * returned true. Detecting partition presence across all bmcImages entries
+ * before calling checkAndVerifyImage rejects the incomplete/corrupt set.
+ */
+TEST_F(SignatureTest, TestPresentPartitionAfterMissingNotSkipped)
+{
+    // Switch the purpose so verifyFullImage() is skipped.
+    std::string manifestFile = extractPath.string() + "/MANIFEST";
+    command("sed -i 's/VersionPurpose.BMC/VersionPurpose.Host/' " +
+            manifestFile);
+    std::string pkeyFile = extractPath.string() + "/private.pem";
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+    // Add a valid image-bmc so the full-image branch succeeds.
+    std::string bmcFile = extractPath.string() + "/image-bmc";
+    command("echo \"full image content\" > " + bmcFile);
+    command(opensslCmd + pkeyFile + " -out " + bmcFile + ".sig " + bmcFile);
+    // Remove image-kernel entirely (first entry of the bmcImages list).
+    command("rm " + extractPath.string() + "/image-kernel " +
+            extractPath.string() + "/image-kernel.sig");
+    // Corrupt the image-rofs signature (a present, later partition).
+    command("echo \"dummy data\" > " + extractPath.string() +
+            "/image-rofs.sig");
+    // The purpose is read at construction, so rebuild the object.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_FALSE(signature->verify());
+}
+
+/**
+ * @brief Test failure scenario for corrupted partition content behind a
+ *        valid full image.
+ *
+ * A package with a valid image-bmc used to skip the bmcImages branch
+ * entirely once the full image verified, so for a non-BMC purpose
+ * (verifyFullImage() skipped) corrupted partition content was never
+ * detected and verify() returned true.
+ */
+TEST_F(SignatureTest, TestCorruptPartitionBehindValidFullImage)
+{
+    // Switch the purpose so verifyFullImage() is skipped.
+    std::string manifestFile = extractPath.string() + "/MANIFEST";
+    command("sed -i 's/VersionPurpose.BMC/VersionPurpose.Host/' " +
+            manifestFile);
+    // Re-sign the manifest so systemLevelVerify() still passes.
+    std::string pkeyFile = extractPath.string() + "/private.pem";
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+    // Add a valid image-bmc so the full-image branch succeeds.
+    std::string bmcFile = extractPath.string() + "/image-bmc";
+    command("echo \"full image content\" > " + bmcFile);
+    command(opensslCmd + pkeyFile + " -out " + bmcFile + ".sig " + bmcFile);
+    // Corrupt the image-kernel content while keeping its .sig intact.
+    command("echo \"CORRUPTED KERNEL\" > " + extractPath.string() +
+            "/image-kernel");
+    // The purpose is read at construction, so rebuild the object.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_FALSE(signature->verify());
+}
+
+/**
+ * @brief Test failure scenario for a corrupted partition image signature
+ *        when the image purpose is not BMC.
+ */
+TEST_F(SignatureTest, TestCorruptSignatureFileNonBMCPurpose)
+{
+    // Switch the purpose so verifyFullImage() is skipped.
+    std::string manifestFile = extractPath.string() + "/MANIFEST";
+    command("sed -i 's/VersionPurpose.BMC/VersionPurpose.Host/' " +
+            manifestFile);
+    // Re-sign the manifest so systemLevelVerify() still passes.
+    std::string pkeyFile = extractPath.string() + "/private.pem";
+    command(opensslCmd + pkeyFile + " -out " + manifestFile + ".sig " +
+            manifestFile);
+    // Corrupt the image-kernel signature.
+    std::string kernelFile = extractPath.string() + "/image-kernel";
+    command("echo \"dummy data\" > " + kernelFile + ".sig ");
+    // The purpose is read at construction, so rebuild the object.
+    signature = std::make_unique<Signature>(extractPath, signedConfPath);
+    EXPECT_FALSE(signature->verify());
+}
+
 /** @brief Test failure scenario with no public key in the image*/
 TEST_F(SignatureTest, TestNoPublicKeyInImage)
 {

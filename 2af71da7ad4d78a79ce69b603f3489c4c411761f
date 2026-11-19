@@ -16,6 +16,24 @@
       "message": "Probably strlen(version.c_str()) was being used earlier to skip \u0027\\0\u0027 chars or treat \u0027\\0\u0027 as the delimiter? Did you look into possibility of that ?",
       "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "201d11e1_11b2a773",
+        "filename": "bmc/version.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T07:13:35Z",
+      "side": 0,
+      "message": "Good catch, thanks. The original code used strlen(version.c_str()), so it stopped at the first \u0027\\0\u0027. Switching to version.length() in patchset 2 changed that behaviour for versions with embedded NULs. I\u0027ve restored std::strlen(version.c_str()) in patchset 3, so the ID is the same as before, and added a test checking that \"test-id\\0ignored\" gives the same ID as \"test-id\".",
+      "parentUuid": "c7ef7acc_caceaabb",
+      "revId": "2af71da7ad4d78a79ce69b603f3489c4c411761f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

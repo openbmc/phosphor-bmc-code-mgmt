@@ -38,3 +38,31 @@ install_data(
 )
 
 install_data('70-bmc-usb.rules', install_dir: udev_dir / 'rules.d')
+
+if build_tests.allowed() and get_option('software-update-dbus-interface').allowed()
+    usb_gtest = dependency(
+        'gtest',
+        main: true,
+        disabler: true,
+        required: build_tests,
+    )
+
+    test(
+        'usb-manager-test',
+        executable(
+            'usb-manager-test',
+            '../test/usb_manager_test.cpp',
+            'usb_manager.cpp',
+            '../utils.cpp',
+            include_directories: ['..'],
+            dependencies: [
+                pdi_dep,
+                phosphor_logging_dep,
+                sdbusplus_dep,
+                sdeventplus_dep,
+                usb_gtest,
+            ],
+        ),
+        timeout: 10,
+    )
+endif

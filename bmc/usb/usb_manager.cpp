@@ -112,6 +112,7 @@ auto USBManager::run() -> sdbusplus::async::task<void>
     if (!res)
     {
         lg2::error("Failed to copy image from USB");
+        ctx.request_stop();
         co_return;
     }
 
@@ -119,6 +120,7 @@ auto USBManager::run() -> sdbusplus::async::task<void>
     if (fd < 0)
     {
         lg2::error("Failed to open {PATH}", "PATH", imageDstPath);
+        ctx.request_stop();
         co_return;
     }
 

@@ -16,6 +16,24 @@
       "message": "What are these hex numbers? Same goes for all the above. Can you please add some comments and description for these?",
       "revId": "f196100c945ec702b203f25c59d2f34669c0d5bf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "359153d2_a271d736",
+        "filename": "test/i2c-vr/isl69269.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T05:54:40Z",
+      "side": 1,
+      "message": "Done. Added a comment above the fixture describing the record format (type size addr cmd data pec, with the CRC-8 PEC), and a short comment on each test explaining what its hex string is and why it is accepted or rejected. The valid Gen2 image test now breaks down both lines field by field. Comment-only change, no functional difference.",
+      "parentUuid": "2fc4ed14_923ccde4",
+      "revId": "f196100c945ec702b203f25c59d2f34669c0d5bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

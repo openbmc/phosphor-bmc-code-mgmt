@@ -5,6 +5,7 @@
 #include <functional>
 #include <optional>
 #include <string>
+#include <string_view>
 
 #include <gtest/gtest.h>
 
@@ -30,6 +31,20 @@ class AsyncSystemTest : public testing::Test
     {
         bool success = false;
         ctx.spawn(runCommandTask(success, cmd, output));
+        ctx.run();
+        return success;
+    }
+
+    auto runCommandWithCallback(const std::string& cmd,
+                                AsyncSystemOutputCallback callback) -> bool
+    {
+        bool success = false;
+        auto task = [&]() -> sdbusplus::async::task<void> {
+            success = co_await asyncSystem(ctx, cmd, std::nullopt, callback);
+            ctx.request_stop();
+            co_return;
+        };
+        ctx.spawn(task());
         ctx.run();
         return success;
     }
@@ -65,4 +80,14 @@ TEST_F(AsyncSystemTest, CapturesOutputOnFailureWhenRequested)
     std::string output;
     EXPECT_FALSE(runCommand("echo fail; exit 7", output));
     EXPECT_EQ(output, "fail\n");
+}
+
+TEST_F(AsyncSystemTest, DeliversOutputToCallbackWithoutResultString)
+{
+    std::string received;
+    EXPECT_TRUE(
+        runCommandWithCallback("echo progress", [&](std::string_view chunk) {
+            received.append(chunk);
+        }));
+    EXPECT_EQ(received, "progress\n");
 }

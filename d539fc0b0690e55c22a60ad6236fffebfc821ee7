@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4824d0e_eb1c31a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T09:03:15Z",
+      "side": 1,
+      "message": "I\u0027ve tested on QEMU ast2600-evb with the evb-ast2600 image. Entity Manager has no platform config for QEMU, so added a test-only config with Probe set to TRUE. It has an EEPROM_24C64 record on bus 3 at address 0x50 plus a PT5161LFirmware record, and an IntelE810SPIFlash record on SPI controller 1, device 0. I\u0027ve added these details to the commit message in the new patch set.",
+      "parentUuid": "8188770d_0cad6420",
+      "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a81fb5ef_a9a99eb7",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-18T21:09:15Z",
       "side": 1,
       "message": "Probably u don\u0027t need to convert to buf ?\n\n\nstd::string tmpl \u003d (tempDir / (prefix + \"-XXXXXX.bin\")).string();\n\nint fd \u003d mkostemps(tmpl.data(), suffixLen, O_CLOEXEC);\nif (fd \u003c 0)\n{\n    error(\"Failed to create temporary file {PATH}: {ERROR}\", \"PATH\", tmpl,\n          \"ERROR\", std::strerror(errno));\n    return std::nullopt;\n}\n\nreturn TempImageFile(fd, std::move(tmpl));",
+      "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "769e59e7_98d5af02",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T09:03:15Z",
+      "side": 1,
+      "message": "Done. I have dropped the std::vector\u003cchar\u003e buffer. create() now builds the template as a std::string from std::filesystem::path, calls mkostemps(tmpl.data(), ...) on it, and returns TempImageFile(fd, std::move(tmpl)).",
+      "parentUuid": "a81fb5ef_a9a99eb7",
       "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04315d5_cb82edae",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T09:03:15Z",
+      "side": 1,
+      "message": "Done. Renamed ok to success.",
+      "parentUuid": "84454910_cbfd21a6",
+      "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dca9bde7_80b978be",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e02e7b_7ffb8856",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T09:03:15Z",
+      "side": 1,
+      "message": "Done. Renamed done to totalBytesWritten.",
+      "parentUuid": "dca9bde7_80b978be",
+      "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "107ba28f_80965c96",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-11-18T21:09:15Z",
       "side": 1,
       "message": "Change n to bytesWritten",
+      "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f9b8d4_96ed0967",
+        "filename": "common/src/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-19T09:03:15Z",
+      "side": 1,
+      "message": "Done. Renamed n to bytesWritten.",
+      "parentUuid": "107ba28f_80965c96",
       "revId": "d539fc0b0690e55c22a60ad6236fffebfc821ee7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

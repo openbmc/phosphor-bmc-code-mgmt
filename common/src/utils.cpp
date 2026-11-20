@@ -120,7 +120,7 @@ sdbusplus::async::task<bool> asyncSystem(
         result.has_value() || static_cast<bool>(outputCallback);
 
     int resultPipefd[2] = {-1, -1};
-    if (result && pipe2(resultPipefd, O_CLOEXEC) == -1)
+    if (captureOutput && pipe2(resultPipefd, O_CLOEXEC) == -1)
     {
         error("Failed to create pipe for command: {CMD}", "CMD", cmd);
         close(exitPipefd[0]);

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43eeb49f_8deb2459",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-11-20T14:55:33Z",
+      "side": 1,
+      "message": "Thanks it\u0027s much better just needa some comments maybe a renamed function.",
+      "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a1b384_897c6b45",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 19
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-11-20T14:55:33Z",
+      "side": 1,
+      "message": "Overall I like the code but it\u0027s too obscure what this function, what argument it expects and how it goes about.\n\nAlso it\u0027s name is a bit misleading since no output is actually a partition but a whole block device.\n\nSomething like find the primary (0) or secondary (1) bootloader storage",
+      "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f74ae10_eb743276",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 19
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2026-11-20T14:55:33Z",
+      "side": 1,
+      "message": "Please add a one lime comment describing that this finds the first or second lun which is a convention established by provisioning.   Otherwise one has to find the commit message.",
+      "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

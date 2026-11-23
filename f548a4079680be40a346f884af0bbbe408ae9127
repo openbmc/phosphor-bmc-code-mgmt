@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "279bd6ad_67434fc7",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 19
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-11-23T06:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69a1b384_897c6b45",
+      "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f74ae10_eb743276",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-11-20T14:55:33Z",
       "side": 1,
       "message": "Please add a one lime comment describing that this finds the first or second lun which is a convention established by provisioning.   Otherwise one has to find the commit message.",
+      "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fac06ade_6feb2f42",
+        "filename": "bmc/obmc-flash-bmc",
+        "patchSetId": 19
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1002108
+      },
+      "writtenOn": "2026-11-23T06:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f74ae10_eb743276",
       "revId": "f548a4079680be40a346f884af0bbbe408ae9127",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

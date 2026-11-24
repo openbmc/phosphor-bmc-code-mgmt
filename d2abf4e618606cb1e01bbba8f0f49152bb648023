@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecbb3946_105b38e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003252
+      },
+      "writtenOn": "2026-11-24T07:57:16Z",
+      "side": 1,
+      "message": "I independently ran into the optional-image case and tested it end to end in QEMU (p10bmc build, rainier-bmc machine, eMMC boot, field mode enabled, with a stand-in image-hostfw signed by the build). The tested code was d194ee8a with my equivalent partition-path check backported, not this change itself.\n\nWithout the fix: a package with a modified image-rofs (signatures unchanged) plus a valid image-hostfw was accepted. The BMC rebooted into the modified rofs (3/3 runs).\nWith the fix: the same package was rejected (Activation Failed, nothing written, no service restart, 3/3). An unmodified package still updated and rebooted.\n\nHope this helps the review.",
+      "revId": "d2abf4e618606cb1e01bbba8f0f49152bb648023",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

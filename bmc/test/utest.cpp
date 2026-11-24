@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -349,6 +350,40 @@ TEST_F(SignatureTest, TestIncompleteBMCImagesWithoutOptionalImages)
 
     // Leave a valid first partition and all signatures, but omit a later image.
     ASSERT_TRUE(fs::remove(extractPath / "image-rofs"));
+
+    EXPECT_FALSE(signature->verify());
+}
+
+TEST_F(SignatureTest, TestInvalidBMCImageWithValidOptionalImage)
+{
+    const auto optionalImages = getOptionalImages();
+    if (std::find(optionalImages.begin(), optionalImages.end(),
+                  "image-hostfw") == optionalImages.end())
+    {
+        GTEST_SKIP() << "requires optional-images to include image-hostfw";
+    }
+
+    // Add a validly signed optional image and re-sign image-full in the
+    // order used by verifyFullImage().
+    std::string dir = extractPath.string() + "/";
+    std::string pkeyFile = dir + "private.pem";
+    command("echo \"image-hostfw file \" > " + dir + "image-hostfw");
+    command(opensslCmd + pkeyFile + " -out " + dir + "image-hostfw.sig " +
+            dir + "image-hostfw");
+    command("cat " + dir + "image-hostfw.sig " + dir + "image-kernel.sig " +
+            dir + "image-rofs.sig " + dir + "image-rwfs.sig " + dir +
+            "image-u-boot.sig " + dir + "MANIFEST.sig " + dir +
+            "publickey.sig > " + dir + "image-full");
+    command(opensslCmd + pkeyFile + " -out " + dir + "image-full.sig " + dir +
+            "image-full");
+    ASSERT_TRUE(signature->verify());
+
+    // Corrupt a BMC partition image; keep all signatures intact.
+    std::ofstream kernelFile(extractPath / "image-kernel", std::ios::app);
+    ASSERT_TRUE(kernelFile.is_open());
+    kernelFile << "corrupted image data\n";
+    kernelFile.close();
+    ASSERT_TRUE(kernelFile.good());
 
     EXPECT_FALSE(signature->verify());
 }

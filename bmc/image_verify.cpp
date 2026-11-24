@@ -255,6 +255,15 @@ bool Signature::verify()
             debug("BMC partition verification: found={FOUND}, valid={VALID}",
                   "FOUND", bmcFilesFound, "VALID", valid);
 
+            // Same rule as the full-image path above: once BMC images are
+            // present they must verify. A valid optional image must not
+            // stand in for an invalid BMC image.
+            if (bmcFilesFound && !valid)
+            {
+                error("BMC partition image signature verification failed");
+                return false;
+            }
+
             if (bmcFilesFound && valid)
             {
                 if (!verifyPQSignatures(bmcImages))

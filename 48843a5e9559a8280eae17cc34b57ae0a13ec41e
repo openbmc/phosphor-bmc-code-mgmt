@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a504928c_67479d9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003252
+      },
+      "writtenOn": "2026-11-24T07:55:20Z",
+      "side": 1,
+      "message": "This duplicates https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/95755, which was uploaded earlier and also covers the optional-image case (a valid image-hostfw letting a failed partition image pass). I missed it before uploading. Abandoning this in favor of 95755; I will add my test results there.",
+      "revId": "48843a5e9559a8280eae17cc34b57ae0a13ec41e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

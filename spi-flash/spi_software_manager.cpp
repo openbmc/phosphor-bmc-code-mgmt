@@ -6,12 +6,56 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/async.hpp>
 
+#include <chrono>
 #include <exception>
 
 PHOSPHOR_LOG2_USING;
 
 namespace phosphor::software::manager
 {
+
+namespace
+{
+
+// A mux output property read can fail because Entity-Manager is slow to
+// answer while it scans; that must not look like the end of the MuxOutputs
+// list, or the device runs without its mux for the whole boot.
+struct MuxProperty
+{
+    std::optional<std::string> value;
+    bool absent = false; // the interface or property does not exist
+    std::string error;   // the last failure, when there is no value
+};
+
+sdbusplus::async::task<MuxProperty> getMuxProperty(
+    sdbusplus::async::context& ctx, const std::string& service,
+    const std::string& path, const std::string& intf,
+    const std::string& property)
+{
+    auto client =
+        sdbusplus::async::proxy().service(service).path(path).interface(
+            "org.freedesktop.DBus.Properties");
+
+    MuxProperty result;
+    try
+    {
+        auto value = co_await client.call<std::variant<std::string>>(
+            ctx, "Get", intf, property);
+        result.value = std::get<std::string>(value);
+    }
+    catch (const sdbusplus::exception::exception& e)
+    {
+        result.absent = isDbusAbsentError(e.name());
+        result.error = e.what();
+    }
+    catch (const std::exception& e)
+    {
+        result.error = e.what();
+    }
+    co_return result;
+}
+
+} // namespace
 
 SPISoftwareManager::SPISoftwareManager(sdbusplus::async::context& ctx,
                                        bool isDryRun) :
@@ -56,22 +100,56 @@ sdbusplus::async::task<bool> SPISoftwareManager::initDevice(
     {
         const std::string iface = configIfaceMux + std::to_string(i);
 
-        std::optional<std::string> name =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Name");
-
-        std::optional<std::string> polarity =
-            co_await dbusGetRequiredProperty<std::string>(ctx, service, path,
-                                                          iface, "Polarity");
-
-        if (!name.has_value() || !polarity.has_value())
+        MuxProperty name;
+        MuxProperty polarity;
+        const auto start = std::chrono::steady_clock::now();
+        for (int attempt = 1;; attempt++)
         {
+            name = co_await getMuxProperty(ctx, service, path, iface, "Name");
+            if (name.absent)
+            {
+                break;
+            }
+            polarity =
+                co_await getMuxProperty(ctx, service, path, iface, "Polarity");
+            if (name.value && polarity.value)
+            {
+                break;
+            }
+            if (std::chrono::steady_clock::now() - start >=
+                dbusTransientRetryWindow)
+            {
+                break;
+            }
+            if (attempt == 1)
+            {
+                warning("Reading {INTF} failed, retrying: {ERROR}", "INTF",
+                        iface, "ERROR",
+                        name.value ? polarity.error : name.error);
+            }
+            co_await sdbusplus::async::sleep_for(ctx, dbusTransientRetryDelay);
+        }
+
+        if (name.absent)
+        {
+            // No MuxOutputs<i> interface: the end of the list.
             break;
         }
 
-        names.push_back(name.value());
-        values.push_back((polarity == "High") ? 1 : 0);
+        if (!name.value || !polarity.value)
+        {
+            error("Incomplete mux configuration {INTF} on {PATH}: {ERROR}",
+                  "INTF", iface, "PATH", path, "ERROR",
+                  name.value ? polarity.error : name.error);
+            co_return false;
+        }
+
+        names.push_back(name.value.value());
+        values.push_back((polarity.value == "High") ? 1 : 0);
     }
+
+    info("SPI flash {PATH}: {COUNT} mux output(s) configured", "PATH", path,
+         "COUNT", names.size());
 
     debug("SPI device: {INDEX1}:{INDEX2}", "INDEX1", spiControllerIndex.value(),
           "INDEX2", spiDeviceIndex.value());

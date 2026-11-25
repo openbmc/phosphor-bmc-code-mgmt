@@ -1,5 +1,7 @@
 #include "software_manager.hpp"
 
+#include "dbus_helper.hpp"
+
 #include <org/freedesktop/DBus/ObjectManager/common.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
@@ -58,40 +60,77 @@ static sdbusplus::async::task<std::optional<SoftwareConfig>> getConfig(
 
     const std::string interfaceName = interfacePrefix + ".FirmwareInfo";
 
-    try
+    // Entity-Manager can be too busy to answer during its boot-time scans; a
+    // timeout here must not drop the device for the whole boot.
+    const auto start = std::chrono::steady_clock::now();
+    bool done = false;
+    for (int attempt = 1; !done; attempt++)
     {
+        bool transient = false;
+        std::string lastError;
+        try
         {
-            auto propVendorIANA = co_await client.call<std::variant<uint64_t>>(
-                ctx, "Get", interfaceName, "VendorIANA");
+            {
+                auto propVendorIANA =
+                    co_await client.call<std::variant<uint64_t>>(
+                        ctx, "Get", interfaceName, "VendorIANA");
 
-            vendorIANA = std::get<uint64_t>(propVendorIANA);
+                vendorIANA = std::get<uint64_t>(propVendorIANA);
+            }
+            {
+                auto propCompatible =
+                    co_await client.call<std::variant<std::string>>(
+                        ctx, "Get", interfaceName, "CompatibleHardware");
+
+                compatible = std::get<std::string>(propCompatible);
+            }
+            {
+                auto propConfigType =
+                    co_await client.call<std::variant<std::string>>(
+                        ctx, "Get", interfacePrefix, "Type");
+
+                configType = std::get<std::string>(propConfigType);
+            }
+            {
+                auto propConfigName =
+                    co_await client.call<std::variant<std::string>>(
+                        ctx, "Get", interfacePrefix, "Name");
+
+                configName = std::get<std::string>(propConfigName);
+            }
+            done = true;
         }
+        catch (const sdbusplus::exception::exception& e)
         {
-            auto propCompatible =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfaceName, "CompatibleHardware");
-
-            compatible = std::get<std::string>(propCompatible);
+            lastError = e.what();
+            transient = !isDbusAbsentError(e.name());
         }
+        catch (std::exception& e)
         {
-            auto propConfigType =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfacePrefix, "Type");
-
-            configType = std::get<std::string>(propConfigType);
+            lastError = e.what();
         }
+        if (done)
         {
-            auto propConfigName =
-                co_await client.call<std::variant<std::string>>(
-                    ctx, "Get", interfacePrefix, "Name");
-
-            configName = std::get<std::string>(propConfigName);
+            if (attempt > 1)
+            {
+                info("Read config of {PATH} after {ATTEMPTS} attempts", "PATH",
+                     objectPath, "ATTEMPTS", attempt);
+            }
+            break;
         }
-    }
-    catch (std::exception& e)
-    {
-        error("Failed to get config with {ERROR}", "ERROR", e);
-        co_return std::nullopt;
+        if (!transient || std::chrono::steady_clock::now() - start >=
+                              dbusTransientRetryWindow)
+        {
+            error("Failed to get config with {ERROR} ({ATTEMPTS} attempts)",
+                  "ERROR", lastError, "ATTEMPTS", attempt);
+            co_return std::nullopt;
+        }
+        if (attempt == 1)
+        {
+            warning("Reading config of {PATH} failed, retrying: {ERROR}",
+                    "PATH", objectPath, "ERROR", lastError);
+        }
+        co_await sdbusplus::async::sleep_for(ctx, dbusTransientRetryDelay);
     }
 
     co_return SoftwareConfig(objectPath, vendorIANA, compatible, configType,

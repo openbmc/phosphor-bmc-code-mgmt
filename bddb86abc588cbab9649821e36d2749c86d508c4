@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee1ed66_e16ce1e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003265
+      },
+      "writtenOn": "2026-11-25T12:42:51Z",
+      "side": 1,
+      "message": "Hi everyone! I am currently implementing OCP recovery for OpenPRoT and am looking around in other implementations.",
+      "revId": "bddb86abc588cbab9649821e36d2749c86d508c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1672dc7_01d3c5a9",
+        "filename": "libocp/src/ocp_recovery.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1003265
+      },
+      "writtenOn": "2026-11-25T12:42:51Z",
+      "side": 1,
+      "message": "The INDIRECT_STATUS table says for the ACK bit, in v1.0 and v1.1: \"If the timeout expires, then the RA must read RECOVERY_STATUS\". After `waitWriteAck()` times out, `writeImage` writes the same chunk again. If the device stored the first write and set ACK after the last INDIRECT_STATUS poll, the IMO has advanced, so the resend stores another copy of the chunk. Could `writeImage` read RECOVERY_STATUS on timeout and return an error?",
+      "revId": "bddb86abc588cbab9649821e36d2749c86d508c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf6ddc3_f356694e",
+        "filename": "libocp/src/ocp_recovery.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1003265
+      },
+      "writtenOn": "2026-11-25T12:42:51Z",
+      "side": 1,
+      "message": "v1.0 and v1.1 require PROT_CAP, and v1.1 section 8.2.5 says: \"The RA shall only access INDIRECT_CTRL/INDIRECT_STATUS/INDIRECT_DATA if PROT_CAP BIT 5 is set.\" When `getProtCap()` returns an error, or bit 5 and FIFO bit 12 are clear, `recover()` can force recovery mode and writes INDIRECT_CTRL, so a device without the register is in recovery mode and gets no image. Could `recover()` return an error in both cases, with a `Target` flag to opt out?",
+      "revId": "bddb86abc588cbab9649821e36d2749c86d508c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

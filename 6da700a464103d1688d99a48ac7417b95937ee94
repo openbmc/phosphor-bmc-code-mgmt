@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a6f6b9_a8a5fcd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-11-25T10:30:06Z",
+      "side": 1,
+      "message": "The test plan only says `Build code pass`. It could describe the unit tests this change adds for the CSV parser instead.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "6da700a464103d1688d99a48ac7417b95937ee94",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

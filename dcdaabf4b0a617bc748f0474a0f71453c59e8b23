@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea696278_375eeccb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003023
+      },
+      "writtenOn": "2026-11-26T06:54:14Z",
+      "side": 1,
+      "message": "Nov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC raw bytes before memcpy: 9C 06 30 88\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_CPU0_MEM0_Firmware, source\u003dhardware, input\u003d2284848796, old\u003d8830069C, padded\u003d8830069C\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC raw bytes before memcpy: A4 88 B1 F3\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_CPU1_MEM1_Firmware, source\u003dhardware, input\u003d4088498340, old\u003dF3B188A4, padded\u003dF3B188A4\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC raw bytes before memcpy: 3F 37 60 4D\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_SYS0_SOC0_Firmware, source\u003dhardware, input\u003d1298151231, old\u003d4D60373F, padded\u003d4D60373F\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC raw bytes before memcpy: 83 45 F5 F6\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_SYS1_SOC1_Firmware, source\u003dhardware, input\u003d4143269251, old\u003dF6F54583, padded\u003dF6F54583\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC raw bytes before memcpy: AE 60 E2 00\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_V0P75_PCIE_VDDQ_Firmware, source\u003dhardware, input\u003d14835886, old\u003dE260AE, padded\u003d00E260AE\nNov 25 22:46:19 phoenix-crb-1 phosphor-i2cvr-software-update[14483]: VR CRC diagnostic: device\u003dMB_VR_CPU_V1P2_Firmware, source\u003dhardware, input\u003d1638203409, old\u003d61A50011, padded\u003d61A50011",
+      "parentUuid": "4a51d58b_981cd575",
+      "revId": "dcdaabf4b0a617bc748f0474a0f71453c59e8b23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e42c9d7e_064c49bd",

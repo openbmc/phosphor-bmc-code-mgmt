@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a51d58b_981cd575",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003023
+      },
+      "writtenOn": "2026-11-26T06:52:53Z",
+      "side": 1,
+      "message": "Thank you for the review. Just to clarify, the current code converts the hardware-read CRC into an unpadded hexadecimal string rather than displaying its full four-byte representation.\n\nI verified this on the board with temporary diagnostics:\n\nRaw bytes read from VR: AE 60 E2 00\n32-bit CRC:             0x00E260AE\nCurrent output:         E260AE\nWith this change:       00E260AE\n\nThe most-significant zero byte is present in the hardware read, but {:X} omits the corresponding leading zero digits. Using {:08X} retains the full eight-digit representation. The numeric CRC itself is unchanged.",
+      "parentUuid": "cca8b575_8689d7d0",
+      "revId": "dcdaabf4b0a617bc748f0474a0f71453c59e8b23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e42c9d7e_064c49bd",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-11-12T07:06:17Z",
       "side": 1,
       "message": "Note: This changes the Software.Version string already exposed on existing systems for CRCs below 0x10000000 (e.g. \"EC3F49B\" becomes \"0EC3F49B\"). Is anything (Redfish consumers, tooling, version matching) known to depend on the old unpadded form? It may be worth a sentence in the commit message.",
+      "revId": "dcdaabf4b0a617bc748f0474a0f71453c59e8b23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4facd48a_26252253",
+        "filename": "i2c-vr/i2cvr_software_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1003023
+      },
+      "writtenOn": "2026-11-26T06:52:53Z",
+      "side": 1,
+      "message": "Thank you for highlighting the compatibility concern. This changes only the string representation for CRCs with leading zeros; the numeric CRC remains unchanged. Exact string comparisons could be affected, and I have not confirmed whether all existing consumers accept both forms. I will document this consideration in the commit message.\n\nI also verified the case without leading zeros using a hardware read:\nRaw bytes:       9C 06 30 88\nCurrent output:  8830069C\nProposed output: 8830069C\n\nThe output remains unchanged in this case.",
+      "parentUuid": "af896be2_758497fa",
       "revId": "dcdaabf4b0a617bc748f0474a0f71453c59e8b23",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2d215e0_9fdded06",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T08:15:45Z",
+      "side": 1,
+      "message": "The deadline is only checked after a call returns, and one call can wait the 25 s D-Bus timeout, so the real worst case is about 145 s. Could this say \"about 120 s\", or could the deadline be checked before each call?",
+      "revId": "fb172ce403ab67332aba2dbe3d7e5dd00749a6ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb1cff5a_703624e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T08:15:45Z",
+      "side": 1,
+      "message": "Nit: isDbusAbsentError() also treats InvalidArgs as absent, which is not a \"does not exist\" error. Could the message or the code comment say why?",
+      "revId": "fb172ce403ab67332aba2dbe3d7e5dd00749a6ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb9cceb_37ffb962",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T08:15:45Z",
+      "side": 1,
+      "message": "Only recovery after a 40 s stall is tested. The give-up path (Entity- Manager stopped for more than 120 s) and a permanent error (for example AccessDenied) are not covered. Could you add them, or say in the message that they were not tested?",
+      "revId": "fb172ce403ab67332aba2dbe3d7e5dd00749a6ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3a940e1_6fc89392",
         "filename": "common/include/dbus_helper.hpp",
         "patchSetId": 2

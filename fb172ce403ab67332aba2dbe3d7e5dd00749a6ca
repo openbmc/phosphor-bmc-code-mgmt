@@ -88,6 +88,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "199d6f57_a00b996d",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-27T09:15:08Z",
+      "side": 1,
+      "message": "\u003e If Entity-Manager is down rather than briefly busy, \n\ni do not think we need to handle this case.\n\nIf you believe there is a case where entity-manager can crash due to bad input or other circumstances (rather than being briefly busy loading 300+ json configs)\nplease raise a patch or issue.",
+      "parentUuid": "f56422f5_f226dcc8",
+      "revId": "fb172ce403ab67332aba2dbe3d7e5dd00749a6ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e40058f_ddbaa1ed",
         "filename": "common/src/software_manager.cpp",
         "patchSetId": 2

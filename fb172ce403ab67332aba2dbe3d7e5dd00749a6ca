@@ -104,6 +104,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "457899e1_35a8d631",
+        "filename": "common/src/software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T09:22:36Z",
+      "side": 1,
+      "message": "Understood, Entity-Manager being down is out of scope. Withdrawing this.",
+      "parentUuid": "199d6f57_a00b996d",
+      "revId": "fb172ce403ab67332aba2dbe3d7e5dd00749a6ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e40058f_ddbaa1ed",

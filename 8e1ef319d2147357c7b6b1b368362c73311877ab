@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52ed6af_ea5f2795",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T09:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be9fc5e1_6e2b3b2e",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2c1d6be_b3f070bc",
@@ -65,6 +83,24 @@
       "writtenOn": "2026-11-27T07:53:25Z",
       "side": 1,
       "message": "start is reset for every MuxOutputs\u003ci\u003e entry, so the worst case grows by 120 s\nper entry, on top of the 120 s windows in getConfig() and in the\nSPIControllerIndex/SPIDeviceIndex reads. See my comment on 97706 about a\nshared per-device budget.",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb1b3c0_e0a0fa8f",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T09:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad6d474a_e5fd7bd1",
       "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

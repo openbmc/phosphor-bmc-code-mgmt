@@ -302,7 +302,18 @@ void ItemUpdater::processBMCImage()
 
                 continue;
             }
-            auto version = VersionClass::getBMCVersion(osRelease);
+            // getBMCVersion() throws if no version is found. Don't let one
+            // corrupted image prevent the service from starting.
+            std::string version;
+            try
+            {
+                version = VersionClass::getBMCVersion(osRelease);
+            }
+            catch (const std::exception& e)
+            {
+                error("Failed to parse version from osRelease: {ERROR}",
+                      "ERROR", e);
+            }
             if (version.empty())
             {
                 error("Failed to read version from osRelease: {PATH}", "PATH",

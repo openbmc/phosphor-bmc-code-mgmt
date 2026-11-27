@@ -153,6 +153,22 @@ TEST_F(VersionTest, TestGetVersionWithoutQuotes)
     EXPECT_EQ(Version::getBMCVersion(releasePath), version);
 }
 
+/** @brief getBMCVersion() throws when there is no VERSION_ID, callers such as
+ *  ItemUpdater::processBMCImage() must handle it. */
+TEST_F(VersionTest, TestGetVersionMissingVersionId)
+{
+    auto releasePath = _directory + "/" + "os-release";
+
+    std::ofstream file;
+    file.open(releasePath, std::ofstream::out);
+    ASSERT_TRUE(file.is_open());
+
+    file << "ID=openbmc-phosphor\n";
+    file.close();
+
+    EXPECT_THROW(Version::getBMCVersion(releasePath), std::exception);
+}
+
 /** @brief Make sure we correctly get the Id from getId()*/
 TEST_F(VersionTest, TestGetId)
 {

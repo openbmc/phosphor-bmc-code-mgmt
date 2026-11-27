@@ -39,6 +39,7 @@ owners:
 reviewers:
 - ojayanth@in.ibm.com
 - liuxiwei@ieisystem.com
+- mahalakshmik@ami.com
 
 matchers:
 - partial_regex: common
@@ -70,3 +71,6 @@ openbmc:
 - name: Jagpal Singh Gill
   email: paligill@gmail.com
   discord: jagpalgill
+- name: Mahalakshmi Kailasam
+  email: mahalakshmik@ami.com
+  discord: mahalakshmik_1

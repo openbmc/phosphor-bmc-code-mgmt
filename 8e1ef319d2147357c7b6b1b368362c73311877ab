@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "350ccb18_10f3272c",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T07:53:25Z",
+      "side": 1,
+      "message": "Nit: this is a new local copy of the property read and error classification\nfrom dbusGetRequiredProperty() (97706). Since dbusGetRequiredProperty() cannot\nreport absent vs transient, could the shared helper in dbus_helper.hpp return\nthat status so both changes use one implementation?",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6d474a_e5fd7bd1",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T07:53:25Z",
+      "side": 1,
+      "message": "start is reset for every MuxOutputs\u003ci\u003e entry, so the worst case grows by 120 s\nper entry, on top of the 120 s windows in getConfig() and in the\nSPIControllerIndex/SPIDeviceIndex reads. See my comment on 97706 about a\nshared per-device budget.",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9215f472_e972e5b6",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T07:53:25Z",
+      "side": 1,
+      "message": "Nit: when the Name read failed with a transient error, the Polarity read is\nstill attempted. During an Entity-Manager stall each call can wait the 25 s\nD-Bus timeout, so each iteration may take about twice as long. Could the\nPolarity read be skipped when Name is neither a value nor absent?",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df70b2e_92bc8c33",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T07:53:25Z",
+      "side": 1,
+      "message": "The loop only leaves early on name.absent (line 109) or on success. If Name is\npresent but Polarity is absent (UnknownProperty), or a property has the wrong\ntype (std::bad_variant_access, which lands in the std::exception catch at\nlines 51-53 with absent\u003dfalse), the loop retries every 2 s for the full 120 s\nand then fails with \"Incomplete mux configuration\". Neither case can recover.\n\nCould MuxProperty carry value / absent / transient, so that polarity.absent and\nnon-D-Bus exceptions fail immediately and only transient errors are retried?\ndbusGetRequiredProperty() in 97706 already treats std::exception as\nnon-transient, so the two should behave the same.",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75929f11_b873879d",
+        "filename": "spi-flash/spi_software_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-11-27T07:53:25Z",
+      "side": 1,
+      "message": "Behaviour change: before this patch an unreadable entry ended the list and the\ndevice was still created, without its mux. Now initDevice() returns false and\nthe device is not created at all, so it is also missing from the firmware\ninventory, not only unable to update. Is that intended? If so, please say so\nin the commit message.",
+      "revId": "8e1ef319d2147357c7b6b1b368362c73311877ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
